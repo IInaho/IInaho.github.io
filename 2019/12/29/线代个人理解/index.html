@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>线代个人理解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="线代个人理解一. 简介线性代数是从从研究一个数，到研究一组数的数学。一组数的基本表示方法为向量，而向量也是线性代数研究的基本元素。向量可以在多个维度表示一个Object的基本属性，方便我们数学的研究。向量一般分为行向量与列向量，但在通常的教材和论文中，向量一般默认指列向量。ps ： 由于印刷问题，列向量可以表示为(num1,num2)T。   向量的运算向量的加法如果两个向量(num1,num2)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线代个人理解">
+<meta property="og:url" content="http://yoursite.com/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="线代个人理解一. 简介线性代数是从从研究一个数，到研究一组数的数学。一组数的基本表示方法为向量，而向量也是线性代数研究的基本元素。向量可以在多个维度表示一个Object的基本属性，方便我们数学的研究。向量一般分为行向量与列向量，但在通常的教材和论文中，向量一般默认指列向量。ps ： 由于印刷问题，列向量可以表示为(num1,num2)T。   向量的运算向量的加法如果两个向量(num1,num2)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/xl.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/x2.png">
+<meta property="article:published_time" content="2019-12-29T09:36:56.000Z">
+<meta property="article:modified_time" content="2019-12-29T09:39:30.477Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/xl.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-线代个人理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/" class="article-date">
+  <time datetime="2019-12-29T09:36:56.000Z" itemprop="datePublished">2019-12-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      线代个人理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="线代个人理解一"><a href="#线代个人理解一" class="headerlink" title="线代个人理解一."></a>线代个人理解一.</h1><hr>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>线性代数是从从研究一个数，到研究一组数的数学。<br>一组数的基本表示方法为向量，而向量也是线性代数研究的基本元素。<br>向量可以在多个维度表示一个Object的基本属性，方便我们数学的研究。<br>向量一般分为行向量与列向量，但在通常的教材和论文中，向量一般默认指列向量。<br>ps ： 由于印刷问题，列向量可以表示为(num1,num2)T。  </p>
+<h2 id="向量的运算"><a href="#向量的运算" class="headerlink" title="向量的运算"></a>向量的运算</h2><h3 id="向量的加法"><a href="#向量的加法" class="headerlink" title="向量的加法"></a>向量的加法</h3><p>如果两个向量(num1,num2) + (num3,num4),那么得到的结果为(num1+num3,num2+num4)。<br>向量的加法可以表示为在n维坐标中，继续增加n维度的单位。<br>例如(5,2)T + (2,5)T.<br>表示先在x维度上增加5个单位，在y维度上增加2个单位。再在x维度上增加2个单位，再在y维度上增加5个单位。那么在x维度总共有7个单位，在y维度总共也有7个单位，进而得到的向量的结果为(7,7).<br>它可以表示object在两个维度上的信息。</p>
+<h3 id="向量的数量乘法"><a href="#向量的数量乘法" class="headerlink" title="向量的数量乘法"></a>向量的数量乘法</h3><p>简单来说乘法只是加法的推广和延申，那么向量的乘法同样也表示在n维度的坐标中，重复增加n维度个单位。  </p>
+<h3 id="向量运算的基本性质"><a href="#向量运算的基本性质" class="headerlink" title="向量运算的基本性质"></a>向量运算的基本性质</h3><p><img src="/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/xl.png" width="350px" height="100px">   </p>
+<h3 id="向量的长度"><a href="#向量的长度" class="headerlink" title="向量的长度"></a>向量的长度</h3><p>二范数的概念：表示向量每个维度的平方相加再开二次方。例如勾股定理<br>那么向量的长度实际上就是求向量的二范数,也可以叫做求向量的模  </p>
+<h3 id="单位向量"><a href="#单位向量" class="headerlink" title="单位向量"></a>单位向量</h3><p>单位向量是指这个向量去乘这个向量的模分之一，也就是保持向量的长度为1.所以单位向量的模永远为1，它只表示方向。<br>根据向量u求出单位向量u1的过程，也被称为是归一化，规范化(normalize)。<br>二维空间中，有两个特殊的单位向量 e1 = (1,0),e2 = (0,1)。<br>只由0，1组成的单位向量叫做，标准为单位向量(Standard Unit Vector)。<br>n维空间有n个标准为单位向量。  </p>
+<h3 id="两个向量相乘"><a href="#两个向量相乘" class="headerlink" title="两个向量相乘"></a>两个向量相乘</h3><p><img src="/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/x2.png" width="700px" height="150px"><br>两个向量相乘，结果为一个标量，这个标量代表两个向量的模相乘，再乘向量夹角的Cos值。这种乘法更严格的来说是两个向量的点乘，或者两个向量的内积。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/" data-id="ck4qtoiq200018swc5vcugq7e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/29/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/">线代个人理解</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/29/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
