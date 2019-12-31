@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>矩阵学习1</title>
+    <link href="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/"/>
+    <url>/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/</url>
+    
+    <content type="html"><![CDATA[<h2 id="矩阵定义"><a href="#矩阵定义" class="headerlink" title="矩阵定义"></a>矩阵定义</h2><p>向量是对数的拓展，一个向量表示一组数。<br>而矩阵是对向量的拓展，一个矩阵表示一组向量。<br>行数与列数相等的矩阵称为方阵。<br>一个矩阵可以拆分为n个行向量或者n个列向量，称矩阵为N x N矩阵。<br>矩阵可以表示成一个系统，例如在经济系统中，对于IT，电子，矿产，房产的投入，<br>可以表示成多个方程组，而方程组的系数则可用矩阵表示。</p><h2 id="矩阵的转置"><a href="#矩阵的转置" class="headerlink" title="矩阵的转置"></a>矩阵的转置</h2><p>行变成列，列变成行。</p><h3 id="矩阵转置的性质"><a href="#矩阵转置的性质" class="headerlink" title="矩阵转置的性质"></a>矩阵转置的性质</h3><p><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x1.png" srcset="/img/loading.gif" width="200px" height="80px">   </p><h2 id="矩阵的运算"><a href="#矩阵的运算" class="headerlink" title="矩阵的运算"></a>矩阵的运算</h2><h3 id="矩阵的加法"><a href="#矩阵的加法" class="headerlink" title="矩阵的加法"></a>矩阵的加法</h3><p>每一个对应元素相加得到新矩阵</p><h3 id="矩阵的数量乘法"><a href="#矩阵的数量乘法" class="headerlink" title="矩阵的数量乘法"></a>矩阵的数量乘法</h3><p>标量去乘矩阵的每一个元素得到新矩阵</p><h3 id="矩阵的基本运算性质"><a href="#矩阵的基本运算性质" class="headerlink" title="矩阵的基本运算性质"></a>矩阵的基本运算性质</h3><p>A + B = B + A<br>(A + B) + C = A + (B + C)<br>存在矩阵O，满足：A + O = A<br>存在矩阵-A,满足：A + (-A) = O<br>-A 唯一,  -A = -1 * A<br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x2.png" srcset="/img/loading.gif" width="250px" height="70px">  </p><h3 id="矩阵和向量的乘法"><a href="#矩阵和向量的乘法" class="headerlink" title="矩阵和向量的乘法"></a>矩阵和向量的乘法</h3><p>矩阵的列数必须和向量的元素个数一致。<br>矩阵与向量点乘，实际上将向量a转换成了向量b，所以矩阵可以理解为向量的函数。<br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x3.png" srcset="/img/loading.gif" width="350px" height="100px"><br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x4.png" srcset="/img/loading.gif" width="350px" height="100px">  </p><h3 id="矩阵和矩阵的乘法"><a href="#矩阵和矩阵的乘法" class="headerlink" title="矩阵和矩阵的乘法"></a>矩阵和矩阵的乘法</h3><p>矩阵A和矩阵B的每一个列向量相乘，要求矩阵A的列数必须和矩阵B的行数一致。<br>矩阵的乘法不遵守交换律。<br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x5.png" srcset="/img/loading.gif" width="350px" height="100px"><br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x6.png" srcset="/img/loading.gif" width="350px" height="100px">  </p><h3 id="矩阵的幂"><a href="#矩阵的幂" class="headerlink" title="矩阵的幂"></a>矩阵的幂</h3><p>只有方阵才有矩阵的幂。<br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x7.png" srcset="/img/loading.gif" width="350px" height="100px"> </p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>线性代数</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>线代个人理解</title>
+    <link href="/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/"/>
+    <url>/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>线性代数是从从研究一个数，到研究一组数的数学。<br>一组数的基本表示方法为向量，而向量也是线性代数研究的基本元素。<br>向量可以在多个维度表示一个Object的基本属性，方便我们数学的研究。<br>向量一般分为行向量与列向量，但在通常的教材和论文中，向量一般默认指列向量。<br>ps ： 由于印刷问题，列向量可以表示为(num1,num2)T。  </p><h2 id="向量的运算"><a href="#向量的运算" class="headerlink" title="向量的运算"></a>向量的运算</h2><h3 id="向量的加法"><a href="#向量的加法" class="headerlink" title="向量的加法"></a>向量的加法</h3><p>如果两个向量(num1,num2) + (num3,num4),那么得到的结果为(num1+num3,num2+num4)。<br>向量的加法可以表示为在n维坐标中，继续增加n维度的单位。<br>例如(5,2)T + (2,5)T.<br>表示先在x维度上增加5个单位，在y维度上增加2个单位。再在x维度上增加2个单位，再在y维度上增加5个单位。那么在x维度总共有7个单位，在y维度总共也有7个单位，进而得到的向量的结果为(7,7).<br>它可以表示object在两个维度上的信息。</p><h3 id="向量的数量乘法"><a href="#向量的数量乘法" class="headerlink" title="向量的数量乘法"></a>向量的数量乘法</h3><p>简单来说乘法只是加法的推广和延申，那么向量的乘法同样也表示在n维度的坐标中，重复增加n维度个单位。  </p><h3 id="向量运算的基本性质"><a href="#向量运算的基本性质" class="headerlink" title="向量运算的基本性质"></a>向量运算的基本性质</h3><p><img src="/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/xl.png" srcset="/img/loading.gif" width="350px" height="100px">   </p><h3 id="向量的长度"><a href="#向量的长度" class="headerlink" title="向量的长度"></a>向量的长度</h3><p>二范数的概念：表示向量每个维度的平方相加再开二次方。例如勾股定理<br>那么向量的长度实际上就是求向量的二范数,也可以叫做求向量的模  </p><h3 id="单位向量"><a href="#单位向量" class="headerlink" title="单位向量"></a>单位向量</h3><p>单位向量是指这个向量去乘这个向量的模分之一，也就是保持向量的长度为1.所以单位向量的模永远为1，它只表示方向。<br>根据向量u求出单位向量u1的过程，也被称为是归一化，规范化(normalize)。<br>二维空间中，有两个特殊的单位向量 e1 = (1,0),e2 = (0,1)。<br>只由0，1组成的单位向量叫做，标准为单位向量(Standard Unit Vector)。<br>n维空间有n个标准为单位向量。  </p><h3 id="两个向量相乘"><a href="#两个向量相乘" class="headerlink" title="两个向量相乘"></a>两个向量相乘</h3><p><img src="/2019/12/29/%E7%BA%BF%E4%BB%A3%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/x2.png" srcset="/img/loading.gif" width="700px" height="150px"><br>两个向量相乘，结果为一个标量，这个标量代表两个向量的模相乘，再乘向量夹角的Cos值。这种乘法更严格的来说是两个向量的点乘，或者两个向量的内积。<br>向量的点乘也可以看作只有一行元素的矩阵与向量相乘。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
