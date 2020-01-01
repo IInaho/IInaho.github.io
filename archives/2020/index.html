@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>矩阵学习1 ~ Hexo</title>
+  <title>Archives ~ Hexo</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -112,41 +112,6 @@
             </span>
 
             
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Tuesday, December 31st 2019, 8:26 pm
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    377 字
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      1 分钟
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
-                
-              </p>
-            
           </div>
 
           
@@ -157,68 +122,35 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">总计3篇文章</p> <!--postTotal-->
+  <hr>
+  
+    
       
+      <p class="h5">2020</p>
+    
+    <a href="/2020/01/01/2019%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">2019个人总结</span>
+      <span style="float: right;">01-01</span>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <h2 id="矩阵定义"><a href="#矩阵定义" class="headerlink" title="矩阵定义"></a>矩阵定义</h2><p>向量是对数的拓展，一个向量表示一组数。<br>而矩阵是对向量的拓展，一个矩阵表示一组向量。<br>行数与列数相等的矩阵称为方阵。<br>一个矩阵可以拆分为n个行向量或者n个列向量，称矩阵为N x N矩阵。<br>矩阵可以表示成一个系统，例如在经济系统中，对于IT，电子，矿产，房产的投入，<br>可以表示成多个方程组，而方程组的系数则可用矩阵表示。</p>
-<h2 id="矩阵的转置"><a href="#矩阵的转置" class="headerlink" title="矩阵的转置"></a>矩阵的转置</h2><p>行变成列，列变成行。</p>
-<h3 id="矩阵转置的性质"><a href="#矩阵转置的性质" class="headerlink" title="矩阵转置的性质"></a>矩阵转置的性质</h3><p><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x1.png" srcset="/img/loading.gif" width="200px" height="80px">   </p>
-<h2 id="矩阵的运算"><a href="#矩阵的运算" class="headerlink" title="矩阵的运算"></a>矩阵的运算</h2><h3 id="矩阵的加法"><a href="#矩阵的加法" class="headerlink" title="矩阵的加法"></a>矩阵的加法</h3><p>每一个对应元素相加得到新矩阵</p>
-<h3 id="矩阵的数量乘法"><a href="#矩阵的数量乘法" class="headerlink" title="矩阵的数量乘法"></a>矩阵的数量乘法</h3><p>标量去乘矩阵的每一个元素得到新矩阵</p>
-<h3 id="矩阵的基本运算性质"><a href="#矩阵的基本运算性质" class="headerlink" title="矩阵的基本运算性质"></a>矩阵的基本运算性质</h3><p>A + B = B + A<br>(A + B) + C = A + (B + C)<br>存在矩阵O，满足：A + O = A<br>存在矩阵-A,满足：A + (-A) = O<br>-A 唯一,  -A = -1 * A<br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x2.png" srcset="/img/loading.gif" width="250px" height="70px">  </p>
-<h3 id="矩阵和向量的乘法"><a href="#矩阵和向量的乘法" class="headerlink" title="矩阵和向量的乘法"></a>矩阵和向量的乘法</h3><p>矩阵的列数必须和向量的元素个数一致。<br>矩阵与向量点乘，实际上将向量a转换成了向量b，所以矩阵可以理解为向量的函数。<br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x3.png" srcset="/img/loading.gif" width="350px" height="100px"><br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x4.png" srcset="/img/loading.gif" width="350px" height="100px">  </p>
-<h3 id="矩阵和矩阵的乘法"><a href="#矩阵和矩阵的乘法" class="headerlink" title="矩阵和矩阵的乘法"></a>矩阵和矩阵的乘法</h3><p>矩阵A和矩阵B的每一个列向量相乘，要求矩阵A的列数必须和矩阵B的行数一致。<br>矩阵的乘法不遵守交换律。<br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x5.png" srcset="/img/loading.gif" width="350px" height="100px"><br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x6.png" srcset="/img/loading.gif" width="350px" height="100px">  </p>
-<h3 id="矩阵的幂"><a href="#矩阵的幂" class="headerlink" title="矩阵的幂"></a>矩阵的幂</h3><p>只有方阵才有矩阵的幂。<br><img src="/2019/12/31/%E7%9F%A9%E9%98%B5%E5%AD%A6%E4%B9%A01/x7.png" srcset="/img/loading.gif" width="350px" height="100px"> </p>
 
-            <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
-                
-                  <a class="hover-with-bg" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0">线性代数</a>
-                
-              </span>
-            
-            </p>
-            
-              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-            
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-  </div>
-</div>
-
     
   </main>
 
@@ -297,11 +229,6 @@
 
 
 
-  
-    <script src="/lib/tocbot/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
-
 
 
   <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
@@ -342,7 +269,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "矩阵学习1&nbsp;",
+        "万古长空，一朝风月&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
