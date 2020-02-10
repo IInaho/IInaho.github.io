@@ -66,9 +66,11 @@ $(document).ready(function () {
       easing: 'swing'
     })
   });
+});
 
-  // 因兼容问题，在 iOS 和 Safari 环境下不使用固定 Banner
-  if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) || (/Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent))) {
-    $("#background").css("background-attachment", "scroll");
-  }
+/*Sidebar*/
+$(document).ready(function(){
+  $("#start").click(function(){
+    $("#panel").slideToggle("fast");
+  });
 });
