@@ -22,7 +22,7 @@ $(document).ready(function () {
       /* ������ҳ��ײ�ʱ���ز��Ŀ¼����bug */
       /*toc.css("display", "none")*/
     }
-  });
+  };
   loadToc();
   $(window).scroll(loadToc);
   tocbot.init({
