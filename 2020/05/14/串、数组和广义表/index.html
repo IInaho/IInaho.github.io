@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png"><link rel="icon" type="image/png" href="/img/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content=""><meta name="author" content="John Doe"><meta name="keywords" content=""><title>串、数组和广义表 ~ inaho</title><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.8.7/css/mdb.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css"><link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"><style type="text/css">.banner-bg{background-image:url(/img/bg1.jpg);background-position:center;background-repeat:repeat-y;background-size:cover;background-attachment:fixed}</style><meta name="generator" content="Hexo 4.2.0"></head><body class="banner-bg"><header style="height:70vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/">&nbsp;<strong>阴月有晴</strong>&nbsp;</a> <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/">主页</a></li><li class="nav-item"><a class="nav-link" href="/archives/">归档</a></li><li class="nav-item"><a class="nav-link" href="/tags/">标签</a></li><li class="nav-item"><a class="nav-link" href="/about/">关于</a></li><li class="nav-item" id="search-btn"><a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i class="iconfont icon-search"></i>&nbsp;&nbsp;</a></li></ul></div></div></nav><div class="view intro-2 rgba-black-slight" id="background"><div class="full-bg-img"><div class="mask flex-center"><div class="container text-center white-text fadeInUp"><span class="h2" id="subtitle"></span><br><p class="mt-3"><i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp; 星期四, 五月 14日 2020, 9:19 上午</p><p>&nbsp;<i class="far fa-chart-bar"></i> <span class="post-count">3k 字 </span>&nbsp; &nbsp;<i class="far fa-clock"></i> <span class="post-count">14 分钟 </span>&nbsp; &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp; <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> 次 </span>&nbsp;</p></div></div></div></div></header><main id="mainContent" class="rgba-black-slight"><div class="container-fluid"><div class="row"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-md"><div class="py-5 z-depth-3" id="board"><div class="post-content mx-auto" id="post"><div class="markdown-body"><h1 id="数据结构之串"><a href="#数据结构之串" class="headerlink" title="数据结构之串"></a>数据结构之串</h1><h2 id="串的定义"><a href="#串的定义" class="headerlink" title="串的定义"></a>串的定义</h2><p>串(String)(或字符串)是由零个或多个字符组成的有限序列,一般记为</p><script type="math/tex;mode=display">s="a_1a_2\cdots a_n" (n\geq 0)</script><ul><li>串中字符的数目n称为串的长度，零个字符的串称为空串，长度为零。</li><li>串中任意个连续的字符组成的子序列称为该串的子串，包含子串的串相应地称为主串。</li><li>两个串长度相等，并且各个对应位置的字符都相等时才相等。</li><li>一个或多个空格组成的串称为空格串</li></ul><h2 id="串的抽象类型定义"><a href="#串的抽象类型定义" class="headerlink" title="串的抽象类型定义"></a>串的抽象类型定义</h2><pre><code>StrAssign(&amp;T,Chars)        //chars是字符串常量，生成一个其值等于chars的串T
+StrCopy(&amp;T,S)            //串存在，由串S复制得串T
+StrEmpty(S)                //串存在，判断S是否为空串
+StrCompare(S,T)            //串S与T存在，若S&gt;T返回值&gt;0,S=T,返回值=0，S&lt;T,返回值&lt;0
+StrLength(S)            //串存在，返回S的元素个数，称为串的长度
+ClearString(&amp;S)            //串存在，将S清为空串
+Concat(&amp;T,S1,S2)        //串S1与S2存在，用T返回S1与S2拼接的新串
+SubString(&amp;Sub,S,pos,len)    //串存在，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=Strlength(S)-pos+1，用Sub返回串S的第pos个字串起长度为len的字串
+Index(S,T,pos)            //串S和T存在，T是非空串，1&lt;=pos&lt;=StrLength(S)，若主串S中存在和串T值相同的字串，则返回它在主串S中第pos个字符之后第一次出现的位置，否则函数值为0
+Replace(&amp;S,T,V)            //S,T,V存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的字串
+StrInsert(&amp;S,pos,T)        //串S与T存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的子串
+StrDelete(&amp;S,pos,len)    //串S存在，1&lt;=pos&lt;=StrLength(S)-len+1，从串S中删除第pos个字符起长度为len的字串
+DestroyString(&amp;S)        //串存在，销魂串
+</code></pre><h2 id="串的存储结构"><a href="#串的存储结构" class="headerlink" title="串的存储结构"></a>串的存储结构</h2><h3 id="串的顺序存储"><a href="#串的顺序存储" class="headerlink" title="串的顺序存储"></a>串的顺序存储</h3><h4 id="串的定长顺序存储结构"><a href="#串的定长顺序存储结构" class="headerlink" title="串的定长顺序存储结构"></a>串的定长顺序存储结构</h4><pre><code>#define MAXLEN 255
+typedef struct{
+    char ch[MAXLEN+1];        //储存串的一维数组
+    int length;                //串的长度
+}SString;
+</code></pre><h4 id="串的堆式顺序存储结构"><a href="#串的堆式顺序存储结构" class="headerlink" title="串的堆式顺序存储结构"></a>串的堆式顺序存储结构</h4><pre><code>typedef struct{
+    char *ch;                //若是非空串，则按串长分配存储区，否则ch为NULL
+    int length;                //串的当前长度
+}HString;
+</code></pre><h3 id="串的顺序存储简易代码"><a href="#串的顺序存储简易代码" class="headerlink" title="串的顺序存储简易代码"></a>串的顺序存储简易代码</h3><p>用一组地址连续的存储单元存储串的字符序列，为了根据实际需要，在程序执行过程中动态分配和释放字符数组空间，使用堆式顺序存储结构。</p><p><strong>堆式顺序存储结构举例</strong>：</p><pre><code>typedef struct {
+    char *ch;
+    int length;
+}HString;
+int StrAssign(HString *s,const char chars[]) {
+    int i = 0;
+    while (chars[i] != NULL) {
+        i++;
+    }
+    s-&gt;ch = (char*)malloc(sizeof(char)*i);
+    if (s-&gt;ch == NULL) return -1;
+    s-&gt;length = i;
+    for (int j = 0; j &lt; i; j++) {
+        s-&gt;ch[j] = chars[j];
+    }
+    return 1;
+}
+int StrCopy(HString *t,HString s) {
+    t-&gt;ch = (char*)malloc(sizeof(char)*s.length);
+    t-&gt;length = s.length;
+    for (int i = 0; i &lt; s.length; i++) {
+        t-&gt;ch[i] = s.ch[i];
+    }
+    return 1;
+}
+int StrEmpty(HString s) {
+    if (s.length == 0) return true;
+    return false;
+}
+int StrCompare(HString s,HString t) {
+    int i = 0;
+    int Min_length = (s.length &lt; t.length) ? s.length : t.length;
+    while (s.ch[i] == t.ch[i]) {
+        if (i = Min_length) return 0;
+        i++;
+    }
+    if (s.ch[i] &gt; t.ch[i])return 1;
+    if (s.ch[i] &lt; t.ch[i])return -1;
+}
+int StrLength(HString s) {
+    return s.length;
+}
+void ClearString(HString *s) {
+    char  *temp = s-&gt;ch;
+    s-&gt;ch = NULL;
+    free(temp);
+    s-&gt;length = 0;
+}
+void Concat(HString *t,HString s1, HString s2) {
+    t-&gt;length = s1.length + s2.length;
+    t-&gt;ch = (char*)malloc(sizeof(char)*(t-&gt;length));
+    int i = 0, j = 0;
+    while (i &lt; s1.length) {
+        t-&gt;ch[i] = s1.ch[i];
+        i++;
+    }
+    while (j &lt; s2.length) {
+        t-&gt;ch[i] = s2.ch[j];
+        j++;
+        i++;
+    }
+}
+void SubString(HString *sub,HString s,int pos,int len) {
+    sub-&gt;length = len;
+    sub-&gt;ch = (char*)malloc(sizeof(char)*len);
+    int i = pos+1; int j = 0;
+    while (i &lt; s.length) {
+        sub-&gt;ch[j] = s.ch[i];
+        i++;
+        j++;
+    }
+}
+void DestroyString(HString *s) {
+    char *temp = s-&gt;ch;
+    free(s-&gt;ch);
+    free(s);
+}
+void StrPrint(HString s) {
+    int i = 0;
+    while (i &lt; s.length) {
+        cout &lt;&lt; s.ch[i];
+        i++;
+    }
+    cout &lt;&lt; endl;
+}
+//测试
+int main() {
+    HString s;
+    StrAssign(&amp;s, &quot;abcdefg&quot;);        //根据字符串常量生成字符串
+    HString t;
+    StrCopy(&amp;t, s);        //复制串s
+    HString a;
+    StrAssign(&amp;a, &quot;xcvbad&quot;);
+    cout &lt;&lt; StrCompare(s, t) &lt;&lt; endl;        //比较字符串
+    cout &lt;&lt; StrLength(a) &lt;&lt; endl;            //返回字符串长度
+    HString  b;
+    Concat(&amp;b, s, a);                        //拼凑字符串
+    HString c;
+    SubString(&amp;c, s, 1, 3);                    //返回s串从1位置起长度为3的子串
+    StrPrint(c);
+    StrPrint(b);
+    StrPrint(t);
+    //StrPrint(s);
+    getchar();
+    return 0;
+}
+</code></pre><h3 id="串的链式存储结构"><a href="#串的链式存储结构" class="headerlink" title="串的链式存储结构"></a>串的链式存储结构</h3><p>顺序串插入与删除并不方便，需要移动大量字符，因此使用单链表方式存储串。<br>如果所存的串元素数量很大，串链中的结点数据域可以采用数组的结构对串进行遍历时间上的优化.<br>如果串的元素比较少，那么使用普通的字符类型作为结点的数据域更加节省空间。</p><p><strong>数组加链表，代码举例</strong></p><pre><code>#define CHUNKSIZE 3
+typedef struct Chunk {
+    char ch[CHUNKSIZE];
+    struct Chunk *next;
+}Chunk;
+typedef  struct {
+    Chunk *head, *tail;
+    int Chunk_num;
+    int length;                                                //字符串字符数量
+}LString;
+void StrAssign(LString *s, const char chars[]) {
+    int chars_len = 0;                                        //常量字符长度
+    int nowChunk_num = 0;                                    //当前已有块数
+    s-&gt;Chunk_num = 0;
+    while (chars[chars_len] != NULL) {
+        chars_len++;
+    }
+    s-&gt;Chunk_num = (chars_len / CHUNKSIZE)+1;                    //串链块数
+    s-&gt;length = chars_len;
+    //串申请
+    if (chars_len != 0) {
+        s-&gt;head = (Chunk*)malloc(sizeof(Chunk));
+        s-&gt;tail = s-&gt;head;
+        nowChunk_num++;
+    }
+    while (nowChunk_num &lt; s-&gt;Chunk_num) {                        //申请块
+        Chunk* temp = (Chunk*)malloc(sizeof(Chunk));
+        s-&gt;tail-&gt;next = temp;
+        s-&gt;tail = s-&gt;tail-&gt;next;
+        s-&gt;tail-&gt;next = NULL;
+        nowChunk_num++;
+    }
+    // 串赋值
+    int chars_p = 0;                                        //chars字符当前位置
+    Chunk* p = NULL;
+    if(s-&gt;head != NULL) p = s-&gt;head;                        //串当前指针
+    while (p != NULL) {
+        for (int i = 0; (i &lt; CHUNKSIZE &amp;&amp; chars_p &lt; chars_len); i++, chars_p++) {
+            p-&gt;ch[i] = chars[chars_p];
+        }
+        p = p-&gt;next;
+    }
+}
+void StrPrint(LString s) {
+    Chunk *p = s.head;
+    while (p != NULL) {
+        for (int i = 0; i &lt; CHUNKSIZE; i++) {
+            if(p-&gt;ch[i] &gt;=0 &amp;&amp; p-&gt;ch[i] &lt;= 127)
+            cout &lt;&lt; p-&gt;ch[i];
+            else continue;
+        }p = p-&gt;next;
+    }
+    cout &lt;&lt; endl;
+}
+int StrCopy(LString *t, LString s) {
+    t-&gt;length = s.length;
+    t-&gt;Chunk_num = 0;
+    Chunk *s_p = NULL;                //s块指针
+    Chunk *t_p = NULL;                //t块指针
+    if (s.head != NULL) {
+        t-&gt;head = (Chunk*)malloc(sizeof(Chunk));
+        t-&gt;tail = t-&gt;head;
+        t-&gt;Chunk_num++;
+    }
+    while (t-&gt;Chunk_num &lt;s.Chunk_num) {        //t.申请块
+        Chunk *temp = (Chunk*)malloc(sizeof(Chunk));
+        t-&gt;tail-&gt;next = temp;
+        t-&gt;tail = t-&gt;tail-&gt;next;
+        t-&gt;tail-&gt;next = NULL;
+        t-&gt;Chunk_num++;
+    }
+    t_p = t-&gt;head;
+    s_p = s.head;
+    while (s_p != NULL &amp;&amp; t_p != NULL) {
+        int j = 0;
+        for (int i = 0; i &lt; CHUNKSIZE &amp;&amp; j &lt; s.length; i++, j++) {
+            t_p-&gt;ch[i] = s_p-&gt;ch[i];
+        }
+        s_p = s_p-&gt;next;
+        t_p = t_p-&gt;next;
+    }
+    return 1;
+}
+int StrEmpty(LString s) {
+    if(s.head == NULL) return 1;
+    return 0;
+}
+int StrCompare(LString s, LString t) {
+    Chunk *sp = s.head;
+    Chunk *tp = t.head;
+    int nowl = 0;
+    while (sp != NULL &amp;&amp; tp != NULL) {
+        if (sp == NULL &amp;&amp; tp == NULL)return 0;
+        for (int i = 0; i &lt; CHUNKSIZE; i++) {
+            if (sp-&gt;ch[i] == tp-&gt;ch[i]) {
+                nowl++;
+                if (nowl &gt; 3) {
+                    nowl = 0;
+                    break;
+                }continue;
+            }
+            if (sp-&gt;ch[i] &gt; tp-&gt;ch[i]) return 1;
+            if (sp-&gt;ch[i] &lt; tp-&gt;ch[i]) return -1;
+        }
+        sp = sp-&gt;next; tp = tp-&gt;next;
+    }
+    return 1;
+}
+int StrLength(LString s) {
+    return s.length;
+}
+int ClearString(LString *s) {
+    while (s-&gt;head != NULL) {
+        Chunk* temp = s-&gt;head;
+        s-&gt;head = s-&gt;head-&gt;next;
+        free(temp);
+    }
+    s-&gt;Chunk_num = 0;
+    s-&gt;length = 0;
+    s-&gt;head = NULL;
+    s-&gt;tail = NULL;
+    return 1;
+}
+int Concat(LString *t, LString s1, LString s2) {
+    //不浪费空间的连接法，直接连接两个字符串的空间地址
+    /*t-&gt;length = s1.length + s2.length;
+    t-&gt;Chunk_num = s1.Chunk_num + s2.Chunk_num;
+    t-&gt;head = s1.head;
+    t-&gt;tail = s1.tail;
+    t-&gt;tail-&gt;next = s2.head;
+    t-&gt;tail = s2.tail;*/
+
+    //重新分配空间
+    t-&gt;length = s1.length + s2.length;
+    t-&gt;Chunk_num = t-&gt;length / CHUNKSIZE +1;
+    LString s1temp;
+    LString s2temp;
+    StrCopy(&amp;s1temp, s1);
+    StrCopy(&amp;s2temp, s2);
+    t-&gt;head = s1temp.head;
+    s1temp.tail-&gt;next = s2temp.head;
+    t-&gt;tail = s2temp.tail;
+    return 1;
+
+}
+int DestroyString(LString *s) {
+    while (s-&gt;head != NULL) {
+        Chunk* temp = s-&gt;head;
+        s-&gt;head = s-&gt;head-&gt;next;
+        free(temp);
+    }
+    free(s);
+    return 1;
+}
+
+//需要模式匹配算法，后面介绍
+void Index() {}
+void Replace() {}
+//与链表增删同理
+void StrInsert() {}
+void StrDelete() {}
+
+//测试
+int main() {
+    LString s,t,d,a;
+    StrAssign(&amp;s, &quot;assfaasfasjkfkhqhnkqwjnfjkhqnjkfbjakbnfjkanfkjqwbjkfndMMMM&quot;);
+    StrAssign(&amp;d, &quot;asdfghsaesadsadasdadsafsaffdgdj&quot;);
+    StrCopy(&amp;t, s);
+    //cout &lt;&lt; StrCompare(s, d)&lt;&lt;endl;
+    Concat(&amp;a, s, t);
+    StrPrint(a);
+    getchar();
+    return 0;
+}
+</code></pre><h3 id="串的模式匹配算法"><a href="#串的模式匹配算法" class="headerlink" title="串的模式匹配算法"></a>串的模式匹配算法</h3><p>字串的定位运算通常称为串的模式匹配或串匹配。<br>串的模式匹配设有两个字符串S和T，设S为主串，也称为正文串，设T为子串，也称为模式。在主串S中查找与模式T相匹配的子串，如果匹配成功，确定相匹配的子串中的第一个字符在主串S中出现的位置，著名的算法为：</p><ul><li>BF算法</li><li>KMP算法</li></ul><h4 id="BF算法"><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h4><p>模式匹配不一定是从主串的第一个位置开始，可以指定主串中查找的起始位置pos，如果采用字符串顺序存储结构，可以写出不依赖于其他串操作的匹配算法。<br>最好情况下匹配成功的平均比较次数为：</p><script type="math/tex;mode=display">\displaystyle \sum^{n-m+1}_{i=1}{p_i(i-1+m)=}</script><script type="math/tex;mode=display">1/(n-m+1)\displaystyle \sum^{n-m+1}_{i=1}{i-1+m}=1/2(n+m)</script><p>最坏情况下匹配成功的平均次数为：</p><script type="math/tex;mode=display">\displaystyle \sum^{n-m+1}_{i=1}{p_i(i\times m)=}</script><script type="math/tex;mode=display">1/(n-m+1)\displaystyle \sum^{n-m+1}_{i=1}{i\times m}=</script><script type="math/tex;mode=display">(1/2)m\times (n-m+2)</script><p>算法步骤：</p><ul><li>分别利用计数指针i和j指示主串S和模式T中当前正待比较的字符位置，i初值为pos,j初值为1.</li><li>如果两个串均为比较到串尾，即i和j均分别小于等于S和T的长度时，则循环执行以下操作<ul><li>S.ch[i]和T.ch[j]比较，若相等，则i与j分别指示串中下一个位置，继续比较后续字符</li><li>若不等，指针后退重新开始匹配，从主串的下一个字符(i=i-j+2)起再重新和模式的第一个字符j=1比较。</li></ul></li><li>如果j&gt;T.length，说明模式T中的每个字符依次和主串S中的一个连续的字符序列相等，则匹配成功，返回和模式T中第一个字符相等的字符在主串S中的序号。</li></ul><p>简易代码示例：</p><pre><code>int  Cal_length(char s[]) {        //求数组长度
+    int len = 0;
+    while (s[len]) {
+        len++;
+    }
+    return len;
+}
+int Index_BF(char s[], char t[], int pos) {
+    int i = pos; int j = 0;
+    int i_length = Cal_length(s);
+    int t_length = Cal_length(t);
+    while (i &lt; i_length &amp;&amp; j &lt; t_length) {
+        if (s[i] == t[j]) { i++; j++; }
+        else { i = i - j + 1; j = 0; }
+    }
+    if (j &gt;= t_length) { return i - t_length; }
+    else return 0;
+}
+int main() {
+    char ch[] = &quot;asdfabcgfdsh&quot;;
+    char ch1[] = &quot;abc&quot;;
+    cout &lt;&lt; Index_BF(ch, ch1, 2);
+    getchar();
+    return 0;
+}
+</code></pre><h4 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h4><p>KMP算法其实是针对BF算法的优化，因为BF算法依次逐位进行匹配，如果出现匹配失败，主串i的值需要回溯到起始的下一个位置，j的值回溯到0，重新开始匹配。<br>这种算法当子串与主串规模足够大时，算法时间复杂度比较高，KMP算法利用已经匹配过信息，使匹配失败后，不需要重新回溯到起始位置，反而跳过了许多不必要的匹配环节，提高了模式匹配的效率。</p><p><strong>KMP算法代码如下</strong>：</p><pre><code>void getNext(char t[], int next[]) {
+    int t_length = strlen(t);
+    next[0] = -1;
+    int k = -1;
+    for (int j = 0; j &lt; t_length - 1;) {        //最后一位不比
+        if (k == -1 || t[j] == t[k]) {
+            ++k; ++j;
+            next[j] = k;
+        }
+        else  k = next[k];                //KMP算法的精髓
+    }
+        //00012123001120000,00012000001000000
+}
+int KMP(char s[], char t[], int pos) {
+    int i = pos; 
+    int j = -1;
+    int i_length = strlen(s);
+    int t_length = strlen(t);
+    //得到next数组
+    int* next = (int*)malloc(sizeof(int)*t_length);        //根据子串的长度动态分配
+    getNext(t, next);
+
+    //优化之后主串的i不需要回溯，只需要回溯子串j的位置
+    while (i &lt; i_length &amp;&amp; j &lt; t_length) {
+        if (j == -1 || s[i] == t[j]) { i++; j++; }
+        else { j = next[j]; }         //s[i] != t[j]并且j != -1的情况下，根据next的值回溯j
+    }
+    if (j &gt;= t_length) { return i - j; }    //总长 - 匹配成功的子串长
+    else return 0;
+}
+//测试
+int main() {
+    char s[] = &quot;dsadsadsafsaf abcababccbaabc gqegqwdsad&quot;;
+    char t[] = &quot;abcababccbaabc&quot;;
+    cout&lt;&lt;KMP(s, t, 1);
+    getchar();
+    return 0;
+}
+</code></pre><hr></div><br><div><p><span><i class="iconfont icon-tag"></i> <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></span></p><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p><div class="col-lg-7 mx-auto nopadding-md"><div class="container comments mx-auto" id="comments"><br><br><div class="disqus" style="width:100%"><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://yoursite.com/2020/05/14/串、数组和广义表/",this.page.identifier="/2020/05/14/串、数组和广义表/"},oldLoad=window.onload;window.onload=function(){var t=document,e=t.createElement("script");e.type="text/javascript",e.src="//inaho-top.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a></noscript></div></div></div></div></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container"><div id="toc"><p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p><div id="tocbot"></div></div></div></div></div></main><a class="z-depth-1" id="scroll-top-button" href="#" role="button"><i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><div id="footerContent" class="rgba-black-slight"><footer class="pt-5"><div style="color:#fff" class="text-center py-3"><a style="color:#fff" href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo支持</b></a> <i class="iconfont icon-love"></i> <a style="color:#fff" href="https://disqus.com/" target="_blank" rel="nofollow noopener"><b>Disqus 评论系统 </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>主题Fluid </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://www.pixiv.net/" target="_blank" rel="nofollow noopener"><b>图片 Pixiv</b></a><br>&nbsp;<span id="busuanzi_container_site_pv">总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp; &nbsp;<span id="busuanzi_container_site_uv">总访客数 <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;<br></div></footer></div><script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script><script src="/lib/popper/popper.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script><script src="https://cdn.staticfile.org/mdbootstrap/4.8.7/js/mdb.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="/lib/tocbot/tocbot.min.js"></script><script src="/js/post.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/lib/prettify/prettify.min.js"></script><script>$(document).ready(function(){$("pre").addClass("prettyprint  linenums"),prettyPrint()})</script><script src="/lib/typed/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","串、数组和广义表&nbsp;"],cursorChar:"_",typeSpeed:70,loop:!1});typed.stop(),$(document).ready(function(){$(".typed-cursor").addClass("h2"),typed.start()})</script><script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js"></script><script>anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))</script><script src="/js/local-search.js"></script><script>var path="/local-search.xml",inputArea=document.querySelector("#local-search-input");inputArea.onclick=function(){getSearchFile(path),this.onclick=null}</script><script src="/lib/fancybox/jquery.fancybox.min.js"></script><script>$("#post img:not(.no-zoom img, img[no-zoom])").each(function(){var t=document.createElement("a");$(t).attr("data-fancybox","images"),$(t).attr("href",$(this).attr("src")),$(this).wrap(t)})</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+          }
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });</script><script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script><script type="text/javascript">$("#background").removeClass("banner-bg"),$("body").addClass("banner-bg");var postToTopHight=$("#board").offset().top;$(window).scroll(function(){var o=document.body.scrollTop+document.documentElement.scrollTop;postToTopHight<=o?($("#background").removeClass("rgba-black-slight"),$("#mainContent").removeClass("rgba-black-slight"),$("#footerContent").removeClass("rgba-black-slight")):($("#background").addClass("rgba-black-slight"),$("#mainContent").addClass("rgba-black-slight"),$("#footerContent").addClass("rgba-black-slight"))})</script></body></html>
