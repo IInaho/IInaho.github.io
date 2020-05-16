@@ -411,11 +411,68 @@ typedef struct {
     int data;        //原矩阵对应的值
 }node;
 typedef struct {
-    int i,j;        //稀疏矩阵的行列数
-    int NodeNum;    //稀疏矩阵非零元个数
-    node data[MAXSIZE];    //存放稀疏矩阵的三元组表
+    int i,j;        //原矩阵的行列数
+    int NodeNum;    //原矩阵非零元个数
+    node data[MAXSIZE];    //存放原矩阵非零元的三元组表
 };
-</code></pre><h3 id="十字链表"><a href="#十字链表" class="headerlink" title="十字链表"></a>十字链表</h3><p>十字链表也可以对稀疏矩阵进行压缩存储，对于压缩存储稀疏矩阵，无论是使用三元组顺序表，还是使用行逻辑链接的顺序表，归根结底是使用数组存储稀疏矩阵。<br>介于数组 “不利于插入和删除数据” 的特点，以上两种压缩存储方式都不适合解决类似 “向矩阵中添加或删除非 0 元素” 的问题。<br>在图结构中，有向图可以用两个邻接矩阵进行表示，而有向图的存储需要使用对应矩阵的邻接表与逆邻接表，为了减少存储空间，使用十字链表结合了邻接表与逆邻接表。<br>本文暂不叙述十字链表的存储方式，会在学习图之后进行补充。</p><h2 id="广义表"><a href="#广义表" class="headerlink" title="广义表"></a>广义表</h2><h3 id="广义表的定义"><a href="#广义表的定义" class="headerlink" title="广义表的定义"></a>广义表的定义</h3><p>广义表是线性表的推广，也成为列表，广义表一般记作</p><script type="math/tex;mode=display">LS=(a_1,a_2,...,a_n)</script><p>LS是广义表的名称，n是其长度，在广义表的定义中，a_i可以是单个元素也可以是广义表，分别称为广义表LS的原子或子表，一般小写字母表示原子，大写字母表示广义表，广义表的定义是一个递归的定义，下面为广义表举例</p><ul><li>A=(),A为空表</li><li>B=(e),B只有一个原子e</li><li>C=(a,(b,c,d)),C有两个元素，一个是原子a，另一个是子表(b,c,d)</li><li>D=(A,B,C),D表含有三个子表</li><li>E=(a,E),E为一个递归表，每一层都有一个原子e与表E</li></ul><h3 id="广义表的重要结论"><a href="#广义表的重要结论" class="headerlink" title="广义表的重要结论"></a>广义表的重要结论</h3><ol><li>广义表的元素可以是广义表，即广义表可以多层次的结构</li><li>广义表的深度定义为所含括弧的重数，其中原子的深度为0，空表的深度为1</li><li>广义表的长度定义为最外层包含元素个数</li><li>广义表可以为其他广义表共享，即称为其他广义表的子表，或者包含其他广义表</li><li>任何一个非空广义表均可分解为表头和表尾两部分</li><li>广义表可以是递归的表</li></ol><h3 id="广义表的运算及定义"><a href="#广义表的运算及定义" class="headerlink" title="广义表的运算及定义"></a>广义表的运算及定义</h3><pre><code>GetLength(&amp;g) //求广义表的长度
+</code></pre><h4 id="三元组存稀疏矩阵代码示例"><a href="#三元组存稀疏矩阵代码示例" class="headerlink" title="三元组存稀疏矩阵代码示例"></a>三元组存稀疏矩阵代码示例</h4><pre><code>/*以下稀疏矩阵为例
+0 0 0 1 0 2
+0 2 1 0 0 0
+0 0 0 6 0 0
+0 1 0 0 0 7
+0 0 0 0 0 0
+*/
+typedef struct {
+    int row, col;    //原矩阵的行列号
+    int data;        //原矩阵对应的值
+}node;
+typedef struct {
+    int i, j;        //原矩阵的行列数
+    int NodeNum;    //原矩阵非零元个数
+    node *data;    //存放原矩阵非零元的三元组表
+}ThrList;
+int CreateThr(ThrList *s,int a[][6]) {        //压缩存储
+    s-&gt;data = (node*)malloc(sizeof(node) * 7);
+    s-&gt;NodeNum = 0;
+    int k = 0;
+    s-&gt;i = 5;
+    s-&gt;j = 6;
+    for (int i = 0; i &lt; 5; i++) {
+        for (int j = 0; j &lt; 6; j++) {
+            if (a[i][j] != 0) {
+                s-&gt;data[k].col = i;
+                s-&gt;data[k].row = j;
+                s-&gt;data[k++].data = a[i][j];
+                s-&gt;NodeNum++;
+            }
+        }
+    }
+    return 1;
+}
+void PrintThr(ThrList s) {                    //打印
+    for (int i = 0; i &lt; s.NodeNum; i++) {
+        cout &lt;&lt; s.data[i].data;
+    }
+}
+int GetValue(ThrList s,int i,int j) {        //取值
+    for (int k = 0; k &lt; s.NodeNum; k++) {
+        if (s.data[k].col == i &amp;&amp; s.data[k].row == j) {
+            return s.data[k].data;
+        }
+    }
+    return 0;
+}
+//测试
+int main() {
+    int a[5][6] = { { 0, 0, 0, 1, 0, 2 }, { 0, 2, 1, 0, 0, 0 }, { 0, 0, 0, 6, 0, 0 }, { 0, 1, 0, 0, 0, 7 }, { 0, 0, 0, 0, 0, 0 } };
+    ThrList s;
+    CreateThr(&amp;s,a);
+    //PrintThr(s);
+    cout &lt;&lt; GetValue(s, 3, 5);
+    getchar();
+    return 0;
+}
+</code></pre><h3 id="十字链表"><a href="#十字链表" class="headerlink" title="十字链表"></a>十字链表</h3><p>十字链表也可以对稀疏矩阵进行压缩存储，对于压缩存储稀疏矩阵，无论是使用三元组顺序表，还是使用行逻辑链接的顺序表，归根结底是使用数组存储稀疏矩阵。<br>介于数组 “不利于插入和删除数据” 的特点，以上两种压缩存储方式都不适合解决类似 “向矩阵中添加或删除非 0 元素” 的问题。<br>在图结构中，有向图可以用两个邻接矩阵进行表示，而有向图的存储需要使用对应矩阵的邻接表与逆邻接表，为了减少存储空间，使用十字链表结合了邻接表与逆邻接表。<br>本文暂不叙述十字链表的存储方式，会在学习图之后进行补充。</p><h1 id="广义表"><a href="#广义表" class="headerlink" title="广义表"></a>广义表</h1><h2 id="广义表的定义"><a href="#广义表的定义" class="headerlink" title="广义表的定义"></a>广义表的定义</h2><p>广义表是线性表的推广，也成为列表，广义表一般记作</p><script type="math/tex;mode=display">LS=(a_1,a_2,...,a_n)</script><p>LS是广义表的名称，n是其长度，在广义表的定义中，a_i可以是单个元素也可以是广义表，分别称为广义表LS的原子或子表，一般小写字母表示原子，大写字母表示广义表，广义表的定义是一个递归的定义，下面为广义表举例</p><ul><li>A=(),A为空表</li><li>B=(e),B只有一个原子e</li><li>C=(a,(b,c,d)),C有两个元素，一个是原子a，另一个是子表(b,c,d)</li><li>D=(A,B,C),D表含有三个子表</li><li>E=(a,E),E为一个递归表，每一层都有一个原子e与表E</li></ul><h2 id="广义表的重要结论"><a href="#广义表的重要结论" class="headerlink" title="广义表的重要结论"></a>广义表的重要结论</h2><ol><li>广义表的元素可以是广义表，即广义表可以多层次的结构</li><li>广义表的深度定义为所含括弧的重数，其中原子的深度为0，空表的深度为1</li><li>广义表的长度定义为最外层包含元素个数</li><li>广义表可以为其他广义表共享，即称为其他广义表的子表，或者包含其他广义表</li><li>任何一个非空广义表均可分解为表头和表尾两部分</li><li>广义表可以是递归的表</li></ol><h2 id="广义表的运算及定义"><a href="#广义表的运算及定义" class="headerlink" title="广义表的运算及定义"></a>广义表的运算及定义</h2><pre><code>GetLength(&amp;g) //求广义表的长度
 GetDepth(&amp;g)  //求广义表的深度
 PrintGL(&amp;g)      //打印广义表
 CreateGL()      //建立广义表
@@ -439,7 +496,7 @@ typedef struct GLNode{
     }
     struct GLNode *ht;
 }*GList;
-</code></pre><h3 id="广义表的存储结构"><a href="#广义表的存储结构" class="headerlink" title="广义表的存储结构"></a>广义表的存储结构</h3><p>广义表的数据元素有不同的结构，因此一般使用链式存储结构，常用的链式存储结构有两种：</p><ul><li>头尾链表的存储结构<ul><li>确定的表头和表尾可唯一确定广义表</li><li>表结点由三个域组成：标志域，表头指针域，表尾指针域</li><li>原子结点分为两个域：标志域和值域</li><li>标志域用于判断元素是原子还是子表</li></ul></li><li>扩展性链表的存储结构<ul><li>无论原子结点还是表表结点均由三个域组成</li></ul></li></ul><hr></div><br><div><p><span><i class="iconfont icon-tag"></i> <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></span></p><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p><div class="col-lg-7 mx-auto nopadding-md"><div class="container comments mx-auto" id="comments"><br><br><div class="disqus" style="width:100%"><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://yoursite.com/2020/05/14/串、数组和广义表/",this.page.identifier="/2020/05/14/串、数组和广义表/"},oldLoad=window.onload;window.onload=function(){var t=document,e=t.createElement("script");e.type="text/javascript",e.src="//inaho-top.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a></noscript></div></div></div></div></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container"><div id="toc"><p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p><div id="tocbot"></div></div></div></div></div></main><a class="z-depth-1" id="scroll-top-button" href="#" role="button"><i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><div id="footerContent" class="rgba-black-slight"><footer class="pt-5"><div style="color:#fff" class="text-center py-3"><a style="color:#fff" href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo支持</b></a> <i class="iconfont icon-love"></i> <a style="color:#fff" href="https://disqus.com/" target="_blank" rel="nofollow noopener"><b>Disqus 评论系统 </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>主题Fluid </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://www.pixiv.net/" target="_blank" rel="nofollow noopener"><b>图片 Pixiv</b></a><br>&nbsp;<span id="busuanzi_container_site_pv">总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp; &nbsp;<span id="busuanzi_container_site_uv">总访客数 <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;<br></div></footer></div><script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script><script src="/lib/popper/popper.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script><script src="https://cdn.staticfile.org/mdbootstrap/4.8.7/js/mdb.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="/lib/tocbot/tocbot.min.js"></script><script src="/js/post.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/lib/prettify/prettify.min.js"></script><script>$(document).ready(function(){$("pre").addClass("prettyprint  linenums"),prettyPrint()})</script><script src="/lib/typed/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","串、数组和广义表&nbsp;"],cursorChar:"_",typeSpeed:70,loop:!1});typed.stop(),$(document).ready(function(){$(".typed-cursor").addClass("h2"),typed.start()})</script><script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js"></script><script>anchors.options = {
+</code></pre><h2 id="广义表的存储结构"><a href="#广义表的存储结构" class="headerlink" title="广义表的存储结构"></a>广义表的存储结构</h2><p>广义表的数据元素有不同的结构，因此一般使用链式存储结构，常用的链式存储结构有两种：</p><ul><li>头尾链表的存储结构<ul><li>确定的表头和表尾可唯一确定广义表</li><li>表结点由三个域组成：标志域，表头指针域，表尾指针域</li><li>原子结点分为两个域：标志域和值域</li><li>标志域用于判断元素是原子还是子表</li></ul></li><li>扩展性链表的存储结构<ul><li>无论原子结点还是表表结点均由三个域组成</li></ul></li></ul><hr></div><br><div><p><span><i class="iconfont icon-tag"></i> <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></span></p><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p><div class="col-lg-7 mx-auto nopadding-md"><div class="container comments mx-auto" id="comments"><br><br><div class="disqus" style="width:100%"><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://yoursite.com/2020/05/14/串、数组和广义表/",this.page.identifier="/2020/05/14/串、数组和广义表/"},oldLoad=window.onload;window.onload=function(){var t=document,e=t.createElement("script");e.type="text/javascript",e.src="//inaho-top.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a></noscript></div></div></div></div></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container"><div id="toc"><p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p><div id="tocbot"></div></div></div></div></div></main><a class="z-depth-1" id="scroll-top-button" href="#" role="button"><i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><div id="footerContent" class="rgba-black-slight"><footer class="pt-5"><div style="color:#fff" class="text-center py-3"><a style="color:#fff" href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo支持</b></a> <i class="iconfont icon-love"></i> <a style="color:#fff" href="https://disqus.com/" target="_blank" rel="nofollow noopener"><b>Disqus 评论系统 </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>主题Fluid </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://www.pixiv.net/" target="_blank" rel="nofollow noopener"><b>图片 Pixiv</b></a><br>&nbsp;<span id="busuanzi_container_site_pv">总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp; &nbsp;<span id="busuanzi_container_site_uv">总访客数 <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;<br></div></footer></div><script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script><script src="/lib/popper/popper.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script><script src="https://cdn.staticfile.org/mdbootstrap/4.8.7/js/mdb.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="/lib/tocbot/tocbot.min.js"></script><script src="/js/post.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/lib/prettify/prettify.min.js"></script><script>$(document).ready(function(){$("pre").addClass("prettyprint  linenums"),prettyPrint()})</script><script src="/lib/typed/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","串、数组和广义表&nbsp;"],cursorChar:"_",typeSpeed:70,loop:!1});typed.stop(),$(document).ready(function(){$(".typed-cursor").addClass("h2"),typed.start()})</script><script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js"></script><script>anchors.options = {
       placement: "right",
       visible: "false",
       
