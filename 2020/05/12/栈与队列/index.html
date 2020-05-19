@@ -142,10 +142,8 @@ void StackTraverse(Stack *s) {
 int main() {
     Stack s;
     InitStack(&amp;s);
-    Push(&amp;s, 1);
-    Push(&amp;s, 2);
-    Push(&amp;s, 3);
-    Push(&amp;s, 4);
+    Push(&amp;s, 1);Push(&amp;s, 2);
+    Push(&amp;s, 3);Push(&amp;s, 4);
     StackTraverse(&amp;s);
     Pop(&amp;s);
     StackTraverse(&amp;s);
@@ -362,24 +360,13 @@ void QueueTraverse(Queue q) {
 int main() {
     Queue q;
     InitQueue(&amp;q);
-    EnQueue(&amp;q, 1);
-    EnQueue(&amp;q, 2);
-    EnQueue(&amp;q, 3);
-    EnQueue(&amp;q, 4);
-    EnQueue(&amp;q, 5);
-    EnQueue(&amp;q, 6);
-    EnQueue(&amp;q, 7);
-    EnQueue(&amp;q, 8);
-    EnQueue(&amp;q, 9);
+    EnQueue(&amp;q, 1);EnQueue(&amp;q, 2);EnQueue(&amp;q, 3);
+    EnQueue(&amp;q, 4);EnQueue(&amp;q, 5);EnQueue(&amp;q, 6);
+    EnQueue(&amp;q, 7);EnQueue(&amp;q, 8);EnQueue(&amp;q, 9);
     cout &lt;&lt; &quot;插入失败&quot; &lt;&lt; EnQueue(&amp;q, 10) &lt;&lt; endl;;
-    DeQueue(&amp;q);
-    DeQueue(&amp;q);
-    DeQueue(&amp;q);
-    DeQueue(&amp;q);
-    DeQueue(&amp;q);
-    EnQueue(&amp;q, 1);
-    EnQueue(&amp;q, 2);
-    EnQueue(&amp;q, 3);
+    DeQueue(&amp;q);DeQueue(&amp;q);DeQueue(&amp;q);
+    DeQueue(&amp;q);DeQueue(&amp;q);
+    EnQueue(&amp;q, 1);EnQueue(&amp;q, 2);EnQueue(&amp;q, 3);
     QueueTraverse(q);
     cout&lt;&lt;&quot;队头&quot;&lt;&lt;GetHead(q)&lt;&lt;endl;
     getchar();
