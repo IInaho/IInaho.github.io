@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png"><link rel="icon" type="image/png" href="/img/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content=""><meta name="author" content="John Doe"><meta name="keywords" content=""><title>查找(持续更新) ~ inaho</title><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.8.7/css/mdb.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css"><link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"><style type="text/css">.banner-bg{background-image:url(/img/bg1.jpg);background-position:center;background-repeat:repeat-y;background-size:cover;background-attachment:fixed}</style><meta name="generator" content="Hexo 4.2.0"></head><body class="banner-bg"><header style="height:70vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/">&nbsp;<strong>阴月有晴</strong>&nbsp;</a> <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/">主页</a></li><li class="nav-item"><a class="nav-link" href="/archives/">归档</a></li><li class="nav-item"><a class="nav-link" href="/tags/">标签</a></li><li class="nav-item"><a class="nav-link" href="/about/">关于</a></li><li class="nav-item" id="search-btn"><a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i class="iconfont icon-search"></i>&nbsp;&nbsp;</a></li></ul></div></div></nav><div class="view intro-2 rgba-black-slight" id="background"><div class="full-bg-img"><div class="mask flex-center"><div class="container text-center white-text fadeInUp"><span class="h2" id="subtitle"></span><br><p class="mt-3"><i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp; 星期四, 六月 4日 2020, 8:29 晚上</p><p>&nbsp;<i class="far fa-chart-bar"></i> <span class="post-count">5.1k 字 </span>&nbsp; &nbsp;<i class="far fa-clock"></i> <span class="post-count">18 分钟 </span>&nbsp; &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp; <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> 次 </span>&nbsp;</p></div></div></div></div></header><main id="mainContent" class="rgba-black-slight"><div class="container-fluid"><div class="row"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-md"><div class="py-5 z-depth-3" id="board"><div class="post-content mx-auto" id="post"><div class="markdown-body"><h1 id="查找的基本概念"><a href="#查找的基本概念" class="headerlink" title="查找的基本概念"></a>查找的基本概念</h1><ul><li><strong>查找表</strong>: 查找表(Search Table)是同一类型数据元素的集合.</li><li><strong>关键字</strong>: 数据元素中某个数据项的值，又称为<strong>键值</strong>，可以标识一个数据元素，也可以标识一个记录的某个数据项，称为<strong>关键码</strong>.如果此关键字可以唯一的标识一个记录，则称此关键字为<strong>主关键字</strong>(Primary Key),对不同地记录，主关键字均不同，主关键字所在地数据项称为<strong>主关键码</strong>.对于可以识别多个数据元素地关键字，称之为<strong>次关键字</strong>(Secondary Key)，次关键字可以理解为是不以唯一标识一个数据元素地关键字，对应地数据项是<strong>次关键码</strong>。</li><li><strong>查找</strong>: 查找是根据某个给定的值，在查找表中找到一个关键字等于给定值的记录或数据元素，如果表中存在这样的元素，则称<strong>查找成功</strong>，否则<strong>查找失败</strong>。</li><li>动态查找表与静态查找表: 若在查找的同时对表做修改操作，则相应的表称为<strong>动态查找表</strong>，否则称之为<strong>静态查找表</strong>。<ul><li>静态查找表是只作查找操作的查找表，主要操作是查询某个特定数据元素是否在表中，或者检索某个特定的数据元素和各种属性</li><li>动态查找表是在查找过程中同时插入查找表中不存在的数据元素，或者从查找表中删除已经存在的某个数据元素。</li></ul></li><li><strong>平均查找长度</strong>: 为确定记录在查找表中的位置，需要和给定值进行比较的关键字个数的期望值，称为查找算法在查找成功时的<strong>平均查找长度</strong>。</li></ul><h1 id="线性表的查找"><a href="#线性表的查找" class="headerlink" title="线性表的查找"></a>线性表的查找</h1><h2 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h2><p>顺序查找的过程为: 从表的一端开始，依次将记录的关键字和给定值进行比较，若某个记录的关键字和给定值相等，则查找成功，反之，若扫描整个表后，仍未找到关键字和给定值相等的记录，则查找失败。<br>数据元素类型定义:</p><pre><code>typedef struct{
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png"><link rel="icon" type="image/png" href="/img/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content=""><meta name="author" content="John Doe"><meta name="keywords" content=""><title>查找(持续更新) ~ inaho</title><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.8.7/css/mdb.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css"><link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"><style type="text/css">.banner-bg{background-image:url(/img/bg1.jpg);background-position:center;background-repeat:repeat-y;background-size:cover;background-attachment:fixed}</style><meta name="generator" content="Hexo 4.2.0"></head><body class="banner-bg"><header style="height:70vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/">&nbsp;<strong>阴月有晴</strong>&nbsp;</a> <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/">主页</a></li><li class="nav-item"><a class="nav-link" href="/archives/">归档</a></li><li class="nav-item"><a class="nav-link" href="/tags/">标签</a></li><li class="nav-item"><a class="nav-link" href="/about/">关于</a></li><li class="nav-item" id="search-btn"><a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i class="iconfont icon-search"></i>&nbsp;&nbsp;</a></li></ul></div></div></nav><div class="view intro-2 rgba-black-slight" id="background"><div class="full-bg-img"><div class="mask flex-center"><div class="container text-center white-text fadeInUp"><span class="h2" id="subtitle"></span><br><p class="mt-3"><i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp; 星期四, 六月 4日 2020, 8:29 晚上</p><p>&nbsp;<i class="far fa-chart-bar"></i> <span class="post-count">9k 字 </span>&nbsp; &nbsp;<i class="far fa-clock"></i> <span class="post-count">33 分钟 </span>&nbsp; &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp; <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> 次 </span>&nbsp;</p></div></div></div></div></header><main id="mainContent" class="rgba-black-slight"><div class="container-fluid"><div class="row"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-md"><div class="py-5 z-depth-3" id="board"><div class="post-content mx-auto" id="post"><div class="markdown-body"><h1 id="查找的基本概念"><a href="#查找的基本概念" class="headerlink" title="查找的基本概念"></a>查找的基本概念</h1><ul><li><strong>查找表</strong>: 查找表(Search Table)是同一类型数据元素的集合.</li><li><strong>关键字</strong>: 数据元素中某个数据项的值，又称为<strong>键值</strong>，可以标识一个数据元素，也可以标识一个记录的某个数据项，称为<strong>关键码</strong>.如果此关键字可以唯一的标识一个记录，则称此关键字为<strong>主关键字</strong>(Primary Key),对不同地记录，主关键字均不同，主关键字所在地数据项称为<strong>主关键码</strong>.对于可以识别多个数据元素地关键字，称之为<strong>次关键字</strong>(Secondary Key)，次关键字可以理解为是不以唯一标识一个数据元素地关键字，对应地数据项是<strong>次关键码</strong>。</li><li><strong>查找</strong>: 查找是根据某个给定的值，在查找表中找到一个关键字等于给定值的记录或数据元素，如果表中存在这样的元素，则称<strong>查找成功</strong>，否则<strong>查找失败</strong>。</li><li>动态查找表与静态查找表: 若在查找的同时对表做修改操作，则相应的表称为<strong>动态查找表</strong>，否则称之为<strong>静态查找表</strong>。<ul><li>静态查找表是只作查找操作的查找表，主要操作是查询某个特定数据元素是否在表中，或者检索某个特定的数据元素和各种属性</li><li>动态查找表是在查找过程中同时插入查找表中不存在的数据元素，或者从查找表中删除已经存在的某个数据元素。</li></ul></li><li><strong>平均查找长度</strong>: 为确定记录在查找表中的位置，需要和给定值进行比较的关键字个数的期望值，称为查找算法在查找成功时的<strong>平均查找长度</strong>。</li></ul><h1 id="线性表的查找"><a href="#线性表的查找" class="headerlink" title="线性表的查找"></a>线性表的查找</h1><h2 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h2><p>顺序查找的过程为: 从表的一端开始，依次将记录的关键字和给定值进行比较，若某个记录的关键字和给定值相等，则查找成功，反之，若扫描整个表后，仍未找到关键字和给定值相等的记录，则查找失败。<br>数据元素类型定义:</p><pre><code>typedef struct{
     KeyType key;        //关键字域
     InfoType otherinfo;    //其他域
 }ElemType;
@@ -125,7 +125,158 @@ typedef struct BSTNode{
     else f-&gt;rchild = p;
     delete q;
 }
-</code></pre><h4 id="算法分析-4"><a href="#算法分析-4" class="headerlink" title="算法分析"></a>算法分析</h4><p>二叉排序树删除的基本过程也是查找，所以算法时间复杂度为$O(log_2n)$.</p><h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><h2 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h2><h2 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h2><h1 id="散列表的查找"><a href="#散列表的查找" class="headerlink" title="散列表的查找"></a>散列表的查找</h1><hr></div><br><div><p><span><i class="iconfont icon-tag"></i> <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></span></p><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p><div class="col-lg-7 mx-auto nopadding-md"><div class="container comments mx-auto" id="comments"><br><br><div class="disqus" style="width:100%"><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://yoursite.com/2020/06/04/查找/",this.page.identifier="/2020/06/04/查找/"},oldLoad=window.onload;window.onload=function(){var t=document,e=t.createElement("script");e.type="text/javascript",e.src="//inaho-top.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a></noscript></div></div></div></div></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container"><div id="toc"><p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p><div id="tocbot"></div></div></div></div></div></main><a class="z-depth-1" id="scroll-top-button" href="#" role="button"><i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><div id="footerContent" class="rgba-black-slight"><footer class="pt-5"><div style="color:#fff" class="text-center py-3"><a style="color:#fff" href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo支持</b></a> <i class="iconfont icon-love"></i> <a style="color:#fff" href="https://disqus.com/" target="_blank" rel="nofollow noopener"><b>Disqus 评论系统 </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>主题Fluid </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://www.pixiv.net/" target="_blank" rel="nofollow noopener"><b>图片 Pixiv</b></a><br>&nbsp;<span id="busuanzi_container_site_pv">总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp; &nbsp;<span id="busuanzi_container_site_uv">总访客数 <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;<br></div></footer></div><script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script><script src="/lib/popper/popper.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script><script src="https://cdn.staticfile.org/mdbootstrap/4.8.7/js/mdb.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="/lib/tocbot/tocbot.min.js"></script><script src="/js/post.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/lib/prettify/prettify.min.js"></script><script>$(document).ready(function(){$("pre").addClass("prettyprint  linenums"),prettyPrint()})</script><script src="/lib/typed/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","查找(持续更新)&nbsp;"],cursorChar:"_",typeSpeed:70,loop:!1});typed.stop(),$(document).ready(function(){$(".typed-cursor").addClass("h2"),typed.start()})</script><script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js"></script><script>anchors.options = {
+</code></pre><h4 id="算法分析-4"><a href="#算法分析-4" class="headerlink" title="算法分析"></a>算法分析</h4><p>二叉排序树删除的基本过程也是查找，所以算法时间复杂度为$O(log_2n)$.</p><h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><p>二叉排序树查找算法的性能取决于树的结构，而树的结构取决于给定数据是否有序，对于有序的数据进行构造二叉排序树，树的结构会是一棵深度为数据长度的单支树，查找效率低，事实上，树的高度越小，查找效率越高，为了使二叉排序树的高度尽量小，前苏联数学家提出了<strong>平衡二叉树</strong>的概念，也成为<strong>AVL</strong>树。</p><p><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/8.png" srcset="/img/loading.gif" width="500px" height="300px"></p><p>平衡二叉树或者是空树，或者是具有下列特征的二叉排序树:</p><ul><li>左子树和右子树的深度之差的绝对值不超过1</li><li>左子树和右子树也是平衡二叉树</li><li>平衡二叉树必须是二叉排序树</li></ul><p>二叉树上结点的平衡因子定义为该结点左子树与右子树的深度只差。</p><h3 id="平衡二叉树的平衡调整方法"><a href="#平衡二叉树的平衡调整方法" class="headerlink" title="平衡二叉树的平衡调整方法"></a>平衡二叉树的平衡调整方法</h3><p>在二叉排序树构造的过程中，如果新加入的结点破环了平衡二叉树的特性，就需要对树进行调整，调整方法为: 找到离插入结点最近且平衡因子绝对值超过1的祖先结点，以该结点为根的子树称为<strong>最小不平衡子树</strong>，可将重新平衡的范围局限于这棵子树。</p><p>假设有一个数组a[10]={3,2,1,4,5,6,7,10,9,8}需要构建二叉排序树，在没有了解二叉平衡树之前，根据二叉排序树的特性会构建成如下图1的样子，树的深度为8，查找效率是很低的。当我们学了平衡二叉树之后会构建成如下图2的样子，树的深度只有4，效率提高了一倍。<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/9.png" srcset="/img/loading.gif" width="450px" height="200px"></p><p>首先根据二叉排序树的特性插入结点”3”，然后再插入”2”，此时结点”3”的bf为1，再插入”1”，此时结点”2”的bf值变为2，如图1所示，树已经不平衡了所以需要调整树，因为bf值为正，所以需要将整个树进行右旋，此时结点”2”成为根结点，结点”3”成为2的右孩子，如图2所示，然后再插入结点”4”，bf并没有发生改变。<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/10.png" srcset="/img/loading.gif" width="450px" height="150px"></p><p>插入结点”5”之后，结点”3”,”4”,”5”组成了最小不平衡子树，此时结点”3”的bf值为-2，由于bf值是负值，所以需要对这棵最小不平衡子树进行左旋，如图5，此时整棵树又达到平衡。<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/11.png" srcset="/img/loading.gif" width="400px" height="180px"></p><p>继续插入结点”6”，此时根结点”2”的bf值变为-2，所以需要对根结点进行左旋，但由于本来结点3是4的左孩子，旋转后需要满足二叉排序树的特性，因此它成了结点2的右孩子，如图7所示。<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/12.png" srcset="/img/loading.gif" width="400px" height="180px"></p><p>插入结点”7”,发现结点”5”的bf值为-2，左旋由结点”5”,”6”,”7”组成的最小不平衡子树，如图9所示，此时整棵树达到平衡。<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/13.png" srcset="/img/loading.gif" width="400px" height="150px"></p><p>当插入结点”10”时，结构无变化 ，再增加结点”9”，此时结点”7”的bf值变为-2，理论上只需要旋转最小不平衡子树”7”,”9”,”10”即可，但左旋转后，结点”9”成了结点”10”的右孩子，不符合二叉排序树的特性，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/14.png" srcset="/img/loading.gif" width="400px" height="180px"></p><p>通过观察发现，结点”7”的bf值为-2，但结点”10”的bf值为1，它们的bf值政府不统一，而前几次的旋转，最小不平衡子树的根结点和它的子结点符号都是相同的，因此需要先使符号统一，所以对结点”9”和结点”10”进行右旋，使结点”10”成为”9”的右子树，结点”9”的bf值为-1，此时不平衡子树的根结点与子结点符号统一，再对结点”7”进行左旋，得到图”13”，然后再加入结点”8”<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/15.png" srcset="/img/loading.gif" width="400px" height="200px"></p><p>此时结点”6”的bf值为-2，结点”9”的bf值为1，符号不统一，因此需要首先以9为根结点，进行右旋得到图15，此时结点”6”与结点”7”的bf值都为负，再以6为根结点左旋，最终得到最后的平衡二叉树如图16所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/16.png" srcset="/img/loading.gif" width="400px" height="180px"></p><h4 id="调整平衡二叉树的四种情况"><a href="#调整平衡二叉树的四种情况" class="headerlink" title="调整平衡二叉树的四种情况"></a>调整平衡二叉树的四种情况</h4><p>假设不平衡子树的根结点为A</p><ul><li>在A左子树根结点的左子树上插入结点，需要进行一次右旋</li><li>在A右子树根结点的右子树上插入结点，需要进行一次左旋</li><li>在A左子树根结点的右子树上插入结点，需要先对子树进行逆时针左旋使bf符号相同，然后再顺时针右旋。</li><li>在A右子树根结点的左子树上插入结点，需要先对子树进行顺时针右旋使bf符号相同，然后再逆时针左旋。</li></ul><h3 id="平衡二叉树代码示例"><a href="#平衡二叉树代码示例" class="headerlink" title="平衡二叉树代码示例"></a>平衡二叉树代码示例</h3><h4 id="存储结构代码示例"><a href="#存储结构代码示例" class="headerlink" title="存储结构代码示例"></a>存储结构代码示例</h4><p>在树结点结构中增加一个bf代表平衡因子，平衡因子的绝对值如果大于2，说明树不平衡，需要进行调整。</p><pre><code>typedef struct BiTNode{
+    int  data;                            //结点数据
+    int bf;                                //结点的平衡因子
+    struct BiTNode *lchild,*rchild;        //左右孩子指针
+}BiTNode,*BiTree;
+</code></pre><h4 id="旋转代码示例"><a href="#旋转代码示例" class="headerlink" title="旋转代码示例"></a>旋转代码示例</h4><p><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/17.png" srcset="/img/loading.gif" width="500px" height="200px"></p><p>右旋操作时，当传入一个二叉排序树p，将它的左孩子结点定义为L，将L的右子树变成p的左子树，然后将p改为L的右子树，最后将L替换p成为根结点，这样就完成了一次右旋操作，如下图所示，N为插入结点，左旋操作大同小异。</p><pre><code>void R_Rotate(BiTree *p){        //右旋操作
+    BiTree L;
+    L = (*p)-&gt;lchild;
+    (*p)-&gt;lchild=L-&gt;rchild;
+    L-&gt;rchild = (*p);
+     *p = L;
+}
+void L_Rotate(BiTree *p){        //左旋操作
+    BiTree R;
+    R = (*p)-&gt;rchild;
+    (*p)-&gt;rchild = R-&gt;lchild;
+    R-&gt;lchild = (*p);
+    *p = R;
+}
+</code></pre><h4 id="平衡调整代码示例"><a href="#平衡调整代码示例" class="headerlink" title="平衡调整代码示例"></a>平衡调整代码示例</h4><pre><code>#define LH +1    //左高
+#define EH 0    //等高
+#define RH -1    //右高
+void LeftBalance(BiTree *T){    //T是不平衡子树，对T进行左平衡旋转处理，且左子树高度大于右子树高度
+    BiTree L,Lr;
+    L = (*T)-&gt;lchild;        //左孩子赋给L
+    switch(L-&gt;bf){
+        case LH:            //新结点插入在T的左孩子的左子树上
+            (*T)-&gt;bf = L-&gt;bf = EH;    //将bf值改为0
+            R_Rotate(T);            //进行右旋操作
+            break;
+        case RH:            //新结点插入在T的左孩子的右子树上
+            Lr = L-&gt;rchild;
+            //修改bf值
+            switch(Lr-&gt;bf){
+                case LH: 
+                    (*T)-&gt;bf = RH;
+                    L-&gt;bf = EH;
+                    break;
+                case EH: 
+                    (*T)-&gt;bf = L-&gt;bf = EH;
+                    break;
+                case RH:
+                    (*T)-&gt;bf = EH;
+                    L-&gt;bf = LH;
+                    break;
+            }
+            Lr-&gt;bf = EH;
+            //进行双旋操作，先对左子树左旋，再对根右旋
+            L_Rotate(&amp;(*T)-&gt;lchild);
+            R_Rotate(T);
+    }
+}
+void RightBalance(BiTree *T){        //右平衡
+    BiTree R,Rr;
+    R = (*T)-&gt;rchild;
+    switch(R-&gt;bf){
+        case LH:            //新结点插入在右孩子的右子树上
+            (*T)-&gt;bf = R-&gt;bf = EH;
+            L_Rotate(T);    //左旋操作
+            break;
+        case RH:            //新结点插入在右孩子的左子树上
+            Rr = R-&gt;lchild;
+            //修改bf值
+            switch(Rr-&gt;bf){
+                case LH: 
+                    (*T)-&gt;bf = RH;
+                    R-&gt;bf = EH;
+                    break;
+                case EH: 
+                    (*T)-&gt;bf = R-&gt;bf = EH;
+                    break;
+                case RH:
+                    (*T)-&gt;bf = EH;
+                    R-&gt;bf = LH;
+                    break;
+            }
+            Rr-&gt;bf = EH;
+            R_Rotate(&amp;(*T)-&gt;rchild);    //先右旋
+            L_Rotate(T);                //再左旋
+    }
+}
+</code></pre><h4 id="AVL树的插入操作"><a href="#AVL树的插入操作" class="headerlink" title="AVL树的插入操作"></a>AVL树的插入操作</h4><pre><code>//若在平衡二叉排序树中不存在和e有相同关键字的结点，则插入此结点。
+//taller反映T长高与否
+Status InsertAVL(BiTree *T,int e,Status *taller){
+    //创建根结点
+    if(!*T){
+        *T = (BiTree)malloc(sizeof(BiTNode));
+        (*T)-&gt;data = e;
+        (*T)-&gt;lchild = (*T)-&gt;rchild = NULL;
+        (*T)-&gt;bf = EH;
+        *taller = TRUE;
+    }
+    else{
+        if(e == (*T)-&gt;data){        //如果树中存在和e关键字相同的结点则插入失败
+            *taller = FALSE;        //没长高
+            return FALSE;
+        }
+        if(e &lt; (*T)-&gt;data){            //在T的左子树中搜索
+            if(!InsertAVL(&amp;(*T)-&gt;lchild,e,taller))    return FALSE;
+
+            if(taller){                //已经插入T的左子树，且左子树长高
+                //检查T是否平衡
+                switch((*T)-&gt;bf){
+                    case LH:        //原本左高右低，先又增左，需要左平衡处理
+                        LeftBalance(T);
+                        *taller = FALSE;
+                        break;
+                    case EH:        //原本等高，现在左子树增高，树也要增高
+                        (*T)-&gt;bf = LH;
+                        *taller = TRUE;
+                        break;
+                    case RH:        //原本右高左低，现在等高
+                        (*T)-&gt;bf = EH;
+                        *taller = FALSE;
+                        break;
+                }
+            }
+        }
+        else{                        //在T的右子树中搜索
+            if(!InsertAVL(&amp;(*T)-&gt;rchild,e,taller)) return FALSE;
+            if(*taller){
+                switch((*T)-&gt;bf){
+                    case LH:        //原本左高右低，现在等高
+                        (*T)-&gt;bf = EH;
+                        *taller = FALSE;
+                        break;
+                    case EH:        //原本等高，现在右高，树也高
+                        (*T)-&gt;bf = RH;
+                        *taller = TRUE;
+                    case RH:        //原本右高，现在增右，需要右平衡处理
+                        RightBalance(T);
+                        *taller = FALSE;
+                        break;
+                }
+            }
+        }
+    }
+    return TRUE;
+}
+
+// 测试代码
+int main(){
+    int i;
+    int a[10] = {3,2,1,4,5,6,7,10,9,8};
+    BiTree T = NULL;
+    Status taller;
+    for(i = 0;i &lt; 10;i++){
+        InsertAVL(&amp;T,a[i],&amp;taller);
+    }
+    return 0;
+}
+</code></pre><h3 id="算法分析-5"><a href="#算法分析-5" class="headerlink" title="算法分析"></a>算法分析</h3><p>因为AVL树上任何结点的左右子树深度之差不超过1，因此其查找的时间复杂度为$O(log_2n)$.</p><h2 id="多路查找树"><a href="#多路查找树" class="headerlink" title="多路查找树"></a>多路查找树</h2><p>之前介绍的查找方法用于存储在计算机内存中较小的文件，统称为内查找法。如果文件很大，且存放于外存进行查找，涉及到这样的外部存储设备，关于时间复杂度的计算会发生变化，需要考虑对硬盘等外部设备的访问时间以及访问次数，之前所谈的树，都是一个结点可以有多个孩子，但它自身只存储一个元素，在元素非常多时，树的度就会非常大，为此引入了<strong>多路查找树</strong>的概念。<br>多路查找树，其每一个结点的孩子数可以多于两个，且每一个结点处可以存储多个元素，由于它是查找树，所有元素之间存在某种特定的排序关系。</p><h3 id="2-3树"><a href="#2-3树" class="headerlink" title="2-3树"></a>2-3树</h3><ul><li>2-3树其中每一个结点都能具有两个孩子(称为2结点)或者三个孩子(称为3结点)。</li><li>一个2结点包含一个元素和两个孩子(或无孩子)，且与二叉排序树类似 ，左子树包含的元素小于该元素，右子树包含的元素大于该元素，但结点只能有2或3个孩子，或者无孩子。</li><li>一个3结点包含一小一大两个元素和三个孩子(或无孩子)，左子树包含小于较小元素的元素，右子树包含大于较大元素的元素，中间子树包含介于两元素之间的元素。</li></ul><p>2-3树中所有的叶子都在同一层次，如下图所示:<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/18.png" srcset="/img/loading.gif" width="500px" height="200px"></p><h4 id="2-3树的插入实现"><a href="#2-3树的插入实现" class="headerlink" title="2-3树的插入实现"></a>2-3树的插入实现</h4><p>2-3树插入一个元素的过程可能会对该树的其余结点产生连锁反应。</p><ul><li>对于空树，插入一个2结点即可</li><li>插入一个结点到一个2结点的叶子上，需要将其升级为3结点即可，如下图所示，将结点”3”插入结点”1”所在位置，需要将结点”1”升级为3结点。<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/19.png" srcset="/img/loading.gif" width="500px" height="100px"></li><li>往3结点中插入一个新元素，因为3结点本身是最大容量，因此需要拆分。</li></ul><p>如果要向左图插入元素”5”，它应该要插入到拥有6、7元素的3结点位置，但元素已满，无法添加，但其双亲结点是一个2结点，所以将其双亲升级为3结点，使4、6称为此结点的元素，”5”成为它的中间孩子，”7”为它的右孩子，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/20.png" srcset="/img/loading.gif" width="500px" height="100px"></p><p>如果要插入结点和其双亲结点都为3结点，但其双亲的双亲结点”8”是个2结点，因此将9、10拆分，12、14也拆分，结点”8”升级为3结点，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/21.png" srcset="/img/loading.gif" width="500px" height="100px"></p><p>如果要插入结点和其之上所有双亲结点都是3结点，需要将1、3拆分，4、6拆分，8、12也拆分，形成如下图所示的树<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/22.png" srcset="/img/loading.gif" width="500px" height="100px"></p><p>由此可见，2-3树插入的传播效应导致了根结点的拆分，因此树的高度增加。</p><h4 id="2-3树的删除实现"><a href="#2-3树的删除实现" class="headerlink" title="2-3树的删除实现"></a>2-3树的删除实现</h4><ul><li>所删元素位于一个3结点的叶子结点上，只需要在该结点处删除该元素即可，不影响树的整体结构，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/23.png" srcset="/img/loading.gif" width="500px" height="100px"></li><li>所删元素位于一个2结点上，但如果删除此结点，2结点只拥有一个孩子，不满足定义，因此需要分为四种情况处理</li></ul><p>此结点的双亲也是2结点，且拥有一个3结点的右孩子，删除结点1需要左旋处理，6成为双亲，4成为6的左孩子17是6的右孩子，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/24.png" srcset="/img/loading.gif" width="500px" height="100px"></p><p>此结点的双亲是2结点，它的右孩子也是2结点，此时删除结点1，如果直接左旋会造成没有右孩子，因此需要让结点7变成3结点，因此使元素8下来，让元素9补充8的位置，然后再用左旋的方式，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/25.png" srcset="/img/loading.gif" width="500px" height="100px"></p><p>此结点的双亲是一个3结点，如果删除此结点，不满足2-3树的特性，因此需要将结点进行拆分，使12、13合并成为左孩子，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/26.png" srcset="/img/loading.gif" width="350px" height="100px"></p><p>如果当前树是一个满二叉树，需要将2-3树的层数减少，将8的双亲和左子树6合并为一个3结点，将14和9合并为一个3结点，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/27.png" srcset="/img/loading.gif" width="350px" height="100px"></p><ul><li>所删除的元素位于非叶子的分支结点，通常将树按中序遍历后得到此元素的前驱或后继元素，然后考虑让它们补位。</li></ul><p>如果要删除的分支结点4是2结点，它的前驱是1后继是6，由于6、7是3结点，所以需要用6来补位，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/28.png" srcset="/img/loading.gif" width="350px" height="100px"></p><p>如果要删除的分支结点是3结点的某个元素，需要将3结点的左孩子10上升到删除位置合适，如下图所示<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/29.png" srcset="/img/loading.gif" width="350px" height="100px"></p><p>2-3树的删除是有规律的，其他情况不一一解释。</p><h3 id="2-3-4树"><a href="#2-3-4树" class="headerlink" title="2-3-4树"></a>2-3-4树</h3><p>2-3-4树是2-3树的一个扩展，多了一个4结点的使用，一个4结点包含小中大三个元素和4个孩子(或无孩子)，一个4结点要么无孩子，要么具有4个孩子。<br>4结点的左子树包含小于最小元素的元素，第二子树包含大于最小元素小于第二元素的元素，第三子树包含大于第二元素小于最大元素的元素，右子树包含大于最大元素的元素。<br>构建一个数组为{7,1,2,5,6,9,8,4,3}的2-3-4树的过程如下:<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/30.png" srcset="/img/loading.gif" width="500px" height="200px"></p><p>2-3-4树的删除过程，删除顺序是1、6、3、4、5、2、9<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/31.png" srcset="/img/loading.gif" width="500px" height="200px"></p><h3 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h3><p>B-树(B-tree)是一种平衡的多路查找树，2-3树与2-3-4树都是B树的特例，结点最大的孩子数目称为B树的阶，因此2-3树是3阶B树，2-3-4树是4阶B树。</p><h4 id="B-树的定义"><a href="#B-树的定义" class="headerlink" title="B-树的定义"></a>B-树的定义</h4><p>一棵m阶的B-树，或为空树，或为满足下列性质的m叉树:</p><ul><li>若根结点不是叶子结点，则至少有两棵子树</li><li>一个非根的分支结点都有k-1个元素和k个孩子，其中$[m/2]\leq k\leq m$，每个叶子结点n都有k-1个元素，其中$[m/2]\leq k\leq m$.</li><li>所有的叶子结点都出现在同一层次上，并且不带信息，通常称为失败结点(失败结点不存在，指向其指针为空，引入失败结点便于分析B-树的查找性能)</li><li>所有分支结点包含下列信息<script type="math/tex">(n,A_0,K_1,A_1,K_2,A_2...K_n,A_n)</script>，其中<script type="math/tex">K_i(i=1,2,...,n)</script>为关键字，且<script type="math/tex">K_i<K_{i+1}</script>，<script type="math/tex">A_i(i=0,1,2,..,n)</script>为指向子树根结点的指针，且指针$A_{i-1}$所指子树中所有结点的关键字均小于<script type="math/tex">K_i(i=1,2,...,n)</script>，$A_n$所指子树中所有结点的关键字均大于$K_n$，<script type="math/tex">n([m/2]-1\leq n\leq m-1)</script>为关键字的个数(或n+1为子树的个数)。</li></ul><p>下图为一个4阶的B-树<br><img src="/2020/06/04/%E6%9F%A5%E6%89%BE/32.png" srcset="/img/loading.gif" width="500px" height="200px"></p><h3 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h3><h1 id="散列表的查找"><a href="#散列表的查找" class="headerlink" title="散列表的查找"></a>散列表的查找</h1><hr></div><br><div><p><span><i class="iconfont icon-tag"></i> <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></span></p><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p><div class="col-lg-7 mx-auto nopadding-md"><div class="container comments mx-auto" id="comments"><br><br><div class="disqus" style="width:100%"><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://yoursite.com/2020/06/04/查找/",this.page.identifier="/2020/06/04/查找/"},oldLoad=window.onload;window.onload=function(){var t=document,e=t.createElement("script");e.type="text/javascript",e.src="//inaho-top.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a></noscript></div></div></div></div></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container"><div id="toc"><p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p><div id="tocbot"></div></div></div></div></div></main><a class="z-depth-1" id="scroll-top-button" href="#" role="button"><i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><div id="footerContent" class="rgba-black-slight"><footer class="pt-5"><div style="color:#fff" class="text-center py-3"><a style="color:#fff" href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo支持</b></a> <i class="iconfont icon-love"></i> <a style="color:#fff" href="https://disqus.com/" target="_blank" rel="nofollow noopener"><b>Disqus 评论系统 </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>主题Fluid </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://www.pixiv.net/" target="_blank" rel="nofollow noopener"><b>图片 Pixiv</b></a><br>&nbsp;<span id="busuanzi_container_site_pv">总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp; &nbsp;<span id="busuanzi_container_site_uv">总访客数 <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;<br></div></footer></div><script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script><script src="/lib/popper/popper.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script><script src="https://cdn.staticfile.org/mdbootstrap/4.8.7/js/mdb.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="/lib/tocbot/tocbot.min.js"></script><script src="/js/post.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/lib/prettify/prettify.min.js"></script><script>$(document).ready(function(){$("pre").addClass("prettyprint  linenums"),prettyPrint()})</script><script src="/lib/typed/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","查找(持续更新)&nbsp;"],cursorChar:"_",typeSpeed:70,loop:!1});typed.stop(),$(document).ready(function(){$(".typed-cursor").addClass("h2"),typed.start()})</script><script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js"></script><script>anchors.options = {
       placement: "right",
       visible: "false",
       
