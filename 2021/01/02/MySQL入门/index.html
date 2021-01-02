@@ -1,0 +1,484 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png"><link rel="icon" type="image/png" href="/img/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content=""><meta name="author" content="John Doe"><meta name="keywords" content=""><title>MySQL入门 ~ inaho</title><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.8.7/css/mdb.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css"><link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"><style type="text/css">.banner-bg{background-image:url(/img/bg1.jpg);background-position:center;background-repeat:repeat-y;background-size:cover;background-attachment:fixed}</style><meta name="generator" content="Hexo 4.2.1"></head><body class="banner-bg"><header style="height:70vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/">&nbsp;<strong>阴月有晴</strong>&nbsp;</a> <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/">主页</a></li><li class="nav-item"><a class="nav-link" href="/archives/">归档</a></li><li class="nav-item"><a class="nav-link" href="/tags/">标签</a></li><li class="nav-item"><a class="nav-link" href="/about/">关于</a></li><li class="nav-item" id="search-btn"><a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i class="iconfont icon-search"></i>&nbsp;&nbsp;</a></li></ul></div></div></nav><div class="view intro-2 rgba-black-slight" id="background"><div class="full-bg-img"><div class="mask flex-center"><div class="container text-center white-text fadeInUp"><span class="h2" id="subtitle"></span><br><p class="mt-3"><i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp; 星期六, 一月 2日 2021, 4:23 下午</p><p>&nbsp;<i class="far fa-chart-bar"></i> <span class="post-count">9k 字 </span>&nbsp; &nbsp;<i class="far fa-clock"></i> <span class="post-count">39 分钟 </span>&nbsp; &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp; <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> 次 </span>&nbsp;</p></div></div></div></div></header><main id="mainContent" class="rgba-black-slight"><div class="container-fluid"><div class="row"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-md"><div class="py-5 z-depth-3" id="board"><div class="post-content mx-auto" id="post"><div class="markdown-body"><h1 id="MYSQL入门知识"><a href="#MYSQL入门知识" class="headerlink" title="MYSQL入门知识"></a>MYSQL入门知识</h1><p>此文是阅读MYSQL必知必会后整理的所有样例代码，仅供自用。</p><h2 id="一、MySQL基础命令"><a href="#一、MySQL基础命令" class="headerlink" title="一、MySQL基础命令"></a>一、MySQL基础命令</h2><pre><code>use database;               -- 打开数据库
+show databases;           -- 列出所有数据库
+show tables;                -- 列出数据库所有表
+show columns from orders; -- 列出表内所有的列
+describe orders;           -- 列出表内所有的列
+show status;               -- 显示广泛的服务器状态信息
+</code></pre><p></p><hr><p></p><h2 id="二、检索数据"><a href="#二、检索数据" class="headerlink" title="二、检索数据"></a>二、检索数据</h2><pre><code>USE sqltest;                                        -- 使用数据库
+SELECT prod_name FROM products;
+SELECT prod_id,prod_name,prod_price FROM products;    -- 返回多列
+SELECT * FROM products;                                -- 返回所有列
+SELECT DISTINCT vend_id FROM products;                -- 只返回不同的值，DISTINCT不能部分使用，其应用于所有列
+SELECT prod_name FROM products LIMIT 5;                -- 返回不多于5行
+SELECT prod_name FROM products LIMIT 5,5;            -- 返回从行5开始的5行，检索出的第一行为行0
+SELECT prod_name FROM products LIMIT 4 OFFSET 3;    -- 从行3开始取4行
+SELECT products.prod_name FROM products;            -- 使用完全限定的表名
+</code></pre><p></p><hr><p></p><h2 id="三、排序检索数据"><a href="#三、排序检索数据" class="headerlink" title="三、排序检索数据"></a>三、排序检索数据</h2><pre><code>SELECT prod_name FROM products ORDER BY prod_name;    -- 对prod_name以字母顺序排序
+-- 多个行具有相同prod_price时，才对产品按prod_name进行排序，如果prod_price所有值唯一，则不会按prod_name排序。
+SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price,prod_name;    -- 首先对价格排序，在按名称排序
+-- 默认进行升序排序，也可以指定ASC进行升序排序，但没必要
+SElECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC;        -- 对价格降序排序
+-- 如果要对每个列进行降序排序，要对每个列指定DESC
+SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC, prod_name;    -- 先对价格降序排序，在对名称排序
+-- ORDER BY必须在FROM子句之后，LIMIT必须在ORDER BY子句之后
+SELECT prod_price FROM products ORDER BY prod_price DESC LIMIT 1;        -- 找出最贵的价格
+</code></pre><p></p><hr><p></p><h2 id="四、过滤数据"><a href="#四、过滤数据" class="headerlink" title="四、过滤数据"></a>四、过滤数据</h2><p>ORDER BY子句位于WHERE之后</p><pre><code>SELECT prod_name,prod_price FROM products WHERE prod_price = 2.50;    
+SELECT prod_name,prod_price FROM products WHERE prod_name = &#39;fuses&#39;;      -- 执行匹配时默认不区分大小写
+SELECT prod_name,prod_price FROM products WHERE prod_price &lt; 10;        -- 列出价格小于10美元的所有产品
+SELECT prod_name,prod_price FROM products WHERE prod_price &lt;= 10;        -- 列出价格小于等于10美元的所有产品
+SELECT vend_id,prod_name FROM products WHERE vend_id &lt;&gt; 1003;            -- 列出不是由供应商1003制造的所有产品
+SELECT vend_id,prod_name FROM products WHERE vend_id != 1003;            -- 与上式相同
+SELECT prod_name,prod_price FROM products WHERE prod_price BETWEEN 5 AND 10;    -- 检索价格在5-10美元之间的所有产品
+SELECT prod_name FROM products WHERE prod_price IS NULL;                -- 返回没有价格的产品
+SELECT cust_id FROM customers WHERE cust_email IS NULL;
+</code></pre><p></p><hr><p></p><h2 id="五、数据过滤"><a href="#五、数据过滤" class="headerlink" title="五、数据过滤"></a>五、数据过滤</h2><pre><code>SELECT prod_id,prod_price,prod_name FROM products WHERE vend_id = 1003 AND prod_price &lt;= 10;
+SELECT prod_name,prod_price FROM products WHERE vend_id = 1002 OR vend_id = 1003;
+-- SQL处理OR操作符前，优先处理AND操作符，应该使用圆括号分组处理
+SELECT prod_name,prod_price FROM products WHERE (vend_id = 1002 OR vend_id = 1003) AND prod_price &gt;= 10;
+-- IN操作符指定条件范围，检索1002和1003制造的所有产品
+SELECT prod_name,prod_price FROM products WHERE vend_id IN (1002,1003) ORDER BY prod_name;
+-- IN操作符完成与OR相同的功能,IN操作符一般比OR执行更快
+SELECT prod_name,prod_price FROM products WHERE vend_id = 1002 OR vend_id = 1003 ORDER BY prod_name;
+-- MYSQL支持使用NOT对IN、BETWEEN和EXISTS子句取反
+SELECT prod_name,prod_price FROM products WHERE vend_id NOT IN (1002,1003) ORDER BY prod_name;
+</code></pre><p></p><hr><p></p><h2 id="六、使用通配符进行过滤"><a href="#六、使用通配符进行过滤" class="headerlink" title="六、使用通配符进行过滤"></a>六、使用通配符进行过滤</h2><p>%表示任何字符出现任意次数，根据MySQL的配置方式，搜索可以是区分大小写的！<br>%无法匹配NULL</p><pre><code>SELECT prod_id,prod_name FROM products WHERE prod_name LIKE &#39;jet%&#39;;            -- 找出以jet开头的产品
+SELECT prod_id,prod_name FROM products WHERE prod_name LIKE &#39;%anvil%&#39;;        -- 匹配包含文本anvil的值
+SELECT prod_name FROM products WHERE prod_name LIKE &#39;s%e&#39;;                    -- 找出以s开头e结尾的产品
+SELECT prod_id,prod_name FROM products WHERE prod_name LIKE &#39;_ ton anvil&#39;;    -- 下划线只匹配单个字符
+SELECT prod_id,prod_name FROM products WHERE prod_name LIKE &#39;% ton anvil&#39;;    -- %匹配所有字符
+</code></pre><p></p><hr><p></p><h2 id="七、使用正则表达式搜索"><a href="#七、使用正则表达式搜索" class="headerlink" title="七、使用正则表达式搜索"></a>七、使用正则表达式搜索</h2><pre><code>SELECT prod_name FROM products WHERE prod_name REGEXP &#39;1000&#39; ORDER BY prod_name;        -- 使用正则表达式
+SELECT prod_name FROM products WHERE prod_name REGEXP &#39;.000&#39; ORDER BY prod_name;        -- .在正则表达式能匹配任意内容
+SELECT prod_name FROM products WHERE prod_name REGEXP BINARY &#39;JetPack .000&#39;;            -- 默认不区分大小写，加BINARY可以区分大小写
+SELECT prod_name FROM products WHERE prod_name REGEXP &#39;1000|2000&#39; ORDER BY prod_name;    -- | 是正则表达式的OR操作
+SELECT prod_name FROM products WHERE prod_name REGEXP &#39;[123] Ton&#39; ORDER BY prod_name;    -- []匹配特定字符，匹配1或2或3
+SELECT prod_name FROM products WHERE prod_name REGEXP &#39;[^123] Ton&#39; ORDER BY prod_name;    -- 匹配123以外的东西
+SELECT prod_name FROM products WHERE prod_name REGEXP &#39;1|2|3 Ton&#39; ORDER BY prod_name;    -- | 应用于整个串
+SELECT prod_name FROM products WHERE prod_name REGEXP &#39;[1-5] Ton&#39; ORDER BY prod_name;
+SELECT vend_name FROM vendors WHERE vend_name REGEXP &#39;\\.&#39; ORDER BY vend_name;            -- \\代表转义
+</code></pre><p></p><hr><p></p><h3 id="匹配字符类"><a href="#匹配字符类" class="headerlink" title="匹配字符类"></a>匹配字符类</h3><table><tr><td><strong>[:alnum:]</strong> 任意字母和数字</td><td><strong>[:alpha:]</strong> 任意字符</td><td><strong>[:blank:]</strong> 空格和制表</td></tr><tr><td><strong>[:cntrl:]</strong> ASCII控制字符</td><td><strong>[:digit:]</strong> 任意数字</td><td><strong>[:graph:]</strong> 与[:print:]相同，但不包括空格</td></tr><tr><td><strong>[:lower:]</strong> 任意小写字母</td><td><strong>[:print:]</strong> 任意可打印字符</td><td><strong>[:punct:]</strong> 既不在alnum又不在cntrl中的任意字符</td></tr><tr><td><strong>[:spack:]</strong> 包括空格在内的任意空白字符</td><td><strong>[:upper:]</strong> 任意大写字母</td><td><strong>[:xdigit:]</strong> 任意十六进制数字</td></tr></table><pre><code>SELECT vend_name FROM vendors WHERE vend_name REGEXP &#39;[:alnum:]&#39; ORDER BY vend_name;
+</code></pre><p></p><hr><p></p><h3 id="匹配多个实例"><a href="#匹配多个实例" class="headerlink" title="匹配多个实例"></a>匹配多个实例</h3><table><tr><td><strong>'*'</strong> 0或多个匹配</td><td><strong>'+'</strong> 一个或多个匹配</td><td><strong>'?'</strong> 0个或一个匹配</td></tr><tr><td><strong>{n}</strong> 指定数目匹配</td><td><strong>{n,}</strong> 不少于指定数目匹配</td><td><strong>{n,m}</strong> 匹配数目范围</td></tr></table><pre><code>SELECT prod_name FROM products WHERE prod_name REGEXP &#39;\\([0-9] sticks?\\)&#39; ORDER BY prod_name;    -- s后的？使s可选
+SELECT prod_name FROM products WHERE prod_name REGEXP &#39;[[:digit:]]{4}&#39; ORDER BY prod_name;    -- 匹配连在一起的任意4个数字
+-- ^匹配串的开始，只在.或任意数组为开头时才会匹配
+SELECT prod_name FROM products WHERE prod_name REGEXP &#39;^[0-9\\.]&#39; ORDER BY prod_name;
+SELECT &#39;hello&#39; REGEXP &#39;[0-9]&#39;;    -- 测试,不使用表
+</code></pre><p></p><hr><p></p><h2 id="八、创建计算字段"><a href="#八、创建计算字段" class="headerlink" title="八、创建计算字段"></a>八、创建计算字段</h2><pre><code>SELECT Concat(vend_name,&#39; (&#39;,vend_country,&#39;)&#39;) FROM vendors ORDER BY vend_name;    -- 拼接名称与国家
+SELECT Concat(RTrim(vend_name),&#39;(&#39;,RTrim(vend_country),&#39;)&#39;) FROM vendors ORDER BY vend_name;    -- RTrim删除值右边所有空格,还有LTrim和Trim函数
+-- 使用AS赋予列别名
+SELECT Concat(RTrim(vend_name),&#39;(&#39;,RTrim(vend_country),&#39;)&#39;) AS vend_title FROM vendors ORDER BY vend_name;
+SELECT prod_id,quantity,item_price FROM orderitems WHERE order_num = 20005;    -- 检索订单号20005中所有物品
+-- 算术运算(+,-,*,/)
+SELECT prod_id,quantity,item_price,quantity*item_price AS expanded_price FROM orderitems WHERE order_num = 20005;
+-- 测试计算
+SELECT 3*2;
+SELECT now();
+</code></pre><p></p><hr><p></p><h2 id="久、使用数据处理函数"><a href="#久、使用数据处理函数" class="headerlink" title="久、使用数据处理函数"></a>久、使用数据处理函数</h2><h3 id="数据处理函数"><a href="#数据处理函数" class="headerlink" title="数据处理函数"></a>数据处理函数</h3><table><tr><td><strong>Abs()</strong> 返回一个数的绝对值</td><td><strong>Cos()</strong> 返回一个角度的余弦</td><td><strong>Exp()</strong> 返回一个数的指数值</td></tr><tr><td><strong>Mod()</strong> 返回除操作的余数</td><td><strong>Pi()</strong> 返回圆周率</td><td><strong>Rand()</strong> 返回一个随机数</td></tr><tr><td><strong>Sin()</strong> 返回角度的正弦</td><td><strong>Sqrt()</strong> 返回一个数的平方根</td><td><strong>Tan()</strong> 返回一个角度的正切</td></tr></table><h3 id="文本处理函数"><a href="#文本处理函数" class="headerlink" title="文本处理函数"></a>文本处理函数</h3><table><tr><td><strong>Left()</strong> 返回串左边的字符</td><td><strong>Length()</strong> 返回串的长度</td><td><strong>locate()</strong> 找出串的一个子串</td></tr><tr><td><strong>Lower()/Upper()</strong> 将串转换为小/大写</td><td><strong>LTrim()</strong> 去掉左边空格</td><td><strong>RTrim()</strong> 去掉右边空格</td></tr><tr><td><strong>Right()</strong> 返回串右边字符</td><td><strong>Soundex()</strong> 返回串的类似发音的其他串</td><td><strong>SubString()</strong> 返回子串的字符</td></tr></table><h3 id="日期时间处理函数"><a href="#日期时间处理函数" class="headerlink" title="日期时间处理函数"></a>日期时间处理函数</h3><table><tr><td><strong>AddDate()</strong> 增加一个日期(天、周等)</td><td><strong>AddTime()</strong> 增加一个时间</td><td><strong>CurDate()</strong> 返回当前日期</td></tr><tr><td><strong>CurTime()</strong> 返回当前时间</td><td><strong>Date()</strong> 返回日期时间的日期部分</td><td><strong>DateDiff()</strong> 计算两个日期之差</td></tr><tr><td><strong>Date_Add()</strong> 高度灵活的日期运算函数</td><td><strong>Date_Format()</strong> 返回格式化日期或时间串</td><td><strong>Day()</strong> 返回日期的天数部分</td></tr><tr><td><strong>DayOfWeek()</strong> 返回星期几</td><td><strong>Hour()</strong> 返回时间的小时部分</td><td><strong>Minute()</strong> 返回时间的分钟部分</td></tr><tr><td><strong>Mouth()</strong> 返回日期的月份部分</td><td><strong>Now()</strong> 返回当前日期和时间</td><td><strong>Second()</strong> 返回时间的秒部分</td></tr><tr><td><strong>Time()</strong> 返回日期时间的时间部分</td><td><strong>Year()</strong> 返回日期的年份部分</td></tr></table><pre><code>SELECT vend_name, Upper(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;
+SELECT cust_name ,cust_contact FROM customers WHERE cust_contact = &#39;Y .Lie&#39;;
+SELECT cust_name,cust_contact FROM customers WHERE Soundex(cust_contact) = Soundex(&#39;Y Lie&#39;);    -- 对串进行发音比较
+SELECT cust_id,order_num FROM orders WHERE order_date = &#39;2005-09-01&#39;; -- 日期必须为yyyy-mm-dd格式 
+SELECT cust_id,order_num FROM orders WHERE Date(order_date) = &#39;2005-09-01&#39;;    -- 使用Date函数仅提取日期部分进行比较 
+-- 列出九月下所有的订单
+SELECT cust_id,order_num FROM orders WHERE Date(order_date) BETWEEN &#39;2005-09-01&#39; AND &#39;2005-09-30&#39;;
+SELECT cust_id,order_num FROM orders WHERE Year(order_date) = 2005 AND Month(order_date) = 9;
+</code></pre><p></p><hr><p></p><h2 id="十、汇总数据"><a href="#十、汇总数据" class="headerlink" title="十、汇总数据"></a>十、汇总数据</h2><table><tr><td><strong>AVG()</strong> 返回某列平均值</td><td><strong>COUNT()</strong> 返回某列的行数</td><td><strong>MAX()</strong> 返回某列最大值</td></tr><tr><td><strong>MIN()</strong> 返回某列最小值</td><td><strong>SUM()</strong> 返回某列值之和</td></tr></table><pre><code>SELECT AVG(prod_price) AS avg_price FROM products;        -- 使用聚集函数，返回平均值
+SELECT AVG(prod_price) AS avg_price FROM products WHERE vend_id = 1003;    -- AVG只用于单个列，忽略NULL的行
+SELECT COUNT(*) AS num_cust FROM customers;        -- 计算行数
+SELECT COUNT(cust_email) AS num_cust FROM customers;    -- 只对具有电子邮件地址的客户计数
+SELECT MAX(prod_price) AS max_price FROM products;
+SELECT MIN(prod_price) AS min_price FROM products;
+SELECT SUM(quantity) AS items_ordered FROM orderitems WHERE order_num = 20005;    -- 订购物品的总数
+SELECT SUM(item_price * quantity) AS total_price FROM orderitems WHERE order_num = 20005;    -- 总的订单金额
+SELECT AVG(DISTINCT prod_price) AS avg_price FROM products WHERE vend_id = 1003;    -- 使用DISTINCT参数，只考虑各个不同的价格
+SELECT COUNT(*) AS num_items, MIN(prod_price) AS price_min,        -- 组合聚集函数
+        MAX(prod_price) AS price_max,
+        AVG(prod_price) AS price_avg FROM products;
+</code></pre><p></p><hr><p></p><h2 id="十一、分组数据"><a href="#十一、分组数据" class="headerlink" title="十一、分组数据"></a>十一、分组数据</h2><h3 id="HAVING和WHERE的区别"><a href="#HAVING和WHERE的区别" class="headerlink" title="HAVING和WHERE的区别"></a>HAVING和WHERE的区别</h3><ul><li>HAVING过滤分组，而WHERE过滤行</li><li>WHERE在数据分组前进行过滤，HAVING在数据分组后进行过滤。</li></ul><pre><code>SELECT COUNT(*) AS num_prods FROM products WHERE vend_id = 1003;        -- 返回1003提供的产品数目
+SELECT vend_id,COUNT(*) AS num_prods FROM products GROUP BY vend_id;    -- 对vend_id排序并分组数据，每个vend_id只计算num_prods一次。
+SELECT vend_id, COUNT(*) AS num_prods FROM products GROUP BY vend_id WITH ROLLUP;         -- 每个分组及其汇总级别的值
+SELECT cust_id,COUNT(*) AS orders FROM orders GROUP BY cust_id HAVING COUNT(*) &gt;= 2;    -- 过滤两个以上订单的分组
+SELECT vend_id,COUNT(*) AS num_prods FROM products WHERE prod_price &gt;=10 GROUP BY vend_id HAVING COUNT(*) &gt;= 2;
+SELECT order_num,SUM(quantity*item_price) AS ordertotal FROM orderitems GROUP BY order_num
+HAVING SUM(quantity * item_price) &gt;= 50 ORDER BY ordertotal;
+</code></pre><p></p><hr><p></p><h2 id="十二、子查询"><a href="#十二、子查询" class="headerlink" title="十二、子查询"></a>十二、子查询</h2><pre><code>SELECT cust_id FROM orders WHERE order_num IN (SELECT order_num FROM orderitems WHERE prod_id = &#39;TNT2&#39;);
+SELECT cust_name, cust_contact FROM customers WHERE cust_id IN (SELECT cust_id FROM orders WHERE order_num IN
+    (SELECT order_num FROM orderitems WHERE prod_id = &#39;TNT2&#39;));
+SELECT cust_name,cust_state,(SELECT COUNT(*) FROM orders WHERE orders.cust_id = customers.cust_id) AS orders
+FROM customers ORDER BY cust_name;
+</code></pre><p></p><hr><p></p><h2 id="十三、联结表-内部联结"><a href="#十三、联结表-内部联结" class="headerlink" title="十三、联结表,内部联结"></a>十三、联结表,内部联结</h2><pre><code>SELECT vend_name,prod_name,prod_price FROM vendors,products 
+WHERE vendors.vend_id = products.vend_id ORDER BY vend_name,prod_name;
+SELECT vend_name,prod_name,prod_price FROM vendors,products ORDER BY vend_name,prod_name;    -- 没有联结条件，返回笛卡尔积
+SELECT vend_name,prod_name,prod_price FROM vendors INNER JOIN products ON vendors.vend_id = products.vend_id;
+SElECT prod_name,vend_name,prod_price,quantity FROM orderitems,products,vendors
+WHERE products.vend_id = vendors.vend_id AND orderitems.prod_id = products.prod_id
+AND order_num = 20005;
+-- 子查询并不总是执行复杂SELECT操作的有效方法
+SELECT cust_name,cust_contact FROM customers WHERE cust_id IN (SELECT cust_id FROM orders WHERE order_num IN
+(SELECT order_num FROM orderitems WHERE prod_id = &#39;TNT2&#39;));        -- 可以用下列方法等效
+SELECT cust_name,cust_contact FROM customers,orders,orderitems WHERE customers.cust_id = orders.cust_id
+AND orderitems.order_num = orders.order_num AND prod_id = &#39;TNT2&#39;;
+</code></pre><p></p><hr><p></p><h2 id="十四、创建高级联结"><a href="#十四、创建高级联结" class="headerlink" title="十四、创建高级联结"></a>十四、创建高级联结</h2><pre><code>SELECT cust_name,cust_contact FROM customers AS c, orders AS o, orderitems AS oi    -- 使用表别名
+WHERE c.cust_id = o.cust_id AND oi.order_num = o.order_num AND prod_id = &#39;TNT2&#39;;
+SELECT prod_id,prod_name FROM products WHERE
+vend_id = (SELECT vend_id FROM products WHERE prod_id = &#39;DTNTR&#39;);    -- 子查询
+</code></pre><p></p><hr><p></p><h3 id="自联结"><a href="#自联结" class="headerlink" title="自联结"></a>自联结</h3><pre><code>-- 自然联结排除多次出现，使每个列只返回一次
+SELECT p1.prod_id,p1.prod_name FROM products AS p1,products AS p2 WHERE p1.vend_id = p2.vend_id
+AND p2.prod_id = &#39;DTNTR&#39;;    -- 自联结处理远比子查询快的多
+-- 通配符只对第一个表使用。
+SELECT c.*,o.order_num,o.order_date,oi.prod_id,oi.quantity,oi.item_price FROM
+customers AS c,orders AS o,orderitems AS oi WHERE
+c.cust_id = o.cust_id AND oi.order_num = o.order_num AND prod_id = &#39;FB&#39;;
+</code></pre><p></p><hr><p></p><h3 id="外部联结"><a href="#外部联结" class="headerlink" title="外部联结"></a>外部联结</h3><ul><li>联结包含了那些在相关表中没有关联行的行，这种称为外部联结</li><li><strong>RIGHT</strong>指出是<strong>OUTER JOIN</strong>右边的表，<strong>LEFT</strong>指出是<strong>OUTER JOIN</strong>左边的表</li></ul><pre><code>SELECT customers.cust_id,orders.order_num FROM customers         -- 左边表选择所有行 
+LEFT OUTER JOIN orders ON customers.cust_id = orders.cust_id;
+SELECT customers.cust_id,orders.order_num FROM customers        -- 右边表选择所有行
+RIGHT OUTER JOIN orders ON customers.cust_id = orders.cust_id;
+</code></pre><p></p><hr><p></p><h3 id="带聚集函数的联结"><a href="#带聚集函数的联结" class="headerlink" title="带聚集函数的联结"></a>带聚集函数的联结</h3><p>检索所有客户及每个客户所下的订单数</p><pre><code>SELECT customers.cust_name,customers.cust_id,COUNT(orders.order_num) AS num_ord
+FROM customers INNER JOIN orders ON customers.cust_id = orders.cust_id GROUP BY customers.cust_id;
+SELECT customers.cust_name,customers.cust_id,COUNT(orders.order_num) AS num_ord    -- 使用左外部联结包含所有客户
+FROM customers LEFT OUTER JOIN orders ON customers.cust_id = orders.cust_id GROUP BY customers.cust_id;
+</code></pre><p></p><hr><p></p><h2 id="十五、组合查询"><a href="#十五、组合查询" class="headerlink" title="十五、组合查询"></a>十五、组合查询</h2><pre><code>SELECT vend_id,prod_id,prod_price FROM products WHERE prod_price &lt;= 5
+UNION        -- 两条SELECT语句之间使用UNION组合
+SELECT vend_id,prod_id,prod_price FROM products WHERE vend_id IN(1001,1002);
+-- 相同的使用where的查询,UNION更使用于从多个表检索数据的情形
+-- UNION从查询结果集自动去除了重复的行，这是默认行为，但也可以令其返回所有匹配的行，使用UNION ALL
+SELECT vend_id,prod_id,prod_price FROM products WHERE prod_price &lt;=5
+UNION ALL
+SELECT vend_id,prod_id,prod_price FROM products WHERE vend_id IN (1001,1002);
+-- 使用UNION查询时，只能使用一条ORDER BY子句
+SELECT vend_id,prod_id,prod_price FROM products WHERE prod_price &lt;=5
+UNION
+SELECT vend_id,prod_id,prod_price FROM products WHERE vend_id IN (1001,1002)
+ORDER BY vend_id,prod_price;    -- 排序UNION返回的结果集
+</code></pre><p></p><hr><p></p><h2 id="十六、全文本搜索"><a href="#十六、全文本搜索" class="headerlink" title="十六、全文本搜索"></a>十六、全文本搜索</h2><p>MySQL常用的引擎为MyISAM和InnoDB，前者支持全文本搜索，后者不支持.<br>一般在创建表时启用全文本搜索，接受FULLTEXT子句.</p><pre><code>CREATE TABLE productnotes(
+note_id        int            NOT NULL AUTO_INCREMENT,
+prod_id     char(10)     NOT NULL,
+note_date     datetime     NOT NULL,
+note_text    text        NULL,
+PRIMARY KEY(note_id),
+FULLTEXT(note_text)        -- 为了进行全文本搜索，MySql根据这句的指示对它进行索引，这里索引单个列。
+) ENGINE = MyISAM;        -- MySql会自动维护索引，不要在导入数据时启用FULLTEXT，应该在导入数据后修改表再启用
+</code></pre><p></p><hr><p></p><h3 id="全文本搜索"><a href="#全文本搜索" class="headerlink" title="全文本搜索"></a>全文本搜索</h3><pre><code>-- Match指定被搜索的列，Against指定要使用的搜索表达式
+SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;rabbit&#39;);    -- 传递给Match的值必须于FULLTEXT定义中的相同
+-- 也可以用like语句完成
+SELECT note_text FROM productnotes WHERE note_text LIKE &#39;%rabbit%&#39;;        -- 没有行排序，全文本搜索有行排序
+-- 等级根据行中词的数目、唯一词的数目、整个索引中词的总数以及包含该词的行数计算出来。
+SELECT note_text,Match(note_text) Against(&#39;rabbit&#39;) AS ranks FROM productnotes;     -- Match与Against返回等级
+-- 查询扩展
+SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;anvils&#39;);    -- 未使用查询扩展
+-- 使用查询扩展进行两次扫描，第一次扫描选择所有有用的词，第二次使用所有有用的词，返回可能相关的结果。
+SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;anvils&#39; WITH QUERY EXPANSION);    -- 使用查询扩展
+</code></pre><p></p><hr><p></p><h3 id="布尔文本搜索"><a href="#布尔文本搜索" class="headerlink" title="布尔文本搜索"></a>布尔文本搜索</h3><p>索引全文本数据时，短词被忽略且从索引中排除，短词为具有3个或以下字符的词(这个数目可以改).<br>MySql有一个非用词列表，列表的词也会被忽略.<br>如果一个词出现50%以上的行中，则将它作为一个非用词忽略，不用于IN BOOLEAN MODE<br>如果表中行数少于3行，全文本搜索不返回结果（每个词或者不出现，或者出现在50%的行中）<br>忽略词中的单引号<br>不具有词分隔符的语言不能恰当返回全文本搜索结果<br>布尔方式中，不按等级值降序排序返回的行。</p><ul><li>+包含，词必须存在</li><li>-排除，词必须不出现</li><li>>包含，而且增加等级值</li><li>&lt;包含，且减少等级值</li><li>()把词组成子表达式，允许这些子表达式作为一个组，被包含、排除、排列等</li><li>~取消一个词的排序值</li><li>*词尾的通配符</li><li>“”定义一个短语，与单个词的列表不同，它匹配整个短语以便包含或排除这个短语</li></ul><pre><code>SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;heavy&#39; IN BOOLEAN MODE);-- 没有指定布尔操作符
+-- 匹配包含heavy但不包含任意以rope开始的词的行,-rope*指定排除任何以rope开始的词的行。
+SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;heavy -rope*&#39; IN BOOLEAN MODE);
+SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;+rabbit +bait&#39; IN BOOLEAN MODE);
+SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;rabbit bait&#39; IN BOOLEAN MODE);    -- 包含其中至少一个词
+SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;&quot;rabbit bait&quot;&#39; IN BOOLEAN MODE);    -- 匹配短语
+SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;&gt;rabbit &lt;carrot&#39; IN BOOLEAN MODE);    -- 增加前者等级，降低后者等级
+SELECT note_text FROM productnotes WHERE Match(note_text) Against(&#39;+safe +(&lt;combination)&#39; IN BOOLEAN MODE);
+</code></pre><p></p><hr><p></p><h2 id="十七、插入数据"><a href="#十七、插入数据" class="headerlink" title="十七、插入数据"></a>十七、插入数据</h2><ul><li>如果表的定义允许，可以省略某些列</li><li>可以通过在INSERT和INTO之间LOW_PRIORITY降低INSERT语句的优先级。</li></ul><pre><code>INSERT INTO customers VALUES( NULL,        -- 对每一列必须提供一个值，按次序填充。id为自动填充，但不想给出这个值也不想省略，可以给NULL。
+&#39;Pep E. LaPew&#39;,&#39;100 Main Street&#39;,&#39;Los Angeles&#39;,    -- 这种语法不安全
+&#39;Ca&#39;,90046,&#39;USA&#39;,NULL,NULL);
+INSERT INTO customers(cust_name,cust_address,cust_city,cust_state,cust_zip,cust_country,cust_contact,cust_email)
+VALUES(&#39;Pep E. LaPew&#39;,&#39;100 Main Street&#39;,&#39;Los Angeles&#39;,&#39;CA&#39;,&#39;90046&#39;,&#39;USA&#39;,NULL,NULL); -- 给出列名，与值一一对应 
+INSERT INTO customers(cust_name,cust_contact,cust_email,cust_address,cust_city,cust_state,cust_zip,cust_country)
+VALUES(&#39;Pep E. LaPew&#39;,NULL,NULL,&#39;100 Main Street&#39;,&#39;Los Angeles&#39;,&#39;CA&#39;,&#39;90046&#39;,&#39;USA&#39;);    -- 与上面的语句顺序不同
+</code></pre><h3 id="插入多条数据"><a href="#插入多条数据" class="headerlink" title="插入多条数据"></a>插入多条数据</h3><pre><code>INSERT INTO customers(cust_name,cust_address,cust_city,cust_state,cust_zip,cust_country)
+VALUE(&#39;Pep E. LaPew&#39;,&#39;100 Main Street&#39;,&#39;Los Angeles&#39;,&#39;CA&#39;,&#39;90046&#39;,&#39;USA&#39;),
+(&#39;M. Martian&#39;,&#39;42 Galaxy Way&#39;,&#39;New York&#39;,&#39;NY&#39;,&#39;11213&#39;,&#39;USA&#39;);    -- 使用单条INSERT语句比多条快
+</code></pre><h3 id="创建custnew表"><a href="#创建custnew表" class="headerlink" title="创建custnew表"></a>创建custnew表</h3><pre><code>CREATE TABLE custnew
+(
+  cust_id      int       NOT NULL AUTO_INCREMENT,
+  cust_name    char(50)  NOT NULL ,
+  cust_address char(50)  NULL ,
+  cust_city    char(50)  NULL ,
+  cust_state   char(5)   NULL ,
+  cust_zip     char(10)  NULL ,
+  cust_country char(50)  NULL ,
+  cust_contact char(50)  NULL ,
+  cust_email   char(255) NULL ,
+  PRIMARY KEY (cust_id)
+) ENGINE=InnoDB;
+INSERT INTO custnew(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact, cust_email)
+VALUES(NULL, &#39;Coyote Inc.&#39;, &#39;200 Maple Lane&#39;, &#39;Detroit&#39;, &#39;MI&#39;, &#39;44444&#39;, &#39;USA&#39;, &#39;Y Lee&#39;, &#39;ylee@coyote.com&#39;);
+INSERT INTO custnew(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact)
+VALUES(NULL, &#39;Mouse House&#39;, &#39;333 Fromage Lane&#39;, &#39;Columbus&#39;, &#39;OH&#39;, &#39;43333&#39;, &#39;USA&#39;, &#39;Jerry Mouse&#39;);
+INSERT INTO custnew(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact, cust_email)
+VALUES(NULL, &#39;Wascals&#39;, &#39;1 Sunny Place&#39;, &#39;Muncie&#39;, &#39;IN&#39;, &#39;42222&#39;, &#39;USA&#39;, &#39;Jim Jones&#39;, &#39;rabbit@wascally.com&#39;);
+INSERT INTO custnew(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact, cust_email)
+VALUES(NULL, &#39;Yosemite Place&#39;, &#39;829 Riverside Drive&#39;, &#39;Phoenix&#39;, &#39;AZ&#39;, &#39;88888&#39;, &#39;USA&#39;, &#39;Y Sam&#39;, &#39;sam@yosemite.com&#39;);
+INSERT INTO custnew(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact)
+VALUES(NULL, &#39;E Fudd&#39;, &#39;4545 53rd Street&#39;, &#39;Chicago&#39;, &#39;IL&#39;, &#39;54545&#39;, &#39;USA&#39;, &#39;E Fudd&#39;);
+</code></pre><p>将custnew表中的数据导入customers表中,不一定要求列名匹配，SELECT中第一列(不管其列名),填充INSERT指定的第一列，SELECT还可以用WHERE过滤数据。</p><pre><code>INSERT INTO customers(cust_id,cust_contact,cust_email,cust_name,cust_address,cust_city,cust_state,cust_zip,cust_country)
+SELECT cust_id,cust_contact,cust_email,cust_name,cust_address,cust_city,cust_state,cust_zip,cust_country FROM custnew;
+</code></pre><h2 id="十八、更新和删除数据"><a href="#十八、更新和删除数据" class="headerlink" title="十八、更新和删除数据"></a>十八、更新和删除数据</h2><h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><p>UPDATE语句中可以使用子查询.</p><pre><code>UPDATE customers SET cust_email = &#39;elmer@fudd.com&#39; WHERE cust_id = 10005;    -- 如果没有WHERE语句，将会更新所有行
+UPDATE customers SET cust_name = &#39;The Fudds&#39;,cust_email = &#39;elmer@fudd.com&#39; WHERE cust_id = 10005;    -- 更新多个列
+-- 如果用UPDATE更新多行，并且在更新这些行中的一行或多行出现一个错误，整个UPDATE操作被去取消，并恢复原值
+-- 可以使用IGNORE使发生错误也继续更新 UPDATE IGNORE customers
+UPDATE customers SET cust_email = NULL WHERE cust_id = 10005;     -- 删除某列的值，可以将其定为NULL(表定义必须允许为NULL)
+</code></pre><h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><pre><code>DELETE FROM customers WHERE cust_id = 10006;    -- 删除一行
+TRUNCATE TABLE customers;        -- 从表中删除所有行，实质是删除原来的表 并重新创建一个表，更快。
+</code></pre><h2 id="十九、创建表和操纵表"><a href="#十九、创建表和操纵表" class="headerlink" title="十九、创建表和操纵表"></a>十九、创建表和操纵表</h2><h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><ul><li>如果仅想在一个表不存在时创建它，应该在表名后给出IF NOT EXISTS。</li><li>这样不检查已有表的模式是否与创建的表模式相匹配，只查看表名是否存在，仅在表名不存在时创建它。</li><li>每个表列或者是NULL列，或者是NOT NULL列</li><li>主键必须唯一，如果使用多个列，这些列的组合值必须唯一。</li></ul><pre><code>CREATE TABLE customers(
+cust_id            int            NOT NULL AUTO_INCREMENT,    -- 自动增量
+cust_name        char(50)    NOT NULL,
+cust_address     char(50)    NULL,
+cust_city        char(50)    NULL,
+cust_state        char(5)        NULL,
+cust_zip        char(10)    NULL,
+cust_country    char(50)    NULL,
+cust_contact    char(50)    NULL,
+cust_email        char(255)    NULL,
+PRIMARY KEY(cust_id)
+)ENGINE = InnoDB;
+CREATE TABLE orderitems(
+order_num    int                NOT NULL,
+order_item    int                NOT NULL,
+prod_id        char(10)        NOT NULL,
+quantity    int                NOT NULL,
+item_price    decimal(8,2)    NOT NULL,
+PRIMARY KEY(order_num,order_item)    -- 创建由多个列组成的主键
+)ENGINE=InnoDB;
+SELECT last_insert_id();     -- 返回最后一个AUTO_INCREMENT值
+</code></pre><ul><li>MySql不允许函数作为默认值</li><li>许多数据库开发人员使用默认值而不是NULL列，特别是对用于计算或数据分组的列</li></ul><pre><code>CREATE TABLE orderitems(
+order_num    int                NOT NULL,
+order_item    int                NOT NULL,
+prod_id        char(10)        NOT NULL,
+quantity    int                NOT NULL DEFAULT 1,  -- 指定默认值
+item_price    decimal(8,2)    NOT NULL,
+PRIMARY KEY(order_num,order_item)
+)ENGINE = InnoDB;
+</code></pre><h3 id="引擎介绍"><a href="#引擎介绍" class="headerlink" title="引擎介绍"></a>引擎介绍</h3><ul><li>InnoDB是一个可靠的事务处理引擎，不支持全文本搜索</li><li>MEMORY在功能等同于MyISAM，但由于数据存储在内存中，速度很快，适合于临时表</li><li>MyISAM是一个性能极高的引擎，支持全文本搜索 ，不支持事务处理</li><li>混用引擎类型有一个大缺陷，外键不能跨引擎，即使用一个引擎的表不能引用具有使用不同引擎的表的外键。</li></ul><h3 id="更新表"><a href="#更新表" class="headerlink" title="更新表"></a>更新表</h3><p>理想状态下，当该表存了数据之后，就不应该被更新</p><pre><code>ALTER TABLE vendors ADD vend_phone CHAR(20);    -- 给表添加一列
+ALTER TABLE vendors DROP COLUMN vend_phone;        -- 删除刚刚添加的列
+-- ALTER常用于定义外键
+ALTER TABLE orderitems ADD CONSTRAINT fk_orderitems_orders
+FOREIGN KEY (order_num) REFERENCES orders (order_num);
+ALTER TABLE orderitems ADD CONSTRAINT fk_orderitems_products 
+FOREIGN KEY (prod_id) REFERENCES orders (prod_id);
+ALTER TABLE orders ADD CONSTRAINT fk_orderitems_customers 
+FOREIGN KEY (cust_id) REFERENCES customers (cust_id);
+ALTER TABLE products ADD CONSTRAINT fk_products_vendors
+FOREIGN KEY (vend_id) REFERENCES vendors (vend_id);
+</code></pre><h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><pre><code>DROP TABLE customers2;
+</code></pre><h3 id="重命名表"><a href="#重命名表" class="headerlink" title="重命名表"></a>重命名表</h3><pre><code>RENAME TABLE customer2 TO customers;
+RENAME TABLE backup_customers TO customers,    -- 重命名多个表
+             backup_vendors TO vendors,
+             backup_products TO products;
+</code></pre><h2 id="二十、视图"><a href="#二十、视图" class="headerlink" title="二十、视图"></a>二十、视图</h2><ul><li>视图是虚拟的表，只包含使用时动态检索数据的查询。</li><li>视图可以重用SQL语句，简化复杂SQL操作，使用表的组成部分，保护数据，更改数据格式和表示。</li><li>每次使用视图，都必须处理查询执行时所需的任一个检索，如果创建了复杂的视图，性能下降的厉害<h3 id="视图的规则"><a href="#视图的规则" class="headerlink" title="视图的规则"></a>视图的规则</h3></li><li>视图必须唯一命名</li><li>创建视图必须有足够的访问权限</li><li>视图可以嵌套</li><li>ORDER BY可以用在视图中，如果从该视图检索数据的SELECT语句中也有ORDER BY，那么该视图中的ORDER BY将被覆盖。</li><li>视图不能索引，也不能有关联的触发器或默认值。</li><li>视图可以和表一起使用</li><li>更新视图可以先DROP再用CREATE也可以CREATE OR REPLACE VIEW。</li></ul><pre><code>SHOW CREATE VIEW vendorlocations;    -- 查看创建的视图
+DROP VIEW viewname;        -- 删除视图
+</code></pre><h3 id="使用视图简化复杂联结"><a href="#使用视图简化复杂联结" class="headerlink" title="使用视图简化复杂联结"></a>使用视图简化复杂联结</h3><pre><code>CREATE VIEW productcustomers AS SELECT cust_name,cust_contact,prod_id    -- 联结三个表，以返回已订购了任意产品的所有客户的列表。
+FROM customers,orders,orderitems WHERE customers.cust_id = orders.cust_id
+AND orderitems.order_num = orders.order_num;
+SELECT * FROM productcustomers;        -- 列出订购了任意产品的客户
+SELECT cust_name,cust_contact FROM productcustomers WHERE prod_id = &#39;TNT2&#39;;
+</code></pre><h3 id="用视图格式化检索的数据"><a href="#用视图格式化检索的数据" class="headerlink" title="用视图格式化检索的数据"></a>用视图格式化检索的数据</h3><pre><code>CREATE VIEW vendorlocations AS 
+SELECT Concat(RTrim(vend_name),&#39;(&#39;,RTrim(vend_country),&#39;)&#39;) 
+AS vend_title FROM vendors ORDER BY vend_name;
+SELECT * FROM vendorlocations;
+</code></pre><h3 id="用视图过滤不要的数据"><a href="#用视图过滤不要的数据" class="headerlink" title="用视图过滤不要的数据"></a>用视图过滤不要的数据</h3><pre><code>CREATE VIEW customeremaillist AS SELECT cust_id,cust_name,cust_email
+FROM customers WHERE cust_email IS NOT NULL;
+SELECT * FROM customeremaillist;
+</code></pre><h3 id="使用视图与计算字段"><a href="#使用视图与计算字段" class="headerlink" title="使用视图与计算字段"></a>使用视图与计算字段</h3><pre><code>CREATE VIEW orderitemsexpanded AS SELECT order_num,prod_id,quantity,item_price,quantity*item_price 
+AS expanded_price FROM orderitems;
+SELECT * FROM orderitemsexpanded WHERE order_num = 20005;
+</code></pre><h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><ul><li>可以对视图使用INSERT、UPDATE和DELETE进行更新，更新视图将更新其基表</li><li>一般应该将视图用于检索而不用于更新</li><li>如果MySql不能正确地确定被更新的基数据，则不允许更新，意味着如果视图定义有以下操作则不能更新：</li><li>分组，使用GROUP BY 和 HAVING；</li><li>联结、子查询、并、聚集函数(Min()、Count()、Sum()等)、DISTINCT、导出(计算)列；</li></ul><h2 id="二十一、存储过程"><a href="#二十一、存储过程" class="headerlink" title="二十一、存储过程"></a>二十一、存储过程</h2><ul><li>存储过程简单来说，就是为以后的使用而保存的一条或多条MySql语句的集合。</li><li>简化复杂操作、保证数据完整性、简化对变动的管理、提高性能</li><li>DELIMITER $ — 告诉命令行实用程序使用$作为新的语句结束分隔符，除了\符号，其他字符都能当语句分隔符</li></ul><pre><code>delimiter $
+CREATE PROCEDURE productpricing()        -- 创建存储过程
+BEGIN
+    SELECT Avg(prod_price) AS priceaverage 
+    FROM products;
+END $
+CALL productpricing();
+DROP PROCEDURE productpricing;            -- 删除存储过程
+DROP PROCEDURE IF EXISTS productpricing;    -- 仅当存在才删除
+delimiter $
+CREATE PROCEDURE productpricing(
+    OUT p1 DECIMAL(8,2),        -- OUT指出相应的参数用来从存储过程传出一个值，返回给调用者。
+    OUT ph DECIMAL(8,2),        -- IN，传递给存储过程，INOUT，对存储过程传入和传出
+    OUT pa DECIMAL(8,2)            -- INTO关键字，用于将检索的值存入变量中
+)
+BEGIN 
+    SELECT Min(prod_price) INTO p1 FROM products;
+    SELECT Max(prod_price) INTO ph FROM products;
+    SELECT Avg(prod_price) INTO pa FROM products;
+END $
+CALL productpricing(@pricelow,@pricehigh,@priceaverage);    -- 所有MySql变量必须以@开头
+SELECT @pricehigh,@pricelow,@priceaverage;
+delimiter $
+CREATE PROCEDURE ordertotal(
+    IN onumber INT,
+    OUT ototal DECIMAL(8,2)
+)
+BEGIN
+    SELECT Sum(item_price*quantity) FROM orderitems
+    WHERE order_num = onumber INTO ototal;
+END $
+CALL ordertotal(20005,@total);
+CALL ordertotal(20009,@total1);
+SELECT @total,@total1;
+DROP PROCEDURE ordertotal;
+-- 建立智能存储过程
+delimiter $
+CREATE PROCEDURE ordertotal(        -- 计算订单合计
+    IN onumber INT,
+    IN taxable BOOLEAN,        -- 增加税为真，否则为假
+    OUT ototal DECIMAL(8,2)
+) COMMENT &#39;Obtain order total, optionally adding tax&#39;
+BEGIN
+    DECLARE total DECIMAL(8,2);        -- DECLARE要求指定变量名和数据类型
+    -- Declare tax percentage
+    DECLARE taxrate INT DEFAULT 6;    -- 默认设置为6
+    -- Get the order total
+    SELECT Sum(item_price*quantity) FROM orderitems
+    WHERE order_num = onumber INTO total;
+    IF taxable THEN                                    -- IF语句还支持ELSEIF和ELSE子句
+        SELECT total+(total/100*taxrate) INTO total;    -- 增加营业税
+    END IF;
+    -- And finally, save to out variable
+    SELECT total INTO ototal;
+END $
+CALL ordertotal(20005,0,@total);
+SELECT @total;
+CALL ordertotal(20005,1,@total);
+SELECT @total;
+SHOW CREATE PROCEDURE ordertotal;        -- 检查存储过程
+SHOW PROCEDURE STATUS LIKE &#39;ordertotal&#39;;        -- 获得存储过程的创建时间和创建人等详细信息，可以使用LIKE限制其输出
+</code></pre><p></p><hr><p></p><h2 id="二十二、游标"><a href="#二十二、游标" class="headerlink" title="二十二、游标"></a>二十二、游标</h2><p>游标是一个存储在MySql服务器上的数据库查询，主要用于交互式应用，用户需要滚动屏幕上的数据。<br>MySql游标只能用于存储过程和函数。</p><h3 id="使用游标涉及的步骤—————————————————————"><a href="#使用游标涉及的步骤—————————————————————" class="headerlink" title="使用游标涉及的步骤—————————————————————-"></a>使用游标涉及的步骤—————————————————————-</h3><ul><li>使用游标前，必须声明/定义它。</li><li>声明后，必须打开游标以供使用。这个过程用前面定义的SELECT语句把数据实际检索出来</li><li>对于填有数据的游标，根据需要取出各行。</li><li>在结束游标使用时，必须关闭游标</li></ul><pre><code>delimiter $
+CREATE PROCEDURE processorders()
+BEGIN
+    DECLARE ordernumbers CURSOR            -- 定义和命名游标
+    FOR SELECT order_num FROM orders;
+    OPEN ordernumbers;                    -- 打开游标
+    CLOSE ordernumbers;                    -- 关闭游标，释放所有内部内存和资源
+END $                                    -- 存储过程处理完成后，游标就消失(它局限于存储过程)
+-- MySql将会在到达END语句时自动关闭游标
+delimiter $
+CREATE PROCEDURE processorders1()        -- 检索单行数据
+BEGIN
+    DECLARE o INT;
+    DECLARE ordernumbers CURSOR
+    FOR SELECT order_num FROM orders;    
+    OPEN ordernumbers;
+    FETCH ordernumbers INTO o;            -- FETCH检索单个行
+    CLOSE ordernumbers;
+END $
+-- MySQl支持循环语句，直到使用LEAVE语句手动退出为止。
+-- REPEAT语句的语法使它更适合于对游标进行循环。
+delimiter $
+CREATE PROCEDURE processorders2()        -- 循环检索数据
+BEGIN
+    DECLARE done BOOLEAN DEFAULT 0;        -- done默认值为0，局部变量必须在定义任意游标或句柄之前定义。
+    DECLARE o INT;
+    DECLARE ordernumbers CURSOR FOR        -- 定义游标
+    SELECT order_num FROM orders;
+    DECLARE CONTINUE HANDLER            -- 条件出现时被执行的代码，句柄必须在游标之后定义
+    FOR SQLSTATE &#39;02000&#39; SET done=1;    -- 当SQLSTATE &#39;02000&#39;出现时，SET done = 10，SQLSTATE &#39;02000&#39;是一个未找到条件
+    OPEN ordernumbers;
+    REPEAT
+        FETCH ordernumbers INTO o;        -- 检索当前order_num到o变量中
+    UNTIL done END REPEAT;                -- 反复执行，直到done为真，REPEAT由于没有更多行供循环而不能继续时，出现SQLSTATE &#39;02000&#39;
+    CLOSE ordernumbers;
+END $
+delimiter $
+CREATE PROCEDURE processorders3()
+BEGIN
+    DECLARE done BOOLEAN DEFAULT 0;            -- 作为REPEAT循环的条件
+    DECLARE o INT;                            -- 存取每次检索一行的数据
+    DECLARE t DECIMAL(8,2);                    -- 存储每个订单的合计
+    DECLARE ordernumbers CURSOR FOR            -- 定义游标
+    SELECT order_num FROM orders;
+    DECLARE CONTINUE HANDLER FOR SQLSTATE &#39;02000&#39; SET done = 1;        -- 句柄，出现SQLSTATE ‘02000’ 条件时，置done为1
+    CREATE TABLE IF NOT EXISTS ordertotals(order_num INT,total DECIMAL(8,2));    -- 创建表，存储合计结果
+    OPEN ordernumbers;                        -- 打开游标
+    REPEAT
+        FETCH ordernumbers INTO o;
+        CALL ordertotal(o,1,t);                -- 计算每个订单的带税合计，存储到t中
+        INSERT INTO ordertotals(order_num,total)        -- 保存每个订单的订单号和合计
+        VALUES(o,t);
+    UNTIL done END REPEAT;
+    CLOSE ordernumbers;                        -- 关闭游标
+END;
+CALL processorders3();
+SELECT * FROM ordertotals;
+</code></pre><p></p><hr><p></p><h2 id="二十三、触发器"><a href="#二十三、触发器" class="headerlink" title="二十三、触发器"></a>二十三、触发器</h2><p>如果需要某些语句在事件发生时自动执行，就需要使用触发器。<br>触发器是MySql响应以下任意语句而自动执行的一条Mysql语句或位于BEGIN和END之间的一组语句：DELETE；INSERT；UPDATE，其他语句不支持触发器<br>创建触发器，需要给出触发器名，触发器关联的表，触发器响应的活动(DELETE等)，触发器何时执行(之前或之后)。<br>MySql中触发器名必须在每个表中唯一，不是在每个数据库中唯一。但最好在数据库范围内使用唯一触发器名<br>触发器仅支持表，每个表每个事件每次只允许一个触发器，因此每个表最多支持6个触发器<br>一个触发器只能关联一个事件或一个表。<br>MYSQL5以后，不允许触发器返回任何结果，因此使用into @变量名</p><pre><code>CREATE TRIGGER newproduct AFTER INSERT ON products
+FOR EACH ROW SELECT &#39;Product added&#39; INTO @temp;    -- AFTER INSERT表示在INSERT语句成功执行后执行
+-- FOR EACH ROW说明代码对每个插入行执行，Product added将对每个插入的行显示一次
+INSERT INTO products VALUES(&#39;TNT3&#39;, &#39;1003&#39;, &#39;TNT (6 sticks)&#39;, &#39;11.00&#39;, &#39;TNT, red, pack of 11 sticks&#39;);
+SELECT @temp;
+DROP TRIGGER newproduct;        -- 删除触发器
+</code></pre><p></p><hr><p></p><h3 id="INSERT触发器"><a href="#INSERT触发器" class="headerlink" title="INSERT触发器"></a>INSERT触发器</h3><ul><li>在INSERT触发器内，可引用一个名为NEW的虚拟表，访问被插入的行</li><li>BEFORE INSERT中，NEW的值可以被更新</li><li>AUTO_INCREMENT列，NEW在INSERT执行之前包含0，在INSERT执行之后包含新的自动生成值</li><li><p>通常BEFORE用于数据验证和净化。</p><p>CREATE TRIGGER neworder AFTER INSERT ON orders<br>FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到orders表后，MySql生成新订单号并保存到order_num中</p></li><li><p>触发器从NEW.order_num取得这个值并返回，此触发器必须按照AFTER INSERT执行，否则新的order_num还没生成。</p></li></ul><pre><code>INSERT INTO orders(order_date,cust_id) VALUES(Now(),10001);
+SELECT @temp1;
+</code></pre><p></p><hr><p></p><h3 id="DELETE触发器"><a href="#DELETE触发器" class="headerlink" title="DELETE触发器"></a>DELETE触发器</h3><ul><li>在DELETE触发器代码内，可以引用一个名为OLD的虚拟表，访问被删除的行</li><li>OLD中的值全都是只读的，不能更新</li></ul><pre><code>CREATE TABLE archive_orders
+(
+  order_num  int      NOT NULL AUTO_INCREMENT,
+  order_date datetime NOT NULL ,
+  cust_id    int      NOT NULL ,
+  PRIMARY KEY (order_num)
+) ENGINE=InnoDB;
+delimiter $
+CREATE TRIGGER deleteorder BEFORE DELETE ON orders        -- 使用OLD保存将要删除的行到一个存档表中
+FOR EACH ROW                                -- 使用BEFORE的优点，如果某种原因，订单不能存档，DELETE本身将被放弃
+BEGIN
+    INSERT INTO archive_orders(order_num,order_date,cust_id)
+    VALUE(OLD.order_num,OLD.order_date,OLD.cust_id);
+END;
+DELETE FROM orders where order_num = 20010;
+SELECT * FROM archive_orders;
+</code></pre><p></p><hr><p></p><h3 id="UPDATE触发器"><a href="#UPDATE触发器" class="headerlink" title="UPDATE触发器"></a>UPDATE触发器</h3><ul><li>可以引用OLD虚拟表访问以前的值，引用NEW虚拟表访问新更新的值</li><li>在BEFORE UPDATE触发器中，NEW中的值可能也被更新</li><li>OLD中的值全是只读的</li><li>触发器中不能调用存储过程</li><li>应该用触发器来保证数据的一致性</li></ul><pre><code>CREATE TRIGGER updatevendor BEFORE UPDATE ON vendors
+FOR EACH ROW SET NEW.vend_state = Upper(NEW.vend_state);
+</code></pre><p></p><hr><p></p><h2 id="二十四、事务"><a href="#二十四、事务" class="headerlink" title="二十四、事务"></a>二十四、事务</h2><p>事务处理可以用来维护数据库的完整性，它保证成批的MySql操作要么完全执行，要么完全不执行。</p><h3 id="概念解释"><a href="#概念解释" class="headerlink" title="概念解释"></a>概念解释</h3><ul><li>事务，指一组SQL语句</li><li>回退，指撤销指定SQL语句的过程</li><li>提交，指将未存储的SQL语句结果写入数据库表</li><li>保留点，指事务处理中设置的临时占位符，你可以对它发布回退。</li></ul><pre><code>SET SQL_SAFE_UPDATES = 0;
+SELECT * FROM ordertotals;
+START TRANSACTION;            -- 开始事务处理
+DELETE FROM ordertotals;    -- 删除所有行
+SELECT * FROM ordertotals;    -- 验证为空
+ROLLBACK;                    -- 回退事务开始后的所有语句
+SELECT * FROM ordertotals;
+</code></pre><ul><li><strong>ROLLBACK</strong>只能在一个事务处理内使用</li><li>事务处理用来管理<strong>INSERT、UPDATE</strong>和<strong>DELETE</strong>语句，不能回退<strong>SELECT</strong>语句，因为没有意义，也不能回退<strong>CREATE</strong>或<strong>DROP</strong>操作，事务处理可以使用这两条语句，但执行回退，它们不会被撤销</li><li>一般的SQL是隐含提交的，事务处理块中，需要明确使用<strong>COMMIT</strong>语句进行提交</li></ul><pre><code>START TRANSACTION;
+DELETE FROM orderitems WHERE order_num = 20010;
+DELETE FROM orders WHERE order_num = 20010;
+COMMIT;        -- 当COMMIT或ROLLBACK语句执行后，事务会自动关闭
+</code></pre><ul><li>为了支持部分事务回退，需要在合适位置设置保留点，保留点在事务处理完成后自动释放，也可以使用<strong>RELEASE SAVEPOINT</strong>明确释放保留点</li></ul><pre><code>SAVEPOINT delete1;        -- 设置回退点，并取名
+ROLLBACK TO delete1;    -- 进行回退
+-- 更改默认提交行为
+SET autocommit = 0;        -- 指示MySql不自动提交更改
+</code></pre><h2 id="二十五、全球化和本地化"><a href="#二十五、全球化和本地化" class="headerlink" title="二十五、全球化和本地化"></a>二十五、全球化和本地化</h2><p>不同语言和字符集需要以不同的方式存储和检索。</p><h3 id="概念解释-1"><a href="#概念解释-1" class="headerlink" title="概念解释"></a>概念解释</h3><ul><li>字符集，字母和符号的集合</li><li>编码，为某个字符集成员的内部表示</li><li>校对，为规定字符如何比较的指令</li></ul><pre><code>SHOW CHARACTER SET;        -- 显示所有可用的字符集以及每个字符集的描述和默认校对
+SHOW VARIABLES LIKE &#39;character%&#39;;    -- 确定所用字符集和校对
+SHOW VARIABLES LIKE &#39;collation%&#39;;
+CREATE TABLE mytable(    -- 对表指定字符集和校对顺序
+columnn1 INT,
+columnn2 VARCHAR(10)
+)DEFAULT CHARACTER hebrew
+COLLATE hebrew_general_ci;
+CREATE TABLE mytable(
+columnn1 INT,
+columnn2 VARCHAR(10),
+columnn3 VARCHAR(10) CHARACTER SET latin1 COLLATE latin1_general_ci    -- 对列指定字符集和校对
+) DEFAULT CHARACTER SET hebrew
+COLLATE hebrew_general_ci;
+SELECT * FROM customers
+ORDER BY lastname,firstname COLLATE latin1_general_cs;        -- 指定一个备用校对顺序
+</code></pre><p></p><hr><p></p><h2 id="二十六、安全管理"><a href="#二十六、安全管理" class="headerlink" title="二十六、安全管理"></a>二十六、安全管理</h2><p>MYSQL用户账号和信息存储在名为mysql的MYSQL数据库中。</p><pre><code>USE mysql;
+SELECT user FROM user;        -- 获得所有用户账号列表
+</code></pre><p>创建新用户账号<br><strong>IDENTIFIED BY</strong>指定的口令为纯文本，MYSQL将其保存到user表之前对其进行加密，为了作为散列值指定口令，使用<strong>IDENTIFIED BY PASSWORD</strong></p><pre><code>CREATE USER ben IDENTIFIED BY &#39;p@$$w0rd&#39;;        -- 创建新账号并给出口令
+</code></pre><p>GRANT语句也可以创建用户账号，也可以通过直接插入行到USER表来增加用户，但一般不这么做</p><pre><code>RENAME USER ben TO bforta;    -- 重新命名一个用户账号
+DROP USER bforta;            -- 删除用户账号以及相关权限
+SHOW GRANTS FOR bforta;        -- 查看赋予用户账号的权限，USAGE表示没有权限，用户定义为user%host
+</code></pre><p>添加用户权限</p><pre><code>GRANT SELECT,INSERT ON crashcourse.* TO bforta    -- 允许用户在crashcourse数据库的所有表使用SELECT
+</code></pre><p>撤销用户权限</p><pre><code>REVOKE SELECT ON crashcourse.* FROM bforta;
+</code></pre><p>更改用户口令</p><pre><code>SET PASSWORD FOR bforta = Password(&#39;n3w p@$$w0rd&#39;);    -- 新口令必须传递到Password函数进行加密
+SET PASSWORD = Password(&#39;368752&#39;);                    -- 设置自己的口令
+</code></pre><p></p><hr><p></p><h2 id="二十七、数据库维护"><a href="#二十七、数据库维护" class="headerlink" title="二十七、数据库维护"></a>二十七、数据库维护</h2><ul><li>使用<strong>mysqldump</strong>转储所有数据库内容到某个外部文件</li><li>使用<strong>mysqlhotcopy</strong>从一个数据库复制所有数据</li><li><strong>BACKUP TABLE</strong> 或 <strong>SELECT INTO OUTFILE</strong>转储所有数据到某个外部文件，使用<strong>RESTORE TABLE</strong>复原</li><li>为保证所有数据被写到磁盘，在备份前使用<strong>FLUSH TABLE</strong>刷新未写数据</li></ul><pre><code>ANALYZE TABLE orders;            -- 检查表键是否正确
+CHECK TABLE    orders,orderitems;    -- 针对许多问题对表进行检查
+</code></pre><p>如果从一个表删除大量数据，应该使用<strong>OPTIMIZE TABLE</strong>来收回所用空间，从而优化表的性能</p><pre><code>mysqld --help;            -- 帮助
+mysqld --safe-mode;        -- 装载减去某些最佳配置的服务器
+mysqld --verbose;        -- 显示全文本信息
+mysqld --version;        -- 显示版本信息
+</code></pre><ul><li>错误日志，记录错误，名为hostname.err，位于data目录，日志名可用—log-error命令行选项更改</li><li>查询日志，记录所有MYsql活动，名为hostname.log，位于data目录，可用—log命令行选项更改</li><li>二进制日志，记录更新过数据的所有语句，名为hostname-bin，位于data目录，可用—log-bin命令行选项更改</li><li>缓慢查询日志，记录执行缓慢的任何查询，名为hostname-slow.log，位于data目录，可以—log-slow-queries命令行选项更改。</li></ul><blockquote><p>FLUSH LOG 刷新和重新开始所有日志文件</p></blockquote><hr></div><br><div><p><span><i class="iconfont icon-tag"></i> <a class="hover-with-bg" href="/tags/MySQl">MySQl</a></span></p><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p><div class="col-lg-7 mx-auto nopadding-md"><div class="container comments mx-auto" id="comments"><br><br><div class="disqus" style="width:100%"><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://yoursite.com/2021/01/02/MySQL入门/",this.page.identifier="/2021/01/02/MySQL入门/"},oldLoad=window.onload;window.onload=function(){var t=document,e=t.createElement("script");e.type="text/javascript",e.src="//inaho-top.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a></noscript></div></div></div></div></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container"><div id="toc"><p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p><div id="tocbot"></div></div></div></div></div></main><a class="z-depth-1" id="scroll-top-button" href="#" role="button"><i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><div id="footerContent" class="rgba-black-slight"><footer class="pt-5"><div style="color:#fff" class="text-center py-3"><a style="color:#fff" href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo支持</b></a> <i class="iconfont icon-love"></i> <a style="color:#fff" href="https://disqus.com/" target="_blank" rel="nofollow noopener"><b>Disqus 评论系统 </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>主题Fluid </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://www.pixiv.net/" target="_blank" rel="nofollow noopener"><b>图片 Pixiv</b></a><br>&nbsp;<span id="busuanzi_container_site_pv">总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp; &nbsp;<span id="busuanzi_container_site_uv">总访客数 <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;<br></div></footer></div><script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script><script src="/lib/popper/popper.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script><script src="https://cdn.staticfile.org/mdbootstrap/4.8.7/js/mdb.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="/lib/tocbot/tocbot.min.js"></script><script src="/js/post.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/lib/prettify/prettify.min.js"></script><script>$(document).ready((function(){$("pre").addClass("prettyprint  linenums"),prettyPrint()}))</script><script src="/lib/typed/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","MySQL入门&nbsp;"],cursorChar:"_",typeSpeed:70,loop:!1});typed.stop(),$(document).ready((function(){$(".typed-cursor").addClass("h2"),typed.start()}))</script><script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js"></script><script>anchors.options={placement:"right",visible:"false"};var el="h1,h2,h3,h4,h5,h6".split(","),res=[];for(item of el)res.push(".markdown-body > "+item);anchors.add(res.join(", "))</script><script src="/js/local-search.js"></script><script>var path="/local-search.xml",inputArea=document.querySelector("#local-search-input");inputArea.onclick=function(){getSearchFile(path),this.onclick=null}</script><script src="/lib/fancybox/jquery.fancybox.min.js"></script><script>$("#post img:not(.no-zoom img, img[no-zoom])").each((function(){var t=document.createElement("a");$(t).attr("data-fancybox","images"),$(t).attr("href",$(this).attr("src")),$(this).wrap(t)}))</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+          }
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });</script><script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script><script type="text/javascript">$("#background").removeClass("banner-bg"),$("body").addClass("banner-bg");var postToTopHight=$("#board").offset().top;$(window).scroll((function(){document.body.scrollTop+document.documentElement.scrollTop>=postToTopHight?($("#background").removeClass("rgba-black-slight"),$("#mainContent").removeClass("rgba-black-slight"),$("#footerContent").removeClass("rgba-black-slight")):($("#background").addClass("rgba-black-slight"),$("#mainContent").addClass("rgba-black-slight"),$("#footerContent").addClass("rgba-black-slight"))}))</script></body></html>

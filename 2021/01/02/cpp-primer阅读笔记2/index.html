@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png"><link rel="icon" type="image/png" href="/img/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content=""><meta name="author" content="John Doe"><meta name="keywords" content=""><title>CppPrimer阅读笔记2 ~ inaho</title><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.8.7/css/mdb.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css"><link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"><style type="text/css">.banner-bg{background-image:url(/img/bg1.jpg);background-position:center;background-repeat:repeat-y;background-size:cover;background-attachment:fixed}</style><meta name="generator" content="Hexo 4.2.1"></head><body class="banner-bg"><header style="height:70vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/">&nbsp;<strong>阴月有晴</strong>&nbsp;</a> <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/">主页</a></li><li class="nav-item"><a class="nav-link" href="/archives/">归档</a></li><li class="nav-item"><a class="nav-link" href="/tags/">标签</a></li><li class="nav-item"><a class="nav-link" href="/about/">关于</a></li><li class="nav-item" id="search-btn"><a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i class="iconfont icon-search"></i>&nbsp;&nbsp;</a></li></ul></div></div></nav><div class="view intro-2 rgba-black-slight" id="background"><div class="full-bg-img"><div class="mask flex-center"><div class="container text-center white-text fadeInUp"><span class="h2" id="subtitle"></span><br><p class="mt-3"><i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp; 星期六, 一月 2日 2021, 6:25 晚上</p><p>&nbsp;<i class="far fa-chart-bar"></i> <span class="post-count">7.6k 字 </span>&nbsp; &nbsp;<i class="far fa-clock"></i> <span class="post-count">29 分钟 </span>&nbsp; &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp; <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> 次 </span>&nbsp;</p></div></div></div></div></header><main id="mainContent" class="rgba-black-slight"><div class="container-fluid"><div class="row"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-md"><div class="py-5 z-depth-3" id="board"><div class="post-content mx-auto" id="post"><div class="markdown-body"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>此笔记是本人阅读CppPrimer后总结的各章重点，此为第二篇，介绍了第二部分C++标准库的内容。</p><h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><ol><li>不能拷贝IO对象，也不能将形参或返回值设置为流对象，进行IO操作的函数通常以引用方式传递和返回流。<blockquote><p>读写IO对象会改变其状态，因此传递和返回的引用不能是const的.</p></blockquote></li><li>只有当一个流处于无错状态时，才能读取数据和写入数据。</li><li>使用good或fail是确定流的总体状态的方法。</li><li>如果先输入了一些字符，没有回车换行重新输入Ctrl+Z，那么输入缓冲区由于存在其他的可读数据，从而不会检测到Ctrl+Z(因为有要读的数据，所以不能认为到了文字流的末尾),所以，若想在windows下正确执行EOF，必须新的一行只输入Ctrl+ Z指令。</li><li>对cerr是设置unitbuf的，因此写到cerr的内容都是立即刷新的。<blockquote><p>当读写被关联的流时，关联到的流的缓冲区会被刷新。</p></blockquote></li><li>类似endl的操作符，flush刷新缓冲区，但不输出任何额外字符，ends向缓冲区插入一个空字符，然后刷新缓冲区。</li><li>unitbuf操作符，告诉流接下来的每次写操作都进行一次flush操作。<blockquote><p>nounitbuf操纵符则重置流，使其恢复使用正常的系统管理的缓冲区刷新机制。<br>如果程序异常终止，输出缓冲区是不会被刷新的。</p></blockquote></li><li><p>如果创建文件流对象时，提供文件名，则open函数会自动被调用。</p><pre><code> ifstream in(ifile);
+ ofstream out;    //输出文件流未关联到任何文件。
+ //当一个fstream对象离开其作用域时，与之关联的文件会自动关闭
+</code></pre></li><li><p>每个文件流类型定义一个默认的文件模式，ifstream关联的文件默认以in模式打开，与ofstream关联的文件默认以out模式打开。</p></li><li>对同一个stringsteam对象重复赋值时，就需要对流使用clear()函数复位流的状态，不过此时并未清空之前的数值</li></ol><h2 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h2><ol><li>与内置数组相比，array是一种更安全、更容易使用的数组类型。</li><li>反向迭代器就是反向遍历容器的迭代器，其各操作的含义也发生了颠倒。</li><li><p>定义array时除了指定元素类型，还要指定容器大小。</p><pre><code>  array&lt;int,42&gt;        //保存42个int的数组。
+  array&lt;int,42&gt;::size_type i;
+</code></pre></li><li><p>内置数组类型不能进行拷贝和对象赋值操作，但array可以。但类型和大小必须一样，array不支持花括号列表赋值。</p></li><li>赋值相关运算会导致指向左边容器内部的迭代器、引用和指针失效，swap操作将容器内容交换不会导致指向容器的迭代器、引用、指针失效。（string、array除外）</li><li>assign允许从一个不同但相容的类型赋值，或者从容器的一个子序列赋值。</li><li>对string调用swap会导致迭代器、引用和指针失效，swap两个array会真正交换它们的元素。</li><li>比较两个容器实际上是进行元素的逐对比较。</li><li>当用一个对象初始化容器或插入容器中，实际上放入容器中的对象值是一个拷贝，而不是对象本身，容器中的元素与提供值的对象之间无任何关联。</li><li><p>list不支持push_front但可以用insert代替。</p><pre><code> list&lt;string&gt; slist;
+ slist.insert(slist.begin(),&quot;hello&quot;);    //等价于slist.push_front(&quot;hello&quot;);
+</code></pre></li><li><p>list使用insert操作</p><pre><code> list&lt;string&gt; lst;
+ auto iter = lst.begin();
+ while(cin &gt;&gt; word) iter= lst.insert(iter,word);    //反复调用push_front
+</code></pre></li><li><p>c++11新标准引入emplace_front、emplace、emplace_back对应push_front、insert、push_back。</p><blockquote><p>后者将元素类型的对象传递给它们，这些对象被拷贝到容器中。<br>前者则是将参数传递给元素类型的构造函数，emplace成员使用参数在容器管理的内存空间中直接构造元素。</p></blockquote><pre><code> Sales_data c;
+ c.emplace_back(&quot;978-05321&quot;,25,15.6);        //构造元素
+ c.push_back(Sales_data(&quot;978-05321&quot;,25,15.6));    //赋值元素
+</code></pre></li><li><p>at和下标操作只适用于string、vector、deque、array</p><blockquote><p>c.at(n),返回下标为n的元素的引用，如果下标越界，则抛出out_of_range异常。</p></blockquote></li><li><p>slist.clear();</p><pre><code>slist.erase(slist.begin(),slist.end());    //等价调用
+</code></pre></li><li><p>resize可以增大或缩小容器，多删少补。</p><pre><code> list.resize(25,-1);    //添加-1直至容器满25个元素,array不使用
+</code></pre></li><li><p>当删除元素时，尾后迭代器总会失效。</p></li><li><p>申请空间操作。</p><pre><code> c.shrink_to_fit();        //适用于vector、string、deque，将capacity减少为和size相同大小
+ c.capacity();            //当前c可以保存的元素个数
+ c.reserve(n);            //分配至少能容纳n个元素的内存空间
+</code></pre><blockquote><p>只有需要的内存空间超过当前容量，reserve调用才会改变vector的容量。<br>如果大于当前容量，至少分配与需求一样大的内存空间，可能更大<br>如果小于等于当前容量，reserve什么也不做。</p></blockquote></li><li><p>可以调用shrink_to_fit来要求deque、vector、string退回不需要的内存空间，但调用shrink_to_fit也并不保证一定退回内存空间。</p></li><li>对于vecotr，size是指它已经保存的元素的数目，而capacity则是在不分配新的内存空间的前提下它最多可以保存多少元素。</li><li>只要没有操作需求超出vector的容量，vector就不能重新分配内存空间。</li><li>advance() 函数用于将迭代器前进（或者后退）指定长度的距离</li><li>注意insert、erase、assign、append、replace、substr、find等函数的用法。</li><li>compare函数，数值转换to_string，浮点数转换stod</li><li><p>string参数中第一个非空白符必须是符号(+或-)或数字。数字可以以0x或0X开头表示16进制。</p><pre><code> string s2 = &quot;pi = 3.1419ssss&quot;;
+ double d = stod(s2.substr(s2.find_first_of(&quot;+-.0123456789&quot;)));
+</code></pre></li><li><p>所有适配器都要求容器具有添加和删除元素的能力，适配器不能构造在array之上。</p><blockquote><p>栈默认基于deque实现，stack可以使用除array、forward_list之外的任何容器类型来构造stack。<br>queue默认基于deque实现，queue可以构造于list或deque之上，但不能基于vector构造。<br>priority_queue默认基于vector实现，priority_queue可以构造于vector、deque之上，但不能基于list构造。</p></blockquote></li><li><p>priority_queue允许我们为队列的元素建立优先级，新加入的元素排在优先级比它低的已有元素之前。</p></li></ol><h2 id="第十章"><a href="#第十章" class="headerlink" title="第十章"></a>第十章</h2><ol><li>泛型算法永远不会执行容器的操作，只会运行于迭代器之上，执行迭代器操作。</li><li><p>accumulate求和函数第三个参数决定函数中使用哪个加法运算符以及返回值类型!!。</p><blockquote><p>由于string定义了+运算符，所以可以用accumulate将其连接起来。<br>string sum = accumulate(v.cbegin(),v.cend(),string(“”));<br>对于只读取而不改变元素的算法，最好使用cbegin和cend。</p></blockquote></li><li><p>equal假定第二个序列至少于第一个序列一样长。</p><pre><code>  equal(roster1.cbegin(),roster1.cend(),roster2.cbegin());
+</code></pre></li><li><p>插入迭代器back_inserter接受一个指向容器的引用，返回一个与该容器绑定的插入迭代器。</p><blockquote><p>通过此迭代器赋值时，赋值运算会调用push_back将一个具有给定值的元素添加到容器中。</p></blockquote></li><li><p>sort利用元素&lt;运算符实现排序，unique重排vector，使不重复的元素出现在vector的开始部分。</p><pre><code>     void elimDups(vector&lt;string&gt; &amp;words) {
+         std::sort(words.begin(), words.end());
+         auto end_unique = unique(words.begin(), words.end());        //并没有删除元素，只是将不重复元素排在开始部分
+         words.erase(end_unique, words.end());                        //删除元素
+     }
+</code></pre></li><li><p>谓词是一个可调用的表达式，返回结果是一个能用作条件的值。</p></li><li>一元谓词意味着它们只接受单一参数，二元谓词表示它们有两个参数。</li><li><p>调用一个二元谓词参数的sort版本用这个谓词代替&lt;来比较元素。</p><pre><code>     bool isShorter1(const string &amp;s1,const string &amp;s2) {
+         return s1.size() &lt; s2.size();
+     }
+     int main() {
+         vector&lt;string&gt; txt{ &quot;the&quot;,&quot;quick&quot;, &quot;red&quot;, &quot;fox&quot;, &quot;jumps&quot;, &quot;over&quot;, &quot;the&quot;, &quot;slow&quot;, &quot;red&quot;, &quot;turtle&quot; };
+         std::sort(txt.begin(), txt.end(), isShorter1);
+         for (auto i : txt) { cout &lt;&lt; i &lt;&lt; &quot; &quot;; }
+         return 0;
+     }
+</code></pre></li><li><p>stable_sort是一种稳定排序的算法，其维持相等元素的原有顺序。</p></li><li>熟悉sort、stable_sort、partition算法，partition返回的是最后一个使谓词为true的元素的后一个位置的迭代器</li><li>find_if接受一元谓词，算法对输入序列中每个元素调用给定的谓词，返回第一个使谓词返回非0值的元素。</li><li>对于一个对象或一个表达式，如果可以对其使用调用运算符，则称它为可调用的。</li><li>可调用对象：函数、函数指针、重载了函数调用运算符的类、lambda表达式。</li><li>一个lambda表达式表示一个可调用的代码单元，可以理解为未命名的内联函数。</li><li><p>lambda必须使用尾置返回来指定返回类型，可以忽略参数列表和返回类型，但必须永远包含捕获列表和函数体。</p><pre><code>    [capture list](parameter list)-&gt;return type {function body}
+    auto f =[]{return 42;}
+    cout &lt;&lt; f() &lt;&lt; endl;
+</code></pre></li><li><p>如果忽略返回值类型，lambda根据函数体中代码推断出返回类型。</p></li><li><p>lambda不能有默认参数。</p><pre><code>auto it = std::partition(txt.begin(), txt.end(), [](string str) {return str.size() &gt;= 5; });
+</code></pre></li><li><p>一个lambda只有在其捕获列表中捕获一个它所在函数中的局部变量，才能在函数体中使用该变量。</p></li><li><p>for_each算法，接受一个可调用对象，并对输入序列中每个元素调用此对象。</p><pre><code>    void elimDups(vector&lt;string&gt; &amp;words) {
+        std::sort(words.begin(), words.end());
+        auto end_unique = unique(words.begin(), words.end());        //并没有删除元素，只是将不重复元素排在开始部分
+        words.erase(end_unique, words.end());                        //删除元素
+    }
+    string make_plural(size_t ctr, const string &amp;word, const string &amp;ending) {
+        return (ctr &gt; 1) ? word + ending : word;
+    }
+    void biggies(vector&lt;string&gt; &amp;words, vector&lt;string&gt;::size_type sz) {
+        elimDups(words);                                            //字典排序，删除重复词。
+        std::stable_sort(words.begin(), words.end(),                //从小到大排序
+            [](const string &amp;a, const string &amp;b){return a.size() &lt; b.size(); });
+        auto wc = std::find_if(words.begin(), words.end(),            //wc迭代器指向第一个满足size()&gt;=sz的元素。
+            [sz](const string &amp;a) {return a.size() &gt;= sz; });
+        auto count = words.end() - wc;                                //元素数目
+        cout &lt;&lt; count &lt;&lt; &quot; &quot; &lt;&lt; make_plural(count, &quot;word&quot;, &quot;s&quot;) &lt;&lt; &quot; of length &quot; &lt;&lt; sz &lt;&lt; &quot; or longer&quot; &lt;&lt; endl;
+        std::for_each(wc, words.end(),
+            [](const string &amp;s) {cout &lt;&lt; s &lt;&lt; &quot; &quot;; });
+        cout &lt;&lt; endl;
+    }
+    int main() {
+        vector&lt;string&gt; txt{ &quot;the&quot;,&quot;quick&quot;, &quot;red&quot;, &quot;fox&quot;, &quot;jumps&quot;, &quot;over&quot;, &quot;the&quot;, &quot;slow&quot;, &quot;red&quot;, &quot;turtle&quot; };
+        biggies(txt, 4);
+        return 0;
+    }
+</code></pre></li><li><p>当向一个函数传递一个lambda时，同时定义了一个新类型和该类型的一个对象：传递的参数是此编译器生成的类类型的未命名对象。</p><blockquote><p>当使用auto定义一个用lambda初始化的变量时，定义了一个从lambda生成的类型的对象。</p></blockquote></li><li><p>采用值捕获的前提是变量可以拷贝，被捕获的变量的值在lamdba创建时拷贝，而不是调用时拷贝。</p><pre><code> void fcn(){
+     size_t v1 = 42;
+     auto f = [v1]{return v1;};        //创建时拷贝。
+     v1 = 0;
+     auto j = f();        //j为42
+ }
+</code></pre></li><li><p>如果我们采用引用方式捕获一个变量，就必须确保被引用的对象在lambda执行的时候是存在的。</p></li><li><p>显示捕获的变量必须使用与隐式捕获不同的方式。</p><pre><code> [=](const string &amp;s){return s.size() &gt;= sz;};        //隐式值捕获
+ [&amp;](const string &amp;s){return s.size() &gt;= sz;};        //隐式引用捕获
+ [&amp;,c](const string &amp;s){os &lt;&lt; s &lt;&lt; c};                //混合捕获
+ [=,&amp;os](const string &amp;s){os &lt;&lt; s &lt;&lt; c};            //混合捕获
+</code></pre></li><li><p>如果希望改变一个被捕获的变量的值，就必须在参数列表首加上关键字mutable。</p><pre><code> [v1]()mutable{return ++v1;};
+</code></pre></li><li><p>一个引用捕获的变量是否可以修改，依赖于此引用指向的是const类型还是非const类型。</p></li><li><p>transform算法将输入序列中每个元素替换为可调用对象操作该元素得到的结果。</p><pre><code> transform(vi.begin(),vi.end(),vi.begin(),[](int i){return i &lt; 0?-i:i;});    //该表达式返回int
+ transform(vi.begin(),vi.end(),vi.begin(),[](int i)-&gt;int {if(i&lt;0) return -i; else return i;});        //必须指定返回值
+</code></pre></li><li><p>bind函数接受一个可调用对象，生成一个新的可调用对象来“适应”原对象的参数列表。</p><pre><code> //std::placeholders::_1代表此参数对应check_size的第一个参数，const string&amp;，调用此函数必须传入const string类型
+ //check_size的第二个参数绑定到sz的值。
+ std::bind(check_size, std::placeholders::_1, sz);        //生成新的可调用对象，将其第一个参数传递给check_size
+ //f的1、2、4参数分别绑定到a、b、c上。
+ auto g = bind(f,a,b,_2,c,_1);                //g是一个有两个参数的可调用对象
+ //调用g(_1,_2)映射成f(a,b,_2,c,_1)
+</code></pre></li><li><p>使用bind颠倒参数。</p><pre><code> sort(words.begin(),words.end(),isShorter);        //比较两个元素A、B时，调用isShorter(A,B)
+ //比较两个元素A、B时，将A、B传入bind返回的可调用对象，此对象第一个参数绑定到isShorter的第二个参数，第二个参数绑定到isShorter的第一个参数。
+ sort(words.begin(),words.end(),bind(isShorter,_2,_1));
+</code></pre></li><li><p>默认情况，bind那些不是占位符的参数被拷贝到bind返回的可调用对象中，但例如流对象无法被拷贝，可以绑定引用。</p><pre><code> ostream &amp;print(ostream &amp;os,const string &amp;s,char c){
+     return os &lt;&lt; s &lt;&lt; c;
+ }
+ for_each(words.begin(),words.end(),bind(print,os,_1,&#39; &#39;));        //错误，不能拷贝os，因为bind拷贝其参数
+ //如果希望传递给bind一个对象而又不拷贝它，必须使用ref函数。
+ for_each(words.begin(),words.end(),bind(print,ref(os),_1,&#39; &#39;));
+//ref返回一个对象，包含给定的引用，此对象是可拷贝的。
+//cref函数 ，生成一个保存const引用的类。
+</code></pre></li><li><p>插入迭代器：迭代器被绑定到一个容器上，可用来向容器插入元素。</p><blockquote><p>流迭代器：迭代器被绑定到输入或输出流上，可用来遍历所关联的IO流。<br>反向迭代器：这些迭代器向后而不是向前移动，除forward_list之外的标准库容器都有反向迭代器。<br>移动迭代器：这些专用的迭代器不是拷贝其中的元素，而是移动它们。</p></blockquote></li><li><p>插入器是一种迭代器适配器，接受一个容器，生成一个迭代器，当通过插入迭代器进行赋值，该迭代器调用容器操作向给定容器的指定位置插入元素。</p></li><li>back_inserter创建一个使用push_back的迭代器,front_inserter创建一个使用push_front的迭代器,inserter创建一个使用insert的迭代器。</li><li><p>istream_iterator读取输入流，ostream_iterator向一个输出流写数据。</p><pre><code> istream_iterator&lt;int&gt; int_it(cin);    //从cin读取int
+ istream_iterator&lt;int&gt; eof;        //默认初始化，创建一个尾后迭代器。
+ istream_iterator&lt;int&gt; in_iter(cin),eof;
+ vector&lt;int&gt; vec(in_iter,eof);        //从迭代器范围构造vec
+</code></pre></li><li><p>istream_iterator允许使用懒惰求值。</p></li><li><p>不允许空的或表示尾后的ostream_iterator，创建ostream_iterator可以提供第二个C风格字符串的参数，在输出每个元素后都会打印此字符串。</p><pre><code> ostream_iterator&lt;int&gt; out_iter(cout,&quot; &quot;);
+ copy(vec.begin(),vec.end(),out_iter);        //调用copy打印vec的元素
+</code></pre></li><li><p>除forward_list外，其他容器可以通过rbegin、rend、crbegin、crend来获取反向迭代器。</p><pre><code> sort(vec.rbegin(),vec.rend());        //同给给sort传递反向迭代器，获取递减序列。
+</code></pre></li><li><p>流迭代器不支持递减运算，因为不可能在一个流中反向移动。</p></li><li>通过使用reverse_iterator的base成员函数，能够将反向迭代器转换为普通迭代器，但两者指向的元素不同！！</li><li>普通迭代器和反向迭代器的关系反映了左闭合区间，因此两者必须生成相邻位置，而不是相同位置。</li><li><p>输入迭代器：可以读取序列中的元素。输出迭代器，看作是输入迭代器的补集，可写。</p><blockquote><p>前向迭代器：单向，支持输入输出。<br>双向迭代器：双向，支持读写，还支持递增递减运算符。<br>随机访问迭代器：基本支持所有功能。</p></blockquote></li><li><p>对于list和forward_list应该优先使用成员函数版本的算法而不是通用算法。</p></li><li>链表版本的算法会改变底层的容器。</li></ol><h2 id="第十一章"><a href="#第十一章" class="headerlink" title="第十一章"></a>第十一章</h2><ol><li>当从map中提取一个元素，会得到一个pair类型的对象，pair是一个模板类型，保存两个名为first和second的数据成员，分别保存关键字和对应的值</li><li>对map对象进行下标操作，如若关键字不在map中，下标运算符会在map中创建一个新元素(关键词)，对应值为默认初始化值。</li><li>关联容器不支持顺序容器的位置相关操作，不支持构造函数或插入操作等接受一个元素值和一个数量值的操作，关联容器迭代器都是双向的。</li><li>关键字类型必须定义元素比较的方法，默认情况，标准库使用&lt;运算符来比较两个关键字。如果是一个类类型，且没有包含比较方法，则不合法，可以自行定义比较类型。</li><li>向算法提供自定义的比较操作，必须在关键字类型上定义一个严格弱序。</li><li><p>当创建容器时，才会以构造函数参数的形式提供真正的比较操作。</p><pre><code>  //当我们使用decltype作用于某个函数时，它返回函数类型而非指针类型
+  std::multiset&lt;Sales_item, decltype(compareIsbn)*&gt; bookstore(compareIsbn);
+</code></pre></li><li><p>pair默认构造函数对数据成员进行值初始化，构造pair需要提供两个参数类型。pair的数据成员是public的。</p><pre><code>  make_pair(v1,v2);    //返回一个用v1、v2初始化的pair，其类型由参数推断而来。
+</code></pre></li><li><p>返回pair的函数，其返回值可以使用列表初始化。</p><pre><code>  pair&lt;string,int&gt; process(vector&lt;string&gt; &amp;v){
+      if(!v.empty()){
+          return {v.back(),v.back().size()};        //列表初始化
+          //return make_pair(v.bakc(),v.back().size());        //使用make_pair
+      }else{
+          return pair&lt;string,int&gt;();        //隐式构造返回值。
+      }
+  }
+</code></pre></li><li><p>当使用一个迭代器遍历一个map、multimap、set或multiset时，迭代器按关键字升序遍历元素。</p></li><li><p>对一个map进行insert操作时，必须记住元素类型是pair。</p><pre><code> word_count.insert({word,1});
+ word_count.insert(make_pair(word,1));
+ word_count.insert(pair&lt;string,size_t&gt;(word,1));
+ word_count.insert(map&lt;string,size_t&gt;::value_type(word,1));
+</code></pre></li><li><p>insert返回值依赖于容器类型和参数，添加单一元素的insert和emplace版本返回一个pair，pair的first成员是个迭代器，指向具有给定关键字的元素，second成员是个bool值，插入成功返回true，元素已存在返回false。</p><pre><code>//统计单词
+int main() {
+    std::map&lt;string, size_t&gt; word_count;
+    string word;
+    while (cin &gt;&gt; word)
+        ++word_count.insert({ word,0 }).first-&gt;second;
+    for (auto i : word_count)
+        cout &lt;&lt; i.first &lt;&lt; &quot;: &quot; &lt;&lt; i.second &lt;&lt; endl;
+    return 0;
+}
+</code></pre></li><li>map进行下标操作，如果关键字不在map中会插入map，然后进行值初始化。<blockquote><p>由于可能有插入操作，只能对非const的map和unordered_map类型使用下标操作。</p></blockquote></li><li>at函数访问关键字，带参数检查。若其不在map中，则抛出异常。</li><li>通常情况，解引用一个迭代器返回的类型与下标运算符返回的类型是一样的。</li><li>对map进行下标操作，会获得一个mapped_type对象，当解引用一个map迭代器时，会得到一个value_type(pair)对象。</li><li>查找一个特定元素是否在容器中，find是最好的操作，对于允许重复的容器，使用count会统计相同关键字的个数。</li><li>lower_bound(k) 返回指向第一个关键字不小于k的元素的迭代器<blockquote><p>upper_bound(k) 返回指向第一个关键字大于k的元素的迭代器<br>equal_range(k) 返回一个迭代器pair，表示关键字为k的元素的范围，若k不存在pair两个元素均为c.end()。</p></blockquote></li><li>对于重复关联容器，可以使用upper_bound和lower_bound确定相同关键字范围，如果其返回相同迭代器，则给定关键字不在容器中。</li><li>可以直接使用equal_range确定范围，返回一个迭代器pair，第一个迭代器相当于lower_bound，第二个相当于upper_bound。</li><li>无序关联容器使用哈希函数和关键字类型的==运算符来组织元素。无序容器提供了与有序容器相同的操作。</li><li>无序容器使用关键字类型的==运算符比较元素，用hash<key_type>类型的对象来生成每个元素的哈希值。</key_type></li><li>标准库为内置类型，包括指针 提供了hash模板，还为一些标准库类型，包括string和智能指针定义了 hash，<blockquote><p>因此可以直接定义关键字是内置类型、string、智能指针类型的无序容器。<br>不能直接定义关键字类型为自定义类型的无序容器，不能直接使用哈希模板，必须提供我们自己的hash模板版本。</p></blockquote></li><li>哈希函数使用标准库hash类型的对象来计算哈希值。</li><li>相同关键字的元素是相邻存储的！</li></ol><h2 id="第十二章"><a href="#第十二章" class="headerlink" title="第十二章"></a>第十二章</h2><ol><li>静态内存保存局部static对象，类static数据成员，以及定义在任何函数之外的变量。</li><li>栈内存用来保存定义在函数内的非static对象，分配在静态或栈内存中的对象由编译器自动创建和销毁。</li><li>栈对象，仅在其定义的程序块运行时才存在，static对象在使用之前分配，在程序结束时销毁。</li><li>每个程序还拥有一个内存池，这部分内存被称为自由空间或堆(heap)，程序用堆来存储动态分配的对象。</li><li><p>shared_ptr允许多个指针指向同一个对象；</p><blockquote><p>unique_ptr则独占所指向的对象；<br>weak_ptr伴随类，它是一种弱引用，指向shared_ptr所管理的对象。</p></blockquote><pre><code> shared_ptr&lt;string&gt; ptr;        //shared_ptr，可以指向string
+ shared_ptr&lt;vector&lt;int&gt;&gt; ptr;    //可以指向int的list
+</code></pre><blockquote><p>解引用智能指针返回其对象，默认初始化的智能指针保存一个空指针。其可以作为条件判断，若ptr指向一个对象，则为true。</p></blockquote></li><li><p>make_shared用其参数来构造给定类型的对象，如果不传递任何参数，对象会进行值初始化。</p></li><li><p>当进行拷贝或赋值操作，每个shared_ptr都会记录有多少其他shared_ptr指向相同对象。</p><blockquote><p>每个shared_ptr都有一个关联的计数器，称为引用计数，拷贝一个shared_ptr，计数器会递增。<br>当给shared_ptr赋予一个新值或shared_ptr被销毁，计数器就会递减。<br>一个shared_ptr计数器变为0，它就会自动释放自己所管理的对象。</p></blockquote></li><li><p>默认情况，动态分配的对象是默认初始化的，意味着内置类型或组合类型的对象的值将是未定义的，类类型将用默认构造函数。</p><pre><code> int *p0 = new int;    //默认初始化，未定义
+ int *p1 = new int();    //值初始化，与上者差别很大
+ int *p = new int{ 1024 };
+ string *str = new string{ &quot;456&quot; };
+ string *str1 = new string();    //值初始化，空串，其实无意义，因为对象都会通过默认构造函数来初始化
+ vector&lt;int&gt; *pv = new vector&lt;int&gt;{ 0,1,2,3,4,5,6,7,8,9 };
+ //编译器用初始化器的类型来推断要分配的类型
+ auto p1 = new auto(1);                //p1为int*
+ //auto p2 = new auto{1, 2, 3};        //错误，只能有单个初始化器
+</code></pre></li><li><p>动态分配的const对象必须初始化。</p><pre><code>  const int *pci = new const int(1024);    //分配并初始化一个const int
+  const string *pcs = new const string;    //分配一个string，隐式执行默认初始化。
+</code></pre></li><li><p>如果new不能分配所要求的内存，会抛出一个类型为 bad_alloc的异常，可以改变使用new的方式来阻止它抛出异常。</p><pre><code> int *p1 = new int;                //分配失败，抛出异常
+ int *p2 = new (nothrow) int;    //分配失败，会返回一个空指针(定位new)，定位new允许向new传递额外的参数。
+</code></pre></li><li><p>传递给delete的指针必须指向动态分配的内存，或一个空指针，释放一个空指针总是没有错误的。</p></li><li>由内置指针管理的动态对象，直到被显式释放之前它都是存在的。如果指针是局部变量，那么直到指针被销毁，其指向的动态分配的空间也不会销毁。</li><li>delete一个指针后，其值就已经无效了，指针变为空悬指针。</li><li><p>接受智能指针构造函数是explicit的，因此不能将一个内置指针隐式转换为智能指针，必须使用直接初始化。</p><pre><code> shared_ptr&lt;int&gt; p2(new int(1024));        //直接初始化
+ shared_ptr&lt;int&gt; p3 = new int(1024);    //错误
+</code></pre></li><li><p>我们可以将智能指针绑定到一个指向其他类型资源的指针上，但必须提供自己的操作代替delete。</p></li><li>使用内置指针去访问智能指针所负责的对象是危险的，因为无法知道对象何时会被销毁。</li><li><p>只有在确定代码不会delete指针的情况下，才能使用get，使用get返回的指针的代码不能delete此指针！！</p><blockquote><p>永远不要用get初始化另一个智能指针或者为另一个智能指针赋值。</p></blockquote><pre><code> shared_ptr&lt;int&gt; p(new int(42));    //引用计数1
+ int *q = p.get();            //引用计数不会增加
+ {
+     shared_ptr&lt;int&gt;(q);    //引用计数为1，相互独立！
+ }
+ int foo = *p;    //未定义
+</code></pre></li><li><p>用reset来将一个新的指针赋予一个shared_ptr。</p><pre><code> p = new int(1024);            //错误
+ p.reset(new int (1024));    //reset会更新引用计数，经常与unique一起使用。
+ if(!p.unique()){
+     p.reset(new string(*p));    //如果不是唯一用户，分配新的拷贝
+ }
+ *p += newVal;        //唯一的用户，可以改变对象的值。
+</code></pre></li><li><p>当发生异常时，我们直接管理的内存是不会自动释放的！</p></li><li>默认shared_ptr假定它们指向的是动态内存，当一个shared_ptr被销毁时，它默认对它管理的指针进行delete操作。<ol><li>不使用相同的内置指针值初始化或reset多个智能指针。</li><li>不delete get()返回的指针</li><li>不使用get初始化或reset另一个指针。</li><li>如果使用get返回的指针，当最后一个对应的智能指针销毁后，此指针失效</li><li>如果使用智能指针管理的资源不是new分配的内存，记住传递给它一个删除器。</li></ol></li><li>某个时刻只能有一个unique_ptr指向一个给定对象，定义unique_ptr需要将其绑定到new返回的指针上，必须采用直接初始化。</li><li>unique_ptr不支持普通的赋值和拷贝操作。</li><li>u.release函数放弃u对指针的控制权，返回指针。u.reset释放u指向的对象。</li><li><p>weak_ptr是一种不控制所指向对象生存期的智能指针，指向由一个shared_ptr管理的对象。</p><pre><code> //将一个weak_ptr绑定到shared_ptr不会改变shared_ptr的引用计数，当shared_ptr被销毁，对象也被销毁。
+ auto p =make_shared&lt;int&gt;(42);
+ weak_ptr&lt;int&gt; wp(p);    //wp弱共享p，p的引用计数未改变。
+ //由于对象可能不存在，必须调用lock来获取指向共享对象的shared_ptr，使用时必须判断对象是否存在！
+</code></pre></li><li><p>标准库包含一个名为allocator的类，允许我们将分配和初始化分离，使用allocator通常会提供更好的性能和更灵活的内存管理能力。</p></li><li><p>通常称new T[]分配的内存为动态数组，但动态数组并不是数组类型！不能对其使用begin、and、for范围语句等。</p><pre><code> int *p = new int[get_size()];    //pia指向第一个int
+ typedef int arrT[42];
+ int *p = new arrT;    //相当于 int *p = new arrT[42];
+</code></pre></li><li><p>new分配的对象，都是默认初始化，可以对数组中的元素进行值初始化。</p><pre><code> int *pia = new int[10]();            //10个值初始化为0的int
+ string *psa = new string[10]();    //10个空string
+ int *pia 2 = new int[10]{0,1,2,3,4,5,6,7,8,9};    //可以提供初始化列表进行初始化。
+</code></pre></li><li><p>当我们用new分配一个大小为0的数组时，new返回一个合法的非空指针，类似尾后指针，不能解引用。</p></li><li><p>销毁数组时，数组中的元素按逆序销毁。</p><pre><code> delete [] p;        //方括号指示编译器此指针指向第一个对象数组的第一个元素。
+</code></pre></li><li><p>标准库提供了管理new分配的数组的unique_ptr版本。</p><pre><code> unique_ptr&lt;int []&gt; up(new int[10]);
+ up.release();        //自动使用delete[]销毁其指针。
+</code></pre></li><li><p>指向数组的unique_ptr不支持成员访问运算符，因为其指向数组。其他unique_ptr操作不变，可以使用下标运算符。</p></li><li><p>shared_ptr不直接支持管理动态数组，必须为其提供自定义的删除器。</p><pre><code> shared_ptr&lt;int&gt; sp(new int[10],[](int *p){delete[] p;});
+ sp.reset();    //使用提供的lambda释放数组。
+ //未定义下标运算和指针运算
+ for(size_t i =0; i != 10; ++i){
+    *(sp.get()+i) = i;        //使用get获取一个内置指针
+ }
+</code></pre></li><li><p>new的局限性：将内存分配和对象构造组合在一起。</p><pre><code> delete的局限性：将对象析构和内存释放组合在一起。
+ 因此对于没有默认构造函数的类不能动态分配数组，因为new表达式分配时会进行初始化(构造对象)。
+</code></pre></li><li><p>allocator可以将内存分配和对象构造分离，它提供一种类型感知的内存分配方法，分配的内存是原始的、未构造的。</p><pre><code> allocator&lt;string&gt; alloc;                //可以分配string的allocator对象
+ auto const p = alloc.allocator(n);        //分配n个未初始化的string，返回指向string*的指针。
+ //allocator分配内存时，内存是未构造的，必须使用construct构造对象，其第一个参数必须是一个指针
+ //指向调用allocate所分配的未构造的内存空间，剩余参数确定用哪个构造函数来构造对象。
+</code></pre></li></ol><hr><p><strong>笔记仅供自己参考</strong></p><hr></div><br><div><p><span><i class="iconfont icon-tag"></i> <a class="hover-with-bg" href="/tags/c++">c++</a></span></p><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p><div class="col-lg-7 mx-auto nopadding-md"><div class="container comments mx-auto" id="comments"><br><br><div class="disqus" style="width:100%"><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://yoursite.com/2021/01/02/cpp-primer阅读笔记2/",this.page.identifier="/2021/01/02/cpp-primer阅读笔记2/"},oldLoad=window.onload;window.onload=function(){var t=document,e=t.createElement("script");e.type="text/javascript",e.src="//inaho-top.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a></noscript></div></div></div></div></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container"><div id="toc"><p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p><div id="tocbot"></div></div></div></div></div></main><a class="z-depth-1" id="scroll-top-button" href="#" role="button"><i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><div id="footerContent" class="rgba-black-slight"><footer class="pt-5"><div style="color:#fff" class="text-center py-3"><a style="color:#fff" href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo支持</b></a> <i class="iconfont icon-love"></i> <a style="color:#fff" href="https://disqus.com/" target="_blank" rel="nofollow noopener"><b>Disqus 评论系统 </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>主题Fluid </b></a><i class="iconfont icon-love"></i> <a style="color:#fff" href="https://www.pixiv.net/" target="_blank" rel="nofollow noopener"><b>图片 Pixiv</b></a><br>&nbsp;<span id="busuanzi_container_site_pv">总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp; &nbsp;<span id="busuanzi_container_site_uv">总访客数 <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;<br></div></footer></div><script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script><script src="/lib/popper/popper.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script><script src="https://cdn.staticfile.org/mdbootstrap/4.8.7/js/mdb.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="/lib/tocbot/tocbot.min.js"></script><script src="/js/post.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/lib/prettify/prettify.min.js"></script><script>$(document).ready((function(){$("pre").addClass("prettyprint  linenums"),prettyPrint()}))</script><script src="/lib/typed/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","CppPrimer阅读笔记2&nbsp;"],cursorChar:"_",typeSpeed:70,loop:!1});typed.stop(),$(document).ready((function(){$(".typed-cursor").addClass("h2"),typed.start()}))</script><script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js"></script><script>anchors.options={placement:"right",visible:"false"};var el="h1,h2,h3,h4,h5,h6".split(","),res=[];for(item of el)res.push(".markdown-body > "+item);anchors.add(res.join(", "))</script><script src="/js/local-search.js"></script><script>var path="/local-search.xml",inputArea=document.querySelector("#local-search-input");inputArea.onclick=function(){getSearchFile(path),this.onclick=null}</script><script src="/lib/fancybox/jquery.fancybox.min.js"></script><script>$("#post img:not(.no-zoom img, img[no-zoom])").each((function(){var t=document.createElement("a");$(t).attr("data-fancybox","images"),$(t).attr("href",$(this).attr("src")),$(this).wrap(t)}))</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+          }
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });</script><script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script><script type="text/javascript">$("#background").removeClass("banner-bg"),$("body").addClass("banner-bg");var postToTopHight=$("#board").offset().top;$(window).scroll((function(){document.body.scrollTop+document.documentElement.scrollTop>=postToTopHight?($("#background").removeClass("rgba-black-slight"),$("#mainContent").removeClass("rgba-black-slight"),$("#footerContent").removeClass("rgba-black-slight")):($("#background").addClass("rgba-black-slight"),$("#mainContent").addClass("rgba-black-slight"),$("#footerContent").addClass("rgba-black-slight"))}))</script></body></html>
