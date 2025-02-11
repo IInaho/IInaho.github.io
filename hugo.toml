@@ -16,12 +16,12 @@ shortname = "yourdiscussshortname"
 style = "github-dark"
 
 [params]
-  author = "lzy_blog"
-  info = "珍藏多年的文章"
+  author = "一个梦想家"
+  info = "生之微欢，俄而感怀，奋勉有得，相携互舍，所谓幸福"
   description = "珍藏多年的文章"
   keywords = "blog,developer,personal"
   avatarurl = "images/avatar.png"
-  #gravatar = "john.doe@example.com"
+  gravatar = "1031567135@qq.com"
 
   faviconSVG = "/img/favicon.svg"
   favicon_32 = "/img/favicon-32x32.png"
@@ -33,10 +33,6 @@ style = "github-dark"
 
   colorScheme = "auto"
   hidecolorschemetoggle = false
-
-  # customCSS = ["css/custom.css"]
-  # customSCSS = ["scss/custom.scss"]
-  # customJS = ["js/custom.js"]
 
 [taxonomies]
   category = "categories"
@@ -63,10 +59,10 @@ style = "github-dark"
 
 # Menu links
 [[menu.main]]
-  name = "Blog"
+  name = "文章"
   weight = 1
   url  = "posts/"
 [[menu.main]]
-  name = "About"
+  name = "关于"
   weight = 2
   url = "about/"

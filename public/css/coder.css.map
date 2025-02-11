@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "coder.css",
-	"sourceRoot": "/home/inaho/work/mywork_service/hugo/myblog",
+	"sourceRoot": "/home/inaho/work/mywork_service/hugo/IInaho.github.io",
 	"sources": [
 		"themes/hugo-coder/assets/scss/coder.scss",
 		"themes/hugo-coder/assets/scss/css/normalize.css",
