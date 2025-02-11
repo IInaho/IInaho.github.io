@@ -1,4 +1,4 @@
-abaseurl = "http://www.example.com"
+abaseurl = "http://www.inaho.top"
 title = "lzy_blog"
 theme = "hugo-coder"
 languagecode = "zh"
@@ -18,9 +18,9 @@ style = "github-dark"
 [params]
   author = "lzy_blog"
   info = "珍藏多年的文章"
-  description = "aaa"
+  description = "珍藏多年的文章"
   keywords = "blog,developer,personal"
-  avatarurl = "images/avatar.jpg"
+  avatarurl = "images/avatar.png"
   #gravatar = "john.doe@example.com"
 
   faviconSVG = "/img/favicon.svg"
