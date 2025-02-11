@@ -1,5 +1,5 @@
 abaseurl = "http://blog.inaho.top"
-title = "lzy_blog"
+title = "inaho"
 theme = "hugo-coder"
 languagecode = "zh"
 defaultcontentlanguage = "zh"
@@ -8,9 +8,6 @@ defaultcontentlanguage = "zh"
 [pagination]
 pagerSize = 20
 
-[services]
-[services.disqus]
-shortname = "yourdiscussshortname"
 
 [markup.highlight]
 style = "github-dark"
@@ -33,6 +30,7 @@ style = "github-dark"
 
   colorScheme = "auto"
   hidecolorschemetoggle = false
+  twikoo = true
 
 [taxonomies]
   category = "categories"
@@ -63,6 +61,14 @@ style = "github-dark"
   weight = 1
   url  = "posts/"
 [[menu.main]]
-  name = "关于"
+  name = "标签"
   weight = 2
+  url = "tags/"
+[[menu.main]]
+  name = "分类"
+  weight = 3  
+  url = "categories/"
+[[menu.main]]
+  name = "关于"
+  weight = 4
   url = "about/"
