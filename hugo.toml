@@ -1,16 +1,25 @@
 abaseurl = "http://blog.inaho.top"
 title = "inaho"
 theme = "hugo-coder"
-languagecode = "zh"
-defaultcontentlanguage = "zh"
-
+languagecode = "zh-cn"
+defaultcontentlanguage = "zh-cn"
+enableEmoji = true
 
 [pagination]
-pagerSize = 20
+pagerSize = 6
 
+[services]
+[services.disqus]
+# Enable Disqus comments
+# shortname = "yourdiscussshortname"
 
+[markup]
 [markup.highlight]
-style = "github-dark"
+noClasses = false
+
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
 
 [params]
   author = "一个梦想家"
@@ -31,6 +40,7 @@ style = "github-dark"
   colorScheme = "auto"
   hidecolorschemetoggle = false
   twikoo = true
+  maxSeeAlsoItems = 5
 
 [taxonomies]
   category = "categories"
@@ -54,6 +64,23 @@ style = "github-dark"
   icon = "fa-brands fa-x-twitter fa-2x"
   weight = 3
   url = "https://twitter.com/johndoe/"
+[[params.social]]
+  name = "LinkedIn"
+  icon = "fa-brands fa-linkedin fa-2x"
+  weight = 4
+  url = "https://www.linkedin.com/in/johndoe/"
+[[params.social]]
+  name = "Medium"
+  icon = "fa-brands fa-medium fa-2x"
+  weight = 5
+  url = "https://medium.com/@johndoe"
+[[params.social]]
+  name = "RSS"
+  icon = "fa-solid fa-rss fa-2x"
+  weight = 6
+  url = "https://myhugosite.com/index.xml"
+  rel = "alternate"
+  type = "application/rss+xml"
 
 # Menu links
 [[menu.main]]

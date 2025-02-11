@@ -2,34 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/posts/first-one/</loc>
-    <lastmod>2024-02-02T04:14:54-08:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/</loc>
-    <lastmod>2024-02-02T04:14:54-08:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/posts/</loc>
-    <lastmod>2024-02-02T04:14:54-08:00</lastmod>
+    <loc>//localhost:1313/authors/</loc>
+    <lastmod>2023-07-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/categories/</loc>
-    <lastmod>2023-01-04T23:21:18+01:00</lastmod>
+    <lastmod>2023-07-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/categoria/temas/</loc>
-    <lastmod>2023-01-04T23:21:18+01:00</lastmod>
+    <loc>//localhost:1313/</loc>
+    <lastmod>2023-07-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/categoria/sintaxe/</loc>
-    <lastmod>2023-01-04T23:21:06+01:00</lastmod>
+    <loc>//localhost:1313/authors/lzy/</loc>
+    <lastmod>2023-07-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/shortcodes/_index.pt-br/</loc>
-    <lastmod>2023-01-04T11:51:36+01:00</lastmod>
+    <loc>//localhost:1313/posts/</loc>
+    <lastmod>2023-07-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/tags/</loc>
-    <lastmod>2023-01-04T11:51:36+01:00</lastmod>
+    <lastmod>2023-07-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2023-07-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2023-07-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/posts/first-one/</loc>
+    <lastmod>2023-07-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/about/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/authors/</loc>
+    <loc>//localhost:1313/series/aaaaa/</loc>
   </url><url>
     <loc>//localhost:1313/series/</loc>
   </url>

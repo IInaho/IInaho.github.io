@@ -1,11 +1,15 @@
----
-date: 2024-02-02T04:14:54-08:00
-draft: false
-params:
-  author: lzy
-title: 优美文摘分享
-weight: 10
----
++++
+authors = ["lzy"]
+title = "优美文摘分享"
+date = "2023-07-07"
+description = ""
+tags = [
+    "随笔"
+]
+categories = [
+    "随笔"
+]
++++
 
 ## 文摘分享
 
