@@ -56,6 +56,11 @@
 
 
  
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
 
 
 
@@ -75,6 +80,47 @@
 
 
 
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 
 
@@ -152,8 +198,30 @@
       
         <li>
           <span class="taxonomy-element">
-            <a href="//localhost:1313/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+            <a href="//localhost:1313/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/">个人随笔</a>
             <sup>1</sup>
+          </span>
+        </li>
+      
+    
+      
+      
+      
+        <li>
+          <span class="taxonomy-element">
+            <a href="//localhost:1313/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a>
+            <sup>18</sup>
+          </span>
+        </li>
+      
+    
+      
+      
+      
+        <li>
+          <span class="taxonomy-element">
+            <a href="//localhost:1313/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            <sup>4</sup>
           </span>
         </li>
       

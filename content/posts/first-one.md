@@ -4,10 +4,10 @@ title = "优美文摘分享"
 date = "2023-07-07"
 description = ""
 tags = [
-    "随笔"
+    "诗句"
 ]
 categories = [
-    "随笔"
+    "个人随笔"
 ]
 +++
 

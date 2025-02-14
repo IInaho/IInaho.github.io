@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+栈与队列 · inaho
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="一个梦想家">
+<meta name="description" content="
+  栈与队列
+  
+    
+    链接到标题
+  
+
+
+  栈的定义和特点
+  
+    
+    链接到标题
+  
+
+栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
+
+  栈的 ADT 类型定义
+  
+    
+    链接到标题
+  
+
+InitStack(&amp;s) //构造一个空栈
+DestroyStack(&amp;s) //栈s存在，销毁栈
+ClearStack(&amp;s)        //栈s存在，清除栈
+StackEmpty(s)        //栈s存在，若栈为空返回true，否则返回false
+StackLength(s)        //栈s存在，返回栈的长度
+GetTop(s)            //返回s的栈顶元素
+Push(&amp;s,e)            //插入元素e为新的栈顶元素
+Pop(&amp;s,&amp;e)            //栈s存在且非空，删除栈顶元素，返回其值
+StackTraverse(s)    //栈s存在且非空，遍历栈
+
+  顺序栈的表示和实现
+  
+    
+    链接到标题
+  
+
+
+
+顺序栈的初始化
+
+为顺序栈分配地址空间，并让基地址指向这个空间
+栈顶指针初始化，栈容量初始化
+
+
+
+顺序栈的入栈
+
+判断栈是否满，若满则返回 ERROR
+将新元素压入栈顶，栈顶指针 &#43;1
+
+
+
+顺序栈的出栈
+
+判断栈是否空，若空返回 ERROR
+栈顶指针-1，栈顶元素出栈
+
+
+
+取顺序栈的栈顶元素
+
+栈非空时，取栈顶元素的值
+
+
+
+
+  顺序栈的代码实现(C&#43;&#43;)
+  
+    
+    链接到标题
+  
+
+template &lt;class T&gt;
+class Stack
+{
+public:
+    Stack(unsigned int size);        //在构造器中初始化栈的大小
+    ~Stack();                        //析构器（释放内存）
+    void push(T value);
+    T pop();
+private:
+    unsigned int size;
+    unsigned int sp;
+    T *pointer;                        //栈指针
+};
+template &lt;class T&gt;
+Stack&lt;T&gt;::Stack(unsigned int size)        //隐含this指针指向这个方法
+{
+    this-&gt;size = size;
+    pointer = new T[size];            //分配这个栈的空间
+    sp = 0;                            //表示第0个元素
+}
+template &lt;class T&gt;
+Stack&lt;T&gt;::~Stack()            //析构器
+{
+    delete []pointer;                //释放构造器中开辟的空间（释放数组，需要加[]）
+}
+template &lt;class T&gt;
+void Stack&lt;T&gt;::push(T value)
+{
+    pointer[sp&#43;&#43;] = value;            //将数据压入栈中，然后栈指针指向下一个地址
+}
+template &lt;class T&gt;
+T Stack&lt;T&gt;::pop()
+{
+    return pointer[--sp];            //返回栈指针指向前一个地址的值
+}
+int main()
+{
+    const int size = 100;
+    Stack&lt;double&gt; mystack(size);
+    int n, a = 1;
+    int i;
+    char ch;
+    std::cout &lt;&lt; &#34;How many numbers (1-n) do you need to push?&#34; &lt;&lt; &#34;\n&#34;;
+    std::cin &gt;&gt; n;
+    try
+    {
+        for (i = 0; i &lt; n; i&#43;&#43;)        //压栈(1-n)
+        {
+            if (i &gt;= 100)
+            {
+                throw &#34;崩溃！，栈溢出！！...&#34;;
+            }
+            mystack.push(a);
+            a&#43;&#43;;
+        }
+        std::cout &lt;&lt; &#34;All pushed!&#34; &lt;&lt; &#34;\n&#34;;
+        getchar();
+        std::cout &lt;&lt; &#34;if you want to pop the stack of all numbers?(Y/N)&#34; &lt;&lt; &#34;\n&#34;;
+        if ((ch = getchar()) == &#39;Y&#39;)
+            for (int i = 0; i &lt; n; i&#43;&#43;)                //弹栈
+                std::cout &lt;&lt; mystack.pop() &lt;&lt; &#34;\t&#34;;
+    }
+    catch (const char *a)        //catch(...)捕获任何异常
+    {
+        std::cout &lt;&lt; a;
+    }
+    return 0;
+}
+
+  链栈的表示和实现
+  
+    
+    链接到标题
+  
+
+
+
+链栈的初始化">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="栈与队列">
+  <meta name="twitter:description" content="栈与队列 链接到标题 栈的定义和特点 链接到标题 栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
+栈的 ADT 类型定义 链接到标题 InitStack(&amp;s) //构造一个空栈 DestroyStack(&amp;s) //栈s存在，销毁栈 ClearStack(&amp;s) //栈s存在，清除栈 StackEmpty(s) //栈s存在，若栈为空返回true，否则返回false StackLength(s) //栈s存在，返回栈的长度 GetTop(s) //返回s的栈顶元素 Push(&amp;s,e) //插入元素e为新的栈顶元素 Pop(&amp;s,&amp;e) //栈s存在且非空，删除栈顶元素，返回其值 StackTraverse(s) //栈s存在且非空，遍历栈 顺序栈的表示和实现 链接到标题 顺序栈的初始化
+为顺序栈分配地址空间，并让基地址指向这个空间 栈顶指针初始化，栈容量初始化 顺序栈的入栈
+判断栈是否满，若满则返回 ERROR 将新元素压入栈顶，栈顶指针 &#43;1 顺序栈的出栈
+判断栈是否空，若空返回 ERROR 栈顶指针-1，栈顶元素出栈 取顺序栈的栈顶元素
+栈非空时，取栈顶元素的值 顺序栈的代码实现(C&#43;&#43;) 链接到标题 template &lt;class T&gt; class Stack { public: Stack(unsigned int size); //在构造器中初始化栈的大小 ~Stack(); //析构器（释放内存） void push(T value); T pop(); private: unsigned int size; unsigned int sp; T *pointer; //栈指针 }; template &lt;class T&gt; Stack&lt;T&gt;::Stack(unsigned int size) //隐含this指针指向这个方法 { this-&gt;size = size; pointer = new T[size]; //分配这个栈的空间 sp = 0; //表示第0个元素 } template &lt;class T&gt; Stack&lt;T&gt;::~Stack() //析构器 { delete []pointer; //释放构造器中开辟的空间（释放数组，需要加[]） } template &lt;class T&gt; void Stack&lt;T&gt;::push(T value) { pointer[sp&#43;&#43;] = value; //将数据压入栈中，然后栈指针指向下一个地址 } template &lt;class T&gt; T Stack&lt;T&gt;::pop() { return pointer[--sp]; //返回栈指针指向前一个地址的值 } int main() { const int size = 100; Stack&lt;double&gt; mystack(size); int n, a = 1; int i; char ch; std::cout &lt;&lt; &#34;How many numbers (1-n) do you need to push?&#34; &lt;&lt; &#34;\n&#34;; std::cin &gt;&gt; n; try { for (i = 0; i &lt; n; i&#43;&#43;) //压栈(1-n) { if (i &gt;= 100) { throw &#34;崩溃！，栈溢出！！...&#34;; } mystack.push(a); a&#43;&#43;; } std::cout &lt;&lt; &#34;All pushed!&#34; &lt;&lt; &#34;\n&#34;; getchar(); std::cout &lt;&lt; &#34;if you want to pop the stack of all numbers?(Y/N)&#34; &lt;&lt; &#34;\n&#34;; if ((ch = getchar()) == &#39;Y&#39;) for (int i = 0; i &lt; n; i&#43;&#43;) //弹栈 std::cout &lt;&lt; mystack.pop() &lt;&lt; &#34;\t&#34;; } catch (const char *a) //catch(...)捕获任何异常 { std::cout &lt;&lt; a; } return 0; } 链栈的表示和实现 链接到标题 链栈的初始化">
+
+<meta property="og:url" content="//localhost:1313/posts/hshodlhxmoyl3hxf80acxloknyf/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="栈与队列">
+  <meta property="og:description" content="栈与队列 链接到标题 栈的定义和特点 链接到标题 栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
+栈的 ADT 类型定义 链接到标题 InitStack(&amp;s) //构造一个空栈 DestroyStack(&amp;s) //栈s存在，销毁栈 ClearStack(&amp;s) //栈s存在，清除栈 StackEmpty(s) //栈s存在，若栈为空返回true，否则返回false StackLength(s) //栈s存在，返回栈的长度 GetTop(s) //返回s的栈顶元素 Push(&amp;s,e) //插入元素e为新的栈顶元素 Pop(&amp;s,&amp;e) //栈s存在且非空，删除栈顶元素，返回其值 StackTraverse(s) //栈s存在且非空，遍历栈 顺序栈的表示和实现 链接到标题 顺序栈的初始化
+为顺序栈分配地址空间，并让基地址指向这个空间 栈顶指针初始化，栈容量初始化 顺序栈的入栈
+判断栈是否满，若满则返回 ERROR 将新元素压入栈顶，栈顶指针 &#43;1 顺序栈的出栈
+判断栈是否空，若空返回 ERROR 栈顶指针-1，栈顶元素出栈 取顺序栈的栈顶元素
+栈非空时，取栈顶元素的值 顺序栈的代码实现(C&#43;&#43;) 链接到标题 template &lt;class T&gt; class Stack { public: Stack(unsigned int size); //在构造器中初始化栈的大小 ~Stack(); //析构器（释放内存） void push(T value); T pop(); private: unsigned int size; unsigned int sp; T *pointer; //栈指针 }; template &lt;class T&gt; Stack&lt;T&gt;::Stack(unsigned int size) //隐含this指针指向这个方法 { this-&gt;size = size; pointer = new T[size]; //分配这个栈的空间 sp = 0; //表示第0个元素 } template &lt;class T&gt; Stack&lt;T&gt;::~Stack() //析构器 { delete []pointer; //释放构造器中开辟的空间（释放数组，需要加[]） } template &lt;class T&gt; void Stack&lt;T&gt;::push(T value) { pointer[sp&#43;&#43;] = value; //将数据压入栈中，然后栈指针指向下一个地址 } template &lt;class T&gt; T Stack&lt;T&gt;::pop() { return pointer[--sp]; //返回栈指针指向前一个地址的值 } int main() { const int size = 100; Stack&lt;double&gt; mystack(size); int n, a = 1; int i; char ch; std::cout &lt;&lt; &#34;How many numbers (1-n) do you need to push?&#34; &lt;&lt; &#34;\n&#34;; std::cin &gt;&gt; n; try { for (i = 0; i &lt; n; i&#43;&#43;) //压栈(1-n) { if (i &gt;= 100) { throw &#34;崩溃！，栈溢出！！...&#34;; } mystack.push(a); a&#43;&#43;; } std::cout &lt;&lt; &#34;All pushed!&#34; &lt;&lt; &#34;\n&#34;; getchar(); std::cout &lt;&lt; &#34;if you want to pop the stack of all numbers?(Y/N)&#34; &lt;&lt; &#34;\n&#34;; if ((ch = getchar()) == &#39;Y&#39;) for (int i = 0; i &lt; n; i&#43;&#43;) //弹栈 std::cout &lt;&lt; mystack.pop() &lt;&lt; &#34;\t&#34;; } catch (const char *a) //catch(...)捕获任何异常 { std::cout &lt;&lt; a; } return 0; } 链栈的表示和实现 链接到标题 链栈的初始化">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:tag" content="数据结构">
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/hshodlhxmoyl3hxf80acxloknyf/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <h2>目录</h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#栈的定义和特点">栈的定义和特点</a></li>
+    <li><a href="#栈的-adt-类型定义">栈的 ADT 类型定义</a>
+      <ul>
+        <li><a href="#顺序栈的表示和实现">顺序栈的表示和实现</a></li>
+        <li><a href="#链栈的表示和实现">链栈的表示和实现</a></li>
+        <li><a href="#栈与递归">栈与递归</a></li>
+        <li><a href="#经典案例">经典案例</a></li>
+      </ul>
+    </li>
+    <li><a href="#队列的定义和特点">队列的定义和特点</a>
+      <ul>
+        <li><a href="#队列的-adt-类型定义">队列的 ADT 类型定义</a></li>
+        <li><a href="#队列的顺序表示和实现循环队列">队列的顺序表示和实现(循环队列)</a></li>
+        <li><a href="#队列的链式表示和实现">队列的链式表示和实现</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+  
+      let timer;
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.remove('hidden');
+      });
+  
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.add('hidden');
+        }, 300);
+      });
+  
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+  
+      const observerOptions = {
+        rootMargin: '-70px 0px -30% 0px',
+        threshold: 1.0
+      };
+  
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + entry.target.id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+  
+      headings.forEach(heading => observer.observe(heading));
+  
+      
+      toc.classList.add('hidden');
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/hshodlhxmoyl3hxf80acxloknyf/">
+            栈与队列
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2023-07-07T00:00:00Z">
+              July 7, 2023
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：8 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            1504 字数
+          </span>
+        </div>
+        <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/lzy/">Lzy</a></div>
+
+        <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+
+        <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    </span></div>
+
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="栈与队列">
+  栈与队列
+  <a class="heading-link" href="#%e6%a0%88%e4%b8%8e%e9%98%9f%e5%88%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="栈的定义和特点">
+  栈的定义和特点
+  <a class="heading-link" href="#%e6%a0%88%e7%9a%84%e5%ae%9a%e4%b9%89%e5%92%8c%e7%89%b9%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。</p>
+<h2 id="栈的-adt-类型定义">
+  栈的 ADT 类型定义
+  <a class="heading-link" href="#%e6%a0%88%e7%9a%84-adt-%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">InitStack</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span> <span class="c1">//构造一个空栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">DestroyStack</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span> <span class="c1">//栈s存在，销毁栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">ClearStack</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span>        <span class="c1">//栈s存在，清除栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">StackEmpty</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>        <span class="c1">//栈s存在，若栈为空返回true，否则返回false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">StackLength</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>        <span class="c1">//栈s存在，返回栈的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">GetTop</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>            <span class="c1">//返回s的栈顶元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">Push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>            <span class="c1">//插入元素e为新的栈顶元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">Pop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>            <span class="c1">//栈s存在且非空，删除栈顶元素，返回其值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">StackTraverse</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>    <span class="c1">//栈s存在且非空，遍历栈
+</span></span></span></code></pre></div><h3 id="顺序栈的表示和实现">
+  顺序栈的表示和实现
+  <a class="heading-link" href="#%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p>顺序栈的初始化</p>
+<ul>
+<li>为顺序栈分配地址空间，并让基地址指向这个空间</li>
+<li>栈顶指针初始化，栈容量初始化</li>
+</ul>
+</li>
+<li>
+<p>顺序栈的入栈</p>
+<ul>
+<li>判断栈是否满，若满则返回 ERROR</li>
+<li>将新元素压入栈顶，栈顶指针 +1</li>
+</ul>
+</li>
+<li>
+<p>顺序栈的出栈</p>
+<ul>
+<li>判断栈是否空，若空返回 ERROR</li>
+<li>栈顶指针-1，栈顶元素出栈</li>
+</ul>
+</li>
+<li>
+<p>取顺序栈的栈顶元素</p>
+<ul>
+<li>栈非空时，取栈顶元素的值</li>
+</ul>
+</li>
+</ul>
+<h4 id="顺序栈的代码实现c">
+  顺序栈的代码实现(C++)
+  <a class="heading-link" href="#%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">class</span> <span class="n">Stack</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Stack</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>        <span class="c1">//在构造器中初始化栈的大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">~</span><span class="nf">Stack</span><span class="p">();</span>                        <span class="c1">//析构器（释放内存）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">T</span> <span class="n">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span> <span class="nf">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nl">private</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">sp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span> <span class="o">*</span><span class="n">pointer</span><span class="p">;</span>                        <span class="c1">//栈指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">template</span> <span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="nf">Stack</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span>        <span class="c1">//隐含this指针指向这个方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">this</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pointer</span> <span class="o">=</span> <span class="n">new</span> <span class="n">T</span><span class="p">[</span><span class="n">size</span><span class="p">];</span>            <span class="c1">//分配这个栈的空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">sp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                            <span class="c1">//表示第0个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">template</span> <span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::~</span><span class="nf">Stack</span><span class="p">()</span>            <span class="c1">//析构器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">delete</span> <span class="p">[]</span><span class="n">pointer</span><span class="p">;</span>                <span class="c1">//释放构造器中开辟的空间（释放数组，需要加[]）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">template</span> <span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="nf">push</span><span class="p">(</span><span class="n">T</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pointer</span><span class="p">[</span><span class="n">sp</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>            <span class="c1">//将数据压入栈中，然后栈指针指向下一个地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">template</span> <span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">T</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="nf">pop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">pointer</span><span class="p">[</span><span class="o">--</span><span class="n">sp</span><span class="p">];</span>            <span class="c1">//返回栈指针指向前一个地址的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="nf">mystack</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;How many numbers (1-n) do you need to push?&#34;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>        <span class="c1">//压栈(1-n)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">throw</span> <span class="s">&#34;崩溃！，栈溢出！！...&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mystack</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">a</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;All pushed!&#34;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;if you want to pop the stack of all numbers?(Y/N)&#34;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">((</span><span class="n">ch</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">())</span> <span class="o">==</span> <span class="sc">&#39;Y&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>                <span class="c1">//弹栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">mystack</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">catch</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">a</span><span class="p">)</span>        <span class="c1">//catch(...)捕获任何异常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="链栈的表示和实现">
+  链栈的表示和实现
+  <a class="heading-link" href="#%e9%93%be%e6%a0%88%e7%9a%84%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p>链栈的初始化</p>
+<ul>
+<li>不需要设置头节点，直接将栈顶指针置空</li>
+</ul>
+</li>
+<li>
+<p>链栈的入栈</p>
+<ul>
+<li>为入栈结点分配空间</li>
+<li>设置入栈结点的值</li>
+<li>将新结点插入栈顶</li>
+<li>修改栈顶指针为新节点的地址</li>
+</ul>
+</li>
+<li>
+<p>链栈的出栈</p>
+<ul>
+<li>判断栈是否为空</li>
+<li>临时保存栈顶元素空间</li>
+<li>修改栈指针指向新的栈顶元素</li>
+<li>释放原栈顶元素空间</li>
+</ul>
+</li>
+<li>
+<p>取链栈的栈顶元素</p>
+<ul>
+<li>返回栈顶元素的值</li>
+</ul>
+</li>
+</ul>
+<h4 id="链栈的简单实现">
+  链栈的简单实现
+  <a class="heading-link" href="#%e9%93%be%e6%a0%88%e7%9a%84%e7%ae%80%e5%8d%95%e5%ae%9e%e7%8e%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Stack_l</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack_l</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Stack</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack_l</span> <span class="o">*</span> <span class="n">top</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">InitStack</span><span class="p">(</span><span class="n">Stack</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">DestroyStack</span><span class="p">(</span><span class="n">Stack</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">ClearStack</span><span class="p">(</span><span class="n">Stack</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">s</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Stack</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">=</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">free</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">StackEmpty</span><span class="p">(</span><span class="n">Stack</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">StackLength</span><span class="p">(</span><span class="n">Stack</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack_l</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span>  <span class="o">=</span> <span class="n">temp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">GetTop</span><span class="p">(</span><span class="n">Stack</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">s</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Push</span><span class="p">(</span><span class="n">Stack</span> <span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="kt">int</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack_l</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">Stack_l</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Stack_l</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Pop</span><span class="p">(</span><span class="n">Stack</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack_l</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">=</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">temp</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">StackTraverse</span><span class="p">(</span><span class="n">Stack</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack_l</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">temp</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">InitStack</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span><span class="nf">Push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span><span class="nf">Push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">StackTraverse</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Pop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">StackTraverse</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="nf">GetTop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="nf">StackLength</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="栈与递归">
+  栈与递归
+  <a class="heading-link" href="#%e6%a0%88%e4%b8%8e%e9%80%92%e5%bd%92">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>递归是指，若在一个函数、过程或者数据结构定义的内部又直接或间接出现定义本身的应用，则称它们是递归的(函数自己调用自己)。以下三种情况，经常使用递归：</p>
+<ol>
+<li>定义是递归的，如斐波那契数列</li>
+<li>数据结构是递归的，如链表结点由数据和指针组成，指针又由数据和指针组成，示例代码:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">TraverseList</span><span class="p">(</span><span class="n">LinkList</span> <span class="n">p</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">     <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">         <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">data</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         <span class="nf">TraverseList</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span></code></pre></div><ol>
+<li>问题的解法是递归的，比如汉诺塔(Hanoi)问题</li>
+</ol>
+<h4 id="递归过程与递归工作栈">
+  递归过程与递归工作栈
+  <a class="heading-link" href="#%e9%80%92%e5%bd%92%e8%bf%87%e7%a8%8b%e4%b8%8e%e9%80%92%e5%bd%92%e5%b7%a5%e4%bd%9c%e6%a0%88">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>当在一个函数的运行期间调用另一个函数时，在运行被调用函数之前，系统需先完成 3 件事：</p>
+<ol>
+<li>将所有实参、返回地址等信息传递给被调用函数保存</li>
+<li>为被调用函数的局部变量分配存储区</li>
+<li>将控制转移到被调用函数的入口</li>
+</ol>
+<p>而从被调用函数返回调用函数之前，系统也应该完成 3 件工作</p>
+<ol>
+<li>保存被调函数的计算结果;</li>
+<li>释放被调函数的数据区</li>
+<li>依照被调函数保存的返回地址将控制转移到调用函数</li>
+</ol>
+<p>当有多个函数构成嵌套调用时，按照”后调用先返回”原则，上述函数之间的信息传递和控制需要通过”栈”来实现。</p>
+<h4 id="递归算法的效率分析">
+  递归算法的效率分析
+  <a class="heading-link" href="#%e9%80%92%e5%bd%92%e7%ae%97%e6%b3%95%e7%9a%84%e6%95%88%e7%8e%87%e5%88%86%e6%9e%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ol>
+<li>当一个算法中包含递归调用，时间复杂度可以转化成一个递归方程求解，在数学上是求渐近阶的问题，递归方程多样，求解也多样，迭代法是求解递归方程的主要方法，基本步骤为迭代展开递归方程右端，变为一个非递归的和式，通过对和式的估计求解。
+以阶乘的递归函数 Fact(n)为例：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">long</span> <span class="nf">Fact</span><span class="p">(</span><span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">long</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">else</span> <span class="n">temp</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="nf">Fact</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span></code></pre></div><p>设 Fact(n)执行时间为 T(n),此递归函数中语句 if(n==0) return 1;的执行时间是 O(1),递归调用 Fact(n-1)的执行时间为 T(n-1)，所以 else return n*Fact(n-1)的执行时间为 O(1)+T(n-1),其中设两数相乘和赋值操作均为 O(1)，有如下递归方程：</p>
+<p><code>$T(n)=\begin{cases} D &amp; \text{n=0} \\C+T(n-1) &amp; \text{n}&gt;0 \end{cases}$</code></p>
+<p>设 n&gt;2,利用上式对 T(n−1)展开，即在上式中用 n-1 代替 n 得到</p>
+<p><code>$$ T(n−1)=C+T(n−2) $$</code></p>
+<p>再代入$T(n)=C+T(n−1)$中，有</p>
+<p><code>$$ T(n)=2C+T(n−2) $$</code></p>
+<p>同理，当 n&gt;3 时有</p>
+<p><code>$$ T(n)=3C+T(n−3) $$</code></p>
+<p>依此类推,当 n&gt;i 时有</p>
+<p><code>$$ T(n)=iC+T(n−i) $$</code></p>
+<p>最后当 i=n 时有</p>
+<p><code>$$ T(n)=nC+T(0)=nC+D $$</code></p>
+<p>求得递归方程的解为:<code>$ T(n)=O(n)$</code>，通过这种方法计算斐波那契数列和汉诺塔普通递归算法时间复杂度均为 <code>$O(2^n)$</code></p>
+<ol start="2">
+<li>空间复杂度分析</li>
+</ol>
+<p>执行递归函数时，系统设立一个”递归工作栈”存储每一层递归所需信息，递归算法空间复杂度需要分析工作栈的大小。</p>
+<p>对于递归算法，空间复杂度 <code>$S(n)=O(f(n))$</code></p>
+<p>其中 f(n)为”递归空间栈”中工作记录的个数和问题规模 n 的函数关系。</p>
+<h3 id="经典案例">
+  经典案例
+  <a class="heading-link" href="#%e7%bb%8f%e5%85%b8%e6%a1%88%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>数制的转换</li>
+<li>括号匹配</li>
+<li>表达式求值</li>
+</ol>
+<h4 id="括号匹配代码示例">
+  括号匹配代码示例
+  <a class="heading-link" href="#%e6%8b%ac%e5%8f%b7%e5%8c%b9%e9%85%8d%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAX 100
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">bool</span> <span class="nf">isMatch</span><span class="p">(</span><span class="kt">char</span> <span class="n">left</span><span class="p">,</span><span class="kt">char</span> <span class="n">right</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="sc">&#39;]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">right</span> <span class="o">==</span> <span class="sc">&#39;[&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="sc">&#39;)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">right</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="sc">&#39;}&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">right</span> <span class="o">==</span> <span class="sc">&#39;{&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;错误&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">left_y</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;[&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;{&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">right_y</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;]&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;)&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;}&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">mystack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">lenth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="n">MAX</span><span class="p">]{</span> <span class="mi">0</span> <span class="p">};</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">lenth</span><span class="p">]){</span>    <span class="c1">//计算长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">lenth</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">lenth</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">right_y</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">lenth</span><span class="o">-</span><span class="mi">1</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mystack</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">lenth</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>        <span class="c1">//如果是右括号入栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">lenth</span><span class="o">--</span><span class="p">;</span>                        <span class="c1">//下标减1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">left_y</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">lenth</span><span class="o">-</span><span class="mi">1</span><span class="p">])){</span>        <span class="c1">//判断是否为左括号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">mystack</span><span class="p">.</span><span class="nf">empty</span><span class="p">()){</span>            <span class="c1">//如果栈为空，说明第括号不合法，push后退出循环
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">mystack</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">lenth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="nf">isMatch</span><span class="p">(</span><span class="n">mystack</span><span class="p">.</span><span class="nf">top</span><span class="p">(),</span> <span class="n">str</span><span class="p">[</span><span class="n">lenth</span><span class="o">-</span><span class="mi">1</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">mystack</span><span class="p">.</span><span class="nf">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">lenth</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">mystack</span><span class="p">.</span><span class="nf">empty</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span> <span class="k">continue</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="p">{</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">mystack</span><span class="p">.</span><span class="nf">empty</span><span class="p">()){</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;匹配成功&#34;</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;匹配失败&#34;</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="p">.</span><span class="nf">get</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="表达式求值代码示例">
+  表达式求值代码示例
+  <a class="heading-link" href="#%e8%a1%a8%e8%be%be%e5%bc%8f%e6%b1%82%e5%80%bc%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">stack</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Compare</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>        <span class="c1">//优先级比较
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;)&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;*&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;/&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Cal</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">//计算
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;*&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;/&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">str</span><span class="p">.</span><span class="nf">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span><span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">//如果是数字直接压入数字栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">48</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">num</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span> <span class="p">{</span>        <span class="c1">//左括弧直接压入字符栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">ch</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span> <span class="o">||</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;*&#39;</span> <span class="o">||</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;/&#39;</span> <span class="o">||</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;)&#39;</span> <span class="o">||</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ch</span><span class="p">.</span><span class="nf">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">((</span><span class="nf">Compare</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="nf">Compare</span><span class="p">(</span><span class="n">ch</span><span class="p">.</span><span class="nf">top</span><span class="p">())))</span> <span class="p">{</span>    <span class="c1">//比较当前运算符与栈顶运算符的优先级，如果优先级大直接压栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="n">ch</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">ch</span><span class="p">.</span><span class="nf">top</span><span class="p">()</span> <span class="o">!=</span> <span class="sc">&#39;(&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">num</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">//栈顶是左括弧不继续计算，并且计算要求为数字栈至少两个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">a</span> <span class="o">=</span> <span class="n">num</span><span class="p">.</span><span class="nf">top</span><span class="p">();</span> <span class="n">num</span><span class="p">.</span><span class="nf">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">b</span> <span class="o">=</span> <span class="n">num</span><span class="p">.</span><span class="nf">top</span><span class="p">();</span> <span class="n">num</span><span class="p">.</span><span class="nf">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">num</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nf">Cal</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">ch</span><span class="p">.</span><span class="nf">top</span><span class="p">()));</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">ch</span><span class="p">.</span><span class="nf">pop</span><span class="p">();</span> <span class="n">i</span><span class="o">--</span><span class="p">;</span> <span class="k">continue</span><span class="p">;</span>  <span class="c1">//栈中优先级小的符号出栈后，重置当前未入栈的符号。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">ch</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;)&#39;</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">ch</span><span class="p">.</span><span class="nf">empty</span><span class="p">())</span> <span class="p">{</span>      <span class="c1">//判断括号匹配(一定在计算数值后进行括号匹配)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">ch</span><span class="p">.</span><span class="nf">top</span><span class="p">()</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span> <span class="n">ch</span><span class="p">.</span><span class="nf">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span><span class="p">.</span><span class="nf">top</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="p">.</span><span class="nf">get</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="p">.</span><span class="nf">get</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="队列的定义和特点">
+  队列的定义和特点
+  <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84%e5%ae%9a%e4%b9%89%e5%92%8c%e7%89%b9%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>队列是一种(queue)是一种先进先出(First In First Out,FIFO)的线性表，它只允许在表的一端进行插入，而在另一端删除元素。</p>
+<p>在队列中，允许插入的一端称为队尾，允许删除的一端则称为队头(front).</p>
+<h3 id="队列的-adt-类型定义">
+  队列的 ADT 类型定义
+  <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84-adt-%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">InitQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="p">)</span>        <span class="c1">//构造一个空栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">DestroyQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="p">)</span>    <span class="c1">//队列存在，销毁队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">ClearQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="p">)</span>        <span class="c1">//队列存在，清空队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">QueueEmpty</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="p">)</span>        <span class="c1">//队列存在，判断队列为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">QueueLength</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="p">)</span>        <span class="c1">//队列存在，返回队列长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">GetHead</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="p">)</span>            <span class="c1">//队列不为空，返回队列队头元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>        <span class="c1">//队列存在，插入新的队尾元素e
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">DeQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="err">，</span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>        <span class="c1">//队列非空，删除队头元素，返回其值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">QueueTraverse</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>    <span class="c1">//队列存在且非空，遍历队列
+</span></span></span></code></pre></div><h3 id="队列的顺序表示和实现循环队列">
+  队列的顺序表示和实现(循环队列)
+  <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84%e9%a1%ba%e5%ba%8f%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p>循环队列的初始化</p>
+<ul>
+<li>为队列分配数组空间，基地址指向数组首地址</li>
+<li>头尾指针置 0</li>
+</ul>
+</li>
+<li>
+<p>求队列长度</p>
+<ul>
+<li>头尾指针的差值加队列最大长度</li>
+</ul>
+</li>
+<li>
+<p>循环队列入队操作</p>
+<ul>
+<li>判断队列是否满</li>
+<li>将新元素插入队尾</li>
+<li>队尾指针 +1</li>
+</ul>
+</li>
+<li>
+<p>循环队列出队操作</p>
+<ul>
+<li>判断队列是否为空</li>
+<li>保存队头元素</li>
+<li>队头指针 +1</li>
+</ul>
+</li>
+<li>
+<p>取队头元素</p>
+<ul>
+<li>判断队列是否为空</li>
+<li>返回当前队头元素的值</li>
+</ul>
+</li>
+</ul>
+<h4 id="循环队列顺序存储的简易代码实现">
+  循环队列顺序存储的简易代码实现
+  <a class="heading-link" href="#%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8%e7%9a%84%e7%ae%80%e6%98%93%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAXSIZE 10
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">Queue</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">base</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">front</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">rear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">Queue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">InitQueue</span><span class="p">(</span><span class="n">Queue</span> <span class="o">*</span><span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="o">-&gt;</span><span class="n">base</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">MAXSIZE</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="o">-&gt;</span><span class="n">rear</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="o">-&gt;</span><span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">DestroyQueue</span><span class="p">(</span><span class="n">Queue</span> <span class="o">*</span><span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">ClearQueue</span><span class="p">(</span><span class="n">Queue</span> <span class="o">*</span><span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="o">-&gt;</span><span class="n">rear</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">QueueEmpty</span><span class="p">(</span><span class="n">Queue</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">QueueLength</span><span class="p">(</span><span class="n">Queue</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">q</span><span class="p">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>        <span class="c1">//第十位空出，用来判断队列是否满，所以实际长度只有9位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">GetHead</span><span class="p">(</span><span class="n">Queue</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">base</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">q</span><span class="p">.</span><span class="n">base</span><span class="p">[</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">EnQueue</span><span class="p">(</span><span class="n">Queue</span> <span class="o">*</span><span class="n">q</span><span class="p">,</span><span class="kt">int</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">((</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">rear</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">MAXSIZE</span> <span class="o">!=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">front</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">//队列未满且
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">q</span><span class="o">-&gt;</span><span class="n">base</span><span class="p">[</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">rear</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="o">-&gt;</span><span class="n">rear</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="o">-&gt;</span><span class="n">rear</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">rear</span> <span class="o">%</span> <span class="n">MAXSIZE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="o">-&gt;</span><span class="n">length</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">DeQueue</span><span class="p">(</span><span class="n">Queue</span> <span class="o">*</span><span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="o">-&gt;</span><span class="n">front</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">%</span> <span class="n">MAXSIZE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="o">-&gt;</span><span class="n">length</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">QueueTraverse</span><span class="p">(</span><span class="n">Queue</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">;</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">num</span><span class="o">++</span><span class="p">,</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="n">MAXSIZE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">q</span><span class="p">.</span><span class="n">base</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Queue</span> <span class="n">q</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">InitQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;插入失败&#34;</span> <span class="o">&lt;&lt;</span> <span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">DeQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="nf">DeQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="nf">DeQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">DeQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="nf">DeQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">QueueTraverse</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;队头&#34;</span><span class="o">&lt;&lt;</span><span class="nf">GetHead</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="队列的链式表示和实现">
+  队列的链式表示和实现
+  <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84%e9%93%be%e5%bc%8f%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p>链队的初始化</p>
+<ul>
+<li>生成新节点作为头节点，队头和队尾指针指向此结点</li>
+<li>头结点的指针域置空</li>
+</ul>
+</li>
+<li>
+<p>链队的入队</p>
+<ul>
+<li>为入队元素分配空间</li>
+<li>设置新结点数据域</li>
+<li>将新结点插入队尾</li>
+<li>修改队尾指针</li>
+</ul>
+</li>
+<li>
+<p>链队的出队</p>
+<ul>
+<li>判断队列是否为空</li>
+<li>临时保存队头元素地址空间</li>
+<li>修改头结点指向</li>
+<li>修改队尾指针</li>
+<li>释放原队头元素空间</li>
+</ul>
+</li>
+<li>
+<p>取链队的队头元素</p>
+<ul>
+<li>判断队列是否非空</li>
+<li>返回队头元素的值</li>
+</ul>
+</li>
+</ul>
+<h4 id="链队的代码简易实现">
+  链队的代码简易实现
+  <a class="heading-link" href="#%e9%93%be%e9%98%9f%e7%9a%84%e4%bb%a3%e7%a0%81%e7%ae%80%e6%98%93%e5%ae%9e%e7%8e%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAX 10
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">struct</span> <span class="n">Point</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Point</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">List</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">//记录节点数量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Point</span> <span class="o">*</span> <span class="n">rear</span><span class="p">;</span>    <span class="c1">//队尾元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Point</span> <span class="o">*</span> <span class="n">front</span><span class="p">;</span>    <span class="c1">//队首元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Point</span><span class="o">*</span> <span class="nf">cs_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">);</span>            <span class="c1">//初始化队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">bool</span> <span class="nf">full_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">front</span><span class="p">);</span>        <span class="c1">//确认队列是否已满
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">bool</span> <span class="nf">empty_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">front</span><span class="p">);</span>        <span class="c1">//确认队列是否为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Point</span><span class="o">*</span> <span class="nf">add_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">);</span>        <span class="c1">//在队列末尾添加元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">del_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">);</span>            <span class="c1">//删除队列首元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">find_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">);</span>            <span class="c1">//查找队列的元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">input_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">);</span>        <span class="c1">//输出队列的元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Point</span><span class="o">*</span> <span class="nf">cs_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">)</span>        <span class="c1">//队列初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span> <span class="o">=</span> <span class="p">(</span><span class="n">Point</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">));</span>    <span class="c1">//分配空间，将地址赋给point的首节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">list</span><span class="o">-&gt;</span><span class="n">num</span><span class="o">++</span><span class="p">;</span>                    <span class="c1">//使队列节点数加一
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">list</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span><span class="p">;</span>        <span class="c1">//使队列的尾节点等于队列首节点的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">scanf_s</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span><span class="o">-&gt;</span><span class="n">num</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>        <span class="c1">//使结点的下一个链接点为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span><span class="p">;</span>                <span class="c1">//返回该地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">full_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">)</span>        <span class="c1">//确认队列是否已满，已满返回true，否则返回false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">num</span> <span class="o">&gt;=</span> <span class="n">MAX</span><span class="p">)</span>    <span class="c1">//观察num（节点数）是否为最大值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">empty_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">)</span>        <span class="c1">//确认队列是否为空，为空返回true，不为空返回false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Point</span><span class="o">*</span> <span class="nf">add_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">)</span>            <span class="c1">//入队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Point</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">Point</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">));</span>    <span class="c1">//分配空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">-&gt;</span><span class="n">num</span><span class="o">++</span><span class="p">;</span>                    <span class="c1">//如果分配成功，使结点数+1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">scanf_s</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span><span class="o">-&gt;</span><span class="n">num</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">rear</span><span class="p">;</span>                <span class="c1">//返回该地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">del_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">)</span>                    <span class="c1">//出队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Point</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">front</span><span class="p">;</span>                <span class="c1">//temp储存队首元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">list</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>        <span class="c1">//队首元素向后移一位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">list</span><span class="o">-&gt;</span><span class="n">num</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">temp_num</span> <span class="o">=</span> <span class="n">temp</span><span class="o">-&gt;</span><span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>                
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">temp_num</span><span class="p">;</span>                
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">input_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="o">*</span><span class="n">list1</span> <span class="o">=</span> <span class="n">list</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">num</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">list1</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">num</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list1</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Point</span><span class="o">*</span> <span class="nf">find_list</span><span class="p">(</span><span class="n">List</span> <span class="o">*</span><span class="n">list</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Point</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">front</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">temp</span><span class="o">-&gt;</span><span class="n">num</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="o">-&gt;</span><span class="n">num</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="n">list</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">cs_list</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;初始化队列成功！</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">full_list</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;队列已满</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;队列未满</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">add_list</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">add_list</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">del_list</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Point</span> <span class="o">*</span> <span class="n">temp</span> <span class="o">=</span> <span class="nf">find_list</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">,</span> <span class="mi">368</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="n">temp</span><span class="o">-&gt;</span><span class="n">num</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">input_list</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+    </div>
+    
+
+    <footer>
+      
+
+
+      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+  
+  
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2025
+     一个梦想家 
+    ·
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

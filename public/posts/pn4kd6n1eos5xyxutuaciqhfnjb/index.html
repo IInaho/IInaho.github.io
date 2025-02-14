@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+排序 · inaho
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="一个梦想家">
+<meta name="description" content="
+  排序的基本概念
+  
+    
+    链接到标题
+  
+
+
+  排序的定义
+  
+    
+    链接到标题
+  
+
+排序是按关键字的非递减或非递增顺序对一组记录重新进行排列的操作。
+假设含 n 个记录的序列为{}，其相应的关键字分别为{}，需确定 1,2,…,n 的一种排列，使其相应的关键字满足(非递减或非递增)关系，即使得序列成为一个按关键字有序的序列，这样的操作称为排序。
+
+  排序的稳定性
+  
+    
+    链接到标题
+  
+
+假设，且在排序前的序列中$r_i$领先于$r_j$(即 i&lt;j)。如果排序后$r_i$仍领先于$r_j$，则称所用的排序方法是稳定的;反之，若可能使得排序后的序列中$r_j$领先$r_i$，则称所用的排序方法是不稳定的。
+
+  内部排序与外部排序
+  
+    
+    链接到标题
+  
+
+根据在排序过程中待排序的记录是否全部被放置在内存中，排序分为内排序、外排序。
+内排序是在排序整个过程中，待排序的所有记录全部被放置在内存中。
+外排序是由于排序的记录个数太多，不能同时放置在内存，整个排序过程需要在内外存之间多次交换数据才能进行。
+
+  内部排序方法分类
+  
+    
+    链接到标题
+  
+
+根据逐步扩大记录有序序列长度的原则不同，可以将内部排序分为以下几类。
+
+插入类，直接插入排序、折半插入排序、希尔排序
+交换类，冒泡排序、快速排序
+选择类，简单选择排序、树形选择排序、堆排序
+归并类，2-路归并排序
+分配类，基数排序
+
+
+  插入排序
+  
+    
+    链接到标题
+  
+
+插入排序的基本思想是: 每一趟将一个待排序的记录，按其关键字的大小插入到已经排好序的一组记录的适当位置上，直到所有待排序记录全部插入为止。
+
+  直接插入排序
+  
+    
+    链接到标题
+  
+
+直接插入排序是将一条记录插入到已经排好序的有序表中，从而得到一个新的、记录数量增 1 的有序表。
+
+  算法步骤
+  
+    
+    链接到标题
+  
+
+
+设待排序的记录存放在数组 r[1..n]中，r[1]是一个有序序列。
+循环 n-1 次，每次使用顺序查找法，查找 ri 在已经排好序的序列 r[1…i-1]中的插入位置，然后将 r[i]插入表长为 i-1 的有序序列 r[1…i-1]，直到将 r[n]插入表长为 n-1 的有序序列 r[1…n-1]，最后得到一个表长为 n 的有序序列。
+
+
+  算法描述
+  
+    
+    链接到标题
+  
+
+为了在查找插入位置的过程中避免数组下标出界，r[0]设置监视哨。">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="排序">
+  <meta name="twitter:description" content="排序的基本概念 链接到标题 排序的定义 链接到标题 排序是按关键字的非递减或非递增顺序对一组记录重新进行排列的操作。
+假设含 n 个记录的序列为{}，其相应的关键字分别为{}，需确定 1,2,…,n 的一种排列，使其相应的关键字满足(非递减或非递增)关系，即使得序列成为一个按关键字有序的序列，这样的操作称为排序。
+排序的稳定性 链接到标题 假设，且在排序前的序列中$r_i$领先于$r_j$(即 i&lt;j)。如果排序后$r_i$仍领先于$r_j$，则称所用的排序方法是稳定的;反之，若可能使得排序后的序列中$r_j$领先$r_i$，则称所用的排序方法是不稳定的。
+内部排序与外部排序 链接到标题 根据在排序过程中待排序的记录是否全部被放置在内存中，排序分为内排序、外排序。
+内排序是在排序整个过程中，待排序的所有记录全部被放置在内存中。
+外排序是由于排序的记录个数太多，不能同时放置在内存，整个排序过程需要在内外存之间多次交换数据才能进行。
+内部排序方法分类 链接到标题 根据逐步扩大记录有序序列长度的原则不同，可以将内部排序分为以下几类。
+插入类，直接插入排序、折半插入排序、希尔排序 交换类，冒泡排序、快速排序 选择类，简单选择排序、树形选择排序、堆排序 归并类，2-路归并排序 分配类，基数排序 插入排序 链接到标题 插入排序的基本思想是: 每一趟将一个待排序的记录，按其关键字的大小插入到已经排好序的一组记录的适当位置上，直到所有待排序记录全部插入为止。
+直接插入排序 链接到标题 直接插入排序是将一条记录插入到已经排好序的有序表中，从而得到一个新的、记录数量增 1 的有序表。
+算法步骤 链接到标题 设待排序的记录存放在数组 r[1..n]中，r[1]是一个有序序列。 循环 n-1 次，每次使用顺序查找法，查找 ri 在已经排好序的序列 r[1…i-1]中的插入位置，然后将 r[i]插入表长为 i-1 的有序序列 r[1…i-1]，直到将 r[n]插入表长为 n-1 的有序序列 r[1…n-1]，最后得到一个表长为 n 的有序序列。 算法描述 链接到标题 为了在查找插入位置的过程中避免数组下标出界，r[0]设置监视哨。">
+
+<meta property="og:url" content="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="排序">
+  <meta property="og:description" content="排序的基本概念 链接到标题 排序的定义 链接到标题 排序是按关键字的非递减或非递增顺序对一组记录重新进行排列的操作。
+假设含 n 个记录的序列为{}，其相应的关键字分别为{}，需确定 1,2,…,n 的一种排列，使其相应的关键字满足(非递减或非递增)关系，即使得序列成为一个按关键字有序的序列，这样的操作称为排序。
+排序的稳定性 链接到标题 假设，且在排序前的序列中$r_i$领先于$r_j$(即 i&lt;j)。如果排序后$r_i$仍领先于$r_j$，则称所用的排序方法是稳定的;反之，若可能使得排序后的序列中$r_j$领先$r_i$，则称所用的排序方法是不稳定的。
+内部排序与外部排序 链接到标题 根据在排序过程中待排序的记录是否全部被放置在内存中，排序分为内排序、外排序。
+内排序是在排序整个过程中，待排序的所有记录全部被放置在内存中。
+外排序是由于排序的记录个数太多，不能同时放置在内存，整个排序过程需要在内外存之间多次交换数据才能进行。
+内部排序方法分类 链接到标题 根据逐步扩大记录有序序列长度的原则不同，可以将内部排序分为以下几类。
+插入类，直接插入排序、折半插入排序、希尔排序 交换类，冒泡排序、快速排序 选择类，简单选择排序、树形选择排序、堆排序 归并类，2-路归并排序 分配类，基数排序 插入排序 链接到标题 插入排序的基本思想是: 每一趟将一个待排序的记录，按其关键字的大小插入到已经排好序的一组记录的适当位置上，直到所有待排序记录全部插入为止。
+直接插入排序 链接到标题 直接插入排序是将一条记录插入到已经排好序的有序表中，从而得到一个新的、记录数量增 1 的有序表。
+算法步骤 链接到标题 设待排序的记录存放在数组 r[1..n]中，r[1]是一个有序序列。 循环 n-1 次，每次使用顺序查找法，查找 ri 在已经排好序的序列 r[1…i-1]中的插入位置，然后将 r[i]插入表长为 i-1 的有序序列 r[1…i-1]，直到将 r[n]插入表长为 n-1 的有序序列 r[1…n-1]，最后得到一个表长为 n 的有序序列。 算法描述 链接到标题 为了在查找插入位置的过程中避免数组下标出界，r[0]设置监视哨。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:tag" content="数据结构">
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <h2>目录</h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#排序的定义">排序的定义</a></li>
+    <li><a href="#排序的稳定性">排序的稳定性</a></li>
+    <li><a href="#内部排序与外部排序">内部排序与外部排序</a>
+      <ul>
+        <li><a href="#内部排序方法分类">内部排序方法分类</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#直接插入排序">直接插入排序</a>
+      <ul>
+        <li><a href="#算法步骤">算法步骤</a></li>
+        <li><a href="#算法描述">算法描述</a></li>
+      </ul>
+    </li>
+    <li><a href="#折半插入排序">折半插入排序</a>
+      <ul>
+        <li><a href="#算法步骤-1">算法步骤</a></li>
+        <li><a href="#算法描述-1">算法描述</a></li>
+        <li><a href="#算法分析">算法分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#希尔排序">希尔排序</a>
+      <ul>
+        <li><a href="#算法步骤-2">算法步骤</a></li>
+        <li><a href="#算法举例">算法举例</a></li>
+        <li><a href="#算法描述-2">算法描述</a></li>
+        <li><a href="#算法分析-1">算法分析</a></li>
+        <li><a href="#算法特点-1">算法特点</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#冒泡排序">冒泡排序</a>
+      <ul>
+        <li><a href="#算法步骤-3">算法步骤</a></li>
+        <li><a href="#算法代码示例">算法代码示例</a></li>
+        <li><a href="#算法分析-2">算法分析</a></li>
+        <li><a href="#算法特点-2">算法特点</a></li>
+      </ul>
+    </li>
+    <li><a href="#快速排序">快速排序</a>
+      <ul>
+        <li><a href="#算法步骤-4">算法步骤</a></li>
+        <li><a href="#算法描述-3">算法描述</a></li>
+        <li><a href="#算法分析-3">算法分析</a></li>
+        <li><a href="#算法特点-3">算法特点</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#简单选择排序">简单选择排序</a>
+      <ul>
+        <li><a href="#算法步骤-5">算法步骤</a></li>
+        <li><a href="#算法描述-4">算法描述</a></li>
+        <li><a href="#算法分析-4">算法分析</a></li>
+        <li><a href="#算法特点-4">算法特点</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#算法步骤-6">算法步骤</a>
+      <ul>
+        <li><a href="#归并相邻两个有序序列">归并相邻两个有序序列</a></li>
+        <li><a href="#归并排序步骤">归并排序步骤</a></li>
+      </ul>
+    </li>
+    <li><a href="#算法描述-5">算法描述</a>
+      <ul>
+        <li><a href="#递归算法">递归算法</a></li>
+        <li><a href="#非递归算法">非递归算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#算法分析-5">算法分析</a>
+      <ul>
+        <li><a href="#递归算法-1">递归算法</a></li>
+        <li><a href="#非递归算法-1">非递归算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#算法特点-5">算法特点</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#算法步骤-7">算法步骤</a></li>
+    <li><a href="#算法示例">算法示例</a></li>
+    <li><a href="#算法分析-6">算法分析</a>
+      <ul>
+        <li><a href="#时间复杂度-5">时间复杂度</a></li>
+        <li><a href="#空间复杂度-5">空间复杂度</a></li>
+      </ul>
+    </li>
+    <li><a href="#算法特点-6">算法特点</a></li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+  
+      let timer;
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.remove('hidden');
+      });
+  
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.add('hidden');
+        }, 300);
+      });
+  
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+  
+      const observerOptions = {
+        rootMargin: '-70px 0px -30% 0px',
+        threshold: 1.0
+      };
+  
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + entry.target.id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+  
+      headings.forEach(heading => observer.observe(heading));
+  
+      
+      toc.classList.add('hidden');
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+            排序
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2023-07-07T00:00:00Z">
+              July 7, 2023
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：6 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            1268 字数
+          </span>
+        </div>
+        <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/lzy/">Lzy</a></div>
+
+        <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+
+        <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    </span></div>
+
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="排序的基本概念">
+  排序的基本概念
+  <a class="heading-link" href="#%e6%8e%92%e5%ba%8f%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="排序的定义">
+  排序的定义
+  <a class="heading-link" href="#%e6%8e%92%e5%ba%8f%e7%9a%84%e5%ae%9a%e4%b9%89">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>排序是按关键字的非递减或非递增顺序对一组记录重新进行排列的操作。</p>
+<p>假设含 n 个记录的序列为{}，其相应的关键字分别为{}，需确定 1,2,…,n 的一种排列，使其相应的关键字满足(非递减或非递增)关系，即使得序列成为一个按关键字有序的序列，这样的操作称为排序。</p>
+<h2 id="排序的稳定性">
+  排序的稳定性
+  <a class="heading-link" href="#%e6%8e%92%e5%ba%8f%e7%9a%84%e7%a8%b3%e5%ae%9a%e6%80%a7">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>假设，且在排序前的序列中<code>$r_i$</code>领先于<code>$r_j$</code>(即 i&lt;j)。如果排序后<code>$r_i$</code>仍领先于<code>$r_j$</code>，则称所用的排序方法是稳定的;反之，若可能使得排序后的序列中<code>$r_j$</code>领先<code>$r_i$</code>，则称所用的排序方法是不稳定的。</p>
+<h2 id="内部排序与外部排序">
+  内部排序与外部排序
+  <a class="heading-link" href="#%e5%86%85%e9%83%a8%e6%8e%92%e5%ba%8f%e4%b8%8e%e5%a4%96%e9%83%a8%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>根据在排序过程中待排序的记录是否全部被放置在内存中，排序分为内排序、外排序。</p>
+<p>内排序是在排序整个过程中，待排序的所有记录全部被放置在内存中。</p>
+<p>外排序是由于排序的记录个数太多，不能同时放置在内存，整个排序过程需要在内外存之间多次交换数据才能进行。</p>
+<h3 id="内部排序方法分类">
+  内部排序方法分类
+  <a class="heading-link" href="#%e5%86%85%e9%83%a8%e6%8e%92%e5%ba%8f%e6%96%b9%e6%b3%95%e5%88%86%e7%b1%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>根据逐步扩大记录有序序列长度的原则不同，可以将内部排序分为以下几类。</p>
+<ul>
+<li>插入类，直接插入排序、折半插入排序、希尔排序</li>
+<li>交换类，冒泡排序、快速排序</li>
+<li>选择类，简单选择排序、树形选择排序、堆排序</li>
+<li>归并类，2-路归并排序</li>
+<li>分配类，基数排序</li>
+</ul>
+<h1 id="插入排序">
+  插入排序
+  <a class="heading-link" href="#%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>插入排序的基本思想是: 每一趟将一个待排序的记录，按其关键字的大小插入到已经排好序的一组记录的适当位置上，直到所有待排序记录全部插入为止。</p>
+<h2 id="直接插入排序">
+  直接插入排序
+  <a class="heading-link" href="#%e7%9b%b4%e6%8e%a5%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>直接插入排序是将一条记录插入到已经排好序的有序表中，从而得到一个新的、记录数量增 1 的有序表。</p>
+<h3 id="算法步骤">
+  算法步骤
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>设待排序的记录存放在数组 r[1..n]中，r[1]是一个有序序列。</li>
+<li>循环 n-1 次，每次使用顺序查找法，查找 r<a href="https://iinaho.github.io/2020/06/15/%E6%8E%92%E5%BA%8F/i%20=%202,...,n"  class="external-link" target="_blank" rel="noopener">i</a> 在已经排好序的序列 r[1…i-1]中的插入位置，然后将 r[i]插入表长为 i-1 的有序序列 r[1…i-1]，直到将 r[n]插入表长为 n-1 的有序序列 r[1…n-1]，最后得到一个表长为 n 的有序序列。</li>
+</ul>
+<h3 id="算法描述">
+  算法描述
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>为了在查找插入位置的过程中避免数组下标出界，r[0]设置监视哨。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">InsertSort</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">key</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">key</span><span class="p">;</span><span class="o">--</span><span class="n">j</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>        
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="折半插入排序">
+  折半插入排序
+  <a class="heading-link" href="#%e6%8a%98%e5%8d%8a%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>直接插入排序采用顺序查找法查找当前记录<strong>在已排好序的序列中的插入位置</strong>，而查找插入位置的过程可以使用折半查找来实现，由此进行的插入排序称之为折半插入排序。</p>
+<h3 id="算法步骤-1">
+  算法步骤
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>设待排序的记录存放在数组 r 中</li>
+<li>循环 n-1 次，每次使用折半查找法，寻找插入位置，然后插入该元素，最后得到一个表长为 n 的有序序列。</li>
+</ul>
+<h3 id="算法描述-1">
+  算法描述
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">BInsertSort</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>        <span class="c1">//将待插入的数据存放入监视哨中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 设置查找区间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">high</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 折半查找插入位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span><span class="o">+</span><span class="n">high</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">m</span><span class="p">].</span><span class="n">key</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">high</span> <span class="o">=</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">low</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&gt;=</span><span class="n">high</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">){</span>    <span class="c1">//记录后移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">high</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">//进行插入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="算法分析">
+  算法分析
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="时间复杂度">
+  时间复杂度
+  <a class="heading-link" href="#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>折半查找比顺序查找快，因此折半插入排序优于直接插入排序，在平均情况下，折半插入排序仅减少了比较次数，而记录的移动次数不变，算法时间复杂度仍为<code>$O(n^2)$</code>.</p>
+<h4 id="空间复杂度">
+  空间复杂度
+  <a class="heading-link" href="#%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>折半插入排序所需附加存储空间与直接插入排序相同，空间复杂度为 O(1).</p>
+<h4 id="算法特点">
+  算法特点
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%89%b9%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ul>
+<li>稳定排序，只能用于顺序结构，不能用于链式结构</li>
+<li>适合初始记录无序、n 较大的情况。</li>
+</ul>
+<h2 id="希尔排序">
+  希尔排序
+  <a class="heading-link" href="#%e5%b8%8c%e5%b0%94%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>希尔排序又称为缩小增量排序，直接插入排序，当待排序的记录个数较少且待排序序列的关键字基本有序时，效率较高。希尔排序基于以上两点，从<strong>减少记录个数</strong>和<strong>序列基本有序</strong>两个方面对直接插入排序进行了改进。</p>
+<h3 id="算法步骤-2">
+  算法步骤
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>希尔排序实质上是采用分组插入的方法，先将整个待排序记录序列分割成几组，从而减少参与直接插入排序的数据量，对每组分别进行直接插入排序，然后增加每组的数据量，重新分组。这样当经过几次分组排序后，整个序列中的记录基本有序时，再对全体记录进行一次直接插入排序。</p>
+<ul>
+<li>第一趟取增量 d1(d1&lt;n)把全部记录分成 d1 个组，<strong>所有间隔为</strong> d1 <strong>的记录分在同一组</strong>，在各组中进行直接插入排序。</li>
+<li>第二趟取增量 d2(d2&lt;d1)，重复上述的分组和排序。</li>
+<li>依此类推，直到所取的增量 dt=1(dt&lt;dt−1&lt;&hellip;&lt;d2&lt;d1)，所有记录在同一组中进行直接插入排序为止。</li>
+</ul>
+<h3 id="算法举例">
+  算法举例
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e4%b8%be%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>假设给定序列为{8,9,1,7,2,3,5,4,6,0}</p>
+<p>初始增量为 5，整个数组分成了 5 组，分别为{8,3}，{9,5}，{1,4}，{7,6}，{2,0}。</p>
+<p>对这 5 组分别使用插入排序，结果可以发现，这五组中的相对小元素都被调到了前面.</p>
+<p>缩小增量为 2，整个数组分成了 2 组，分别为{3,1,0,9,7}，{5,6,8,4,2}。</p>
+<p>对这 2 组分别使用插入排序，此时整个数组的有序性是很明显的。</p>
+<p>再缩小增量为 1，整个数组分成了 1 组，{0,2,1,4,3,5,7,6,9,0}</p>
+<p>只需要对以上数列进行简单的微调，不需要大量的移动操作即可完成整个数组的排序</p>
+<h3 id="算法描述-2">
+  算法描述
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">ShellInsert</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">,</span><span class="kt">int</span> <span class="n">dk</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">dk</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">dk</span><span class="p">].</span><span class="n">key</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 记录后移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">dk</span><span class="p">;</span> <span class="n">j</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">key</span><span class="p">;</span> <span class="n">j</span> <span class="o">-=</span><span class="n">dk</span><span class="p">;){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">dk</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">dk</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">ShellSort</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">,</span><span class="kt">int</span> <span class="n">dt</span><span class="p">[],</span><span class="kt">int</span> <span class="n">t</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">ShellInsert</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dt</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>    <span class="c1">//一趟增量为dt[t]的希尔插入排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="算法分析-1">
+  算法分析
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="时间复杂度-1">
+  时间复杂度
+  <a class="heading-link" href="#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>增量大于 1 时，关键字较小记录不是一步一步移动，而是跳跃式移动，使得在进行最后一趟增量为 1 的排序时，序列已基本有序，因此希尔排序的时间复杂度较直接插入排序低。希尔排序的时间复杂度取决于其增量序列，因此求希尔排序的时间复杂度是一个复杂的问题。</p>
+<p>有人指出，当增量序列为<code>$dt[k]^{2t−k+1}−1$</code>时，希尔排序的时间复杂度为<code>$O(n^{3/2})$</code>,其中 t 为排序趟数, <code>$1≥k≥t≥[log_2(n+1)]$</code></p>
+<h4 id="空间复杂度-1">
+  空间复杂度
+  <a class="heading-link" href="#%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>希尔排序的空间复杂度也为 O(1).</p>
+<h3 id="算法特点-1">
+  算法特点
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%89%b9%e7%82%b9-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>记录跳跃式地移动导致排序方法是不稳定地</li>
+<li>只能用于顺序结构</li>
+<li>增量序列取法不同，但应该使增量序列中的值没有除 1 之外的公因子，并且最后一个增量值必须为 1</li>
+<li>记录总的比较次数和移动次数都比直接插入排序少，n 越大，效果越明显，适合于初始记录无序，n 较大的情况。</li>
+</ul>
+<h1 id="交换排序">
+  交换排序
+  <a class="heading-link" href="#%e4%ba%a4%e6%8d%a2%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>交换排序的基本思想: 两两比较待排序记录的关键字，一旦发现两个记录不满足次序要求时则进行交换，直到整个序列全部满足要求为止。</p>
+<h2 id="冒泡排序">
+  冒泡排序
+  <a class="heading-link" href="#%e5%86%92%e6%b3%a1%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>冒泡排序是一种最简单的交换排序方法，它通过两两比较相邻记录的关键字，如果发生逆序，则进行交换，从而使关键字小的记录如气泡一样逐渐向上漂浮或者坠落。</p>
+<h3 id="算法步骤-3">
+  算法步骤
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>设待排序的记录存放在数组 r 中，将第一个记录与第二个记录的关键字进行比较，如果逆序，则交换，然后比较第二个记录与第三个记录的关键字，直到最后一次交换，第一趟比较完成。</li>
+<li>然后进行第二次排序，对前 n-1 个记录进行同样的操作，其结果是使关键字次大的记录被安置到第 n-1 个记录的位置上。</li>
+<li>重复上述操作，直至某一趟排序过程中没有进行交换记录的操作，说明排序完成。</li>
+</ul>
+<h3 id="算法代码示例">
+  算法代码示例
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAXSIZE 10
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">Key</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">Key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">SqList</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span> <span class="o">*</span><span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">SqList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">CreateArray</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">L</span><span class="p">.</span><span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">Key</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Key</span><span class="p">)</span><span class="o">*</span><span class="n">MAXSIZE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">L</span><span class="p">.</span><span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">key</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Print</span><span class="p">(</span><span class="n">SqList</span> <span class="n">L</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">i</span><span class="o">++</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">BubbleSort</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>            <span class="c1">//标志某趟是否完成交换。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Key</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">((</span><span class="n">m</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">flag</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>    <span class="c1">//如果某趟没有进行交换，说明已排序完成
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">].</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//交换
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">t</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="o">--</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SqList</span> <span class="n">L</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">CreateArray</span><span class="p">(</span><span class="n">L</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Print</span><span class="p">(</span><span class="n">L</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">BubbleSort</span><span class="p">(</span><span class="n">L</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Print</span><span class="p">(</span><span class="n">L</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="算法分析-2">
+  算法分析
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="时间复杂度-2">
+  时间复杂度
+  <a class="heading-link" href="#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>最好情况(初始序列为正序)，只需要进行一趟排序，只进行 n-1 次关键字比较，且不移动记录。</p>
+<p>最坏情况(初始序列为逆序)，需进行 n-1 趟排序，总的关键字比较次数 KCN 和记录移动次数 RMN 分别为:</p>
+<ol>
+<li>完全图(KCN)的边数：</li>
+</ol>
+<p><code>$$ KCN = \sum_{i=n}^2(i-1) = \frac{n(n-1)}{2} \approx \frac{n^2}{2} $$</code></p>
+<ol>
+<li>正则图(RMN)的边数：</li>
+</ol>
+<p><code>$$ RMN = 3\sum_{i=n}^2(i-1) = \frac{3n(n-1)}{2} \approx \frac{3n^2}{2} $$</code></p>
+<p>在平均情况下，冒泡排序比较次数与记录移动次数分别为<code>$n^2/4$</code>和 <code>$3n^2/4$</code>，时间复杂度为<code>$O(n^2)$</code></p>
+<h4 id="空间复杂度-2">
+  空间复杂度
+  <a class="heading-link" href="#%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>交换时需要一个临时存储变量，所以空间复杂度为 O(1)。</p>
+<h3 id="算法特点-2">
+  算法特点
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%89%b9%e7%82%b9-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>稳定排序</li>
+<li>可用于链式存储结构</li>
+<li>移动次数较多，算法平均时间性能比直接插入排序差，当初始无序，n 较大时不建议使用。</li>
+</ul>
+<h2 id="快速排序">
+  快速排序
+  <a class="heading-link" href="#%e5%bf%ab%e9%80%9f%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>在冒泡排序中，只对相邻的两个记录进行比较，因此每次交换两个相邻记录时只能消除一个逆序，如果能通过两个不相邻记录的一次交换，消除多个逆序，则会加快排序的速度，因此有了快速排序的算法。</p>
+<h3 id="算法步骤-4">
+  算法步骤
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>在待排序的 n 个记录中任取一个记录(通常取第一个记录)作为枢轴，设其关键字为 pivotkey，经过一次排序后，把所有关键字小于 pivotkey 的记录交换到前面，所有大于 pivotkey 的记录交换到后面，然后将待排序记录分成两个子表，枢轴放置其分界处，重复上述过程，直到每个子表只有一个记录时，排序完成。</p>
+<ul>
+<li>选择待排序表中的第一个记录作为枢轴，将其暂存在 r[0]中，附设两个指针 low 和 high，分别指向表的下界和上界。</li>
+<li>从表的最右侧位置依次向左搜索，找到第一个关键字小于枢轴关键字 pivotkey 的记录，将其移到 low 处。</li>
+<li>再从表的最左侧位置，依次向右搜索找到第一个关键字大于 pivotkey 的记录和枢轴记录交换。</li>
+<li>重复步骤二和三，直到 low 与 high 相等为止，此时 low 与 high 的位置即为枢轴在此趟排序中的最终位置，原表被分成两个子表。</li>
+</ul>
+<h3 id="算法描述-3">
+  算法描述
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0-3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//ADT示例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">Partition</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">,</span><span class="kt">int</span> <span class="n">low</span><span class="p">,</span><span class="kt">int</span> <span class="n">high</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">low</span><span class="p">];</span>            <span class="c1">//子表的第一个记录作为枢轴
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pivotkey</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">low</span><span class="p">].</span><span class="n">key</span><span class="p">;</span>    <span class="c1">//存放枢轴的key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span> <span class="o">&amp;&amp;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">high</span><span class="p">].</span><span class="n">key</span> <span class="o">&gt;=</span> <span class="n">pivotkey</span><span class="p">)</span> <span class="o">--</span><span class="n">high</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">low</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">high</span><span class="p">];</span>    <span class="c1">//从右向左找第一个比枢轴小的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span> <span class="o">&amp;&amp;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">low</span><span class="p">].</span><span class="n">key</span> <span class="o">&lt;=</span> <span class="n">pivotkey</span><span class="p">)</span> <span class="o">++</span><span class="n">low</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">high</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">low</span><span class="p">];</span>    <span class="c1">//从左向右找第一个比枢轴大的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">low</span><span class="p">]</span><span class="o">=</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">low</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">QSort</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">,</span><span class="kt">int</span> <span class="n">low</span><span class="p">,</span><span class="kt">int</span> <span class="n">high</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pivotloc</span> <span class="o">=</span> <span class="nf">Partition</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">low</span><span class="p">,</span><span class="n">high</span><span class="p">);</span>    <span class="c1">//枢轴位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">QSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">low</span><span class="p">,</span><span class="n">pivotloc</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">//对左子表递归排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">QSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">pivotloc</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">high</span><span class="p">);</span>    <span class="c1">//对右子表递归排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">QuickSort</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">QSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//简易代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Quickly_sort</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">le</span> <span class="o">=</span> <span class="n">start</span><span class="p">,</span> <span class="n">ri</span> <span class="o">=</span> <span class="n">end</span><span class="p">,</span> <span class="n">pivot</span><span class="p">;</span>            <span class="c1">//使左下标从首元素开始向前滚动，右下标从末尾元素开始向后滚动
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pivot</span> <span class="o">=</span> <span class="n">num</span><span class="p">[(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">];</span>                <span class="c1">//pivot为数组的中间值（最小下标+最大下标处以2）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">le</span> <span class="o">&lt;=</span> <span class="n">ri</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">le</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">)</span> <span class="n">le</span><span class="o">++</span><span class="p">;</span>            <span class="c1">//从左向右，找大于中心点的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">ri</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">pivot</span><span class="p">)</span>    <span class="n">ri</span><span class="o">--</span><span class="p">;</span>            <span class="c1">//从右向左，找小于中心点的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">le</span> <span class="o">&lt;=</span> <span class="n">ri</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">temp</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="n">le</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">num</span><span class="p">[</span><span class="n">le</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="n">ri</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">num</span><span class="p">[</span><span class="n">ri</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">le</span><span class="o">++</span><span class="p">;</span>    <span class="n">ri</span><span class="o">--</span><span class="p">;</span>                        <span class="c1">//互换后，左下标与右下标，向前滚动一个位置  （如果交换后不进行滚动，此时while条件永远不成立，if条件始终成立，程序无限循环进行交换）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">!=</span> <span class="n">le</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Quickly_sort</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">ri</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">ri</span> <span class="o">!=</span> <span class="n">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Quickly_sort</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">le</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">324</span><span class="p">,</span> <span class="mi">75</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>                <span class="c1">//获取数组长度（数组所占内存大小除以数组元素所占字节）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">Quickly_sort</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>                            <span class="c1">//传入数组首地址,首元素的下标,末尾元素的下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="算法分析-3">
+  算法分析
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="时间复杂度-3">
+  时间复杂度
+  <a class="heading-link" href="#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>快速排序的时间复杂度取决于递归树的深度，最好情况下每次将记录均匀分割成两个长度大致相等的子表，时间复杂度为 O(nlog2n)，最坏情况下其递归树为单支树，比较次数为<code>$n^2/2$</code>，平均情况下，快速排序的时间复杂度为 O(nlog2n)。</p>
+<h4 id="空间复杂度-3">
+  空间复杂度
+  <a class="heading-link" href="#%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>快速排序是递归的，执行时需要一个栈来存放相应的数据，最大递归调用次数与递归树的深度一致，最好情况为 O(log2n)，最坏情况下为 O(n).</p>
+<h3 id="算法特点-3">
+  算法特点
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%89%b9%e7%82%b9-3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>记录非顺次的移动导致排序方法是不稳定的</li>
+<li>排序过程中需要定位表的下界和上界，所以适合顺序结构，很难用于链式结构。</li>
+<li>当 n 较大时，在平均情况下快速排序是所有内部排序方法中速度最快的一种，所以其适合初始记录无序，n 较大的情况。</li>
+</ul>
+<h1 id="选择排序">
+  选择排序
+  <a class="heading-link" href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>选择排序的基本思想是每一趟从待排序的记录中选出关键字最小的记录，按顺序放在已排好序的记录序列的最后，直到全部排完为止。</p>
+<h2 id="简单选择排序">
+  简单选择排序
+  <a class="heading-link" href="#%e7%ae%80%e5%8d%95%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>简单选择排序也称为直接选择排序</p>
+<h3 id="算法步骤-5">
+  算法步骤
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>设待排序记录存放在数组 r[1…n]中，第一趟从 r[1]开始，通过 n-1 次比较，从 n 个记录中选出关键字最小的记录，记为 r[k]，交换 r[1]与 r[k].</li>
+<li>第二趟从 r[2]开始，通过 n-2 次比较，从 n-1 个记录中选出<strong>关键字最小</strong>的记录，记为 r[k]，交换 r[2]和 r[k]。</li>
+<li>依次类推，第 i 趟从 r[i]开始，通过 n-1 次比较，从 n-i+1 个记录中选出关键字最小的记录，记为 r[k]，交换 r[i]与 r[k].</li>
+<li>经过 n-1 趟，排序完成。</li>
+</ul>
+<h3 id="算法描述-4">
+  算法描述
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0-4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">SelectSort</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span><span class="o">++</span><span class="n">j</span><span class="p">){</span>        <span class="c1">//找出最小关键字的下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">key</span><span class="p">)</span> <span class="n">k</span><span class="o">=</span><span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="o">!=</span> <span class="n">i</span><span class="p">){</span>        <span class="c1">//k==i表示不存在比k小的关键字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">t</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="算法分析-4">
+  算法分析
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="时间复杂度-4">
+  时间复杂度
+  <a class="heading-link" href="#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>简单排序过程中，所需进行记录移动的次数较少，最好的情况下不移动，最坏的情况下需要移动 3(n−1)次，无论记录初始排序如何，所需进行的个关键字比较次数相同，为<code>$n^2/2$</code>，因此简单选择排序时间复杂度为<code>$O(n^2)$</code>。</p>
+<h4 id="空间复杂度-4">
+  空间复杂度
+  <a class="heading-link" href="#%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>同冒泡排序一样，只有在两个记录交换时需要一个辅助空间，空间复杂度为 O(1)。</p>
+<h3 id="算法特点-4">
+  算法特点
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%89%b9%e7%82%b9-4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>它是一种稳定的排序</li>
+<li>可用于链式存储结构</li>
+<li>移动记录次数较少，当每一记录占用空间较多时，此方法比直接插入排序快。</li>
+</ul>
+<h1 id="归并排序">
+  归并排序
+  <a class="heading-link" href="#%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>归并排序就是将两个或两个以上有序表合并成一个有序表的过程，将两个有序表合并成一个有序表的过程称为 <strong>2-路归并</strong>。
+假设初始系列含有 n 个记录，则可看成是 n 个有序的子序列，每个子序列的长度为 1，然后两两归并，得到[n/2]个长度为 2 或 1 的有序子序列，再两两归并，如重复，直到得到一个长度为 n 的有序序列为止。</p>
+<h2 id="算法步骤-6">
+  算法步骤
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="归并相邻两个有序序列">
+  归并相邻两个有序序列
+  <a class="heading-link" href="#%e5%bd%92%e5%b9%b6%e7%9b%b8%e9%82%bb%e4%b8%a4%e4%b8%aa%e6%9c%89%e5%ba%8f%e5%ba%8f%e5%88%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>设两个有序表存在同一数组中相邻位置，R[low…mid]和 R[mid+1..high]，每次分别从两个表中取出一个记录进行关键字比较，将较小者放入 T[low..high]中，重复此过程，直至其中一个表为空，最后将另一非空表中余下的部分直接复制到 T 中。</p>
+<h3 id="归并排序步骤">
+  归并排序步骤
+  <a class="heading-link" href="#%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f%e6%ad%a5%e9%aa%a4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>将当前序列一分为二，求出分裂点 mid = [(low+high)/2]。</li>
+<li>对子序列 R[low…mid]递归，进行归并排序，结果存入 S[low…mid]中。</li>
+<li>对子序列 R[mid+1…high]递归，进行递归排序，结果存入 S[mid+1…high]。</li>
+<li>调用算法 Merge，将有序的两个子序列 S[low…mid]和 S[mid+1…high]归并成一个有序的序列 T[low…high]。</li>
+</ul>
+<p>递归过程举例</p>
+<p><img src="../static/CDM5bwR2ooJkgFxb2Gzc8nAznYg.png" alt=""></p>
+<h2 id="算法描述-5">
+  算法描述
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0-5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="递归算法">
+  递归算法
+  <a class="heading-link" href="#%e9%80%92%e5%bd%92%e7%ae%97%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//相邻两个有序子序列的归并
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Merge</span><span class="p">(</span><span class="n">RedType</span> <span class="n">R</span><span class="p">[],</span><span class="n">RedType</span> <span class="n">T</span><span class="p">[],</span><span class="kt">int</span> <span class="n">low</span><span class="p">,</span><span class="kt">int</span> <span class="n">mid</span><span class="p">,</span><span class="kt">int</span> <span class="n">high</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="n">low</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">j</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">k</span> <span class="o">=</span> <span class="n">low</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">mid</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;=</span><span class="n">high</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">key</span> <span class="o">&lt;=</span> <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">key</span><span class="p">)</span> <span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">mid</span><span class="p">)</span> <span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">];</span>        <span class="c1">//移动剩余记录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="n">j</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span> <span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//归并排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">MSort</span><span class="p">(</span><span class="n">RedType</span> <span class="n">R</span><span class="p">[],</span><span class="n">RedType</span> <span class="n">T</span><span class="p">[],</span><span class="kt">int</span> <span class="n">low</span><span class="p">,</span><span class="kt">int</span> <span class="n">high</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">S</span><span class="p">[</span><span class="n">MAXSIZE</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">low</span> <span class="o">==</span> <span class="n">high</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">T</span><span class="p">[</span><span class="n">low</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">low</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span><span class="o">+</span><span class="n">high</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">MSort</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">low</span><span class="p">,</span><span class="n">mid</span><span class="p">);</span>            <span class="c1">//对左子序列递归排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">MSort</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">high</span><span class="p">);</span>        <span class="c1">//对右子序列递归排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">Merge</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">low</span><span class="p">,</span><span class="n">mid</span><span class="p">,</span><span class="n">high</span><span class="p">);</span>    <span class="c1">//归并
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">MergeSort</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">MSort</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">,</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">,</span><span class="mi">1</span><span class="err">，</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="非递归算法">
+  非递归算法
+  <a class="heading-link" href="#%e9%9d%9e%e9%80%92%e5%bd%92%e7%ae%97%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">MergeSort2</span><span class="p">(</span><span class="n">SqList</span> <span class="o">*</span><span class="n">L</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">*</span> <span class="n">TR</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">L</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">MergePass</span><span class="p">(</span><span class="n">L</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">,</span><span class="n">TR</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">);</span>    <span class="c1">//将L-&gt;r的序列两两归并到TR
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">k</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">MergePass</span><span class="p">(</span><span class="n">TR</span><span class="p">,</span><span class="n">L</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">L</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">);</span>    <span class="c1">//将TR的序列两两归并到L-&gt;r
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">k</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">MergePass</span><span class="p">(</span><span class="kt">int</span> <span class="n">SR</span><span class="p">[],</span><span class="kt">int</span> <span class="n">TR</span><span class="p">[],</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>    <span class="c1">//增量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 1、2归并，3、4归并...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Merge</span><span class="p">(</span><span class="n">SR</span><span class="p">,</span><span class="n">TR</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//尾数处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">-</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="nf">Merge</span><span class="p">(</span><span class="n">SR</span><span class="p">,</span><span class="n">TR</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>    <span class="c1">//归并最后两个序列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span><span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>    <span class="c1">//若最后只剩单个子序列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">TR</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">SR</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="算法分析-5">
+  算法分析
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="递归算法-1">
+  递归算法
+  <a class="heading-link" href="#%e9%80%92%e5%bd%92%e7%ae%97%e6%b3%95-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>当有 n 个记录时，需要进行 log2n 趟归并排序，每一趟排序，其关键字比较次数不超 n，元素移动次数为 n，因此归并排序的时间复杂度为 O(nlow2n)。</p>
+<p>由于归并排序在归并过程中需要与原始记录序列同样数量的存储空间存放归并结果以及递归时深度为 log2n 的栈空间，因此空间复杂度为 O(n+logn)。</p>
+<h3 id="非递归算法-1">
+  非递归算法
+  <a class="heading-link" href="#%e9%9d%9e%e9%80%92%e5%bd%92%e7%ae%97%e6%b3%95-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>非递归的迭代方法，避免了递归时深度为 log2n 的栈空间，空间只是用到申请归并临时用的 TR 数组，因此空间复杂度为 O(n)，并且避免递归也在时间性能上有一定的提升。</p>
+<h2 id="算法特点-5">
+  算法特点
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%89%b9%e7%82%b9-5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>稳定排序</li>
+<li>可用于链式结构</li>
+</ul>
+<h1 id="基数排序">
+  基数排序
+  <a class="heading-link" href="#%e5%9f%ba%e6%95%b0%e6%8e%92%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>分配排序是根据关键字中各位的值，通过对待排序记录进行若干趟分配和收集来实现排序的，是一种借助于多关键字排序的思想对单关键字排序的方法。</p>
+<p>假设记录的逻辑关键字由 d 个关键字组成，每个关键字可能取 rd 个值，只要从最低数位关键字起，按关键字的不同值将序列中记录分配到 rd 个队列中再收集之，如此重复 d 次完成排序，这种方法称为基数排序。</p>
+<h2 id="算法步骤-7">
+  算法步骤
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-7">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>以链表存储 n 个待排记录，并令表头指针指向第一个记录</li>
+<li>第一趟分配对最低数位关键字进行，改变记录的指针值将链表中的记录分配至 10 个链队列中，每个队列中的记录关键字的个位数相等。</li>
+</ul>
+<p><img src="../static/GaKGbFg76o0FBJxCkOMcIjitnTe.png" alt=""></p>
+<p>第一趟收集是改变所有非空队列的队尾记录的指针域，令其指向下一个非空队列的队头记录，重新将 10 个队列中的记录链成一个链表。</p>
+<p><img src="../static/M8tmbGWBOobMK5xolGPc6NkGnBc.png" alt=""></p>
+<p>第二趟分配和第二趟收集是对十位数进行的，第三次分配和收集是对百位数进行的，如此反复，至此排序完毕。</p>
+<p><img src="../static/GcyPbP1hpo0XhZxWAlPcYhzun7f.png" alt=""></p>
+<h2 id="算法示例">
+  算法示例
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%a4%ba%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAXNUM_KEY 8        </span><span class="c1">//关键字项数最大值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define RADIX 10            </span><span class="c1">//关键字基数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define MAX_SPACE 10000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">KeyType</span> <span class="n">keys</span><span class="p">[</span><span class="n">MAXNUM_KEY</span><span class="p">];</span>        <span class="c1">//关键字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">InfoType</span> <span class="n">otheritems</span><span class="p">;</span>            <span class="c1">//其他数据项
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">SLCell</span><span class="p">;</span>                            <span class="c1">//静态链表结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SLCell</span> <span class="n">r</span><span class="p">[</span><span class="n">MAX_SPACE</span><span class="p">];</span>            <span class="c1">//可利用空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">keynum</span><span class="p">;</span>                        <span class="c1">//当前关键字个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">recnum</span><span class="p">;</span>                        <span class="c1">//当前长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">SLList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">int</span> <span class="n">ArrType</span><span class="p">[</span><span class="n">RADIX</span><span class="p">];</span>            <span class="c1">//数组类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//建立RADIX个子表，使同一子表中记录的key[i]相同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Distribute</span><span class="p">(</span><span class="n">SLCell</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">ArrType</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">,</span><span class="n">ArrType</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//子表初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">RADIX</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">next</span><span class="p">;</span><span class="n">p</span><span class="p">;</span><span class="n">p</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">next</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">j</span> <span class="o">=</span> <span class="nf">ord</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span>        <span class="c1">//ord将记录中第i个关键字映射
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">r</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="n">j</span><span class="p">]].</span><span class="n">next</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>                    <span class="c1">//p所指结点插入第j个子表中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//按keys[i]自小到大将f[0..RADIX-1]所指各子表依次链接成链表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Collect</span><span class="p">(</span><span class="n">SLCell</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">ArrType</span> <span class="n">f</span><span class="p">,</span><span class="n">ArrType</span> <span class="n">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">!</span><span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">];</span> <span class="n">j</span><span class="o">=</span><span class="nf">succ</span><span class="p">(</span><span class="n">j</span><span class="p">));</span>    <span class="c1">//succ是求后继函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">next</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">t</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">RADIX</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="nf">succ</span><span class="p">(</span><span class="n">j</span><span class="p">);</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">RADIX</span><span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">];</span> <span class="n">j</span><span class="o">=</span><span class="nf">succ</span><span class="p">(</span><span class="n">j</span><span class="p">));</span>    <span class="c1">//找下一个非空子表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>        <span class="c1">//链接两个非空子表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">r</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">next</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">t</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">next</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>        <span class="c1">//指向最后一个非空子表中最后一个结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//对L做基数排序，使L成为按关键字自小到大有序静态链表，L.r[0]为头节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">RadixSort</span><span class="p">(</span><span class="n">SLList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">){</span>    <span class="c1">//L是静态链表表示的顺序表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">L</span><span class="p">.</span><span class="n">recnum</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">next</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="n">L</span><span class="p">.</span><span class="n">recnum</span><span class="p">].</span><span class="n">next</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">L</span><span class="p">.</span><span class="n">keynum</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Distribute</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">e</span><span class="p">);</span>        <span class="c1">//分配
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">Collect</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">r</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">e</span><span class="p">);</span>            <span class="c1">//收集
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="算法分析-6">
+  算法分析
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>假设每个记录含 d 个关键字，每个关键字取值范围为 rd 个值。</p>
+<h3 id="时间复杂度-5">
+  时间复杂度
+  <a class="heading-link" href="#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>对 n 个记录进行基数排序，每一趟分配的时间复杂度为 O(n)，每一趟收集的时间复杂度为 O(rd),整个排序需进行 d 趟分配和收集，时间复杂度为 O(d(n+rd)).</p>
+<h3 id="空间复杂度-5">
+  空间复杂度
+  <a class="heading-link" href="#%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6-5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>所需辅助空间为 2rd 个队列指针，另外由于需用链表做存储结构，则相对于其他以顺序结构存储记录的排序方法而言，增加了 n 个指针域空间，所以时间复杂度为 O(n+rd).</p>
+<h2 id="算法特点-6">
+  算法特点
+  <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%89%b9%e7%82%b9-6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>稳定排序</li>
+<li>可用于链式存储结构，也可用于顺序结构</li>
+<li>时间复杂度可以突破基于关键字比较一类方法的下界 O(nlog2n)，达到 O(n).</li>
+<li>基数排序需要知道各级关键字的主次关系和取值范围。</li>
+</ul>
+
+    </div>
+    
+
+    <footer>
+      
+
+
+      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+  
+  
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2025
+     一个梦想家 
+    ·
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

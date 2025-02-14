@@ -1,50 +1,105 @@
 {{ define "title" }}
-  {{ .Title }} · {{ .Site.Title }}
+{{ .Title }} · {{ .Site.Title }}
 {{ end }}
+
 {{ define "content" }}
-  <section class="container post">
-    <article>
-      <header>
-        <div class="post-title">
-          <h1 class="title">
-            <a class="title-link" href="{{ .Permalink | safeURL }}">
-              {{ .Title }}
-            </a>
-          </h1>
-        </div>
-        <div class="post-meta">
-          <div class="date">
-            <span class="posted-on">
-              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-              <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-                {{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}
-              </time>
-            </span>
-            <span class="reading-time">
-              <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              {{ i18n "reading_time" .ReadingTime }}
-            </span>
-          </div>
-          {{ with .GetTerms "authors" }}{{ partial "taxonomy/authors.html" . }}{{ end }}
-          {{ with .GetTerms "categories" }}{{ partial "taxonomy/categories.html" . }}{{ end }}
-          {{ with .GetTerms "tags" }}{{ partial "taxonomy/tags.html" . }}{{ end }}
-        </div>
-      </header>
 
-      <div class="post-content">
-        {{ if .Params.featuredImage }}
-          <img src="{{ .Params.featuredImage | relURL }}" alt="Featured image"/>
-        {{ end }}
-        {{ .Content }}
+{{ partial "toc.html" . }}
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+  
+      let timer;
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.remove('hidden');
+      });
+  
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.add('hidden');
+        }, 300);
+      });
+  
+      // 监听滚动，高亮当前阅读位置
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+  
+      const observerOptions = {
+        rootMargin: '-70px 0px -30% 0px',
+        threshold: 1.0
+      };
+  
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + entry.target.id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+  
+      headings.forEach(heading => observer.observe(heading));
+  
+      // 初始状态设置为隐藏
+      toc.classList.add('hidden');
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="{{ .Permalink | safeURL }}">
+            {{ .Title }}
+          </a>
+        </h1>
       </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">
+              {{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            {{ i18n "reading_time" .ReadingTime }}
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            {{ .WordCount }} 字数
+          </span>
+        </div>
+        {{ with .GetTerms "authors" }}{{ partial "taxonomy/authors.html" . }}{{ end }}
+        {{ with .GetTerms "categories" }}{{ partial "taxonomy/categories.html" . }}{{ end }}
+        {{ with .GetTerms "tags" }}{{ partial "taxonomy/tags.html" . }}{{ end }}
+      </div>
+    </header>
 
+    <div class="post-content">
+      {{ if .Params.featuredImage }}
+      <img src="{{ .Params.featuredImage | relURL }}" alt="Featured image" />
+      {{ end }}
+      {{ .Content }}
+    </div>
+    
 
-      <footer>
-        {{ partial "posts/series.html" . }}
-        {{ partial "posts/twikoo.html" . }}
-      </footer>
-    </article>
-
-    {{ partial "posts/math.html" . }}
-  </section>
+    <footer>
+      {{ partial "posts/series.html" . }}
+      {{ partial "posts/twikoo.html" . }}
+    </footer>
+  </article>
+  {{ partial "posts/math.html" . }}
+  
+</section>
 {{ end }}

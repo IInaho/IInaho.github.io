@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+矩阵转换 · inaho
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="一个梦想家">
+<meta name="description" content="
+  矩阵转换
+  
+    
+    链接到标题
+  
+
+
+  矩阵转换
+  
+    
+    链接到标题
+  
+
+矩阵可以看作是一个向量的函数，则矩阵可以表示变换。
+假设有以下向量(x,y),如何让该向量每个点横坐标扩大 a 倍，纵坐标扩大 b 倍，根据矩阵的点乘性质，则可以推出
+
+假设矩阵还可以表示一个图形，那么如何将图形关于 x 轴翻转，也可以通过点乘另一个矩阵进行转换。例如
+
+由此也可以推广出更多的转换。
+
+关于 y 轴的翻转
+
+关于原点的翻转
+
+沿 x 方向错切
+
+沿 y 方向错切
+
+关于原点进行旋转 sitar 角度
+
+
+  单位矩阵
+  
+    
+    链接到标题
+  
+
+如果一个矩阵点乘另一个矩阵，矩阵的每一个元素没有发生任何变化，则称这种矩阵为单位矩阵。
+
+
+  性质
+  
+    
+    链接到标题
+  
+
+
+单位矩阵的主对角线全为 1.
+单位矩阵一定是方阵.
+假设单位矩阵为 I，另一个矩阵为 A，则 I · A = A，A · I = A
+
+
+  矩阵的逆
+  
+    
+    链接到标题
+  
+
+
+  定义
+  
+    
+    链接到标题
+  
+
+在数字系统中，除了 0 之外，X * 1/X = 1.">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="矩阵转换">
+  <meta name="twitter:description" content="矩阵转换 链接到标题 矩阵转换 链接到标题 矩阵可以看作是一个向量的函数，则矩阵可以表示变换。
+假设有以下向量(x,y),如何让该向量每个点横坐标扩大 a 倍，纵坐标扩大 b 倍，根据矩阵的点乘性质，则可以推出
+假设矩阵还可以表示一个图形，那么如何将图形关于 x 轴翻转，也可以通过点乘另一个矩阵进行转换。例如
+由此也可以推广出更多的转换。
+关于 y 轴的翻转
+关于原点的翻转
+沿 x 方向错切
+沿 y 方向错切
+关于原点进行旋转 sitar 角度
+单位矩阵 链接到标题 如果一个矩阵点乘另一个矩阵，矩阵的每一个元素没有发生任何变化，则称这种矩阵为单位矩阵。
+性质 链接到标题 单位矩阵的主对角线全为 1. 单位矩阵一定是方阵. 假设单位矩阵为 I，另一个矩阵为 A，则 I · A = A，A · I = A 矩阵的逆 链接到标题 定义 链接到标题 在数字系统中，除了 0 之外，X * 1/X = 1.">
+
+<meta property="og:url" content="//localhost:1313/posts/viowdclanoqlrhxvnuzcjoxvnde/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="矩阵转换">
+  <meta property="og:description" content="矩阵转换 链接到标题 矩阵转换 链接到标题 矩阵可以看作是一个向量的函数，则矩阵可以表示变换。
+假设有以下向量(x,y),如何让该向量每个点横坐标扩大 a 倍，纵坐标扩大 b 倍，根据矩阵的点乘性质，则可以推出
+假设矩阵还可以表示一个图形，那么如何将图形关于 x 轴翻转，也可以通过点乘另一个矩阵进行转换。例如
+由此也可以推广出更多的转换。
+关于 y 轴的翻转
+关于原点的翻转
+沿 x 方向错切
+沿 y 方向错切
+关于原点进行旋转 sitar 角度
+单位矩阵 链接到标题 如果一个矩阵点乘另一个矩阵，矩阵的每一个元素没有发生任何变化，则称这种矩阵为单位矩阵。
+性质 链接到标题 单位矩阵的主对角线全为 1. 单位矩阵一定是方阵. 假设单位矩阵为 I，另一个矩阵为 A，则 I · A = A，A · I = A 矩阵的逆 链接到标题 定义 链接到标题 在数字系统中，除了 0 之外，X * 1/X = 1.">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:tag" content="数学">
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/viowdclanoqlrhxvnuzcjoxvnde/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <h2>目录</h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#矩阵转换-1">矩阵转换</a></li>
+    <li><a href="#单位矩阵">单位矩阵</a>
+      <ul>
+        <li><a href="#性质">性质</a></li>
+      </ul>
+    </li>
+    <li><a href="#矩阵的逆">矩阵的逆</a>
+      <ul>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#性质与推广">性质与推广</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+  
+      let timer;
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.remove('hidden');
+      });
+  
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.add('hidden');
+        }, 300);
+      });
+  
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+  
+      const observerOptions = {
+        rootMargin: '-70px 0px -30% 0px',
+        threshold: 1.0
+      };
+  
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + entry.target.id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+  
+      headings.forEach(heading => observer.observe(heading));
+  
+      
+      toc.classList.add('hidden');
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/viowdclanoqlrhxvnuzcjoxvnde/">
+            矩阵转换
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2023-07-07T00:00:00Z">
+              July 7, 2023
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：1 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            121 字数
+          </span>
+        </div>
+        <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/lzy/">Lzy</a></div>
+
+        <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></div>
+
+        <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+    </span></div>
+
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="矩阵转换">
+  矩阵转换
+  <a class="heading-link" href="#%e7%9f%a9%e9%98%b5%e8%bd%ac%e6%8d%a2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="矩阵转换-1">
+  矩阵转换
+  <a class="heading-link" href="#%e7%9f%a9%e9%98%b5%e8%bd%ac%e6%8d%a2-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>矩阵可以看作是一个向量的函数，则矩阵可以表示变换。</p>
+<p>假设有以下向量(x,y),如何让该向量每个点横坐标扩大 a 倍，纵坐标扩大 b 倍，根据矩阵的点乘性质，则可以推出</p>
+<p><img src="../static/TIyzbIEPfoPDCQx0SILcrgFbnAc.png" alt=""></p>
+<p>假设矩阵还可以表示一个图形，那么如何将图形关于 x 轴翻转，也可以通过点乘另一个矩阵进行转换。例如</p>
+<p><img src="../static/Ip3GbprvdoXxMXxqQIDcJrMwnBb.png" alt=""></p>
+<p>由此也可以推广出更多的转换。</p>
+<hr>
+<p>关于 y 轴的翻转</p>
+<p><img src="../static/QK9bbhbT7on7cAxjaOBcO0cjn2f.png" alt=""></p>
+<p>关于原点的翻转</p>
+<p><img src="../static/TQYQbJe47ojBEVxWoWVc99eYnCc.png" alt=""></p>
+<p>沿 x 方向错切</p>
+<p><img src="../static/GCJIbwoxvoBHOpxHdXUcDJ8Dnth.png" alt=""></p>
+<p>沿 y 方向错切</p>
+<p><img src="../static/Yczyb8X0Yoff4Ox11rmc9gkxnmM.png" alt=""></p>
+<p>关于原点进行旋转 sitar 角度</p>
+<p><img src="../static/NEhTbJvkAojO18x2se0cWB6dnQb.png" alt=""></p>
+<h2 id="单位矩阵">
+  单位矩阵
+  <a class="heading-link" href="#%e5%8d%95%e4%bd%8d%e7%9f%a9%e9%98%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>如果一个矩阵点乘另一个矩阵，矩阵的每一个元素没有发生任何变化，则称这种矩阵为单位矩阵。</p>
+<p><img src="../static/AwiQbXbzvopNAGxKrL9cbUgtn2y.png" alt=""></p>
+<h3 id="性质">
+  性质
+  <a class="heading-link" href="#%e6%80%a7%e8%b4%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>单位矩阵的主对角线全为 1.</li>
+<li>单位矩阵一定是方阵.</li>
+<li>假设单位矩阵为 I，另一个矩阵为 A，则 I · A = A，A · I = A</li>
+</ul>
+<h2 id="矩阵的逆">
+  矩阵的逆
+  <a class="heading-link" href="#%e7%9f%a9%e9%98%b5%e7%9a%84%e9%80%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="定义">
+  定义
+  <a class="heading-link" href="#%e5%ae%9a%e4%b9%89">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>在数字系统中，除了 0 之外，X * 1/X = 1.</p>
+<p>那么在矩阵中，设矩阵 A，B。如果 A · B = B · A = I，则称 B 为 A 的逆矩阵，记作 B = 1/A.</p>
+<h3 id="性质与推广">
+  性质与推广
+  <a class="heading-link" href="#%e6%80%a7%e8%b4%a8%e4%b8%8e%e6%8e%a8%e5%b9%bf">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>在矩阵系统中，有一些矩阵并没有逆矩阵。如果矩阵 A 存在逆矩阵，则称 A 为可逆矩阵，或者叫非奇异矩阵(non-singular)，相反如果矩阵不可逆，则称为不可逆矩阵，或者奇异矩阵(singular)。</li>
+<li>如果存在矩阵 A，B，C，B·A = I，则称 B 是 A 的左逆矩阵。如果 A·C = I，则称 C 是 A 的右逆矩阵。</li>
+<li>如果一个矩阵 A 既存在左逆矩阵 B，又存在右逆矩阵 C，则 B=C。</li>
+<li>对于矩阵 A,如果存在逆矩阵 B，则 B 唯一。</li>
+<li>可逆矩阵一定为方阵，非方阵一定不可逆。</li>
+<li>A 的 0 次方 = I，A 的-1 次方为 A 的逆。</li>
+<li>矩阵的逆的转置等于矩阵的转置的逆。</li>
+</ul>
+<p><img src="../static/WkaFbaZYBoBf94x7RJ5cuTd1nTc.png" alt=""></p>
+
+    </div>
+    
+
+    <footer>
+      
+
+
+      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+  
+  
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2025
+     一个梦想家 
+    ·
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

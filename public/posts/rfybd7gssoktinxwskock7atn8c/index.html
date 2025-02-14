@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+散列表的查找 · inaho
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="一个梦想家">
+<meta name="description" content="
+  散列表
+  
+    
+    链接到标题
+  
+
+
+  散列表的定义
+  
+    
+    链接到标题
+  
+
+顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。
+如果在元素的存储位置与关键字建立对应关系，进行查找时就无需进行比较，或者少数的比较，这就是散列查找法的思想，它通过对元素的关键字值进行某种运算，直接求出元素的存储位置，因此散列查找法又称为杂凑法或者散列法。
+
+散列函数和散列地址: 在记录的存储位置 p 和其关键字 key 之间建立一个确定的对应关系 H，使 p=H(key)，称这个对应关系 H 为散列函数(又称为哈希函数)，p 为散列地址。
+散列表或哈希表: 一个有限连续的地址空间，用以存储按散列函数计算得到相应散列地址的数据记录，通常散列表的存储空间是一个一维数组，散列地址是数组的下标。
+冲突和同义词: 对不同的关键字可能得到同一散列地址，即 key1≠key2，而 H(key1)=H(key2),这种现象称为冲突。具有相同函数值的关键字对该散列函数来说称作同义词，key1 与 key2 互称为同义词。
+
+散列查找法主要研究以下两个问题:
+
+如何构造散列函数
+如何处理冲突
+
+
+  散列函数的构造方法
+  
+    
+    链接到标题
+  
+
+构造散列表应该考虑下列因素:
+
+散列表的长度
+关键字的长度
+关键字的分布情况
+计算散列函数所需的时间
+记录的查找频率
+
+构造好的散列函数应该遵循以下两条原则:
+
+函数计算简单，每一个关键字只能有一个散列地址与之对应
+函数的值域需在表长的范围内，计算出的散列地址的分布应均匀，尽可能减少冲突。
+
+
+  构造散列函数的常用方法
+  
+    
+    链接到标题
+  
+
+
+  直接定址法
+  
+    
+    链接到标题
+  
+
+这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key&#43;b
+这样的散列函数优点是简单、均匀，也不会产生冲突，但需要事先知道关键字的分布情况，适合查找表较小且连续的情况，现实应用中并不常用。
+
+  数字分析法
+  
+    
+    链接到标题
+  
+
+如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。
+这种方法事先必须明确知道所有的关键字每一位上各种数字的分布情况，实际应用中例如手机号、同一出版社的所有图书等，某些位是相同的，可以抽取其他位作为散列地址。
+
+  平方取中法
+  
+    
+    链接到标题
+  
+
+平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="散列表的查找">
+  <meta name="twitter:description" content="散列表 链接到标题 散列表的定义 链接到标题 顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。 如果在元素的存储位置与关键字建立对应关系，进行查找时就无需进行比较，或者少数的比较，这就是散列查找法的思想，它通过对元素的关键字值进行某种运算，直接求出元素的存储位置，因此散列查找法又称为杂凑法或者散列法。
+散列函数和散列地址: 在记录的存储位置 p 和其关键字 key 之间建立一个确定的对应关系 H，使 p=H(key)，称这个对应关系 H 为散列函数(又称为哈希函数)，p 为散列地址。 散列表或哈希表: 一个有限连续的地址空间，用以存储按散列函数计算得到相应散列地址的数据记录，通常散列表的存储空间是一个一维数组，散列地址是数组的下标。 冲突和同义词: 对不同的关键字可能得到同一散列地址，即 key1≠key2，而 H(key1)=H(key2),这种现象称为冲突。具有相同函数值的关键字对该散列函数来说称作同义词，key1 与 key2 互称为同义词。 散列查找法主要研究以下两个问题:
+如何构造散列函数 如何处理冲突 散列函数的构造方法 链接到标题 构造散列表应该考虑下列因素:
+散列表的长度 关键字的长度 关键字的分布情况 计算散列函数所需的时间 记录的查找频率 构造好的散列函数应该遵循以下两条原则:
+函数计算简单，每一个关键字只能有一个散列地址与之对应 函数的值域需在表长的范围内，计算出的散列地址的分布应均匀，尽可能减少冲突。 构造散列函数的常用方法 链接到标题 直接定址法 链接到标题 这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key&#43;b
+这样的散列函数优点是简单、均匀，也不会产生冲突，但需要事先知道关键字的分布情况，适合查找表较小且连续的情况，现实应用中并不常用。
+数字分析法 链接到标题 如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。
+这种方法事先必须明确知道所有的关键字每一位上各种数字的分布情况，实际应用中例如手机号、同一出版社的所有图书等，某些位是相同的，可以抽取其他位作为散列地址。
+平方取中法 链接到标题 平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。">
+
+<meta property="og:url" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="散列表的查找">
+  <meta property="og:description" content="散列表 链接到标题 散列表的定义 链接到标题 顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。 如果在元素的存储位置与关键字建立对应关系，进行查找时就无需进行比较，或者少数的比较，这就是散列查找法的思想，它通过对元素的关键字值进行某种运算，直接求出元素的存储位置，因此散列查找法又称为杂凑法或者散列法。
+散列函数和散列地址: 在记录的存储位置 p 和其关键字 key 之间建立一个确定的对应关系 H，使 p=H(key)，称这个对应关系 H 为散列函数(又称为哈希函数)，p 为散列地址。 散列表或哈希表: 一个有限连续的地址空间，用以存储按散列函数计算得到相应散列地址的数据记录，通常散列表的存储空间是一个一维数组，散列地址是数组的下标。 冲突和同义词: 对不同的关键字可能得到同一散列地址，即 key1≠key2，而 H(key1)=H(key2),这种现象称为冲突。具有相同函数值的关键字对该散列函数来说称作同义词，key1 与 key2 互称为同义词。 散列查找法主要研究以下两个问题:
+如何构造散列函数 如何处理冲突 散列函数的构造方法 链接到标题 构造散列表应该考虑下列因素:
+散列表的长度 关键字的长度 关键字的分布情况 计算散列函数所需的时间 记录的查找频率 构造好的散列函数应该遵循以下两条原则:
+函数计算简单，每一个关键字只能有一个散列地址与之对应 函数的值域需在表长的范围内，计算出的散列地址的分布应均匀，尽可能减少冲突。 构造散列函数的常用方法 链接到标题 直接定址法 链接到标题 这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key&#43;b
+这样的散列函数优点是简单、均匀，也不会产生冲突，但需要事先知道关键字的分布情况，适合查找表较小且连续的情况，现实应用中并不常用。
+数字分析法 链接到标题 如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。
+这种方法事先必须明确知道所有的关键字每一位上各种数字的分布情况，实际应用中例如手机号、同一出版社的所有图书等，某些位是相同的，可以抽取其他位作为散列地址。
+平方取中法 链接到标题 平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:tag" content="数据结构">
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <h2>目录</h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#散列表的定义">散列表的定义</a></li>
+    <li><a href="#散列函数的构造方法">散列函数的构造方法</a>
+      <ul>
+        <li><a href="#构造散列函数的常用方法">构造散列函数的常用方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#处理冲突的方法">处理冲突的方法</a>
+      <ul>
+        <li><a href="#开放地址法">开放地址法</a></li>
+        <li><a href="#链地址法">链地址法</a></li>
+        <li><a href="#公共溢出区法">公共溢出区法</a></li>
+      </ul>
+    </li>
+    <li><a href="#散列表的查找算法实现">散列表的查找算法实现</a>
+      <ul>
+        <li><a href="#散列表查找性能分析">散列表查找性能分析</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+  
+      let timer;
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.remove('hidden');
+      });
+  
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.add('hidden');
+        }, 300);
+      });
+  
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+  
+      const observerOptions = {
+        rootMargin: '-70px 0px -30% 0px',
+        threshold: 1.0
+      };
+  
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + entry.target.id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+  
+      headings.forEach(heading => observer.observe(heading));
+  
+      
+      toc.classList.add('hidden');
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+            散列表的查找
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2023-07-07T00:00:00Z">
+              July 7, 2023
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：2 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            270 字数
+          </span>
+        </div>
+        <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/lzy/">Lzy</a></div>
+
+        <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+
+        <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    </span></div>
+
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="散列表">
+  散列表
+  <a class="heading-link" href="#%e6%95%a3%e5%88%97%e8%a1%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="散列表的定义">
+  散列表的定义
+  <a class="heading-link" href="#%e6%95%a3%e5%88%97%e8%a1%a8%e7%9a%84%e5%ae%9a%e4%b9%89">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。
+如果在元素的存储位置与关键字建立对应关系，进行查找时就无需进行比较，或者少数的比较，这就是<strong>散列查找法</strong>的思想，它通过对元素的关键字值进行某种运算，直接求出元素的存储位置，因此散列查找法又称为杂凑法或者散列法。</p>
+<ul>
+<li>散列函数和散列地址: 在记录的存储位置 p 和其关键字 key 之间建立一个确定的对应关系 H，使 p=H(key)，称这个对应关系 H 为散列函数(又称为哈希函数)，p 为散列地址。</li>
+<li>散列表或哈希表: 一个有限连续的地址空间，用以存储按散列函数计算得到相应散列地址的数据记录，通常散列表的存储空间是一个一维数组，散列地址是数组的下标。</li>
+<li>冲突和同义词: 对不同的关键字可能得到同一散列地址，即 key1≠key2，而 H(key1)=H(key2),这种现象称为冲突。具有相同函数值的关键字对该散列函数来说称作同义词，key1 与 key2 互称为同义词。</li>
+</ul>
+<p>散列查找法主要研究以下两个问题:</p>
+<ul>
+<li>如何构造散列函数</li>
+<li>如何处理冲突</li>
+</ul>
+<h2 id="散列函数的构造方法">
+  散列函数的构造方法
+  <a class="heading-link" href="#%e6%95%a3%e5%88%97%e5%87%bd%e6%95%b0%e7%9a%84%e6%9e%84%e9%80%a0%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>构造散列表应该考虑下列因素:</p>
+<ul>
+<li>散列表的长度</li>
+<li>关键字的长度</li>
+<li>关键字的分布情况</li>
+<li>计算散列函数所需的时间</li>
+<li>记录的查找频率</li>
+</ul>
+<p>构造好的散列函数应该遵循以下两条原则:</p>
+<ul>
+<li>函数<strong>计算简单</strong>，每一个关键字只能有一个散列地址与之对应</li>
+<li>函数的值域需在表长的范围内，计算出的散列地址的<strong>分布应均匀</strong>，尽可能减少冲突。</li>
+</ul>
+<h3 id="构造散列函数的常用方法">
+  构造散列函数的常用方法
+  <a class="heading-link" href="#%e6%9e%84%e9%80%a0%e6%95%a3%e5%88%97%e5%87%bd%e6%95%b0%e7%9a%84%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="直接定址法">
+  直接定址法
+  <a class="heading-link" href="#%e7%9b%b4%e6%8e%a5%e5%ae%9a%e5%9d%80%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key+b</p>
+<p>这样的散列函数优点是简单、均匀，也不会产生冲突，但需要事先知道关键字的分布情况，适合查找表较小且连续的情况，现实应用中并不常用。</p>
+<h4 id="数字分析法">
+  数字分析法
+  <a class="heading-link" href="#%e6%95%b0%e5%ad%97%e5%88%86%e6%9e%90%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。</p>
+<p>这种方法事先必须明确知道所有的关键字每一位上各种数字的分布情况，实际应用中例如手机号、同一出版社的所有图书等，某些位是相同的，可以抽取其他位作为散列地址。</p>
+<h4 id="平方取中法">
+  平方取中法
+  <a class="heading-link" href="#%e5%b9%b3%e6%96%b9%e5%8f%96%e4%b8%ad%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。</p>
+<h4 id="折叠法">
+  折叠法
+  <a class="heading-link" href="#%e6%8a%98%e5%8f%a0%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>将关键字分成位数相同的几部分，然后取这几部分的叠加和(舍去进位)作为散列地址，根据数为叠加的方式，可以把折叠法分为移位叠加和边界叠加两种。</p>
+<p>移位叠加将分割后每部分的最低位对齐，然后相加。边界叠加是将两个相邻的部分沿边界来回折叠，然后对齐相加，例如关键字为 9876543210，分为四组，987|654|321|0，然后将 987 和 321 反转，变成 789+654+123+0=1566，此时散列地址为 566.</p>
+<h4 id="除留余数法">
+  除留余数法
+  <a class="heading-link" href="#%e9%99%a4%e7%95%99%e4%bd%99%e6%95%b0%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>假设散列表表长为 m，选择一个不大于 m 的数 p，用 p 去除关键字，除后所得余数为散列地址，即</p>
+<p>H(key)=key%p</p>
+<p>这个方法的关键是选取适当的 p，一般情况下，可以选 p 为小于表长的最大质数。</p>
+<p>除留余数法计算简单，适用范围非常广，是常用的构造散列表函数的方法，它不仅可以对关键字直接取模，也可在折叠、平方取中等运算后取模，这样能保证散列地址一定落在散列表的地址空间中。</p>
+<h2 id="处理冲突的方法">
+  处理冲突的方法
+  <a class="heading-link" href="#%e5%a4%84%e7%90%86%e5%86%b2%e7%aa%81%e7%9a%84%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>好的散列函数可以在一定程度上避免冲突，但是难以完全避免冲突，创建散列表和查找散列表都会遇到冲突，两种情况下处理冲突的方法应该一致，处理冲突的方法与散列表本身的组织形式有关，按组织形式，通常分为开放地址法和链地址法。</p>
+<h3 id="开放地址法">
+  开放地址法
+  <a class="heading-link" href="#%e5%bc%80%e6%94%be%e5%9c%b0%e5%9d%80%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>把记录都存储在散列表数组中，当某一记录关键字 key 的初始散列地址 H0=H0(key)发生冲突时，以 H0 为基础，采用合适的方法计算得到另一个地址 H1，如果 H1 依然重复，再根据 H1 计算下一个地址 H2…,直到不冲突为止。</p>
+<p>这种方法寻找下一个空的散列地址时，原来数组空间对所有的元素都是开放的，所以称为开放地址法，通常把寻找下一个空位的过程称为探测，可用以下公式表示:</p>
+<p><code>$$ H_i = (H(key) + d_i)\bmod m, \quad i = 1,2,\ldots,k(k \leq m-1) $$</code></p>
+<p>H(key)为散列函数，m 为散列表表长，di 为增量序列，根据 di 的取值可分为 3 种探测方法。</p>
+<h4 id="线性探测法">
+  线性探测法
+  <a class="heading-link" href="#%e7%ba%bf%e6%80%a7%e6%8e%a2%e6%b5%8b%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><code>$$ d_i=1,2,...,m−1 $$</code></p>
+<p>这种探测方法将散列表假想成一个循环表，发生冲突后，从冲突地址下一个单元顺序寻找空单元，如果到最后一个位置也没找到，则回到表头开始找，直到找到一个空位，找不到空位说明散列表已满。</p>
+<h4 id="二次探测法">
+  二次探测法
+  <a class="heading-link" href="#%e4%ba%8c%e6%ac%a1%e6%8e%a2%e6%b5%8b%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><code>$$ d_i=1^2,−1^2,2^2,−2^2,3^2,...,+k^2,−k^2，(k≤m/2) $$</code></p>
+<h4 id="伪随机探测法">
+  伪随机探测法
+  <a class="heading-link" href="#%e4%bc%aa%e9%9a%8f%e6%9c%ba%e6%8e%a2%e6%b5%8b%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>在冲突时，对于位移量 di 采用随机函数计算得到，称之为随机探测法。</p>
+<h4 id="小结">
+  小结
+  <a class="heading-link" href="#%e5%b0%8f%e7%bb%93">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>在处理冲突时发生的两个第一个散列地址不同的记录争夺同一个后继散列地址的现象称为”<strong>二次聚集</strong>“或”<strong>堆积</strong>“。
+线性探测法的优点是只要散列表未填满，总能找到一个不发生冲突的地址，缺点是会产生<strong>堆积</strong>现象，二次探测法和伪随机法可以避免<strong>堆积</strong>现象，但不能保证一定找到不发生冲突的地址。</p>
+<h3 id="链地址法">
+  链地址法
+  <a class="heading-link" href="#%e9%93%be%e5%9c%b0%e5%9d%80%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>如果发生冲突，不需要更换地址，链地址法将所有关键字为同义词的记录存储在一个单链表中，称这种表为同义词子表，在散列表中只存储所有同义词子表的头指针。</p>
+<p>这种方法绝不会出现找不到地址的情况，但是带来了查找时需要遍历单链表的性能损耗。</p>
+<h3 id="公共溢出区法">
+  公共溢出区法
+  <a class="heading-link" href="#%e5%85%ac%e5%85%b1%e6%ba%a2%e5%87%ba%e5%8c%ba%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>将发生冲突的关键字存放到公共溢出区中，如下图所示</p>
+<p><img src="../static/EAcLbpjYjo7BsmxEXMkcOcWanCd.png" alt=""></p>
+<p>在查找时，先在基本表相应位置查找，如果不等，再去溢出区表进行顺序查找，在冲突数据很少的情况下，公共溢出区的结构对于查找性能来说还是很高的。</p>
+<h2 id="散列表的查找算法实现">
+  散列表的查找算法实现
+  <a class="heading-link" href="#%e6%95%a3%e5%88%97%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define SUCCESS 1
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define UNSUCCESS 0
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define HASHSIZE 12        </span><span class="c1">//散列表长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define NULLKEY -32768
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">elem</span><span class="p">;</span>    <span class="c1">//动态数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>    <span class="c1">//元素个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">HashTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>        <span class="c1">//散列表表长
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">InitHashTable</span><span class="p">(</span><span class="n">HashTable</span> <span class="o">*</span><span class="n">H</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="n">HASHSIZE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">H</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">H</span><span class="o">-&gt;</span><span class="n">elem</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">H</span><span class="o">-&gt;</span><span class="n">elem</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">NULLKEY</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Hash</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">key</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">InsertHash</span><span class="p">(</span><span class="n">HashTable</span> <span class="o">*</span><span class="n">H</span><span class="p">,</span><span class="kt">int</span> <span class="n">key</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">addr</span> <span class="o">=</span> <span class="nf">Hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>    <span class="c1">//求散列地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="n">H</span><span class="o">-&gt;</span><span class="n">elem</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">!=</span> <span class="n">NULLKEY</span><span class="p">){</span>        <span class="c1">//开放定址法的线性探测
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="n">addr</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">H</span><span class="o">-&gt;</span><span class="n">elem</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">SearchHash</span><span class="p">(</span><span class="n">HashTable</span> <span class="n">H</span><span class="p">,</span><span class="kt">int</span> <span class="n">key</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">addr</span><span class="p">){</span>    <span class="c1">//散列表查找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">*</span><span class="n">addr</span> <span class="o">=</span> <span class="nf">Hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">H</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="o">*</span><span class="n">addr</span><span class="p">]</span> <span class="o">!=</span> <span class="n">key</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">addr</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">H</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="o">*</span><span class="n">addr</span><span class="p">]</span> <span class="o">==</span> <span class="n">NULLKEY</span> <span class="o">||</span> <span class="o">*</span><span class="n">addr</span> <span class="o">==</span> <span class="nf">Hash</span><span class="p">(</span><span class="n">key</span><span class="p">)){</span>    <span class="c1">//循环回到原点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="n">UNSUCCESS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">SUCCESS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="散列表查找性能分析">
+  散列表查找性能分析
+  <a class="heading-link" href="#%e6%95%a3%e5%88%97%e8%a1%a8%e6%9f%a5%e6%89%be%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>如果没有冲突，散列查找的时间复杂度为 O(1),但实际应用中，冲突不可避免，散列查找的平均查找长度取决于以下三种因素:</p>
+<ul>
+<li>散列函数是否均匀，散列好处的好坏影响出现冲突的频繁程度</li>
+<li>处理冲突的方法，处理冲突的方法不同，会使平均查找长度不同。</li>
+<li>散列表的<strong>装填因子 α=填入表中的记录个数/散列表长度</strong>，α 标志这散列表的装满程度，当填入表中的记录越多，α 越大，产生冲突的可能性越大，所以散列表的平均查找长度取决于装填因子。</li>
+</ul>
+<p>不论记录个数 n 有多大，总可以选择一个合适的装填因子以便将平均查找长度限定在一个范围内，此时散列查找的时间复杂度就是 O(1)，但是会浪费一定的空间。</p>
+
+    </div>
+    
+
+    <footer>
+      
+
+
+      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+  
+  
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2025
+     一个梦想家 
+    ·
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
