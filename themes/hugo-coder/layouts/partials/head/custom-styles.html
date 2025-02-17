@@ -1,4 +1,6 @@
- {{ range .Site.Params.customCSS }}
+<!-- 处理自定义 CSS 和 SCSS 文件的 Hugo 模板 -->
+
+{{ range .Site.Params.customCSS }}
   {{ if hugo.IsServer }}
     {{ $styles := resources.Get . }}
     <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">

@@ -1,7 +1,12 @@
+<!-- Hugo 主题的样式加载模板，用于加载 Hugo 主题所需的样式文件。 -->
+
+
+<!-- 预加载 Font Awesome 字体文件，提高加载性能 -->
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
+<!-- 加载 Hugo 主题所需的样式文件，区分服务器和生产环境 -->
 {{ if hugo.IsServer }}
   {{ $cssOpts := (dict "targetPath" "css/coder.css" "enableSourceMap" true ) }}
   {{ $styles := resources.Get "scss/coder.scss" | resources.ExecuteAsTemplate "style.coder.css" . | toCSS $cssOpts }}
@@ -12,6 +17,7 @@
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
 {{ end }}
 
+<!-- RTL 布局支持 -->
 {{ if .Site.Params.rtl }}
   {{ if hugo.IsServer }}
     {{ $cssOpts := (dict "targetPath" "css/coder-rtl.css" "enableSourceMap" true ) }}

@@ -5,14 +5,21 @@
   <title>
 关于 javaSwing 数据绑定及刷新 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   关于 javaSwing 数据绑定及刷新
   
@@ -48,12 +55,15 @@ public book_list() {
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="关于 javaSwing 数据绑定及刷新">
   <meta name="twitter:description" content="关于 javaSwing 数据绑定及刷新 链接到标题 简介 链接到标题 最近学校期末了，正在进行 java 实训，实训要做一个图书管理系统。对于实现 mysql 数据库数据在 JTable 上的绑定，以及数据更新后界面的刷新时，遇到了问题。由于我对于 JavaSwing 完全不了解 ，实训时也是现学现卖，所以不清楚如何将数据绑定到 JTable 上。看了很多 CSDN 的博客，最后采用了以下方法。
 关于数据绑定的实现 链接到标题 首先创建针对数据的模型类,以下的模型类是基于自定义 Book 表的简单示范
 /*book_list*/ public class book_list extends javax.swing.table.DefaultTableModel{ Class[] types = new Class[] { java.lang.Object.class, java.lang.String.class, java.lang.String.class}; public book_list() { super(new Object[][] {}, new String[] { &#34;bookname&#34;, &#34;booktype&#34;}); }} 然后对数据表进行填充，创建 book 对象，读取数据库中的数据后进行对象的赋值。利用循环将所有数据存入 List 中，而后利用循环从 List 中依次取得对象，并将各属性存入 boo_list 创建的对象中。然后创建 JTable 实体用 model 进行填充。这样可以将数据库的信息转换成可以填充 JTable 的对象。从而完成数据绑定的操作。">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/rtwgd9bmmoawbnxa6r5crajln16/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="关于 javaSwing 数据绑定及刷新">
@@ -70,7 +80,15 @@ public book_list() {
 
 
 
+
+
 <link rel="canonical" href="//localhost:1313/posts/rtwgd9bmmoawbnxa6r5crajln16/">
+
+
+
+
+
+
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -78,9 +96,12 @@ public book_list() {
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -95,7 +116,8 @@ public book_list() {
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -103,17 +125,20 @@ public book_list() {
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -159,10 +184,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -173,6 +195,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -184,15 +209,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -214,6 +242,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -224,15 +253,20 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#简介">简介</a>
+    <li><a href="#关于-javaswing-数据绑定及刷新">关于 javaSwing 数据绑定及刷新</a>
       <ul>
-        <li><a href="#关于数据绑定的实现">关于数据绑定的实现</a></li>
-        <li><a href="#数据更新">数据更新</a></li>
-        <li><a href="#界面如下">界面如下</a></li>
+        <li><a href="#简介">简介</a>
+          <ul>
+            <li><a href="#关于数据绑定的实现">关于数据绑定的实现</a></li>
+            <li><a href="#数据更新">数据更新</a></li>
+            <li><a href="#界面如下">界面如下</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -242,49 +276,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -314,20 +394,23 @@ code.has-jax {
             188 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/java/">Java</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/java/">Java</a>
+  </span></div>
       </div>
     </header>
 
@@ -416,13 +499,20 @@ code.has-jax {
 <p><img src="../static/VUgYb7tb6oDIiXx3gUjck30knLU.png" alt=""></p>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -475,23 +565,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -509,24 +606,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

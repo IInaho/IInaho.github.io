@@ -5,14 +5,21 @@
   <title>
 串、数组和广义表 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   字符串
   
@@ -104,12 +111,15 @@ typedef struct{
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="串、数组和广义表">
   <meta name="twitter:description" content="字符串 链接到标题 串的定义 链接到标题 串(String)(或字符串)是由零个或多个字符组成的有限序列,一般记为
 $$ s = a_1a_2 \cdots a_n \quad(n \geq 0) $$
 串中字符的数目 n 称为串的长度，零个字符的串称为空串，长度为零。 串中任意个连续的字符组成的子序列称为该串的子串，包含子串的串相应地称为主串。 两个串长度相等，并且各个对应位置的字符都相等时才相等。 一个或多个空格组成的串称为空格串 串的抽象类型定义 链接到标题 StrAssign(&amp;T,Chars) //chars是字符串常量，生成一个其值等于chars的串T StrCopy(&amp;T,S) //串存在，由串S复制得串T StrEmpty(S) //串存在，判断S是否为空串 StrCompare(S,T) //串S与T存在，若S&gt;T返回值&gt;0,S=T,返回值=0，S&lt;T,返回值&lt;0 StrLength(S) //串存在，返回S的元素个数，称为串的长度 ClearString(&amp;S) //串存在，将S清为空串 Concat(&amp;T,S1,S2) //串S1与S2存在，用T返回S1与S2拼接的新串 SubString(&amp;Sub,S,pos,len) //串存在，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=Strlength(S)-pos&#43;1，用Sub返回串S的第pos个字串起长度为len的字串 Index(S,T,pos) //串S和T存在，T是非空串，1&lt;=pos&lt;=StrLength(S)，若主串S中存在和串T值相同的字串，则返回它在主串S中第pos个字符之后第一次出现的位置，否则函数值为0 Replace(&amp;S,T,V) //S,T,V存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的字串 StrInsert(&amp;S,pos,T) //串S与T存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的子串 StrDelete(&amp;S,pos,len) //串S存在，1&lt;=pos&lt;=StrLength(S)-len&#43;1，从串S中删除第pos个字符起长度为len的字串 DestroyString(&amp;S) //串存在，销魂串 串的存储结构 链接到标题 串的顺序存储 链接到标题 串的定长顺序存储结构 链接到标题 #define MAXLEN 255 typedef struct{ char ch[MAXLEN&#43;1]; //储存串的一维数组 int length; //串的长度 }SString; 串的堆式顺序存储结构 链接到标题 typedef struct{ char *ch; //若是非空串，则按串长分配存储区，否则ch为NULL int length; //串的当前长度 }HString; 串的顺序存储简易代码 链接到标题 用一组地址连续的存储单元存储串的字符序列，为了根据实际需要，在程序执行过程中动态分配和释放字符数组空间，使用堆式顺序存储结构。">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/nkv5dwja0oosbrxuyx7cejgjnse/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="串、数组和广义表">
@@ -122,6 +132,14 @@ $$ s = a_1a_2 \cdots a_n \quad(n \geq 0) $$
     <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:tag" content="数据结构">
+      <meta property="og:see_also" content="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+      <meta property="og:see_also" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/e9fzdzkfsogra4xff6acberun5c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">
+      <meta property="og:see_also" content="//localhost:1313/posts/gafvd5ysioq746xujeocgxzln7b/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lhqcd8fsiof6ckxbpvncx0vtnlg/">
+
+
 
 
 
@@ -129,14 +147,23 @@ $$ s = a_1a_2 \cdots a_n \quad(n \geq 0) $$
 <link rel="canonical" href="//localhost:1313/posts/nkv5dwja0oosbrxuyx7cejgjnse/">
 
 
+
+
+
+
+
+
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -151,7 +178,8 @@ $$ s = a_1a_2 \cdots a_n \quad(n \geq 0) $$
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -159,17 +187,20 @@ $$ s = a_1a_2 \cdots a_n \quad(n \geq 0) $$
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -215,10 +246,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -229,6 +257,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -240,15 +271,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -270,6 +304,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -280,49 +315,80 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#串的定义">串的定义</a></li>
-    <li><a href="#串的抽象类型定义">串的抽象类型定义</a></li>
-    <li><a href="#串的存储结构">串的存储结构</a>
+    <li><a href="#字符串">字符串</a>
       <ul>
-        <li><a href="#串的顺序存储">串的顺序存储</a></li>
-        <li><a href="#串的顺序存储简易代码">串的顺序存储简易代码</a></li>
-        <li><a href="#串的链式存储结构">串的链式存储结构</a></li>
-        <li><a href="#串的模式匹配算法">串的模式匹配算法</a></li>
+        <li><a href="#串的定义">串的定义</a></li>
+        <li><a href="#串的抽象类型定义">串的抽象类型定义</a></li>
+        <li><a href="#串的存储结构">串的存储结构</a>
+          <ul>
+            <li><a href="#串的顺序存储">串的顺序存储</a>
+              <ul>
+                <li><a href="#串的定长顺序存储结构">串的定长顺序存储结构</a></li>
+                <li><a href="#串的堆式顺序存储结构">串的堆式顺序存储结构</a></li>
+              </ul>
+            </li>
+            <li><a href="#串的顺序存储简易代码">串的顺序存储简易代码</a></li>
+            <li><a href="#串的链式存储结构">串的链式存储结构</a></li>
+            <li><a href="#串的模式匹配算法">串的模式匹配算法</a>
+              <ul>
+                <li><a href="#bf-算法">BF 算法</a></li>
+                <li><a href="#kmp-算法">KMP 算法</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#数组类型的定义">数组类型的定义</a>
+    <li><a href="#数组">数组</a>
       <ul>
-        <li><a href="#抽象数据类型-adt-定义">抽象数据类型 ADT 定义</a></li>
+        <li><a href="#数组类型的定义">数组类型的定义</a>
+          <ul>
+            <li><a href="#抽象数据类型-adt-定义">抽象数据类型 ADT 定义</a></li>
+          </ul>
+        </li>
+        <li><a href="#数组的顺序存储">数组的顺序存储</a></li>
+        <li><a href="#特殊矩阵的压缩处理"><strong>特殊矩阵的压缩处理</strong></a>
+          <ul>
+            <li><a href="#对称矩阵"><strong>对称矩阵</strong></a></li>
+            <li><a href="#三角矩阵"><strong>三角矩阵</strong></a>
+              <ul>
+                <li><a href="#n-阶上三角矩阵压缩矩阵与原矩阵的对应关系为"><strong>n 阶上三角矩阵，压缩矩阵与原矩阵的对应关系为</strong></a></li>
+                <li><a href="#n-阶下三角矩阵压缩矩阵与原矩阵的对应关系为"><strong>n 阶下三角矩阵，压缩矩阵与原矩阵的对应关系为</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#对角矩阵"><strong>对角矩阵</strong></a>
+              <ul>
+                <li><a href="#对称矩阵压缩代码示例">对称矩阵压缩代码示例</a></li>
+                <li><a href="#三角矩阵定义示例">三角矩阵定义示例</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#稀疏矩阵">稀疏矩阵</a>
+          <ul>
+            <li><a href="#三元组压缩存储">三元组压缩存储</a>
+              <ul>
+                <li><a href="#三元组存稀疏矩阵代码示例">三元组存稀疏矩阵代码示例</a></li>
+              </ul>
+            </li>
+            <li><a href="#十字链表">十字链表</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#数组的顺序存储">数组的顺序存储</a></li>
-    <li><a href="#特殊矩阵的压缩处理"><strong>特殊矩阵的压缩处理</strong></a>
+    <li><a href="#广义表">广义表</a>
       <ul>
-        <li><a href="#对称矩阵"><strong>对称矩阵</strong></a></li>
-        <li><a href="#三角矩阵"><strong>三角矩阵</strong></a></li>
-        <li><a href="#对角矩阵"><strong>对角矩阵</strong></a></li>
+        <li><a href="#广义表的定义">广义表的定义</a></li>
+        <li><a href="#广义表的重要结论">广义表的重要结论</a></li>
+        <li><a href="#广义表的运算及定义">广义表的运算及定义</a></li>
+        <li><a href="#广义表的存储结构">广义表的存储结构</a></li>
       </ul>
     </li>
-    <li><a href="#稀疏矩阵">稀疏矩阵</a>
-      <ul>
-        <li><a href="#三元组压缩存储">三元组压缩存储</a></li>
-        <li><a href="#十字链表">十字链表</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#广义表的定义">广义表的定义</a></li>
-    <li><a href="#广义表的重要结论">广义表的重要结论</a></li>
-    <li><a href="#广义表的运算及定义">广义表的运算及定义</a></li>
-    <li><a href="#广义表的存储结构">广义表的存储结构</a></li>
   </ul>
 </nav>
     </div>
@@ -330,49 +396,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -402,20 +514,23 @@ code.has-jax {
             2055 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span></div>
       </div>
     </header>
 
@@ -1283,13 +1398,74 @@ code.has-jax {
 </ul>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-数据结构相关文章">
+        参见 数据结构相关文章
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+        
+          
+            <li>
+              <a href="/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">排序</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/rfybd7gssoktinxwskock7atn8c/">散列表的查找</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/e9fzdzkfsogra4xff6acberun5c/">树和二叉树</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">数据结构基本概念</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/gafvd5ysioq746xujeocgxzln7b/">数据结构之图概述</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -1342,23 +1518,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -1376,24 +1559,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

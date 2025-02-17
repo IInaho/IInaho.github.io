@@ -1,29 +1,33 @@
+<!-- Hugo 的分类页面模板，用于显示分类（categories）、标签（tags）等分类法页面 -->
+
 <section class="container taxonomy">
+  <!-- 显示分类标题，支持多语言翻译。 -->
   <header>
     <h1 class="title">
       <a class="title-link" href="{{ .Permalink | safeURL }}">
         {{- if eq .Kind "term" -}}
-          {{- i18n .Data.Plural | title -}}
-          {{- print ": " -}}
+        {{- i18n .Data.Plural | title -}}
+        {{- print ": " -}}
         {{- end -}}
         {{- i18n (lower .Title) | default .Title | title -}}
       </a>
     </h1>
   </header>
   {{ .Content }}
+  <!-- 按字母顺序列出所有分类项 -->
   <ul>
     {{ $type := .Type }}
     {{ range $key, $value := .Data.Terms.Alphabetical }}
-      {{ $name := .Name }}
-      {{ $count := .Count }}
-      {{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
-        <li>
-          <span class="taxonomy-element">
-            <a href="{{ .Permalink }}">{{ .Name }}</a>
-            <sup>{{ $count }}</sup>
-          </span>
-        </li>
-      {{ end }}
+    {{ $name := .Name }}
+    {{ $count := .Count }}
+    {{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
+    <li>
+      <span class="taxonomy-element">
+        <a href="{{ .Permalink }}">{{ .Name }}</a>
+        <sup>{{ $count }}</sup>
+      </span>
+    </li>
+    {{ end }}
     {{ end }}
   </ul>
 </section>

@@ -5,14 +5,21 @@
   <title>
 线性表和树表的查找 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   查找的基本概念
   
@@ -90,6 +97,9 @@ int Search_Seq(SSTable ST,KeyType key){
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="线性表和树表的查找">
   <meta name="twitter:description" content="查找的基本概念 链接到标题 查找表: 查找表(Search Table)是同一类型数据元素的集合.
@@ -102,7 +112,7 @@ int Search_Seq(SSTable ST,KeyType key){
 typedef struct{ KeyType key; //关键字域 InfoType otherinfo; //其他域 }ElemType; typedef struct{ ElemType *R; //存储空间基地址 int length; //当前长度 }SSTable; 假设从 1 位置开始查找，0 位置不用，查找算法如下:
 int Search_Seq(SSTable ST,KeyType key){ for(i=ST.length;i&gt;=1;--i){ if(ST.R[i].key == key) return i; } return 0; } 在上面的算法中，每一步都需要检测整个表是否查找完毕，即需要判断 i&gt;=1 是否成立，改进此算法，可以增加一个哨兵，例如 ST.R[0]关键字赋值 key，如下例所示:
 int Search_Seq(SSTable ST,KeyType key){ ST.R[0].key = key; for(i=ST.length;ST.R[i].key != key;--i); return i; //返回0代表没找到 } 算法分析 链接到标题 设置监视哨，可以免去查找过程中每一步进行检测整个表是否查找完毕，实践证明，这个改进能使顺序表在大于 1000 长度的表中，进行一次查找所需的平均时间减半，两个时间复杂度都为 O(n)。">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/qtnbdqineorsxpx02uucpayvnxh/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="线性表和树表的查找">
@@ -122,6 +132,15 @@ int Search_Seq(SSTable ST,KeyType key){ ST.R[0].key = key; for(i=ST.length;ST.R[
     <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:tag" content="数据结构">
+      <meta property="og:see_also" content="//localhost:1313/posts/nkv5dwja0oosbrxuyx7cejgjnse/">
+      <meta property="og:see_also" content="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+      <meta property="og:see_also" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/e9fzdzkfsogra4xff6acberun5c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">
+      <meta property="og:see_also" content="//localhost:1313/posts/gafvd5ysioq746xujeocgxzln7b/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lhqcd8fsiof6ckxbpvncx0vtnlg/">
+
+
 
 
 
@@ -129,14 +148,23 @@ int Search_Seq(SSTable ST,KeyType key){ ST.R[0].key = key; for(i=ST.length;ST.R[
 <link rel="canonical" href="//localhost:1313/posts/qtnbdqineorsxpx02uucpayvnxh/">
 
 
+
+
+
+
+
+
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -151,7 +179,8 @@ int Search_Seq(SSTable ST,KeyType key){ ST.R[0].key = key; for(i=ST.length;ST.R[
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -159,17 +188,20 @@ int Search_Seq(SSTable ST,KeyType key){ ST.R[0].key = key; for(i=ST.length;ST.R[
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -215,10 +247,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -229,6 +258,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -240,15 +272,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -270,6 +305,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -280,61 +316,121 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#顺序查找">顺序查找</a>
+    <li><a href="#查找的基本概念">查找的基本概念</a></li>
+    <li><a href="#线性表的查找">线性表的查找</a>
       <ul>
-        <li><a href="#算法分析">算法分析</a></li>
+        <li><a href="#顺序查找">顺序查找</a>
+          <ul>
+            <li><a href="#算法分析">算法分析</a></li>
+          </ul>
+        </li>
+        <li><a href="#折半查找">折半查找</a>
+          <ul>
+            <li><a href="#折半查找的过程">折半查找的过程</a></li>
+            <li><a href="#算法步骤">算法步骤</a></li>
+            <li><a href="#算法代码">算法代码</a></li>
+            <li><a href="#算法分析-1">算法分析</a></li>
+          </ul>
+        </li>
+        <li><a href="#插值查找">插值查找</a></li>
+        <li><a href="#斐波那契查找">斐波那契查找</a>
+          <ul>
+            <li><a href="#示例代码">示例代码</a></li>
+          </ul>
+        </li>
+        <li><a href="#线性索引查找">线性索引查找</a>
+          <ul>
+            <li><a href="#稠密索引">稠密索引</a></li>
+            <li><a href="#分块索引">分块索引</a>
+              <ul>
+                <li><a href="#分块查找">分块查找</a></li>
+              </ul>
+            </li>
+            <li><a href="#倒排索引">倒排索引</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#折半查找">折半查找</a>
+    <li><a href="#树表的查找">树表的查找</a>
       <ul>
-        <li><a href="#折半查找的过程">折半查找的过程</a></li>
-        <li><a href="#算法步骤">算法步骤</a></li>
-        <li><a href="#算法代码">算法代码</a></li>
-        <li><a href="#算法分析-1">算法分析</a></li>
-      </ul>
-    </li>
-    <li><a href="#插值查找">插值查找</a></li>
-    <li><a href="#斐波那契查找">斐波那契查找</a>
-      <ul>
-        <li><a href="#示例代码">示例代码</a></li>
-      </ul>
-    </li>
-    <li><a href="#线性索引查找">线性索引查找</a>
-      <ul>
-        <li><a href="#稠密索引">稠密索引</a></li>
-        <li><a href="#分块索引">分块索引</a></li>
-        <li><a href="#倒排索引">倒排索引</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#二叉排序树">二叉排序树</a>
-      <ul>
-        <li><a href="#二叉排序树的定义">二叉排序树的定义</a></li>
-        <li><a href="#二叉排序树的查找">二叉排序树的查找</a></li>
-        <li><a href="#二叉排序树的插入">二叉排序树的插入</a></li>
-        <li><a href="#二叉排序树的创建">二叉排序树的创建</a></li>
-        <li><a href="#二叉排序树的删除">二叉排序树的删除</a></li>
-      </ul>
-    </li>
-    <li><a href="#平衡二叉树">平衡二叉树</a>
-      <ul>
-        <li><a href="#avl-的平衡调整方法">AVL 的平衡调整方法</a></li>
-        <li><a href="#avl-代码示例">AVL 代码示例</a></li>
-        <li><a href="#算法分析-5">算法分析</a></li>
-      </ul>
-    </li>
-    <li><a href="#多路查找树">多路查找树</a>
-      <ul>
-        <li><a href="#2-3-树">2-3 树</a></li>
-        <li><a href="#2-3-4-树">2-3-4 树</a></li>
-        <li><a href="#b-树">B-树</a></li>
-        <li><a href="#b-树-1">B+ 树</a></li>
+        <li><a href="#二叉排序树">二叉排序树</a>
+          <ul>
+            <li><a href="#二叉排序树的定义">二叉排序树的定义</a>
+              <ul>
+                <li><a href="#二叉排序树的二叉链表存储结构">二叉排序树的二叉链表存储结构</a></li>
+              </ul>
+            </li>
+            <li><a href="#二叉排序树的查找">二叉排序树的查找</a>
+              <ul>
+                <li><a href="#算法步骤-1">算法步骤</a></li>
+                <li><a href="#算法代码示例">算法代码示例</a></li>
+                <li><a href="#算法分析-2">算法分析</a></li>
+              </ul>
+            </li>
+            <li><a href="#二叉排序树的插入">二叉排序树的插入</a>
+              <ul>
+                <li><a href="#算法步骤-2">算法步骤</a></li>
+                <li><a href="#算法示例">算法示例</a></li>
+              </ul>
+            </li>
+            <li><a href="#二叉排序树的创建">二叉排序树的创建</a>
+              <ul>
+                <li><a href="#算法步骤-3">算法步骤</a></li>
+                <li><a href="#算法示例-1">算法示例</a></li>
+                <li><a href="#算法分析-3">算法分析</a></li>
+              </ul>
+            </li>
+            <li><a href="#二叉排序树的删除">二叉排序树的删除</a>
+              <ul>
+                <li><a href="#算法步骤-4">算法步骤</a></li>
+                <li><a href="#算法示例-2">算法示例</a></li>
+                <li><a href="#算法分析-4">算法分析</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#平衡二叉树">平衡二叉树</a>
+          <ul>
+            <li><a href="#avl-的平衡调整方法">AVL 的平衡调整方法</a></li>
+            <li><a href="#avl-代码示例">AVL 代码示例</a>
+              <ul>
+                <li><a href="#存储结构代码示例">存储结构代码示例</a></li>
+                <li><a href="#旋转代码示例">旋转代码示例</a></li>
+                <li><a href="#平衡调整代码示例">平衡调整代码示例</a></li>
+                <li><a href="#avl-树的插入操作">AVL 树的插入操作</a></li>
+              </ul>
+            </li>
+            <li><a href="#算法分析-5">算法分析</a></li>
+          </ul>
+        </li>
+        <li><a href="#多路查找树">多路查找树</a>
+          <ul>
+            <li><a href="#2-3-树">2-3 树</a>
+              <ul>
+                <li><a href="#2-3-树的插入实现">2-3 树的插入实现</a></li>
+                <li><a href="#2-3-树的删除实现">2-3 树的删除实现</a></li>
+              </ul>
+            </li>
+            <li><a href="#2-3-4-树">2-3-4 树</a></li>
+            <li><a href="#b-树">B-树</a>
+              <ul>
+                <li><a href="#b-树的定义">B-树的定义</a></li>
+                <li><a href="#b-树的查找">B-树的查找</a></li>
+              </ul>
+            </li>
+            <li><a href="#b-树-1">B+ 树</a>
+              <ul>
+                <li><a href="#b-树与-b-树的差异">B+ 树与 B-树的差异</a></li>
+                <li><a href="#b-树的优点">B+ 树的优点</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -344,49 +440,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -416,20 +558,23 @@ code.has-jax {
             1444 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span></div>
       </div>
     </header>
 
@@ -1396,13 +1541,78 @@ code.has-jax {
 <p>B+ 树不仅能有效查找单个关键字，而且更适合查找某个范围内的所有关键字。</p>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-数据结构相关文章">
+        参见 数据结构相关文章
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/posts/nkv5dwja0oosbrxuyx7cejgjnse/">串、数组和广义表</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">排序</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/rfybd7gssoktinxwskock7atn8c/">散列表的查找</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/e9fzdzkfsogra4xff6acberun5c/">树和二叉树</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">数据结构基本概念</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/gafvd5ysioq746xujeocgxzln7b/">数据结构之图概述</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -1455,23 +1665,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -1489,24 +1706,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

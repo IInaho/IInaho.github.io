@@ -5,14 +5,21 @@
   <title>
 排序 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   排序的基本概念
   
@@ -101,6 +108,9 @@
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="排序">
   <meta name="twitter:description" content="排序的基本概念 链接到标题 排序的定义 链接到标题 排序是按关键字的非递减或非递增顺序对一组记录重新进行排列的操作。
@@ -113,7 +123,7 @@
 插入类，直接插入排序、折半插入排序、希尔排序 交换类，冒泡排序、快速排序 选择类，简单选择排序、树形选择排序、堆排序 归并类，2-路归并排序 分配类，基数排序 插入排序 链接到标题 插入排序的基本思想是: 每一趟将一个待排序的记录，按其关键字的大小插入到已经排好序的一组记录的适当位置上，直到所有待排序记录全部插入为止。
 直接插入排序 链接到标题 直接插入排序是将一条记录插入到已经排好序的有序表中，从而得到一个新的、记录数量增 1 的有序表。
 算法步骤 链接到标题 设待排序的记录存放在数组 r[1..n]中，r[1]是一个有序序列。 循环 n-1 次，每次使用顺序查找法，查找 ri 在已经排好序的序列 r[1…i-1]中的插入位置，然后将 r[i]插入表长为 i-1 的有序序列 r[1…i-1]，直到将 r[n]插入表长为 n-1 的有序序列 r[1…n-1]，最后得到一个表长为 n 的有序序列。 算法描述 链接到标题 为了在查找插入位置的过程中避免数组下标出界，r[0]设置监视哨。">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="排序">
@@ -133,6 +143,14 @@
     <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:tag" content="数据结构">
+      <meta property="og:see_also" content="//localhost:1313/posts/nkv5dwja0oosbrxuyx7cejgjnse/">
+      <meta property="og:see_also" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/e9fzdzkfsogra4xff6acberun5c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">
+      <meta property="og:see_also" content="//localhost:1313/posts/gafvd5ysioq746xujeocgxzln7b/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lhqcd8fsiof6ckxbpvncx0vtnlg/">
+
+
 
 
 
@@ -140,14 +158,23 @@
 <link rel="canonical" href="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
 
 
+
+
+
+
+
+
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -162,7 +189,8 @@
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -170,17 +198,20 @@
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -226,10 +257,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -240,6 +268,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -251,15 +282,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -281,6 +315,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -291,106 +326,142 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#排序的定义">排序的定义</a></li>
-    <li><a href="#排序的稳定性">排序的稳定性</a></li>
-    <li><a href="#内部排序与外部排序">内部排序与外部排序</a>
+    <li><a href="#排序的基本概念">排序的基本概念</a>
       <ul>
-        <li><a href="#内部排序方法分类">内部排序方法分类</a></li>
+        <li><a href="#排序的定义">排序的定义</a></li>
+        <li><a href="#排序的稳定性">排序的稳定性</a></li>
+        <li><a href="#内部排序与外部排序">内部排序与外部排序</a>
+          <ul>
+            <li><a href="#内部排序方法分类">内部排序方法分类</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#直接插入排序">直接插入排序</a>
+    <li><a href="#插入排序">插入排序</a>
       <ul>
-        <li><a href="#算法步骤">算法步骤</a></li>
-        <li><a href="#算法描述">算法描述</a></li>
+        <li><a href="#直接插入排序">直接插入排序</a>
+          <ul>
+            <li><a href="#算法步骤">算法步骤</a></li>
+            <li><a href="#算法描述">算法描述</a></li>
+          </ul>
+        </li>
+        <li><a href="#折半插入排序">折半插入排序</a>
+          <ul>
+            <li><a href="#算法步骤-1">算法步骤</a></li>
+            <li><a href="#算法描述-1">算法描述</a></li>
+            <li><a href="#算法分析">算法分析</a>
+              <ul>
+                <li><a href="#时间复杂度">时间复杂度</a></li>
+                <li><a href="#空间复杂度">空间复杂度</a></li>
+                <li><a href="#算法特点">算法特点</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#希尔排序">希尔排序</a>
+          <ul>
+            <li><a href="#算法步骤-2">算法步骤</a></li>
+            <li><a href="#算法举例">算法举例</a></li>
+            <li><a href="#算法描述-2">算法描述</a></li>
+            <li><a href="#算法分析-1">算法分析</a>
+              <ul>
+                <li><a href="#时间复杂度-1">时间复杂度</a></li>
+                <li><a href="#空间复杂度-1">空间复杂度</a></li>
+              </ul>
+            </li>
+            <li><a href="#算法特点-1">算法特点</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#折半插入排序">折半插入排序</a>
+    <li><a href="#交换排序">交换排序</a>
       <ul>
-        <li><a href="#算法步骤-1">算法步骤</a></li>
-        <li><a href="#算法描述-1">算法描述</a></li>
-        <li><a href="#算法分析">算法分析</a></li>
+        <li><a href="#冒泡排序">冒泡排序</a>
+          <ul>
+            <li><a href="#算法步骤-3">算法步骤</a></li>
+            <li><a href="#算法代码示例">算法代码示例</a></li>
+            <li><a href="#算法分析-2">算法分析</a>
+              <ul>
+                <li><a href="#时间复杂度-2">时间复杂度</a></li>
+                <li><a href="#空间复杂度-2">空间复杂度</a></li>
+              </ul>
+            </li>
+            <li><a href="#算法特点-2">算法特点</a></li>
+          </ul>
+        </li>
+        <li><a href="#快速排序">快速排序</a>
+          <ul>
+            <li><a href="#算法步骤-4">算法步骤</a></li>
+            <li><a href="#算法描述-3">算法描述</a></li>
+            <li><a href="#算法分析-3">算法分析</a>
+              <ul>
+                <li><a href="#时间复杂度-3">时间复杂度</a></li>
+                <li><a href="#空间复杂度-3">空间复杂度</a></li>
+              </ul>
+            </li>
+            <li><a href="#算法特点-3">算法特点</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#希尔排序">希尔排序</a>
+    <li><a href="#选择排序">选择排序</a>
       <ul>
-        <li><a href="#算法步骤-2">算法步骤</a></li>
-        <li><a href="#算法举例">算法举例</a></li>
-        <li><a href="#算法描述-2">算法描述</a></li>
-        <li><a href="#算法分析-1">算法分析</a></li>
-        <li><a href="#算法特点-1">算法特点</a></li>
+        <li><a href="#简单选择排序">简单选择排序</a>
+          <ul>
+            <li><a href="#算法步骤-5">算法步骤</a></li>
+            <li><a href="#算法描述-4">算法描述</a></li>
+            <li><a href="#算法分析-4">算法分析</a>
+              <ul>
+                <li><a href="#时间复杂度-4">时间复杂度</a></li>
+                <li><a href="#空间复杂度-4">空间复杂度</a></li>
+              </ul>
+            </li>
+            <li><a href="#算法特点-4">算法特点</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#冒泡排序">冒泡排序</a>
+    <li><a href="#归并排序">归并排序</a>
       <ul>
-        <li><a href="#算法步骤-3">算法步骤</a></li>
-        <li><a href="#算法代码示例">算法代码示例</a></li>
-        <li><a href="#算法分析-2">算法分析</a></li>
-        <li><a href="#算法特点-2">算法特点</a></li>
+        <li><a href="#算法步骤-6">算法步骤</a>
+          <ul>
+            <li><a href="#归并相邻两个有序序列">归并相邻两个有序序列</a></li>
+            <li><a href="#归并排序步骤">归并排序步骤</a></li>
+          </ul>
+        </li>
+        <li><a href="#算法描述-5">算法描述</a>
+          <ul>
+            <li><a href="#递归算法">递归算法</a></li>
+            <li><a href="#非递归算法">非递归算法</a></li>
+          </ul>
+        </li>
+        <li><a href="#算法分析-5">算法分析</a>
+          <ul>
+            <li><a href="#递归算法-1">递归算法</a></li>
+            <li><a href="#非递归算法-1">非递归算法</a></li>
+          </ul>
+        </li>
+        <li><a href="#算法特点-5">算法特点</a></li>
       </ul>
     </li>
-    <li><a href="#快速排序">快速排序</a>
+    <li><a href="#基数排序">基数排序</a>
       <ul>
-        <li><a href="#算法步骤-4">算法步骤</a></li>
-        <li><a href="#算法描述-3">算法描述</a></li>
-        <li><a href="#算法分析-3">算法分析</a></li>
-        <li><a href="#算法特点-3">算法特点</a></li>
+        <li><a href="#算法步骤-7">算法步骤</a></li>
+        <li><a href="#算法示例">算法示例</a></li>
+        <li><a href="#算法分析-6">算法分析</a>
+          <ul>
+            <li><a href="#时间复杂度-5">时间复杂度</a></li>
+            <li><a href="#空间复杂度-5">空间复杂度</a></li>
+          </ul>
+        </li>
+        <li><a href="#算法特点-6">算法特点</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#简单选择排序">简单选择排序</a>
-      <ul>
-        <li><a href="#算法步骤-5">算法步骤</a></li>
-        <li><a href="#算法描述-4">算法描述</a></li>
-        <li><a href="#算法分析-4">算法分析</a></li>
-        <li><a href="#算法特点-4">算法特点</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#算法步骤-6">算法步骤</a>
-      <ul>
-        <li><a href="#归并相邻两个有序序列">归并相邻两个有序序列</a></li>
-        <li><a href="#归并排序步骤">归并排序步骤</a></li>
-      </ul>
-    </li>
-    <li><a href="#算法描述-5">算法描述</a>
-      <ul>
-        <li><a href="#递归算法">递归算法</a></li>
-        <li><a href="#非递归算法">非递归算法</a></li>
-      </ul>
-    </li>
-    <li><a href="#算法分析-5">算法分析</a>
-      <ul>
-        <li><a href="#递归算法-1">递归算法</a></li>
-        <li><a href="#非递归算法-1">非递归算法</a></li>
-      </ul>
-    </li>
-    <li><a href="#算法特点-5">算法特点</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#算法步骤-7">算法步骤</a></li>
-    <li><a href="#算法示例">算法示例</a></li>
-    <li><a href="#算法分析-6">算法分析</a>
-      <ul>
-        <li><a href="#时间复杂度-5">时间复杂度</a></li>
-        <li><a href="#空间复杂度-5">空间复杂度</a></li>
-      </ul>
-    </li>
-    <li><a href="#算法特点-6">算法特点</a></li>
   </ul>
 </nav>
     </div>
@@ -398,49 +469,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -470,20 +587,23 @@ code.has-jax {
             1268 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span></div>
       </div>
     </header>
 
@@ -1368,13 +1488,74 @@ code.has-jax {
 </ul>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-数据结构相关文章">
+        参见 数据结构相关文章
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/posts/nkv5dwja0oosbrxuyx7cejgjnse/">串、数组和广义表</a>
+            </li>
+          
+        
+          
+        
+          
+            <li>
+              <a href="/posts/rfybd7gssoktinxwskock7atn8c/">散列表的查找</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/e9fzdzkfsogra4xff6acberun5c/">树和二叉树</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">数据结构基本概念</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/gafvd5ysioq746xujeocgxzln7b/">数据结构之图概述</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -1427,23 +1608,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -1461,24 +1649,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

@@ -5,14 +5,21 @@
   <title>
 数据结构之图概述 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   图的定义
   
@@ -84,11 +91,14 @@ BFSTraverse(G);                //对图G中进行广度优先遍历，在遍历�
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="数据结构之图概述">
   <meta name="twitter:description" content="图的定义 链接到标题 图 G 由两个集合 V 和 E 组成，记为 G=(V,E)，V 是顶点的有穷非空集合，E 是 V 中顶点偶对的有穷集合，这些顶点偶对称为边,V(G)表示图的顶点集合，E(G)表示图的边集合。
 在线性表中，数据元素叫做元素，树中将数据元素叫结点，而图中数据元素叫做顶点。 线性表可以没有数据元素，称作空表，树中也可以没有结点，叫做空树，但图中不允许没有顶点。 线性表中，相邻数据元素之间具有线性关系，树结构中，相邻两层结点具有层次关系，图中，任何两个顶点之间都可能有关系，顶点之间的逻辑关系用边来表示，边集可以是空的。 有向图中，顶点对是有序的，称为从顶点 x 到顶点 y 的一条有向边，也称为弧，x 为弧尾，y 为弧头。 无向图中，顶点对(x,y)是无序的，称为顶点 x 与顶点 y 的一条边，没有方向。 图的基本术语 链接到标题 子图： 两个图 G=(V,E)，G’=(V’,E’),如果 V′⊆V 且 E′⊆E，则称 G’为 G’的子图。 无向完全图: 若具有 n(n-1)/2 条边(任意两个顶点之间都存在边)，则称为无向完全图。 有向完全图: 若具有 n(n-1)条弧(任意两个顶点之间都存在方向互为相反的两条弧)，则称为有向完全图。 稀疏图和稠密图: 有很少条边或弧，如$e&lt;nlog_2n$的图称为稀疏图，反之称为稠密图。 权和网: 实际应用中，每条边可以标上具有含义的数值，该数值称为该边的权，带权的图通常称为网。 邻接点: 对于无向图 G，如果(v,v′)∈E(v,v′)∈E,则称顶点 v 与 v’为邻接点，或者说相关联、相邻接。 度、入度和出度: 顶点 v 的度是指 v 相关联的边的数目，记为 TD(v)；入度是以顶点 v 为头的弧的数目，记为 ID(v)；出度是以顶点 v 为尾的弧的数目，记为 OD(v)，顶点的度=入度 &#43; 出度，图的边数=每个顶点度之和的一半。 路径和路径长度: 无向图中，路径是顶点之间的一个顶点序列，有向图中，路径也是有向的；路径长度是一条路径上经过的边或弧的数目。 回路或环: 第一个顶点和最后一个顶点相同的路径称为回路或环。 简单路径、简单回路、简单环: 序列中顶点不重复出现的路径称为简单路径，除了第一个和最后一个顶点之外，其余顶点不重复出现的回路，称为简单回路。 连通、连通图、连通分量: 在无向图 G 中，如果两个顶点之间有路径，则两个顶点是连通的；如果图中任意两个顶点都是连通的，则称为连通图；连通分量是无向图中的极大连通子图。 强连通图和强连通分量: 有向图中，如果 vi 与 vj 和 vj 与 vi 之间都有路径，则称为强连通图，有向图中极大强连通子图称作强连通分量。 连通图的生成树: 能够构成一棵树的 n-1 条边的连通子图称为连通图的生成树;一棵 n 个结点的树有 n-1 条边，如果一个图有 n 个顶点和小于 n-1 条边，则是非连通图，如果多于 n-1 条边，则一定有环。 有向树和生成森林: 有一个顶点入度为 0，其余顶点入度为 1 的图，称为有向树，一个有向树的生成森林是若干棵有向树组成的。 图的类型定义 链接到标题 CreateGraph(*G,V,VR); //按照顶点集V和边弧集VR的定义构造图G。 DestroyGraph (*G); //图G存在则销毁。 LocateVex(G,u); //若图G中存在顶点u，则返回图中的位置。 GetVex(G,v); //返回图G中顶点y的值。 PutVex(G,v,value); //将图G中顶点v赋值value。 FirstAdjVex(G,*v); //返回顶点v的一个邻接顶点，若顶点在G中无邻接顶点返回空。 NextAdjVex(G,v,*w); //返回顶点v相对于顶点w的下一个邻接顶点,若w是v的最，一个邻接点则返回“空”。 InsertVex(*G,v); //在图G中增添新顶点V。 DeleteVex(*G,v); //删除图G中顶点v及其相关的弧。 InsertArc(*G,v,w); //在图G中增添弧&lt;v,w&gt;,若G是无向图，还需要增添对称弧&lt;w,v&gt;。 DeleteArc(*G,v,w); //在图G中删除弧&lt;v,w&gt;,若G是无向圈，则还删除对称弧&lt;w,v&gt;。 DFSTraverse(G); //对圈G中进行深度优先遍历，在遍历过程对每个顶点调用。 BFSTraverse(G); //对图G中进行广度优先遍历，在遍历过程对每个顶点调用。 图的存储结构 链接到标题 由于图的结构比较复杂，无法以元素在存储区的位置来表示关系，所以图没有顺序存储结构 ，可以借助二维数组来表示元素间的关系，即邻接矩阵表示法，图的链式存储结构有邻接表，十字链表，邻接多重表等。">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/gafvd5ysioq746xujeocgxzln7b/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="数据结构之图概述">
@@ -100,6 +110,14 @@ BFSTraverse(G);                //对图G中进行广度优先遍历，在遍历�
     <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:tag" content="数据结构">
+      <meta property="og:see_also" content="//localhost:1313/posts/nkv5dwja0oosbrxuyx7cejgjnse/">
+      <meta property="og:see_also" content="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+      <meta property="og:see_also" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/e9fzdzkfsogra4xff6acberun5c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lhqcd8fsiof6ckxbpvncx0vtnlg/">
+
+
 
 
 
@@ -107,14 +125,23 @@ BFSTraverse(G);                //对图G中进行广度优先遍历，在遍历�
 <link rel="canonical" href="//localhost:1313/posts/gafvd5ysioq746xujeocgxzln7b/">
 
 
+
+
+
+
+
+
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -129,7 +156,8 @@ BFSTraverse(G);                //对图G中进行广度优先遍历，在遍历�
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -137,17 +165,20 @@ BFSTraverse(G);                //对图G中进行广度优先遍历，在遍历�
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -193,10 +224,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -207,6 +235,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -218,15 +249,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -248,6 +282,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -258,36 +293,44 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#邻接矩阵">邻接矩阵</a>
+    <li><a href="#图的定义">图的定义</a></li>
+    <li><a href="#图的基本术语">图的基本术语</a></li>
+    <li><a href="#图的类型定义">图的类型定义</a></li>
+    <li><a href="#图的存储结构">图的存储结构</a>
       <ul>
-        <li><a href="#图的存储结构代码表示">图的存储结构代码表示</a></li>
-        <li><a href="#邻接矩阵的优缺点">邻接矩阵的优缺点</a></li>
+        <li><a href="#邻接矩阵">邻接矩阵</a>
+          <ul>
+            <li><a href="#图的存储结构代码表示">图的存储结构代码表示</a></li>
+            <li><a href="#邻接矩阵的优缺点">邻接矩阵的优缺点</a></li>
+          </ul>
+        </li>
+        <li><a href="#邻接表">邻接表</a>
+          <ul>
+            <li><a href="#无向图邻接表代码示例">无向图邻接表代码示例</a></li>
+            <li><a href="#邻接表表示法的优缺点">邻接表表示法的优缺点</a></li>
+          </ul>
+        </li>
+        <li><a href="#十字链表">十字链表</a>
+          <ul>
+            <li><a href="#十字链表存储结构代码示例">十字链表存储结构代码示例</a></li>
+            <li><a href="#十字链表简易代码示例">十字链表简易代码示例</a></li>
+          </ul>
+        </li>
+        <li><a href="#邻接多重表">邻接多重表</a>
+          <ul>
+            <li><a href="#邻接多重表存储代码示例">邻接多重表存储代码示例</a></li>
+            <li><a href="#邻接多重表简易代码示例">邻接多重表简易代码示例</a></li>
+          </ul>
+        </li>
+        <li><a href="#边集数组">边集数组</a></li>
+        <li><a href="#小结">小结</a></li>
       </ul>
     </li>
-    <li><a href="#邻接表">邻接表</a>
-      <ul>
-        <li><a href="#无向图邻接表代码示例">无向图邻接表代码示例</a></li>
-        <li><a href="#邻接表表示法的优缺点">邻接表表示法的优缺点</a></li>
-      </ul>
-    </li>
-    <li><a href="#十字链表">十字链表</a>
-      <ul>
-        <li><a href="#十字链表存储结构代码示例">十字链表存储结构代码示例</a></li>
-        <li><a href="#十字链表简易代码示例">十字链表简易代码示例</a></li>
-      </ul>
-    </li>
-    <li><a href="#邻接多重表">邻接多重表</a>
-      <ul>
-        <li><a href="#邻接多重表存储代码示例">邻接多重表存储代码示例</a></li>
-        <li><a href="#邻接多重表简易代码示例">邻接多重表简易代码示例</a></li>
-      </ul>
-    </li>
-    <li><a href="#边集数组">边集数组</a></li>
-    <li><a href="#小结">小结</a></li>
   </ul>
 </nav>
     </div>
@@ -295,49 +338,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -367,20 +456,23 @@ code.has-jax {
             1284 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span></div>
       </div>
     </header>
 
@@ -959,13 +1051,74 @@ code.has-jax {
 </ul>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-数据结构相关文章">
+        参见 数据结构相关文章
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/posts/nkv5dwja0oosbrxuyx7cejgjnse/">串、数组和广义表</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">排序</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/rfybd7gssoktinxwskock7atn8c/">散列表的查找</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/e9fzdzkfsogra4xff6acberun5c/">树和二叉树</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">数据结构基本概念</a>
+            </li>
+          
+        
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -1018,23 +1171,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -1052,24 +1212,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

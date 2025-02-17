@@ -1,11 +1,13 @@
+<!-- 标签列表的模板代码，用于显示文章的标签信息 -->
+
 <div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
   {{- range $index, $el := . -}}
-    {{- if gt $index 0 }}
-      <span class="separator">•</span>
-    {{- end }}
-    <span class="tag">
-      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-    </span>
+  {{- if gt $index 0 }}
+  <span class="separator">•</span>
+  {{- end }}
+  <span class="tag">
+    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+  </span>
   {{- end -}}
 </div>

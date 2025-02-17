@@ -1,3 +1,5 @@
+<!-- 根据站点配置加载深色主题的 CSS 文件 -->
+
 {{ if or (eq .Site.Params.colorScheme "auto") (eq .Site.Params.colorScheme "dark") }}
   {{ if hugo.IsServer }}
     {{ $cssOpts := (dict "targetPath" "css/coder-dark.css" "enableSourceMap" true ) }}

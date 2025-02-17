@@ -6,37 +6,30 @@ defaultcontentlanguage = "zh-cn"
 enableEmoji = true
 
 [pagination]
-pagerSize = 20
-
-[services]
-[services.disqus]
-# Enable Disqus comments
-# shortname = "yourdiscussshortname"
+  pagerSize = 20
 
 [markup]
 [markup.highlight]
-noClasses = false
+  noClasses = false
+[markup.tableOfContents]
+  startLevel = 1   # 从一级标题开始显示
+  endLevel = 6     # 到六级标题结束
+  ordered = false  # 使用无序列表
 
 [markup.goldmark]
 [markup.goldmark.renderer]
-unsafe = true
+  unsafe = true
 
 [params]
-  author = "一个梦想家"
-  info = "生之微欢，俄而感怀，奋勉有得，相携互舍，所谓幸福"
+  author = "inaho"
+  info = ["Golang后端开发工程师","生之微欢，俄而感怀，奋勉有得，相携互舍，所谓幸福"]
   description = "珍藏多年的文章"
   keywords = "blog,developer,personal"
-  avatarurl = "images/avatar.png"
+  avatarurl = ""
   gravatar = "1031567135@qq.com"
-
-  faviconSVG = "/img/favicon.svg"
-  favicon_32 = "/img/favicon-32x32.png"
-  favicon_16 = "/img/favicon-16x16.png"
+  series = true
 
   since = 2019
-
-  enableTwemoji = true
-
   colorScheme = "auto"
   hidecolorschemetoggle = false
   twikoo = true

@@ -5,14 +5,21 @@
   <title>
 Assume 总结 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   Assume 总结
   
@@ -48,10 +55,13 @@ Assume 总结 · inaho
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Assume 总结">
   <meta name="twitter:description" content="Assume 总结 链接到标题 概念介绍 链接到标题 机器语言，计算机将高低电平转换为 0-1 数字，在 x86 处理器中，指令与数据以同等地位保存在存储器中，每一种微处理器都有机器指令集，也就是机器语言。 存储单元，8086CPU 中，一个字为 2 个字节，一个字节为 8 比特，存储单元包括寄存器、主存、现存等等。 内存地址空间，CPU 通过主板上的总线与各个设备的寄存器以及各存储器相连，在物理上，这些存储器并没有连接在一起，但在逻辑上它们组成一个连续的内存空间，称为内存地址空间。 寄存器，用于信息存储，汇编语言是通过寄存器来实现对 CPU 的控制，8086CPU 的所有寄存器为 16 位。 寻址方法，8086CPU 采用两个 16 位地址合成的方法来形成 20 位的物理地址，一个称为段地址，一个称为偏移地址，实际物理地址=段地址*16&#43; 偏移地址 中断向量表，当发生中断时，CPU 要执行中断处理程序，而中断处理程序的入口地址是通过中断向量表找到的，也就是说中断向量表也就是各个中断处理程序的入口地址的列表，8086CPU 中，中断向量表放在内存 0 处，从 0：0 到 0：03FF 的 1024 个单元存放中断向量表。 端口及端口地址空间，PC 机系统中，CPU 通过总线和各种芯片相连，包括各种存储器，接口卡上的芯片以及主板上的接口芯片，这些芯片中都有一组可以有 CPU 读写的寄存器，这些寄存器与 CPU 的总线相连，CPU 通过向其芯片发送端口读写命令实现读或写，从 CPU 的角度将这些寄存器都当作端口，进行统一编址，从而建立统一的端口地址空间，每个端口在此空间中都有一个地址。 寄存器 链接到标题 8086CPU 中，寄存器有 16 种，分别为 AX、BX、CX、DX、SI、DI、SP、BP、IP、CS、SS、DS、ES、PSW，其中 AX、BX、CX、DX 被称为通用寄存器，用于存放一般性的数据，这四种寄存器可以分成两个独立的 8 位寄存器来使用，例如 AX 可分为 AH 和 AL，BX 可分为 BH 和 BL 等。">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/eapbdift6ovtyoxiuqocxjp8nrf/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="Assume 总结">
@@ -66,7 +76,15 @@ Assume 总结 · inaho
 
 
 
+
+
 <link rel="canonical" href="//localhost:1313/posts/eapbdift6ovtyoxiuqocxjp8nrf/">
+
+
+
+
+
+
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -74,9 +92,12 @@ Assume 总结 · inaho
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -91,7 +112,8 @@ Assume 总结 · inaho
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -99,17 +121,20 @@ Assume 总结 · inaho
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -155,10 +180,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -169,6 +191,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -180,15 +205,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -210,6 +238,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -220,13 +249,18 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#概念介绍">概念介绍</a></li>
-    <li><a href="#寄存器">寄存器</a></li>
-    <li><a href="#指令大全">指令大全</a></li>
+    <li><a href="#assume-总结">Assume 总结</a>
+      <ul>
+        <li><a href="#概念介绍">概念介绍</a></li>
+        <li><a href="#寄存器">寄存器</a></li>
+        <li><a href="#指令大全">指令大全</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -234,49 +268,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -306,20 +386,23 @@ code.has-jax {
             506 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/cpp/">CPP</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/cpp/">CPP</a>
+  </span></div>
       </div>
     </header>
 
@@ -507,13 +590,20 @@ code.has-jax {
 </span></span></code></pre></div><p>sti 命令与 cli 命令，sti 设置 IF 为 1，cli 设置 IF 为 0，如果 IF 为 1，则 CPU 执行完当前指令后响应中断，如果 IF 为 0，则不响应可屏蔽中断.</p>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -566,23 +656,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -600,24 +697,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

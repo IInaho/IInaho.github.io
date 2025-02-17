@@ -5,14 +5,21 @@
   <title>
 数据结构基本概念 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   数据结构概述
   
@@ -143,6 +150,9 @@
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="数据结构基本概念">
   <meta name="twitter:description" content="数据结构概述 链接到标题 数据结构概念 链接到标题 数据结构研究数据之间的内在关系，合理组织数据，设计高效的算法，用于解决数学问题。数据结构是相互之间存在一种或多种特定关系的数据元素的集合。
@@ -151,7 +161,7 @@
 抽象数据类型 链接到标题 抽象就是抽取出实际问题的本质，抽象数据类型(Abstract Data Type,ADT)一般指由用户定于的、表示应用问题的数学模型，以及这个模型的操作总称。
 抽象数据类型的概念与面向对象方法的思想是一致的。
 算法和算法分析 链接到标题 算法的定义及特性 链接到标题 有穷性，算法必须在一定时间内能执行完。 确定性，算法应不会产生二义性，对于每种情况，应该有确切的操作。 可行性，算法的所有操作应该可以基于基本操作并且在有限时间内完成。 输入，算法有零个或多个输入。 输出，算法有零个或多个输出。 评价算法优劣的基本标准 链接到标题 正确性，在合理的数据输入下，当数据规模足够大时，都能在有限的时间内得到正确的结果。 可读性，好的算法，应该便于人们理解和相互交流。 健壮性，当输入的数据非法时，好的算法能适当地做出正确反应或者相应地处理。 高效性，高效性包括时间和空间两个方面，时间复杂度与空间复杂度。 算法的时间复杂度 链接到标题 衡量算法效率的方法主要分为：">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="数据结构基本概念">
@@ -167,6 +177,14 @@
     <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:tag" content="数据结构">
+      <meta property="og:see_also" content="//localhost:1313/posts/nkv5dwja0oosbrxuyx7cejgjnse/">
+      <meta property="og:see_also" content="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+      <meta property="og:see_also" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/e9fzdzkfsogra4xff6acberun5c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/gafvd5ysioq746xujeocgxzln7b/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lhqcd8fsiof6ckxbpvncx0vtnlg/">
+
+
 
 
 
@@ -174,14 +192,23 @@
 <link rel="canonical" href="//localhost:1313/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">
 
 
+
+
+
+
+
+
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -196,7 +223,8 @@
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -204,17 +232,20 @@
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -260,10 +291,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -274,6 +302,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -285,15 +316,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -315,6 +349,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -325,33 +360,46 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#数据结构概念">数据结构概念</a></li>
-    <li><a href="#专用术语">专用术语</a></li>
-    <li><a href="#数据的逻辑结构和存储结构">数据的逻辑结构和存储结构</a>
+    <li><a href="#数据结构概述">数据结构概述</a>
       <ul>
-        <li><a href="#逻辑结构">逻辑结构</a></li>
-        <li><a href="#存储结构">存储结构</a></li>
-      </ul>
-    </li>
-    <li><a href="#数据类型和抽象数据类型">数据类型和抽象数据类型</a>
-      <ul>
-        <li><a href="#数据类型">数据类型</a></li>
-        <li><a href="#抽象数据类型">抽象数据类型</a></li>
-      </ul>
-    </li>
-    <li><a href="#算法和算法分析">算法和算法分析</a>
-      <ul>
-        <li><a href="#算法的定义及特性">算法的定义及特性</a></li>
-        <li><a href="#评价算法优劣的基本标准">评价算法优劣的基本标准</a></li>
-        <li><a href="#算法的时间复杂度">算法的时间复杂度</a></li>
-        <li><a href="#时间复杂度的定义">时间复杂度的定义</a></li>
-        <li><a href="#算法时间复杂度分析举例">算法时间复杂度分析举例</a></li>
-        <li><a href="#时间复杂度性能">时间复杂度性能</a></li>
-        <li><a href="#空间复杂度">空间复杂度</a></li>
+        <li><a href="#数据结构概念">数据结构概念</a></li>
+        <li><a href="#专用术语">专用术语</a></li>
+        <li><a href="#数据的逻辑结构和存储结构">数据的逻辑结构和存储结构</a>
+          <ul>
+            <li><a href="#逻辑结构">逻辑结构</a></li>
+            <li><a href="#存储结构">存储结构</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据类型和抽象数据类型">数据类型和抽象数据类型</a>
+          <ul>
+            <li><a href="#数据类型">数据类型</a></li>
+            <li><a href="#抽象数据类型">抽象数据类型</a></li>
+          </ul>
+        </li>
+        <li><a href="#算法和算法分析">算法和算法分析</a>
+          <ul>
+            <li><a href="#算法的定义及特性">算法的定义及特性</a></li>
+            <li><a href="#评价算法优劣的基本标准">评价算法优劣的基本标准</a></li>
+            <li><a href="#算法的时间复杂度">算法的时间复杂度</a></li>
+            <li><a href="#时间复杂度的定义">时间复杂度的定义</a></li>
+            <li><a href="#算法时间复杂度分析举例">算法时间复杂度分析举例</a>
+              <ul>
+                <li><a href="#常量阶示例">常量阶示例</a></li>
+                <li><a href="#线性阶示例">线性阶示例</a></li>
+                <li><a href="#平方阶示例">平方阶示例</a></li>
+                <li><a href="#立方阶示例">立方阶示例</a></li>
+                <li><a href="#对数阶示例">对数阶示例</a></li>
+              </ul>
+            </li>
+            <li><a href="#时间复杂度性能">时间复杂度性能</a></li>
+            <li><a href="#空间复杂度">空间复杂度</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -361,49 +409,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -433,20 +527,23 @@ code.has-jax {
             192 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span></div>
       </div>
     </header>
 
@@ -693,13 +790,74 @@ code.has-jax {
 <p>输入数据所占的具体存储量取决于问题本身，与算法无关。空间复杂度只需要分析该算法在实现时所需的辅助空间。</p>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-数据结构相关文章">
+        参见 数据结构相关文章
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/posts/nkv5dwja0oosbrxuyx7cejgjnse/">串、数组和广义表</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">排序</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/rfybd7gssoktinxwskock7atn8c/">散列表的查找</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/e9fzdzkfsogra4xff6acberun5c/">树和二叉树</a>
+            </li>
+          
+        
+          
+        
+          
+            <li>
+              <a href="/posts/gafvd5ysioq746xujeocgxzln7b/">数据结构之图概述</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -752,23 +910,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -786,24 +951,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

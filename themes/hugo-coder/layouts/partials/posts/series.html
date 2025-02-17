@@ -1,4 +1,14 @@
+<!-- 系列文章导航模板，用于显示同一系列的相关文章 -->
+
+<!-- 
+---
+series:
+  - "Hugo 教程"
+--- 
+-->
+
 {{ $currentPageUrl := .RelPermalink }}
+
 {{ if .Params.series }}
 <section class="see-also">
   {{ range .Params.series }}

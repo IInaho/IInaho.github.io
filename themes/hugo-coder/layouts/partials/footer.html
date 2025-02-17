@@ -1,17 +1,25 @@
 <footer class="footer">
   <section class="container">
+    <!-- 版权年份显示， 如果设置了起始年份且小于当前年份，显示"起始年份-当前年份，否则只显示当前年份 -->
     ©
     {{ if (and .Site.Params.since (lt .Site.Params.since now.Year)) }}
       {{ .Site.Params.since }} -
     {{ end }}
     {{ now.Year }}
+
+    <!-- 作者信息 -->
     {{ with .Site.Params.author }} {{ . }} {{ end }}
     ·
+    <!-- 许可证信息 -->
     {{ if (and .Site.Params.license) }}
       {{ i18n "licensed_under" }} {{ .Site.Params.license | safeHTML }}
     ·
     {{ end }}
+
+    <!-- 技术支持信息 -->
     {{ i18n "powered_by" }} <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    <!-- 如果启用了 Git 信息，显示当前页面的 Git 提交哈希值 -->
     {{ if (and .Site.Params.commit .GitInfo) }}
       [<a href="{{ .Site.Params.commit }}/{{ .GitInfo.Hash }}" target="_blank" rel="noopener">{{ .GitInfo.AbbreviatedHash }}</a>]
     {{ end }}

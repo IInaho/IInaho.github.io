@@ -1,9 +1,11 @@
+<!-- 分类列表的模板代码，用于显示文章的分类信息 -->
+
 <div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
   {{- range $index, $el := . -}}
-    {{- if gt $index 0 }}
-      <span class="separator">•</span>
-    {{- end }}
-    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+  {{- if gt $index 0 }}
+  <span class="separator">•</span>
+  {{- end }}
+  <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
   {{- end -}}
 </div>

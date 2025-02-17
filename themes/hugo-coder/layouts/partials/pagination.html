@@ -1,16 +1,21 @@
+<!-- 分页导航模板 -->
+
 {{ $paginator := .Paginator }}
 {{ $adjacent_links := 2 }}
 {{ $max_links := (add (mul $adjacent_links 2) 1) }}
 {{ $lower_limit := (add $adjacent_links 1) }}
 {{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
+
 {{ if gt $paginator.TotalPages 1 }}
 <ul class="pagination">
+  <!-- 首页和上一页按钮 -->
   {{ if $paginator.HasPrev }}
     {{ if ne $paginator.PageNumber 1 }}
     <li><a href="{{ $paginator.First.URL }}">&laquo;</a></li>
     {{ end }}
     <li class="hidden"><a href="{{ $paginator.Prev.URL }}">&lsaquo;</a></li>
   {{ end }}
+  <!-- 页码显示逻辑 -->
   {{ range $paginator.Pagers }}
     {{ $.Scratch.Set "page_number_flag" false }}
     {{ if gt $paginator.TotalPages $max_links }}
@@ -38,6 +43,7 @@
       {{ end }}
     {{ end }}
   {{ end }}
+  <!-- 下一页和末页按钮 -->
   {{ if $paginator.HasNext }}
     <li class="hidden"><a href="{{ $paginator.Next.URL }}">&rsaquo;</a></li>
     {{ if ne $paginator.PageNumber $paginator.TotalPages }}

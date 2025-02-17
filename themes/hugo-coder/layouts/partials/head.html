@@ -1,22 +1,27 @@
+<!-- Hugo 的头部模板，用于加载各种必要的资源和设置 -->
+
+
+<!-- 网站的基本元数据（如标题、描述、关键词等） -->
 {{ partial "head/meta-tags.html" . }}
 
+
+<!-- 设置页面的规范 URL，可以在前置参数中自定义，否则使用默认链接 -->
 {{ if .Params.canonicalUrl }}
 <link rel="canonical" href="{{ .Params.canonicalUrl }}">
 {{ else }}
 <link rel="canonical" href="{{ .Permalink }}">
 {{ end }}
 
+
+<!-- 加载主题样式、配色方案和自定义样式，使用缓存提高性能 -->
 {{ partialCached "head/theme-styles.html" . }}
-
 {{ partialCached "head/color-scheme.html" . }}
-
-{{ partialCached "head/custom-styles.html" . }}
-
-{{ partialCached "head/custom-icons.html" . }}
+{{ partialCached "head/custom-styles.html" . }} <!-- 自定义样式 -->
+{{ partialCached "head/custom-icons.html" . }} <!-- 自定义图标 -->
 
 {{ partial "head/alternative-output-formats.html" . }}
 
+<!-- Hugo 模板函数，用于生成一个 HTML 元标签，表明网站是由 Hugo 构建的 -->
 {{ if .IsHome }}{{ partial "head/hugo-generator.html" . }}{{ end }}
 
-{{ partial "head/mathjax.html" . }}
-{{ partial "head/extensions.html" . }}
+{{ partial "head/mathjax.html" . }} <!-- 加载 MathJax 支持 -->

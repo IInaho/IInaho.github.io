@@ -5,14 +5,21 @@
   <title>
 MySQL 入门 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   MySQL 入门
   
@@ -88,11 +95,14 @@ ORDER BY 子句位于 WHERE 之后">
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="MySQL 入门">
   <meta name="twitter:description" content="MySQL 入门 链接到标题 MYSQL 入门知识 链接到标题 此文是阅读 MYSQL 必知必会后整理的所有样例代码，仅供自用。
 一、MySQL 基础命令 链接到标题 use database; -- 打开数据库 show databases; -- 列出所有数据库 show tables; -- 列出数据库所有表 show columns from orders; -- 列出表内所有的列 describe orders; -- 列出表内所有的列 show status; -- 显示广泛的服务器状态信息 二、检索数据 链接到标题 USE sqltest; -- 使用数据库 SELECT prod_name FROM products; SELECT prod_id,prod_name,prod_price FROM products; -- 返回多列 SELECT * FROM products; -- 返回所有列 SELECT DISTINCT vend_id FROM products; -- 只返回不同的值，DISTINCT不能部分使用，其应用于所有列 SELECT prod_name FROM products LIMIT 5; -- 返回不多于5行 SELECT prod_name FROM products LIMIT 5,5; -- 返回从行5开始的5行，检索出的第一行为行0 SELECT prod_name FROM products LIMIT 4 OFFSET 3; -- 从行3开始取4行 SELECT products.prod_name FROM products; -- 使用完全限定的表名 三、排序检索数据 链接到标题 SELECT prod_name FROM products ORDER BY prod_name; -- 对prod_name以字母顺序排序 -- 多个行具有相同prod_price时，才对产品按prod_name进行排序，如果prod_price所有值唯一，则不会按prod_name排序。 SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price,prod_name; -- 首先对价格排序，在按名称排序 -- 默认进行升序排序，也可以指定ASC进行升序排序，但没必要 SElECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC; -- 对价格降序排序 -- 如果要对每个列进行降序排序，要对每个列指定DESC SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC, prod_name; -- 先对价格降序排序，在对名称排序 -- ORDER BY必须在FROM子句之后，LIMIT必须在ORDER BY子句之后 SELECT prod_price FROM products ORDER BY prod_price DESC LIMIT 1; -- 找出最贵的价格 四、过滤数据 链接到标题 ORDER BY 子句位于 WHERE 之后">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/c5gpdfxoio6edjxctrhchq49n6f/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="MySQL 入门">
@@ -108,7 +118,15 @@ ORDER BY 子句位于 WHERE 之后">
 
 
 
+
+
 <link rel="canonical" href="//localhost:1313/posts/c5gpdfxoio6edjxctrhchq49n6f/">
+
+
+
+
+
+
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -116,9 +134,12 @@ ORDER BY 子句位于 WHERE 之后">
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -133,7 +154,8 @@ ORDER BY 子句位于 WHERE 之后">
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -141,17 +163,20 @@ ORDER BY 子句位于 WHERE 之后">
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -197,10 +222,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -211,6 +233,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -222,15 +247,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -252,6 +280,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -262,109 +291,115 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#一mysql-基础命令">一、MySQL 基础命令</a></li>
-    <li><a href="#二检索数据">二、检索数据</a></li>
-    <li><a href="#三排序检索数据">三、排序检索数据</a></li>
-    <li><a href="#四过滤数据">四、过滤数据</a></li>
-    <li><a href="#五数据过滤">五、数据过滤</a></li>
-    <li><a href="#六使用通配符进行过滤">六、使用通配符进行过滤</a></li>
-    <li><a href="#七使用正则表达式搜索">七、使用正则表达式搜索</a>
+    <li><a href="#mysql-入门">MySQL 入门</a></li>
+    <li><a href="#mysql-入门知识">MYSQL 入门知识</a>
       <ul>
-        <li><a href="#匹配字符类">匹配字符类</a></li>
-        <li><a href="#匹配多个实例">匹配多个实例</a></li>
+        <li><a href="#一mysql-基础命令">一、MySQL 基础命令</a></li>
+        <li><a href="#二检索数据">二、检索数据</a></li>
+        <li><a href="#三排序检索数据">三、排序检索数据</a></li>
+        <li><a href="#四过滤数据">四、过滤数据</a></li>
+        <li><a href="#五数据过滤">五、数据过滤</a></li>
+        <li><a href="#六使用通配符进行过滤">六、使用通配符进行过滤</a></li>
+        <li><a href="#七使用正则表达式搜索">七、使用正则表达式搜索</a>
+          <ul>
+            <li><a href="#匹配字符类">匹配字符类</a></li>
+            <li><a href="#匹配多个实例">匹配多个实例</a></li>
+          </ul>
+        </li>
+        <li><a href="#八创建计算字段">八、创建计算字段</a></li>
+        <li><a href="#九使用数据处理函数">九、使用数据处理函数</a>
+          <ul>
+            <li><a href="#数据处理函数">数据处理函数</a></li>
+            <li><a href="#文本处理函数">文本处理函数</a></li>
+            <li><a href="#日期时间处理函数">日期时间处理函数</a></li>
+          </ul>
+        </li>
+        <li><a href="#十汇总数据">十、汇总数据</a></li>
+        <li><a href="#十一分组数据">十一、分组数据</a>
+          <ul>
+            <li><a href="#having-和-where-的区别">HAVING 和 WHERE 的区别</a></li>
+          </ul>
+        </li>
+        <li><a href="#十二子查询">十二、子查询</a></li>
+        <li><a href="#十三联结表内部联结">十三、联结表,内部联结</a></li>
+        <li><a href="#十四创建高级联结">十四、创建高级联结</a>
+          <ul>
+            <li><a href="#自联结">自联结</a></li>
+            <li><a href="#外部联结">外部联结</a></li>
+            <li><a href="#带聚集函数的联结">带聚集函数的联结</a></li>
+          </ul>
+        </li>
+        <li><a href="#十五组合查询">十五、组合查询</a></li>
+        <li><a href="#十六全文本搜索">十六、全文本搜索</a>
+          <ul>
+            <li><a href="#全文本搜索">全文本搜索</a></li>
+            <li><a href="#布尔文本搜索">布尔文本搜索</a></li>
+          </ul>
+        </li>
+        <li><a href="#十七插入数据">十七、插入数据</a>
+          <ul>
+            <li><a href="#插入多条数据">插入多条数据</a></li>
+            <li><a href="#创建-custnew-表">创建 custnew 表</a></li>
+          </ul>
+        </li>
+        <li><a href="#十八更新和删除数据">十八、更新和删除数据</a>
+          <ul>
+            <li><a href="#更新数据">更新数据</a></li>
+            <li><a href="#删除数据">删除数据</a></li>
+          </ul>
+        </li>
+        <li><a href="#十九创建表和操纵表">十九、创建表和操纵表</a>
+          <ul>
+            <li><a href="#创建表">创建表</a></li>
+            <li><a href="#引擎介绍">引擎介绍</a></li>
+            <li><a href="#更新表">更新表</a></li>
+            <li><a href="#删除表">删除表</a></li>
+            <li><a href="#重命名表">重命名表</a></li>
+          </ul>
+        </li>
+        <li><a href="#二十视图">二十、视图</a>
+          <ul>
+            <li><a href="#视图的规则">视图的规则</a></li>
+            <li><a href="#使用视图简化复杂联结">使用视图简化复杂联结</a></li>
+            <li><a href="#用视图格式化检索的数据">用视图格式化检索的数据</a></li>
+            <li><a href="#用视图过滤不要的数据">用视图过滤不要的数据</a></li>
+            <li><a href="#使用视图与计算字段">使用视图与计算字段</a></li>
+            <li><a href="#更新视图">更新视图</a></li>
+          </ul>
+        </li>
+        <li><a href="#二十一存储过程">二十一、存储过程</a></li>
+        <li><a href="#二十二游标">二十二、游标</a>
+          <ul>
+            <li><a href="#使用游标涉及的步骤">使用游标涉及的步骤</a></li>
+          </ul>
+        </li>
+        <li><a href="#二十三触发器">二十三、触发器</a>
+          <ul>
+            <li><a href="#insert-触发器">INSERT 触发器</a></li>
+            <li><a href="#delete-触发器">DELETE 触发器</a></li>
+            <li><a href="#update-触发器">UPDATE 触发器</a></li>
+          </ul>
+        </li>
+        <li><a href="#二十四事务">二十四、事务</a>
+          <ul>
+            <li><a href="#概念解释">概念解释</a></li>
+          </ul>
+        </li>
+        <li><a href="#二十五全球化和本地化">二十五、全球化和本地化</a>
+          <ul>
+            <li><a href="#概念解释-1">概念解释</a></li>
+          </ul>
+        </li>
+        <li><a href="#二十六安全管理">二十六、安全管理</a></li>
+        <li><a href="#二十七数据库维护">二十七、数据库维护</a></li>
+        <li><a href="#三十改善性能">三十、改善性能</a></li>
       </ul>
     </li>
-    <li><a href="#八创建计算字段">八、创建计算字段</a></li>
-    <li><a href="#九使用数据处理函数">九、使用数据处理函数</a>
-      <ul>
-        <li><a href="#数据处理函数">数据处理函数</a></li>
-        <li><a href="#文本处理函数">文本处理函数</a></li>
-        <li><a href="#日期时间处理函数">日期时间处理函数</a></li>
-      </ul>
-    </li>
-    <li><a href="#十汇总数据">十、汇总数据</a></li>
-    <li><a href="#十一分组数据">十一、分组数据</a>
-      <ul>
-        <li><a href="#having-和-where-的区别">HAVING 和 WHERE 的区别</a></li>
-      </ul>
-    </li>
-    <li><a href="#十二子查询">十二、子查询</a></li>
-    <li><a href="#十三联结表内部联结">十三、联结表,内部联结</a></li>
-    <li><a href="#十四创建高级联结">十四、创建高级联结</a>
-      <ul>
-        <li><a href="#自联结">自联结</a></li>
-        <li><a href="#外部联结">外部联结</a></li>
-        <li><a href="#带聚集函数的联结">带聚集函数的联结</a></li>
-      </ul>
-    </li>
-    <li><a href="#十五组合查询">十五、组合查询</a></li>
-    <li><a href="#十六全文本搜索">十六、全文本搜索</a>
-      <ul>
-        <li><a href="#全文本搜索">全文本搜索</a></li>
-        <li><a href="#布尔文本搜索">布尔文本搜索</a></li>
-      </ul>
-    </li>
-    <li><a href="#十七插入数据">十七、插入数据</a>
-      <ul>
-        <li><a href="#插入多条数据">插入多条数据</a></li>
-        <li><a href="#创建-custnew-表">创建 custnew 表</a></li>
-      </ul>
-    </li>
-    <li><a href="#十八更新和删除数据">十八、更新和删除数据</a>
-      <ul>
-        <li><a href="#更新数据">更新数据</a></li>
-        <li><a href="#删除数据">删除数据</a></li>
-      </ul>
-    </li>
-    <li><a href="#十九创建表和操纵表">十九、创建表和操纵表</a>
-      <ul>
-        <li><a href="#创建表">创建表</a></li>
-        <li><a href="#引擎介绍">引擎介绍</a></li>
-        <li><a href="#更新表">更新表</a></li>
-        <li><a href="#删除表">删除表</a></li>
-        <li><a href="#重命名表">重命名表</a></li>
-      </ul>
-    </li>
-    <li><a href="#二十视图">二十、视图</a>
-      <ul>
-        <li><a href="#视图的规则">视图的规则</a></li>
-        <li><a href="#使用视图简化复杂联结">使用视图简化复杂联结</a></li>
-        <li><a href="#用视图格式化检索的数据">用视图格式化检索的数据</a></li>
-        <li><a href="#用视图过滤不要的数据">用视图过滤不要的数据</a></li>
-        <li><a href="#使用视图与计算字段">使用视图与计算字段</a></li>
-        <li><a href="#更新视图">更新视图</a></li>
-      </ul>
-    </li>
-    <li><a href="#二十一存储过程">二十一、存储过程</a></li>
-    <li><a href="#二十二游标">二十二、游标</a>
-      <ul>
-        <li><a href="#使用游标涉及的步骤">使用游标涉及的步骤</a></li>
-      </ul>
-    </li>
-    <li><a href="#二十三触发器">二十三、触发器</a>
-      <ul>
-        <li><a href="#insert-触发器">INSERT 触发器</a></li>
-        <li><a href="#delete-触发器">DELETE 触发器</a></li>
-        <li><a href="#update-触发器">UPDATE 触发器</a></li>
-      </ul>
-    </li>
-    <li><a href="#二十四事务">二十四、事务</a>
-      <ul>
-        <li><a href="#概念解释">概念解释</a></li>
-      </ul>
-    </li>
-    <li><a href="#二十五全球化和本地化">二十五、全球化和本地化</a>
-      <ul>
-        <li><a href="#概念解释-1">概念解释</a></li>
-      </ul>
-    </li>
-    <li><a href="#二十六安全管理">二十六、安全管理</a></li>
-    <li><a href="#二十七数据库维护">二十七、数据库维护</a></li>
-    <li><a href="#三十改善性能">三十、改善性能</a></li>
   </ul>
 </nav>
     </div>
@@ -372,49 +407,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -444,20 +525,23 @@ code.has-jax {
             3394 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/mysql/">Mysql</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/mysql/">Mysql</a>
+  </span></div>
       </div>
     </header>
 
@@ -1749,13 +1833,20 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 </ul>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -1808,23 +1899,30 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -1842,24 +1940,6 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

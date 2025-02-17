@@ -1,4 +1,7 @@
+<!-- 列表页面模板，用于显示文章列表、分类页面等 -->
+
 <section class="container list">
+  <!-- 显示页面标题，支持多语言。如果是分类术语页面，会显示分类类型 -->
   <header>
     <h1 class="title">
       <a class="title-link" href="{{ .Permalink | safeURL }}">
@@ -11,13 +14,15 @@
     </h1>
   </header>
   {{ .Content }}
+  <!-- 列出所有页面，每个条目包含：发布日期、标题链接 -->
   <ul>
     {{ range .Paginator.Pages }}
     <li>
-      <span class="date">{{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}</span>
+      <span class="date">{{ .Date | time.Format (.Site.Params.dateFormat | default "January 2-2006" ) }}</span>
       <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
     </li>
     {{ end }}
   </ul>
+  <!-- 页码显示 -->
   {{ partial "pagination.html" . }}
 </section>

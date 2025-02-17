@@ -5,14 +5,21 @@
   <title>
 ubantu 配置 django 开发环境 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   ubantu 配置 django 开发环境
   
@@ -74,6 +81,9 @@ mysql -uroot -p        //进入mysql命令界面
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ubantu 配置 django 开发环境">
   <meta name="twitter:description" content="ubantu 配置 django 开发环境 链接到标题 预备 链接到标题 Ubantu 镜像 Python3 pip3 pymysql Django2.2 Mysql 数据库 virtualenv 虚拟环境 在 VirtualBox 上安装 Ubantu 操作系统 链接到标题 新建虚拟机，选择类型 linux,选择版本 ubantu64-bit，分配内存 4gb，选择创建虚拟硬盘，配置好之后，在设置里，设置显存大小 128m，启动 3d 加速.
@@ -81,7 +91,7 @@ mysql -uroot -p        //进入mysql命令界面
 ubantu 系统内已配置 python3，所以只需要安装后续软件即可。
 进入系统后打开 terminal，首先输入 dpkg -l 查看已安装软件，是否有 python，如果有则不需要再安装 python。
 安装 pip3 链接到标题 sudo apt-get update //更新软件源 sudo apt-get install python3-pip pip3 --version //查看版本 sudo pip3 list //查看已安装的lib 安装 mysql 链接到标题 sudo apt-get install mysql-server mysql-client sudo service mysql restart mysql -uroot -p //进入mysql命令界面">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/q8fgd7txwoutuhxj2szc2nkknoe/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="ubantu 配置 django 开发环境">
@@ -100,7 +110,15 @@ ubantu 系统内已配置 python3，所以只需要安装后续软件即可。
 
 
 
+
+
 <link rel="canonical" href="//localhost:1313/posts/q8fgd7txwoutuhxj2szc2nkknoe/">
+
+
+
+
+
+
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -108,9 +126,12 @@ ubantu 系统内已配置 python3，所以只需要安装后续软件即可。
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -125,7 +146,8 @@ ubantu 系统内已配置 python3，所以只需要安装后续软件即可。
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -133,17 +155,20 @@ ubantu 系统内已配置 python3，所以只需要安装后续软件即可。
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -189,10 +214,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -203,6 +225,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -214,15 +239,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -244,6 +272,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -254,18 +283,23 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#预备">预备</a>
+    <li><a href="#ubantu-配置-django-开发环境">ubantu 配置 django 开发环境</a>
       <ul>
-        <li><a href="#在-virtualbox-上安装-ubantu-操作系统">在 VirtualBox 上安装 Ubantu 操作系统</a></li>
-        <li><a href="#安装-pip3">安装 pip3</a></li>
-        <li><a href="#安装-mysql">安装 mysql</a></li>
-        <li><a href="#安装-pymysql">安装 pymysql</a></li>
-        <li><a href="#安装-virtualenv-与-virtualenvwrapper">安装 virtualenv 与 virtualenvwrapper</a></li>
-        <li><a href="#安装-django">安装 Django</a></li>
+        <li><a href="#预备">预备</a>
+          <ul>
+            <li><a href="#在-virtualbox-上安装-ubantu-操作系统">在 VirtualBox 上安装 Ubantu 操作系统</a></li>
+            <li><a href="#安装-pip3">安装 pip3</a></li>
+            <li><a href="#安装-mysql">安装 mysql</a></li>
+            <li><a href="#安装-pymysql">安装 pymysql</a></li>
+            <li><a href="#安装-virtualenv-与-virtualenvwrapper">安装 virtualenv 与 virtualenvwrapper</a></li>
+            <li><a href="#安装-django">安装 Django</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -275,49 +309,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -347,20 +427,23 @@ code.has-jax {
             160 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/python/">Python</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/python/">Python</a>
+  </span></div>
       </div>
     </header>
 
@@ -469,13 +552,20 @@ code.has-jax {
 </span></span></code></pre></div><p>执行 python manage.py runserver 访问 localhost:8000,看到 it works 则项目启动成功！</p>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -528,23 +618,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -562,24 +659,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

@@ -9,6 +9,7 @@ tags = [
 categories = [
     "技术文档"
 ]
+series = ["数据结构相关文章"]
 +++
 
 # 字符串

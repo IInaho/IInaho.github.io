@@ -5,14 +5,21 @@
   <title>
 树和二叉树 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   数据结构之树
   
@@ -175,12 +182,15 @@ LevelOrderTraverse(T)    //层序遍历
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="树和二叉树">
   <meta name="twitter:description" content="数据结构之树 链接到标题 树的定义 链接到标题 树的结构是一个递归的定义，树是以分支关系定义的层次结构，树(Tree)是 n(≥0)n(≥0)个结点的有限集，它或为空树(n=0)，或为非空树，对于非空树 T：
 有且仅有一个称之为根的结点. 除根结点以外的其余结点可分为 m(m&gt;0)个互不相交的有限集 T1,T2,…,TmT1,T2,…,Tm 其中每个集合本身又是一棵树，并且称为根的子树. 树的基本术语 链接到标题 结点：树中的一个独立单元，包含一个数据元素及若干指向其子树的分支。 结点的度：结点拥有的子树数称为结点的度。 树的度：树的度是树内各结点度的最大值。 叶子：度为 0 的结点称为叶子或终端结点。 非终端结点：度不为 0 的结点称为非终端结点或分支结点，除根节点之外，非终端结点也称为内部结点。 双亲和孩子：结点的子树的根称为该结点的孩子，相应的，该结点称为孩子的双亲。 兄弟：同一个双亲的孩子之间互称兄弟。 祖先：从根到该结点所经分支上的所有结点 子孙：以某结点为根的子树中的任一结点都称为该结点的子孙 层次：结点的层次从根开始定义起，根为第一层，根的孩子为第二层，树中任一结点的层次等于其双亲结点的层次加 1。 堂兄弟：双亲在同一层的结点互为堂兄弟。 树的深度：树中结点的最大层次称为树的深度或高度。 有序树和无序树：如果将树中结点的各子树看成从左到右是有次序的(即不能互换),则称该树为有序树，否则称为无序树。在有序树中最左边的子树的根称为第一个孩子，最右边的称为最后一个孩子。 森林：森林是 m 棵互不相交的树的集合，对树中每个结点而言，其子树的集合即为森林。由此，也可以用森林和树相互递归的定义来描述树。 任何一棵树都是一个二元组 Tree(root,F),其中 root 是根结点，F 是 m 棵树的森林。 二叉树 链接到标题 二叉树的定义 链接到标题 二叉树(Binary Tree)是 n(n≥0)n(n≥0)个结点所构成的集合，它或为空树(n=0)，或为非空树，对于非空树 T：
 有且仅有一个称之为根的结点 除根结点以外的其余结点分为两个互不相交的子集 T1T1 和 T2T2,分别称为 T 的左子树和右子树，且 T1T1 和 T2T2 本身又都是二叉树 二叉树与树的区别 链接到标题 二叉树每个结点至多只有两棵子树，即二叉树中不存在度大于 2 的结点。 二叉树的子树有左右之分，其次序不能任意颠倒 树与二叉树 ADT 定义 链接到标题 树的 ADT 定义 链接到标题 InitTree(&amp;T) //构造空树T DestroyTree(&amp;T) //销毁树 CreateTree(&amp;T,definition) //definiton给出树T的定义，按照定义构造树T ClearTree(&amp;T) //将树T清为空树 TreeEmpty(T) //树存在，若T为空树，则返回true，否则false TreeDepth(T) //返回T的深度 Root(T) //返回T的根 Value(T,cur_e) //返回cur_e结点的值 Assign(T,cur_e,value) //结点cur_e赋值为value Parent(T,cur_e) //若cur_e是T的非根结点，返回它的双亲 Leftchild(T,cur_e) //若cur_e是T的非叶子结点，返回它的左孩子 RightSibling(T,cur_e) //若cur_e有右兄弟，返回它的右兄弟 InsertChild(&amp;T,p,i,c) //p指向T中某个结点，`$1\leq i\leq p$`所指结点的度&#43;1，非空树c与T不相交，插入c为T中p所指结点的第i棵子树。 DeleteChild(&amp;T,p,i) //p指向T中某个结点，`$1\leq i\leq p$`指结点的度，删除T中p所指结点的第i棵子树 TraverseTree(T) //树T存在，按某种次序对T的每个结点访问一次. 二叉树的 ADT 定义 链接到标题 InitBiTree(&amp;T) //构造空树T DestroyBiTree(&amp;T) //销毁树 CreateBiTree(&amp;T,definition) //definiton给出树T的定义，按照定义构造树T ClearBiTree(&amp;T) //将树T清为空树 BiTreeEmpty(T) //树存在，若T为空树，则返回true，否则false BiTreeDepth(T) //返回T的深度 Root(T) //返回T的根 Value(T,cur_e) //返回cur_e结点的值 Assign(T,cur_e,value) //结点cur_e赋值为value Parent(T,cur_e) //若cur_e是T的非根结点，返回它的双亲 Leftchild(T,cur_e) //若cur_e是T的非叶子结点，返回它的左孩子 RightSibling(T,cur_e) //若cur_e有右兄弟，返回它的右兄弟 InsertChild(&amp;T,p,i,c) //p指向T中某个结点，`$1\leq i\leq p$`所指结点的度&#43;1，非空树c与T不相交，插入c为T中p所指结点的第i棵子树。 DeleteChild(&amp;T,p,i) //p指向T中某个结点，`$1\leq i\leq p$`指结点的度，删除T中p所指结点的第i棵子树 PreOrderTraverse(T) //先序遍历 InOrderTraverse(T) //中序遍历 PostOrderTraverse(T) //后序遍历 LevelOrderTraverse(T) //层序遍历 二叉树的性质 链接到标题 在二叉树的第 i 层上至多有 $2^i−1$ 个结点 深度为 k 的二叉树至多有 $2^k−1$ 个结点 对任何一棵二叉树 T，如果其终端结点数为$n_0$,度为 2 的结点数为$n_2$,则$n_0=n_2&#43;1$. 满二叉树 链接到标题 深度为 k 且含 $2^k−1$ 个结点的二叉树。 每一层上的结点数都是最大结点数，即每一层 i 的结点数都具有最大值 $2^i−1$ 完全二叉树 链接到标题 深度为 k 的，有 n 个结点的二叉树，当且仅当其每一个结点都与深度为 k 的满二叉树中编号从 1 至 n 的结点一一对应，称之为完全二叉树，特点如下：">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/e9fzdzkfsogra4xff6acberun5c/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="树和二叉树">
@@ -193,6 +203,14 @@ LevelOrderTraverse(T)    //层序遍历
     <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:tag" content="数据结构">
+      <meta property="og:see_also" content="//localhost:1313/posts/nkv5dwja0oosbrxuyx7cejgjnse/">
+      <meta property="og:see_also" content="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+      <meta property="og:see_also" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">
+      <meta property="og:see_also" content="//localhost:1313/posts/gafvd5ysioq746xujeocgxzln7b/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lhqcd8fsiof6ckxbpvncx0vtnlg/">
+
+
 
 
 
@@ -200,14 +218,23 @@ LevelOrderTraverse(T)    //层序遍历
 <link rel="canonical" href="//localhost:1313/posts/e9fzdzkfsogra4xff6acberun5c/">
 
 
+
+
+
+
+
+
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -222,7 +249,8 @@ LevelOrderTraverse(T)    //层序遍历
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -230,17 +258,20 @@ LevelOrderTraverse(T)    //层序遍历
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -286,10 +317,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -300,6 +328,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -311,15 +342,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -341,6 +375,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -351,65 +386,78 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#树的定义">树的定义</a>
+    <li><a href="#数据结构之树">数据结构之树</a>
       <ul>
-        <li><a href="#树的基本术语">树的基本术语</a></li>
+        <li><a href="#树的定义">树的定义</a>
+          <ul>
+            <li><a href="#树的基本术语">树的基本术语</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#二叉树的定义">二叉树的定义</a></li>
-    <li><a href="#二叉树与树的区别">二叉树与树的区别</a></li>
-    <li><a href="#树与二叉树-adt-定义">树与二叉树 ADT 定义</a>
+    <li><a href="#二叉树">二叉树</a>
       <ul>
-        <li><a href="#树的-adt-定义">树的 ADT 定义</a></li>
-        <li><a href="#二叉树的-adt-定义">二叉树的 ADT 定义</a></li>
+        <li><a href="#二叉树的定义">二叉树的定义</a></li>
+        <li><a href="#二叉树与树的区别">二叉树与树的区别</a></li>
+        <li><a href="#树与二叉树-adt-定义">树与二叉树 ADT 定义</a>
+          <ul>
+            <li><a href="#树的-adt-定义">树的 ADT 定义</a></li>
+            <li><a href="#二叉树的-adt-定义">二叉树的 ADT 定义</a></li>
+          </ul>
+        </li>
+        <li><a href="#二叉树的性质">二叉树的性质</a>
+          <ul>
+            <li><a href="#满二叉树">满二叉树</a></li>
+            <li><a href="#完全二叉树">完全二叉树</a></li>
+          </ul>
+        </li>
+        <li><a href="#二叉树的存储结构">二叉树的存储结构</a>
+          <ul>
+            <li><a href="#顺序存储结构">顺序存储结构</a></li>
+            <li><a href="#链式存储结构">链式存储结构</a></li>
+          </ul>
+        </li>
+        <li><a href="#二叉树的遍历">二叉树的遍历</a>
+          <ul>
+            <li><a href="#遍历代码示例">遍历代码示例</a></li>
+            <li><a href="#根据遍历序列确定二叉树">根据遍历序列确定二叉树</a></li>
+            <li><a href="#先序遍历的顺序建立二叉链表">先序遍历的顺序建立二叉链表</a></li>
+            <li><a href="#二叉树简易代码示例">二叉树简易代码示例</a></li>
+            <li><a href="#线索二叉树">线索二叉树</a>
+              <ul>
+                <li><a href="#二叉树的中序线索化">二叉树的中序线索化</a></li>
+                <li><a href="#遍历中序线索二叉树">遍历中序线索二叉树</a></li>
+                <li><a href="#线索二叉树总代码示例">线索二叉树总代码示例</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#二叉树的性质">二叉树的性质</a>
+    <li><a href="#树和森林">树和森林</a>
       <ul>
-        <li><a href="#满二叉树">满二叉树</a></li>
-        <li><a href="#完全二叉树">完全二叉树</a></li>
+        <li><a href="#树的存储结构">树的存储结构</a>
+          <ul>
+            <li><a href="#双亲表示法">双亲表示法</a></li>
+            <li><a href="#孩子表示法">孩子表示法</a></li>
+            <li><a href="#孩子兄弟表示法">孩子兄弟表示法</a></li>
+          </ul>
+        </li>
+        <li><a href="#森林与二叉树的转换">森林与二叉树的转换</a>
+          <ul>
+            <li><a href="#树转换为二叉树">树转换为二叉树</a></li>
+            <li><a href="#森林转换为二叉树">森林转换为二叉树</a></li>
+            <li><a href="#二叉树转换为森林">二叉树转换为森林</a></li>
+          </ul>
+        </li>
+        <li><a href="#树和森林的遍历">树和森林的遍历</a></li>
       </ul>
     </li>
-    <li><a href="#二叉树的存储结构">二叉树的存储结构</a>
-      <ul>
-        <li><a href="#顺序存储结构">顺序存储结构</a></li>
-        <li><a href="#链式存储结构">链式存储结构</a></li>
-      </ul>
-    </li>
-    <li><a href="#二叉树的遍历">二叉树的遍历</a>
-      <ul>
-        <li><a href="#遍历代码示例">遍历代码示例</a></li>
-        <li><a href="#根据遍历序列确定二叉树">根据遍历序列确定二叉树</a></li>
-        <li><a href="#先序遍历的顺序建立二叉链表">先序遍历的顺序建立二叉链表</a></li>
-        <li><a href="#二叉树简易代码示例">二叉树简易代码示例</a></li>
-        <li><a href="#线索二叉树">线索二叉树</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#树的存储结构">树的存储结构</a>
-      <ul>
-        <li><a href="#双亲表示法">双亲表示法</a></li>
-        <li><a href="#孩子表示法">孩子表示法</a></li>
-        <li><a href="#孩子兄弟表示法">孩子兄弟表示法</a></li>
-      </ul>
-    </li>
-    <li><a href="#森林与二叉树的转换">森林与二叉树的转换</a>
-      <ul>
-        <li><a href="#树转换为二叉树">树转换为二叉树</a></li>
-        <li><a href="#森林转换为二叉树">森林转换为二叉树</a></li>
-        <li><a href="#二叉树转换为森林">二叉树转换为森林</a></li>
-      </ul>
-    </li>
-    <li><a href="#树和森林的遍历">树和森林的遍历</a></li>
   </ul>
 </nav>
     </div>
@@ -417,49 +465,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -489,20 +583,23 @@ code.has-jax {
             1177 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span></div>
       </div>
     </header>
 
@@ -1285,13 +1382,74 @@ code.has-jax {
 <p>森林的前序遍历和二叉树前序遍历结果相同，森林的后序遍历和二叉树的中序遍历结果相同。</p></blockquote>
 
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-数据结构相关文章">
+        参见 数据结构相关文章
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/posts/nkv5dwja0oosbrxuyx7cejgjnse/">串、数组和广义表</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">排序</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/rfybd7gssoktinxwskock7atn8c/">散列表的查找</a>
+            </li>
+          
+        
+          
+        
+          
+            <li>
+              <a href="/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">数据结构基本概念</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/gafvd5ysioq746xujeocgxzln7b/">数据结构之图概述</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -1344,23 +1502,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -1378,24 +1543,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

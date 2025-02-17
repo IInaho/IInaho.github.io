@@ -5,14 +5,21 @@
   <title>
 栈与队列 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   栈与队列
   
@@ -169,6 +176,9 @@ int main()
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="栈与队列">
   <meta name="twitter:description" content="栈与队列 链接到标题 栈的定义和特点 链接到标题 栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
@@ -177,7 +187,7 @@ int main()
 判断栈是否满，若满则返回 ERROR 将新元素压入栈顶，栈顶指针 &#43;1 顺序栈的出栈
 判断栈是否空，若空返回 ERROR 栈顶指针-1，栈顶元素出栈 取顺序栈的栈顶元素
 栈非空时，取栈顶元素的值 顺序栈的代码实现(C&#43;&#43;) 链接到标题 template &lt;class T&gt; class Stack { public: Stack(unsigned int size); //在构造器中初始化栈的大小 ~Stack(); //析构器（释放内存） void push(T value); T pop(); private: unsigned int size; unsigned int sp; T *pointer; //栈指针 }; template &lt;class T&gt; Stack&lt;T&gt;::Stack(unsigned int size) //隐含this指针指向这个方法 { this-&gt;size = size; pointer = new T[size]; //分配这个栈的空间 sp = 0; //表示第0个元素 } template &lt;class T&gt; Stack&lt;T&gt;::~Stack() //析构器 { delete []pointer; //释放构造器中开辟的空间（释放数组，需要加[]） } template &lt;class T&gt; void Stack&lt;T&gt;::push(T value) { pointer[sp&#43;&#43;] = value; //将数据压入栈中，然后栈指针指向下一个地址 } template &lt;class T&gt; T Stack&lt;T&gt;::pop() { return pointer[--sp]; //返回栈指针指向前一个地址的值 } int main() { const int size = 100; Stack&lt;double&gt; mystack(size); int n, a = 1; int i; char ch; std::cout &lt;&lt; &#34;How many numbers (1-n) do you need to push?&#34; &lt;&lt; &#34;\n&#34;; std::cin &gt;&gt; n; try { for (i = 0; i &lt; n; i&#43;&#43;) //压栈(1-n) { if (i &gt;= 100) { throw &#34;崩溃！，栈溢出！！...&#34;; } mystack.push(a); a&#43;&#43;; } std::cout &lt;&lt; &#34;All pushed!&#34; &lt;&lt; &#34;\n&#34;; getchar(); std::cout &lt;&lt; &#34;if you want to pop the stack of all numbers?(Y/N)&#34; &lt;&lt; &#34;\n&#34;; if ((ch = getchar()) == &#39;Y&#39;) for (int i = 0; i &lt; n; i&#43;&#43;) //弹栈 std::cout &lt;&lt; mystack.pop() &lt;&lt; &#34;\t&#34;; } catch (const char *a) //catch(...)捕获任何异常 { std::cout &lt;&lt; a; } return 0; } 链栈的表示和实现 链接到标题 链栈的初始化">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/hshodlhxmoyl3hxf80acxloknyf/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="栈与队列">
@@ -193,6 +203,15 @@ int main()
     <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
     <meta property="article:tag" content="数据结构">
+      <meta property="og:see_also" content="//localhost:1313/posts/nkv5dwja0oosbrxuyx7cejgjnse/">
+      <meta property="og:see_also" content="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+      <meta property="og:see_also" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/e9fzdzkfsogra4xff6acberun5c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">
+      <meta property="og:see_also" content="//localhost:1313/posts/gafvd5ysioq746xujeocgxzln7b/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lhqcd8fsiof6ckxbpvncx0vtnlg/">
+
+
 
 
 
@@ -200,14 +219,23 @@ int main()
 <link rel="canonical" href="//localhost:1313/posts/hshodlhxmoyl3hxf80acxloknyf/">
 
 
+
+
+
+
+
+
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -222,7 +250,8 @@ int main()
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -230,17 +259,20 @@ int main()
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -286,10 +318,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -300,6 +329,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -311,15 +343,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -341,6 +376,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -351,24 +387,55 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#栈的定义和特点">栈的定义和特点</a></li>
-    <li><a href="#栈的-adt-类型定义">栈的 ADT 类型定义</a>
+    <li><a href="#栈与队列">栈与队列</a>
       <ul>
-        <li><a href="#顺序栈的表示和实现">顺序栈的表示和实现</a></li>
-        <li><a href="#链栈的表示和实现">链栈的表示和实现</a></li>
-        <li><a href="#栈与递归">栈与递归</a></li>
-        <li><a href="#经典案例">经典案例</a></li>
-      </ul>
-    </li>
-    <li><a href="#队列的定义和特点">队列的定义和特点</a>
-      <ul>
-        <li><a href="#队列的-adt-类型定义">队列的 ADT 类型定义</a></li>
-        <li><a href="#队列的顺序表示和实现循环队列">队列的顺序表示和实现(循环队列)</a></li>
-        <li><a href="#队列的链式表示和实现">队列的链式表示和实现</a></li>
+        <li><a href="#栈的定义和特点">栈的定义和特点</a></li>
+        <li><a href="#栈的-adt-类型定义">栈的 ADT 类型定义</a>
+          <ul>
+            <li><a href="#顺序栈的表示和实现">顺序栈的表示和实现</a>
+              <ul>
+                <li><a href="#顺序栈的代码实现c">顺序栈的代码实现(C++)</a></li>
+              </ul>
+            </li>
+            <li><a href="#链栈的表示和实现">链栈的表示和实现</a>
+              <ul>
+                <li><a href="#链栈的简单实现">链栈的简单实现</a></li>
+              </ul>
+            </li>
+            <li><a href="#栈与递归">栈与递归</a>
+              <ul>
+                <li><a href="#递归过程与递归工作栈">递归过程与递归工作栈</a></li>
+                <li><a href="#递归算法的效率分析">递归算法的效率分析</a></li>
+              </ul>
+            </li>
+            <li><a href="#经典案例">经典案例</a>
+              <ul>
+                <li><a href="#括号匹配代码示例">括号匹配代码示例</a></li>
+                <li><a href="#表达式求值代码示例">表达式求值代码示例</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#队列的定义和特点">队列的定义和特点</a>
+          <ul>
+            <li><a href="#队列的-adt-类型定义">队列的 ADT 类型定义</a></li>
+            <li><a href="#队列的顺序表示和实现循环队列">队列的顺序表示和实现(循环队列)</a>
+              <ul>
+                <li><a href="#循环队列顺序存储的简易代码实现">循环队列顺序存储的简易代码实现</a></li>
+              </ul>
+            </li>
+            <li><a href="#队列的链式表示和实现">队列的链式表示和实现</a>
+              <ul>
+                <li><a href="#链队的代码简易实现">链队的代码简易实现</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -378,49 +445,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -450,20 +563,23 @@ code.has-jax {
             1504 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span></div>
       </div>
     </header>
 
@@ -1278,13 +1394,78 @@ code.has-jax {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-数据结构相关文章">
+        参见 数据结构相关文章
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/posts/nkv5dwja0oosbrxuyx7cejgjnse/">串、数组和广义表</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">排序</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/rfybd7gssoktinxwskock7atn8c/">散列表的查找</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/e9fzdzkfsogra4xff6acberun5c/">树和二叉树</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/c0ncdnc7vojyuyxmvgdcnznxnpf/">数据结构基本概念</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/gafvd5ysioq746xujeocgxzln7b/">数据结构之图概述</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -1337,23 +1518,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -1371,24 +1559,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 

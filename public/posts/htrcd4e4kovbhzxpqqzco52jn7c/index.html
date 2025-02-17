@@ -5,14 +5,21 @@
   <title>
 高斯约旦消元法 · inaho
 </title>
-  <meta charset="utf-8">
+  
+
+
+
+
+
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 
 
 
 
-<meta name="author" content="一个梦想家">
+
+<meta name="author" content="inaho">
 <meta name="description" content="
   高斯约旦消元法
   
@@ -48,12 +55,15 @@
 
 
 
+
+
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="高斯约旦消元法">
   <meta name="twitter:description" content="高斯约旦消元法 链接到标题 线性系统 链接到标题 矩阵更准确的说是对线性系统的描述，所谓的线性系统指的是例如 3x &#43; 4y &#43; z = 8 之类的线性方程组，未知数只能是一次方项。而非线性方程则例如 sin(x) = Π 等坐标图上呈曲线的方程组。
 消元法解线性方程 链接到标题 在小学初中我们学过如何用消元法解线性方程组，例如 x &#43; y = 2；2x &#43; 3y = 12；的线性方程组，我们可以用第二个方程减去二倍的第一个方程，然后便可以消去 x，得到 y 的值，然后将 y 带入第一个方程，我们便可以得到 x 与 y 的值，即线性方程组的解。
 高斯消元法 链接到标题 学习矩阵的概念之后，我们可以将方程组的系数拿下来组成系数矩阵，然后基于矩阵的操作去得到线性方程组的解，例如 x &#43; y &#43; z = 6；2x &#43; y &#43; z = 7；x &#43; y &#43; 2z = 9;将其系数拿下来之后，我们可以得到矩阵">
-
+ 
 <meta property="og:url" content="//localhost:1313/posts/htrcd4e4kovbhzxpqqzco52jn7c/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="高斯约旦消元法">
@@ -70,7 +80,15 @@
 
 
 
+
+
 <link rel="canonical" href="//localhost:1313/posts/htrcd4e4kovbhzxpqqzco52jn7c/">
+
+
+
+
+
+
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -78,9 +96,12 @@
 <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
+
   
   
   <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
 
 
 
@@ -95,7 +116,8 @@
 
 
 
- 
+
+
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
@@ -103,17 +125,20 @@
 
 
 
-
-
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
 
 
 
@@ -159,10 +184,7 @@ code.has-jax {
 <script src="//yihui.org/js/math-code.js" defer></script>
 <script defer
   src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
+</script> 
 
 </head>
 
@@ -173,6 +195,9 @@ code.has-jax {
 
 <body class="preload-transitions colorscheme-auto">
   
+
+
+
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
         <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
@@ -184,15 +209,18 @@ code.has-jax {
     <nav class="navigation">
   <section class="container">
     
+    
     <a class="navigation-title" href="//localhost:1313/">
       inaho
     </a>
+    
     
     
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
         <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
+      
       <ul class="navigation-list">
         
           
@@ -214,6 +242,7 @@ code.has-jax {
           
         
         
+        
       </ul>
     
   </section>
@@ -224,18 +253,24 @@ code.has-jax {
       
 
   
+   
   <aside class="table-of-contents">
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#消元法解线性方程">消元法解线性方程</a></li>
-    <li><a href="#高斯消元法">高斯消元法</a></li>
-    <li><a href="#高斯约旦消元法-1">高斯约旦消元法</a>
+    <li><a href="#高斯约旦消元法">高斯约旦消元法</a></li>
+    <li><a href="#线性系统">线性系统</a>
       <ul>
-        <li><a href="#前向过程从上到下">前向过程(从上到下)</a></li>
-        <li><a href="#后向过程从下到上">后向过程(从下到上)</a></li>
-        <li><a href="#python-代码演示">python 代码演示</a></li>
-        <li><a href="#测试代码">测试代码</a></li>
+        <li><a href="#消元法解线性方程">消元法解线性方程</a></li>
+        <li><a href="#高斯消元法">高斯消元法</a></li>
+        <li><a href="#高斯约旦消元法-1">高斯约旦消元法</a>
+          <ul>
+            <li><a href="#前向过程从上到下">前向过程(从上到下)</a></li>
+            <li><a href="#后向过程从下到上">后向过程(从下到上)</a></li>
+            <li><a href="#python-代码演示">python 代码演示</a></li>
+            <li><a href="#测试代码">测试代码</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -245,49 +280,95 @@ code.has-jax {
 <section class="container post">
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toc = document.querySelector('.table-of-contents');
       if (!toc) return;
-  
+
+      
+      toc.classList.add('hidden');
       let timer;
+
       
       toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
+        toc.classList.add('visible');
         toc.classList.remove('hidden');
       });
-  
+
       toc.addEventListener('mouseleave', () => {
         timer = setTimeout(() => {
+          toc.classList.remove('visible');
           toc.classList.add('hidden');
         }, 300);
       });
-  
+
       
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       const tocLinks = document.querySelectorAll('#TableOfContents a');
-  
+
       const observerOptions = {
-        rootMargin: '-70px 0px -30% 0px',
-        threshold: 1.0
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       };
-  
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
       const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tocLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + entry.target.id) {
-                link.classList.add('active');
-              }
-            });
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
           }
         });
       }, observerOptions);
-  
-      headings.forEach(heading => observer.observe(heading));
-  
+
       
-      toc.classList.add('hidden');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
     });
   </script>
 
@@ -317,20 +398,23 @@ code.has-jax {
             405 字数
           </span>
         </div>
-        <div class="authors">
+        
+
+<div class="authors">
   <i class="fa-solid fa-user" aria-hidden="true"></i>
-    <a href="/authors/lzy/">Lzy</a></div>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
 
-        <div class="categories">
+<div class="categories">
   <i class="fa-solid fa-folder" aria-hidden="true"></i>
-    <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></div>
+  <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></div>
+        
 
-        <div class="tags">
+<div class="tags">
   <i class="fa-solid fa-tag" aria-hidden="true"></i>
-    <span class="tag">
-      <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    </span></div>
-
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+  </span></div>
       </div>
     </header>
 
@@ -503,13 +587,20 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="n">Ab</span><span class="o">.</span><span class="n">fancy_print</span><span class="p">()</span>
 </span></span></code></pre></div>
     </div>
-    
+
 
     <footer>
       
 
 
-      <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
 <div id="tcomment"></div>
 <style>
     .twikoo {
@@ -562,23 +653,30 @@ code.has-jax {
 </script>
     </footer>
   </article>
-  
-  
+
 </section>
 
     </div>
 
     <footer class="footer">
   <section class="container">
+    
     ©
     
       2019 -
     
     2025
-     一个梦想家 
+
+    
+     inaho 
     ·
     
+    
+
+    
     技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
     
   </section>
 </footer>
@@ -596,24 +694,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 
