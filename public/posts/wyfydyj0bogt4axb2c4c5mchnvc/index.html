@@ -836,7 +836,6 @@ code.has-jax {
   
   <aside class="table-of-contents">
     <div class="toc-container">
-      <h2>目录</h2>
       <nav id="TableOfContents">
   <ul>
     <li><a href="#简介">简介</a></li>
@@ -1592,8 +1591,7 @@ code.has-jax {
 <li>不能拷贝 IO 对象，也不能将形参或返回值设置为流对象，进行 IO 操作的函数通常以引用方式传递和返回流。</li>
 </ol>
 <blockquote>
-<p>读写 IO 对象会改变其状态，因此传递和返回的引用不能是 const 的.</p>
-</blockquote>
+<p>读写 IO 对象会改变其状态，因此传递和返回的引用不能是 const 的.</p></blockquote>
 <ol start="2">
 <li>只有当一个流处于无错状态时，才能读取数据和写入数据。</li>
 <li>使用 good 或 fail 是确定流的总体状态的方法。</li>
@@ -1601,16 +1599,14 @@ code.has-jax {
 <li>对 cerr 是设置 unitbuf 的，因此写到 cerr 的内容都是立即刷新的。</li>
 </ol>
 <blockquote>
-<p>当读写被关联的流时，关联到的流的缓冲区会被刷新。</p>
-</blockquote>
+<p>当读写被关联的流时，关联到的流的缓冲区会被刷新。</p></blockquote>
 <ol start="6">
 <li>类似 endl 的操作符，flush 刷新缓冲区，但不输出任何额外字符，ends 向缓冲区插入一个空字符，然后刷新缓冲区。</li>
 <li>unitbuf 操作符，告诉流接下来的每次写操作都进行一次 flush 操作。</li>
 </ol>
 <blockquote>
 <p>nounitbuf 操纵符则重置流，使其恢复使用正常的系统管理的缓冲区刷新机制。
-如果程序异常终止，输出缓冲区是不会被刷新的。</p>
-</blockquote>
+如果程序异常终止，输出缓冲区是不会被刷新的。</p></blockquote>
 <ol start="8">
 <li>如果创建文件流对象时，提供文件名，则 open 函数会自动被调用。</li>
 </ol>
@@ -1657,8 +1653,7 @@ code.has-jax {
 </ol>
 <blockquote>
 <p>后者将元素类型的对象传递给它们，这些对象被拷贝到容器中。
-前者则是将参数传递给元素类型的构造函数，emplace 成员使用参数在容器管理的内存空间中直接构造元素。</p>
-</blockquote>
+前者则是将参数传递给元素类型的构造函数，emplace 成员使用参数在容器管理的内存空间中直接构造元素。</p></blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Sales_data</span> <span class="n">c</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"> <span class="n">c</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="s">&#34;978-05321&#34;</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mf">15.6</span><span class="p">);</span>        <span class="c1">//构造元素
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">c</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Sales_data</span><span class="p">(</span><span class="s">&#34;978-05321&#34;</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mf">15.6</span><span class="p">));</span>    <span class="c1">//赋值元素
@@ -1666,8 +1661,7 @@ code.has-jax {
 <li>at 和下标操作只适用于 string、vector、deque、array</li>
 </ol>
 <blockquote>
-<p>c.at(n),返回下标为 n 的元素的引用，如果下标越界，则抛出 out_of_range 异常。</p>
-</blockquote>
+<p>c.at(n),返回下标为 n 的元素的引用，如果下标越界，则抛出 out_of_range 异常。</p></blockquote>
 <ol start="14">
 <li>slist.clear();</li>
 </ol>
@@ -1686,8 +1680,7 @@ code.has-jax {
 </span></span></span></code></pre></div><blockquote>
 <p>只有需要的内存空间超过当前容量，reserve 调用才会改变 vector 的容量。
 如果大于当前容量，至少分配与需求一样大的内存空间，可能更大
-如果小于等于当前容量，reserve 什么也不做。</p>
-</blockquote>
+如果小于等于当前容量，reserve 什么也不做。</p></blockquote>
 <ol start="18">
 <li>可以调用 shrink_to_fit 来要求 deque、vector、string 退回不需要的内存空间，但调用 shrink_to_fit 也并不保证一定退回内存空间。</li>
 <li>对于 vecotr，size 是指它已经保存的元素的数目，而 capacity 则是在不分配新的内存空间的前提下它最多可以保存多少元素。</li>
@@ -1705,8 +1698,7 @@ code.has-jax {
 <blockquote>
 <p>栈默认基于 deque 实现，stack 可以使用除 array、forward_list 之外的任何容器类型来构造 stack。
 queue 默认基于 deque 实现，queue 可以构造于 list 或 deque 之上，但不能基于 vector 构造。
-priority_queue 默认基于 vector 实现，priority_queue 可以构造于 vector、deque 之上，但不能基于 list 构造。</p>
-</blockquote>
+priority_queue 默认基于 vector 实现，priority_queue 可以构造于 vector、deque 之上，但不能基于 list 构造。</p></blockquote>
 <ol start="26">
 <li>priority_queue 允许我们为队列的元素建立优先级，新加入的元素排在优先级比它低的已有元素之前。</li>
 </ol>
@@ -1724,8 +1716,7 @@ priority_queue 默认基于 vector 实现，priority_queue 可以构造于 vecto
 <blockquote>
 <p>由于 string 定义了 + 运算符，所以可以用 accumulate 将其连接起来。
 string sum = accumulate(v.cbegin(),v.cend(),string(“”));
-对于只读取而不改变元素的算法，最好使用 cbegin 和 cend。</p>
-</blockquote>
+对于只读取而不改变元素的算法，最好使用 cbegin 和 cend。</p></blockquote>
 <ol start="3">
 <li>equal 假定第二个序列至少于第一个序列一样长。</li>
 </ol>
@@ -1734,8 +1725,7 @@ string sum = accumulate(v.cbegin(),v.cend(),string(“”));
 <li>插入迭代器 back_inserter 接受一个指向容器的引用，返回一个与该容器绑定的插入迭代器。</li>
 </ol>
 <blockquote>
-<p>通过此迭代器赋值时，赋值运算会调用 push_back 将一个具有给定值的元素添加到容器中。</p>
-</blockquote>
+<p>通过此迭代器赋值时，赋值运算会调用 push_back 将一个具有给定值的元素添加到容器中。</p></blockquote>
 <ol start="5">
 <li>sort 利用元素 &lt; 运算符实现排序，unique 重排 vector，使不重复的元素出现在 vector 的开始部分。</li>
 </ol>
@@ -1810,8 +1800,7 @@ string sum = accumulate(v.cbegin(),v.cend(),string(“”));
 <blockquote>
 <ol>
 <li>当使用 auto 定义一个用 lambda 初始化的变量时，定义了一个从 lambda 生成的类型的对象。</li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <ol start="21">
 <li>采用值捕获的前提是变量可以拷贝，被捕获的变量的值在 lamdba 创建时拷贝，而不是调用时拷贝。</li>
 </ol>
@@ -1871,8 +1860,7 @@ string sum = accumulate(v.cbegin(),v.cend(),string(“”));
 <blockquote>
 <p>流迭代器：迭代器被绑定到输入或输出流上，可用来遍历所关联的 IO 流。
 反向迭代器：这些迭代器向后而不是向前移动，除 forward_list 之外的标准库容器都有反向迭代器。
-移动迭代器：这些专用的迭代器不是拷贝其中的元素，而是移动它们。</p>
-</blockquote>
+移动迭代器：这些专用的迭代器不是拷贝其中的元素，而是移动它们。</p></blockquote>
 <ol start="31">
 <li>插入器是一种迭代器适配器，接受一个容器，生成一个迭代器，当通过插入迭代器进行赋值，该迭代器调用容器操作向给定容器的指定位置插入元素。</li>
 <li>back_inserter 创建一个使用 push_back 的迭代器,front_inserter 创建一个使用 push_front 的迭代器,inserter 创建一个使用 insert 的迭代器。</li>
@@ -1901,8 +1889,7 @@ string sum = accumulate(v.cbegin(),v.cend(),string(“”));
 <blockquote>
 <p>前向迭代器：单向，支持输入输出。
 双向迭代器：双向，支持读写，还支持递增递减运算符。
-随机访问迭代器：基本支持所有功能。</p>
-</blockquote>
+随机访问迭代器：基本支持所有功能。</p></blockquote>
 <ol start="41">
 <li>对于 list 和 forward_list 应该优先使用成员函数版本的算法而不是通用算法。</li>
 <li>链表版本的算法会改变底层的容器。</li>
@@ -1964,8 +1951,7 @@ string sum = accumulate(v.cbegin(),v.cend(),string(“”));
 <li>map 进行下标操作，如果关键字不在 map 中会插入 map，然后进行值初始化。</li>
 </ol>
 <blockquote>
-<p>由于可能有插入操作，只能对非 const 的 map 和 unordered_map 类型使用下标操作。</p>
-</blockquote>
+<p>由于可能有插入操作，只能对非 const 的 map 和 unordered_map 类型使用下标操作。</p></blockquote>
 <ol start="13">
 <li>at 函数访问关键字，带参数检查。若其不在 map 中，则抛出异常。</li>
 <li>通常情况，解引用一个迭代器返回的类型与下标运算符返回的类型是一样的。</li>
@@ -1975,8 +1961,7 @@ string sum = accumulate(v.cbegin(),v.cend(),string(“”));
 </ol>
 <blockquote>
 <p>upper_bound(k) 返回指向第一个关键字大于 k 的元素的迭代器
-equal_range(k) 返回一个迭代器 pair，表示关键字为 k 的元素的范围，若 k 不存在 pair 两个元素均为 c.end()。</p>
-</blockquote>
+equal_range(k) 返回一个迭代器 pair，表示关键字为 k 的元素的范围，若 k 不存在 pair 两个元素均为 c.end()。</p></blockquote>
 <ol start="18">
 <li>对于重复关联容器，可以使用 upper_bound 和 lower_bound 确定相同关键字范围，如果其返回相同迭代器，则给定关键字不在容器中。</li>
 <li>可以直接使用 equal_range 确定范围，返回一个迭代器 pair，第一个迭代器相当于 lower_bound，第二个相当于 upper_bound。</li>
@@ -1986,8 +1971,7 @@ equal_range(k) 返回一个迭代器 pair，表示关键字为 k 的元素的范
 </ol>
 <blockquote>
 <p>因此可以直接定义关键字是内置类型、string、智能指针类型的无序容器。
-不能直接定义关键字类型为自定义类型的无序容器，不能直接使用哈希模板，必须提供我们自己的 hash 模板版本。</p>
-</blockquote>
+不能直接定义关键字类型为自定义类型的无序容器，不能直接使用哈希模板，必须提供我们自己的 hash 模板版本。</p></blockquote>
 <ol start="23">
 <li>哈希函数使用标准库 hash 类型的对象来计算哈希值。</li>
 <li>相同关键字的元素是相邻存储的！</li>
@@ -2011,8 +1995,7 @@ equal_range(k) 返回一个迭代器 pair，表示关键字为 k 的元素的范
 <li>unique_ptr 则独占所指向的对象；
 weak_ptr 伴随类，它是一种弱引用，指向 shared_ptr 所管理的对象。</li>
 <li>解引用智能指针返回其对象，默认初始化的智能指针保存一个空指针。其可以作为条件判断，若 ptr 指向一个对象，则为 true。</li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">ptr</span><span class="p">;</span>        <span class="c1">//shared_ptr，可以指向string
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">ptr</span><span class="p">;</span>    <span class="c1">//可以指向int的list
 </span></span></span></code></pre></div><ol start="6">
@@ -2022,8 +2005,7 @@ weak_ptr 伴随类，它是一种弱引用，指向 shared_ptr 所管理的对�
 <blockquote>
 <p>每个 shared_ptr 都有一个关联的计数器，称为引用计数，拷贝一个 shared_ptr，计数器会递增。
 当给 shared_ptr 赋予一个新值或 shared_ptr 被销毁，计数器就会递减。
-一个 shared_ptr 计数器变为 0，它就会自动释放自己所管理的对象。</p>
-</blockquote>
+一个 shared_ptr 计数器变为 0，它就会自动释放自己所管理的对象。</p></blockquote>
 <ol start="8">
 <li>默认情况，动态分配的对象是默认初始化的，意味着内置类型或组合类型的对象的值将是未定义的，类类型将用默认构造函数。</li>
 </ol>
@@ -2060,8 +2042,7 @@ weak_ptr 伴随类，它是一种弱引用，指向 shared_ptr 所管理的对�
 <li>只有在确定代码不会 delete 指针的情况下，才能使用 get，使用 get 返回的指针的代码不能 delete 此指针！！</li>
 </ol>
 <blockquote>
-<p>永远不要用 get 初始化另一个智能指针或者为另一个智能指针赋值。</p>
-</blockquote>
+<p>永远不要用 get 初始化另一个智能指针或者为另一个智能指针赋值。</p></blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">42</span><span class="p">));</span>    <span class="c1">//引用计数1
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>            <span class="c1">//引用计数不会增加
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
