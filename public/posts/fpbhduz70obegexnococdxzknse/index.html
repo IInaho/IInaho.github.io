@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+I/O 中断 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  I/O 中断
+  
+    
+    链接到标题
+  
+
+
+  输入输出系统的发展概况
+  
+    
+    链接到标题
+  
+
+
+早期，外部设备与主机的连接采用分散连接，每一个设备都有专用的控制电路，这些控制电路与 CPU 的控制电路设计在一起，紧耦合，增加和删除外部设备困难。CPU 与 IO 设备串行工作，主要使用程序查询方式。
+随着外部设备增多，分散连接不适用于外部设备与主机的连接，因此出现了 IO 接口与 DMA 控制器，连接方式使用总线连接，一个总线可以连接多个设备，CPU 与 IO 设备并行工作，出现了两种工作方式分为中断方式、DMA 方式。
+为了使输入输出系统的控制尽可能从主机中独立出来，出现了具有通道结构的阶段，通道可以看做成小型的 DMA 控制器，通道有自己的指令系统。
+I/O 处理机阶段
+
+
+  输入输出系统的组成
+  
+    
+    链接到标题
+  
+
+
+  IO 软件
+  
+    
+    链接到标题
+  
+
+IO 软件的主要功能: 将用户编制的程序输入主机内，将运算结果输出给用户，实现输入/输出系统与主机工作的协调。
+
+  IO 指令
+  
+    
+    链接到标题
+  
+
+IO 指令分为操作码、命令码和设备码三部分组成，操作码负责 IO 指令区别其他指令的判别代码，命令码负责 I/O 的具体操作，设备码用来判断对哪一个设备操作。
+
+  通道指令
+  
+    
+    链接到标题
+  
+
+通道指令又称为通道控制字，它是通道用于执行 IO 操作的指令，可以由管理程序存放在主存的任何地方，由通道从主存中取出并执行。通道程序由通道指令组成，它完成某种外部设备与主存间传送信息的操作。
+
+  IO 硬件
+  
+    
+    链接到标题
+  
+
+输入/输出系统的硬件组成是多种多样的，在带接口的 I/O 系统中，I/O 硬件包括接口模块和 I/O 设备两大部分。在具有通道或 I/O 处理器的 I/O 系统中，I/O 硬件包括通道、设备控制器、IO 设备等。">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="I/O 中断">
+  <meta name="twitter:description" content="I/O 中断 链接到标题 输入输出系统的发展概况 链接到标题 早期，外部设备与主机的连接采用分散连接，每一个设备都有专用的控制电路，这些控制电路与 CPU 的控制电路设计在一起，紧耦合，增加和删除外部设备困难。CPU 与 IO 设备串行工作，主要使用程序查询方式。 随着外部设备增多，分散连接不适用于外部设备与主机的连接，因此出现了 IO 接口与 DMA 控制器，连接方式使用总线连接，一个总线可以连接多个设备，CPU 与 IO 设备并行工作，出现了两种工作方式分为中断方式、DMA 方式。 为了使输入输出系统的控制尽可能从主机中独立出来，出现了具有通道结构的阶段，通道可以看做成小型的 DMA 控制器，通道有自己的指令系统。 I/O 处理机阶段 输入输出系统的组成 链接到标题 IO 软件 链接到标题 IO 软件的主要功能: 将用户编制的程序输入主机内，将运算结果输出给用户，实现输入/输出系统与主机工作的协调。
+IO 指令 链接到标题 IO 指令分为操作码、命令码和设备码三部分组成，操作码负责 IO 指令区别其他指令的判别代码，命令码负责 I/O 的具体操作，设备码用来判断对哪一个设备操作。
+通道指令 链接到标题 通道指令又称为通道控制字，它是通道用于执行 IO 操作的指令，可以由管理程序存放在主存的任何地方，由通道从主存中取出并执行。通道程序由通道指令组成，它完成某种外部设备与主存间传送信息的操作。
+IO 硬件 链接到标题 输入/输出系统的硬件组成是多种多样的，在带接口的 I/O 系统中，I/O 硬件包括接口模块和 I/O 设备两大部分。在具有通道或 I/O 处理器的 I/O 系统中，I/O 硬件包括通道、设备控制器、IO 设备等。">
+ 
+<meta property="og:url" content="//localhost:1313/posts/fpbhduz70obegexnococdxzknse/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="I/O 中断">
+  <meta property="og:description" content="I/O 中断 链接到标题 输入输出系统的发展概况 链接到标题 早期，外部设备与主机的连接采用分散连接，每一个设备都有专用的控制电路，这些控制电路与 CPU 的控制电路设计在一起，紧耦合，增加和删除外部设备困难。CPU 与 IO 设备串行工作，主要使用程序查询方式。 随着外部设备增多，分散连接不适用于外部设备与主机的连接，因此出现了 IO 接口与 DMA 控制器，连接方式使用总线连接，一个总线可以连接多个设备，CPU 与 IO 设备并行工作，出现了两种工作方式分为中断方式、DMA 方式。 为了使输入输出系统的控制尽可能从主机中独立出来，出现了具有通道结构的阶段，通道可以看做成小型的 DMA 控制器，通道有自己的指令系统。 I/O 处理机阶段 输入输出系统的组成 链接到标题 IO 软件 链接到标题 IO 软件的主要功能: 将用户编制的程序输入主机内，将运算结果输出给用户，实现输入/输出系统与主机工作的协调。
+IO 指令 链接到标题 IO 指令分为操作码、命令码和设备码三部分组成，操作码负责 IO 指令区别其他指令的判别代码，命令码负责 I/O 的具体操作，设备码用来判断对哪一个设备操作。
+通道指令 链接到标题 通道指令又称为通道控制字，它是通道用于执行 IO 操作的指令，可以由管理程序存放在主存的任何地方，由通道从主存中取出并执行。通道程序由通道指令组成，它完成某种外部设备与主存间传送信息的操作。
+IO 硬件 链接到标题 输入/输出系统的硬件组成是多种多样的，在带接口的 I/O 系统中，I/O 硬件包括接口模块和 I/O 设备两大部分。在具有通道或 I/O 处理器的 I/O 系统中，I/O 硬件包括通道、设备控制器、IO 设备等。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="计算机组成原理">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/fpbhduz70obegexnococdxzknse/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#io-中断">I/O 中断</a></li>
+    <li><a href="#输入输出系统的发展概况">输入输出系统的发展概况</a></li>
+    <li><a href="#输入输出系统的组成">输入输出系统的组成</a>
+      <ul>
+        <li><a href="#io-软件">IO 软件</a>
+          <ul>
+            <li><a href="#io-指令">IO 指令</a></li>
+            <li><a href="#通道指令">通道指令</a></li>
+          </ul>
+        </li>
+        <li><a href="#io-硬件">IO 硬件</a></li>
+      </ul>
+    </li>
+    <li><a href="#外部设备">外部设备</a>
+      <ul>
+        <li><a href="#输入设备">输入设备</a></li>
+        <li><a href="#输出设备">输出设备</a>
+          <ul>
+            <li><a href="#阴极射线管crt显示器">阴极射线管(CRT)显示器</a></li>
+            <li><a href="#打印机">打印机</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#io-接口">I/O 接口</a>
+      <ul>
+        <li><a href="#总线连接方式的-io-接口电路">总线连接方式的 I/O 接口电路</a></li>
+        <li><a href="#接口的功能和组成">接口的功能和组成</a></li>
+        <li><a href="#io-接口的基本组成">I/O 接口的基本组成</a></li>
+        <li><a href="#接口类型">接口类型</a></li>
+      </ul>
+    </li>
+    <li><a href="#io-方式">I/O 方式</a>
+      <ul>
+        <li><a href="#程序查询方式">程序查询方式</a></li>
+        <li><a href="#程序中断方式">程序中断方式</a></li>
+        <li><a href="#dma-方式">DMA 方式</a>
+          <ul>
+            <li><a href="#dma-的传送方法">DMA 的传送方法</a>
+              <ul>
+                <li><a href="#停止-cpu-访问主存">停止 CPU 访问主存</a></li>
+                <li><a href="#周期挪用">周期挪用</a></li>
+                <li><a href="#dma-与-cpu-交替访问">DMA 与 CPU 交替访问</a></li>
+              </ul>
+            </li>
+            <li><a href="#dma-接口的功能和组成">DMA 接口的功能和组成</a>
+              <ul>
+                <li><a href="#dma-接口的功能">DMA 接口的功能</a></li>
+                <li><a href="#dma-接口组成">DMA 接口组成</a></li>
+              </ul>
+            </li>
+            <li><a href="#dma-工作过程">DMA 工作过程</a>
+              <ul>
+                <li><a href="#预处理">预处理</a></li>
+                <li><a href="#数据传送">数据传送</a></li>
+                <li><a href="#后处理">后处理</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/fpbhduz70obegexnococdxzknse/">
+            I/O 中断
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-01-03T00:00:00Z">
+              January 3, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：2 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            348 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="io-中断">
+  I/O 中断
+  <a class="heading-link" href="#io-%e4%b8%ad%e6%96%ad">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h1 id="输入输出系统的发展概况">
+  输入输出系统的发展概况
+  <a class="heading-link" href="#%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%8f%91%e5%b1%95%e6%a6%82%e5%86%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
+<li>早期，外部设备与主机的连接采用<strong>分散连接</strong>，每一个设备都有专用的控制电路，这些控制电路与 CPU 的控制电路设计在一起，紧耦合，增加和删除外部设备困难。CPU 与 IO 设备串行工作，主要使用程序查询方式。</li>
+<li>随着外部设备增多，分散连接不适用于外部设备与主机的连接，因此出现了 <strong>IO 接口与 DMA 控制器</strong>，连接方式使用<strong>总线连接</strong>，一个总线可以连接多个设备，CPU 与 IO 设备并行工作，出现了两种工作方式分为中断方式、DMA 方式。</li>
+<li>为了使输入输出系统的控制尽可能从主机中独立出来，出现了具有<strong>通道结构的阶段</strong>，通道可以看做成小型的 DMA 控制器，通道有自己的指令系统。</li>
+<li>I/O 处理机阶段</li>
+</ul>
+<h1 id="输入输出系统的组成">
+  输入输出系统的组成
+  <a class="heading-link" href="#%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%bb%84%e6%88%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="io-软件">
+  IO 软件
+  <a class="heading-link" href="#io-%e8%bd%af%e4%bb%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>IO 软件的主要功能: 将用户编制的程序输入主机内，将运算结果输出给用户，实现输入/输出系统与主机工作的协调。</p>
+<h3 id="io-指令">
+  IO 指令
+  <a class="heading-link" href="#io-%e6%8c%87%e4%bb%a4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>IO 指令分为操作码、命令码和设备码三部分组成，操作码负责 IO 指令区别其他指令的判别代码，命令码负责 I/O 的具体操作，设备码用来判断对哪一个设备操作。</p>
+<h3 id="通道指令">
+  通道指令
+  <a class="heading-link" href="#%e9%80%9a%e9%81%93%e6%8c%87%e4%bb%a4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>通道指令又称为通道控制字，它是通道用于执行 IO 操作的指令，可以由管理程序存放在主存的任何地方，由通道从主存中取出并执行。通道程序由通道指令组成，它完成某种外部设备与主存间传送信息的操作。</p>
+<h2 id="io-硬件">
+  IO 硬件
+  <a class="heading-link" href="#io-%e7%a1%ac%e4%bb%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>输入/输出系统的硬件组成是多种多样的，在带接口的 I/O 系统中，I/O 硬件包括接口模块和 I/O 设备两大部分。在具有通道或 I/O 处理器的 I/O 系统中，I/O 硬件包括通道、设备控制器、IO 设备等。</p>
+<h1 id="外部设备">
+  外部设备
+  <a class="heading-link" href="#%e5%a4%96%e9%83%a8%e8%ae%be%e5%a4%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>I/O 设备分为: 输入设备、输出设备、输入/输出兼容设备.</p>
+<h2 id="输入设备">
+  输入设备
+  <a class="heading-link" href="#%e8%be%93%e5%85%a5%e8%ae%be%e5%a4%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>键盘，按下一个键，查出按了哪个键，然后将此键翻译为 ASCII 码传输给计算机。</li>
+<li>鼠标，光电鼠标内部的发光二极管发出的光线经过表面反射通过一组光学透镜，传输到一个光感应器件内成像，当光电鼠标移动时，其轨迹便会被记录为一组高速拍摄的连贯图像，被光电鼠标内部的专用图形分析芯片处理，完成光标定位。</li>
+</ul>
+<h2 id="输出设备">
+  输出设备
+  <a class="heading-link" href="#%e8%be%93%e5%87%ba%e8%ae%be%e5%a4%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="阴极射线管crt显示器">
+  阴极射线管(CRT)显示器
+  <a class="heading-link" href="#%e9%98%b4%e6%9e%81%e5%b0%84%e7%ba%bf%e7%ae%a1crt%e6%98%be%e7%a4%ba%e5%99%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>CRT 显示器按扫描方式不同 ，分为光栅扫描与随机扫描，按分辨率不同，分为高分辨率和低分辨率。</p>
+<ul>
+<li>分辨率指显示器所能表示的像素个数，分辨率越高，图像越清晰。</li>
+<li>灰度级指黑白显示器中所显示像素点的亮暗差别。</li>
+</ul>
+<p>CRT 发光是由电子束打在荧光粉上引起的，电子束扫过之后，发光亮度只能维持几十毫秒，为了使人眼能 看到稳定的图像，必须重复扫描整个屏幕，按人的视觉生理，刷新率大于 30 次/s 时才不会感到闪烁。</p>
+<p>分辨率为 1024×10241024×1024 像素，256 级灰度的图像，存储容量为 1024×1024×log2(256)=1MB1024×1024×log2(256)=1MB</p>
+<h3 id="打印机">
+  打印机
+  <a class="heading-link" href="#%e6%89%93%e5%8d%b0%e6%9c%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>击打式，点阵式(逐字、逐行)</li>
+<li>非击打式，激光、喷墨</li>
+</ul>
+<h1 id="io-接口">
+  I/O 接口
+  <a class="heading-link" href="#io-%e6%8e%a5%e5%8f%a3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="总线连接方式的-io-接口电路">
+  总线连接方式的 I/O 接口电路
+  <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e8%bf%9e%e6%8e%a5%e6%96%b9%e5%bc%8f%e7%9a%84-io-%e6%8e%a5%e5%8f%a3%e7%94%b5%e8%b7%af">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p><img src="../static/JDThbG24KoH1YXxl9GAc1GEknld.png" alt=""></p>
+<ul>
+<li>数据线: 用作 I/O 设备与主机之间传送数据</li>
+<li>设备选择线: 用来传送设备码</li>
+<li>命令线: 用来传输 CPU 向设备发出的各种命令信号</li>
+<li>状态线: 将 I/O 设备的状态向主机报告的信号线。</li>
+</ul>
+<h2 id="接口的功能和组成">
+  接口的功能和组成
+  <a class="heading-link" href="#%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%8a%9f%e8%83%bd%e5%92%8c%e7%bb%84%e6%88%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>选址功能，设备选择电路组成</li>
+<li>传送命令功能，命令寄存器、命令译码器组成</li>
+<li>传送数据功能，数据缓冲寄存器组成</li>
+<li>反映设备状态功能，设备状态标记</li>
+</ul>
+<h2 id="io-接口的基本组成">
+  I/O 接口的基本组成
+  <a class="heading-link" href="#io-%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%84%e6%88%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p><img src="../static/BGKRb3eEGortTSxxvjicTMf8niQ.png" alt=""></p>
+<h2 id="接口类型">
+  接口类型
+  <a class="heading-link" href="#%e6%8e%a5%e5%8f%a3%e7%b1%bb%e5%9e%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>
+<p>按数据传送方式分类</p>
+<ul>
+<li>并行接口</li>
+<li>串行接口</li>
+</ul>
+</li>
+<li>
+<p>按功能选择的灵活性分类</p>
+<ul>
+<li>可编程接口</li>
+<li>不可编程接口</li>
+</ul>
+</li>
+<li>
+<p>按通用性分类</p>
+<ul>
+<li>通用接口</li>
+<li>专用接口</li>
+</ul>
+</li>
+<li>
+<p>按数据传送的控制方式分类</p>
+<ul>
+<li>中断接口</li>
+<li>DMA 接口</li>
+</ul>
+</li>
+</ul>
+<h1 id="io-方式">
+  I/O 方式
+  <a class="heading-link" href="#io-%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="程序查询方式">
+  程序查询方式
+  <a class="heading-link" href="#%e7%a8%8b%e5%ba%8f%e6%9f%a5%e8%af%a2%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>程序查询方式又称为程序控制 I/O 方式，这种方式中，数据在 CPU 与外部设备之间的传输完全靠计算机程序控制，是在 CPU 主动控制下进行的，当需要输入或输出时，CPU 暂停执行主程序，转去执行设备输入输出的服务程序，根据服务程序中的 I/O 指令进行数据传送。</p>
+<p>这种方式的缺点在于每时每刻需要不断查询 I/O 设备是否准备就绪，为了正确完成这种查询，需要执行以下 3 条指令</p>
+<ul>
+<li>测试指令，用来查询 I/O 设备是否准备就绪</li>
+<li>转移指令，若 I/O 设备未准备就绪，则执行转移指令，即转到测试指令，继续测试 I/O 设备的状态。</li>
+<li>传送指令，若 I/O 设备准备就绪，则执行传送指令。</li>
+</ul>
+<h2 id="程序中断方式">
+  程序中断方式
+  <a class="heading-link" href="#%e7%a8%8b%e5%ba%8f%e4%b8%ad%e6%96%ad%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>CPU 启动 I/O 后，不需要停止现行程序的运行，而 I/O 接到启动命令后，进入准备阶段，准备就绪，向 CPU 提出请求，CPU 中断现行程序，为 I/O 服务，这种方式不需要 CPU 时刻查询 I/O 设备的状态，一次中断处理过程归纳为 5 个阶段:</p>
+<ul>
+<li>中断请求、中断判优、中断响应、中断服务、中断返回</li>
+</ul>
+<h2 id="dma-方式">
+  DMA 方式
+  <a class="heading-link" href="#dma-%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>DMA 方式是一种完全由硬件进行成组信息传送的控制方式，数据准备阶段，CPU 与外设并行，还降低了 CPU 在传送数据时的开销，因为信息传送不经过 CPU，而在外设和内存之间直接进行。</p>
+<h3 id="dma-的传送方法">
+  DMA 的传送方法
+  <a class="heading-link" href="#dma-%e7%9a%84%e4%bc%a0%e9%80%81%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>如果高速 I/O(通过 DMA 接口)和 CPU 同时访存，这时 CPU 需要将总线占有权让给 DMA 接口使用，通常 DMA 与主存交换数据采用以下三种方法。</p>
+<h4 id="停止-cpu-访问主存">
+  停止 CPU 访问主存
+  <a class="heading-link" href="#%e5%81%9c%e6%ad%a2-cpu-%e8%ae%bf%e9%97%ae%e4%b8%bb%e5%ad%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>DMA 接口向 CPU 发一个信号，要求 CPU 放弃地总线使用权，然后 DMA 获得总线控制权后，开始进行数据传送，数据传输后，DMA 接口通知 CPU 可以使用主存，并把总线控制权还给 CPU。</p>
+<h4 id="周期挪用">
+  周期挪用
+  <a class="heading-link" href="#%e5%91%a8%e6%9c%9f%e6%8c%aa%e7%94%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>当 I/O 设备由 DMA 请求时，会遇到 3 种情况:</p>
+<ul>
+<li>CPU 不在访存，故 CPU 与 IO 访存请求未冲突</li>
+<li>CPU 正在访存，等待存储周期结束后，CPU 再将总线占有权让出</li>
+<li>CPU 与 IO 同时访存，此刻 CPU 要暂时放弃总线占有权，由 I/O 设备挪用一个或几个存储周期，这种方式既实现了 I/O 传送，又较好的发挥了主存与 CPU 的效率。</li>
+</ul>
+<h4 id="dma-与-cpu-交替访问">
+  DMA 与 CPU 交替访问
+  <a class="heading-link" href="#dma-%e4%b8%8e-cpu-%e4%ba%a4%e6%9b%bf%e8%ae%bf%e9%97%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>这种方式适用于 CPU 工作周期比主存存取周期长的情况，不需要总线使用权的申请、建立和归还过程，总线使用权分时控制。</p>
+<h3 id="dma-接口的功能和组成">
+  DMA 接口的功能和组成
+  <a class="heading-link" href="#dma-%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%8a%9f%e8%83%bd%e5%92%8c%e7%bb%84%e6%88%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="dma-接口的功能">
+  DMA 接口的功能
+  <a class="heading-link" href="#dma-%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%8a%9f%e8%83%bd">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ul>
+<li>向 CPU 申请 DMA 传送</li>
+<li>处理总线控制权的转交</li>
+<li>管理系统总线、控制数据传送</li>
+<li>确定数据传送的首地址和长度，修正传送过程中的数据地址和长度</li>
+<li>DMA 传送结束时，给出操作完成信号。</li>
+</ul>
+<h4 id="dma-接口组成">
+  DMA 接口组成
+  <a class="heading-link" href="#dma-%e6%8e%a5%e5%8f%a3%e7%bb%84%e6%88%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/ExClbB0spoOH6jxHhNZcIaNjnZc.png" alt=""></p>
+<h3 id="dma-工作过程">
+  DMA 工作过程
+  <a class="heading-link" href="#dma-%e5%b7%a5%e4%bd%9c%e8%bf%87%e7%a8%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="预处理">
+  预处理
+  <a class="heading-link" href="#%e9%a2%84%e5%a4%84%e7%90%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>DMA 接口开始工作前，CPU 必须做如下工作:</p>
+<ul>
+<li>指明是输入数据还是输出数据</li>
+<li>向 DMA 设备地址寄存器送入设备号，并启动设备</li>
+<li>向 DMA 主存地址寄存器送入交换数据的主存首地址</li>
+<li>对字计数器赋予交换数据的个数</li>
+</ul>
+<h4 id="数据传送">
+  数据传送
+  <a class="heading-link" href="#%e6%95%b0%e6%8d%ae%e4%bc%a0%e9%80%81">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>DMA 是以数据块为单位传送的，具体流程如下:</p>
+<ul>
+<li>准备好一个字时，将该字读到 DMA 的数据缓冲寄存器中,表示数据缓冲寄存器满。</li>
+<li>设备同时向 DMA 接口发请求</li>
+<li>DMA 接口向 CPU 申请总线控制权</li>
+<li>CPU 发出 HLDA 信号，表示允许将总线控制权交给 DMA 接口</li>
+<li>将 DMA 主存地址寄存器中的主存地址送地址总线，并命令存储器写</li>
+<li>DMA 控制逻辑告诉 I/O，CPU 已经安排了 DMA 周期，记住为下一个字的传送做准备</li>
+<li>将 DMA 数据缓冲寄存器的内容送数据总线</li>
+<li>主存将数据总线上的信息写至地址总线指定的存储单元中。</li>
+<li>修改主存地址和字计数值。</li>
+</ul>
+<h4 id="后处理">
+  后处理
+  <a class="heading-link" href="#%e5%90%8e%e5%a4%84%e7%90%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>当 DMA 中断请求得到响应后，CPU 停止原程序执行，转去执行中断服务程序，做一些 DMA 的结束工作。</p>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

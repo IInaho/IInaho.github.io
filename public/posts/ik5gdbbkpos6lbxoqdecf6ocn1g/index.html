@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+哈夫曼编码 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  哈夫曼编码
+  
+    
+    链接到标题
+  
+
+
+  哈夫曼树
+  
+    
+    链接到标题
+  
+
+
+  哈夫曼树的基本概念
+  
+    
+    链接到标题
+  
+
+
+哈夫曼树又称为最优树，是一类带权路径长度最短的树，在实际中有广泛的应用。
+路径： 从树中一个结点到另一个结点之间的分支构成这两个结点之间的路径
+路径长度：路径上的分支数目称作路径的长度
+树的路径长度：从树根到每一结点的路径长度之和
+权：赋予某个实体的一个量，是对实体的某个或某些属性的数值化描述，在数据结构中实体有结点和边两大类，对应有结点权和边权。
+结点的带权路径长度：从该结点到树根之间的路径长度与结点上权的乘积。
+树的带权路径长度：树中所有叶子结点的带权路径长度之和，记作$WPL = \sum_{k=1}^n w_kl_k$
+哈夫曼树：假设有 m 个权值$w_1,w_2…,w_m$,可以构造一棵含 n 个叶子结点的二叉树，每个叶子结点的权为$w_i$，则其中带权路径长度 WPL 最小的二叉树称作最优二叉树或哈夫曼树。
+
+下图所示的三种二叉树都含有四个带权叶子结点，带权结点分别 a(8),b(2),c(3),d(6).
+
+从图中可以看出，叶子结点所在的位置不同，构成的二叉树 WPL 也不同，可以直观的发现，在哈夫曼树中，权值越大的结点距离根结点的距离越近。
+
+  哈夫曼树的构造过程
+  
+    
+    链接到标题
+  
+
+
+根据给定的 n 个权值$w_1,w_2,…w_n$,构造 n 棵只有根结点的二叉树，这 n 棵二叉树构成一个森林 F。
+在森林 F 中选取两棵根结点的权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根结点的权值为其左、右子树上根结点的权值之和。
+在森林 F 中删除这两棵子树，同时将新得到的二叉树加入 F 中
+重复第二步和第三步，直到 F 只含一棵树为止，这棵树便是哈夫曼树。
+
+如下图所示为叶子结点$a(7),b(5),c(2),d(4)$的哈夫曼树的构造过程：
+
+首先对叶子结点的权值进行排序，然后选择权值最小的两个结点分别作为新二叉树的左右子树，新二叉树的根结点为左右子树权值之和，接着依然对新二叉树的根结点与其余两个叶子结点排序，然后再次选择权值最小的两个结点作为左右子树构造新二叉树，直到只剩下最后一棵树，则构造完毕。
+
+  哈夫曼树的存储结构
+  
+    
+    链接到标题
+  
+
+哈夫曼树是一种二叉树，可以采用二叉树的存储方法实现，由于哈夫曼树中没有度为 1 的结点，则一棵有 n 个叶子结点的哈夫曼树共有 2n-1 个结点，可以存储在一个大小为 2n-1 的数组中，树中每个结点包含其双亲信息和孩子结点的信息，存储结构可以如下设计：">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="哈夫曼编码">
+  <meta name="twitter:description" content="哈夫曼编码 链接到标题 哈夫曼树 链接到标题 哈夫曼树的基本概念 链接到标题 哈夫曼树又称为最优树，是一类带权路径长度最短的树，在实际中有广泛的应用。 路径： 从树中一个结点到另一个结点之间的分支构成这两个结点之间的路径 路径长度：路径上的分支数目称作路径的长度 树的路径长度：从树根到每一结点的路径长度之和 权：赋予某个实体的一个量，是对实体的某个或某些属性的数值化描述，在数据结构中实体有结点和边两大类，对应有结点权和边权。 结点的带权路径长度：从该结点到树根之间的路径长度与结点上权的乘积。 树的带权路径长度：树中所有叶子结点的带权路径长度之和，记作$WPL = \sum_{k=1}^n w_kl_k$ 哈夫曼树：假设有 m 个权值$w_1,w_2…,w_m$,可以构造一棵含 n 个叶子结点的二叉树，每个叶子结点的权为$w_i$，则其中带权路径长度 WPL 最小的二叉树称作最优二叉树或哈夫曼树。 下图所示的三种二叉树都含有四个带权叶子结点，带权结点分别 a(8),b(2),c(3),d(6).
+从图中可以看出，叶子结点所在的位置不同，构成的二叉树 WPL 也不同，可以直观的发现，在哈夫曼树中，权值越大的结点距离根结点的距离越近。
+哈夫曼树的构造过程 链接到标题 根据给定的 n 个权值$w_1,w_2,…w_n$,构造 n 棵只有根结点的二叉树，这 n 棵二叉树构成一个森林 F。 在森林 F 中选取两棵根结点的权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根结点的权值为其左、右子树上根结点的权值之和。 在森林 F 中删除这两棵子树，同时将新得到的二叉树加入 F 中 重复第二步和第三步，直到 F 只含一棵树为止，这棵树便是哈夫曼树。 如下图所示为叶子结点$a(7),b(5),c(2),d(4)$的哈夫曼树的构造过程：
+首先对叶子结点的权值进行排序，然后选择权值最小的两个结点分别作为新二叉树的左右子树，新二叉树的根结点为左右子树权值之和，接着依然对新二叉树的根结点与其余两个叶子结点排序，然后再次选择权值最小的两个结点作为左右子树构造新二叉树，直到只剩下最后一棵树，则构造完毕。
+哈夫曼树的存储结构 链接到标题 哈夫曼树是一种二叉树，可以采用二叉树的存储方法实现，由于哈夫曼树中没有度为 1 的结点，则一棵有 n 个叶子结点的哈夫曼树共有 2n-1 个结点，可以存储在一个大小为 2n-1 的数组中，树中每个结点包含其双亲信息和孩子结点的信息，存储结构可以如下设计：">
+ 
+<meta property="og:url" content="//localhost:1313/posts/ik5gdbbkpos6lbxoqdecf6ocn1g/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="哈夫曼编码">
+  <meta property="og:description" content="哈夫曼编码 链接到标题 哈夫曼树 链接到标题 哈夫曼树的基本概念 链接到标题 哈夫曼树又称为最优树，是一类带权路径长度最短的树，在实际中有广泛的应用。 路径： 从树中一个结点到另一个结点之间的分支构成这两个结点之间的路径 路径长度：路径上的分支数目称作路径的长度 树的路径长度：从树根到每一结点的路径长度之和 权：赋予某个实体的一个量，是对实体的某个或某些属性的数值化描述，在数据结构中实体有结点和边两大类，对应有结点权和边权。 结点的带权路径长度：从该结点到树根之间的路径长度与结点上权的乘积。 树的带权路径长度：树中所有叶子结点的带权路径长度之和，记作$WPL = \sum_{k=1}^n w_kl_k$ 哈夫曼树：假设有 m 个权值$w_1,w_2…,w_m$,可以构造一棵含 n 个叶子结点的二叉树，每个叶子结点的权为$w_i$，则其中带权路径长度 WPL 最小的二叉树称作最优二叉树或哈夫曼树。 下图所示的三种二叉树都含有四个带权叶子结点，带权结点分别 a(8),b(2),c(3),d(6).
+从图中可以看出，叶子结点所在的位置不同，构成的二叉树 WPL 也不同，可以直观的发现，在哈夫曼树中，权值越大的结点距离根结点的距离越近。
+哈夫曼树的构造过程 链接到标题 根据给定的 n 个权值$w_1,w_2,…w_n$,构造 n 棵只有根结点的二叉树，这 n 棵二叉树构成一个森林 F。 在森林 F 中选取两棵根结点的权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根结点的权值为其左、右子树上根结点的权值之和。 在森林 F 中删除这两棵子树，同时将新得到的二叉树加入 F 中 重复第二步和第三步，直到 F 只含一棵树为止，这棵树便是哈夫曼树。 如下图所示为叶子结点$a(7),b(5),c(2),d(4)$的哈夫曼树的构造过程：
+首先对叶子结点的权值进行排序，然后选择权值最小的两个结点分别作为新二叉树的左右子树，新二叉树的根结点为左右子树权值之和，接着依然对新二叉树的根结点与其余两个叶子结点排序，然后再次选择权值最小的两个结点作为左右子树构造新二叉树，直到只剩下最后一棵树，则构造完毕。
+哈夫曼树的存储结构 链接到标题 哈夫曼树是一种二叉树，可以采用二叉树的存储方法实现，由于哈夫曼树中没有度为 1 的结点，则一棵有 n 个叶子结点的哈夫曼树共有 2n-1 个结点，可以存储在一个大小为 2n-1 的数组中，树中每个结点包含其双亲信息和孩子结点的信息，存储结构可以如下设计：">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="数据结构">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/ik5gdbbkpos6lbxoqdecf6ocn1g/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#哈夫曼编码">哈夫曼编码</a></li>
+    <li><a href="#哈夫曼树">哈夫曼树</a>
+      <ul>
+        <li><a href="#哈夫曼树的基本概念">哈夫曼树的基本概念</a></li>
+        <li><a href="#哈夫曼树的构造过程">哈夫曼树的构造过程</a></li>
+        <li><a href="#哈夫曼树的存储结构">哈夫曼树的存储结构</a></li>
+        <li><a href="#构造哈夫曼树">构造哈夫曼树</a>
+          <ul>
+            <li><a href="#代码简易实现">代码简易实现</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#哈夫曼编码-1">哈夫曼编码</a>
+      <ul>
+        <li><a href="#编码的两个概念">编码的两个概念</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/ik5gdbbkpos6lbxoqdecf6ocn1g/">
+            哈夫曼编码
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-01-03T00:00:00Z">
+              January 3, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：2 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            378 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="哈夫曼编码">
+  哈夫曼编码
+  <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e7%bc%96%e7%a0%81">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h1 id="哈夫曼树">
+  哈夫曼树
+  <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="哈夫曼树的基本概念">
+  哈夫曼树的基本概念
+  <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>哈夫曼树又称为最优树，是一类带权路径长度最短的树，在实际中有广泛的应用。</li>
+<li>路径： 从树中一个结点到另一个结点之间的分支构成这两个结点之间的路径</li>
+<li>路径长度：路径上的分支数目称作路径的长度</li>
+<li>树的路径长度：从树根到每一结点的路径长度之和</li>
+<li>权：赋予某个实体的一个量，是对实体的某个或某些属性的数值化描述，在数据结构中实体有结点和边两大类，对应有结点权和边权。</li>
+<li>结点的带权路径长度：从该结点到树根之间的路径长度与结点上权的乘积。</li>
+<li>树的带权路径长度：树中所有叶子结点的带权路径长度之和，记作<code>$WPL = \sum_{k=1}^n w_kl_k$</code></li>
+<li>哈夫曼树：假设有 m 个权值<code>$w_1,w_2…,w_m$</code>,可以构造一棵含 n 个叶子结点的二叉树，每个叶子结点的权为<code>$w_i$</code>，则其中带权路径长度 WPL 最小的二叉树称作最优二叉树或哈夫曼树。</li>
+</ul>
+<p>下图所示的三种二叉树都含有四个带权叶子结点，带权结点分别 a(8),b(2),c(3),d(6).</p>
+<p><img src="../static/XiZBbo9ZmowL1xxreSbcQQ8nn8c.png" alt=""></p>
+<p>从图中可以看出，叶子结点所在的位置不同，构成的二叉树 WPL 也不同，可以直观的发现，在哈夫曼树中，权值越大的结点距离根结点的距离越近。</p>
+<h2 id="哈夫曼树的构造过程">
+  哈夫曼树的构造过程
+  <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91%e7%9a%84%e6%9e%84%e9%80%a0%e8%bf%87%e7%a8%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ol>
+<li>根据给定的 n 个权值<code>$w_1,w_2,…w_n$</code>,构造 n 棵只有根结点的二叉树，这 n 棵二叉树构成一个森林 F。</li>
+<li>在森林 F 中选取两棵根结点的权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根结点的权值为其左、右子树上根结点的权值之和。</li>
+<li>在森林 F 中删除这两棵子树，同时将新得到的二叉树加入 F 中</li>
+<li>重复第二步和第三步，直到 F 只含一棵树为止，这棵树便是哈夫曼树。</li>
+</ol>
+<p>如下图所示为叶子结点<code>$a(7),b(5),c(2),d(4)$</code>的哈夫曼树的构造过程：</p>
+<p><img src="../static/H5YOb47yDoWb5SxzjUScUHDLnVd.png" alt=""></p>
+<p>首先对叶子结点的权值进行排序，然后选择权值最小的两个结点分别作为新二叉树的左右子树，新二叉树的根结点为左右子树权值之和，接着依然对新二叉树的根结点与其余两个叶子结点排序，然后再次选择权值最小的两个结点作为左右子树构造新二叉树，直到只剩下最后一棵树，则构造完毕。</p>
+<h2 id="哈夫曼树的存储结构">
+  哈夫曼树的存储结构
+  <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>哈夫曼树是一种二叉树，可以采用二叉树的存储方法实现，由于哈夫曼树中没有度为 1 的结点，则一棵有 n 个叶子结点的哈夫曼树共有 2n-1 个结点，可以存储在一个大小为 2n-1 的数组中，树中每个结点包含其双亲信息和孩子结点的信息，存储结构可以如下设计：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>                    <span class="c1">//结点的权值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">parent</span><span class="p">,</span><span class="n">lchild</span><span class="p">,</span><span class="n">rchild</span><span class="p">;</span>    <span class="c1">//结点的双亲，左孩子，右孩子的下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">HTNode</span><span class="p">,</span><span class="o">*</span><span class="n">HuffmanTree</span><span class="p">;</span>            <span class="c1">//动态分配数组存储哈夫曼树
+</span></span></span></code></pre></div><h2 id="构造哈夫曼树">
+  构造哈夫曼树
+  <a class="heading-link" href="#%e6%9e%84%e9%80%a0%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ol>
+<li>初始化： 首先动态申请 2n 个单元，然后循环 2n-1 次，遍历所有单元，并初始化，再遍历一次，输入前 n 个单元中叶子结点的权值。</li>
+<li>创建树： 通过循环，选择、删除与合并来创建二叉树。选择当前森林中双亲为 0 且权值最小的两个树根结点，删除是将两个结点的双亲改为非零，合并是将两个树根结点的权值作为一个新结点的权值依次存入数组 n+1 之后的单元，记录新结点的下标。</li>
+</ol>
+<h3 id="代码简易实现">
+  代码简易实现
+  <a class="heading-link" href="#%e4%bb%a3%e7%a0%81%e7%ae%80%e6%98%93%e5%ae%9e%e7%8e%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>已知叶子节点为{5,29,7,8,14,23,3,11},根据叶子结点构造哈夫曼树。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>                    <span class="c1">//结点的权值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">parent</span><span class="p">,</span> <span class="n">lchild</span><span class="p">,</span> <span class="n">rchild</span><span class="p">;</span>    <span class="c1">//结点的双亲，左孩子，右孩子的下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">HTNode</span><span class="p">,</span> <span class="o">*</span><span class="n">HuffmanTree</span><span class="p">;</span>            <span class="c1">//动态分配数组存储哈夫曼树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Select</span><span class="p">(</span><span class="n">HuffmanTree</span> <span class="n">HT</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">s1</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">s2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s1</span> <span class="o">=</span> <span class="n">s2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">parent</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="n">s1</span><span class="p">)</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s2</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">HT</span><span class="p">[</span><span class="n">s1</span><span class="p">].</span><span class="n">weight</span> <span class="o">&gt;</span> <span class="n">HT</span><span class="p">[</span><span class="n">s2</span><span class="p">].</span><span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s1</span> <span class="o">=</span> <span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s2</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">parent</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="n">HT</span><span class="p">[</span><span class="n">s1</span><span class="p">].</span><span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s1</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="n">HT</span><span class="p">[</span><span class="n">s2</span><span class="p">].</span><span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s2</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/*测试
+</span></span></span><span class="line"><span class="cl"><span class="cm">    cout &lt;&lt; s1 &lt;&lt; s2&lt;&lt;endl;*/</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">CreateHuffmanT</span><span class="p">(</span><span class="n">HuffmanTree</span> <span class="o">&amp;</span><span class="n">HT</span><span class="p">,</span><span class="kt">int</span> <span class="n">wgt</span><span class="p">[],</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HT</span> <span class="o">=</span> <span class="p">(</span><span class="n">HTNode</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">HTNode</span><span class="p">)</span> <span class="o">*</span> <span class="n">m</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">lchild</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">parent</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">rchild</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span> <span class="o">=</span> <span class="n">wgt</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Select</span><span class="p">(</span><span class="n">HT</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>    <span class="c1">//挑选权值最小的两个结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">HT</span><span class="p">[</span><span class="n">s1</span><span class="p">].</span><span class="n">parent</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HT</span><span class="p">[</span><span class="n">s2</span><span class="p">].</span><span class="n">parent</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">lchild</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">rchild</span> <span class="o">=</span> <span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span> <span class="o">=</span> <span class="n">HT</span><span class="p">[</span><span class="n">s1</span><span class="p">].</span><span class="n">weight</span> <span class="o">+</span> <span class="n">HT</span><span class="p">[</span><span class="n">s2</span><span class="p">].</span><span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">Weight</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">5</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">11</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HuffmanTree</span> <span class="n">HT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">CreateHuffmanT</span><span class="p">(</span><span class="n">HT</span><span class="p">,</span> <span class="n">Weight</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">//输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span> <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">parent</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">lchild</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">rchild</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h1 id="哈夫曼编码-1">
+  哈夫曼编码
+  <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e7%bc%96%e7%a0%81-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>在进行数据压缩时，为了使压缩后的数据文件尽可能短，可采用不定长编码，基本思想是：为出现次数较多的字符编以较短的编码，为确保对数据文件进行有效的压缩和对压缩文件进行正确的解码，可以利用哈夫曼树来设计二进制编码</p>
+<h2 id="编码的两个概念">
+  编码的两个概念
+  <a class="heading-link" href="#%e7%bc%96%e7%a0%81%e7%9a%84%e4%b8%a4%e4%b8%aa%e6%a6%82%e5%bf%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>前缀编码： 如果在一个编码方案中，任一个编码都不是其他任何编码的前缀，则称编码为前缀编码，前缀编码可以保证对压缩文件进行解码时不产生二义性，确保正确解码。</li>
+<li>哈夫曼编码： 一棵具有 n 个叶子的哈夫曼树，若对树中的每个左分支赋予 0，右分支赋予 1，则从根到每个叶子的路径上，各分支的赋值分别构成一个二进制串，该二进制串称为哈夫曼编码。</li>
+<li>哈夫曼编码是最优前缀编码。</li>
+</ul>
+<p>如果要传输一串字符 BACEFGAB，使用普通的编码，如下图所示</p>
+<p><img src="../static/IhVUbPuhyo3TbzxBMD8ct3hBneS.png" alt=""></p>
+<p>真正要传输的二进制代码为：010001011101110111001010，如果传输很长的一篇文章，由于各个字母出现的频率不同，采用这种编码会很长，假设字母出现的频率为 A(10),B(8),C(12),D(30),E(20),F(14),G(6),所有字母出现的频率之和为 100，可以采用哈夫曼编码的形式，构造哈夫曼树，将权值左分支改为 0，右分支改为 1，如下图。</p>
+<p><img src="../static/QVj4bDmfUoRqYkx7H7vcNSvxnwe.png" alt=""></p>
+<p>由此可根据从树根到叶子的路径来进行编码</p>
+<p><img src="../static/V9CYbLAbboVBKcx79asctEtTngc.png" alt=""></p>
+<p>编码的二进制值为 00011001011100100001000001，比之前的编码还长了，但当时是随便规定的字符串频率，如果实际的字符串按照哈夫曼树的权值来出现，比如 DECFEEFDCA,编码就会进行压缩 0111101001111100101101100，一共 25 位二进制，如果按照之前的编码需要 3×10=303×10=30 位二进制，压缩了大概 17% 左右。</p>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

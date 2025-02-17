@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "矩阵计算"
-date = "2023-07-07"
+date = "2019-12-31"
 description = ""
 tags = [
     "数学"

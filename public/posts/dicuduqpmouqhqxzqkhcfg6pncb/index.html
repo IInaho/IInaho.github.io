@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+组合逻辑设计 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  组合逻辑设计
+  
+    
+    链接到标题
+  
+
+
+  组合逻辑控制单元框图
+  
+    
+    链接到标题
+  
+
+
+  CU 外特性
+  
+    
+    链接到标题
+  
+
+
+CU 发出控制信号，信号之间有先后关系，节拍发生器产生的节拍作为 CU 的输入，节拍发生器外接入 CLK(机器主频)，产生多个节拍信号，每个节拍信号的起始端,CU 会产生命令，IR 的指令的操作码部分需要译码，n 位操作码可以译码出 $2^n$ 个结果。
+
+  节拍信号
+  
+    
+    链接到标题
+  
+
+
+
+  微操作的节拍安排
+  
+    
+    链接到标题
+  
+
+
+采用同步控制方式，也就是有一个统一的时钟信号来控制各个部件之间的交互，假设我们所设计一个机器周期内有三个节拍(时钟周期)，并且 CPU 内部结构采用非总线方式。
+
+  安排微操作时许的原则
+  
+    
+    链接到标题
+  
+
+
+微操作的先后顺序不得随意更改
+被控对象不同的微操作尽量安排在一个节拍内完成
+占用时间较短的微操作，尽量安排在一个节拍内完成，并允许有先后顺序
+
+
+  取指周期微操作的节拍安排
+  
+    
+    链接到标题
+  
+
+
+
+$T_0$，不同的微操作可以安排在一个周期内完成
+
+PC-&gt;MAR
+1-&gt;R
+
+
+
+$T_1$，同样按照原则二
+
+M(MAR)-&gt;MDR
+(PC)&#43;1-&gt;PC
+
+
+
+$T2$，两个微操作占用时间较短，一个微操作可在时钟周期的上升沿，一个在下降沿完成
+
+MDR-&gt;IR
+OP(IR)-&gt;ID
+
+
+
+
+  间址周期微操作的节拍安排
+  
+    
+    链接到标题
+  
+
+
+
+$$
+T_0
+$$">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="组合逻辑设计">
+  <meta name="twitter:description" content="组合逻辑设计 链接到标题 组合逻辑控制单元框图 链接到标题 CU 外特性 链接到标题 CU 发出控制信号，信号之间有先后关系，节拍发生器产生的节拍作为 CU 的输入，节拍发生器外接入 CLK(机器主频)，产生多个节拍信号，每个节拍信号的起始端,CU 会产生命令，IR 的指令的操作码部分需要译码，n 位操作码可以译码出 $2^n$ 个结果。
+节拍信号 链接到标题 微操作的节拍安排 链接到标题 采用同步控制方式，也就是有一个统一的时钟信号来控制各个部件之间的交互，假设我们所设计一个机器周期内有三个节拍(时钟周期)，并且 CPU 内部结构采用非总线方式。
+安排微操作时许的原则 链接到标题 微操作的先后顺序不得随意更改 被控对象不同的微操作尽量安排在一个节拍内完成 占用时间较短的微操作，尽量安排在一个节拍内完成，并允许有先后顺序 取指周期微操作的节拍安排 链接到标题 $T_0$，不同的微操作可以安排在一个周期内完成
+PC-&gt;MAR 1-&gt;R $T_1$，同样按照原则二
+M(MAR)-&gt;MDR (PC)&#43;1-&gt;PC $T2$，两个微操作占用时间较短，一个微操作可在时钟周期的上升沿，一个在下降沿完成
+MDR-&gt;IR OP(IR)-&gt;ID 间址周期微操作的节拍安排 链接到标题 $$ T_0 $$">
+ 
+<meta property="og:url" content="//localhost:1313/posts/dicuduqpmouqhqxzqkhcfg6pncb/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="组合逻辑设计">
+  <meta property="og:description" content="组合逻辑设计 链接到标题 组合逻辑控制单元框图 链接到标题 CU 外特性 链接到标题 CU 发出控制信号，信号之间有先后关系，节拍发生器产生的节拍作为 CU 的输入，节拍发生器外接入 CLK(机器主频)，产生多个节拍信号，每个节拍信号的起始端,CU 会产生命令，IR 的指令的操作码部分需要译码，n 位操作码可以译码出 $2^n$ 个结果。
+节拍信号 链接到标题 微操作的节拍安排 链接到标题 采用同步控制方式，也就是有一个统一的时钟信号来控制各个部件之间的交互，假设我们所设计一个机器周期内有三个节拍(时钟周期)，并且 CPU 内部结构采用非总线方式。
+安排微操作时许的原则 链接到标题 微操作的先后顺序不得随意更改 被控对象不同的微操作尽量安排在一个节拍内完成 占用时间较短的微操作，尽量安排在一个节拍内完成，并允许有先后顺序 取指周期微操作的节拍安排 链接到标题 $T_0$，不同的微操作可以安排在一个周期内完成
+PC-&gt;MAR 1-&gt;R $T_1$，同样按照原则二
+M(MAR)-&gt;MDR (PC)&#43;1-&gt;PC $T2$，两个微操作占用时间较短，一个微操作可在时钟周期的上升沿，一个在下降沿完成
+MDR-&gt;IR OP(IR)-&gt;ID 间址周期微操作的节拍安排 链接到标题 $$ T_0 $$">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="计算机组成原理">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/dicuduqpmouqhqxzqkhcfg6pncb/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#组合逻辑设计">组合逻辑设计</a>
+      <ul>
+        <li><a href="#组合逻辑控制单元框图">组合逻辑控制单元框图</a>
+          <ul>
+            <li><a href="#cu-外特性">CU 外特性</a></li>
+            <li><a href="#节拍信号">节拍信号</a></li>
+          </ul>
+        </li>
+        <li><a href="#微操作的节拍安排">微操作的节拍安排</a>
+          <ul>
+            <li><a href="#安排微操作时许的原则">安排微操作时许的原则</a></li>
+            <li><a href="#取指周期微操作的节拍安排">取指周期微操作的节拍安排</a></li>
+            <li><a href="#间址周期微操作的节拍安排">间址周期微操作的节拍安排</a></li>
+            <li><a href="#执行周期微操作的节拍安排">执行周期微操作的节拍安排</a></li>
+            <li><a href="#中断周期微操作的节拍安排">中断周期微操作的节拍安排</a></li>
+          </ul>
+        </li>
+        <li><a href="#组合逻辑设计步骤">组合逻辑设计步骤</a>
+          <ul>
+            <li><a href="#列出操作时间表">列出操作时间表</a></li>
+            <li><a href="#写出微操作命令的最简表达式">写出微操作命令的最简表达式</a></li>
+            <li><a href="#画出逻辑图">画出逻辑图</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/dicuduqpmouqhqxzqkhcfg6pncb/">
+            组合逻辑设计
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-01-03T00:00:00Z">
+              January 3, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：1 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            119 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="组合逻辑设计">
+  组合逻辑设计
+  <a class="heading-link" href="#%e7%bb%84%e5%90%88%e9%80%bb%e8%be%91%e8%ae%be%e8%ae%a1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="组合逻辑控制单元框图">
+  组合逻辑控制单元框图
+  <a class="heading-link" href="#%e7%bb%84%e5%90%88%e9%80%bb%e8%be%91%e6%8e%a7%e5%88%b6%e5%8d%95%e5%85%83%e6%a1%86%e5%9b%be">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="cu-外特性">
+  CU 外特性
+  <a class="heading-link" href="#cu-%e5%a4%96%e7%89%b9%e6%80%a7">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/T2tVbISMBoNWPWxs3UpcjmdnnDb.png" alt=""></p>
+<p>CU 发出控制信号，信号之间有先后关系，节拍发生器产生的节拍作为 CU 的输入，节拍发生器外接入 CLK(机器主频)，产生多个节拍信号，每个节拍信号的起始端,CU 会产生命令，IR 的指令的操作码部分需要译码，n 位操作码可以译码出 <code>$2^n$</code> 个结果。</p>
+<h3 id="节拍信号">
+  节拍信号
+  <a class="heading-link" href="#%e8%8a%82%e6%8b%8d%e4%bf%a1%e5%8f%b7">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/LIcUbJD5xoyWD9xnWuXcpOHwnNh.png" alt=""></p>
+<h2 id="微操作的节拍安排">
+  微操作的节拍安排
+  <a class="heading-link" href="#%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p><img src="../static/TcpxbgnJmoEZ5DxYFsKctE55nZd.png" alt=""></p>
+<p>采用同步控制方式，也就是有一个统一的时钟信号来控制各个部件之间的交互，假设我们所设计一个机器周期内有三个节拍(时钟周期)，并且 CPU 内部结构采用非总线方式。</p>
+<h3 id="安排微操作时许的原则">
+  安排微操作时许的原则
+  <a class="heading-link" href="#%e5%ae%89%e6%8e%92%e5%be%ae%e6%93%8d%e4%bd%9c%e6%97%b6%e8%ae%b8%e7%9a%84%e5%8e%9f%e5%88%99">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>微操作的先后顺序不得随意更改</li>
+<li>被控对象不同的微操作尽量安排在一个节拍内完成</li>
+<li>占用时间较短的微操作，尽量安排在一个节拍内完成，并允许有先后顺序</li>
+</ol>
+<h3 id="取指周期微操作的节拍安排">
+  取指周期微操作的节拍安排
+  <a class="heading-link" href="#%e5%8f%96%e6%8c%87%e5%91%a8%e6%9c%9f%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p><code>$T_0$</code>，不同的微操作可以安排在一个周期内完成</p>
+<ul>
+<li>PC-&gt;MAR</li>
+<li>1-&gt;R</li>
+</ul>
+</li>
+<li>
+<p><code>$T_1$</code>，同样按照原则二</p>
+<ul>
+<li>M(MAR)-&gt;MDR</li>
+<li>(PC)+1-&gt;PC</li>
+</ul>
+</li>
+<li>
+<p><code>$T2$</code>，两个微操作占用时间较短，一个微操作可在时钟周期的上升沿，一个在下降沿完成</p>
+<ul>
+<li>MDR-&gt;IR</li>
+<li>OP(IR)-&gt;ID</li>
+</ul>
+</li>
+</ul>
+<h3 id="间址周期微操作的节拍安排">
+  间址周期微操作的节拍安排
+  <a class="heading-link" href="#%e9%97%b4%e5%9d%80%e5%91%a8%e6%9c%9f%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p>$$
+T_0
+$$</p>
+<ul>
+<li>Ad(IR)-&gt;MAR</li>
+<li>1-&gt;R</li>
+</ul>
+</li>
+<li>
+<p>$$
+T_1
+$$</p>
+<ul>
+<li>M(MAR)-&gt;MDR</li>
+</ul>
+</li>
+<li>
+<p>$$
+T_2
+$$</p>
+<ul>
+<li>MDR-&gt;Ad(IR)</li>
+</ul>
+</li>
+</ul>
+<h3 id="执行周期微操作的节拍安排">
+  执行周期微操作的节拍安排
+  <a class="heading-link" href="#%e6%89%a7%e8%a1%8c%e5%91%a8%e6%9c%9f%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>
+<p>CLA(对累加器进行清零)，<code>$T_2$</code>: 0-&gt;AC</p>
+</li>
+<li>
+<p>COM(对累加器的内容按位取反)，<code>$T_2$</code>: AC(取反)-&gt;AC</p>
+</li>
+<li>
+<p>SHR(AC 当中保存的内容右移)，<code>$T_2$</code>: L(AC)-&gt;R(AC),<code>$AC_0−&gt;AC_0$</code></p>
+</li>
+<li>
+<p>CSL(循环左移)，<code>$T_2$</code>: R(AC)-&gt;L(AC),<code>$AC_0−&gt;AC_n$</code></p>
+</li>
+<li>
+<p>STP(停机命令)，<code>$T_2$</code>: 0-G</p>
+</li>
+<li>
+<p>ADD X(将 X 寄存器保存的内容和 AC 的内容相加)</p>
+<ul>
+<li><code>$T_0$</code>，Ad(IR)-&gt;MAR</li>
+<li><code>$T_1$</code>，M(MAR)-&gt;MDR</li>
+<li><code>$T_2$</code>，(AC)+(MDR)-&gt;AC</li>
+</ul>
+</li>
+<li>
+<p>STA X(将 AC 的数据存入 X 中)</p>
+<ul>
+<li><code>$T_0$</code>，Ad(IR)-&gt;MAR</li>
+<li><code>$T_1$</code>，AC-&gt;MDR</li>
+<li><code>$T_2$</code>，MDR-&gt;M(MAR)</li>
+</ul>
+</li>
+<li>
+<p>LDA X(将 X 中的数据取出送入 CPU 并且保存进 AC)</p>
+<ul>
+<li><code>$T_0$</code>，Ad(IR)-&gt;MAR</li>
+<li><code>$T_1$</code>，M(MAR)-&gt;MDR</li>
+<li><code>$T_2$</code>，MDR-&gt;AC</li>
+</ul>
+</li>
+<li>
+<p>JMP X(跳转到给定的地址)，<code>$T_2$</code>: MDR-&gt;AC</p>
+</li>
+</ol>
+<h3 id="中断周期微操作的节拍安排">
+  中断周期微操作的节拍安排
+  <a class="heading-link" href="#%e4%b8%ad%e6%96%ad%e5%91%a8%e6%9c%9f%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li><code>$T_0$</code>: 0-&gt;MAR; 1-&gt;W</li>
+<li><code>$T_1$</code>: PC-&gt;MDR</li>
+<li><code>$T_2$</code>: MDR-&gt;M(MAR);向量地址-&gt;PC</li>
+</ul>
+<h2 id="组合逻辑设计步骤">
+  组合逻辑设计步骤
+  <a class="heading-link" href="#%e7%bb%84%e5%90%88%e9%80%bb%e8%be%91%e8%ae%be%e8%ae%a1%e6%ad%a5%e9%aa%a4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="列出操作时间表">
+  列出操作时间表
+  <a class="heading-link" href="#%e5%88%97%e5%87%ba%e6%93%8d%e4%bd%9c%e6%97%b6%e9%97%b4%e8%a1%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/ZdtBbfXnXormeqxEO67cpE26nCc.png" alt=""></p>
+<p><img src="../static/PVOpblhcJoafNGxequhcz3vEnfd.png" alt=""></p>
+<p><img src="../static/QY8Eb9RdvoYXy9xUaFEcMyz8nlc.png" alt=""></p>
+<h3 id="写出微操作命令的最简表达式">
+  写出微操作命令的最简表达式
+  <a class="heading-link" href="#%e5%86%99%e5%87%ba%e5%be%ae%e6%93%8d%e4%bd%9c%e5%91%bd%e4%bb%a4%e7%9a%84%e6%9c%80%e7%ae%80%e8%a1%a8%e8%be%be%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/TSSYbNvBCo61OaxvEzxcCsGDnhH.png" alt=""></p>
+<h3 id="画出逻辑图">
+  画出逻辑图
+  <a class="heading-link" href="#%e7%94%bb%e5%87%ba%e9%80%bb%e8%be%91%e5%9b%be">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/Fm6ebNIuQoERUYxuM2TcgFlpnBf.png" alt=""></p>
+<p>思路清晰，简单明了</p>
+<p>庞杂，调试困难，修改困难</p>
+<p>速度快(RISC)</p>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

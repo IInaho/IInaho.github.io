@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+定点运算 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  定点运算
+  
+    
+    链接到标题
+  
+
+
+  移位运算
+  
+    
+    链接到标题
+  
+
+
+  移位的意义
+  
+    
+    链接到标题
+  
+
+在日常计算中将 15.0 小数点右移 2 位为 1500.0，计算机中小数点位置固定不变。所以需要将数据相对小数点进行移位。
+在计算机中，移位与加减配合，能够实现乘除运算。
+
+左移，绝对值扩大
+右移，绝对值缩小
+
+
+  算术移位规则
+  
+    
+    链接到标题
+  
+
+
+
+正数：原码、补码、反码添补代码都为 0
+
+
+负数：
+
+原码，添补代码为 0
+补码，左移添 0，右移添 1
+反码，添补代码为 1
+
+
+
+
+符号位不变
+
+  算术移位举例
+  
+    
+    链接到标题
+  
+
+
+设机器数字长为 8 位(含 1 位符号位)，写出 A=&#43;26 时，三种机器数左、右移移位和两位后的表示形式及对应的真值，并分析结果的正确性。
+解： A=&#43;26=&#43;11010，则 A 的原码、补码、反码=0，0011010.
+
+
+
+设机器数字长为 8 位(含 1 位符号位)，写出 A=-26 时，三种机器数左右移一位和两位后的表示形式及对应的真值，并分析结果的正确性。
+
+解： A=-26=-11010
+原码表示：
+
+补码表示：
+">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="定点运算">
+  <meta name="twitter:description" content="定点运算 链接到标题 移位运算 链接到标题 移位的意义 链接到标题 在日常计算中将 15.0 小数点右移 2 位为 1500.0，计算机中小数点位置固定不变。所以需要将数据相对小数点进行移位。
+在计算机中，移位与加减配合，能够实现乘除运算。
+左移，绝对值扩大 右移，绝对值缩小 算术移位规则 链接到标题 正数：原码、补码、反码添补代码都为 0
+负数：
+原码，添补代码为 0 补码，左移添 0，右移添 1 反码，添补代码为 1 符号位不变
+算术移位举例 链接到标题 设机器数字长为 8 位(含 1 位符号位)，写出 A=&#43;26 时，三种机器数左、右移移位和两位后的表示形式及对应的真值，并分析结果的正确性。 解： A=&#43;26=&#43;11010，则 A 的原码、补码、反码=0，0011010. 设机器数字长为 8 位(含 1 位符号位)，写出 A=-26 时，三种机器数左右移一位和两位后的表示形式及对应的真值，并分析结果的正确性。 解： A=-26=-11010
+原码表示：
+补码表示：">
+ 
+<meta property="og:url" content="//localhost:1313/posts/sdr3dcex0opknmx2d85cnsbanke/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="定点运算">
+  <meta property="og:description" content="定点运算 链接到标题 移位运算 链接到标题 移位的意义 链接到标题 在日常计算中将 15.0 小数点右移 2 位为 1500.0，计算机中小数点位置固定不变。所以需要将数据相对小数点进行移位。
+在计算机中，移位与加减配合，能够实现乘除运算。
+左移，绝对值扩大 右移，绝对值缩小 算术移位规则 链接到标题 正数：原码、补码、反码添补代码都为 0
+负数：
+原码，添补代码为 0 补码，左移添 0，右移添 1 反码，添补代码为 1 符号位不变
+算术移位举例 链接到标题 设机器数字长为 8 位(含 1 位符号位)，写出 A=&#43;26 时，三种机器数左、右移移位和两位后的表示形式及对应的真值，并分析结果的正确性。 解： A=&#43;26=&#43;11010，则 A 的原码、补码、反码=0，0011010. 设机器数字长为 8 位(含 1 位符号位)，写出 A=-26 时，三种机器数左右移一位和两位后的表示形式及对应的真值，并分析结果的正确性。 解： A=-26=-11010
+原码表示：
+补码表示：">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="计算机组成原理">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/sdr3dcex0opknmx2d85cnsbanke/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#定点运算">定点运算</a>
+      <ul>
+        <li><a href="#移位运算">移位运算</a>
+          <ul>
+            <li><a href="#移位的意义">移位的意义</a></li>
+            <li><a href="#算术移位规则">算术移位规则</a></li>
+            <li><a href="#算术移位举例">算术移位举例</a></li>
+            <li><a href="#算数移位的硬件实现">算数移位的硬件实现</a></li>
+            <li><a href="#算术移位和逻辑移位的区别">算术移位和逻辑移位的区别</a></li>
+          </ul>
+        </li>
+        <li><a href="#加减法运算">加减法运算</a>
+          <ul>
+            <li><a href="#补码加减法运算公式">补码加减法运算公式</a></li>
+            <li><a href="#例题">例题</a></li>
+            <li><a href="#溢出判断">溢出判断</a>
+              <ul>
+                <li><a href="#一位符号位判断溢出">一位符号位判断溢出</a></li>
+                <li><a href="#两位符号位判断溢出">两位符号位判断溢出</a></li>
+                <li><a href="#补码加减法的硬件配置">补码加减法的硬件配置</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#乘法运算">乘法运算</a>
+          <ul>
+            <li><a href="#分析笔算乘法">分析笔算乘法</a></li>
+            <li><a href="#笔算乘法改进">笔算乘法改进</a></li>
+            <li><a href="#小结">小结</a></li>
+            <li><a href="#原码乘法">原码乘法</a>
+              <ul>
+                <li><a href="#原码一位乘运算规则">原码一位乘运算规则</a></li>
+                <li><a href="#原码一位乘递推公式">原码一位乘递推公式</a></li>
+                <li><a href="#例题-1">例题</a></li>
+                <li><a href="#原码一位乘的硬件配置">原码一位乘的硬件配置</a></li>
+              </ul>
+            </li>
+            <li><a href="#补码乘法">补码乘法</a>
+              <ul>
+                <li><a href="#补码一位乘运算规则">补码一位乘运算规则</a></li>
+                <li><a href="#例题-2">例题</a></li>
+              </ul>
+            </li>
+            <li><a href="#乘法小结">乘法小结</a></li>
+          </ul>
+        </li>
+        <li><a href="#除法运算">除法运算</a>
+          <ul>
+            <li><a href="#分析笔算除法">分析笔算除法</a></li>
+            <li><a href="#笔算除法和机器除法比较">笔算除法和机器除法比较</a></li>
+            <li><a href="#原码除法">原码除法</a></li>
+            <li><a href="#恢复余数法">恢复余数法</a></li>
+            <li><a href="#不恢复余数法加减交替法">不恢复余数法(加减交替法)</a>
+              <ul>
+                <li><a href="#特点">特点</a></li>
+                <li><a href="#原码加减交替除法硬件配置">原码加减交替除法硬件配置</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/sdr3dcex0opknmx2d85cnsbanke/">
+            定点运算
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-01-03T00:00:00Z">
+              January 3, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：2 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            411 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="定点运算">
+  定点运算
+  <a class="heading-link" href="#%e5%ae%9a%e7%82%b9%e8%bf%90%e7%ae%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="移位运算">
+  移位运算
+  <a class="heading-link" href="#%e7%a7%bb%e4%bd%8d%e8%bf%90%e7%ae%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="移位的意义">
+  移位的意义
+  <a class="heading-link" href="#%e7%a7%bb%e4%bd%8d%e7%9a%84%e6%84%8f%e4%b9%89">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>在日常计算中将 15.0 小数点右移 2 位为 1500.0，计算机中小数点位置固定不变。所以需要将数据相对小数点进行移位。</p>
+<p>在计算机中，移位与加减配合，能够实现乘除运算。</p>
+<ul>
+<li>左移，绝对值扩大</li>
+<li>右移，绝对值缩小</li>
+</ul>
+<h3 id="算术移位规则">
+  算术移位规则
+  <a class="heading-link" href="#%e7%ae%97%e6%9c%af%e7%a7%bb%e4%bd%8d%e8%a7%84%e5%88%99">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p>正数：原码、补码、反码添补代码都为 0</p>
+</li>
+<li>
+<p>负数：</p>
+<ul>
+<li>原码，添补代码为 0</li>
+<li>补码，左移添 0，右移添 1</li>
+<li>反码，添补代码为 1</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>符号位不变</p></blockquote>
+<h3 id="算术移位举例">
+  算术移位举例
+  <a class="heading-link" href="#%e7%ae%97%e6%9c%af%e7%a7%bb%e4%bd%8d%e4%b8%be%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>设机器数字长为 8 位(含 1 位符号位)，写出 A=+26 时，三种机器数左、右移移位和两位后的表示形式及对应的真值，并分析结果的正确性。
+解： A=+26=+11010，则 A 的原码、补码、反码=0，0011010.</li>
+</ol>
+<p><img src="../static/YwZAbq7TOo2lWBxJiEMcRLtZn6c.png" alt=""></p>
+<ol>
+<li>设机器数字长为 8 位(含 1 位符号位)，写出 A=-26 时，三种机器数左右移一位和两位后的表示形式及对应的真值，并分析结果的正确性。</li>
+</ol>
+<p>解： A=-26=-11010</p>
+<p>原码表示：</p>
+<p><img src="../static/YHaIb3BLlopmH5xRbJkcGEivnXe.png" alt=""></p>
+<p>补码表示：</p>
+<p><img src="../static/LxS7bJ1UUoHCWwxdKhpcBOtbnve.png" alt=""></p>
+<p>反码表示：</p>
+<p><img src="../static/KqXrbvDO9oDJg1xmIwfcf4d6ndd.png" alt=""></p>
+<h3 id="算数移位的硬件实现">
+  算数移位的硬件实现
+  <a class="heading-link" href="#%e7%ae%97%e6%95%b0%e7%a7%bb%e4%bd%8d%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%ae%9e%e7%8e%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/H76EblpQoo9fFzxIOUtcZocpnJY.png" alt=""></p>
+<h3 id="算术移位和逻辑移位的区别">
+  算术移位和逻辑移位的区别
+  <a class="heading-link" href="#%e7%ae%97%e6%9c%af%e7%a7%bb%e4%bd%8d%e5%92%8c%e9%80%bb%e8%be%91%e7%a7%bb%e4%bd%8d%e7%9a%84%e5%8c%ba%e5%88%ab">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>算术移位 有符号数的移位</li>
+<li>逻辑移位 无符号数的移位</li>
+<li>逻辑左移 低位添 0，高位移丢</li>
+<li>逻辑右移 高位添 0，低位移丢</li>
+</ul>
+<p>例： 01010011</p>
+<p>逻辑左移： 10100110</p>
+<p>算术左移： 00100110</p>
+<p>例： 10110010</p>
+<p>逻辑右移： 01011001</p>
+<p>算术右移： 11011001 (补码)</p>
+<blockquote>
+<p>算术移位不会更改符号位，逻辑移位包括符号位全部移位。</p></blockquote>
+<h2 id="加减法运算">
+  加减法运算
+  <a class="heading-link" href="#%e5%8a%a0%e5%87%8f%e6%b3%95%e8%bf%90%e7%ae%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="补码加减法运算公式">
+  补码加减法运算公式
+  <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e5%8a%a0%e5%87%8f%e6%b3%95%e8%bf%90%e7%ae%97%e5%85%ac%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>加法</li>
+</ul>
+<p><img src="../static/X0hebL6nZo0tBPxTfatcJyCKn2d.png" alt=""></p>
+<ul>
+<li>减法</li>
+</ul>
+<p><img src="../static/L5DfbrIfsofqZux07f5cqpWlnTf.png" alt=""></p>
+<blockquote>
+<p>连同符号位一起相加，符号位产生的进位自然丢掉。</p></blockquote>
+<h3 id="例题">
+  例题
+  <a class="heading-link" href="#%e4%be%8b%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>设 A=0.1011，B=-0.0101，求[A + B]补</li>
+</ol>
+<p><img src="../static/Wa71bWNBzo4b1gxwkEgcCFf5nNf.png" alt=""></p>
+<ol>
+<li>设 A=-9，B=-5，求[A + B]补</li>
+</ol>
+<p><img src="../static/XAABbT9s5oRp5rxFcgncinT5nLe.png" alt=""></p>
+<ol>
+<li>设机器数字长为 8 位(含 1 位符号位)，且 A=15，B=24，用补码求 A-B</li>
+</ol>
+<p><img src="../static/EUA0b7JR9oMjooxuJr2cYGuFnaf.png" alt=""></p>
+<ol>
+<li>设 x=9/16，y=11/16，用补码求 x+y。
+x+y=-0.1100=-12/16 （错）</li>
+<li>设机器数字长为 8 位(含一位符号位)且 A=-97，B=+41，用补码求 A-B
+A-B=+1110110=+118 （错）</li>
+</ol>
+<h3 id="溢出判断">
+  溢出判断
+  <a class="heading-link" href="#%e6%ba%a2%e5%87%ba%e5%88%a4%e6%96%ad">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="一位符号位判断溢出">
+  一位符号位判断溢出
+  <a class="heading-link" href="#%e4%b8%80%e4%bd%8d%e7%ac%a6%e5%8f%b7%e4%bd%8d%e5%88%a4%e6%96%ad%e6%ba%a2%e5%87%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>参加操作的两个数(减法时即为被减数和”求补”以后的减数)符号相同，其结果的符号与原操作数的符号不同，即为溢出。</p>
+<p>硬件实现：</p>
+<p>最高有效位的进位 ⊕ 符号位的进位=1，即为溢出</p>
+<p>有溢出：</p>
+<ul>
+<li>1⊕0=1，0⊕1=1</li>
+</ul>
+<p>无溢出：</p>
+<ul>
+<li>0⊕0=0，1⊕1=0</li>
+</ul>
+<h4 id="两位符号位判断溢出">
+  两位符号位判断溢出
+  <a class="heading-link" href="#%e4%b8%a4%e4%bd%8d%e7%ac%a6%e5%8f%b7%e4%bd%8d%e5%88%a4%e6%96%ad%e6%ba%a2%e5%87%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/RC8WbqLoPopmvTxJ0PSclMbPnzh.png" alt=""></p>
+<blockquote>
+<p>小数的补码可以以 2^k 为模，k 代表符号位的位数。</p></blockquote>
+<h4 id="补码加减法的硬件配置">
+  补码加减法的硬件配置
+  <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e5%8a%a0%e5%87%8f%e6%b3%95%e7%9a%84%e7%a1%ac%e4%bb%b6%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/UGr0bnZBKosA3lxxka8csiuUnEd.png" alt=""></p>
+<blockquote>
+<p>A 代表 ACC，Ga 与 Gs 是两个标记，如果是加法 Ga 置 1，如果是减法 Gs 置 1，求补控制逻辑判断 X 中如果是减法运算，则对 X 求补。</p></blockquote>
+<h2 id="乘法运算">
+  乘法运算
+  <a class="heading-link" href="#%e4%b9%98%e6%b3%95%e8%bf%90%e7%ae%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="分析笔算乘法">
+  分析笔算乘法
+  <a class="heading-link" href="#%e5%88%86%e6%9e%90%e7%ac%94%e7%ae%97%e4%b9%98%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/RMI0bKPQpoM73Ux5ZC2cDo5Cnjh.png" alt=""></p>
+<h3 id="笔算乘法改进">
+  笔算乘法改进
+  <a class="heading-link" href="#%e7%ac%94%e7%ae%97%e4%b9%98%e6%b3%95%e6%94%b9%e8%bf%9b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/HghPbi6NkokcUUxoESUcBeHZnAb.png" alt=""></p>
+<p>初态部分积为 0，然后需要分析乘数的数值部分 1011，最后一位为 1，则加 0.1101，相加后将部分积与乘数右移一位，部分积结果是 0.1101，分析乘数数值部分的末位，还是 1，再将整体右移一位，部分积为 0.0110，乘数为 1101，然后相加 0.1101，之后得到的结果 1.0011，将乘数右移一位，分析数值的末位是 0，则相加 0.0000，然后得到的结果分析数值末位是 1，将得到的结果右移一位，再相加 0.1101，结果为 1.0001，最后重复上述操作，结果为部分积与乘数之和，0.10001111.</p>
+<h3 id="小结">
+  小结
+  <a class="heading-link" href="#%e5%b0%8f%e7%bb%93">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>乘法运算可用加和移位实现，n=4，加 4 次，移 4 次</li>
+<li>由乘数的末位决定被乘数是否与原部分积相加，然后-&gt;1 位形成新的部分积，同时乘数-&gt;1 位(末位移丢)，空出高位存放部分积的低位。</li>
+<li>被乘数只与部分积的高位相加</li>
+<li>硬件，3 个寄存器，其中 2 个具有移位功能，1 个全加器。</li>
+</ul>
+<h3 id="原码乘法">
+  原码乘法
+  <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e4%b9%98%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="原码一位乘运算规则">
+  原码一位乘运算规则
+  <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e4%b8%80%e4%bd%8d%e4%b9%98%e8%bf%90%e7%ae%97%e8%a7%84%e5%88%99">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/UrhMbszjDoqm16xzmEkczmOBn7e.png" alt=""></p>
+<h4 id="原码一位乘递推公式">
+  原码一位乘递推公式
+  <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e4%b8%80%e4%bd%8d%e4%b9%98%e9%80%92%e6%8e%a8%e5%85%ac%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/S0uIbBzp2oMPg6xucKgcYTHtnif.png" alt=""></p>
+<h4 id="例题-1">
+  例题
+  <a class="heading-link" href="#%e4%be%8b%e9%a2%98-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>已知 x=-0.1110，y=0.1101，求[x.y]原。</p>
+<p><img src="../static/MNU6bOPcools01xpqT0cpx4Wnie.png" alt=""></p>
+<ul>
+<li>乘积的符号为：x0⊕y0=1⊕0=1</li>
+<li>数值部分按绝对值相乘,x*.y*=0.10110110,则[x.y]原=1.10110110.</li>
+<li>特点：绝对值运算，用移位的次数判断乘法是否结束，逻辑移位</li>
+</ul>
+<h4 id="原码一位乘的硬件配置">
+  原码一位乘的硬件配置
+  <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e4%b8%80%e4%bd%8d%e4%b9%98%e7%9a%84%e7%a1%ac%e4%bb%b6%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/WjJHbxGxtok1sZxTGSOc5Xd1n4c.png" alt=""></p>
+<p>A、X、Q 均 n+1 位，移位和加受末位乘数控制，计数器用于计算移位的次数，s 代表符号位。</p>
+<h3 id="补码乘法">
+  补码乘法
+  <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e4%b9%98%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="补码一位乘运算规则">
+  补码一位乘运算规则
+  <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e4%b8%80%e4%bd%8d%e4%b9%98%e8%bf%90%e7%ae%97%e8%a7%84%e5%88%99">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>以小数为例，设被乘数[x]补=x0x1x2⋯xn[x]补=x0x1x2⋯xn,乘数[y]补=y0y1y2⋯yn[y]补=y0y1y2⋯yn</p>
+<ol>
+<li>被乘数任意，乘数为正
+与原码乘相似，但加和移位按补码规则运算，乘积的符号自然形成</li>
+<li>被乘数任意，乘数为负
+乘数[y]补[y]补,去掉符号位，操作同 1，最后加[−x]补[−x]补，校正。</li>
+<li>Booth 算法(被乘数、乘数符号任意)</li>
+</ol>
+<p><img src="../static/AVblbYvtqoHdwLxWMxgctti6nIf.png" alt=""></p>
+<ol>
+<li>Booth 算法递推公式</li>
+</ol>
+<p><img src="../static/DhrMbeWx6oFx3wxvodic8gQcn7d.png" alt=""></p>
+<h4 id="例题-2">
+  例题
+  <a class="heading-link" href="#%e4%be%8b%e9%a2%98-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>已知 x=+0.0011，y=-0.1011，求[xy]补。</p>
+<p><img src="../static/V5FPbAPdpouG2GxATDgceqoQnkA.png" alt=""></p>
+<p>Booth 算法硬件配置</p>
+<p><img src="../static/X0TebJ13VoNGJrxSOTTcdWZ2nBb.png" alt=""></p>
+<h3 id="乘法小结">
+  乘法小结
+  <a class="heading-link" href="#%e4%b9%98%e6%b3%95%e5%b0%8f%e7%bb%93">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>整数乘法与小数乘法过程完全相同，可用逗号代替小数点</li>
+<li>原码乘 符号位单独处理，补码乘 符号位自然形成</li>
+<li>原码乘去掉符号位运算，即无符号数乘法</li>
+<li>不同的乘法运算需有不同的硬件支持</li>
+</ul>
+<h2 id="除法运算">
+  除法运算
+  <a class="heading-link" href="#%e9%99%a4%e6%b3%95%e8%bf%90%e7%ae%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="分析笔算除法">
+  分析笔算除法
+  <a class="heading-link" href="#%e5%88%86%e6%9e%90%e7%ac%94%e7%ae%97%e9%99%a4%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/RGbKbUGbxoKKeyxaQORcSJYVnMe.png" alt=""></p>
+<p>比较被除数与除数的大小，除数比被除数大，商 0，然后除数移位变成 0.01101，被除数补零，此时除数小于被除数，商 1，余数继续右移一位，再比较余数与除数的大小关系，如果除数比余数大，商 0，否则商 1。</p>
+<h3 id="笔算除法和机器除法比较">
+  笔算除法和机器除法比较
+  <a class="heading-link" href="#%e7%ac%94%e7%ae%97%e9%99%a4%e6%b3%95%e5%92%8c%e6%9c%ba%e5%99%a8%e9%99%a4%e6%b3%95%e6%af%94%e8%be%83">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p>笔算除法</p>
+<ul>
+<li>商符单独处理，心算上商</li>
+<li>余数不动低位补”0”,减右移一位的除数</li>
+<li>2 倍字长加法器，上商位置不固定</li>
+</ul>
+</li>
+<li>
+<p>机器除法</p>
+<ul>
+<li>符号位异或形成</li>
+<li>x*-y*&gt;0 上商 1，x*-y*&lt;0 上商 0</li>
+<li>余数左移一位低位补”0”，减除数</li>
+<li>一倍字长加法器，在寄存器最末位上商</li>
+</ul>
+</li>
+</ul>
+<h3 id="原码除法">
+  原码除法
+  <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e9%99%a4%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>以小数为例</p>
+<p>$$
+[x]_{\text{原}} = x_0 x_1 x_2 \cdots x_n
+$$</p>
+<p>$$
+[y]_{\text{原}} = y_0 y_1 y_2 \cdots y_n
+$$</p>
+<p>$$
+[x/y]_{\text{原}} = (x_0 \oplus y_0) x^* / y^*
+$$</p>
+<p>式中<code>$x^*=0.x_1 x_2 \cdots x_n$</code>为 x 的绝对值, <code>$y^*=0.y_1 y_2 \cdots y_n$</code>为 y 的绝对值</p>
+<p>商的符号位单独处理<code>$x_0⊕y_0$</code>,数值部分为绝对值相除<code>$x^*/y^*$</code></p>
+<p>约定： 小数定点除法 x* &lt; y*,整数定点除法 x* &gt; y*,被除数不等于 0，除数不能为 0</p>
+<h3 id="恢复余数法">
+  恢复余数法
+  <a class="heading-link" href="#%e6%81%a2%e5%a4%8d%e4%bd%99%e6%95%b0%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>x=-0.1011,y=-0.1101,求[x/y]原</p>
+<p><img src="../static/VsNkbxg8Ioyxrqx37t6c4pUnnQc.png" alt=""></p>
+<p><img src="../static/DBiMbS5PxoGaUWxEyYLcty0fnMV.png" alt=""></p>
+<p>恢复余数法不仅需要求 x 与 y 的原码，还要求 y <em>的补码与-y</em> 的补码，用于减法运算。</p>
+<p>x 是被除数，取其绝对值，加-y <em>的补码(相当于减去 y)，第一次相加(x</em> 与-y <em>的补码相加)表示试探，如果商 1，代表溢出，因为在小数定点机中，不能大于 1.如果商 0，代表余数为负，需要恢复余数，则加 y</em> 的补码，得到商 0 前的余数，然后将余数逻辑左移一位，然后再加-y <em>的补码，得到的余数为正，再商 1，将余数左移一位，加-y</em> 的补码，循环后得到最后的值，0.1101.此过程一共上商 5 次，第一次上商判断溢出，总共移位 4 次。</p>
+<ul>
+<li>余数为正，上商 1。</li>
+<li>余数为负，上商 0，恢复余数。</li>
+</ul>
+<h3 id="不恢复余数法加减交替法">
+  不恢复余数法(加减交替法)
+  <a class="heading-link" href="#%e4%b8%8d%e6%81%a2%e5%a4%8d%e4%bd%99%e6%95%b0%e6%b3%95%e5%8a%a0%e5%87%8f%e4%ba%a4%e6%9b%bf%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p>恢复余数法运算规则</p>
+<ul>
+<li>余数 Ri&gt;0，上商”1”，2Ri(余数)-y*</li>
+<li>余数 Ri&lt;0，上商”0”，Ri+y* (恢复余数)</li>
+<li><code>$2(R_i+y^∗)−y^∗=2R_i+y^∗$</code>(左移一位乘 2，所以是 2Ri，通过这个值判断新的一次操作是上商 0 还是 1)</li>
+</ul>
+</li>
+<li>
+<p>不恢复余数法运算规则(加减交替，恢复余数法的改进)</p>
+<ul>
+<li>上商”1”，2Ri-y*</li>
+<li>上商”0”，2Ri+y*</li>
+</ul>
+</li>
+</ul>
+<p>例： x=-0.1011，y=-0.1101，求[x/y]原</p>
+<p><img src="../static/EseAbsaCLo8vpyxOuNkcUMPyn1t.png" alt=""></p>
+<p>首先还是求 x 与 y 绝对值的补码以及-y 绝对值的补码，首先加-y 绝对值的补码用于实现减 y 操作判断溢出，余数为负数，上商 0，然后执行 2Ri+y <em>操作，即余数左移一位，加 y</em> 的补码,判断结果余数的正负，余数为正，商 1，执行 2Ri-y <em>操作，即余数左移一位，减去 y</em>,循环计算得到结果。</p>
+<p>结果：<code>$x_0 y_0=1⊕1=0$</code></p>
+<p>x*/y*=0.1101</p>
+<p>[x/y]=0.1101</p>
+<h4 id="特点">
+  特点
+  <a class="heading-link" href="#%e7%89%b9%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ul>
+<li>上商 n+1 次</li>
+<li>第一次上商判断溢出</li>
+<li>移位 n 次，加 n+1 次</li>
+<li>用移位的次数判断除法是否结束</li>
+</ul>
+<h4 id="原码加减交替除法硬件配置">
+  原码加减交替除法硬件配置
+  <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e5%8a%a0%e5%87%8f%e4%ba%a4%e6%9b%bf%e9%99%a4%e6%b3%95%e7%a1%ac%e4%bb%b6%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/EcuubFJlGoOKo0x5r9ncqnRun6g.png" alt=""></p>
+<p>移位和加控制逻辑负责判断加减。</p>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

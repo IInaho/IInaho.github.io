@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "线代个人理解"
-date = "2023-07-07"
+date = "2019-12-29"
 description = ""
 tags = [
     "数学"

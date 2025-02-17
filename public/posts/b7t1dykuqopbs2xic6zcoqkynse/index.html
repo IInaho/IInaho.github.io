@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+主存储器之ROM · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  主存储器之 ROM
+  
+    
+    链接到标题
+  
+
+
+  只读存储器
+  
+    
+    链接到标题
+  
+
+
+早期的只读存储器—在厂家就写好了内容
+改进 1—用户可以自己写—一次性
+改进 2—可以多次写—要能对信息进行擦除
+改进 3—电可擦写—特定设备
+改进 4—电可擦写—直接连接到计算机上
+
+
+  掩膜 ROM(MROM)
+  
+    
+    链接到标题
+  
+
+MROM 有芯片制造商在制造时写入内容，之后只能读不能写入，其基本存储原理是以元件的”有/无”来表示该存储单元的信息(“1”或”0”)。
+
+行列选择线交叉处有 MOS 管为”1”
+行列选择线交叉处无 MOS 管为”0”
+
+
+  PROM(一次性编程)
+  
+    
+    链接到标题
+  
+
+
+使用熔丝存储数据，用户可根据自己的需要来对其填入内容，属于一次性写入的存储器。部分 PROM 在出厂时数据全为 0，用户可以将其中的部分单元写入 1，以实现对其”编程”的目的。
+
+
+
+  EPROM(多次编程)
+  
+    
+    链接到标题
+  
+
+使用悬浮栅存储数据，为了能多次修改 ROM 的内容，产生了 EPROM，EPRM 使用高压写入数据，当需要修改时，可使用紫外线将其全部内容擦除(不能局部擦除)。但是使用紫外线并不方便，因此产生了 EEPROM.
+
+
+D 端加正电压，形成浮动栅，S 与 D 不导通为”0”
+D 端不加正电压，不形成浮动栅，S 与 D 导通为”1”
+
+
+  EEPROM(多次性编程)
+  
+    
+    链接到标题
+  
+
+EEPROM 与 EPROM 运作原理一样，不但写入数据使用高压，擦除数据也是用了高压。">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="主存储器之ROM">
+  <meta name="twitter:description" content="主存储器之 ROM 链接到标题 只读存储器 链接到标题 早期的只读存储器—在厂家就写好了内容 改进 1—用户可以自己写—一次性 改进 2—可以多次写—要能对信息进行擦除 改进 3—电可擦写—特定设备 改进 4—电可擦写—直接连接到计算机上 掩膜 ROM(MROM) 链接到标题 MROM 有芯片制造商在制造时写入内容，之后只能读不能写入，其基本存储原理是以元件的”有/无”来表示该存储单元的信息(“1”或”0”)。
+行列选择线交叉处有 MOS 管为”1” 行列选择线交叉处无 MOS 管为”0” PROM(一次性编程) 链接到标题 使用熔丝存储数据，用户可根据自己的需要来对其填入内容，属于一次性写入的存储器。部分 PROM 在出厂时数据全为 0，用户可以将其中的部分单元写入 1，以实现对其”编程”的目的。 EPROM(多次编程) 链接到标题 使用悬浮栅存储数据，为了能多次修改 ROM 的内容，产生了 EPROM，EPRM 使用高压写入数据，当需要修改时，可使用紫外线将其全部内容擦除(不能局部擦除)。但是使用紫外线并不方便，因此产生了 EEPROM.
+D 端加正电压，形成浮动栅，S 与 D 不导通为”0” D 端不加正电压，不形成浮动栅，S 与 D 导通为”1” EEPROM(多次性编程) 链接到标题 EEPROM 与 EPROM 运作原理一样，不但写入数据使用高压，擦除数据也是用了高压。">
+ 
+<meta property="og:url" content="//localhost:1313/posts/b7t1dykuqopbs2xic6zcoqkynse/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="主存储器之ROM">
+  <meta property="og:description" content="主存储器之 ROM 链接到标题 只读存储器 链接到标题 早期的只读存储器—在厂家就写好了内容 改进 1—用户可以自己写—一次性 改进 2—可以多次写—要能对信息进行擦除 改进 3—电可擦写—特定设备 改进 4—电可擦写—直接连接到计算机上 掩膜 ROM(MROM) 链接到标题 MROM 有芯片制造商在制造时写入内容，之后只能读不能写入，其基本存储原理是以元件的”有/无”来表示该存储单元的信息(“1”或”0”)。
+行列选择线交叉处有 MOS 管为”1” 行列选择线交叉处无 MOS 管为”0” PROM(一次性编程) 链接到标题 使用熔丝存储数据，用户可根据自己的需要来对其填入内容，属于一次性写入的存储器。部分 PROM 在出厂时数据全为 0，用户可以将其中的部分单元写入 1，以实现对其”编程”的目的。 EPROM(多次编程) 链接到标题 使用悬浮栅存储数据，为了能多次修改 ROM 的内容，产生了 EPROM，EPRM 使用高压写入数据，当需要修改时，可使用紫外线将其全部内容擦除(不能局部擦除)。但是使用紫外线并不方便，因此产生了 EEPROM.
+D 端加正电压，形成浮动栅，S 与 D 不导通为”0” D 端不加正电压，不形成浮动栅，S 与 D 导通为”1” EEPROM(多次性编程) 链接到标题 EEPROM 与 EPROM 运作原理一样，不但写入数据使用高压，擦除数据也是用了高压。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="计算机组成原理">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/b7t1dykuqopbs2xic6zcoqkynse/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#主存储器之-rom">主存储器之 ROM</a>
+      <ul>
+        <li><a href="#只读存储器">只读存储器</a>
+          <ul>
+            <li><a href="#掩膜-rommrom">掩膜 ROM(MROM)</a></li>
+            <li><a href="#prom一次性编程">PROM(一次性编程)</a></li>
+            <li><a href="#eprom多次编程">EPROM(多次编程)</a></li>
+            <li><a href="#eeprom多次性编程">EEPROM(多次性编程)</a></li>
+            <li><a href="#flash-memory闪速型存储器">Flash Memory(闪速型存储器)</a></li>
+          </ul>
+        </li>
+        <li><a href="#存储器容量的扩展">存储器容量的扩展</a></li>
+        <li><a href="#存储器与-cpu-的连接">存储器与 CPU 的连接</a></li>
+        <li><a href="#例题">例题</a></li>
+        <li><a href="#存储器的校验">存储器的校验</a>
+          <ul>
+            <li><a href="#编码的最小距离">编码的最小距离</a></li>
+            <li><a href="#汉明码的组成">汉明码的组成</a>
+              <ul>
+                <li><a href="#汉明码分组">汉明码分组</a></li>
+                <li><a href="#组成汉明码的三要素">组成汉明码的三要素</a></li>
+                <li><a href="#各检测位-ci-所承担的检测小组为">各检测位 Ci 所承担的检测小组为</a></li>
+                <li><a href="#例题-1">例题</a></li>
+                <li><a href="#汉明码的纠错过程">汉明码的纠错过程</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#提高访存速度的措施">提高访存速度的措施</a>
+          <ul>
+            <li><a href="#低位交叉的特点">低位交叉的特点</a></li>
+            <li><a href="#高性能存储芯片">高性能存储芯片</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/b7t1dykuqopbs2xic6zcoqkynse/">
+            主存储器之ROM
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-01-03T00:00:00Z">
+              January 3, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：2 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            278 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="主存储器之-rom">
+  主存储器之 ROM
+  <a class="heading-link" href="#%e4%b8%bb%e5%ad%98%e5%82%a8%e5%99%a8%e4%b9%8b-rom">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="只读存储器">
+  只读存储器
+  <a class="heading-link" href="#%e5%8f%aa%e8%af%bb%e5%ad%98%e5%82%a8%e5%99%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>早期的只读存储器—在厂家就写好了内容</li>
+<li>改进 1—用户可以自己写—一次性</li>
+<li>改进 2—可以多次写—要能对信息进行擦除</li>
+<li>改进 3—电可擦写—特定设备</li>
+<li>改进 4—电可擦写—直接连接到计算机上</li>
+</ul>
+<h3 id="掩膜-rommrom">
+  掩膜 ROM(MROM)
+  <a class="heading-link" href="#%e6%8e%a9%e8%86%9c-rommrom">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>MROM 有芯片制造商在制造时写入内容，之后只能读不能写入，其基本存储原理是以元件的”有/无”来表示该存储单元的信息(“1”或”0”)。</p>
+<ul>
+<li>行列选择线交叉处有 MOS 管为”1”</li>
+<li>行列选择线交叉处无 MOS 管为”0”</li>
+</ul>
+<h3 id="prom一次性编程">
+  PROM(一次性编程)
+  <a class="heading-link" href="#prom%e4%b8%80%e6%ac%a1%e6%80%a7%e7%bc%96%e7%a8%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>使用熔丝存储数据，用户可根据自己的需要来对其填入内容，属于一次性写入的存储器。部分 PROM 在出厂时数据全为 0，用户可以将其中的部分单元写入 1，以实现对其”编程”的目的。</li>
+</ul>
+<p><img src="../static/LgOebfjaUoz8SCxOjw2cQ2LGnBf.png" alt=""></p>
+<h3 id="eprom多次编程">
+  EPROM(多次编程)
+  <a class="heading-link" href="#eprom%e5%a4%9a%e6%ac%a1%e7%bc%96%e7%a8%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>使用悬浮栅存储数据，为了能多次修改 ROM 的内容，产生了 EPROM，EPRM 使用高压写入数据，当需要修改时，可使用紫外线将其全部内容擦除(不能局部擦除)。但是使用紫外线并不方便，因此产生了 EEPROM.</p>
+<p><img src="../static/FkiobUR21o7VRsx3aoacbg0ynqc.png" alt=""></p>
+<ul>
+<li>D 端加正电压，形成浮动栅，S 与 D 不导通为”0”</li>
+<li>D 端不加正电压，不形成浮动栅，S 与 D 导通为”1”</li>
+</ul>
+<h3 id="eeprom多次性编程">
+  EEPROM(多次性编程)
+  <a class="heading-link" href="#eeprom%e5%a4%9a%e6%ac%a1%e6%80%a7%e7%bc%96%e7%a8%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>EEPROM 与 EPROM 运作原理一样，不但写入数据使用高压，擦除数据也是用了高压。</p>
+<ul>
+<li>电可擦写</li>
+<li>局部擦写</li>
+<li>全部擦写</li>
+</ul>
+<h3 id="flash-memory闪速型存储器">
+  Flash Memory(闪速型存储器)
+  <a class="heading-link" href="#flash-memory%e9%97%aa%e9%80%9f%e5%9e%8b%e5%ad%98%e5%82%a8%e5%99%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>闪存虽然属于内存的一种，但不同于内存。众所周知，如果没有电流供应，内存中的内容会消失，闪存在没有电流供应的情况下仍能长久的保持数据，其存储特性相当于硬盘，集合了 ROM 与 RAM 的长处。一般闪存按块读取数据。</p>
+<h2 id="存储器容量的扩展">
+  存储器容量的扩展
+  <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e5%99%a8%e5%ae%b9%e9%87%8f%e7%9a%84%e6%89%a9%e5%b1%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ol>
+<li>位扩展(增加存储子长)
+用 2 片 1K_4 位的存储芯片组成 1K_8 位的存储器，需要 10 根地址线，8 根数据线。(2^10=1K)</li>
+</ol>
+<p><img src="../static/RGO1bSCgaovbboxXkBKc9yYJn2P.png" alt=""></p>
+<ol>
+<li>字扩展(增加存储字的数量)
+用 2 片 1K_8 位存储芯片组成 2K_8 位的存储器，需要 11 根地址线，8 根数据线。</li>
+</ol>
+<p><img src="../static/FhdXbn3wCoTSVDxbr7PcsmRenmf.png" alt=""></p>
+<ol>
+<li>字、位扩展
+用 8 片 1K_4 位存储芯片组成 4K_8 位的存储器，需要 12 根地址线，8 根数据线。</li>
+</ol>
+<p><img src="../static/M9U3bozM8oBVaMxBkhtcRmfjnAL.png" alt=""></p>
+<h2 id="存储器与-cpu-的连接">
+  存储器与 CPU 的连接
+  <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e5%99%a8%e4%b8%8e-cpu-%e7%9a%84%e8%bf%9e%e6%8e%a5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ol>
+<li>地址线的连接</li>
+<li>数据线的连接</li>
+<li>读/写命令线的连接</li>
+<li>片选线的连接</li>
+<li>合理选择存储芯片</li>
+<li>其他(时序、负载)</li>
+</ol>
+<h2 id="例题">
+  例题
+  <a class="heading-link" href="#%e4%be%8b%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>假设同前，要求最小 4K 为系统程序区，相邻 8K 为用户程序区。</p>
+<ol>
+<li>写出对应二进制地址码</li>
+<li>确定芯片的数量及类型</li>
+</ol>
+<p><img src="../static/UncrbNfLyoSTQqxggD6clDtanXb.png" alt=""></p>
+<ol>
+<li>分配地址线</li>
+</ol>
+<p><img src="../static/X6wdbTxGzoSxGRxVgxHcammYnff.png" alt=""></p>
+<ol>
+<li>确定片选信号</li>
+</ol>
+<h2 id="存储器的校验">
+  存储器的校验
+  <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e5%99%a8%e7%9a%84%e6%a0%a1%e9%aa%8c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>合法代码集合</li>
+</ul>
+<ol>
+<li>{000,001,010,011,100,101,110,111} 检 0 位错，纠 0 位错</li>
+<li>{000,011,101,110}合法编码的特点，1 的个数为偶数个，或 0 个，检 1 位，纠 0 位。</li>
+<li>{000,111}合法编码为 1 的个数是 3，检 1 位，纠 1 位。</li>
+<li>{0000,1111}检 2 位，纠 1 位</li>
+<li>{00000,11111}检 2 位，纠 2 位。</li>
+</ol>
+<blockquote>
+<p>检测能力与任意两组合法代码之间二进制位的最少差异数有关。</p></blockquote>
+<h3 id="编码的最小距离">
+  编码的最小距离
+  <a class="heading-link" href="#%e7%bc%96%e7%a0%81%e7%9a%84%e6%9c%80%e5%b0%8f%e8%b7%9d%e7%a6%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>任意两组合法代码之间二进制位数的最少差异、编码的纠错、检错能力与编码的最小距离有关。</p>
+<p>L-1=D+C（D&gt;=C）</p>
+<p>L: 编码的最小距离 L=3</p>
+<p>D: 检测错误的位数，例：具有一位纠错能力</p>
+<p>C: 纠正错误的位数</p>
+<h3 id="汉明码的组成">
+  汉明码的组成
+  <a class="heading-link" href="#%e6%b1%89%e6%98%8e%e7%a0%81%e7%9a%84%e7%bb%84%e6%88%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>汉明码采用奇偶校验</li>
+<li>汉明码采用分组校验</li>
+<li>汉明码的分组是一种非划分方式
+一组数据为 1234567，分成 3 组，每组有一位校验位，共包括 4 位数据位，而汉明码的分组如下：</li>
+</ul>
+<p><img src="../static/LyVcbzcASoc6Iax2QwYcX1n7nVb.png" alt=""></p>
+<p>若第一组出错，其他两组没错，则出错位为 1.若第三组与第一组出错，第二组没错，则出错位置为第三组与第一组公共位置为 5，如果第三组与第二组出错，第一组没错，则出错位为 6，将三组 P3p2p1 倒序排列出错的位置恰好为其二进制对应十进制的数据。</p>
+<blockquote>
+<p>奇偶校验：添加一位校验位，判断 1 的个数是奇数还是偶数，无法纠错。
+如果将上述数据分组，然后分别添加校验码，可以得到两个校验码，因此可以纠 2 位。</p></blockquote>
+<h4 id="汉明码分组">
+  汉明码分组
+  <a class="heading-link" href="#%e6%b1%89%e6%98%8e%e7%a0%81%e5%88%86%e7%bb%84">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>第一组 XXXX1</p>
+<p>第二组 XXX1X</p>
+<p>第三组 XX1XX</p>
+<p>第四组 X1XXX</p>
+<p>第五组 1XXXX</p>
+<p>相应 1，2，4，8…位置放校验码。1，2，4，8 是每一个部分独有的，如果数据的第 1 位与第 3 位为 1，就是第一组与第三组所共有的数据，以此类推。</p>
+<h4 id="组成汉明码的三要素">
+  组成汉明码的三要素
+  <a class="heading-link" href="#%e7%bb%84%e6%88%90%e6%b1%89%e6%98%8e%e7%a0%81%e7%9a%84%e4%b8%89%e8%a6%81%e7%b4%a0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ol>
+<li>汉明码的组成需要增添？位检测位
+2^K&gt;=n+k+1</li>
+<li>检测位的位置？
+2^i(i=0,1,2,3,…)</li>
+<li>检测位的取值？
+检测位的取值与该位所在的检测”小组”中承担的奇偶教研任务有关。</li>
+</ol>
+<h4 id="各检测位-ci-所承担的检测小组为">
+  各检测位 Ci 所承担的检测小组为
+  <a class="heading-link" href="#%e5%90%84%e6%a3%80%e6%b5%8b%e4%bd%8d-ci-%e6%89%80%e6%89%bf%e6%8b%85%e7%9a%84%e6%a3%80%e6%b5%8b%e5%b0%8f%e7%bb%84%e4%b8%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/V4Eib0bsOomX04x5naYcUrxXnNh.png" alt=""></p>
+<h4 id="例题-1">
+  例题
+  <a class="heading-link" href="#%e4%be%8b%e9%a2%98-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>求 0101 按”偶校验”配置的汉明码</p>
+<p><img src="../static/BzHHbhID2oag5gxlsrPc08Olnie.png" alt=""></p>
+<p>按配偶原则配置 0011 的汉明码</p>
+<p><img src="../static/FXM8bTH4PoZuUQxuI9XcuQAtn1d.png" alt=""></p>
+<h4 id="汉明码的纠错过程">
+  汉明码的纠错过程
+  <a class="heading-link" href="#%e6%b1%89%e6%98%8e%e7%a0%81%e7%9a%84%e7%ba%a0%e9%94%99%e8%bf%87%e7%a8%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>每一组形成新的检测位 Pi，其位数与增添的检测位有关。</p>
+<p><img src="../static/DZ01bBj55ohPEHx4trzckNwHneb.png" alt=""></p>
+<p>已知接收到的汉明码为 0100111(按配偶原则配置)试问要求传送的信息是什么？</p>
+<p><img src="../static/N6prbT2CUomyUCxV2pqceHOinyh.png" alt=""></p>
+<p>写出按偶校验配置的汉明码</p>
+<p><img src="../static/AR6fbr3uBoB8CHxYip8cdYDDnAc.png" alt=""></p>
+<h2 id="提高访存速度的措施">
+  提高访存速度的措施
+  <a class="heading-link" href="#%e6%8f%90%e9%ab%98%e8%ae%bf%e5%ad%98%e9%80%9f%e5%ba%a6%e7%9a%84%e6%8e%aa%e6%96%bd">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>采用高速器件</li>
+<li>采用层次结构 Cache-主存</li>
+<li>调整主存结构</li>
+</ul>
+<ol>
+<li>单体多字系统，增加存储器的带宽</li>
+</ol>
+<p><img src="../static/FxCLb1fzuorpYIxTAu5cGhLJn6b.png" alt=""></p>
+<ol>
+<li>多体并行系统</li>
+</ol>
+<ul>
+<li>高位交叉，顺序编址</li>
+</ul>
+<p><img src="../static/GEjqbu5JMotbmXxFBoucD2BNndb.png" alt=""></p>
+<ul>
+<li>高位交叉，各个体并行工作</li>
+</ul>
+<p><img src="../static/P6jRbi3CloUwuExC5YAc90Lmnwc.png" alt=""></p>
+<ul>
+<li>低位交叉，各个体轮流编址</li>
+</ul>
+<p><img src="../static/Wpj9bcpcpovPcdxLkGocBbXcnwg.png" alt=""></p>
+<ul>
+<li>低位交叉，各个体轮流编址</li>
+</ul>
+<p><img src="../static/OUeYbJnvyo2mdex5qLKceHDinMd.png" alt=""></p>
+<h3 id="低位交叉的特点">
+  低位交叉的特点
+  <a class="heading-link" href="#%e4%bd%8e%e4%bd%8d%e4%ba%a4%e5%8f%89%e7%9a%84%e7%89%b9%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>在不改变存取周期的前提下，增加存储器的带宽</p>
+<p><img src="../static/BSJQb0tNdohsooxEC4xc7nGWnle.png" alt=""></p>
+<p>设四体低位交叉存储器，存取周期为 T，总线传输周期为 τ，为实现流水线方式存取，应满足 T=4τ。</p>
+<p><img src="../static/G9l2bSxnhog6iAxfPMFchklvnYb.png" alt=""></p>
+<p>连续读取 4 个字所需的时间为 T+(4-1)τ.</p>
+<h3 id="高性能存储芯片">
+  高性能存储芯片
+  <a class="heading-link" href="#%e9%ab%98%e6%80%a7%e8%83%bd%e5%ad%98%e5%82%a8%e8%8a%af%e7%89%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>SDRAM(同步 DRAM)</li>
+<li>RDRAM</li>
+<li>带 Cache 的 DRAM
+在 DRAM 的芯片内集成了一个由 SRAM 组成的 Cache，有利于猝发式读取。</li>
+</ol>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

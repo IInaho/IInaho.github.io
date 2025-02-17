@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+存储器概述与 RAM · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  存储器概述
+  
+    
+    链接到标题
+  
+
+
+  存储器分类
+  
+    
+    链接到标题
+  
+
+
+  按存储介质分类
+  
+    
+    链接到标题
+  
+
+
+半导体存储器 TTL(集成度低，功耗高，速度快)、MOS(集成度高，功耗低)—易失
+磁表面存储器 （磁头、磁载体）
+磁芯存储器 硬磁材料、环状元件
+光盘存储器 激光、磁光材料
+
+
+  按存取方式分类
+  
+    
+    链接到标题
+  
+
+
+
+存取时间与物理地址无关(随机访问)
+
+随机存储器 在程序的执行过程中可读可写
+只读存储器 在程序的执行过程中只读
+
+
+
+存取时间与物理地址有关(串行访问)
+
+顺序存取存储器 磁带
+直接存取存储器 磁盘
+
+
+
+
+  按在计算机中的作用分类
+  
+    
+    链接到标题
+  
+
+
+
+主存储器
+
+RAM
+
+静态 RAM
+动态 RAM
+
+
+ROM
+
+MROM
+PROM
+EPROM
+EEPROM
+
+
+
+
+
+Flash Memory
+
+
+高速缓冲存储器(Cache)
+
+
+辅助存储器 磁盘、磁带、光盘
+
+
+
+  存储器的层次结构
+  
+    
+    链接到标题
+  
+
+
+  存储器三个主要特性的关系
+  
+    
+    链接到标题
+  
+
+">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="存储器概述与 RAM">
+  <meta name="twitter:description" content="存储器概述 链接到标题 存储器分类 链接到标题 按存储介质分类 链接到标题 半导体存储器 TTL(集成度低，功耗高，速度快)、MOS(集成度高，功耗低)—易失 磁表面存储器 （磁头、磁载体） 磁芯存储器 硬磁材料、环状元件 光盘存储器 激光、磁光材料 按存取方式分类 链接到标题 存取时间与物理地址无关(随机访问)
+随机存储器 在程序的执行过程中可读可写 只读存储器 在程序的执行过程中只读 存取时间与物理地址有关(串行访问)
+顺序存取存储器 磁带 直接存取存储器 磁盘 按在计算机中的作用分类 链接到标题 主存储器
+RAM 静态 RAM 动态 RAM ROM MROM PROM EPROM EEPROM Flash Memory
+高速缓冲存储器(Cache)
+辅助存储器 磁盘、磁带、光盘
+存储器的层次结构 链接到标题 存储器三个主要特性的关系 链接到标题">
+ 
+<meta property="og:url" content="//localhost:1313/posts/hwwkdktvtogtnpxqsytcnksunme/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="存储器概述与 RAM">
+  <meta property="og:description" content="存储器概述 链接到标题 存储器分类 链接到标题 按存储介质分类 链接到标题 半导体存储器 TTL(集成度低，功耗高，速度快)、MOS(集成度高，功耗低)—易失 磁表面存储器 （磁头、磁载体） 磁芯存储器 硬磁材料、环状元件 光盘存储器 激光、磁光材料 按存取方式分类 链接到标题 存取时间与物理地址无关(随机访问)
+随机存储器 在程序的执行过程中可读可写 只读存储器 在程序的执行过程中只读 存取时间与物理地址有关(串行访问)
+顺序存取存储器 磁带 直接存取存储器 磁盘 按在计算机中的作用分类 链接到标题 主存储器
+RAM 静态 RAM 动态 RAM ROM MROM PROM EPROM EEPROM Flash Memory
+高速缓冲存储器(Cache)
+辅助存储器 磁盘、磁带、光盘
+存储器的层次结构 链接到标题 存储器三个主要特性的关系 链接到标题">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="计算机组成原理">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/hwwkdktvtogtnpxqsytcnksunme/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#存储器概述">存储器概述</a>
+      <ul>
+        <li><a href="#存储器分类">存储器分类</a>
+          <ul>
+            <li><a href="#按存储介质分类">按存储介质分类</a></li>
+            <li><a href="#按存取方式分类">按存取方式分类</a></li>
+            <li><a href="#按在计算机中的作用分类">按在计算机中的作用分类</a></li>
+          </ul>
+        </li>
+        <li><a href="#存储器的层次结构">存储器的层次结构</a>
+          <ul>
+            <li><a href="#存储器三个主要特性的关系">存储器三个主要特性的关系</a></li>
+            <li><a href="#缓存-主存层次和主存-辅存层次">缓存-主存层次和主存-辅存层次</a></li>
+          </ul>
+        </li>
+        <li><a href="#主存储器">主存储器</a>
+          <ul>
+            <li><a href="#主存的基本组成">主存的基本组成</a></li>
+            <li><a href="#主存和-cpu-的联系">主存和 CPU 的联系</a></li>
+            <li><a href="#主存中存储单元地址的分配">主存中存储单元地址的分配</a>
+              <ul>
+                <li><a href="#判断编译器的大小端模式">判断编译器的大小端模式</a></li>
+              </ul>
+            </li>
+            <li><a href="#主存的技术指标">主存的技术指标</a></li>
+          </ul>
+        </li>
+        <li><a href="#半导体芯片简介">半导体芯片简介</a>
+          <ul>
+            <li><a href="#半导体存储芯片的基本结构">半导体存储芯片的基本结构</a>
+              <ul>
+                <li><a href="#存储芯片片选线的作用">存储芯片片选线的作用</a></li>
+              </ul>
+            </li>
+            <li><a href="#半导体存储芯片的译码驱动方式">半导体存储芯片的译码驱动方式</a>
+              <ul>
+                <li><a href="#线选法">线选法</a></li>
+                <li><a href="#重合法">重合法</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#随机存取存储器">随机存取存储器</a>
+          <ul>
+            <li><a href="#静态-ramsram">静态 RAM(SRAM)</a>
+              <ul>
+                <li><a href="#sram-的基本电路">SRAM 的基本电路</a></li>
+                <li><a href="#sram-基本电路的读操作">SRAM 基本电路的读操作</a></li>
+                <li><a href="#sram-基本电路的写操作">SRAM 基本电路的写操作</a></li>
+              </ul>
+            </li>
+            <li><a href="#静态-ram-芯片举例">静态 RAM 芯片举例</a>
+              <ul>
+                <li><a href="#2114-读操作">2114 读操作</a></li>
+                <li><a href="#2114-写操作">2114 写操作</a></li>
+              </ul>
+            </li>
+            <li><a href="#动态-ram">动态 RAM</a>
+              <ul>
+                <li><a href="#动态-ram-基本单元电路">动态 RAM 基本单元电路</a></li>
+                <li><a href="#动态-ram-芯片举例">动态 RAM 芯片举例</a></li>
+                <li><a href="#动态-ram-刷新">动态 RAM 刷新</a></li>
+              </ul>
+            </li>
+            <li><a href="#动态-ram-与静态-ram-的比较">动态 RAM 与静态 RAM 的比较</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/hwwkdktvtogtnpxqsytcnksunme/">
+            存储器概述与 RAM
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-01-03T00:00:00Z">
+              January 3, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：2 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            330 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="存储器概述">
+  存储器概述
+  <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e5%99%a8%e6%a6%82%e8%bf%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="存储器分类">
+  存储器分类
+  <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e5%99%a8%e5%88%86%e7%b1%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="按存储介质分类">
+  按存储介质分类
+  <a class="heading-link" href="#%e6%8c%89%e5%ad%98%e5%82%a8%e4%bb%8b%e8%b4%a8%e5%88%86%e7%b1%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>半导体存储器 TTL(集成度低，功耗高，速度快)、MOS(集成度高，功耗低)—易失</li>
+<li>磁表面存储器 （磁头、磁载体）</li>
+<li>磁芯存储器 硬磁材料、环状元件</li>
+<li>光盘存储器 激光、磁光材料</li>
+</ol>
+<h3 id="按存取方式分类">
+  按存取方式分类
+  <a class="heading-link" href="#%e6%8c%89%e5%ad%98%e5%8f%96%e6%96%b9%e5%bc%8f%e5%88%86%e7%b1%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>
+<p>存取时间与物理地址无关(随机访问)</p>
+<ul>
+<li>随机存储器 在程序的执行过程中可读可写</li>
+<li>只读存储器 在程序的执行过程中只读</li>
+</ul>
+</li>
+<li>
+<p>存取时间与物理地址有关(串行访问)</p>
+<ul>
+<li>顺序存取存储器 磁带</li>
+<li>直接存取存储器 磁盘</li>
+</ul>
+</li>
+</ol>
+<h3 id="按在计算机中的作用分类">
+  按在计算机中的作用分类
+  <a class="heading-link" href="#%e6%8c%89%e5%9c%a8%e8%ae%a1%e7%ae%97%e6%9c%ba%e4%b8%ad%e7%9a%84%e4%bd%9c%e7%94%a8%e5%88%86%e7%b1%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p>主存储器</p>
+<ul>
+<li>RAM
+<ul>
+<li>静态 RAM</li>
+<li>动态 RAM</li>
+</ul>
+</li>
+<li>ROM
+<ul>
+<li>MROM</li>
+<li>PROM</li>
+<li>EPROM</li>
+<li>EEPROM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Flash Memory</p>
+</li>
+<li>
+<p>高速缓冲存储器(Cache)</p>
+</li>
+<li>
+<p>辅助存储器 磁盘、磁带、光盘</p>
+</li>
+</ul>
+<h2 id="存储器的层次结构">
+  存储器的层次结构
+  <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e5%99%a8%e7%9a%84%e5%b1%82%e6%ac%a1%e7%bb%93%e6%9e%84">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="存储器三个主要特性的关系">
+  存储器三个主要特性的关系
+  <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e5%99%a8%e4%b8%89%e4%b8%aa%e4%b8%bb%e8%a6%81%e7%89%b9%e6%80%a7%e7%9a%84%e5%85%b3%e7%b3%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/PEz4bLcbMoYYUaxYpcxcz6aSnEg.png" alt=""></p>
+<h3 id="缓存-主存层次和主存-辅存层次">
+  缓存-主存层次和主存-辅存层次
+  <a class="heading-link" href="#%e7%bc%93%e5%ad%98-%e4%b8%bb%e5%ad%98%e5%b1%82%e6%ac%a1%e5%92%8c%e4%b8%bb%e5%ad%98-%e8%be%85%e5%ad%98%e5%b1%82%e6%ac%a1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/VFs9bCgU7oWmZvxVSXNcIiUln7d.png" alt=""></p>
+<p>主存与辅存构成的空间，叫做虚拟存储器。我们定义了一个空间存储程序叫做虚地址也就是逻辑地址。</p>
+<blockquote>
+<p>程序的局部性原理：指程序在执行时，呈现出局部性规律，即在一段时间内，整个程序的执行仅限于程序中的某一部分。相应地，执行所访问的存储空间也局限于某个内存区域。</p></blockquote>
+<h2 id="主存储器">
+  主存储器
+  <a class="heading-link" href="#%e4%b8%bb%e5%ad%98%e5%82%a8%e5%99%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="主存的基本组成">
+  主存的基本组成
+  <a class="heading-link" href="#%e4%b8%bb%e5%ad%98%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%84%e6%88%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/BJUBbbTbJo5VgNxylgEcVJ3vnMg.png" alt=""></p>
+<p>MAR 保存了需要访问的存储单元的地址，经过译码器选择实际内存中相应的地址，由读写控制电路控制 MDR 内的内容写入和读出。</p>
+<h3 id="主存和-cpu-的联系">
+  主存和 CPU 的联系
+  <a class="heading-link" href="#%e4%b8%bb%e5%ad%98%e5%92%8c-cpu-%e7%9a%84%e8%81%94%e7%b3%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/QUfxbPDGUopPWfxlnz5cv3ljnbb.png" alt=""></p>
+<blockquote>
+<p>MAR 是单向的，MDR 是双向的</p></blockquote>
+<h3 id="主存中存储单元地址的分配">
+  主存中存储单元地址的分配
+  <a class="heading-link" href="#%e4%b8%bb%e5%ad%98%e4%b8%ad%e5%ad%98%e5%82%a8%e5%8d%95%e5%85%83%e5%9c%b0%e5%9d%80%e7%9a%84%e5%88%86%e9%85%8d">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>12345678H 这个数据如何在主存储器中进行存储？</p>
+<p>大端模式，是指数据的高字节保存在内存的低地址中，而数据的低字节保存在内存的高地址中，这样的存储模式有点儿类似于把数据当作字符串顺序处理：地址由小向大增加，而数据从高位往低位放；这和我们的阅读习惯一致。</p>
+<p>小端模式，是指数据的高字节保存在内存的高地址中，而数据的低字节保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低。</p>
+<p><img src="../static/UCqobZ0lTo6hrzxT0u2cYZrUnfn.png" alt=""></p>
+<ul>
+<li>设地址线 24 根 按字节寻址 2^24=16MB</li>
+<li>若字长为 16 位 按字寻址 8MW (W 是 16 位)</li>
+<li>若字长为 32 位 按字寻址 4MW</li>
+</ul>
+<blockquote>
+<p>存储子长：一次能读出或者写入的字长，若字长为 16 位，则一个字有两个字节，所以要留一根地址线指出该字中的哪个字节，即寻址范围是 2^(24-1)=8M.</p></blockquote>
+<h4 id="判断编译器的大小端模式">
+  判断编译器的大小端模式
+  <a class="heading-link" href="#%e5%88%a4%e6%96%ad%e7%bc%96%e8%af%91%e5%99%a8%e7%9a%84%e5%a4%a7%e5%b0%8f%e7%ab%af%e6%a8%a1%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">short</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">=</span><span class="mh">0x1122</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">x0</span><span class="o">=</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>    <span class="c1">//低地质单元
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">x1</span><span class="o">=</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>    <span class="c1">//高地址单元
+</span></span></span></code></pre></div><p>若 x0=0 下 1，则是大端，反之是小端。</p>
+<h3 id="主存的技术指标">
+  主存的技术指标
+  <a class="heading-link" href="#%e4%b8%bb%e5%ad%98%e7%9a%84%e6%8a%80%e6%9c%af%e6%8c%87%e6%a0%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>
+<p>存储容量 主存存放二进制代码的总位数</p>
+</li>
+<li>
+<p>存储速度</p>
+<ul>
+<li>存取时间 存储器的访问时间，读出时间和写入时间</li>
+<li>存取周期 连续两次独立的存储器操作，读或写所需的最小间隔时间，读周期和写周期</li>
+</ul>
+</li>
+<li>
+<p>存储器的带宽 位/秒</p>
+</li>
+</ol>
+<h2 id="半导体芯片简介">
+  半导体芯片简介
+  <a class="heading-link" href="#%e5%8d%8a%e5%af%bc%e4%bd%93%e8%8a%af%e7%89%87%e7%ae%80%e4%bb%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="半导体存储芯片的基本结构">
+  半导体存储芯片的基本结构
+  <a class="heading-link" href="#%e5%8d%8a%e5%af%bc%e4%bd%93%e5%ad%98%e5%82%a8%e8%8a%af%e7%89%87%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/Tuj3bcfUEofBYYxpiyrcd7lLnqf.png" alt=""></p>
+<ul>
+<li>地址线(单向)，10|，14|，13</li>
+<li>数据线(双向)，4|，1|，8</li>
+<li>芯片容量，1K_4 位 |，16K_1 位 |，8K*8 位</li>
+<li>片选线 CS(低电平有效) CE(使能信号) (片选线是芯片选择信号，它指出了这次操作给出的地址是不是针对这个存储芯片的地址，被选择的存储单元和字节是不是在这个芯片当中)</li>
+<li>读/写控制线 WE(低电平写，高电平读)</li>
+<li>OE(允许读)，WE(允许写)</li>
+</ul>
+<h4 id="存储芯片片选线的作用">
+  存储芯片片选线的作用
+  <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e8%8a%af%e7%89%87%e7%89%87%e9%80%89%e7%ba%bf%e7%9a%84%e4%bd%9c%e7%94%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>用(32 片)16K_1 位的存储芯片组成 64K_8 位的存储器</p>
+<p><img src="../static/OMjxb6OAMo5kZdxq8Z8cPtojnsc.png" alt=""></p>
+<p>8 个芯片一组构成 8 位输出，这样的芯片布置 4 组。0-16k-1 为第一组</p>
+<h3 id="半导体存储芯片的译码驱动方式">
+  半导体存储芯片的译码驱动方式
+  <a class="heading-link" href="#%e5%8d%8a%e5%af%bc%e4%bd%93%e5%ad%98%e5%82%a8%e8%8a%af%e7%89%87%e7%9a%84%e8%af%91%e7%a0%81%e9%a9%b1%e5%8a%a8%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="线选法">
+  线选法
+  <a class="heading-link" href="#%e7%ba%bf%e9%80%89%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/RCr8blem9okygux3S9ecf1UznTc.png" alt=""></p>
+<p>可以看出这个芯片是 16K*8 位，线选法像个数列，重合法像二维数组。</p>
+<h4 id="重合法">
+  重合法
+  <a class="heading-link" href="#%e9%87%8d%e5%90%88%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/QdghbRFokoQ34ExWFLFcaD8Pn1g.png" alt=""></p>
+<h2 id="随机存取存储器">
+  随机存取存储器
+  <a class="heading-link" href="#%e9%9a%8f%e6%9c%ba%e5%ad%98%e5%8f%96%e5%ad%98%e5%82%a8%e5%99%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="静态-ramsram">
+  静态 RAM(SRAM)
+  <a class="heading-link" href="#%e9%9d%99%e6%80%81-ramsram">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="sram-的基本电路">
+  SRAM 的基本电路
+  <a class="heading-link" href="#sram-%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%94%b5%e8%b7%af">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/PfgRbcIOqoB2tOx60A3csXF9npg.png" alt=""></p>
+<h4 id="sram-基本电路的读操作">
+  SRAM 基本电路的读操作
+  <a class="heading-link" href="#sram-%e5%9f%ba%e6%9c%ac%e7%94%b5%e8%b7%af%e7%9a%84%e8%af%bb%e6%93%8d%e4%bd%9c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/GltjbSHXAoWH3Xx4GeTceisBncf.png" alt=""></p>
+<h4 id="sram-基本电路的写操作">
+  SRAM 基本电路的写操作
+  <a class="heading-link" href="#sram-%e5%9f%ba%e6%9c%ac%e7%94%b5%e8%b7%af%e7%9a%84%e5%86%99%e6%93%8d%e4%bd%9c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/DvvNbYRccofon8xnZkpcUhIbnlf.png" alt=""></p>
+<h3 id="静态-ram-芯片举例">
+  静态 RAM 芯片举例
+  <a class="heading-link" href="#%e9%9d%99%e6%80%81-ram-%e8%8a%af%e7%89%87%e4%b8%be%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>Intel 2114 外特性</p>
+<p><img src="../static/JHujb0BBMos37QxEHwVcrgVnn5c.png" alt=""></p>
+<p>A0-A9 代表数据线，说明此芯片有 1k 存储容量，I/O1-4 说明此芯片一次能读出或写入 4 位数据，CS 代表片选信号，低电平选中此芯片，WE 是读写信号。</p>
+<h4 id="2114-读操作">
+  2114 读操作
+  <a class="heading-link" href="#2114-%e8%af%bb%e6%93%8d%e4%bd%9c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/XN7UbbBc3o7riCxJHHmcD3SXn8c.png" alt=""></p>
+<h4 id="2114-写操作">
+  2114 写操作
+  <a class="heading-link" href="#2114-%e5%86%99%e6%93%8d%e4%bd%9c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/U7aKbIQNXobNHfxwsyDcr2xJnSe.png" alt=""></p>
+<h3 id="动态-ram">
+  动态 RAM
+  <a class="heading-link" href="#%e5%8a%a8%e6%80%81-ram">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="动态-ram-基本单元电路">
+  动态 RAM 基本单元电路
+  <a class="heading-link" href="#%e5%8a%a8%e6%80%81-ram-%e5%9f%ba%e6%9c%ac%e5%8d%95%e5%85%83%e7%94%b5%e8%b7%af">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/AnW3bkTh5oUsD7xbeKjcnvtBnCf.png" alt=""></p>
+<ul>
+<li>读出与原存信息相反 读出时数据线有电流为“1”</li>
+<li>写入与输入信息相同 写入时 Cs 充电为“1”放电为“0”</li>
+</ul>
+<h4 id="动态-ram-芯片举例">
+  动态 RAM 芯片举例
+  <a class="heading-link" href="#%e5%8a%a8%e6%80%81-ram-%e8%8a%af%e7%89%87%e4%b8%be%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ol>
+<li>三管动态 RAM 芯片(Intel 1103)读</li>
+</ol>
+<p><img src="../static/C4D7bXDgkoQuDsxghTMcAAlXnJb.png" alt=""></p>
+<p>假设给出的行地址为 0，则第 0 行读选择线有效，第 0 行的所有单元被选中，列地址是 5 个 0，第 0 列被选中，第 0 行与第 0 列交叉的单元电路被选中，这个单元通过读数据线将数据送到读写电路上，实现了读操作。</p>
+<ol>
+<li>三管动态 RAM 芯片(Intel 1103)写</li>
+</ol>
+<p><img src="../static/FHr3bS8siogrpjxdVCWcs6J0n1t.png" alt=""></p>
+<p>假设行地址译码器给的地址为 5 个 1，则第 31 行被选中，第 31 行所有的单元电路准备写操作，假设给出的列地址为 00001，第 31 行第一列的单元电路被选中。</p>
+<ol>
+<li>单管动态 RAM4116(16K*1 位)外特性</li>
+</ol>
+<p><img src="../static/HUpubyd74oGrchx93HEcr5w0n8b.png" alt=""></p>
+<p>这种动态 RAM 只有 7 根地址线，分两次传送。第一次将 A0-A0 传入行地址缓存器，第二次传入列地址缓存器，经过译码器负责选择单元电路。</p>
+<ol>
+<li>4116 读原理</li>
+</ol>
+<p><img src="../static/GgR9bhziBo2GFGx2tqnc1U6ynMh.png" alt=""></p>
+<p>若给出的行地址为 0111111，则第 63 行有效，63 行所有的晶体管都打开，电容当中保存的信息会送出到读放大器的左侧，以第一个晶体管为例，如果晶体管有电，则第一个读放大器的左侧就为 1，右侧就为 0，假设列地址为 7 个 0，第 0 列被选中，第 0 列的列选信号有效，对应的晶体管打开，数据会从第 0 列的读放大器的右侧送入 I/O 缓冲。</p>
+<ol>
+<li>4116 写原理</li>
+</ol>
+<p><img src="../static/JNihbxvlQouLV3x7qLFcoqlznqd.png" alt=""></p>
+<ol>
+<li>行地址 0111111，63 行被选中，所有晶体管打开，数据被送到读写线上，第 0 列有效，第 0 列晶体管打开，通过第 0 列读放大器右端，通过左端写入电容。</li>
+</ol>
+<h4 id="动态-ram-刷新">
+  动态 RAM 刷新
+  <a class="heading-link" href="#%e5%8a%a8%e6%80%81-ram-%e5%88%b7%e6%96%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>电容容易漏电，所以必须需要对动态 RAM 进行刷新。</p>
+<ol>
+<li>集中刷新(存取周期为 0.5us)以 128_128 矩阵为例，刷新与行地址有关_</li>
+</ol>
+<p><img src="../static/DDTdbpriNoZfhnxvG8Uc4HrCnfg.png" alt=""></p>
+<p>_“死区”为 0.5us_128=64us
+“死时间率”为 128/4000*100%=3.2%</p>
+<ol>
+<li>分散刷新(存取周期为 1us)以 128*128 矩阵为例</li>
+</ol>
+<p><img src="../static/CXpRbc6PmotX58x7A09cO1xqnOf.png" alt=""></p>
+<ol>
+<li>分散刷新与集中刷新结合(异步刷新)</li>
+</ol>
+<p><img src="../static/PnwVb9KvUoChpRxsocEcUoF3nTg.png" alt=""></p>
+<p>对于 128*128 的存储芯片(存取周期为 0.5us)，若每隔 15.6us 刷新一行
+每行每隔 2ms 刷新一次，”死区”为 0.5us
+将刷新安排在指令译码阶段，不会出现”死区”</p>
+<h3 id="动态-ram-与静态-ram-的比较">
+  动态 RAM 与静态 RAM 的比较
+  <a class="heading-link" href="#%e5%8a%a8%e6%80%81-ram-%e4%b8%8e%e9%9d%99%e6%80%81-ram-%e7%9a%84%e6%af%94%e8%be%83">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/W9XDb4krUooRLexsPizcOkzFngh.png" alt=""></p>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+冯诺依曼体系 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  冯诺依曼体系
+  
+    
+    链接到标题
+  
+
+
+  冯诺依曼简介
+  
+    
+    链接到标题
+  
+
+约翰·冯·诺依曼，美籍匈牙利数学家、计算机科学家、物理学家，毕业于苏黎世联邦工业大学，他是现代电子计算机与博弈论的重要创始人，被后人称为现代计算机之父、博弈论之父，并且他还改善了著名的蒙特卡洛算法。
+1945 年 6 月约翰·冯·诺依曼与戈德斯坦、勃克斯等人，联名发表了一篇长达 101 页纸的报告，即计算机史上著名的“101 页报告”。在报告中冯·诺伊曼明确提出了计算机的体系架构。从 1951 年第一台电子计算机 EDVAC 开始，计算机经历了多次的更新换代，不管是最原始的、还是最先进的计算机，使用的仍然是冯·诺依曼最初设计的计算机体系结构。因此冯·诺依曼被世界公认为“计算机之父”，他设计的计算机系统结构，称为“冯诺依曼体系结构”。
+
+  冯诺依曼体系
+  
+    
+    链接到标题
+  
+
+冯诺依曼体系结构主要由五大部分组成，分别是控制器，运算器，存储器，输入设备和输出设备。至今为止，基本上所有的计算机也是遵循冯诺依曼体系所设计的，例如我们经常使用的手机，电脑，平板等等。
+冯诺依曼提出的两个重要的思想，一个是存储程序的思想，另一个是二进制的思想，这两个思想在如今的计算机领域影响深远。
+世界上第一台计算机 EDVAC，采用了上千个电子管所设计的，体积十分庞大，设计者采用十进制对指令和数据进行计算处理，但执行过程复杂，运行效率慢。十进制与二进制的区别在哪？冯诺依曼为何提出二进制的存储思想呢？因为在早期的计算机电子元件设计中，通常使用高低电压来表示信息，即高电压为 1，低电压为 0.所以如果要采用十进制进行数据的计算，将二进制信息转换成我们日常所熟悉的十进制后再去进行处理，大大增加了计算机指令的设计难度，而使用二进制则解决了这一问题，后世很多科学家也提出了二进制浮点数的计算，以及反码补码阶码的概念，使二进制成为了计算机设计的中心。所以在今后的计算机中无论是指令还是数据都采用二进制的方式进行存储和计算。
+
+通常我们使用的计算机主要功能是负责运算，所以在冯诺依曼体系中以运算器为中心，而存储器负责存放指令和数据，指令和数据的计算和存储以及外部设备的连接也需要通过控制器进行控制。让我们排除输入输出设备之后，其实运算器，存储器和控制器才是整个计算机的核心，我们可以将三者看作一个黑箱子。当我们输入数据时，数据通过黑箱子，然后输出我们想要的结果，这便是图灵机的简单模型。
+
+  冯诺依曼体系的特点
+  
+    
+    链接到标题
+  
+
+
+计算机由五大部件组成，运算器，存储器，控制器，输入设备，输出设备。
+指令和数据采用二进制方式进行存储。
+指令由地址码和操作码组成。
+运算器为中心。
+存储程序为主要思想。
+指令和数据都以同等地位存入存储器，并且可按地址访问。
+
+
+  冯诺依曼体系结构的改进
+  
+    
+    链接到标题
+  
+
+如上图所示，输入设备如果需要从存储器中存储信息，必须经过运算器，因此运算器可能成为计算机速度的瓶颈，如果可以使输入设备不经过运算器，直接访问存储器，可以减少运算器的工作量，因此有了以下以存储器为中心的结构。
+
+由于现代计算机分为运算器，控制器，存储器，输入设备，输出设备。运算器(ALU)与控制器(CU)合并为 CPU，存储器分为主存与辅存，CPU 与存储器构成主机部分，主机与 IO 设备构成计算机硬件，可以根据计算机的层次进行设计。
+">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="冯诺依曼体系">
+  <meta name="twitter:description" content="冯诺依曼体系 链接到标题 冯诺依曼简介 链接到标题 约翰·冯·诺依曼，美籍匈牙利数学家、计算机科学家、物理学家，毕业于苏黎世联邦工业大学，他是现代电子计算机与博弈论的重要创始人，被后人称为现代计算机之父、博弈论之父，并且他还改善了著名的蒙特卡洛算法。
+1945 年 6 月约翰·冯·诺依曼与戈德斯坦、勃克斯等人，联名发表了一篇长达 101 页纸的报告，即计算机史上著名的“101 页报告”。在报告中冯·诺伊曼明确提出了计算机的体系架构。从 1951 年第一台电子计算机 EDVAC 开始，计算机经历了多次的更新换代，不管是最原始的、还是最先进的计算机，使用的仍然是冯·诺依曼最初设计的计算机体系结构。因此冯·诺依曼被世界公认为“计算机之父”，他设计的计算机系统结构，称为“冯诺依曼体系结构”。
+冯诺依曼体系 链接到标题 冯诺依曼体系结构主要由五大部分组成，分别是控制器，运算器，存储器，输入设备和输出设备。至今为止，基本上所有的计算机也是遵循冯诺依曼体系所设计的，例如我们经常使用的手机，电脑，平板等等。
+冯诺依曼提出的两个重要的思想，一个是存储程序的思想，另一个是二进制的思想，这两个思想在如今的计算机领域影响深远。
+世界上第一台计算机 EDVAC，采用了上千个电子管所设计的，体积十分庞大，设计者采用十进制对指令和数据进行计算处理，但执行过程复杂，运行效率慢。十进制与二进制的区别在哪？冯诺依曼为何提出二进制的存储思想呢？因为在早期的计算机电子元件设计中，通常使用高低电压来表示信息，即高电压为 1，低电压为 0.所以如果要采用十进制进行数据的计算，将二进制信息转换成我们日常所熟悉的十进制后再去进行处理，大大增加了计算机指令的设计难度，而使用二进制则解决了这一问题，后世很多科学家也提出了二进制浮点数的计算，以及反码补码阶码的概念，使二进制成为了计算机设计的中心。所以在今后的计算机中无论是指令还是数据都采用二进制的方式进行存储和计算。
+通常我们使用的计算机主要功能是负责运算，所以在冯诺依曼体系中以运算器为中心，而存储器负责存放指令和数据，指令和数据的计算和存储以及外部设备的连接也需要通过控制器进行控制。让我们排除输入输出设备之后，其实运算器，存储器和控制器才是整个计算机的核心，我们可以将三者看作一个黑箱子。当我们输入数据时，数据通过黑箱子，然后输出我们想要的结果，这便是图灵机的简单模型。
+冯诺依曼体系的特点 链接到标题 计算机由五大部件组成，运算器，存储器，控制器，输入设备，输出设备。 指令和数据采用二进制方式进行存储。 指令由地址码和操作码组成。 运算器为中心。 存储程序为主要思想。 指令和数据都以同等地位存入存储器，并且可按地址访问。 冯诺依曼体系结构的改进 链接到标题 如上图所示，输入设备如果需要从存储器中存储信息，必须经过运算器，因此运算器可能成为计算机速度的瓶颈，如果可以使输入设备不经过运算器，直接访问存储器，可以减少运算器的工作量，因此有了以下以存储器为中心的结构。
+由于现代计算机分为运算器，控制器，存储器，输入设备，输出设备。运算器(ALU)与控制器(CU)合并为 CPU，存储器分为主存与辅存，CPU 与存储器构成主机部分，主机与 IO 设备构成计算机硬件，可以根据计算机的层次进行设计。">
+ 
+<meta property="og:url" content="//localhost:1313/posts/o9dhdm5w5oitmzxg6mtci4vinob/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="冯诺依曼体系">
+  <meta property="og:description" content="冯诺依曼体系 链接到标题 冯诺依曼简介 链接到标题 约翰·冯·诺依曼，美籍匈牙利数学家、计算机科学家、物理学家，毕业于苏黎世联邦工业大学，他是现代电子计算机与博弈论的重要创始人，被后人称为现代计算机之父、博弈论之父，并且他还改善了著名的蒙特卡洛算法。
+1945 年 6 月约翰·冯·诺依曼与戈德斯坦、勃克斯等人，联名发表了一篇长达 101 页纸的报告，即计算机史上著名的“101 页报告”。在报告中冯·诺伊曼明确提出了计算机的体系架构。从 1951 年第一台电子计算机 EDVAC 开始，计算机经历了多次的更新换代，不管是最原始的、还是最先进的计算机，使用的仍然是冯·诺依曼最初设计的计算机体系结构。因此冯·诺依曼被世界公认为“计算机之父”，他设计的计算机系统结构，称为“冯诺依曼体系结构”。
+冯诺依曼体系 链接到标题 冯诺依曼体系结构主要由五大部分组成，分别是控制器，运算器，存储器，输入设备和输出设备。至今为止，基本上所有的计算机也是遵循冯诺依曼体系所设计的，例如我们经常使用的手机，电脑，平板等等。
+冯诺依曼提出的两个重要的思想，一个是存储程序的思想，另一个是二进制的思想，这两个思想在如今的计算机领域影响深远。
+世界上第一台计算机 EDVAC，采用了上千个电子管所设计的，体积十分庞大，设计者采用十进制对指令和数据进行计算处理，但执行过程复杂，运行效率慢。十进制与二进制的区别在哪？冯诺依曼为何提出二进制的存储思想呢？因为在早期的计算机电子元件设计中，通常使用高低电压来表示信息，即高电压为 1，低电压为 0.所以如果要采用十进制进行数据的计算，将二进制信息转换成我们日常所熟悉的十进制后再去进行处理，大大增加了计算机指令的设计难度，而使用二进制则解决了这一问题，后世很多科学家也提出了二进制浮点数的计算，以及反码补码阶码的概念，使二进制成为了计算机设计的中心。所以在今后的计算机中无论是指令还是数据都采用二进制的方式进行存储和计算。
+通常我们使用的计算机主要功能是负责运算，所以在冯诺依曼体系中以运算器为中心，而存储器负责存放指令和数据，指令和数据的计算和存储以及外部设备的连接也需要通过控制器进行控制。让我们排除输入输出设备之后，其实运算器，存储器和控制器才是整个计算机的核心，我们可以将三者看作一个黑箱子。当我们输入数据时，数据通过黑箱子，然后输出我们想要的结果，这便是图灵机的简单模型。
+冯诺依曼体系的特点 链接到标题 计算机由五大部件组成，运算器，存储器，控制器，输入设备，输出设备。 指令和数据采用二进制方式进行存储。 指令由地址码和操作码组成。 运算器为中心。 存储程序为主要思想。 指令和数据都以同等地位存入存储器，并且可按地址访问。 冯诺依曼体系结构的改进 链接到标题 如上图所示，输入设备如果需要从存储器中存储信息，必须经过运算器，因此运算器可能成为计算机速度的瓶颈，如果可以使输入设备不经过运算器，直接访问存储器，可以减少运算器的工作量，因此有了以下以存储器为中心的结构。
+由于现代计算机分为运算器，控制器，存储器，输入设备，输出设备。运算器(ALU)与控制器(CU)合并为 CPU，存储器分为主存与辅存，CPU 与存储器构成主机部分，主机与 IO 设备构成计算机硬件，可以根据计算机的层次进行设计。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="计算机组成原理">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/o9dhdm5w5oitmzxg6mtci4vinob/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#冯诺依曼体系">冯诺依曼体系</a>
+      <ul>
+        <li><a href="#冯诺依曼简介">冯诺依曼简介</a></li>
+        <li><a href="#冯诺依曼体系-1">冯诺依曼体系</a></li>
+        <li><a href="#冯诺依曼体系的特点">冯诺依曼体系的特点</a></li>
+        <li><a href="#冯诺依曼体系结构的改进">冯诺依曼体系结构的改进</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/o9dhdm5w5oitmzxg6mtci4vinob/">
+            冯诺依曼体系
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-01-03T00:00:00Z">
+              January 3, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：1 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            41 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="冯诺依曼体系">
+  冯诺依曼体系
+  <a class="heading-link" href="#%e5%86%af%e8%af%ba%e4%be%9d%e6%9b%bc%e4%bd%93%e7%b3%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="冯诺依曼简介">
+  冯诺依曼简介
+  <a class="heading-link" href="#%e5%86%af%e8%af%ba%e4%be%9d%e6%9b%bc%e7%ae%80%e4%bb%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>约翰·冯·诺依曼，美籍匈牙利数学家、计算机科学家、物理学家，毕业于苏黎世联邦工业大学，他是现代电子计算机与博弈论的重要创始人，被后人称为现代计算机之父、博弈论之父，并且他还改善了著名的蒙特卡洛算法。</p>
+<p>1945 年 6 月约翰·冯·诺依曼与戈德斯坦、勃克斯等人，联名发表了一篇长达 101 页纸的报告，即计算机史上著名的“101 页报告”。在报告中冯·诺伊曼明确提出了计算机的体系架构。从 1951 年第一台电子计算机 EDVAC 开始，计算机经历了多次的更新换代，不管是最原始的、还是最先进的计算机，使用的仍然是冯·诺依曼最初设计的计算机体系结构。因此冯·诺依曼被世界公认为“计算机之父”，他设计的计算机系统结构，称为“冯诺依曼体系结构”。</p>
+<h2 id="冯诺依曼体系-1">
+  冯诺依曼体系
+  <a class="heading-link" href="#%e5%86%af%e8%af%ba%e4%be%9d%e6%9b%bc%e4%bd%93%e7%b3%bb-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>冯诺依曼体系结构主要由五大部分组成，分别是控制器，运算器，存储器，输入设备和输出设备。至今为止，基本上所有的计算机也是遵循冯诺依曼体系所设计的，例如我们经常使用的手机，电脑，平板等等。</p>
+<p>冯诺依曼提出的两个重要的思想，一个是存储程序的思想，另一个是二进制的思想，这两个思想在如今的计算机领域影响深远。</p>
+<p>世界上第一台计算机 EDVAC，采用了上千个电子管所设计的，体积十分庞大，设计者采用十进制对指令和数据进行计算处理，但执行过程复杂，运行效率慢。十进制与二进制的区别在哪？冯诺依曼为何提出二进制的存储思想呢？因为在早期的计算机电子元件设计中，通常使用高低电压来表示信息，即高电压为 1，低电压为 0.所以如果要采用十进制进行数据的计算，将二进制信息转换成我们日常所熟悉的十进制后再去进行处理，大大增加了计算机指令的设计难度，而使用二进制则解决了这一问题，后世很多科学家也提出了二进制浮点数的计算，以及反码补码阶码的概念，使二进制成为了计算机设计的中心。所以在今后的计算机中无论是指令还是数据都采用二进制的方式进行存储和计算。</p>
+<p><img src="../static/PwAAbMnQ5om7C0xEbKIcZHr1nTh.png" alt=""></p>
+<p>通常我们使用的计算机主要功能是负责运算，所以在冯诺依曼体系中以运算器为中心，而存储器负责存放指令和数据，指令和数据的计算和存储以及外部设备的连接也需要通过控制器进行控制。让我们排除输入输出设备之后，其实运算器，存储器和控制器才是整个计算机的核心，我们可以将三者看作一个黑箱子。当我们输入数据时，数据通过黑箱子，然后输出我们想要的结果，这便是图灵机的简单模型。</p>
+<h2 id="冯诺依曼体系的特点">
+  冯诺依曼体系的特点
+  <a class="heading-link" href="#%e5%86%af%e8%af%ba%e4%be%9d%e6%9b%bc%e4%bd%93%e7%b3%bb%e7%9a%84%e7%89%b9%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ol>
+<li>计算机由五大部件组成，运算器，存储器，控制器，输入设备，输出设备。</li>
+<li>指令和数据采用二进制方式进行存储。</li>
+<li>指令由地址码和操作码组成。</li>
+<li>运算器为中心。</li>
+<li>存储程序为主要思想。</li>
+<li>指令和数据都以同等地位存入存储器，并且可按地址访问。</li>
+</ol>
+<h2 id="冯诺依曼体系结构的改进">
+  冯诺依曼体系结构的改进
+  <a class="heading-link" href="#%e5%86%af%e8%af%ba%e4%be%9d%e6%9b%bc%e4%bd%93%e7%b3%bb%e7%bb%93%e6%9e%84%e7%9a%84%e6%94%b9%e8%bf%9b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>如上图所示，输入设备如果需要从存储器中存储信息，必须经过运算器，因此运算器可能成为计算机速度的瓶颈，如果可以使输入设备不经过运算器，直接访问存储器，可以减少运算器的工作量，因此有了以下以存储器为中心的结构。</p>
+<p><img src="../static/F0BcbxSBcoOLiNxWRC0cH0ZBnge.png" alt=""></p>
+<p>由于现代计算机分为运算器，控制器，存储器，输入设备，输出设备。运算器(ALU)与控制器(CU)合并为 CPU，存储器分为主存与辅存，CPU 与存储器构成主机部分，主机与 IO 设备构成计算机硬件，可以根据计算机的层次进行设计。</p>
+<p><img src="../static/Ylx8bUpvpohWj6xLKMIcpmX2nec.png" alt=""></p>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

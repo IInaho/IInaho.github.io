@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+计算机运算方法 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  计算机的运算方法
+  
+    
+    链接到标题
+  
+
+
+  无符号数和有符号数
+  
+    
+    链接到标题
+  
+
+
+  无符号数
+  
+    
+    链接到标题
+  
+
+寄存器的位数反映无符号数的表示范围。
+
+
+  有符号数
+  
+    
+    链接到标题
+  
+
+
+  机器数与真值
+  
+    
+    链接到标题
+  
+
+
+
+  原码表示法
+  
+    
+    链接到标题
+  
+
+
+整数
+
+
+
+小数
+
+
+
+  举例
+  
+    
+    链接到标题
+  
+
+
+
+  补码表示法
+  
+    
+    链接到标题
+  
+
+
+  补的概念
+  
+    
+    链接到标题
+  
+
+原码的特点是简单，直观，但是如果用原码做加法，一个正数和一个负数相加，结果的符号可正可负，需要找到一个与负数等价的正数来代替这个负数，假设一个时钟的时针指向六点，要想将时针指向三点方向，有两个办法，其一是将时针-3，其二是将时针 &#43;9.可见-3 可用 &#43;9 代替，这样将减法变为加法，称 &#43;9 是-3 以 12 为模的补数。
+
+
+  结论
+  
+    
+    链接到标题
+  
+
+
+一个负数加上“模”即得该负数的补数
+一个整数和一个负数互为补数时，他们绝对值之和即为模数
+
+">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="计算机运算方法">
+  <meta name="twitter:description" content="计算机的运算方法 链接到标题 无符号数和有符号数 链接到标题 无符号数 链接到标题 寄存器的位数反映无符号数的表示范围。
+有符号数 链接到标题 机器数与真值 链接到标题 原码表示法 链接到标题 整数 小数 举例 链接到标题 补码表示法 链接到标题 补的概念 链接到标题 原码的特点是简单，直观，但是如果用原码做加法，一个正数和一个负数相加，结果的符号可正可负，需要找到一个与负数等价的正数来代替这个负数，假设一个时钟的时针指向六点，要想将时针指向三点方向，有两个办法，其一是将时针-3，其二是将时针 &#43;9.可见-3 可用 &#43;9 代替，这样将减法变为加法，称 &#43;9 是-3 以 12 为模的补数。
+结论 链接到标题 一个负数加上“模”即得该负数的补数 一个整数和一个负数互为补数时，他们绝对值之和即为模数">
+ 
+<meta property="og:url" content="//localhost:1313/posts/bu5edaojhohwigx6erucztlpngf/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="计算机运算方法">
+  <meta property="og:description" content="计算机的运算方法 链接到标题 无符号数和有符号数 链接到标题 无符号数 链接到标题 寄存器的位数反映无符号数的表示范围。
+有符号数 链接到标题 机器数与真值 链接到标题 原码表示法 链接到标题 整数 小数 举例 链接到标题 补码表示法 链接到标题 补的概念 链接到标题 原码的特点是简单，直观，但是如果用原码做加法，一个正数和一个负数相加，结果的符号可正可负，需要找到一个与负数等价的正数来代替这个负数，假设一个时钟的时针指向六点，要想将时针指向三点方向，有两个办法，其一是将时针-3，其二是将时针 &#43;9.可见-3 可用 &#43;9 代替，这样将减法变为加法，称 &#43;9 是-3 以 12 为模的补数。
+结论 链接到标题 一个负数加上“模”即得该负数的补数 一个整数和一个负数互为补数时，他们绝对值之和即为模数">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="计算机组成原理">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/bu5edaojhohwigx6erucztlpngf/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#计算机的运算方法">计算机的运算方法</a>
+      <ul>
+        <li><a href="#无符号数和有符号数">无符号数和有符号数</a>
+          <ul>
+            <li><a href="#无符号数">无符号数</a></li>
+            <li><a href="#有符号数">有符号数</a>
+              <ul>
+                <li><a href="#机器数与真值">机器数与真值</a></li>
+                <li><a href="#原码表示法">原码表示法</a></li>
+              </ul>
+            </li>
+            <li><a href="#举例">举例</a></li>
+            <li><a href="#补码表示法">补码表示法</a>
+              <ul>
+                <li><a href="#补的概念">补的概念</a></li>
+                <li><a href="#结论">结论</a></li>
+                <li><a href="#正数的补数即为其本身">正数的补数即为其本身</a></li>
+                <li><a href="#补码定义">补码定义</a></li>
+                <li><a href="#求补码的快捷方式">求补码的快捷方式</a></li>
+                <li><a href="#举例-1">举例</a></li>
+              </ul>
+            </li>
+            <li><a href="#反码表示法">反码表示法</a>
+              <ul>
+                <li><a href="#定义">定义</a></li>
+                <li><a href="#举例-2">举例</a></li>
+                <li><a href="#三种机器数的小结">三种机器数的小结</a></li>
+                <li><a href="#例题">例题</a></li>
+              </ul>
+            </li>
+            <li><a href="#移码表示法">移码表示法</a>
+              <ul>
+                <li><a href="#移码定义">移码定义</a></li>
+                <li><a href="#移码和补码的比较">移码和补码的比较</a></li>
+                <li><a href="#移码的特点">移码的特点</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/bu5edaojhohwigx6erucztlpngf/">
+            计算机运算方法
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-01-03T00:00:00Z">
+              January 3, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：1 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            92 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="计算机的运算方法">
+  计算机的运算方法
+  <a class="heading-link" href="#%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%9a%84%e8%bf%90%e7%ae%97%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="无符号数和有符号数">
+  无符号数和有符号数
+  <a class="heading-link" href="#%e6%97%a0%e7%ac%a6%e5%8f%b7%e6%95%b0%e5%92%8c%e6%9c%89%e7%ac%a6%e5%8f%b7%e6%95%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="无符号数">
+  无符号数
+  <a class="heading-link" href="#%e6%97%a0%e7%ac%a6%e5%8f%b7%e6%95%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>寄存器的位数反映无符号数的表示范围。</p>
+<p><img src="../static/F5NabEP2Ao9Nvex2ZN6c2uvnnpf.png" alt=""></p>
+<h3 id="有符号数">
+  有符号数
+  <a class="heading-link" href="#%e6%9c%89%e7%ac%a6%e5%8f%b7%e6%95%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="机器数与真值">
+  机器数与真值
+  <a class="heading-link" href="#%e6%9c%ba%e5%99%a8%e6%95%b0%e4%b8%8e%e7%9c%9f%e5%80%bc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/MPwsbOOfuo1MjzxHMvwcCVlfnkc.png" alt=""></p>
+<h4 id="原码表示法">
+  原码表示法
+  <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e8%a1%a8%e7%a4%ba%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ul>
+<li>整数</li>
+</ul>
+<p><img src="../static/CiR9b31zUoviAJxCGalcbDOZn9B.png" alt=""></p>
+<ul>
+<li>小数</li>
+</ul>
+<p><img src="../static/CxnnbZFXCo2TVmxxXFLcoTs1nXg.png" alt=""></p>
+<h3 id="举例">
+  举例
+  <a class="heading-link" href="#%e4%b8%be%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/Jlubbih8uoUjkhxGnVtcxhqtnjP.png" alt=""></p>
+<h3 id="补码表示法">
+  补码表示法
+  <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e8%a1%a8%e7%a4%ba%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="补的概念">
+  补的概念
+  <a class="heading-link" href="#%e8%a1%a5%e7%9a%84%e6%a6%82%e5%bf%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>原码的特点是简单，直观，但是如果用原码做加法，一个正数和一个负数相加，结果的符号可正可负，需要找到一个与负数等价的正数来代替这个负数，假设一个时钟的时针指向六点，要想将时针指向三点方向，有两个办法，其一是将时针-3，其二是将时针 +9.可见-3 可用 +9 代替，这样将减法变为加法，称 +9 是-3 以 12 为模的补数。</p>
+<p><img src="../static/DqDgbCfcMoQeOUxrbcScCsK5nmg.png" alt=""></p>
+<h4 id="结论">
+  结论
+  <a class="heading-link" href="#%e7%bb%93%e8%ae%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ol>
+<li>一个负数加上“模”即得该负数的补数</li>
+<li>一个整数和一个负数互为补数时，他们绝对值之和即为模数</li>
+</ol>
+<p><img src="../static/AAf6bOTzvoBYChxWLu8cLkd8nId.png" alt=""></p>
+<h4 id="正数的补数即为其本身">
+  正数的补数即为其本身
+  <a class="heading-link" href="#%e6%ad%a3%e6%95%b0%e7%9a%84%e8%a1%a5%e6%95%b0%e5%8d%b3%e4%b8%ba%e5%85%b6%e6%9c%ac%e8%ba%ab">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>两个互为补数的数分别加上模，结果仍互为补数。假设寄存器只能存 4 位数值，则需要将溢出位丢弃，可见正数的补数和负数的补数相同。为了区分正数与负数的符号，需要再加符号位，为了添加符号位还需要 +2^4,则两次一共 +2^(4+1)。这样无论正数还是负数的补码，都添加了符号位用于区分。</p>
+<p><img src="../static/AO9FbYZI8oyYHwxTl2McDudCnth.png" alt=""></p>
+<h4 id="补码定义">
+  补码定义
+  <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e5%ae%9a%e4%b9%89">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/ShQKbt5ndoGe3ix2r6Zcng6inFe.png" alt=""></p>
+<p>n 不包括符号位</p>
+<p><img src="../static/ETgWb5OFtopSVhxxhGyciLENnGb.png" alt=""></p>
+<p>正数用逗号隔开符号位，小数使用点号隔开符号位</p>
+<h4 id="求补码的快捷方式">
+  求补码的快捷方式
+  <a class="heading-link" href="#%e6%b1%82%e8%a1%a5%e7%a0%81%e7%9a%84%e5%bf%ab%e6%8d%b7%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/IGydbeDJZoGZD1x4wpEcm4Vynib.png" alt=""></p>
+<p>计算 100000-1010 时可以用 11111-1010+1 代替.</p>
+<p>当真值为负时，补码可用原码除符号位外每位取反，末位加 1 求得。</p>
+<p>+0 与-0 补码相同</p>
+<h4 id="举例-1">
+  举例
+  <a class="heading-link" href="#%e4%b8%be%e4%be%8b-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/QUjtbBDvEofG6WxkSBCcmqeRnhb.png" alt=""></p>
+<h3 id="反码表示法">
+  反码表示法
+  <a class="heading-link" href="#%e5%8f%8d%e7%a0%81%e8%a1%a8%e7%a4%ba%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<h4 id="定义">
+  定义
+  <a class="heading-link" href="#%e5%ae%9a%e4%b9%89">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ul>
+<li>正数</li>
+</ul>
+<p><img src="../static/GDnhbBC7HoZ9trxMIBdcMQzJnJc.png" alt=""></p>
+<ul>
+<li>小数</li>
+</ul>
+<p><img src="../static/KRnabm5hEof5Y7xxgINcFdPjnU2.png" alt=""></p>
+<h4 id="举例-2">
+  举例
+  <a class="heading-link" href="#%e4%b8%be%e4%be%8b-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/NrwbbrntWoqTQdx0Bd3c4sDGnvf.png" alt=""></p>
+<h4 id="三种机器数的小结">
+  三种机器数的小结
+  <a class="heading-link" href="#%e4%b8%89%e7%a7%8d%e6%9c%ba%e5%99%a8%e6%95%b0%e7%9a%84%e5%b0%8f%e7%bb%93">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/OUepb0FYLoDK07xHvE9cMkfUnHd.png" alt=""></p>
+<ul>
+<li>最高位位符号位，书写上用“，”(正数)或“.”（小数）将数值部分和符号位隔开</li>
+<li>对于正数，原码=补码=反码</li>
+<li>对于负数，符号位为 1，其数值部分原码除符号位外每位取反末位加 1 等于补码，原码除符号位外每位取反等于反码。</li>
+</ul>
+<h4 id="例题">
+  例题
+  <a class="heading-link" href="#%e4%be%8b%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/IbjYbxcQHoeC3UxZSukcrL9Rnne.png" alt=""></p>
+<h3 id="移码表示法">
+  移码表示法
+  <a class="heading-link" href="#%e7%a7%bb%e7%a0%81%e8%a1%a8%e7%a4%ba%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>因为补码表示很难直接判断其真值的大小，所以使用移码进行比较。</p>
+<p><img src="../static/E6aVb9QyxoWjFvx02rGcjdyonZP.png" alt=""></p>
+<p>移码实际是将真值向上移了 2^n.</p>
+<h4 id="移码定义">
+  移码定义
+  <a class="heading-link" href="#%e7%a7%bb%e7%a0%81%e5%ae%9a%e4%b9%89">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/Tt6JbBpZEoChaUxGKHiciz0NnHg.png" alt=""></p>
+<h4 id="移码和补码的比较">
+  移码和补码的比较
+  <a class="heading-link" href="#%e7%a7%bb%e7%a0%81%e5%92%8c%e8%a1%a5%e7%a0%81%e7%9a%84%e6%af%94%e8%be%83">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p><img src="../static/IwsYbBEK3oZzysxHflJcgGARnuh.png" alt=""></p>
+<h4 id="移码的特点">
+  移码的特点
+  <a class="heading-link" href="#%e7%a7%bb%e7%a0%81%e7%9a%84%e7%89%b9%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>用移码表示浮点数的阶码，能方便的判断浮点数的阶码大小。</p>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

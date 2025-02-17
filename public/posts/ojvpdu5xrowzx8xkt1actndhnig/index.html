@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+微程序设计 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  微程序设计
+  
+    
+    链接到标题
+  
+
+
+  微程序设计思想的产生
+  
+    
+    链接到标题
+  
+
+使用组合逻辑设计的方式设计控制器，思路清晰、简单明了，但是电路庞杂，每个控制信号都需要单独的电路来完成控制信号的生成，如果要对指令集进行扩展，引入新的指令，其相关的微操作或者控制命令的逻辑电路都要进行修改。
+采用微程序设计的思想来实现控制器，设计和修改都比较容易，可以方便的进行指令集的扩展，这种思想由英国剑桥大学教授 Wilkes 提出，利用高低电平控制每个节拍发出的控制命令。
+
+完成一条机器指令需要多个微操作命令，分在不同的节拍完成，如果在一个节拍内的多个微操作命令可以并行执行，可以将其组合起来构成一个微指令，这样一条机器指令可以由多个微指令完成，多个微指令就构成了一个微程序，微指令格式可以由二进制代码来表示，1/0 代表高低电平有效，如果一个节拍中要发送控制信号，可以由 0 或者 1 控制相应的部件生成信号，并且控制相应的微操作命令执行。
+一条机器指令对应一个微程序，每个微指令包含若干个控制信号，微指令的先后顺序就是微程序在设计上的先后顺序，将微指令存入 ROM，执行时将微指令逐条读出，根据微指令有效位数，发送信号。
+
+  微程序控制单元框图及工作原理
+  
+    
+    链接到标题
+  
+
+
+  机器指令对应的微程序
+  
+    
+    链接到标题
+  
+
+
+取指周期有三个节拍，所以由三个微指令完成，每个节拍对应一条微指令，微指令完成每个节拍的微操作。
+
+  微程序控制单元的基本框图
+  
+    
+    链接到标题
+  
+
+
+微程序、微指令都保存在控制存储器，取出微指令，需要知道微指令的地址，微指令的地址保存在一个寄存器中，也就是控制存储器地址寄存器(CMAR)，这个地址进行译码之后就可以送入控制存储器，控制存储器只读，读出来的微指令放入一个 CMDR(控制存储器数据寄存器)中，微地址形成部件需要接受 IR 中操作码部分送来的信号，微地址形成部件下面有一个顺序逻辑，顺序逻辑负责从 CMAR 中选择正确的来源(也就是多种”下地址”生成方式的来源)，将其送入 CMAR。
+微指令基本格式：
+
+操作控制，由 0 和 1 组成，每一个位置代表一个操作信号。
+顺序控制，给出下一条微指令的地址。
+
+
+  微程序控制单元分析
+  
+    
+    链接到标题
+  
+
+
+每一条微指令右边存放下一条微指令的地址，假设该程序没有间址和中断周期，M-M&#43;2 这三条指令将指令取出，至于取出的指令是什么指令，需要经过指令译码才能知道去执行周期执行哪一个微程序，这个过程由微地址形成部件来做的，微地址形成部件根据取来的这条指令的操作码，形成这条指令它在执行阶段所在的微程序在控制存储器中保存的位置，所以由 XXX 表示。
+
+  微程序工作原理
+  
+    
+    链接到标题
+  
+
+">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="微程序设计">
+  <meta name="twitter:description" content="微程序设计 链接到标题 微程序设计思想的产生 链接到标题 使用组合逻辑设计的方式设计控制器，思路清晰、简单明了，但是电路庞杂，每个控制信号都需要单独的电路来完成控制信号的生成，如果要对指令集进行扩展，引入新的指令，其相关的微操作或者控制命令的逻辑电路都要进行修改。
+采用微程序设计的思想来实现控制器，设计和修改都比较容易，可以方便的进行指令集的扩展，这种思想由英国剑桥大学教授 Wilkes 提出，利用高低电平控制每个节拍发出的控制命令。
+完成一条机器指令需要多个微操作命令，分在不同的节拍完成，如果在一个节拍内的多个微操作命令可以并行执行，可以将其组合起来构成一个微指令，这样一条机器指令可以由多个微指令完成，多个微指令就构成了一个微程序，微指令格式可以由二进制代码来表示，1/0 代表高低电平有效，如果一个节拍中要发送控制信号，可以由 0 或者 1 控制相应的部件生成信号，并且控制相应的微操作命令执行。
+一条机器指令对应一个微程序，每个微指令包含若干个控制信号，微指令的先后顺序就是微程序在设计上的先后顺序，将微指令存入 ROM，执行时将微指令逐条读出，根据微指令有效位数，发送信号。
+微程序控制单元框图及工作原理 链接到标题 机器指令对应的微程序 链接到标题 取指周期有三个节拍，所以由三个微指令完成，每个节拍对应一条微指令，微指令完成每个节拍的微操作。
+微程序控制单元的基本框图 链接到标题 微程序、微指令都保存在控制存储器，取出微指令，需要知道微指令的地址，微指令的地址保存在一个寄存器中，也就是控制存储器地址寄存器(CMAR)，这个地址进行译码之后就可以送入控制存储器，控制存储器只读，读出来的微指令放入一个 CMDR(控制存储器数据寄存器)中，微地址形成部件需要接受 IR 中操作码部分送来的信号，微地址形成部件下面有一个顺序逻辑，顺序逻辑负责从 CMAR 中选择正确的来源(也就是多种”下地址”生成方式的来源)，将其送入 CMAR。
+微指令基本格式：
+操作控制，由 0 和 1 组成，每一个位置代表一个操作信号。 顺序控制，给出下一条微指令的地址。 微程序控制单元分析 链接到标题 每一条微指令右边存放下一条微指令的地址，假设该程序没有间址和中断周期，M-M&#43;2 这三条指令将指令取出，至于取出的指令是什么指令，需要经过指令译码才能知道去执行周期执行哪一个微程序，这个过程由微地址形成部件来做的，微地址形成部件根据取来的这条指令的操作码，形成这条指令它在执行阶段所在的微程序在控制存储器中保存的位置，所以由 XXX 表示。
+微程序工作原理 链接到标题">
+ 
+<meta property="og:url" content="//localhost:1313/posts/ojvpdu5xrowzx8xkt1actndhnig/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="微程序设计">
+  <meta property="og:description" content="微程序设计 链接到标题 微程序设计思想的产生 链接到标题 使用组合逻辑设计的方式设计控制器，思路清晰、简单明了，但是电路庞杂，每个控制信号都需要单独的电路来完成控制信号的生成，如果要对指令集进行扩展，引入新的指令，其相关的微操作或者控制命令的逻辑电路都要进行修改。
+采用微程序设计的思想来实现控制器，设计和修改都比较容易，可以方便的进行指令集的扩展，这种思想由英国剑桥大学教授 Wilkes 提出，利用高低电平控制每个节拍发出的控制命令。
+完成一条机器指令需要多个微操作命令，分在不同的节拍完成，如果在一个节拍内的多个微操作命令可以并行执行，可以将其组合起来构成一个微指令，这样一条机器指令可以由多个微指令完成，多个微指令就构成了一个微程序，微指令格式可以由二进制代码来表示，1/0 代表高低电平有效，如果一个节拍中要发送控制信号，可以由 0 或者 1 控制相应的部件生成信号，并且控制相应的微操作命令执行。
+一条机器指令对应一个微程序，每个微指令包含若干个控制信号，微指令的先后顺序就是微程序在设计上的先后顺序，将微指令存入 ROM，执行时将微指令逐条读出，根据微指令有效位数，发送信号。
+微程序控制单元框图及工作原理 链接到标题 机器指令对应的微程序 链接到标题 取指周期有三个节拍，所以由三个微指令完成，每个节拍对应一条微指令，微指令完成每个节拍的微操作。
+微程序控制单元的基本框图 链接到标题 微程序、微指令都保存在控制存储器，取出微指令，需要知道微指令的地址，微指令的地址保存在一个寄存器中，也就是控制存储器地址寄存器(CMAR)，这个地址进行译码之后就可以送入控制存储器，控制存储器只读，读出来的微指令放入一个 CMDR(控制存储器数据寄存器)中，微地址形成部件需要接受 IR 中操作码部分送来的信号，微地址形成部件下面有一个顺序逻辑，顺序逻辑负责从 CMAR 中选择正确的来源(也就是多种”下地址”生成方式的来源)，将其送入 CMAR。
+微指令基本格式：
+操作控制，由 0 和 1 组成，每一个位置代表一个操作信号。 顺序控制，给出下一条微指令的地址。 微程序控制单元分析 链接到标题 每一条微指令右边存放下一条微指令的地址，假设该程序没有间址和中断周期，M-M&#43;2 这三条指令将指令取出，至于取出的指令是什么指令，需要经过指令译码才能知道去执行周期执行哪一个微程序，这个过程由微地址形成部件来做的，微地址形成部件根据取来的这条指令的操作码，形成这条指令它在执行阶段所在的微程序在控制存储器中保存的位置，所以由 XXX 表示。
+微程序工作原理 链接到标题">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="计算机组成原理">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/ojvpdu5xrowzx8xkt1actndhnig/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#微程序设计">微程序设计</a>
+      <ul>
+        <li><a href="#微程序设计思想的产生">微程序设计思想的产生</a></li>
+        <li><a href="#微程序控制单元框图及工作原理">微程序控制单元框图及工作原理</a>
+          <ul>
+            <li><a href="#机器指令对应的微程序">机器指令对应的微程序</a></li>
+            <li><a href="#微程序控制单元的基本框图">微程序控制单元的基本框图</a></li>
+            <li><a href="#微程序控制单元分析">微程序控制单元分析</a></li>
+            <li><a href="#微程序工作原理">微程序工作原理</a>
+              <ul>
+                <li><a href="#取指阶段">取指阶段</a></li>
+                <li><a href="#执行阶段">执行阶段</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#微指令的编码方式控制方式">微指令的编码方式(控制方式)</a>
+          <ul>
+            <li><a href="#直接编码方式">直接编码方式</a></li>
+            <li><a href="#字段直接编码方式">字段直接编码方式</a></li>
+            <li><a href="#字段间接编码方式">字段间接编码方式</a></li>
+            <li><a href="#混合编码">混合编码</a></li>
+          </ul>
+        </li>
+        <li><a href="#微指令序列地址的形成">微指令序列地址的形成</a></li>
+        <li><a href="#微指令格式">微指令格式</a>
+          <ul>
+            <li><a href="#两种微指令格式的比较">两种微指令格式的比较</a></li>
+          </ul>
+        </li>
+        <li><a href="#静态微程序设计和动态微程序设计">静态微程序设计和动态微程序设计</a></li>
+        <li><a href="#豪微程序设计">豪微程序设计</a>
+          <ul>
+            <li><a href="#基本概念">基本概念</a></li>
+            <li><a href="#豪微程序控制存储器的基本组成">豪微程序控制存储器的基本组成</a></li>
+            <li><a href="#串行微程序控制和并行微程序控制">串行微程序控制和并行微程序控制</a></li>
+          </ul>
+        </li>
+        <li><a href="#微程序设计步骤">微程序设计步骤</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/ojvpdu5xrowzx8xkt1actndhnig/">
+            微程序设计
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-01-03T00:00:00Z">
+              January 3, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：1 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            178 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="微程序设计">
+  微程序设计
+  <a class="heading-link" href="#%e5%be%ae%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="微程序设计思想的产生">
+  微程序设计思想的产生
+  <a class="heading-link" href="#%e5%be%ae%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e6%80%9d%e6%83%b3%e7%9a%84%e4%ba%a7%e7%94%9f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>使用组合逻辑设计的方式设计控制器，思路清晰、简单明了，但是电路庞杂，每个控制信号都需要单独的电路来完成控制信号的生成，如果要对指令集进行扩展，引入新的指令，其相关的微操作或者控制命令的逻辑电路都要进行修改。</p>
+<p>采用微程序设计的思想来实现控制器，设计和修改都比较容易，可以方便的进行指令集的扩展，这种思想由英国剑桥大学教授 Wilkes 提出，利用高低电平控制每个节拍发出的控制命令。</p>
+<p><img src="../static/YzrXbnneWoZZM5xKFercEFrpnVc.png" alt=""></p>
+<p>完成一条机器指令需要多个微操作命令，分在不同的节拍完成，如果在一个节拍内的多个微操作命令可以并行执行，可以将其组合起来构成一个微指令，这样一条机器指令可以由多个微指令完成，多个微指令就构成了一个微程序，微指令格式可以由二进制代码来表示，1/0 代表高低电平有效，如果一个节拍中要发送控制信号，可以由 0 或者 1 控制相应的部件生成信号，并且控制相应的微操作命令执行。</p>
+<p>一条机器指令对应一个微程序，每个微指令包含若干个控制信号，微指令的先后顺序就是微程序在设计上的先后顺序，将微指令存入 ROM，执行时将微指令逐条读出，根据微指令有效位数，发送信号。</p>
+<h2 id="微程序控制单元框图及工作原理">
+  微程序控制单元框图及工作原理
+  <a class="heading-link" href="#%e5%be%ae%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6%e5%8d%95%e5%85%83%e6%a1%86%e5%9b%be%e5%8f%8a%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="机器指令对应的微程序">
+  机器指令对应的微程序
+  <a class="heading-link" href="#%e6%9c%ba%e5%99%a8%e6%8c%87%e4%bb%a4%e5%af%b9%e5%ba%94%e7%9a%84%e5%be%ae%e7%a8%8b%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/PisobXd2co0hdzxJvpWcMuZ3nTe.png" alt=""></p>
+<p>取指周期有三个节拍，所以由三个微指令完成，每个节拍对应一条微指令，微指令完成每个节拍的微操作。</p>
+<h3 id="微程序控制单元的基本框图">
+  微程序控制单元的基本框图
+  <a class="heading-link" href="#%e5%be%ae%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6%e5%8d%95%e5%85%83%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%a1%86%e5%9b%be">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/K8iWb0sgzoPS8IxGNeCckjLynud.png" alt=""></p>
+<p>微程序、微指令都保存在控制存储器，取出微指令，需要知道微指令的地址，微指令的地址保存在一个寄存器中，也就是控制存储器地址寄存器(CMAR)，这个地址进行译码之后就可以送入控制存储器，控制存储器只读，读出来的微指令放入一个 CMDR(控制存储器数据寄存器)中，微地址形成部件需要接受 IR 中操作码部分送来的信号，微地址形成部件下面有一个顺序逻辑，顺序逻辑负责从 CMAR 中选择正确的来源(也就是多种”下地址”生成方式的来源)，将其送入 CMAR。</p>
+<p><strong>微指令基本格式</strong>：</p>
+<ul>
+<li>操作控制，由 0 和 1 组成，每一个位置代表一个操作信号。</li>
+<li>顺序控制，给出下一条微指令的地址。</li>
+</ul>
+<h3 id="微程序控制单元分析">
+  微程序控制单元分析
+  <a class="heading-link" href="#%e5%be%ae%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6%e5%8d%95%e5%85%83%e5%88%86%e6%9e%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/Cg6KbQs6KoKwvoxfJpTcgxNZnOb.png" alt=""></p>
+<p>每一条微指令右边存放下一条微指令的地址，假设该程序没有间址和中断周期，M-M+2 这三条指令将指令取出，至于取出的指令是什么指令，需要经过指令译码才能知道去执行周期执行哪一个微程序，这个过程由微地址形成部件来做的，微地址形成部件根据取来的这条指令的操作码，形成这条指令它在执行阶段所在的微程序在控制存储器中保存的位置，所以由 XXX 表示。</p>
+<h3 id="微程序工作原理">
+  微程序工作原理
+  <a class="heading-link" href="#%e5%be%ae%e7%a8%8b%e5%ba%8f%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/GhiebvlkzoUtwQxgyescqydjnCg.png" alt=""></p>
+<h4 id="取指阶段">
+  取指阶段
+  <a class="heading-link" href="#%e5%8f%96%e6%8c%87%e9%98%b6%e6%ae%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>M-&gt;CMAR，(控制存储器中 M 的内容送入 CMAR，由 CMAR 指出第一条微指令在控制存储器的首地址)</p>
+<p>CM(CMAR)-&gt;CMDR(控制存储器中保存的指令取出，送入到 CMDR，CMDR 保存了要执行的控制信号)</p>
+<p>由 CMDR 发命令形成下条微指令地址 M+1</p>
+<p><img src="../static/RiVqb3olPobyWcxX0OTcBaidnRg.png" alt=""></p>
+<p>Ad(CMDR)-&gt;CMAR(将地址码部分通过顺序逻辑送入 CMAR)</p>
+<p>CM(CMAR)-&gt;CMDR(将 CMAR 指出的地址所指向的控制存储器的单元所保存的微指令送入 CMDR)</p>
+<p>由 CMDR 发命令形成下条微指令地址 M+2</p>
+<p><img src="../static/VACcbc5mdoaqbSxEEHdcaO2LnVb.png" alt=""></p>
+<p>Ad(CMDR)-&gt;CMAR
+CM(CMAR)-&gt;CMDR
+由 CMDR 发命令，进入间址阶段或执行阶段</p>
+<p><img src="../static/NFCzbutzroNI4FxHxrLc993znTe.png" alt=""></p>
+<h4 id="执行阶段">
+  执行阶段
+  <a class="heading-link" href="#%e6%89%a7%e8%a1%8c%e9%98%b6%e6%ae%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>OP(IR)-&gt; 微地址形成部件-&gt;CMAR(p-&gt;CMAR)</p>
+<p>CM(CMAR)-&gt;CMDR</p>
+<p>由 CMDR 发命令，形成下一条微指令地址 P+1</p>
+<p><img src="../static/RCuxb2OzqofZ6WxXiI4cCK2CnZc.png" alt=""></p>
+<p>Ad(CMDR)-&gt;CMAR(CMDR 地址码部分送入 CMAR)</p>
+<p>CM(CMAR)-&gt;CMDR</p>
+<p>由 CMDR 发命令，形成下一条微指令地址 P+2</p>
+<p><img src="../static/PqlRbsSXbo7gPsxJVOYcjAWdnYb.png" alt=""></p>
+<p>Ad(CMDR)-&gt;CMAR</p>
+<p>CM(CMAR)-&gt;CMDR</p>
+<p>由 CMDR 发命令，形成下条微指令地址 M</p>
+<p>Ad(CMDR)-&gt;CMAR</p>
+<p><img src="../static/KknCbJW2yofWrfxtKTAc1hutnih.png" alt=""></p>
+<ul>
+<li>全部微指令存在 CM 中，程序执行过程中只需读出</li>
+<li>微指令的操作控制字段如何形成微操作命令</li>
+<li>微指令的后续地址如何形成</li>
+</ul>
+<h2 id="微指令的编码方式控制方式">
+  微指令的编码方式(控制方式)
+  <a class="heading-link" href="#%e5%be%ae%e6%8c%87%e4%bb%a4%e7%9a%84%e7%bc%96%e7%a0%81%e6%96%b9%e5%bc%8f%e6%8e%a7%e5%88%b6%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="直接编码方式">
+  直接编码方式
+  <a class="heading-link" href="#%e7%9b%b4%e6%8e%a5%e7%bc%96%e7%a0%81%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>在微指令的操作字段中，每一位代表一个微操作命令</p>
+<p><img src="../static/XCxAbjSyBoK49kxAOdxcD6sLnnc.png" alt=""></p>
+<p>某位为”1”表示该控制信号有效，这种方式控制信号由某一位直接给出，不需要译码，所以速度最快。</p>
+<h3 id="字段直接编码方式">
+  字段直接编码方式
+  <a class="heading-link" href="#%e5%ad%97%e6%ae%b5%e7%9b%b4%e6%8e%a5%e7%bc%96%e7%a0%81%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>将微指令的控制字段分成若干”段”，每段经过译码后发出控制信号</p>
+<p><img src="../static/BgFKbqZKHoJcXSxl7iecs72vnee.png" alt=""></p>
+<p>每段译码只有一位是有效信号，每一位都代表在这组或者这一段中的一个微操作，如果译码结果有 <code>$2^n$</code>位，代表有<code>$2^n$</code>个微操作,但只有一个有效，所以每个字段中的命令是互斥的，这种方式称为显示编码，优点是缩短了微指令字长，增加了译码时间，所以微程序执行速度较慢。</p>
+<h3 id="字段间接编码方式">
+  字段间接编码方式
+  <a class="heading-link" href="#%e5%ad%97%e6%ae%b5%e9%97%b4%e6%8e%a5%e7%bc%96%e7%a0%81%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/EZuObFnruolJggx6B1PcN0nmnsf.png" alt=""></p>
+<p>每个字段的译码结果不仅和本字段的输入有关，还和其他字段译码结果相关</p>
+<h3 id="混合编码">
+  混合编码
+  <a class="heading-link" href="#%e6%b7%b7%e5%90%88%e7%bc%96%e7%a0%81">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>直接编码和字段编码混合使用</p>
+<h2 id="微指令序列地址的形成">
+  微指令序列地址的形成
+  <a class="heading-link" href="#%e5%be%ae%e6%8c%87%e4%bb%a4%e5%ba%8f%e5%88%97%e5%9c%b0%e5%9d%80%e7%9a%84%e5%bd%a2%e6%88%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>
+<p>微指令的下地址字段指出</p>
+</li>
+<li>
+<p>根据机器指令的操作码形成</p>
+</li>
+<li>
+<p>增量计数器(CMAR)+1-&gt;CMAR</p>
+</li>
+<li>
+<p>分支转移(也就是地址跳转)</p>
+<ul>
+<li>由操作控制字段、转移方式、转移地址组成</li>
+<li>转移方式：指明判别条件</li>
+<li>转移地址：指明转移成功后的去向</li>
+</ul>
+</li>
+<li>
+<p>通过测试网络</p>
+</li>
+</ul>
+<p><img src="../static/Df66b0XQ7oCL0MxokqEczJAonAf.png" alt=""></p>
+<ul>
+<li>
+<p>由硬件产生位程序入口地址</p>
+<ul>
+<li>第一条微指令地址由专门硬件产生</li>
+<li>中断周期，由硬件产生中断周期微程序首地址</li>
+</ul>
+</li>
+<li>
+<p>后续微指令地址形成方式原理图</p>
+</li>
+</ul>
+<p><img src="../static/QOPabakSMotTg9xPmdHcyQORnVf.png" alt=""></p>
+<h2 id="微指令格式">
+  微指令格式
+  <a class="heading-link" href="#%e5%be%ae%e6%8c%87%e4%bb%a4%e6%a0%bc%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>
+<p>水平型微指令，一次能定义并执行多个并行操作</p>
+<ul>
+<li>直接编码、字段直接编码、字段间接编码、直接和字段混合编码</li>
+</ul>
+</li>
+<li>
+<p>垂直型微指令</p>
+<ul>
+<li>类似机器指令操作码的方式</li>
+<li>由操作码字段规定微指令的功能</li>
+</ul>
+</li>
+</ul>
+<h3 id="两种微指令格式的比较">
+  两种微指令格式的比较
+  <a class="heading-link" href="#%e4%b8%a4%e7%a7%8d%e5%be%ae%e6%8c%87%e4%bb%a4%e6%a0%bc%e5%bc%8f%e7%9a%84%e6%af%94%e8%be%83">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>水平型微指令比垂直型微指令并行操作能力强，灵活性强</li>
+<li>水平型微指令执行一条机器指令所要的微指令数目少，速度快</li>
+<li>水平型微指令用较短的微程序结构换取较长的微指令结构</li>
+<li>水平型微指令与机器指令差别大</li>
+</ol>
+<h2 id="静态微程序设计和动态微程序设计">
+  静态微程序设计和动态微程序设计
+  <a class="heading-link" href="#%e9%9d%99%e6%80%81%e5%be%ae%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e5%92%8c%e5%8a%a8%e6%80%81%e5%be%ae%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>静态，微程序无须改变，也就是指令集不变，将为程序存入 ROM</li>
+<li>动态，通过改变微指令和微程序改变机器指令，有利于仿真，采用 EPROM</li>
+</ul>
+<h2 id="豪微程序设计">
+  豪微程序设计
+  <a class="heading-link" href="#%e8%b1%aa%e5%be%ae%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="基本概念">
+  基本概念
+  <a class="heading-link" href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>豪微程序设计用微程序解释机器指令</li>
+<li>豪微程序设计用豪微程序解释微指令</li>
+<li>豪微指令与微指令的关系好比微指令和机器指令的关系</li>
+</ul>
+<h3 id="豪微程序控制存储器的基本组成">
+  豪微程序控制存储器的基本组成
+  <a class="heading-link" href="#%e8%b1%aa%e5%be%ae%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6%e5%ad%98%e5%82%a8%e5%99%a8%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%84%e6%88%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/KAIIb6tUdoYXG1xYFcWcGiijnpA.png" alt=""></p>
+<h3 id="串行微程序控制和并行微程序控制">
+  串行微程序控制和并行微程序控制
+  <a class="heading-link" href="#%e4%b8%b2%e8%a1%8c%e5%be%ae%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6%e5%92%8c%e5%b9%b6%e8%a1%8c%e5%be%ae%e7%a8%8b%e5%ba%8f%e6%8e%a7%e5%88%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/Mg9gbeEDKo3IkJxn7FtckhbdnMb.png" alt=""></p>
+<h2 id="微程序设计步骤">
+  微程序设计步骤
+  <a class="heading-link" href="#%e5%be%ae%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e6%ad%a5%e9%aa%a4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ol>
+<li>
+<p>写出对应机器指令的微操作及节拍安排</p>
+<ol>
+<li>取指阶段微操作分析</li>
+<li>取指阶段的微操作及节拍安排</li>
+<li>执行阶段的微操作及节拍安排</li>
+</ol>
+</li>
+<li>
+<p>确定微指令格式</p>
+<ol>
+<li>微指令的编码方式</li>
+<li>后续微指令的地址形成方式</li>
+<li>微指令子串</li>
+<li>微指令字长的确定</li>
+<li>定义微指令操作控制字段的每一位操作</li>
+</ol>
+</li>
+<li>
+<p>编写微指令码点</p>
+</li>
+</ol>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
