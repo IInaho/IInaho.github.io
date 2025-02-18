@@ -6,20 +6,20 @@
     <description>Recent content in Series on inaho</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 18 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2020 00:00:00 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/series/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>计算机网络</title>
-      <link>//localhost:1313/series/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
-      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/series/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
-      <description></description>
-    </item>
     <item>
       <title>数据结构相关文章</title>
       <link>//localhost:1313/series/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0/</link>
       <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/series/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>计算机网络</title>
+      <link>//localhost:1313/series/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
+      <pubDate>Tue, 24 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/series/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
       <description></description>
     </item>
   </channel>
