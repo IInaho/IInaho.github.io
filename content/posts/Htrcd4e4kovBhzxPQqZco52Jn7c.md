@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "高斯约旦消元法"
-date = "2023-07-07"
+date = "2020-01-16"
 description = ""
 tags = [
     "数学"

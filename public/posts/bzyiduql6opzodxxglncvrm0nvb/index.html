@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+课程实训 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  课程实训
+  
+    
+    链接到标题
+  
+
+
+  简介
+  
+    
+    链接到标题
+  
+
+放一些学校数据结构课程实训的代码，一个为链表和文件操作实现的简易图书管理系统，另一个使用文件操作和最短路径算法实现计算最短路径。
+
+  简易图书管理系统
+  
+    
+    链接到标题
+  
+
+struct Book {                //图书结点
+    string ISBN;
+    string bookName;
+    int price;
+};
+class BookCol {
+private:
+    Book *books;            //图书表基地址
+    int MAXSIZEBOOKS;        //最大容量
+    string FilePath;        //文件路径
+    int num;                //当前数量
+public:
+    BookCol(string filePath) {
+        //初始化
+        FilePath = filePath;
+        fstream file(FilePath);
+        num = 0;
+        books = NULL;
+        file &gt;&gt; MAXSIZEBOOKS;                //读取当前容量
+
+        //生成图书表
+        books = new Book[MAXSIZEBOOKS];
+        char temp[256];                        //字符缓存区
+        int priceTemp = 0;                    //数字缓存区
+        if (file.is_open()) {
+            file.getline(temp, 100);
+        }
+        else{
+            cout &lt;&lt; &#34;文件路径错误,回车键结束程序！&#34; &lt;&lt; endl;
+            cin.get();
+            exit(1);
+        }
+        file.getline(temp, 100);
+        file &gt;&gt; temp;
+        while (temp[0] != &#39;\0&#39;) {
+            setISBN(num, temp);
+            file &gt;&gt; temp;
+            setBookName(num, temp);
+            file &gt;&gt; priceTemp;
+            setPrice(num, priceTemp);
+            file &gt;&gt; temp;
+            num&#43;&#43;;
+        }
+        file.close();
+    }
+    ~BookCol() {
+        delete books;
+    }
+    //获取图书信息
+    string getISBN(int i) {
+        return books[i].ISBN;
+    }
+    string getBookName(int i) {
+        return books[i].bookName;
+    }
+    int getPrice(int i) {
+        return books[i].price;
+    }
+
+    //设置图书信息
+    void setISBN(int i,string ISBN) {
+        books[i].ISBN = ISBN;
+    }
+    void setBookName(int i,string bookName) {
+        books[i].bookName = bookName;
+    }
+    void setPrice(int i, int price) {
+        books[i].price = price;
+    }
+
+    void Increase() {                //扩容操作
+        fstream file(FilePath);
+        MAXSIZEBOOKS *= 2;
+        file.clear();
+        file &lt;&lt; MAXSIZEBOOKS;
+
+        //原数据移动到新空间
+        Book *temp = new Book[MAXSIZEBOOKS];
+        for (int i = 0; i &lt; num; i&#43;&#43;) {
+            temp[i].bookName = getBookName(i);
+            temp[i].ISBN = getISBN(i);
+            temp[i].price = getPrice(i);
+        }
+        this-&gt;books = temp;
+        file.close();
+    }
+
+    void delBook(string ISBN);        //图书删除
+    int InsertBook();                //图书插入
+    void revealBook(string ISBN);    //修改价格
+    int findBook(string ISBN);        //图书查找
+    void bookSort();                //图书排序
+    int bookCount();                //图书数量
+    void printBook();                //遍历图书信息
+    void updataBook();                //文件更新
+    void bookMenu();                //菜单显示
+};
+//显示菜单
+void BookCol::bookMenu() {
+    cout &lt;&lt; &#34;\t\t|--------0. 显示所有图书--------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t|--------1. 查找图书------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t|--------2. 插入图书------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t|--------3. 删除图书------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t|--------4. 修改图书价格--------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t|--------5. 图书价格排序--------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t|--------6. 统计图书数量--------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t|--------q. 退出----------------|&#34; &lt;&lt; endl;
+}
+//更新数据
+void BookCol::updataBook() {
+    fstream file(FilePath, ios::out);
+    file &lt;&lt; MAXSIZEBOOKS &lt;&lt; endl;
+    file &lt;&lt; &#34;ISBN&#34; &lt;&lt; &#34;            &#34; &lt;&lt; &#34;图书名称&#34; &lt;&lt; &#34;                &#34; &lt;&lt; &#34;价格&#34; &lt;&lt; endl;
+    for (int i = 0; i &lt; num - 1; i&#43;&#43;) {
+        file &lt;&lt; getISBN(i) &lt;&lt; &#34;\t\t&#34; &lt;&lt; getBookName(i) &lt;&lt; &#34;\t\t\t&#34; &lt;&lt; getPrice(i) &lt;&lt; endl;
+    }
+    file.close();
+}
+//删除操作
+void BookCol::delBook(string ISBN) {
+    int i = findBook(ISBN);
+    while (i &lt; num-1) {
+        setISBN(i, getISBN(i &#43; 1));
+        setBookName(i, getBookName(i &#43; 1));
+        setPrice(i, getPrice(i &#43; 1));
+        i&#43;&#43;;
+    }
+    updataBook();    //更新文件
+    num--;
+}
+//排序操作
+void BookCol::bookSort() {
+    Book temp;
+    for (int i = 0; i &lt; num; &#43;&#43;i) {
+        temp = books[i];        //将待插入的数据存放入监视哨中
+        int low = 0;
+        int high = i - 1;
+        while (low &lt;= high) {
+            int m = (low &#43; high) / 2;
+            if (temp.price &lt; books[m].price) {
+                high = m - 1;
+            }
+            else {
+                low = m &#43; 1;
+            }
+        }
+        for (int j = i - 1; j &gt;= high &#43; 1; --j) {    //记录后移
+            books[j &#43; 1] = books[j];
+        }
+        books[high &#43; 1] = temp;
+    }
+    updataBook();    //更新文件
+    cout &lt;&lt; &#34;排序完成！&#34; &lt;&lt; endl;
+}
+//修改图书价格
+void BookCol::revealBook(string ISBN) {
+    int i = findBook(ISBN);
+    cout &lt;&lt; &#34;输入修改的价格&#34; &lt;&lt; endl;
+    int price;
+    cin &gt;&gt; price;
+    setPrice(i, price);
+    updataBook();            //文件更新
+    cout &lt;&lt; &#34;修改完成！&#34; &lt;&lt; endl;
+}
+//打印图书
+void BookCol::printBook() {
+    for (int i = 0; i &lt; num; i&#43;&#43;) {
+        cout &lt;&lt; &#34;图书号:&#34; &lt;&lt; getISBN(i) &lt;&lt;&#34; &#34;&lt;&lt; &#34;图书名称:&#34; &lt;&lt; getBookName(i) &lt;&lt;&#34; &#34;&lt;&lt; &#34;图书价格:&#34; &lt;&lt; getPrice(i) &lt;&lt;endl;
+    }
+}
+//插入图书
+int BookCol::InsertBook(){
+    string bookname; 
+    int price; 
+    string ISBN;
+    if (num &gt;= MAXSIZEBOOKS) {        //如果空间不足则扩容
+        Increase();
+    }
+    cout &lt;&lt; &#34;请输入图书名称&#34; &lt;&lt; endl;
+    cin &gt;&gt; bookname;
+    setBookName(num, bookname);
+
+    cout &lt;&lt; &#34;请输入图书价格&#34; &lt;&lt; endl;
+    cin &gt;&gt; price;
+    setPrice(num, price);
+
+    cout &lt;&lt; &#34;请输入图书ISBN&#34; &lt;&lt; endl;
+    cin &gt;&gt; ISBN;
+    setISBN(num, ISBN);
+    fstream file;
+    file.open(FilePath, ios::app);
+    file &lt;&lt; ISBN &lt;&lt; &#34;        &#34;&lt;&lt; bookname &lt;&lt;&#34;            &#34; &lt;&lt; price &lt;&lt; endl;
+    file.close();
+    num&#43;&#43;;
+    return 1;
+}
+//查找图书
+int BookCol::findBook(string ISBN) {
+    int i;
+    int flog = 0;
+    for (i = 0; i &lt; MAXSIZEBOOKS; i&#43;&#43;) {
+        string isbn = getISBN(i);
+        if (ISBN == isbn) { 
+            flog = 1;
+            break; 
+        }
+    }
+    if(flog) return i;
+    else return -1;
+}
+//统计图书
+int BookCol::bookCount() {
+    return num;
+}
+int main() {
+    BookCol *b = new BookCol(&#34;F:\\program\\Test_project\\C-C&#43;&#43;\\test&#39;\\test&#39;\\book.txt&#34;);
+    int flag = 1;
+    char ch;
+
+    b-&gt;bookMenu();
+    while (flag) {
+        cin &gt;&gt; ch;
+        switch (ch)
+        {
+        case &#39;0&#39;: {
+            b-&gt;printBook();
+        }break;
+        case &#39;1&#39;: {
+            string isbn;
+            cout &lt;&lt; &#34;请输入ISBN号&#34; &lt;&lt; endl;
+            cin &gt;&gt; isbn;
+            int i = b-&gt;findBook(isbn);
+            cout &lt;&lt; &#34;图书编号:&#34; &lt;&lt; b-&gt;getISBN(i) &lt;&lt; &#34; 图书名称:&#34; &lt;&lt; b-&gt;getBookName(i) &lt;&lt; &#34; 图书价格:&#34; &lt;&lt; b-&gt;getPrice(i) &lt;&lt; endl;
+        }break;
+        case &#39;2&#39;: {
+            b-&gt;InsertBook();
+        }break;
+        case &#39;3&#39;: {
+            cout &lt;&lt; &#34;请输入ISBN号&#34; &lt;&lt; endl;
+            string isbn;
+            cin &gt;&gt; isbn;
+            b-&gt;delBook(isbn);
+        }break;
+        case &#39;4&#39;: {
+            string isbn;
+            cout &lt;&lt; &#34;请输入ISBN号&#34; &lt;&lt; endl;
+            cin &gt;&gt; isbn;
+            b-&gt;revealBook(isbn);
+        }break;
+        case &#39;5&#39;: {
+            b-&gt;bookSort();
+        }break;
+        case &#39;6&#39;: {
+            cout &lt;&lt; &#34;图书数量为:&#34; &lt;&lt; b-&gt;bookCount() &lt;&lt; endl;
+        }break;
+        case &#39;q&#39;: {
+            flag = 0;
+        }break;
+        default:
+            break;
+        }
+    }
+    cin.get();
+    return 0;
+}
+
+  图的最短路径
+  
+    
+    链接到标题
+  
+
+typedef struct VertexType {                //顶点信息
+    char name[256];
+    char intruction[256];
+}VertexType;
+
+typedef int EdgeType;                    //边上的权值
+#define MAXVEX 100                        //最大顶点数
+#define MAXINTS 65535                    //代表无穷大
+
+typedef struct {
+    VertexType vexs[MAXVEX];            //顶点表
+    EdgeType arc[MAXVEX][MAXVEX];        //边矩阵
+    int numVertexes, numEdges;            //图中当前节点数和边数
+}MGraph;
+
+/*
+ *    返回顶点名称所在顶点表的位置
+ */
+int FindIndex(MGraph G, string name) {
+    int i;
+    for (i = 0; i &lt; G.numVertexes; &#43;&#43;i) {
+        if (G.vexs[i].name == name) {
+            return i;
+        }
+    }
+    return -1;
+}
+/*
+ *    邻接矩阵的创建
+ */
+void CreateMgraph(MGraph *G,string ptr) {
+    string start, end;        //起点，终点
+    int w;                    //边上的权值
+
+    //读取顶点数、边数
+    fstream file(ptr);
+    file &gt;&gt; G-&gt;numVertexes &gt;&gt; G-&gt;numEdges;
+
+    //读取顶点信息
+    for (int i = 0; i &lt; G-&gt;numVertexes; i&#43;&#43;) {
+        file &gt;&gt; G-&gt;vexs[i].name;
+        file &gt;&gt; G-&gt;vexs[i].intruction;
+    }
+    //初始化边权值
+    for (int i = 0; i &lt; G-&gt;numVertexes; i&#43;&#43;) {
+        for (int j = 0; j &lt; G-&gt;numVertexes; j&#43;&#43;) {
+            G-&gt;arc[i][j] = MAXINTS;
+        }
+    }
+    //读取边权值
+    for (int k = 0; k &lt; G-&gt;numEdges; k&#43;&#43;) {
+        file &gt;&gt; start &gt;&gt; end &gt;&gt; w;
+        int i = FindIndex(*G, start);
+        int j = FindIndex(*G, end);
+        G-&gt;arc[i][j] = w;
+        G-&gt;arc[j][i] = G-&gt;arc[i][j];        //矩阵对称
+    }
+    file.close();
+}
+/*
+ *    更新文件信息
+ */
+void updataGrapg(MGraph G) {
+    fstream file(&#34;F:\\program\\Test_project\\C-C&#43;&#43;\\test&#39;\\test&#39;\\graph.txt&#34;);
+    file &lt;&lt; G.numVertexes &lt;&lt; &#34;\t&#34; &lt;&lt; G.numEdges &lt;&lt; &#34;\t&#34; &lt;&lt; endl;
+    file &lt;&lt; endl;
+    for (int i = 0; i &lt; G.numVertexes; i&#43;&#43;) {
+        file &lt;&lt; G.vexs[i].name &lt;&lt; &#34;\t&#34; &lt;&lt; G.vexs[i].intruction &lt;&lt; &#34;\t&#34; &lt;&lt; endl;
+    }
+    file &lt;&lt; endl;
+    for (int i = 0; i &lt; G.numVertexes; i&#43;&#43;) {
+        for (int j = i; j &lt; G.numVertexes; j&#43;&#43;) {
+            if (G.arc[i][j] != MAXINTS) {
+                file &lt;&lt; G.vexs[i].name &lt;&lt; &#34;\t&#34; &lt;&lt; G.vexs[j].name &lt;&lt; &#34;\t&#34; &lt;&lt; G.arc[i][j] &lt;&lt; endl;
+            }
+        }
+    }
+    file.close();
+}
+/* 
+ *    若顶点存在，则修改此顶点的介绍信息，否则返回-1
+ */
+int ModifyInfo(MGraph *G,char name[],char newInfo[]) {
+    int i = FindIndex(*G, name);
+    if (i != -1) {
+        G-&gt;vexs[i].intruction;
+        strcpy_s(G-&gt;vexs[i].intruction, newInfo);
+        updataGrapg(*G);
+        return 1;
+    }
+    return -1;
+}
+/*
+ *    若该顶点存在，则输出介绍信息，若顶点不存在则返回-1
+ */
+int Instruction(MGraph G,string name) {
+    int i = FindIndex(G,name);
+    if (i != -1) {
+        cout &lt;&lt; G.vexs[i].intruction &lt;&lt; endl;
+        return 1;
+    }
+    return -1;
+}
+/*
+ * 顶点数小于最大顶点数，则添加成功
+ */
+int addVex(MGraph *G,char name[],char Info[]) {
+    if (G-&gt;numVertexes &lt; MAXVEX) {
+        strcpy_s(G-&gt;vexs[G-&gt;numVertexes].name, name);
+        strcpy_s(G-&gt;vexs[G-&gt;numVertexes].intruction, Info);
+        for (int i = 0; i &lt; G-&gt;numVertexes; i&#43;&#43;) {
+            G-&gt;arc[G-&gt;numVertexes][i] = MAXINTS;
+            G-&gt;arc[i][G-&gt;numVertexes] = MAXINTS;
+        }
+        G-&gt;arc[G-&gt;numVertexes][G-&gt;numVertexes] = MAXINTS;
+        G-&gt;numVertexes&#43;&#43;;
+        updataGrapg(*G);
+        return 1;
+    }
+    return -1;
+}
+/*
+ *    若该顶点存在，则删除该顶点，若该顶点不存在，则返回-1
+ */
+int delVex(MGraph *G, char name[]) {
+    int i = FindIndex(*G,name);
+    if (i != -1) {
+        for (int j = i; j &lt; G-&gt;numVertexes; &#43;&#43;j) {    //记录前移
+            G-&gt;vexs[j] = G-&gt;vexs[j &#43; 1];
+        }
+        G-&gt;numVertexes--;
+        updataGrapg(*G);
+        return 1;
+    }
+    return -1;
+}
+/*
+ * 添加一条边，如果不存在此边，则添加成功，如果存在此边或者不存在相关顶点，添加失败返回-1
+ */
+int addArc(MGraph *G, char start[], char end[], EdgeType num) {
+    int i = FindIndex(*G,start);
+    int j = FindIndex(*G, end);
+    if (i != -1 &amp;&amp; j != -1) {
+        if (G-&gt;arc[i][j] == MAXINTS){
+            G-&gt;arc[i][j] = num;
+            G-&gt;numEdges&#43;&#43;;
+            updataGrapg(*G);
+        }
+        else 
+            return -1;
+    }
+    return 1;
+}
+/*
+ *    若该边存在，则删除该边，该边不存在则返回-1
+ */
+int delArc(MGraph *G, char start[], char end[]) {
+    int i = FindIndex(*G,start);
+    int j = FindIndex(*G,end);
+    if (i != -1 &amp;&amp; j != -1) {
+        if(G-&gt;arc[i][j] != MAXINTS)
+        G-&gt;arc[i][j] = MAXINTS;            //将此边信息更新为无穷大
+        G-&gt;numEdges--;
+        updataGrapg(*G);
+        return 1;
+    }
+    return -1;
+}
+/*
+ *    打印所有边集信息，用于测试
+ */
+void PrintMg(MGraph G) {
+    for (int i = 0; i &lt; G.numVertexes; i&#43;&#43;) {
+        for (int j = 0; j &lt; G.numVertexes; j&#43;&#43;) {
+            cout &lt;&lt; G.vexs[i].name &lt;&lt; &#34;--&#34; &lt;&lt; G.vexs[j].name &lt;&lt; &#34;--&#34; &lt;&lt; G.arc[i][j] &lt;&lt; &#34; |&#34;;
+        }
+        cout &lt;&lt; endl;
+    }
+}
+/*
+ *    打印所有顶点信息
+ */
+void PrintVex(MGraph G) {
+    cout &lt;&lt; &#34;该学校的景点有:&#34; &lt;&lt; endl;
+    for (int i = 0; i &lt; G.numVertexes; &#43;&#43;i) {
+        cout &lt;&lt; &#34;\t&#34; &lt;&lt; i &#43; 1 &lt;&lt; &#34;. &#34; &lt;&lt; G.vexs[i].name &lt;&lt; endl;
+    }
+    cout &lt;&lt; &#34;----------------------------------&#34; &lt;&lt; endl;
+}
+/*
+ *    最短路径，迪杰斯特拉算法，若未找到顶点则返回-1
+ */
+int ShortesPath_DIJ(MGraph G, char start[], char end[]) {
+    int n = G.numVertexes;
+    int *S = (int*)malloc(sizeof(int) * n);
+    int *D = (int*)malloc(sizeof(int) * n);
+    int *Path = (int*)malloc(sizeof(int) * n);
+
+    int v0 = FindIndex(G, start);
+    int vt = FindIndex(G, end);
+    if (v0 == -1 || vt == -1) {
+        cout &lt;&lt; &#34;顶点未找到 &#34; &lt;&lt; end;
+        return -1;
+    }
+    for (int v = 0; v &lt; n; &#43;&#43;v) {            //初始化
+        S[v] = false;
+        D[v] = G.arc[v0][v];                //记录v0到v的最短路径长度
+        if (D[v] &lt; MAXINTS) {                //如果有弧，更新Path为v0，否则置为-1
+            Path[v] = v0;
+        }
+        else {
+            Path[v] = -1;
+        }
+    }
+    S[v0] = true;       //将v0加入S
+    D[v0] = 0;            //源点到源点的距离为0
+
+    //遍历其余顶点，每次求得v0到某个顶点v的最短路径，将v并入S
+    for (int i = 1; i &lt; n; &#43;&#43;i) {
+        int min = MAXINTS;
+        int v;
+        for (int w = 0; w &lt; n; &#43;&#43;w) {
+            if (!S[w] &amp;&amp; D[w] &lt; min) {
+                v = w;                    //保存顶点位置
+                min = D[w];
+            }
+        }
+        S[v] = true;
+        for (int w = 0; w &lt; n; &#43;&#43;w) {
+            if (!S[w] &amp;&amp; (D[v] &#43; G.arc[v][w] &lt; D[w])) {
+                D[w] = D[v] &#43; G.arc[v][w];
+                Path[w] = v;
+            }
+        }
+    }    return D[vt];
+}
+void menu() {
+    cout &lt;&lt; &#34;\t\t\t|---------------------------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t\t|---1. 查询景点信息---------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t\t|---2. 问路查询-------------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t\t|---3. 增加一个景点及其相关信息---|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t\t|---4. 修改一个景点的相关信息-----|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t\t|---5. 增加一条新的路径-----------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t\t|---6. 删除一条路径---------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t\t|---7. 删除一个景点---------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t\t|---0. 退出系统-------------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; &#34;\t\t\t|---------------------------------|&#34; &lt;&lt; endl;
+    cout &lt;&lt; endl;
+}
+int main() {
+    MGraph G;
+    string ptr = &#34;F:\\program\\Test_project\\C-C&#43;&#43;\\test&#39;\\test&#39;\\graph.txt&#34;;
+    CreateMgraph(&amp;G,ptr);
+    int flag = 1;
+    char c;
+    menu();
+    PrintVex(G);
+    while (flag) {
+        cout &lt;&lt; &#34;请选择功能&#34; &lt;&lt; endl;
+        cout &lt;&lt; &#34;----------------------------------&#34; &lt;&lt; endl;
+        cin &gt;&gt; c;
+        switch (c)
+        {
+        case &#39;1&#39;: {
+            char name[256];
+            cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl;
+            cin &gt;&gt; name;
+            Instruction(G, name);
+        }break;
+        case &#39;2&#39;: {
+            char start[256];
+            char end[256];
+            cout &lt;&lt; &#34;请输入起点名称&#34; &lt;&lt; endl;
+            cin &gt;&gt; start;
+            cout &lt;&lt; &#34;请输入终点名称&#34; &lt;&lt; endl;
+            cin &gt;&gt; end;
+            int l = ShortesPath_DIJ(G, start, end);
+            if(l != MAXINTS){
+                cout &lt;&lt; &#34;路径长度为:&#34; &lt;&lt; l &lt;&lt; endl;
+            }
+            else {
+                cout &lt;&lt; &#34;不存在此路径&#34; &lt;&lt; endl;
+            }
+        }break;
+        case &#39;3&#39;: {
+            char name[256];
+            char Info[256];
+            cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl;
+            cin &gt;&gt; name;
+            cout &lt;&lt; &#34;请输入景点介绍&#34; &lt;&lt; endl;
+            cin &gt;&gt; Info;
+            if(addVex(&amp;G, name, Info)){
+                cout &lt;&lt; &#34;添加景点成功&#34; &lt;&lt; endl;
+            }
+            else {
+                cout &lt;&lt; &#34;添加景点失败&#34; &lt;&lt; endl;
+            }
+        }break;
+        case &#39;4&#39;: {
+            char name[256];
+            char Info[256];
+            cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl;
+            cin &gt;&gt; name;
+            cout &lt;&lt; &#34;请输入此景点新的介绍&#34; &lt;&lt; endl;
+            cin &gt;&gt; Info;
+            if(ModifyInfo(&amp;G, name, Info)){
+                cout &lt;&lt; &#34;修改成功&#34; &lt;&lt; endl;
+            }
+            else {
+                cout &lt;&lt; &#34;修改失败&#34; &lt;&lt; endl;
+            }
+        }break;
+        case &#39;5&#39;: {
+            char start[256];
+            char end[256];
+            int length;
+            cout &lt;&lt; &#34;请输入路径起点&#34; &lt;&lt; endl;
+            cin &gt;&gt; start;
+            cout &lt;&lt; &#34;请输入路径终点&#34; &lt;&lt; endl;
+            cin &gt;&gt; end;
+            cout &lt;&lt; &#34;请输入路径距离&#34; &lt;&lt; endl;
+            cin &gt;&gt; length;
+            if (addArc(&amp;G, start, end, length)) {
+                cout &lt;&lt; &#34;添加路径成功&#34; &lt;&lt; endl;
+            }
+            else {
+                cout &lt;&lt; &#34;添加路径失败&#34; &lt;&lt; endl;
+            }
+        }break;
+        case &#39;6&#39;: {
+            char start[256];
+            char end [256];
+            cout &lt;&lt; &#34;请输入起点位置&#34; &lt;&lt; endl;
+            cin &gt;&gt; start;
+            cout &lt;&lt; &#34;请输入终点位置&#34; &lt;&lt; endl;
+            cin &gt;&gt; end;
+            if (delArc(&amp;G, start, end) != -1) {
+                cout &lt;&lt; &#34;路径删除成功&#34; &lt;&lt; endl;
+            }
+            else{
+                cout &lt;&lt; &#34;路径删除失败&#34; &lt;&lt; endl;
+            }
+        }break;
+        case &#39;7&#39;: {
+            char name[256];
+            cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl;
+            cin &gt;&gt; name;
+            if (delVex(&amp;G, name)) {
+                cout &lt;&lt; &#34;删除景点成功&#34; &lt;&lt; endl;
+            }
+            else{
+                cout &lt;&lt; &#34;删除景点失败&#34; &lt;&lt; endl;
+            }
+        }break;
+        case &#39;0&#39;: {
+            exit(1);
+        }break;
+        default:
+            cout &lt;&lt; &#34;操作有误&#34; &lt;&lt; endl;
+            break;
+        }
+    }return 0;
+}
+">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="课程实训">
+  <meta name="twitter:description" content="课程实训 链接到标题 简介 链接到标题 放一些学校数据结构课程实训的代码，一个为链表和文件操作实现的简易图书管理系统，另一个使用文件操作和最短路径算法实现计算最短路径。
+简易图书管理系统 链接到标题 struct Book { //图书结点 string ISBN; string bookName; int price; }; class BookCol { private: Book *books; //图书表基地址 int MAXSIZEBOOKS; //最大容量 string FilePath; //文件路径 int num; //当前数量 public: BookCol(string filePath) { //初始化 FilePath = filePath; fstream file(FilePath); num = 0; books = NULL; file &gt;&gt; MAXSIZEBOOKS; //读取当前容量 //生成图书表 books = new Book[MAXSIZEBOOKS]; char temp[256]; //字符缓存区 int priceTemp = 0; //数字缓存区 if (file.is_open()) { file.getline(temp, 100); } else{ cout &lt;&lt; &#34;文件路径错误,回车键结束程序！&#34; &lt;&lt; endl; cin.get(); exit(1); } file.getline(temp, 100); file &gt;&gt; temp; while (temp[0] != &#39;\0&#39;) { setISBN(num, temp); file &gt;&gt; temp; setBookName(num, temp); file &gt;&gt; priceTemp; setPrice(num, priceTemp); file &gt;&gt; temp; num&#43;&#43;; } file.close(); } ~BookCol() { delete books; } //获取图书信息 string getISBN(int i) { return books[i].ISBN; } string getBookName(int i) { return books[i].bookName; } int getPrice(int i) { return books[i].price; } //设置图书信息 void setISBN(int i,string ISBN) { books[i].ISBN = ISBN; } void setBookName(int i,string bookName) { books[i].bookName = bookName; } void setPrice(int i, int price) { books[i].price = price; } void Increase() { //扩容操作 fstream file(FilePath); MAXSIZEBOOKS *= 2; file.clear(); file &lt;&lt; MAXSIZEBOOKS; //原数据移动到新空间 Book *temp = new Book[MAXSIZEBOOKS]; for (int i = 0; i &lt; num; i&#43;&#43;) { temp[i].bookName = getBookName(i); temp[i].ISBN = getISBN(i); temp[i].price = getPrice(i); } this-&gt;books = temp; file.close(); } void delBook(string ISBN); //图书删除 int InsertBook(); //图书插入 void revealBook(string ISBN); //修改价格 int findBook(string ISBN); //图书查找 void bookSort(); //图书排序 int bookCount(); //图书数量 void printBook(); //遍历图书信息 void updataBook(); //文件更新 void bookMenu(); //菜单显示 }; //显示菜单 void BookCol::bookMenu() { cout &lt;&lt; &#34;\t\t|--------0. 显示所有图书--------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------1. 查找图书------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------2. 插入图书------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------3. 删除图书------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------4. 修改图书价格--------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------5. 图书价格排序--------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------6. 统计图书数量--------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------q. 退出----------------|&#34; &lt;&lt; endl; } //更新数据 void BookCol::updataBook() { fstream file(FilePath, ios::out); file &lt;&lt; MAXSIZEBOOKS &lt;&lt; endl; file &lt;&lt; &#34;ISBN&#34; &lt;&lt; &#34; &#34; &lt;&lt; &#34;图书名称&#34; &lt;&lt; &#34; &#34; &lt;&lt; &#34;价格&#34; &lt;&lt; endl; for (int i = 0; i &lt; num - 1; i&#43;&#43;) { file &lt;&lt; getISBN(i) &lt;&lt; &#34;\t\t&#34; &lt;&lt; getBookName(i) &lt;&lt; &#34;\t\t\t&#34; &lt;&lt; getPrice(i) &lt;&lt; endl; } file.close(); } //删除操作 void BookCol::delBook(string ISBN) { int i = findBook(ISBN); while (i &lt; num-1) { setISBN(i, getISBN(i &#43; 1)); setBookName(i, getBookName(i &#43; 1)); setPrice(i, getPrice(i &#43; 1)); i&#43;&#43;; } updataBook(); //更新文件 num--; } //排序操作 void BookCol::bookSort() { Book temp; for (int i = 0; i &lt; num; &#43;&#43;i) { temp = books[i]; //将待插入的数据存放入监视哨中 int low = 0; int high = i - 1; while (low &lt;= high) { int m = (low &#43; high) / 2; if (temp.price &lt; books[m].price) { high = m - 1; } else { low = m &#43; 1; } } for (int j = i - 1; j &gt;= high &#43; 1; --j) { //记录后移 books[j &#43; 1] = books[j]; } books[high &#43; 1] = temp; } updataBook(); //更新文件 cout &lt;&lt; &#34;排序完成！&#34; &lt;&lt; endl; } //修改图书价格 void BookCol::revealBook(string ISBN) { int i = findBook(ISBN); cout &lt;&lt; &#34;输入修改的价格&#34; &lt;&lt; endl; int price; cin &gt;&gt; price; setPrice(i, price); updataBook(); //文件更新 cout &lt;&lt; &#34;修改完成！&#34; &lt;&lt; endl; } //打印图书 void BookCol::printBook() { for (int i = 0; i &lt; num; i&#43;&#43;) { cout &lt;&lt; &#34;图书号:&#34; &lt;&lt; getISBN(i) &lt;&lt;&#34; &#34;&lt;&lt; &#34;图书名称:&#34; &lt;&lt; getBookName(i) &lt;&lt;&#34; &#34;&lt;&lt; &#34;图书价格:&#34; &lt;&lt; getPrice(i) &lt;&lt;endl; } } //插入图书 int BookCol::InsertBook(){ string bookname; int price; string ISBN; if (num &gt;= MAXSIZEBOOKS) { //如果空间不足则扩容 Increase(); } cout &lt;&lt; &#34;请输入图书名称&#34; &lt;&lt; endl; cin &gt;&gt; bookname; setBookName(num, bookname); cout &lt;&lt; &#34;请输入图书价格&#34; &lt;&lt; endl; cin &gt;&gt; price; setPrice(num, price); cout &lt;&lt; &#34;请输入图书ISBN&#34; &lt;&lt; endl; cin &gt;&gt; ISBN; setISBN(num, ISBN); fstream file; file.open(FilePath, ios::app); file &lt;&lt; ISBN &lt;&lt; &#34; &#34;&lt;&lt; bookname &lt;&lt;&#34; &#34; &lt;&lt; price &lt;&lt; endl; file.close(); num&#43;&#43;; return 1; } //查找图书 int BookCol::findBook(string ISBN) { int i; int flog = 0; for (i = 0; i &lt; MAXSIZEBOOKS; i&#43;&#43;) { string isbn = getISBN(i); if (ISBN == isbn) { flog = 1; break; } } if(flog) return i; else return -1; } //统计图书 int BookCol::bookCount() { return num; } int main() { BookCol *b = new BookCol(&#34;F:\\program\\Test_project\\C-C&#43;&#43;\\test&#39;\\test&#39;\\book.txt&#34;); int flag = 1; char ch; b-&gt;bookMenu(); while (flag) { cin &gt;&gt; ch; switch (ch) { case &#39;0&#39;: { b-&gt;printBook(); }break; case &#39;1&#39;: { string isbn; cout &lt;&lt; &#34;请输入ISBN号&#34; &lt;&lt; endl; cin &gt;&gt; isbn; int i = b-&gt;findBook(isbn); cout &lt;&lt; &#34;图书编号:&#34; &lt;&lt; b-&gt;getISBN(i) &lt;&lt; &#34; 图书名称:&#34; &lt;&lt; b-&gt;getBookName(i) &lt;&lt; &#34; 图书价格:&#34; &lt;&lt; b-&gt;getPrice(i) &lt;&lt; endl; }break; case &#39;2&#39;: { b-&gt;InsertBook(); }break; case &#39;3&#39;: { cout &lt;&lt; &#34;请输入ISBN号&#34; &lt;&lt; endl; string isbn; cin &gt;&gt; isbn; b-&gt;delBook(isbn); }break; case &#39;4&#39;: { string isbn; cout &lt;&lt; &#34;请输入ISBN号&#34; &lt;&lt; endl; cin &gt;&gt; isbn; b-&gt;revealBook(isbn); }break; case &#39;5&#39;: { b-&gt;bookSort(); }break; case &#39;6&#39;: { cout &lt;&lt; &#34;图书数量为:&#34; &lt;&lt; b-&gt;bookCount() &lt;&lt; endl; }break; case &#39;q&#39;: { flag = 0; }break; default: break; } } cin.get(); return 0; } 图的最短路径 链接到标题 typedef struct VertexType { //顶点信息 char name[256]; char intruction[256]; }VertexType; typedef int EdgeType; //边上的权值 #define MAXVEX 100 //最大顶点数 #define MAXINTS 65535 //代表无穷大 typedef struct { VertexType vexs[MAXVEX]; //顶点表 EdgeType arc[MAXVEX][MAXVEX]; //边矩阵 int numVertexes, numEdges; //图中当前节点数和边数 }MGraph; /* * 返回顶点名称所在顶点表的位置 */ int FindIndex(MGraph G, string name) { int i; for (i = 0; i &lt; G.numVertexes; &#43;&#43;i) { if (G.vexs[i].name == name) { return i; } } return -1; } /* * 邻接矩阵的创建 */ void CreateMgraph(MGraph *G,string ptr) { string start, end; //起点，终点 int w; //边上的权值 //读取顶点数、边数 fstream file(ptr); file &gt;&gt; G-&gt;numVertexes &gt;&gt; G-&gt;numEdges; //读取顶点信息 for (int i = 0; i &lt; G-&gt;numVertexes; i&#43;&#43;) { file &gt;&gt; G-&gt;vexs[i].name; file &gt;&gt; G-&gt;vexs[i].intruction; } //初始化边权值 for (int i = 0; i &lt; G-&gt;numVertexes; i&#43;&#43;) { for (int j = 0; j &lt; G-&gt;numVertexes; j&#43;&#43;) { G-&gt;arc[i][j] = MAXINTS; } } //读取边权值 for (int k = 0; k &lt; G-&gt;numEdges; k&#43;&#43;) { file &gt;&gt; start &gt;&gt; end &gt;&gt; w; int i = FindIndex(*G, start); int j = FindIndex(*G, end); G-&gt;arc[i][j] = w; G-&gt;arc[j][i] = G-&gt;arc[i][j]; //矩阵对称 } file.close(); } /* * 更新文件信息 */ void updataGrapg(MGraph G) { fstream file(&#34;F:\\program\\Test_project\\C-C&#43;&#43;\\test&#39;\\test&#39;\\graph.txt&#34;); file &lt;&lt; G.numVertexes &lt;&lt; &#34;\t&#34; &lt;&lt; G.numEdges &lt;&lt; &#34;\t&#34; &lt;&lt; endl; file &lt;&lt; endl; for (int i = 0; i &lt; G.numVertexes; i&#43;&#43;) { file &lt;&lt; G.vexs[i].name &lt;&lt; &#34;\t&#34; &lt;&lt; G.vexs[i].intruction &lt;&lt; &#34;\t&#34; &lt;&lt; endl; } file &lt;&lt; endl; for (int i = 0; i &lt; G.numVertexes; i&#43;&#43;) { for (int j = i; j &lt; G.numVertexes; j&#43;&#43;) { if (G.arc[i][j] != MAXINTS) { file &lt;&lt; G.vexs[i].name &lt;&lt; &#34;\t&#34; &lt;&lt; G.vexs[j].name &lt;&lt; &#34;\t&#34; &lt;&lt; G.arc[i][j] &lt;&lt; endl; } } } file.close(); } /* * 若顶点存在，则修改此顶点的介绍信息，否则返回-1 */ int ModifyInfo(MGraph *G,char name[],char newInfo[]) { int i = FindIndex(*G, name); if (i != -1) { G-&gt;vexs[i].intruction; strcpy_s(G-&gt;vexs[i].intruction, newInfo); updataGrapg(*G); return 1; } return -1; } /* * 若该顶点存在，则输出介绍信息，若顶点不存在则返回-1 */ int Instruction(MGraph G,string name) { int i = FindIndex(G,name); if (i != -1) { cout &lt;&lt; G.vexs[i].intruction &lt;&lt; endl; return 1; } return -1; } /* * 顶点数小于最大顶点数，则添加成功 */ int addVex(MGraph *G,char name[],char Info[]) { if (G-&gt;numVertexes &lt; MAXVEX) { strcpy_s(G-&gt;vexs[G-&gt;numVertexes].name, name); strcpy_s(G-&gt;vexs[G-&gt;numVertexes].intruction, Info); for (int i = 0; i &lt; G-&gt;numVertexes; i&#43;&#43;) { G-&gt;arc[G-&gt;numVertexes][i] = MAXINTS; G-&gt;arc[i][G-&gt;numVertexes] = MAXINTS; } G-&gt;arc[G-&gt;numVertexes][G-&gt;numVertexes] = MAXINTS; G-&gt;numVertexes&#43;&#43;; updataGrapg(*G); return 1; } return -1; } /* * 若该顶点存在，则删除该顶点，若该顶点不存在，则返回-1 */ int delVex(MGraph *G, char name[]) { int i = FindIndex(*G,name); if (i != -1) { for (int j = i; j &lt; G-&gt;numVertexes; &#43;&#43;j) { //记录前移 G-&gt;vexs[j] = G-&gt;vexs[j &#43; 1]; } G-&gt;numVertexes--; updataGrapg(*G); return 1; } return -1; } /* * 添加一条边，如果不存在此边，则添加成功，如果存在此边或者不存在相关顶点，添加失败返回-1 */ int addArc(MGraph *G, char start[], char end[], EdgeType num) { int i = FindIndex(*G,start); int j = FindIndex(*G, end); if (i != -1 &amp;&amp; j != -1) { if (G-&gt;arc[i][j] == MAXINTS){ G-&gt;arc[i][j] = num; G-&gt;numEdges&#43;&#43;; updataGrapg(*G); } else return -1; } return 1; } /* * 若该边存在，则删除该边，该边不存在则返回-1 */ int delArc(MGraph *G, char start[], char end[]) { int i = FindIndex(*G,start); int j = FindIndex(*G,end); if (i != -1 &amp;&amp; j != -1) { if(G-&gt;arc[i][j] != MAXINTS) G-&gt;arc[i][j] = MAXINTS; //将此边信息更新为无穷大 G-&gt;numEdges--; updataGrapg(*G); return 1; } return -1; } /* * 打印所有边集信息，用于测试 */ void PrintMg(MGraph G) { for (int i = 0; i &lt; G.numVertexes; i&#43;&#43;) { for (int j = 0; j &lt; G.numVertexes; j&#43;&#43;) { cout &lt;&lt; G.vexs[i].name &lt;&lt; &#34;--&#34; &lt;&lt; G.vexs[j].name &lt;&lt; &#34;--&#34; &lt;&lt; G.arc[i][j] &lt;&lt; &#34; |&#34;; } cout &lt;&lt; endl; } } /* * 打印所有顶点信息 */ void PrintVex(MGraph G) { cout &lt;&lt; &#34;该学校的景点有:&#34; &lt;&lt; endl; for (int i = 0; i &lt; G.numVertexes; &#43;&#43;i) { cout &lt;&lt; &#34;\t&#34; &lt;&lt; i &#43; 1 &lt;&lt; &#34;. &#34; &lt;&lt; G.vexs[i].name &lt;&lt; endl; } cout &lt;&lt; &#34;----------------------------------&#34; &lt;&lt; endl; } /* * 最短路径，迪杰斯特拉算法，若未找到顶点则返回-1 */ int ShortesPath_DIJ(MGraph G, char start[], char end[]) { int n = G.numVertexes; int *S = (int*)malloc(sizeof(int) * n); int *D = (int*)malloc(sizeof(int) * n); int *Path = (int*)malloc(sizeof(int) * n); int v0 = FindIndex(G, start); int vt = FindIndex(G, end); if (v0 == -1 || vt == -1) { cout &lt;&lt; &#34;顶点未找到 &#34; &lt;&lt; end; return -1; } for (int v = 0; v &lt; n; &#43;&#43;v) { //初始化 S[v] = false; D[v] = G.arc[v0][v]; //记录v0到v的最短路径长度 if (D[v] &lt; MAXINTS) { //如果有弧，更新Path为v0，否则置为-1 Path[v] = v0; } else { Path[v] = -1; } } S[v0] = true; //将v0加入S D[v0] = 0; //源点到源点的距离为0 //遍历其余顶点，每次求得v0到某个顶点v的最短路径，将v并入S for (int i = 1; i &lt; n; &#43;&#43;i) { int min = MAXINTS; int v; for (int w = 0; w &lt; n; &#43;&#43;w) { if (!S[w] &amp;&amp; D[w] &lt; min) { v = w; //保存顶点位置 min = D[w]; } } S[v] = true; for (int w = 0; w &lt; n; &#43;&#43;w) { if (!S[w] &amp;&amp; (D[v] &#43; G.arc[v][w] &lt; D[w])) { D[w] = D[v] &#43; G.arc[v][w]; Path[w] = v; } } } return D[vt]; } void menu() { cout &lt;&lt; &#34;\t\t\t|---------------------------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---1. 查询景点信息---------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---2. 问路查询-------------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---3. 增加一个景点及其相关信息---|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---4. 修改一个景点的相关信息-----|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---5. 增加一条新的路径-----------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---6. 删除一条路径---------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---7. 删除一个景点---------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---0. 退出系统-------------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---------------------------------|&#34; &lt;&lt; endl; cout &lt;&lt; endl; } int main() { MGraph G; string ptr = &#34;F:\\program\\Test_project\\C-C&#43;&#43;\\test&#39;\\test&#39;\\graph.txt&#34;; CreateMgraph(&amp;G,ptr); int flag = 1; char c; menu(); PrintVex(G); while (flag) { cout &lt;&lt; &#34;请选择功能&#34; &lt;&lt; endl; cout &lt;&lt; &#34;----------------------------------&#34; &lt;&lt; endl; cin &gt;&gt; c; switch (c) { case &#39;1&#39;: { char name[256]; cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl; cin &gt;&gt; name; Instruction(G, name); }break; case &#39;2&#39;: { char start[256]; char end[256]; cout &lt;&lt; &#34;请输入起点名称&#34; &lt;&lt; endl; cin &gt;&gt; start; cout &lt;&lt; &#34;请输入终点名称&#34; &lt;&lt; endl; cin &gt;&gt; end; int l = ShortesPath_DIJ(G, start, end); if(l != MAXINTS){ cout &lt;&lt; &#34;路径长度为:&#34; &lt;&lt; l &lt;&lt; endl; } else { cout &lt;&lt; &#34;不存在此路径&#34; &lt;&lt; endl; } }break; case &#39;3&#39;: { char name[256]; char Info[256]; cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl; cin &gt;&gt; name; cout &lt;&lt; &#34;请输入景点介绍&#34; &lt;&lt; endl; cin &gt;&gt; Info; if(addVex(&amp;G, name, Info)){ cout &lt;&lt; &#34;添加景点成功&#34; &lt;&lt; endl; } else { cout &lt;&lt; &#34;添加景点失败&#34; &lt;&lt; endl; } }break; case &#39;4&#39;: { char name[256]; char Info[256]; cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl; cin &gt;&gt; name; cout &lt;&lt; &#34;请输入此景点新的介绍&#34; &lt;&lt; endl; cin &gt;&gt; Info; if(ModifyInfo(&amp;G, name, Info)){ cout &lt;&lt; &#34;修改成功&#34; &lt;&lt; endl; } else { cout &lt;&lt; &#34;修改失败&#34; &lt;&lt; endl; } }break; case &#39;5&#39;: { char start[256]; char end[256]; int length; cout &lt;&lt; &#34;请输入路径起点&#34; &lt;&lt; endl; cin &gt;&gt; start; cout &lt;&lt; &#34;请输入路径终点&#34; &lt;&lt; endl; cin &gt;&gt; end; cout &lt;&lt; &#34;请输入路径距离&#34; &lt;&lt; endl; cin &gt;&gt; length; if (addArc(&amp;G, start, end, length)) { cout &lt;&lt; &#34;添加路径成功&#34; &lt;&lt; endl; } else { cout &lt;&lt; &#34;添加路径失败&#34; &lt;&lt; endl; } }break; case &#39;6&#39;: { char start[256]; char end [256]; cout &lt;&lt; &#34;请输入起点位置&#34; &lt;&lt; endl; cin &gt;&gt; start; cout &lt;&lt; &#34;请输入终点位置&#34; &lt;&lt; endl; cin &gt;&gt; end; if (delArc(&amp;G, start, end) != -1) { cout &lt;&lt; &#34;路径删除成功&#34; &lt;&lt; endl; } else{ cout &lt;&lt; &#34;路径删除失败&#34; &lt;&lt; endl; } }break; case &#39;7&#39;: { char name[256]; cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl; cin &gt;&gt; name; if (delVex(&amp;G, name)) { cout &lt;&lt; &#34;删除景点成功&#34; &lt;&lt; endl; } else{ cout &lt;&lt; &#34;删除景点失败&#34; &lt;&lt; endl; } }break; case &#39;0&#39;: { exit(1); }break; default: cout &lt;&lt; &#34;操作有误&#34; &lt;&lt; endl; break; } }return 0; }">
+ 
+<meta property="og:url" content="//localhost:1313/posts/bzyiduql6opzodxxglncvrm0nvb/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="课程实训">
+  <meta property="og:description" content="课程实训 链接到标题 简介 链接到标题 放一些学校数据结构课程实训的代码，一个为链表和文件操作实现的简易图书管理系统，另一个使用文件操作和最短路径算法实现计算最短路径。
+简易图书管理系统 链接到标题 struct Book { //图书结点 string ISBN; string bookName; int price; }; class BookCol { private: Book *books; //图书表基地址 int MAXSIZEBOOKS; //最大容量 string FilePath; //文件路径 int num; //当前数量 public: BookCol(string filePath) { //初始化 FilePath = filePath; fstream file(FilePath); num = 0; books = NULL; file &gt;&gt; MAXSIZEBOOKS; //读取当前容量 //生成图书表 books = new Book[MAXSIZEBOOKS]; char temp[256]; //字符缓存区 int priceTemp = 0; //数字缓存区 if (file.is_open()) { file.getline(temp, 100); } else{ cout &lt;&lt; &#34;文件路径错误,回车键结束程序！&#34; &lt;&lt; endl; cin.get(); exit(1); } file.getline(temp, 100); file &gt;&gt; temp; while (temp[0] != &#39;\0&#39;) { setISBN(num, temp); file &gt;&gt; temp; setBookName(num, temp); file &gt;&gt; priceTemp; setPrice(num, priceTemp); file &gt;&gt; temp; num&#43;&#43;; } file.close(); } ~BookCol() { delete books; } //获取图书信息 string getISBN(int i) { return books[i].ISBN; } string getBookName(int i) { return books[i].bookName; } int getPrice(int i) { return books[i].price; } //设置图书信息 void setISBN(int i,string ISBN) { books[i].ISBN = ISBN; } void setBookName(int i,string bookName) { books[i].bookName = bookName; } void setPrice(int i, int price) { books[i].price = price; } void Increase() { //扩容操作 fstream file(FilePath); MAXSIZEBOOKS *= 2; file.clear(); file &lt;&lt; MAXSIZEBOOKS; //原数据移动到新空间 Book *temp = new Book[MAXSIZEBOOKS]; for (int i = 0; i &lt; num; i&#43;&#43;) { temp[i].bookName = getBookName(i); temp[i].ISBN = getISBN(i); temp[i].price = getPrice(i); } this-&gt;books = temp; file.close(); } void delBook(string ISBN); //图书删除 int InsertBook(); //图书插入 void revealBook(string ISBN); //修改价格 int findBook(string ISBN); //图书查找 void bookSort(); //图书排序 int bookCount(); //图书数量 void printBook(); //遍历图书信息 void updataBook(); //文件更新 void bookMenu(); //菜单显示 }; //显示菜单 void BookCol::bookMenu() { cout &lt;&lt; &#34;\t\t|--------0. 显示所有图书--------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------1. 查找图书------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------2. 插入图书------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------3. 删除图书------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------4. 修改图书价格--------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------5. 图书价格排序--------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------6. 统计图书数量--------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t|--------q. 退出----------------|&#34; &lt;&lt; endl; } //更新数据 void BookCol::updataBook() { fstream file(FilePath, ios::out); file &lt;&lt; MAXSIZEBOOKS &lt;&lt; endl; file &lt;&lt; &#34;ISBN&#34; &lt;&lt; &#34; &#34; &lt;&lt; &#34;图书名称&#34; &lt;&lt; &#34; &#34; &lt;&lt; &#34;价格&#34; &lt;&lt; endl; for (int i = 0; i &lt; num - 1; i&#43;&#43;) { file &lt;&lt; getISBN(i) &lt;&lt; &#34;\t\t&#34; &lt;&lt; getBookName(i) &lt;&lt; &#34;\t\t\t&#34; &lt;&lt; getPrice(i) &lt;&lt; endl; } file.close(); } //删除操作 void BookCol::delBook(string ISBN) { int i = findBook(ISBN); while (i &lt; num-1) { setISBN(i, getISBN(i &#43; 1)); setBookName(i, getBookName(i &#43; 1)); setPrice(i, getPrice(i &#43; 1)); i&#43;&#43;; } updataBook(); //更新文件 num--; } //排序操作 void BookCol::bookSort() { Book temp; for (int i = 0; i &lt; num; &#43;&#43;i) { temp = books[i]; //将待插入的数据存放入监视哨中 int low = 0; int high = i - 1; while (low &lt;= high) { int m = (low &#43; high) / 2; if (temp.price &lt; books[m].price) { high = m - 1; } else { low = m &#43; 1; } } for (int j = i - 1; j &gt;= high &#43; 1; --j) { //记录后移 books[j &#43; 1] = books[j]; } books[high &#43; 1] = temp; } updataBook(); //更新文件 cout &lt;&lt; &#34;排序完成！&#34; &lt;&lt; endl; } //修改图书价格 void BookCol::revealBook(string ISBN) { int i = findBook(ISBN); cout &lt;&lt; &#34;输入修改的价格&#34; &lt;&lt; endl; int price; cin &gt;&gt; price; setPrice(i, price); updataBook(); //文件更新 cout &lt;&lt; &#34;修改完成！&#34; &lt;&lt; endl; } //打印图书 void BookCol::printBook() { for (int i = 0; i &lt; num; i&#43;&#43;) { cout &lt;&lt; &#34;图书号:&#34; &lt;&lt; getISBN(i) &lt;&lt;&#34; &#34;&lt;&lt; &#34;图书名称:&#34; &lt;&lt; getBookName(i) &lt;&lt;&#34; &#34;&lt;&lt; &#34;图书价格:&#34; &lt;&lt; getPrice(i) &lt;&lt;endl; } } //插入图书 int BookCol::InsertBook(){ string bookname; int price; string ISBN; if (num &gt;= MAXSIZEBOOKS) { //如果空间不足则扩容 Increase(); } cout &lt;&lt; &#34;请输入图书名称&#34; &lt;&lt; endl; cin &gt;&gt; bookname; setBookName(num, bookname); cout &lt;&lt; &#34;请输入图书价格&#34; &lt;&lt; endl; cin &gt;&gt; price; setPrice(num, price); cout &lt;&lt; &#34;请输入图书ISBN&#34; &lt;&lt; endl; cin &gt;&gt; ISBN; setISBN(num, ISBN); fstream file; file.open(FilePath, ios::app); file &lt;&lt; ISBN &lt;&lt; &#34; &#34;&lt;&lt; bookname &lt;&lt;&#34; &#34; &lt;&lt; price &lt;&lt; endl; file.close(); num&#43;&#43;; return 1; } //查找图书 int BookCol::findBook(string ISBN) { int i; int flog = 0; for (i = 0; i &lt; MAXSIZEBOOKS; i&#43;&#43;) { string isbn = getISBN(i); if (ISBN == isbn) { flog = 1; break; } } if(flog) return i; else return -1; } //统计图书 int BookCol::bookCount() { return num; } int main() { BookCol *b = new BookCol(&#34;F:\\program\\Test_project\\C-C&#43;&#43;\\test&#39;\\test&#39;\\book.txt&#34;); int flag = 1; char ch; b-&gt;bookMenu(); while (flag) { cin &gt;&gt; ch; switch (ch) { case &#39;0&#39;: { b-&gt;printBook(); }break; case &#39;1&#39;: { string isbn; cout &lt;&lt; &#34;请输入ISBN号&#34; &lt;&lt; endl; cin &gt;&gt; isbn; int i = b-&gt;findBook(isbn); cout &lt;&lt; &#34;图书编号:&#34; &lt;&lt; b-&gt;getISBN(i) &lt;&lt; &#34; 图书名称:&#34; &lt;&lt; b-&gt;getBookName(i) &lt;&lt; &#34; 图书价格:&#34; &lt;&lt; b-&gt;getPrice(i) &lt;&lt; endl; }break; case &#39;2&#39;: { b-&gt;InsertBook(); }break; case &#39;3&#39;: { cout &lt;&lt; &#34;请输入ISBN号&#34; &lt;&lt; endl; string isbn; cin &gt;&gt; isbn; b-&gt;delBook(isbn); }break; case &#39;4&#39;: { string isbn; cout &lt;&lt; &#34;请输入ISBN号&#34; &lt;&lt; endl; cin &gt;&gt; isbn; b-&gt;revealBook(isbn); }break; case &#39;5&#39;: { b-&gt;bookSort(); }break; case &#39;6&#39;: { cout &lt;&lt; &#34;图书数量为:&#34; &lt;&lt; b-&gt;bookCount() &lt;&lt; endl; }break; case &#39;q&#39;: { flag = 0; }break; default: break; } } cin.get(); return 0; } 图的最短路径 链接到标题 typedef struct VertexType { //顶点信息 char name[256]; char intruction[256]; }VertexType; typedef int EdgeType; //边上的权值 #define MAXVEX 100 //最大顶点数 #define MAXINTS 65535 //代表无穷大 typedef struct { VertexType vexs[MAXVEX]; //顶点表 EdgeType arc[MAXVEX][MAXVEX]; //边矩阵 int numVertexes, numEdges; //图中当前节点数和边数 }MGraph; /* * 返回顶点名称所在顶点表的位置 */ int FindIndex(MGraph G, string name) { int i; for (i = 0; i &lt; G.numVertexes; &#43;&#43;i) { if (G.vexs[i].name == name) { return i; } } return -1; } /* * 邻接矩阵的创建 */ void CreateMgraph(MGraph *G,string ptr) { string start, end; //起点，终点 int w; //边上的权值 //读取顶点数、边数 fstream file(ptr); file &gt;&gt; G-&gt;numVertexes &gt;&gt; G-&gt;numEdges; //读取顶点信息 for (int i = 0; i &lt; G-&gt;numVertexes; i&#43;&#43;) { file &gt;&gt; G-&gt;vexs[i].name; file &gt;&gt; G-&gt;vexs[i].intruction; } //初始化边权值 for (int i = 0; i &lt; G-&gt;numVertexes; i&#43;&#43;) { for (int j = 0; j &lt; G-&gt;numVertexes; j&#43;&#43;) { G-&gt;arc[i][j] = MAXINTS; } } //读取边权值 for (int k = 0; k &lt; G-&gt;numEdges; k&#43;&#43;) { file &gt;&gt; start &gt;&gt; end &gt;&gt; w; int i = FindIndex(*G, start); int j = FindIndex(*G, end); G-&gt;arc[i][j] = w; G-&gt;arc[j][i] = G-&gt;arc[i][j]; //矩阵对称 } file.close(); } /* * 更新文件信息 */ void updataGrapg(MGraph G) { fstream file(&#34;F:\\program\\Test_project\\C-C&#43;&#43;\\test&#39;\\test&#39;\\graph.txt&#34;); file &lt;&lt; G.numVertexes &lt;&lt; &#34;\t&#34; &lt;&lt; G.numEdges &lt;&lt; &#34;\t&#34; &lt;&lt; endl; file &lt;&lt; endl; for (int i = 0; i &lt; G.numVertexes; i&#43;&#43;) { file &lt;&lt; G.vexs[i].name &lt;&lt; &#34;\t&#34; &lt;&lt; G.vexs[i].intruction &lt;&lt; &#34;\t&#34; &lt;&lt; endl; } file &lt;&lt; endl; for (int i = 0; i &lt; G.numVertexes; i&#43;&#43;) { for (int j = i; j &lt; G.numVertexes; j&#43;&#43;) { if (G.arc[i][j] != MAXINTS) { file &lt;&lt; G.vexs[i].name &lt;&lt; &#34;\t&#34; &lt;&lt; G.vexs[j].name &lt;&lt; &#34;\t&#34; &lt;&lt; G.arc[i][j] &lt;&lt; endl; } } } file.close(); } /* * 若顶点存在，则修改此顶点的介绍信息，否则返回-1 */ int ModifyInfo(MGraph *G,char name[],char newInfo[]) { int i = FindIndex(*G, name); if (i != -1) { G-&gt;vexs[i].intruction; strcpy_s(G-&gt;vexs[i].intruction, newInfo); updataGrapg(*G); return 1; } return -1; } /* * 若该顶点存在，则输出介绍信息，若顶点不存在则返回-1 */ int Instruction(MGraph G,string name) { int i = FindIndex(G,name); if (i != -1) { cout &lt;&lt; G.vexs[i].intruction &lt;&lt; endl; return 1; } return -1; } /* * 顶点数小于最大顶点数，则添加成功 */ int addVex(MGraph *G,char name[],char Info[]) { if (G-&gt;numVertexes &lt; MAXVEX) { strcpy_s(G-&gt;vexs[G-&gt;numVertexes].name, name); strcpy_s(G-&gt;vexs[G-&gt;numVertexes].intruction, Info); for (int i = 0; i &lt; G-&gt;numVertexes; i&#43;&#43;) { G-&gt;arc[G-&gt;numVertexes][i] = MAXINTS; G-&gt;arc[i][G-&gt;numVertexes] = MAXINTS; } G-&gt;arc[G-&gt;numVertexes][G-&gt;numVertexes] = MAXINTS; G-&gt;numVertexes&#43;&#43;; updataGrapg(*G); return 1; } return -1; } /* * 若该顶点存在，则删除该顶点，若该顶点不存在，则返回-1 */ int delVex(MGraph *G, char name[]) { int i = FindIndex(*G,name); if (i != -1) { for (int j = i; j &lt; G-&gt;numVertexes; &#43;&#43;j) { //记录前移 G-&gt;vexs[j] = G-&gt;vexs[j &#43; 1]; } G-&gt;numVertexes--; updataGrapg(*G); return 1; } return -1; } /* * 添加一条边，如果不存在此边，则添加成功，如果存在此边或者不存在相关顶点，添加失败返回-1 */ int addArc(MGraph *G, char start[], char end[], EdgeType num) { int i = FindIndex(*G,start); int j = FindIndex(*G, end); if (i != -1 &amp;&amp; j != -1) { if (G-&gt;arc[i][j] == MAXINTS){ G-&gt;arc[i][j] = num; G-&gt;numEdges&#43;&#43;; updataGrapg(*G); } else return -1; } return 1; } /* * 若该边存在，则删除该边，该边不存在则返回-1 */ int delArc(MGraph *G, char start[], char end[]) { int i = FindIndex(*G,start); int j = FindIndex(*G,end); if (i != -1 &amp;&amp; j != -1) { if(G-&gt;arc[i][j] != MAXINTS) G-&gt;arc[i][j] = MAXINTS; //将此边信息更新为无穷大 G-&gt;numEdges--; updataGrapg(*G); return 1; } return -1; } /* * 打印所有边集信息，用于测试 */ void PrintMg(MGraph G) { for (int i = 0; i &lt; G.numVertexes; i&#43;&#43;) { for (int j = 0; j &lt; G.numVertexes; j&#43;&#43;) { cout &lt;&lt; G.vexs[i].name &lt;&lt; &#34;--&#34; &lt;&lt; G.vexs[j].name &lt;&lt; &#34;--&#34; &lt;&lt; G.arc[i][j] &lt;&lt; &#34; |&#34;; } cout &lt;&lt; endl; } } /* * 打印所有顶点信息 */ void PrintVex(MGraph G) { cout &lt;&lt; &#34;该学校的景点有:&#34; &lt;&lt; endl; for (int i = 0; i &lt; G.numVertexes; &#43;&#43;i) { cout &lt;&lt; &#34;\t&#34; &lt;&lt; i &#43; 1 &lt;&lt; &#34;. &#34; &lt;&lt; G.vexs[i].name &lt;&lt; endl; } cout &lt;&lt; &#34;----------------------------------&#34; &lt;&lt; endl; } /* * 最短路径，迪杰斯特拉算法，若未找到顶点则返回-1 */ int ShortesPath_DIJ(MGraph G, char start[], char end[]) { int n = G.numVertexes; int *S = (int*)malloc(sizeof(int) * n); int *D = (int*)malloc(sizeof(int) * n); int *Path = (int*)malloc(sizeof(int) * n); int v0 = FindIndex(G, start); int vt = FindIndex(G, end); if (v0 == -1 || vt == -1) { cout &lt;&lt; &#34;顶点未找到 &#34; &lt;&lt; end; return -1; } for (int v = 0; v &lt; n; &#43;&#43;v) { //初始化 S[v] = false; D[v] = G.arc[v0][v]; //记录v0到v的最短路径长度 if (D[v] &lt; MAXINTS) { //如果有弧，更新Path为v0，否则置为-1 Path[v] = v0; } else { Path[v] = -1; } } S[v0] = true; //将v0加入S D[v0] = 0; //源点到源点的距离为0 //遍历其余顶点，每次求得v0到某个顶点v的最短路径，将v并入S for (int i = 1; i &lt; n; &#43;&#43;i) { int min = MAXINTS; int v; for (int w = 0; w &lt; n; &#43;&#43;w) { if (!S[w] &amp;&amp; D[w] &lt; min) { v = w; //保存顶点位置 min = D[w]; } } S[v] = true; for (int w = 0; w &lt; n; &#43;&#43;w) { if (!S[w] &amp;&amp; (D[v] &#43; G.arc[v][w] &lt; D[w])) { D[w] = D[v] &#43; G.arc[v][w]; Path[w] = v; } } } return D[vt]; } void menu() { cout &lt;&lt; &#34;\t\t\t|---------------------------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---1. 查询景点信息---------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---2. 问路查询-------------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---3. 增加一个景点及其相关信息---|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---4. 修改一个景点的相关信息-----|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---5. 增加一条新的路径-----------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---6. 删除一条路径---------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---7. 删除一个景点---------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---0. 退出系统-------------------|&#34; &lt;&lt; endl; cout &lt;&lt; &#34;\t\t\t|---------------------------------|&#34; &lt;&lt; endl; cout &lt;&lt; endl; } int main() { MGraph G; string ptr = &#34;F:\\program\\Test_project\\C-C&#43;&#43;\\test&#39;\\test&#39;\\graph.txt&#34;; CreateMgraph(&amp;G,ptr); int flag = 1; char c; menu(); PrintVex(G); while (flag) { cout &lt;&lt; &#34;请选择功能&#34; &lt;&lt; endl; cout &lt;&lt; &#34;----------------------------------&#34; &lt;&lt; endl; cin &gt;&gt; c; switch (c) { case &#39;1&#39;: { char name[256]; cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl; cin &gt;&gt; name; Instruction(G, name); }break; case &#39;2&#39;: { char start[256]; char end[256]; cout &lt;&lt; &#34;请输入起点名称&#34; &lt;&lt; endl; cin &gt;&gt; start; cout &lt;&lt; &#34;请输入终点名称&#34; &lt;&lt; endl; cin &gt;&gt; end; int l = ShortesPath_DIJ(G, start, end); if(l != MAXINTS){ cout &lt;&lt; &#34;路径长度为:&#34; &lt;&lt; l &lt;&lt; endl; } else { cout &lt;&lt; &#34;不存在此路径&#34; &lt;&lt; endl; } }break; case &#39;3&#39;: { char name[256]; char Info[256]; cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl; cin &gt;&gt; name; cout &lt;&lt; &#34;请输入景点介绍&#34; &lt;&lt; endl; cin &gt;&gt; Info; if(addVex(&amp;G, name, Info)){ cout &lt;&lt; &#34;添加景点成功&#34; &lt;&lt; endl; } else { cout &lt;&lt; &#34;添加景点失败&#34; &lt;&lt; endl; } }break; case &#39;4&#39;: { char name[256]; char Info[256]; cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl; cin &gt;&gt; name; cout &lt;&lt; &#34;请输入此景点新的介绍&#34; &lt;&lt; endl; cin &gt;&gt; Info; if(ModifyInfo(&amp;G, name, Info)){ cout &lt;&lt; &#34;修改成功&#34; &lt;&lt; endl; } else { cout &lt;&lt; &#34;修改失败&#34; &lt;&lt; endl; } }break; case &#39;5&#39;: { char start[256]; char end[256]; int length; cout &lt;&lt; &#34;请输入路径起点&#34; &lt;&lt; endl; cin &gt;&gt; start; cout &lt;&lt; &#34;请输入路径终点&#34; &lt;&lt; endl; cin &gt;&gt; end; cout &lt;&lt; &#34;请输入路径距离&#34; &lt;&lt; endl; cin &gt;&gt; length; if (addArc(&amp;G, start, end, length)) { cout &lt;&lt; &#34;添加路径成功&#34; &lt;&lt; endl; } else { cout &lt;&lt; &#34;添加路径失败&#34; &lt;&lt; endl; } }break; case &#39;6&#39;: { char start[256]; char end [256]; cout &lt;&lt; &#34;请输入起点位置&#34; &lt;&lt; endl; cin &gt;&gt; start; cout &lt;&lt; &#34;请输入终点位置&#34; &lt;&lt; endl; cin &gt;&gt; end; if (delArc(&amp;G, start, end) != -1) { cout &lt;&lt; &#34;路径删除成功&#34; &lt;&lt; endl; } else{ cout &lt;&lt; &#34;路径删除失败&#34; &lt;&lt; endl; } }break; case &#39;7&#39;: { char name[256]; cout &lt;&lt; &#34;请输入景点名称&#34; &lt;&lt; endl; cin &gt;&gt; name; if (delVex(&amp;G, name)) { cout &lt;&lt; &#34;删除景点成功&#34; &lt;&lt; endl; } else{ cout &lt;&lt; &#34;删除景点失败&#34; &lt;&lt; endl; } }break; case &#39;0&#39;: { exit(1); }break; default: cout &lt;&lt; &#34;操作有误&#34; &lt;&lt; endl; break; } }return 0; }">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-06-29T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-06-29T00:00:00+00:00">
+    <meta property="article:tag" content="数据结构">
+      <meta property="og:see_also" content="//localhost:1313/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">
+      <meta property="og:see_also" content="//localhost:1313/posts/qtnbdqineorsxpx02uucpayvnxh/">
+      <meta property="og:see_also" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
+      <meta property="og:see_also" content="//localhost:1313/posts/yewvdflgtouwdrxf7wscztngnjc/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lhqcd8fsiof6ckxbpvncx0vtnlg/">
+      <meta property="og:see_also" content="//localhost:1313/posts/gafvd5ysioq746xujeocgxzln7b/">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/bzyiduql6opzodxxglncvrm0nvb/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#课程实训">课程实训</a>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#简易图书管理系统">简易图书管理系统</a></li>
+        <li><a href="#图的最短路径">图的最短路径</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/bzyiduql6opzodxxglncvrm0nvb/">
+            课程实训
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2020-06-29T00:00:00Z">
+              June 29, 2020
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：10 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            1972 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="课程实训">
+  课程实训
+  <a class="heading-link" href="#%e8%af%be%e7%a8%8b%e5%ae%9e%e8%ae%ad">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="简介">
+  简介
+  <a class="heading-link" href="#%e7%ae%80%e4%bb%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>放一些学校数据结构课程实训的代码，一个为链表和文件操作实现的简易图书管理系统，另一个使用文件操作和最短路径算法实现计算最短路径。</p>
+<h2 id="简易图书管理系统">
+  简易图书管理系统
+  <a class="heading-link" href="#%e7%ae%80%e6%98%93%e5%9b%be%e4%b9%a6%e7%ae%a1%e7%90%86%e7%b3%bb%e7%bb%9f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Book</span> <span class="p">{</span>                <span class="c1">//图书结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">string</span> <span class="n">ISBN</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">bookName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">price</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BookCol</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Book</span> <span class="o">*</span><span class="n">books</span><span class="p">;</span>            <span class="c1">//图书表基地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">MAXSIZEBOOKS</span><span class="p">;</span>        <span class="c1">//最大容量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">string</span> <span class="n">FilePath</span><span class="p">;</span>        <span class="c1">//文件路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>                <span class="c1">//当前数量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">BookCol</span><span class="p">(</span><span class="n">string</span> <span class="n">filePath</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FilePath</span> <span class="o">=</span> <span class="n">filePath</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fstream</span> <span class="nf">file</span><span class="p">(</span><span class="n">FilePath</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">books</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">&gt;&gt;</span> <span class="n">MAXSIZEBOOKS</span><span class="p">;</span>                <span class="c1">//读取当前容量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//生成图书表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">books</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Book</span><span class="p">[</span><span class="n">MAXSIZEBOOKS</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">char</span> <span class="n">temp</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>                        <span class="c1">//字符缓存区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">priceTemp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                    <span class="c1">//数字缓存区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span><span class="p">.</span><span class="n">getline</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;文件路径错误,回车键结束程序！&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="p">.</span><span class="n">getline</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">&gt;&gt;</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">setISBN</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">temp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span> <span class="o">&gt;&gt;</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">setBookName</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">temp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span> <span class="o">&gt;&gt;</span> <span class="n">priceTemp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">setPrice</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">priceTemp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file</span> <span class="o">&gt;&gt;</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">BookCol</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">delete</span> <span class="n">books</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//获取图书信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">string</span> <span class="nf">getISBN</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">books</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ISBN</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="nf">getBookName</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">books</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">bookName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">getPrice</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">books</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">price</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//设置图书信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">setISBN</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">string</span> <span class="n">ISBN</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">books</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ISBN</span> <span class="o">=</span> <span class="n">ISBN</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">setBookName</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">string</span> <span class="n">bookName</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">books</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">bookName</span> <span class="o">=</span> <span class="n">bookName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">setPrice</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">price</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">books</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Increase</span><span class="p">()</span> <span class="p">{</span>                <span class="c1">//扩容操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">fstream</span> <span class="n">file</span><span class="p">(</span><span class="n">FilePath</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MAXSIZEBOOKS</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">MAXSIZEBOOKS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//原数据移动到新空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Book</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Book</span><span class="p">[</span><span class="n">MAXSIZEBOOKS</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">bookName</span> <span class="o">=</span> <span class="n">getBookName</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ISBN</span> <span class="o">=</span> <span class="n">getISBN</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">price</span> <span class="o">=</span> <span class="n">getPrice</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">-&gt;</span><span class="n">books</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">delBook</span><span class="p">(</span><span class="n">string</span> <span class="n">ISBN</span><span class="p">);</span>        <span class="c1">//图书删除
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="nf">InsertBook</span><span class="p">();</span>                <span class="c1">//图书插入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">revealBook</span><span class="p">(</span><span class="n">string</span> <span class="n">ISBN</span><span class="p">);</span>    <span class="c1">//修改价格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="nf">findBook</span><span class="p">(</span><span class="n">string</span> <span class="n">ISBN</span><span class="p">);</span>        <span class="c1">//图书查找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">bookSort</span><span class="p">();</span>                <span class="c1">//图书排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="nf">bookCount</span><span class="p">();</span>                <span class="c1">//图书数量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">printBook</span><span class="p">();</span>                <span class="c1">//遍历图书信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">updataBook</span><span class="p">();</span>                <span class="c1">//文件更新
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">bookMenu</span><span class="p">();</span>                <span class="c1">//菜单显示
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//显示菜单
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">BookCol</span><span class="o">::</span><span class="n">bookMenu</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">|--------0. 显示所有图书--------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">|--------1. 查找图书------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">|--------2. 插入图书------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">|--------3. 删除图书------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">|--------4. 修改图书价格--------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">|--------5. 图书价格排序--------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">|--------6. 统计图书数量--------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">|--------q. 退出----------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//更新数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">BookCol</span><span class="o">::</span><span class="n">updataBook</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fstream</span> <span class="nf">file</span><span class="p">(</span><span class="n">FilePath</span><span class="p">,</span> <span class="n">ios</span><span class="o">::</span><span class="n">out</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">MAXSIZEBOOKS</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ISBN&#34;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;            &#34;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;图书名称&#34;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;                &#34;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;价格&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">getISBN</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">getBookName</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">getPrice</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//删除操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">BookCol</span><span class="o">::</span><span class="n">delBook</span><span class="p">(</span><span class="n">string</span> <span class="n">ISBN</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">findBook</span><span class="p">(</span><span class="n">ISBN</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setISBN</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">getISBN</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setBookName</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">getBookName</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setPrice</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">getPrice</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">updataBook</span><span class="p">();</span>    <span class="c1">//更新文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">num</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//排序操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">BookCol</span><span class="o">::</span><span class="n">bookSort</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Book</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">books</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>        <span class="c1">//将待插入的数据存放入监视哨中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="n">books</span><span class="p">[</span><span class="n">m</span><span class="p">].</span><span class="n">price</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">high</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">low</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">high</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">//记录后移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">books</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">books</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">books</span><span class="p">[</span><span class="n">high</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">updataBook</span><span class="p">();</span>    <span class="c1">//更新文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;排序完成！&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//修改图书价格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">BookCol</span><span class="o">::</span><span class="n">revealBook</span><span class="p">(</span><span class="n">string</span> <span class="n">ISBN</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">findBook</span><span class="p">(</span><span class="n">ISBN</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;输入修改的价格&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">price</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">price</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">setPrice</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">price</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">updataBook</span><span class="p">();</span>            <span class="c1">//文件更新
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;修改完成！&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//打印图书
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">BookCol</span><span class="o">::</span><span class="n">printBook</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;图书号:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">getISBN</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span> <span class="s">&#34;图书名称:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">getBookName</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span> <span class="s">&#34;图书价格:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">getPrice</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//插入图书
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">BookCol</span><span class="o">::</span><span class="n">InsertBook</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">bookname</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">price</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">ISBN</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;=</span> <span class="n">MAXSIZEBOOKS</span><span class="p">)</span> <span class="p">{</span>        <span class="c1">//如果空间不足则扩容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Increase</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入图书名称&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">bookname</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">setBookName</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">bookname</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入图书价格&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">price</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">setPrice</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">price</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入图书ISBN&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ISBN</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">setISBN</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">ISBN</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fstream</span> <span class="n">file</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">FilePath</span><span class="p">,</span> <span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">ISBN</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;        &#34;</span><span class="o">&lt;&lt;</span> <span class="n">bookname</span> <span class="o">&lt;&lt;</span><span class="s">&#34;            &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">price</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//查找图书
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">BookCol</span><span class="o">::</span><span class="n">findBook</span><span class="p">(</span><span class="n">string</span> <span class="n">ISBN</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">flog</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAXSIZEBOOKS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">string</span> <span class="n">isbn</span> <span class="o">=</span> <span class="n">getISBN</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">ISBN</span> <span class="o">==</span> <span class="n">isbn</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">flog</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">flog</span><span class="p">)</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//统计图书
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">BookCol</span><span class="o">::</span><span class="n">bookCount</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">BookCol</span> <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BookCol</span><span class="p">(</span><span class="s">&#34;F:</span><span class="se">\\</span><span class="s">program</span><span class="se">\\</span><span class="s">Test_project</span><span class="se">\\</span><span class="s">C-C++</span><span class="se">\\</span><span class="s">test&#39;</span><span class="se">\\</span><span class="s">test&#39;</span><span class="se">\\</span><span class="s">book.txt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="o">-&gt;</span><span class="n">bookMenu</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;0&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b</span><span class="o">-&gt;</span><span class="n">printBook</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;1&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">string</span> <span class="n">isbn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入ISBN号&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">isbn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">findBook</span><span class="p">(</span><span class="n">isbn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;图书编号:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">getISBN</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; 图书名称:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">getBookName</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; 图书价格:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">getPrice</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;2&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b</span><span class="o">-&gt;</span><span class="n">InsertBook</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;3&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入ISBN号&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">string</span> <span class="n">isbn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">isbn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b</span><span class="o">-&gt;</span><span class="n">delBook</span><span class="p">(</span><span class="n">isbn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;4&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">string</span> <span class="n">isbn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入ISBN号&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">isbn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b</span><span class="o">-&gt;</span><span class="n">revealBook</span><span class="p">(</span><span class="n">isbn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;5&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b</span><span class="o">-&gt;</span><span class="n">bookSort</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;6&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;图书数量为:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">bookCount</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;q&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="图的最短路径">
+  图的最短路径
+  <a class="heading-link" href="#%e5%9b%be%e7%9a%84%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%84">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">VertexType</span> <span class="p">{</span>                <span class="c1">//顶点信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">intruction</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">VertexType</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">int</span> <span class="n">EdgeType</span><span class="p">;</span>                    <span class="c1">//边上的权值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define MAXVEX 100                        </span><span class="c1">//最大顶点数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define MAXINTS 65535                    </span><span class="c1">//代表无穷大
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VertexType</span> <span class="n">vexs</span><span class="p">[</span><span class="n">MAXVEX</span><span class="p">];</span>            <span class="c1">//顶点表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">EdgeType</span> <span class="n">arc</span><span class="p">[</span><span class="n">MAXVEX</span><span class="p">][</span><span class="n">MAXVEX</span><span class="p">];</span>        <span class="c1">//边矩阵
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">numVertexes</span><span class="p">,</span> <span class="n">numEdges</span><span class="p">;</span>            <span class="c1">//图中当前节点数和边数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">MGraph</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    返回顶点名称所在顶点表的位置
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">FindIndex</span><span class="p">(</span><span class="n">MGraph</span> <span class="n">G</span><span class="p">,</span> <span class="n">string</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">numVertexes</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    邻接矩阵的创建
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">CreateMgraph</span><span class="p">(</span><span class="n">MGraph</span> <span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="n">string</span> <span class="n">ptr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>        <span class="c1">//起点，终点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">w</span><span class="p">;</span>                    <span class="c1">//边上的权值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//读取顶点数、边数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">fstream</span> <span class="n">file</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="o">&gt;&gt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span> <span class="o">&gt;&gt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">numEdges</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//读取顶点信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">&gt;&gt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">&gt;&gt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">intruction</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//初始化边权值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAXINTS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//读取边权值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">numEdges</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">&gt;&gt;</span> <span class="n">start</span> <span class="o">&gt;&gt;</span> <span class="n">end</span> <span class="o">&gt;&gt;</span> <span class="n">w</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">,</span> <span class="n">start</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>        <span class="c1">//矩阵对称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    更新文件信息
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">updataGrapg</span><span class="p">(</span><span class="n">MGraph</span> <span class="n">G</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fstream</span> <span class="n">file</span><span class="p">(</span><span class="s">&#34;F:</span><span class="se">\\</span><span class="s">program</span><span class="se">\\</span><span class="s">Test_project</span><span class="se">\\</span><span class="s">C-C++</span><span class="se">\\</span><span class="s">test&#39;</span><span class="se">\\</span><span class="s">test&#39;</span><span class="se">\\</span><span class="s">graph.txt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">numVertexes</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">numEdges</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">numVertexes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">intruction</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">numVertexes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">numVertexes</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">MAXINTS</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">vexs</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    若顶点存在，则修改此顶点的介绍信息，否则返回-1
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">ModifyInfo</span><span class="p">(</span><span class="n">MGraph</span> <span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="kt">char</span> <span class="n">name</span><span class="p">[],</span><span class="kt">char</span> <span class="n">newInfo</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">G</span><span class="o">-&gt;</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">intruction</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strcpy_s</span><span class="p">(</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">intruction</span><span class="p">,</span> <span class="n">newInfo</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">updataGrapg</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    若该顶点存在，则输出介绍信息，若顶点不存在则返回-1
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Instruction</span><span class="p">(</span><span class="n">MGraph</span> <span class="n">G</span><span class="p">,</span><span class="n">string</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">intruction</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 顶点数小于最大顶点数，则添加成功
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">addVex</span><span class="p">(</span><span class="n">MGraph</span> <span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="kt">char</span> <span class="n">name</span><span class="p">[],</span><span class="kt">char</span> <span class="n">Info</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span> <span class="o">&lt;</span> <span class="n">MAXVEX</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strcpy_s</span><span class="p">(</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">vexs</span><span class="p">[</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">].</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strcpy_s</span><span class="p">(</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">vexs</span><span class="p">[</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">].</span><span class="n">intruction</span><span class="p">,</span> <span class="n">Info</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAXINTS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAXINTS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">][</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAXINTS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">updataGrapg</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    若该顶点存在，则删除该顶点，若该顶点不存在，则返回-1
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">delVex</span><span class="p">(</span><span class="n">MGraph</span> <span class="o">*</span><span class="n">G</span><span class="p">,</span> <span class="kt">char</span> <span class="n">name</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">//记录前移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">G</span><span class="o">-&gt;</span><span class="n">vexs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">vexs</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">G</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">updataGrapg</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 添加一条边，如果不存在此边，则添加成功，如果存在此边或者不存在相关顶点，添加失败返回-1
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">addArc</span><span class="p">(</span><span class="n">MGraph</span> <span class="o">*</span><span class="n">G</span><span class="p">,</span> <span class="kt">char</span> <span class="n">start</span><span class="p">[],</span> <span class="kt">char</span> <span class="n">end</span><span class="p">[],</span> <span class="n">EdgeType</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="n">start</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">MAXINTS</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">G</span><span class="o">-&gt;</span><span class="n">numEdges</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">updataGrapg</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    若该边存在，则删除该边，该边不存在则返回-1
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">delArc</span><span class="p">(</span><span class="n">MGraph</span> <span class="o">*</span><span class="n">G</span><span class="p">,</span> <span class="kt">char</span> <span class="n">start</span><span class="p">[],</span> <span class="kt">char</span> <span class="n">end</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="n">start</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">MAXINTS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAXINTS</span><span class="p">;</span>            <span class="c1">//将此边信息更新为无穷大
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">G</span><span class="o">-&gt;</span><span class="n">numEdges</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">updataGrapg</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    打印所有边集信息，用于测试
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">PrintMg</span><span class="p">(</span><span class="n">MGraph</span> <span class="n">G</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">numVertexes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">numVertexes</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;--&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">vexs</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;--&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; |&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    打印所有顶点信息
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">PrintVex</span><span class="p">(</span><span class="n">MGraph</span> <span class="n">G</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;该学校的景点有:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">numVertexes</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;. &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">G</span><span class="p">.</span><span class="n">vexs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;----------------------------------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *    最短路径，迪杰斯特拉算法，若未找到顶点则返回-1
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">ShortesPath_DIJ</span><span class="p">(</span><span class="n">MGraph</span> <span class="n">G</span><span class="p">,</span> <span class="kt">char</span> <span class="n">start</span><span class="p">[],</span> <span class="kt">char</span> <span class="n">end</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="n">numVertexes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">D</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">Path</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">v0</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">start</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">FindIndex</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">v0</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">vt</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;顶点未找到 &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>            <span class="c1">//初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">S</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="n">arc</span><span class="p">[</span><span class="n">v0</span><span class="p">][</span><span class="n">v</span><span class="p">];</span>                <span class="c1">//记录v0到v的最短路径长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">MAXINTS</span><span class="p">)</span> <span class="p">{</span>                <span class="c1">//如果有弧，更新Path为v0，否则置为-1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Path</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">v0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Path</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S</span><span class="p">[</span><span class="n">v0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>       <span class="c1">//将v0加入S
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">D</span><span class="p">[</span><span class="n">v0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>            <span class="c1">//源点到源点的距离为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//遍历其余顶点，每次求得v0到某个顶点v的最短路径，将v并入S
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">MAXINTS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">v</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">w</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">S</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">min</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">v</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span>                    <span class="c1">//保存顶点位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">min</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">S</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">w</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">S</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">.</span><span class="n">arc</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">.</span><span class="n">arc</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Path</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>    <span class="k">return</span> <span class="n">D</span><span class="p">[</span><span class="n">vt</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">menu</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---------------------------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---1. 查询景点信息---------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---2. 问路查询-------------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---3. 增加一个景点及其相关信息---|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---4. 修改一个景点的相关信息-----|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---5. 增加一条新的路径-----------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---6. 删除一条路径---------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---7. 删除一个景点---------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---0. 退出系统-------------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t\t</span><span class="s">|---------------------------------|&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MGraph</span> <span class="n">G</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">ptr</span> <span class="o">=</span> <span class="s">&#34;F:</span><span class="se">\\</span><span class="s">program</span><span class="se">\\</span><span class="s">Test_project</span><span class="se">\\</span><span class="s">C-C++</span><span class="se">\\</span><span class="s">test&#39;</span><span class="se">\\</span><span class="s">test&#39;</span><span class="se">\\</span><span class="s">graph.txt&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CreateMgraph</span><span class="p">(</span><span class="o">&amp;</span><span class="n">G</span><span class="p">,</span><span class="n">ptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">menu</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">PrintVex</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请选择功能&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;----------------------------------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;1&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入景点名称&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Instruction</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;2&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">start</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">end</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入起点名称&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">start</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入终点名称&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">ShortesPath_DIJ</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">!=</span> <span class="n">MAXINTS</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;路径长度为:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">l</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;不存在此路径&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;3&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">Info</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入景点名称&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入景点介绍&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">Info</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">addVex</span><span class="p">(</span><span class="o">&amp;</span><span class="n">G</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">Info</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;添加景点成功&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;添加景点失败&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;4&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">Info</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入景点名称&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入此景点新的介绍&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">Info</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">ModifyInfo</span><span class="p">(</span><span class="o">&amp;</span><span class="n">G</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">Info</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;修改成功&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;修改失败&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;5&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">start</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">end</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入路径起点&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">start</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入路径终点&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入路径距离&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">addArc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">G</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">length</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;添加路径成功&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;添加路径失败&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;6&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">start</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">end</span> <span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入起点位置&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">start</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入终点位置&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">delArc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">G</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;路径删除成功&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;路径删除失败&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;7&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;请输入景点名称&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">delVex</span><span class="p">(</span><span class="o">&amp;</span><span class="n">G</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;删除景点成功&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;删除景点失败&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;0&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;操作有误&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-数据结构相关文章">
+        参见 数据结构相关文章
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+        
+          
+            <li>
+              <a href="/posts/pn4kd6n1eos5xyxutuaciqhfnjb/">排序</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/qtnbdqineorsxpx02uucpayvnxh/">线性表和树表的查找</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/rfybd7gssoktinxwskock7atn8c/">散列表的查找</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/yewvdflgtouwdrxf7wscztngnjc/">图的应用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/lhqcd8fsiof6ckxbpvncx0vtnlg/">图的遍历</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?562d84a8bc2f683d3ce80d1d43bb641c";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

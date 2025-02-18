@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "浮点四则与算术逻辑单元"
-date = "2020-01-03"
+date = "2020-05-13"
 description = ""
 tags = [
     "计算机组成原理"

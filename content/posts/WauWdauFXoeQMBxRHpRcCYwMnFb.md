@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "传输媒体与信道复用技术"
-date = "2023-07-07"
+date = "2020-01-29"
 description = ""
 tags = [
     "计算机网络"

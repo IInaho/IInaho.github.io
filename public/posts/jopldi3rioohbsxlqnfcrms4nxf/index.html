@@ -3,7 +3,7 @@
 
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
-IP 数据包与路由 · inaho
+IP数据包与路由 · inaho
 </title>
   
 
@@ -21,20 +21,20 @@ IP 数据包与路由 · inaho
 
 <meta name="author" content="inaho">
 <meta name="description" content="
-  IP 数据包与路由
+  IP数据包与路由
   
     
     链接到标题
   
 
 
-  IP 数据包
+  IP数据包
   
     
     链接到标题
   
 
-一个 IP 数据包由首部和数据两部分组成。
+一个IP数据包由首部和数据两部分组成。
 
 
 首部的前一部分是固定长度，共字节，是所有 IP 数据报必须具有的。
@@ -64,7 +64,18 @@ IP 数据包与路由 · inaho
 标识：如果出现数据包分片，那么标识用来确定哪些数据包需要组合，进行相同标记。
 标志：占位，目前只有前两位有意义。标志字段的最低位是 MF(More Fragment)，MF=1 表示后面还有分片，MF=0 表示最后一个分片，标志字段中间的一位是 DF(Don`t Fragment)，只有当 DF=0 时才允许分片。
 
-数据包分片举例：">
+数据包分片举例：
+
+
+片偏移：偏移等于当前字节在数据部分的第几个再除以 8.
+生存时间：就是 TTL(Time To Live)，每经过一个路由器就减 1，8 位二进制，作用是防止数据包在网络中循环。
+协议号：用协议号标识数据部分是什么数据。
+
+
+
+ICMP：1, IGMP：2, TCP：6, UDP：17, IPv6：41, OSPF：89
+
+">
 <meta name="keywords" content="blog,developer,personal">
 
 
@@ -73,31 +84,33 @@ IP 数据包与路由 · inaho
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="IP 数据包与路由">
-  <meta name="twitter:description" content="IP 数据包与路由 链接到标题 IP 数据包 链接到标题 一个 IP 数据包由首部和数据两部分组成。
+  <meta name="twitter:title" content="IP数据包与路由">
+  <meta name="twitter:description" content="IP数据包与路由 链接到标题 IP数据包 链接到标题 一个IP数据包由首部和数据两部分组成。
 首部的前一部分是固定长度，共字节，是所有 IP 数据报必须具有的。 在首部的固定部分的后面是一些可选字段，其长度是可变的。 数据包结构 链接到标题 版本：用来表示 TCP/IP 协议的版本 v4,v6 首部长度：确定数据包首部有多长，因为包含可变部分。 区分服务：确定更高的传输优先级。(QoS 机制) 总长度：确定数据部分长度，一共 16 位，最多有 2^16-1=65535 字节。 传输限制：数据包最大 65535 字节，而数据链路层最大传输 1500 字节，所以对于大于 1500 字节的数据包，将会进行分片传输。（最大传输单元 MTU） 分片传输：将数据进行分割，分别添加 IP 地址，通过网络发给接收端。接收端在通过网络层进行拼接，传送过程中可能存在丢包现象，或者后发的先到，所以需要对分片的数据包进行编号。 泪滴攻击：指的是向目标机器发送损坏的 IP 包，诸如重叠的包或者过大的包载荷。借由这些手段，该攻击可以通过 TCP/IP 协议栈中分片重组代码中的 bug 来瘫痪各种不同的操作系统。
 以太网 V2 数据帧模式：
-标识：如果出现数据包分片，那么标识用来确定哪些数据包需要组合，进行相同标记。 标志：占位，目前只有前两位有意义。标志字段的最低位是 MF(More Fragment)，MF=1 表示后面还有分片，MF=0 表示最后一个分片，标志字段中间的一位是 DF(Don`t Fragment)，只有当 DF=0 时才允许分片。 数据包分片举例：">
+标识：如果出现数据包分片，那么标识用来确定哪些数据包需要组合，进行相同标记。 标志：占位，目前只有前两位有意义。标志字段的最低位是 MF(More Fragment)，MF=1 表示后面还有分片，MF=0 表示最后一个分片，标志字段中间的一位是 DF(Don`t Fragment)，只有当 DF=0 时才允许分片。 数据包分片举例：
+片偏移：偏移等于当前字节在数据部分的第几个再除以 8. 生存时间：就是 TTL(Time To Live)，每经过一个路由器就减 1，8 位二进制，作用是防止数据包在网络中循环。 协议号：用协议号标识数据部分是什么数据。 ICMP：1, IGMP：2, TCP：6, UDP：17, IPv6：41, OSPF：89">
  
 <meta property="og:url" content="//localhost:1313/posts/jopldi3rioohbsxlqnfcrms4nxf/">
   <meta property="og:site_name" content="inaho">
-  <meta property="og:title" content="IP 数据包与路由">
-  <meta property="og:description" content="IP 数据包与路由 链接到标题 IP 数据包 链接到标题 一个 IP 数据包由首部和数据两部分组成。
+  <meta property="og:title" content="IP数据包与路由">
+  <meta property="og:description" content="IP数据包与路由 链接到标题 IP数据包 链接到标题 一个IP数据包由首部和数据两部分组成。
 首部的前一部分是固定长度，共字节，是所有 IP 数据报必须具有的。 在首部的固定部分的后面是一些可选字段，其长度是可变的。 数据包结构 链接到标题 版本：用来表示 TCP/IP 协议的版本 v4,v6 首部长度：确定数据包首部有多长，因为包含可变部分。 区分服务：确定更高的传输优先级。(QoS 机制) 总长度：确定数据部分长度，一共 16 位，最多有 2^16-1=65535 字节。 传输限制：数据包最大 65535 字节，而数据链路层最大传输 1500 字节，所以对于大于 1500 字节的数据包，将会进行分片传输。（最大传输单元 MTU） 分片传输：将数据进行分割，分别添加 IP 地址，通过网络发给接收端。接收端在通过网络层进行拼接，传送过程中可能存在丢包现象，或者后发的先到，所以需要对分片的数据包进行编号。 泪滴攻击：指的是向目标机器发送损坏的 IP 包，诸如重叠的包或者过大的包载荷。借由这些手段，该攻击可以通过 TCP/IP 协议栈中分片重组代码中的 bug 来瘫痪各种不同的操作系统。
 以太网 V2 数据帧模式：
-标识：如果出现数据包分片，那么标识用来确定哪些数据包需要组合，进行相同标记。 标志：占位，目前只有前两位有意义。标志字段的最低位是 MF(More Fragment)，MF=1 表示后面还有分片，MF=0 表示最后一个分片，标志字段中间的一位是 DF(Don`t Fragment)，只有当 DF=0 时才允许分片。 数据包分片举例：">
+标识：如果出现数据包分片，那么标识用来确定哪些数据包需要组合，进行相同标记。 标志：占位，目前只有前两位有意义。标志字段的最低位是 MF(More Fragment)，MF=1 表示后面还有分片，MF=0 表示最后一个分片，标志字段中间的一位是 DF(Don`t Fragment)，只有当 DF=0 时才允许分片。 数据包分片举例：
+片偏移：偏移等于当前字节在数据部分的第几个再除以 8. 生存时间：就是 TTL(Time To Live)，每经过一个路由器就减 1，8 位二进制，作用是防止数据包在网络中循环。 协议号：用协议号标识数据部分是什么数据。 ICMP：1, IGMP：2, TCP：6, UDP：17, IPv6：41, OSPF：89">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
-    <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:published_time" content="2020-02-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-02-25T00:00:00+00:00">
     <meta property="article:tag" content="计算机网络">
-      <meta property="og:see_also" content="//localhost:1313/posts/mkijdrhouojq1bx8l52ckd0hn4b/">
-      <meta property="og:see_also" content="//localhost:1313/posts/ibcrdcdbsoksqfxcecncxiewndd/">
+      <meta property="og:see_also" content="//localhost:1313/posts/e4y9dsbqlogk9wx2gz6cqppunlg/">
+      <meta property="og:see_also" content="//localhost:1313/posts/zblid34b0osluhxzvtjcfnennug/">
+      <meta property="og:see_also" content="//localhost:1313/posts/my7ode2ieoqbpzxrxljceq7vnvf/">
       <meta property="og:see_also" content="//localhost:1313/posts/lvrxddgsxozy28xhe5ac8oannle/">
       <meta property="og:see_also" content="//localhost:1313/posts/dmxbd3aztoqpdtxayzhcs7a4nke/">
-      <meta property="og:see_also" content="//localhost:1313/posts/wauwdaufxoeqmbxrhprccywmnfb/">
-      <meta property="og:see_also" content="//localhost:1313/posts/s51fdiy0vomt1uxt5sjcxqqhnad/">
+      <meta property="og:see_also" content="//localhost:1313/posts/mkijdrhouojq1bx8l52ckd0hn4b/">
 
 
 
@@ -280,9 +293,9 @@ code.has-jax {
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#ip-数据包与路由">IP 数据包与路由</a>
+    <li><a href="#ip数据包与路由">IP数据包与路由</a>
       <ul>
-        <li><a href="#ip-数据包">IP 数据包</a>
+        <li><a href="#ip数据包">IP数据包</a>
           <ul>
             <li><a href="#数据包结构">数据包结构</a></li>
           </ul>
@@ -400,7 +413,7 @@ code.has-jax {
       <div class="post-title">
         <h1 class="title">
           <a class="title-link" href="//localhost:1313/posts/jopldi3rioohbsxlqnfcrms4nxf/">
-            IP 数据包与路由
+            IP数据包与路由
           </a>
         </h1>
       </div>
@@ -408,8 +421,8 @@ code.has-jax {
         <div class="date">
           <span class="posted-on">
             <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-            <time datetime=" 2023-07-07T00:00:00Z">
-              July 7, 2023
+            <time datetime=" 2020-02-25T00:00:00Z">
+              February 25, 2020
             </time>
           </span>
           <span class="reading-time">
@@ -418,7 +431,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            107 字数
+            103 字数
           </span>
         </div>
         
@@ -443,21 +456,21 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="ip-数据包与路由">
-  IP 数据包与路由
-  <a class="heading-link" href="#ip-%e6%95%b0%e6%8d%ae%e5%8c%85%e4%b8%8e%e8%b7%af%e7%94%b1">
+      <h1 id="ip数据包与路由">
+  IP数据包与路由
+  <a class="heading-link" href="#ip%e6%95%b0%e6%8d%ae%e5%8c%85%e4%b8%8e%e8%b7%af%e7%94%b1">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
-<h2 id="ip-数据包">
-  IP 数据包
-  <a class="heading-link" href="#ip-%e6%95%b0%e6%8d%ae%e5%8c%85">
+<h2 id="ip数据包">
+  IP数据包
+  <a class="heading-link" href="#ip%e6%95%b0%e6%8d%ae%e5%8c%85">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
-<p>一个 IP 数据包由首部和数据两部分组成。</p>
+<p>一个IP数据包由首部和数据两部分组成。</p>
 <p><img src="../static/MoGLblYC1oQmeoxFUXccmscEnKv.png" alt=""></p>
 <ul>
 <li>首部的前一部分是固定长度，共字节，是所有 IP 数据报必须具有的。</li>
@@ -574,34 +587,34 @@ code.has-jax {
         
           
             <li>
-              <a href="/posts/mkijdrhouojq1bx8l52ckd0hn4b/">ICMP 与 IGMP 协议</a>
-            </li>
-          
-        
-          
-        
-          
-            <li>
-              <a href="/posts/ibcrdcdbsoksqfxcecncxiewndd/">Mac 层与快速以太网</a>
+              <a href="/posts/e4y9dsbqlogk9wx2gz6cqppunlg/">音视频传输与无线网络</a>
             </li>
           
         
           
             <li>
-              <a href="/posts/lvrxddgsxozy28xhe5ac8oannle/">TCP 协议详解</a>
+              <a href="/posts/zblid34b0osluhxzvtjcfnennug/">网络安全概述</a>
             </li>
           
         
           
             <li>
-              <a href="/posts/dmxbd3aztoqpdtxayzhcs7a4nke/">传输层与 UDP 协议简述</a>
+              <a href="/posts/my7ode2ieoqbpzxrxljceq7vnvf/">应用层概述</a>
             </li>
           
         
           
             <li>
-              <a href="/posts/wauwdaufxoeqmbxrhprccywmnfb/">传输媒体与信道复用技术</a>
+              <a href="/posts/lvrxddgsxozy28xhe5ac8oannle/">TCP协议详解</a>
             </li>
+          
+        
+          
+            <li>
+              <a href="/posts/dmxbd3aztoqpdtxayzhcs7a4nke/">传输层与UDP协议简述</a>
+            </li>
+          
+        
           
         
         </ul>

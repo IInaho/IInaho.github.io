@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
-title = "IP 数据包与路由"
-date = "2023-07-07"
+title = "IP数据包与路由"
+date = "2020-02-25"
 description = ""
 tags = [
     "计算机网络"
@@ -12,11 +12,11 @@ categories = [
 series = ["计算机网络"]
 +++
 
-# IP 数据包与路由
+# IP数据包与路由
 
-## IP 数据包
+## IP数据包
 
-一个 IP 数据包由首部和数据两部分组成。
+一个IP数据包由首部和数据两部分组成。
 
 ![](../static/MoGLblYC1oQmeoxFUXccmscEnKv.png)
 

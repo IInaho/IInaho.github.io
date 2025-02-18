@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "组合逻辑设计"
-date = "2020-01-03"
+date = "2020-05-27"
 description = ""
 tags = [
     "计算机组成原理"

@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "主存储器之ROM"
-date = "2020-01-03"
+date = "2020-05-08"
 description = ""
 tags = [
     "计算机组成原理"

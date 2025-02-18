@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "系统总线"
-date = "2020-01-03"
+date = "2020-04-25"
 description = ""
 tags = [
     "计算机组成原理"

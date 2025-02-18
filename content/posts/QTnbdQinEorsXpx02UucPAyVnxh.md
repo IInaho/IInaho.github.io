@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "线性表和树表的查找"
-date = "2023-07-07"
+date = "2020-06-14"
 description = ""
 tags = [
     "数据结构"

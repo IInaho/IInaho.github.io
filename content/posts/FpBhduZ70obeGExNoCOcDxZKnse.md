@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
-title = "I/O 中断"
-date = "2020-01-03"
+title = "I/O中断"
+date = "2020-06-12"
 description = ""
 tags = [
     "计算机组成原理"

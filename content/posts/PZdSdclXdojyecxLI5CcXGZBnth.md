@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "数据链路层基本概念及简单模型"
-date = "2023-07-07"
+date = "2020-02-10"
 description = ""
 tags = [
     "计算机网络"

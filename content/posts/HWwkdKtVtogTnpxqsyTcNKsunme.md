@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
-title = "存储器概述与 RAM"
-date = "2020-01-03"
+title = "存储器概述与RAM"
+date = "2020-04-30"
 description = ""
 tags = [
     "计算机组成原理"

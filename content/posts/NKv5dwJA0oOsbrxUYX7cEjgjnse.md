@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "串、数组和广义表"
-date = "2023-07-07"
+date = "2020-05-14"
 description = ""
 tags = [
     "数据结构"

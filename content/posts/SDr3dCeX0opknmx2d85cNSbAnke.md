@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "定点运算"
-date = "2020-01-03"
+date = "2020-04-28"
 description = ""
 tags = [
     "计算机组成原理"

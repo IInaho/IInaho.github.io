@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "数的定点与浮点表示"
-date = "2020-01-03"
+date = "2020-04-26"
 description = ""
 tags = [
     "计算机组成原理"

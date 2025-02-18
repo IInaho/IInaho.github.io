@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
-title = "TCP 协议详解"
-date = "2023-07-07"
+title = "TCP协议详解"
+date = "2020-03-07"
 description = ""
 tags = [
     "计算机网络"
@@ -12,7 +12,7 @@ categories = [
 series = ["计算机网络"]
 +++
 
-# TCP 协议详解
+# TCP协议详解
 
 ## 传输控制协议 TCP 概述
 

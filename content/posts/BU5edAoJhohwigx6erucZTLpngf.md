@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "计算机运算方法"
-date = "2020-01-03"
+date = "2020-04-27"
 description = ""
 tags = [
     "计算机组成原理"

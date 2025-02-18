@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
-title = "Assume 总结"
-date = "2023-07-07"
+title = "Assume总结"
+date = "2020-11-04"
 description = ""
 tags = [
     "CPP"
@@ -12,7 +12,7 @@ categories = [
 +++
 
 
-# Assume 总结
+# Assume总结
 
 ## 概念介绍
 

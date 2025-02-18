@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
-title = "传输层与 UDP 协议简述"
-date = "2023-07-07"
+title = "传输层与UDP协议简述"
+date = "2020-03-03"
 description = ""
 tags = [
     "计算机网络"
@@ -12,7 +12,7 @@ categories = [
 series = ["计算机网络"]
 +++
 
-# 传输层概述与 UDP 协议简述
+# 传输层概述与UDP协议简述
 
 ## 传输层的功能
 

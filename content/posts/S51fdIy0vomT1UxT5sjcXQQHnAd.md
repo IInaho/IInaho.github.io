@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "使用广播信道的数据链路层"
-date = "2023-07-07"
+date = "2020-02-15"
 description = ""
 tags = [
     "计算机网络"

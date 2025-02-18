@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
-title = "寻址方式与 RISC 技术"
-date = "2020-01-03"
+title = "寻址方式与RISC技术"
+date = "2020-05-18"
 description = ""
 tags = [
     "计算机组成原理"

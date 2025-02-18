@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "数字传输系统与宽带接入技术"
-date = "2023-07-07"
+date = "2020-02-07"
 description = ""
 tags = [
     "计算机网络"

@@ -21,13 +21,6 @@
 
 <meta name="author" content="inaho">
 <meta name="description" content="
-  指令流水与中断系统
-  
-    
-    链接到标题
-  
-
-
   指令流水
   
     
@@ -120,7 +113,15 @@ I/O 处理机
   
 
 
-一条指令的执行需要经过三个阶段，取指令、译码、执行，每个阶段都需要花费一个时钟周期，如果没有采用流水线技术，那么执行 N 条这样的指令就需要 3N 个时钟周期，假设取指令用取指令部件完成，执行指令用执行指令部件完成，那么总有一个部件空闲，如图所示。">
+一条指令的执行需要经过三个阶段，取指令、译码、执行，每个阶段都需要花费一个时钟周期，如果没有采用流水线技术，那么执行 N 条这样的指令就需要 3N 个时钟周期，假设取指令用取指令部件完成，执行指令用执行指令部件完成，那么总有一个部件空闲，如图所示。
+
+  指令的二级流水
+  
+    
+    链接到标题
+  
+
+">
 <meta name="keywords" content="blog,developer,personal">
 
 
@@ -130,25 +131,27 @@ I/O 处理机
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="指令流水与中断系统">
-  <meta name="twitter:description" content="指令流水与中断系统 链接到标题 指令流水 链接到标题 如何提高机器速度 链接到标题 提高访存速度
+  <meta name="twitter:description" content="指令流水 链接到标题 如何提高机器速度 链接到标题 提高访存速度
 高速存储芯片 高速 Cachhe 多体并行结构 提高 I/O 和主机之间的传送速度
 中断 DMA 通道 I/O 处理机 多总线结构 提高运算器速度
 高速芯片 改进算法 快速进位链 提高整机处理能力
-高速器件 改进系统结构，开发系统的并行性 系统的并行性 链接到标题 并行的概念 链接到标题 并发，两个或两个以上事件在同一时间段发生 同时，两个或两个以上事件在同一时刻发生 并行性的等级 链接到标题 过程级(程序、进程)，粗粒度，软件实现。 指令级(指令之间，指令内部)，细粒度，硬件实现。 指令流水的原理 链接到标题 指令的串行执行 链接到标题 一条指令的执行需要经过三个阶段，取指令、译码、执行，每个阶段都需要花费一个时钟周期，如果没有采用流水线技术，那么执行 N 条这样的指令就需要 3N 个时钟周期，假设取指令用取指令部件完成，执行指令用执行指令部件完成，那么总有一个部件空闲，如图所示。">
+高速器件 改进系统结构，开发系统的并行性 系统的并行性 链接到标题 并行的概念 链接到标题 并发，两个或两个以上事件在同一时间段发生 同时，两个或两个以上事件在同一时刻发生 并行性的等级 链接到标题 过程级(程序、进程)，粗粒度，软件实现。 指令级(指令之间，指令内部)，细粒度，硬件实现。 指令流水的原理 链接到标题 指令的串行执行 链接到标题 一条指令的执行需要经过三个阶段，取指令、译码、执行，每个阶段都需要花费一个时钟周期，如果没有采用流水线技术，那么执行 N 条这样的指令就需要 3N 个时钟周期，假设取指令用取指令部件完成，执行指令用执行指令部件完成，那么总有一个部件空闲，如图所示。
+指令的二级流水 链接到标题">
  
 <meta property="og:url" content="//localhost:1313/posts/dkcqd7kpvovrotxo5glcj0wfnwd/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="指令流水与中断系统">
-  <meta property="og:description" content="指令流水与中断系统 链接到标题 指令流水 链接到标题 如何提高机器速度 链接到标题 提高访存速度
+  <meta property="og:description" content="指令流水 链接到标题 如何提高机器速度 链接到标题 提高访存速度
 高速存储芯片 高速 Cachhe 多体并行结构 提高 I/O 和主机之间的传送速度
 中断 DMA 通道 I/O 处理机 多总线结构 提高运算器速度
 高速芯片 改进算法 快速进位链 提高整机处理能力
-高速器件 改进系统结构，开发系统的并行性 系统的并行性 链接到标题 并行的概念 链接到标题 并发，两个或两个以上事件在同一时间段发生 同时，两个或两个以上事件在同一时刻发生 并行性的等级 链接到标题 过程级(程序、进程)，粗粒度，软件实现。 指令级(指令之间，指令内部)，细粒度，硬件实现。 指令流水的原理 链接到标题 指令的串行执行 链接到标题 一条指令的执行需要经过三个阶段，取指令、译码、执行，每个阶段都需要花费一个时钟周期，如果没有采用流水线技术，那么执行 N 条这样的指令就需要 3N 个时钟周期，假设取指令用取指令部件完成，执行指令用执行指令部件完成，那么总有一个部件空闲，如图所示。">
+高速器件 改进系统结构，开发系统的并行性 系统的并行性 链接到标题 并行的概念 链接到标题 并发，两个或两个以上事件在同一时间段发生 同时，两个或两个以上事件在同一时刻发生 并行性的等级 链接到标题 过程级(程序、进程)，粗粒度，软件实现。 指令级(指令之间，指令内部)，细粒度，硬件实现。 指令流水的原理 链接到标题 指令的串行执行 链接到标题 一条指令的执行需要经过三个阶段，取指令、译码、执行，每个阶段都需要花费一个时钟周期，如果没有采用流水线技术，那么执行 N 条这样的指令就需要 3N 个时钟周期，假设取指令用取指令部件完成，执行指令用执行指令部件完成，那么总有一个部件空闲，如图所示。
+指令的二级流水 链接到标题">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2020-01-03T00:00:00+00:00">
-    <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00">
+    <meta property="article:published_time" content="2020-05-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-05-21T00:00:00+00:00">
     <meta property="article:tag" content="计算机组成原理">
 
 
@@ -332,7 +335,6 @@ code.has-jax {
     <div class="toc-container">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#指令流水与中断系统">指令流水与中断系统</a></li>
     <li><a href="#指令流水">指令流水</a>
       <ul>
         <li><a href="#如何提高机器速度">如何提高机器速度</a>
@@ -539,8 +541,8 @@ code.has-jax {
         <div class="date">
           <span class="posted-on">
             <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-            <time datetime=" 2020-01-03T00:00:00Z">
-              January 3, 2020
+            <time datetime=" 2020-05-21T00:00:00Z">
+              May 21, 2020
             </time>
           </span>
           <span class="reading-time">
@@ -549,7 +551,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            351 字数
+            349 字数
           </span>
         </div>
         
@@ -574,14 +576,7 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="指令流水与中断系统">
-  指令流水与中断系统
-  <a class="heading-link" href="#%e6%8c%87%e4%bb%a4%e6%b5%81%e6%b0%b4%e4%b8%8e%e4%b8%ad%e6%96%ad%e7%b3%bb%e7%bb%9f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
-  </a>
-</h1>
-<h1 id="指令流水">
+      <h1 id="指令流水">
   指令流水
   <a class="heading-link" href="#%e6%8c%87%e4%bb%a4%e6%b5%81%e6%b0%b4">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>

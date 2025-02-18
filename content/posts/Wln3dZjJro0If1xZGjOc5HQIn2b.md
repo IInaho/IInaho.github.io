@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "控制单元与微操作命令"
-date = "2020-01-03"
+date = "2020-05-24"
 description = ""
 tags = [
     "计算机组成原理"

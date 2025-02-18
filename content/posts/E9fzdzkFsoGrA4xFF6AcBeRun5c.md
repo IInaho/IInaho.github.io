@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "树和二叉树"
-date = "2023-07-07"
+date = "2020-05-19"
 description = ""
 tags = [
     "数据结构"

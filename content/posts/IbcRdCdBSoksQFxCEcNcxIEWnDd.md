@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
-title = "Mac 层与快速以太网"
-date = "2023-07-07"
+title = "Mac层与快速以太网"
+date = "2020-02-18"
 description = ""
 tags = [
     "计算机网络"
@@ -12,7 +12,7 @@ categories = [
 series = ["计算机网络"]
 +++
 
-# Mac 层与快速以太网
+# Mac层与快速以太网
 
 ## Mac 层的硬件地址
 

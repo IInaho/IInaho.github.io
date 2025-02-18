@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "MySQL 入门"
-date = "2023-07-07"
+date = "2021-01-02"
 description = ""
 tags = [
     "mysql"

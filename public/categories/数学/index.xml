@@ -6,12 +6,12 @@
     <description>Recent content in 数学 on inaho</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 07 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jan 2020 00:00:00 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/categories/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>高斯约旦消元法</title>
       <link>//localhost:1313/posts/htrcd4e4kovbhzxpqqzco52jn7c/</link>
-      <pubDate>Fri, 07 Jul 2023 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/posts/htrcd4e4kovbhzxpqqzco52jn7c/</guid>
       <description>&lt;h1 id=&#34;高斯约旦消元法&#34;&gt;&#xA;  高斯约旦消元法&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e9%ab%98%e6%96%af%e7%ba%a6%e6%97%a6%e6%b6%88%e5%85%83%e6%b3%95&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;链接到标题&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;链接到标题&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h1 id=&#34;线性系统&#34;&gt;&#xA;  线性系统&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e7%ba%bf%e6%80%a7%e7%b3%bb%e7%bb%9f&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;链接到标题&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;链接到标题&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;矩阵更准确的说是对线性系统的描述，所谓的线性系统指的是例如 3x + 4y + z = 8 之类的线性方程组，未知数只能是一次方项。而非线性方程则例如 sin(x) = Π 等坐标图上呈曲线的方程组。&lt;/p&gt;&#xA;&lt;h2 id=&#34;消元法解线性方程&#34;&gt;&#xA;  消元法解线性方程&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e6%b6%88%e5%85%83%e6%b3%95%e8%a7%a3%e7%ba%bf%e6%80%a7%e6%96%b9%e7%a8%8b&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;链接到标题&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;链接到标题&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;在小学初中我们学过如何用消元法解线性方程组，例如 x + y = 2；2x + 3y = 12；的线性方程组，我们可以用第二个方程减去二倍的第一个方程，然后便可以消去 x，得到 y 的值，然后将 y 带入第一个方程，我们便可以得到 x 与 y 的值，即线性方程组的解。&lt;/p&gt;&#xA;&lt;h2 id=&#34;高斯消元法&#34;&gt;&#xA;  高斯消元法&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e9%ab%98%e6%96%af%e6%b6%88%e5%85%83%e6%b3%95&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;链接到标题&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;链接到标题&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;学习矩阵的概念之后，我们可以将方程组的系数拿下来组成系数矩阵，然后基于矩阵的操作去得到线性方程组的解，例如 x + y + z = 6；2x + y + z = 7；x + y + 2z = 9;将其系数拿下来之后，我们可以得到矩阵&lt;/p&gt;</description>
     </item>

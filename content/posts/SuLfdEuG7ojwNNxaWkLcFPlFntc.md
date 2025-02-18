@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "银行家算法"
-date = "2023-07-07"
+date = "2020-11-05"
 description = ""
 tags = [
     "CPP"
