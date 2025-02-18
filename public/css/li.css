@@ -1,0 +1,43 @@
+.custom-post-item {
+    list-style: none;
+}
+
+.custom-post-item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.custom-post-item .post-title {
+    font-size: 2rem;
+    color: var(--heading-color);
+}
+
+.custom-post-item .post-meta {
+    display: flex;
+    gap: 1.5rem;
+    color: var(--text-color-light);
+    font-size: 1.5rem;  /* 增大字体 */
+  }
+
+.post-meta time,
+.post-meta .post-words {
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.post-meta i {
+    font-size: 1.5rem;    /* 相应调整图标大小 */
+    opacity: 0.8;
+  }
+
+.custom-post-item a:hover {
+    transform: translateX(10px);
+}
+
+.custom-post-item a:hover .post-meta i {
+    opacity: 1;
+}

@@ -15,9 +15,7 @@ categories = [
 
 ## 浮点加减运算
 
-$$
-x = S_x \times 2^t, \quad y = S_y \times 2^t
-$$
+`$$ x = S_x \times 2^t, \quad y = S_y \times 2^t $$`
 
 ### 对阶
 
@@ -41,9 +39,7 @@ ii. 对阶后 `$[x]_{i\frac{1}{2}} = 00.11;00.0011$`
 
 所以 `$[x+y]_{i\frac{1}{2}} = 00.11;11.1001$`
 
-$$
--[y_s]_{i\frac{1}{2}} \text{ 实际上等于 } [-f_s]_{i\frac{1}{2}}
-$$
+`$$ -[y_s]_{i\frac{1}{2}} \text{ 实际上等于 } [-f_s]_{i\frac{1}{2}} $$`
 
 ### 规格化
 

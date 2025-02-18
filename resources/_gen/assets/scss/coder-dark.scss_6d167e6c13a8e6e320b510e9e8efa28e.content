@@ -832,4 +832,34 @@ body.colorscheme-dark {
     body.colorscheme-auto .chroma .w {
       color: #6e7681; } }
 
+body.colorscheme-dark .list-header .title .title-link {
+  color: #dadada; }
+  body.colorscheme-dark .list-header .title .title-link:hover {
+    color: #dadada; }
+
+body.colorscheme-dark .custom-post-item a {
+  color: #dadada; }
+
+body.colorscheme-dark .custom-post-item .post-title {
+  color: #dadada; }
+
+body.colorscheme-dark .custom-post-item .post-meta {
+  color: #dadada; }
+  body.colorscheme-dark .custom-post-item .post-meta i {
+    color: #dadada; }
+
+@media (prefers-color-scheme: dark) {
+  body.colorscheme-auto .list-header .title .title-link {
+    color: #dadada; }
+    body.colorscheme-auto .list-header .title .title-link:hover {
+      color: #dadada; }
+  body.colorscheme-auto .custom-post-item a {
+    color: #dadada; }
+  body.colorscheme-auto .custom-post-item .post-title {
+    color: #dadada; }
+  body.colorscheme-auto .custom-post-item .post-meta {
+    color: #dadada; }
+    body.colorscheme-auto .custom-post-item .post-meta i {
+      color: #dadada; } }
+
 /*# sourceMappingURL=coder-dark.css.map */

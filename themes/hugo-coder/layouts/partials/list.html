@@ -1,28 +1,31 @@
-<!-- 列表页面模板，用于显示文章列表、分类页面等 -->
-
 <section class="container list">
-  <!-- 显示页面标题，支持多语言。如果是分类术语页面，会显示分类类型 -->
-  <header>
+  <header class="list-header">
     <h1 class="title">
       <a class="title-link" href="{{ .Permalink | safeURL }}">
         {{- if eq .Kind "term" -}}
-          {{- i18n .Data.Plural 1 | title -}}
-          {{- print ": " -}}
+        {{- i18n .Data.Plural 1 | title -}}
+        {{- print ": " -}}
         {{- end -}}
         {{- i18n (lower .Title) | default .Title | title -}}
       </a>
     </h1>
-  </header>
-  {{ .Content }}
-  <!-- 列出所有页面，每个条目包含：发布日期、标题链接 -->
-  <ul>
-    {{ range .Paginator.Pages }}
-    <li>
-      <span class="date">{{ .Date | time.Format (.Site.Params.dateFormat | default "January 2-2006" ) }}</span>
-      <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
-    </li>
+    <div class="post-count">
+      共 {{ len .Pages }} 篇文章
+    </div>
+    {{ if .Content }}
+    <div class="list-description">
+      {{ .Content }}
+    </div>
     {{ end }}
-  </ul>
-  <!-- 页码显示 -->
+  </header>
+
+  <div class="posts-list">
+    {{ range .Paginator.Pages }}
+    <article class="post-entry">
+      {{- .Render "li" -}}
+    </article>
+    {{ end }}
+  </div>
+
   {{ partial "pagination.html" . }}
 </section>

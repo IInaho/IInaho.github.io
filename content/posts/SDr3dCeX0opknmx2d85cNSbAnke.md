@@ -252,17 +252,11 @@ Booth 算法硬件配置
 
 以小数为例
 
-$$
-[x]_{\text{原}} = x_0 x_1 x_2 \cdots x_n
-$$
+`$$ [x]_{\text{原}} = x_0 x_1 x_2 \cdots x_n $$`
 
-$$
-[y]_{\text{原}} = y_0 y_1 y_2 \cdots y_n
-$$
+`$$ [y]_{\text{原}} = y_0 y_1 y_2 \cdots y_n $$`
 
-$$
-[x/y]_{\text{原}} = (x_0 \oplus y_0) x^* / y^*
-$$
+`$$ [x/y]_{\text{原}} = (x_0 \oplus y_0) x^* / y^* $$`
 
 式中`$x^*=0.x_1 x_2 \cdots x_n$`为 x 的绝对值, `$y^*=0.y_1 y_2 \cdots y_n$`为 y 的绝对值
 

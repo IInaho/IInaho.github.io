@@ -1,0 +1,42 @@
+@mixin list_dark {
+
+    .list-header {
+        .title {
+            .title-link {
+                color: $fg-color-dark;
+
+                &:hover {
+                    color: $fg-color-dark;
+                }
+            }
+        }
+    }
+
+    .custom-post-item {
+        a {
+            color: $fg-color-dark;
+        }
+
+        .post-title {
+            color: $fg-color-dark;
+        }
+
+        .post-meta {
+            color: $fg-color-dark;
+
+            i {
+                color: $fg-color-dark;
+            }
+        }
+    }
+}
+
+body.colorscheme-dark {
+    @include list_dark();
+}
+
+body.colorscheme-auto {
+    @media (prefers-color-scheme: dark) {
+        @include list_dark();
+    }
+}

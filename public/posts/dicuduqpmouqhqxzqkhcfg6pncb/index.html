@@ -110,10 +110,33 @@ OP(IR)-&gt;ID
   
 
 
+$T_0$
 
-$$
-T_0
-$$">
+Ad(IR)-&gt;MAR
+1-&gt;R
+
+
+$T_1$
+
+M(MAR)-&gt;MDR
+
+
+$T_2$
+
+MDR-&gt;Ad(IR)
+
+
+
+
+  执行周期微操作的节拍安排
+  
+    
+    链接到标题
+  
+
+
+
+CLA(对累加器进行清零)，$T_2$: 0-&gt;AC">
 <meta name="keywords" content="blog,developer,personal">
 
 
@@ -128,7 +151,7 @@ $$">
 安排微操作时许的原则 链接到标题 微操作的先后顺序不得随意更改 被控对象不同的微操作尽量安排在一个节拍内完成 占用时间较短的微操作，尽量安排在一个节拍内完成，并允许有先后顺序 取指周期微操作的节拍安排 链接到标题 $T_0$，不同的微操作可以安排在一个周期内完成
 PC-&gt;MAR 1-&gt;R $T_1$，同样按照原则二
 M(MAR)-&gt;MDR (PC)&#43;1-&gt;PC $T2$，两个微操作占用时间较短，一个微操作可在时钟周期的上升沿，一个在下降沿完成
-MDR-&gt;IR OP(IR)-&gt;ID 间址周期微操作的节拍安排 链接到标题 $$ T_0 $$">
+MDR-&gt;IR OP(IR)-&gt;ID 间址周期微操作的节拍安排 链接到标题 $T_0$ Ad(IR)-&gt;MAR 1-&gt;R $T_1$ M(MAR)-&gt;MDR $T_2$ MDR-&gt;Ad(IR) 执行周期微操作的节拍安排 链接到标题 CLA(对累加器进行清零)，$T_2$: 0-&gt;AC">
  
 <meta property="og:url" content="//localhost:1313/posts/dicuduqpmouqhqxzqkhcfg6pncb/">
   <meta property="og:site_name" content="inaho">
@@ -138,7 +161,7 @@ MDR-&gt;IR OP(IR)-&gt;ID 间址周期微操作的节拍安排 链接到标题 $$
 安排微操作时许的原则 链接到标题 微操作的先后顺序不得随意更改 被控对象不同的微操作尽量安排在一个节拍内完成 占用时间较短的微操作，尽量安排在一个节拍内完成，并允许有先后顺序 取指周期微操作的节拍安排 链接到标题 $T_0$，不同的微操作可以安排在一个周期内完成
 PC-&gt;MAR 1-&gt;R $T_1$，同样按照原则二
 M(MAR)-&gt;MDR (PC)&#43;1-&gt;PC $T2$，两个微操作占用时间较短，一个微操作可在时钟周期的上升沿，一个在下降沿完成
-MDR-&gt;IR OP(IR)-&gt;ID 间址周期微操作的节拍安排 链接到标题 $$ T_0 $$">
+MDR-&gt;IR OP(IR)-&gt;ID 间址周期微操作的节拍安排 链接到标题 $T_0$ Ad(IR)-&gt;MAR 1-&gt;R $T_1$ M(MAR)-&gt;MDR $T_2$ MDR-&gt;Ad(IR) 执行周期微操作的节拍安排 链接到标题 CLA(对累加器进行清零)，$T_2$: 0-&gt;AC">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -190,6 +213,16 @@ MDR-&gt;IR OP(IR)-&gt;ID 间址周期微操作的节拍安排 链接到标题 $$
   
     
     <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+  
+    
+    <link rel="stylesheet" href="/css/list.css" media="screen">
+  
+
+  
+    
+    <link rel="stylesheet" href="/css/li.css" media="screen">
   
 
 
@@ -466,7 +499,7 @@ code.has-jax {
           <span class="posted-on">
             <i class="fa-solid fa-calendar" aria-hidden="true"></i>
             <time datetime=" 2020-05-27T00:00:00Z">
-              May 27, 2020
+              2020-05-27
             </time>
           </span>
           <span class="reading-time">
@@ -475,7 +508,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            119 字数
+            113 字数
           </span>
         </div>
         
@@ -590,27 +623,18 @@ code.has-jax {
   </a>
 </h3>
 <ul>
-<li>
-<p>$$
-T_0
-$$</p>
+<li><code>$T_0$</code>
 <ul>
 <li>Ad(IR)-&gt;MAR</li>
 <li>1-&gt;R</li>
 </ul>
 </li>
-<li>
-<p>$$
-T_1
-$$</p>
+<li><code>$T_1$</code>
 <ul>
 <li>M(MAR)-&gt;MDR</li>
 </ul>
 </li>
-<li>
-<p>$$
-T_2
-$$</p>
+<li><code>$T_2$</code>
 <ul>
 <li>MDR-&gt;Ad(IR)</li>
 </ul>

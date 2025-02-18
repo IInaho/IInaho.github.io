@@ -1,22 +1,37 @@
 {{ define "title" }}
-  {{ title (i18n (lower .Title)) | default .Title }} · {{ .Site.Title }}
+{{ title (i18n (lower .Title)) | default .Title }} · {{ .Site.Title }}
 {{ end }}
-{{ define "content" }}
-  <section class="container list">
-    <header>
-      <h1 class="title">
-        <a class="title-link" href="{{ .Permalink | safeURL }}">
-          {{ title (i18n (lower .Title)) | default .Title }}
-        </a>
-      </h1>
-    </header>
-    {{ .Content }}
-    <ul>
-      {{- range .Paginator.Pages -}}
-        {{- .Render "li" -}}
-      {{- end -}}
-    </ul>
 
-    {{ partial "pagination.html" . }}
-  </section>
+{{ define "content" }}
+<section class="container list">
+  <header class="list-header">
+    <h1 class="title">
+      <a class="title-link" href="{{ .Permalink | safeURL }}">
+        {{- if eq .Kind "term" -}}
+        {{- i18n .Data.Plural 1 | title -}}
+        {{- print ": " -}}
+        {{- end -}}
+        {{- i18n (lower .Title) | default .Title | title -}}
+      </a>
+    </h1>
+    <div class="post-count">
+      共 {{ len .Pages }} 篇文章
+    </div>
+    {{ if .Content }}
+    <div class="list-description">
+      {{ .Content }}
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="posts-list">
+    {{- range .Paginator.Pages -}}
+    <article class="post-entry">
+      {{- .Render "li" -}}
+    </article>
+    {{- end -}}
+  </div>
+
+  {{ partial "pagination.html" . }}
+</section>
 {{ end }}
