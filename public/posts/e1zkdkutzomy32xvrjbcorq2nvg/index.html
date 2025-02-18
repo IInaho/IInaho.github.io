@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+网络层概述与 ARP 协议 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  IOS 网络层概述
+  
+    
+    链接到标题
+  
+
+
+  网络层提供的服务
+  
+    
+    链接到标题
+  
+
+负责在不同网络之间尽力转发数据包
+
+
+基于数据包的 IP 地址转发
+不负责丢失重传
+不负责顺序
+
+
+  数据包在 Internet 中传输
+  
+    
+    链接到标题
+  
+
+
+
+路由器是三层设备：能看到网络层的 IP 地址来选择路径
+
+
+  互联网与虚拟互联网
+  
+    
+    链接到标题
+  
+
+
+  互联网互联的设备
+  
+    
+    链接到标题
+  
+
+
+
+物理层中继系统：转发器(repeater)，类似集线器
+数据链路层中继系统：网桥或桥接器(bridge)
+网络层中继系统：路由器(router)
+传输层/应用层中继系统：网关(gateway)
+
+
+中间设备又称为中间系统或中继系统(relay).
+网关就是路由器接口的地址。一般是本网段第一个地址。
+
+  网络需要解决的问题
+  
+    
+    链接到标题
+  
+
+
+不同寻址方案
+不同最大分组长度
+不同网络接入机制
+不同超时控制
+不同差错恢复方法
+不同状态报告方法
+不同路由选择技术
+不同用户接入控制
+不同服务
+不同管理与控制方式
+
+
+虚拟互联网将复杂的互联网抽象成一个网络，这样用户只需要关心如何接入互联网而不需要关心互联网的复杂性，简化了问题模型。
+
+  网络设备和 OSI 参考模型的关系
+  
+    
+    链接到标题
+  
+
+
+  PC4 向 PC3 传输数据
+  
+    
+    链接到标题
+  
+
+">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="网络层概述与 ARP 协议">
+  <meta name="twitter:description" content="IOS 网络层概述 链接到标题 网络层提供的服务 链接到标题 负责在不同网络之间尽力转发数据包
+基于数据包的 IP 地址转发 不负责丢失重传 不负责顺序 数据包在 Internet 中传输 链接到标题 路由器是三层设备：能看到网络层的 IP 地址来选择路径
+互联网与虚拟互联网 链接到标题 互联网互联的设备 链接到标题 物理层中继系统：转发器(repeater)，类似集线器 数据链路层中继系统：网桥或桥接器(bridge) 网络层中继系统：路由器(router) 传输层/应用层中继系统：网关(gateway) 中间设备又称为中间系统或中继系统(relay). 网关就是路由器接口的地址。一般是本网段第一个地址。
+网络需要解决的问题 链接到标题 不同寻址方案 不同最大分组长度 不同网络接入机制 不同超时控制 不同差错恢复方法 不同状态报告方法 不同路由选择技术 不同用户接入控制 不同服务 不同管理与控制方式 虚拟互联网将复杂的互联网抽象成一个网络，这样用户只需要关心如何接入互联网而不需要关心互联网的复杂性，简化了问题模型。
+网络设备和 OSI 参考模型的关系 链接到标题 PC4 向 PC3 传输数据 链接到标题">
+ 
+<meta property="og:url" content="//localhost:1313/posts/e1zkdkutzomy32xvrjbcorq2nvg/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="网络层概述与 ARP 协议">
+  <meta property="og:description" content="IOS 网络层概述 链接到标题 网络层提供的服务 链接到标题 负责在不同网络之间尽力转发数据包
+基于数据包的 IP 地址转发 不负责丢失重传 不负责顺序 数据包在 Internet 中传输 链接到标题 路由器是三层设备：能看到网络层的 IP 地址来选择路径
+互联网与虚拟互联网 链接到标题 互联网互联的设备 链接到标题 物理层中继系统：转发器(repeater)，类似集线器 数据链路层中继系统：网桥或桥接器(bridge) 网络层中继系统：路由器(router) 传输层/应用层中继系统：网关(gateway) 中间设备又称为中间系统或中继系统(relay). 网关就是路由器接口的地址。一般是本网段第一个地址。
+网络需要解决的问题 链接到标题 不同寻址方案 不同最大分组长度 不同网络接入机制 不同超时控制 不同差错恢复方法 不同状态报告方法 不同路由选择技术 不同用户接入控制 不同服务 不同管理与控制方式 虚拟互联网将复杂的互联网抽象成一个网络，这样用户只需要关心如何接入互联网而不需要关心互联网的复杂性，简化了问题模型。
+网络设备和 OSI 参考模型的关系 链接到标题 PC4 向 PC3 传输数据 链接到标题">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:tag" content="计算机网络">
+      <meta property="og:see_also" content="//localhost:1313/posts/mkijdrhouojq1bx8l52ckd0hn4b/">
+      <meta property="og:see_also" content="//localhost:1313/posts/jopldi3rioohbsxlqnfcrms4nxf/">
+      <meta property="og:see_also" content="//localhost:1313/posts/ibcrdcdbsoksqfxcecncxiewndd/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lvrxddgsxozy28xhe5ac8oannle/">
+      <meta property="og:see_also" content="//localhost:1313/posts/dmxbd3aztoqpdtxayzhcs7a4nke/">
+      <meta property="og:see_also" content="//localhost:1313/posts/wauwdaufxoeqmbxrhprccywmnfb/">
+      <meta property="og:see_also" content="//localhost:1313/posts/s51fdiy0vomt1uxt5sjcxqqhnad/">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/e1zkdkutzomy32xvrjbcorq2nvg/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ios-网络层概述">IOS 网络层概述</a>
+      <ul>
+        <li><a href="#网络层提供的服务">网络层提供的服务</a></li>
+        <li><a href="#数据包在-internet-中传输">数据包在 Internet 中传输</a></li>
+        <li><a href="#互联网与虚拟互联网">互联网与虚拟互联网</a>
+          <ul>
+            <li><a href="#互联网互联的设备">互联网互联的设备</a></li>
+            <li><a href="#网络需要解决的问题">网络需要解决的问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#网络设备和-osi-参考模型的关系">网络设备和 OSI 参考模型的关系</a>
+          <ul>
+            <li><a href="#pc4-向-pc3-传输数据">PC4 向 PC3 传输数据</a>
+              <ul>
+                <li><a href="#发送端">发送端：</a></li>
+                <li><a href="#接收端">接收端：</a></li>
+                <li><a href="#路由器与交换机集线器会不会中病毒">路由器与交换机、集线器会不会中病毒？</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#arp-协议">ARP 协议</a>
+          <ul>
+            <li><a href="#tcpip-协议层次关系">TCP/IP 协议层次关系</a></li>
+            <li><a href="#arp-协议功能">ARP 协议功能</a></li>
+            <li><a href="#arp-欺骗">ARP 欺骗</a></li>
+            <li><a href="#防止-arp-欺骗的两种方法">防止 ARP 欺骗的两种方法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/e1zkdkutzomy32xvrjbcorq2nvg/">
+            网络层概述与 ARP 协议
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2023-07-07T00:00:00Z">
+              July 7, 2023
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：2 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            250 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="ios-网络层概述">
+  IOS 网络层概述
+  <a class="heading-link" href="#ios-%e7%bd%91%e7%bb%9c%e5%b1%82%e6%a6%82%e8%bf%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="网络层提供的服务">
+  网络层提供的服务
+  <a class="heading-link" href="#%e7%bd%91%e7%bb%9c%e5%b1%82%e6%8f%90%e4%be%9b%e7%9a%84%e6%9c%8d%e5%8a%a1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>负责在不同网络之间尽力转发数据包</p>
+<blockquote>
+<ul>
+<li>基于数据包的 IP 地址转发</li>
+<li>不负责丢失重传</li>
+<li>不负责顺序</li>
+</ul></blockquote>
+<h2 id="数据包在-internet-中传输">
+  数据包在 Internet 中传输
+  <a class="heading-link" href="#%e6%95%b0%e6%8d%ae%e5%8c%85%e5%9c%a8-internet-%e4%b8%ad%e4%bc%a0%e8%be%93">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p><img src="../static/VrOpbgjDDo1yqKxocfbcihvtnGe.png" alt=""></p>
+<blockquote>
+<p>路由器是三层设备：能看到网络层的 IP 地址来选择路径</p></blockquote>
+<p><img src="../static/T7cWbwymiofiy3xThjHcpFkGnGd.png" alt=""></p>
+<h2 id="互联网与虚拟互联网">
+  互联网与虚拟互联网
+  <a class="heading-link" href="#%e4%ba%92%e8%81%94%e7%bd%91%e4%b8%8e%e8%99%9a%e6%8b%9f%e4%ba%92%e8%81%94%e7%bd%91">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="互联网互联的设备">
+  互联网互联的设备
+  <a class="heading-link" href="#%e4%ba%92%e8%81%94%e7%bd%91%e4%ba%92%e8%81%94%e7%9a%84%e8%ae%be%e5%a4%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/G7cfbvsRnoDnmFx9HJzcpxGQnpg.png" alt=""></p>
+<ol>
+<li>物理层中继系统：转发器(repeater)，类似集线器</li>
+<li>数据链路层中继系统：网桥或桥接器(bridge)</li>
+<li>网络层中继系统：路由器(router)</li>
+<li>传输层/应用层中继系统：网关(gateway)</li>
+</ol>
+<blockquote>
+<p>中间设备又称为中间系统或中继系统(relay).
+网关就是路由器接口的地址。一般是本网段第一个地址。</p></blockquote>
+<h3 id="网络需要解决的问题">
+  网络需要解决的问题
+  <a class="heading-link" href="#%e7%bd%91%e7%bb%9c%e9%9c%80%e8%a6%81%e8%a7%a3%e5%86%b3%e7%9a%84%e9%97%ae%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>不同寻址方案</li>
+<li>不同最大分组长度</li>
+<li>不同网络接入机制</li>
+<li>不同超时控制</li>
+<li>不同差错恢复方法</li>
+<li>不同状态报告方法</li>
+<li>不同路由选择技术</li>
+<li>不同用户接入控制</li>
+<li>不同服务</li>
+<li>不同管理与控制方式</li>
+</ol>
+<blockquote>
+<p>虚拟互联网将复杂的互联网抽象成一个网络，这样用户只需要关心如何接入互联网而不需要关心互联网的复杂性，简化了问题模型。</p></blockquote>
+<h2 id="网络设备和-osi-参考模型的关系">
+  网络设备和 OSI 参考模型的关系
+  <a class="heading-link" href="#%e7%bd%91%e7%bb%9c%e8%ae%be%e5%a4%87%e5%92%8c-osi-%e5%8f%82%e8%80%83%e6%a8%a1%e5%9e%8b%e7%9a%84%e5%85%b3%e7%b3%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="pc4-向-pc3-传输数据">
+  PC4 向 PC3 传输数据
+  <a class="heading-link" href="#pc4-%e5%90%91-pc3-%e4%bc%a0%e8%be%93%e6%95%b0%e6%8d%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/Ct37bByY5ofDMPxkCAtcKkFbnJc.png" alt=""></p>
+<h4 id="发送端">
+  发送端：
+  <a class="heading-link" href="#%e5%8f%91%e9%80%81%e7%ab%af">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ol>
+<li>应用层准备要传输的数据文件；</li>
+<li>传输层把数据进行分段并编号；(数据段)</li>
+<li>网络层把传输层的每一个数据包增加原 IP 地址和目标 IP 地址；(数据包)</li>
+<li>数据链路层把每个数据加上 MAC 地址；(数据帧)</li>
+<li>物理层把数据帧变成数字信号(bit 流)</li>
+</ol>
+<p>如何通过 Mac 地址进行转发数据:</p>
+<ul>
+<li>使用本计算机地址的子网掩码，判断本地址和目标地址分别在哪个网段，若在同一个网段(不过路由器)，通过 ARP 协议广播的方式得到目标 IP 地址的 MAC 地址，然后就能封装出一个数据帧；</li>
+<li>如果子网掩码不是一个网段(与运算)，通过 ARP 协议广播的方式得到路由器(网关)的 MAC 地址，然后把数据通过交换机发送到路由器 M2，路由器 M2 在通过广播的方式得到目标 IP 地址与 Mac 地址。</li>
+</ul>
+<blockquote>
+<p>因为 M2 和 M3 是点对点通信，没有别的主机，所以它们之间的 MAC 地址就是 FF。</p></blockquote>
+<h4 id="接收端">
+  接收端：
+  <a class="heading-link" href="#%e6%8e%a5%e6%94%b6%e7%ab%af">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<ol>
+<li>交换机 Hub0 接收 bit 流，能对数据进行存储转发。它根据数据帧的 MAC 地址，确定数据是从哪来的，要去哪。</li>
+<li>路由器 M2 获取交换机的数据包，识别其中的 IP 地址，根据路由表选择出口，它无法识别数据段内容。</li>
+<li>路由器 M2 到 M3 是点对点通信，遵守 PPP 协议。</li>
+<li>PC3 收到 bit 流后，数据链路层发现 MAC 地址是自己的，去掉 MAC 地址给它的网络层，网络层去掉 IP 地址给传输层，传输层把数据给应用层，应用层把各个数据拼接起来，进而得到文件。</li>
+</ol>
+<h4 id="路由器与交换机集线器会不会中病毒">
+  路由器与交换机、集线器会不会中病毒？
+  <a class="heading-link" href="#%e8%b7%af%e7%94%b1%e5%99%a8%e4%b8%8e%e4%ba%a4%e6%8d%a2%e6%9c%ba%e9%9b%86%e7%ba%bf%e5%99%a8%e4%bc%9a%e4%b8%8d%e4%bc%9a%e4%b8%ad%e7%97%85%e6%af%92">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h4>
+<p>不会，因为路由器不能识别数据内容，只进行数据的传递，而交换机与集线器分别工作在数据链路层与物理层，更不会中病毒。但病毒可以影响网络设备的正常工作，例如频繁广播发送数据，占用带宽影响效率，使这些设备一直处于忙碌状态。</p>
+<h2 id="arp-协议">
+  ARP 协议
+  <a class="heading-link" href="#arp-%e5%8d%8f%e8%ae%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="tcpip-协议层次关系">
+  TCP/IP 协议层次关系
+  <a class="heading-link" href="#tcpip-%e5%8d%8f%e8%ae%ae%e5%b1%82%e6%ac%a1%e5%85%b3%e7%b3%bb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/PucmbDRt1oyn31x1mQ1c87dbnbe.png" alt=""></p>
+<blockquote>
+<p>ARP 协议为 IP 协议提供服务，IP 协议为 ICMP 与 IGMP 协议提供服务。</p></blockquote>
+<h3 id="arp-协议功能">
+  ARP 协议功能
+  <a class="heading-link" href="#arp-%e5%8d%8f%e8%ae%ae%e5%8a%9f%e8%83%bd">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>将 IP 地址通过广播，目标 MAC 地址是 FF-FF-FF-FF-FF-FF，解析目标 IP 地址的 MAC 地址，只能在本网段使用，ARP 是解决同一个局域网上的主机或路由器的 IP 地址和 MAC 地址的映射关系。</p>
+<p>如果所找的主机和原主机不在同一个局域网上，那么就要通过 ARP 找一个位于本局域网上的某个路由器的 MAC 地址，然后把分组发送给这个路由器，让这个路由器把分组转发给下一个网络，剩下的工作就由下一个网络来做。</p>
+<p>从 IP 地址到 MAC 地址的解析是自动进行的，主机的用户对这种地址解析过程是不知情的，只要主机或路由器要和本网络上的另一个已知 IP 地址的主机或路由器进行通信，ARP 协议就会自动地将该 IP 地址解析为链路层所需要的 MAC 地址。</p>
+<blockquote>
+<p>arp -a 可以查看本地解析过的 Mac 表缓存。
+逆地址解析协议(RARP)：只知道自己 MAC 地址就能获得其 IP 地址。</p></blockquote>
+<h3 id="arp-欺骗">
+  ARP 欺骗
+  <a class="heading-link" href="#arp-%e6%ac%ba%e9%aa%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>ARP 欺骗的运作原理是由攻击者发送假的 ARP 数据包到网上，尤其是送到网关上。其目的是要让送至特定的 IP 地址的流量被错误送到攻击者所取代的地方。因此攻击者可将这些流量另行转送到真正的网关（被动式数据包嗅探，passive sniffing）或是篡改后再转送（中间人攻击，man-in-the-middle attack）。攻击者亦可将 ARP 数据包导到不存在的 MAC 地址以达到阻断服务攻击的效果，例如 netcut 软件。</p>
+<p>例如：某一的 IP 地址是 192.168.0.254，其 MAC 地址为 00-11-22-33-44-55，网上上的计算机内 ARP 表会有这一笔 ARP 记录。攻击者发动攻击时，会大量发出已将 192.168.0.254 的 MAC 地址篡改为 00-55-44-33-22-11 的 ARP 数据包。那么网上上的计算机若将此伪造的 ARP 写入自身的 ARP 表后，计算机若要透过网上网关连到其他计算机时，数据包将被导到 00-55-44-33-22-11 这个 MAC 地址，因此攻击者可从此 MAC 地址截收到数据包，可篡改后再送回真正的网关，或是什么也不做，让网上无法连线。</p>
+<h3 id="防止-arp-欺骗的两种方法">
+  防止 ARP 欺骗的两种方法
+  <a class="heading-link" href="#%e9%98%b2%e6%ad%a2-arp-%e6%ac%ba%e9%aa%97%e7%9a%84%e4%b8%a4%e7%a7%8d%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
+<li>静态绑定，使用 arp -s 命令进行静态绑定，静态绑定后双方计算机通信不在使用 ARP 协议进行动态获取，可直接进行对目标计算机的通信。可将脚本命令编辑成.bat 脚本，用 gpedit.msc 打开组策略，在开机登陆中添加该脚本，则脚本代码开机自动启动。</li>
+<li>使用 ARP 防火墙进行防御。</li>
+</ol>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-计算机网络">
+        参见 计算机网络
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bd%91%e7%bb%9c">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/posts/mkijdrhouojq1bx8l52ckd0hn4b/">ICMP 与 IGMP 协议</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/jopldi3rioohbsxlqnfcrms4nxf/">IP 数据包与路由</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/ibcrdcdbsoksqfxcecncxiewndd/">Mac 层与快速以太网</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/lvrxddgsxozy28xhe5ac8oannle/">TCP 协议详解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/dmxbd3aztoqpdtxayzhcs7a4nke/">传输层与 UDP 协议简述</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/wauwdaufxoeqmbxrhprccywmnfb/">传输媒体与信道复用技术</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?562d84a8bc2f683d3ce80d1d43bb641c";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

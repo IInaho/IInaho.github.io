@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+以太网 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  以太网
+  
+    
+    链接到标题
+  
+
+
+  以太网的两个标准
+  
+    
+    链接到标题
+  
+
+
+DIX Ethernet V2 是世界上第一个局域网产品(以太网)的规约。
+IEEE 的 802.3 标准。
+
+
+DIX Ethernet V2 标准与 IEEE 的 802.3 标准只有很小的差别，因此可以将 802.3 局域网简称为以太网。
+严格说来，以太网应当是指符合 DIX Ethernet V2 标准的局域网
+
+  以太网与数据链路层的两个子层
+  
+    
+    链接到标题
+  
+
+为了使数据链路层能更好地适应多种局域网标准，802 委员会就将局域网的数据链路层拆成两个子层.
+
+逻辑链路控制 LLC(Logical Link Control)子层
+媒体接入控制 MAC(Medium Access Control)子层
+
+
+与接入到传输媒体有关的内容都放在 MAC 子层，而 LLC 子层则与传输媒体无关，不管采用何种协议的局域网对 LLC 子层来说都是透明的。
+由于 TCP/IP 体系经常使用的局域网是 DIX Ethernet V2 而不是 802.3 标准中的几种局域网，因此现在 802 委员会制定的逻辑链路控制子层 LLC(即 802.2 标准)的作用已经不大了.
+很多厂商生产的适配器上就仅装有 MAC 协议而没有 LLC 协议。">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="以太网">
+  <meta name="twitter:description" content="以太网 链接到标题 以太网的两个标准 链接到标题 DIX Ethernet V2 是世界上第一个局域网产品(以太网)的规约。 IEEE 的 802.3 标准。 DIX Ethernet V2 标准与 IEEE 的 802.3 标准只有很小的差别，因此可以将 802.3 局域网简称为以太网。 严格说来，以太网应当是指符合 DIX Ethernet V2 标准的局域网
+以太网与数据链路层的两个子层 链接到标题 为了使数据链路层能更好地适应多种局域网标准，802 委员会就将局域网的数据链路层拆成两个子层.
+逻辑链路控制 LLC(Logical Link Control)子层 媒体接入控制 MAC(Medium Access Control)子层 与接入到传输媒体有关的内容都放在 MAC 子层，而 LLC 子层则与传输媒体无关，不管采用何种协议的局域网对 LLC 子层来说都是透明的。 由于 TCP/IP 体系经常使用的局域网是 DIX Ethernet V2 而不是 802.3 标准中的几种局域网，因此现在 802 委员会制定的逻辑链路控制子层 LLC(即 802.2 标准)的作用已经不大了. 很多厂商生产的适配器上就仅装有 MAC 协议而没有 LLC 协议。">
+ 
+<meta property="og:url" content="//localhost:1313/posts/fdqidt94lov4ibxpv4ycqg7jnqb/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="以太网">
+  <meta property="og:description" content="以太网 链接到标题 以太网的两个标准 链接到标题 DIX Ethernet V2 是世界上第一个局域网产品(以太网)的规约。 IEEE 的 802.3 标准。 DIX Ethernet V2 标准与 IEEE 的 802.3 标准只有很小的差别，因此可以将 802.3 局域网简称为以太网。 严格说来，以太网应当是指符合 DIX Ethernet V2 标准的局域网
+以太网与数据链路层的两个子层 链接到标题 为了使数据链路层能更好地适应多种局域网标准，802 委员会就将局域网的数据链路层拆成两个子层.
+逻辑链路控制 LLC(Logical Link Control)子层 媒体接入控制 MAC(Medium Access Control)子层 与接入到传输媒体有关的内容都放在 MAC 子层，而 LLC 子层则与传输媒体无关，不管采用何种协议的局域网对 LLC 子层来说都是透明的。 由于 TCP/IP 体系经常使用的局域网是 DIX Ethernet V2 而不是 802.3 标准中的几种局域网，因此现在 802 委员会制定的逻辑链路控制子层 LLC(即 802.2 标准)的作用已经不大了. 很多厂商生产的适配器上就仅装有 MAC 协议而没有 LLC 协议。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-07-07T00:00:00+00:00">
+    <meta property="article:tag" content="计算机网络">
+      <meta property="og:see_also" content="//localhost:1313/posts/mkijdrhouojq1bx8l52ckd0hn4b/">
+      <meta property="og:see_also" content="//localhost:1313/posts/jopldi3rioohbsxlqnfcrms4nxf/">
+      <meta property="og:see_also" content="//localhost:1313/posts/ibcrdcdbsoksqfxcecncxiewndd/">
+      <meta property="og:see_also" content="//localhost:1313/posts/lvrxddgsxozy28xhe5ac8oannle/">
+      <meta property="og:see_also" content="//localhost:1313/posts/dmxbd3aztoqpdtxayzhcs7a4nke/">
+      <meta property="og:see_also" content="//localhost:1313/posts/wauwdaufxoeqmbxrhprccywmnfb/">
+      <meta property="og:see_also" content="//localhost:1313/posts/s51fdiy0vomt1uxt5sjcxqqhnad/">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/fdqidt94lov4ibxpv4ycqg7jnqb/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+  
+    
+    <link rel="stylesheet" href="/css/top.css" media="screen">
+  
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+
+  
+   
+  <aside class="table-of-contents">
+    <div class="toc-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#以太网">以太网</a>
+      <ul>
+        <li><a href="#以太网的两个标准">以太网的两个标准</a></li>
+        <li><a href="#以太网与数据链路层的两个子层">以太网与数据链路层的两个子层</a></li>
+        <li><a href="#以太网提供的服务">以太网提供的服务</a></li>
+        <li><a href="#星型拓扑">星型拓扑</a></li>
+        <li><a href="#集线器的一些特点">集线器的一些特点</a></li>
+        <li><a href="#集线器连以太网定义的标准">集线器连以太网定义的标准</a></li>
+        <li><a href="#以太网的信道利用率">以太网的信道利用率</a>
+          <ul>
+            <li><a href="#以太网的信道被占用的情况">以太网的信道被占用的情况</a></li>
+            <li><a href="#提高信道利用率">提高信道利用率</a></li>
+          </ul>
+        </li>
+        <li><a href="#信道利用率最大值">信道利用率最大值</a>
+          <ul>
+            <li><a href="#对以太网参数的要求">对以太网参数的要求</a></li>
+            <li><a href="#信道利用率的最大值">信道利用率的最大值</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </aside>
+<section class="container post">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toc = document.querySelector('.table-of-contents');
+      if (!toc) return;
+
+      
+      toc.classList.add('hidden');
+      let timer;
+
+      
+      toc.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+        toc.classList.add('visible');
+        toc.classList.remove('hidden');
+      });
+
+      toc.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          toc.classList.remove('visible');
+          toc.classList.add('hidden');
+        }, 300);
+      });
+
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const tocLinks = document.querySelectorAll('#TableOfContents a');
+
+      const observerOptions = {
+        rootMargin: '-80px 0px -80px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      };
+
+      let currentActiveLink = null;
+      let isScrolling = false;
+
+      const observer = new IntersectionObserver(entries => {
+        if (isScrolling) return;
+
+        entries.forEach(entry => {
+          const targetId = '#' + entry.target.id;
+          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
+
+          if (!link) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+            link.classList.add('active');
+            currentActiveLink = link;
+          }
+        });
+      }, observerOptions);
+
+      
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            isScrolling = true;
+
+            if (currentActiveLink) {
+              currentActiveLink.classList.remove('active');
+            }
+
+            link.classList.add('active');
+            currentActiveLink = link;
+
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isScrolling = false;
+            }, 1000);
+          }
+        });
+      });
+
+      
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+        observer.observe(heading);
+      });
+    });
+  </script>
+
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/fdqidt94lov4ibxpv4ycqg7jnqb/">
+            以太网
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2023-07-07T00:00:00Z">
+              July 7, 2023
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：1 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            159 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="以太网">
+  以太网
+  <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="以太网的两个标准">
+  以太网的两个标准
+  <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e7%9a%84%e4%b8%a4%e4%b8%aa%e6%a0%87%e5%87%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>DIX Ethernet V2 是世界上第一个局域网产品(以太网)的规约。</li>
+<li>IEEE 的 802.3 标准。</li>
+</ul>
+<blockquote>
+<p>DIX Ethernet V2 标准与 IEEE 的 802.3 标准只有很小的差别，因此可以将 802.3 局域网简称为以太网。
+严格说来，以太网应当是指符合 DIX Ethernet V2 标准的局域网</p></blockquote>
+<h2 id="以太网与数据链路层的两个子层">
+  以太网与数据链路层的两个子层
+  <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e4%b8%8e%e6%95%b0%e6%8d%ae%e9%93%be%e8%b7%af%e5%b1%82%e7%9a%84%e4%b8%a4%e4%b8%aa%e5%ad%90%e5%b1%82">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>为了使数据链路层能更好地适应多种局域网标准，802 委员会就将局域网的数据链路层拆成两个子层.</p>
+<ul>
+<li>逻辑链路控制 LLC(Logical Link Control)子层</li>
+<li>媒体接入控制 MAC(Medium Access Control)子层</li>
+</ul>
+<blockquote>
+<p>与接入到传输媒体有关的内容都放在 MAC 子层，而 LLC 子层则与传输媒体无关，不管采用何种协议的局域网对 LLC 子层来说都是透明的。
+由于 TCP/IP 体系经常使用的局域网是 DIX Ethernet V2 而不是 802.3 标准中的几种局域网，因此现在 802 委员会制定的逻辑链路控制子层 LLC(即 802.2 标准)的作用已经不大了.
+很多厂商生产的适配器上就仅装有 MAC 协议而没有 LLC 协议。</p></blockquote>
+<h2 id="以太网提供的服务">
+  以太网提供的服务
+  <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e6%8f%90%e4%be%9b%e7%9a%84%e6%9c%8d%e5%8a%a1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
+<li>以太网提供的服务是不可靠的交付，即尽最大努力的交付。</li>
+<li>当接收站收到有差错的数据帧时就丢弃此帧，其他什么也不做。差错的纠正由高层来决定。</li>
+<li>如果高层发现丢失了一些数据而进行重传，但以太网并不知道这是一个重传的帧，而是当作一个新的数据帧来发送。</li>
+</ul>
+<h2 id="星型拓扑">
+  星型拓扑
+  <a class="heading-link" href="#%e6%98%9f%e5%9e%8b%e6%8b%93%e6%89%91">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p><img src="../static/LYcNbNq65oTxoLx2dIvcTFW1naf.png" alt=""></p>
+<p>传统以太网最初使用粗同轴电缆，后来演进到使用比较便宜的细同轴电缆，最后发展为使用更便宜和更灵活的双绞线。不同电缆而使用无屏蔽双绞线。每个站需要用两对双绞线，分别用于发送和接收。</p>
+<p>这种以太网采用星型拓扑，在星型的中心则增加了一种可靠性非常高的设备，叫集线器。</p>
+<h2 id="集线器的一些特点">
+  集线器的一些特点
+  <a class="heading-link" href="#%e9%9b%86%e7%ba%bf%e5%99%a8%e7%9a%84%e4%b8%80%e4%ba%9b%e7%89%b9%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>集线器是使用电子器件来模拟实际电缆线的工作，因此整个系统仍然像一个传统的以太网那样运行。集线器使用了大规模集成电路芯片，因此这样的硬件设备的可靠性已大大提高了。</p>
+<p>使用集线器的以太网在逻辑上仍是一个总线网，各工作站使用的还是 CSMA/CD 协议，并共享逻辑上的总线。</p>
+<blockquote>
+<p>集线器很像一个多接口的转发器，工作在物理层。</p></blockquote>
+<h2 id="集线器连以太网定义的标准">
+  集线器连以太网定义的标准
+  <a class="heading-link" href="#%e9%9b%86%e7%ba%bf%e5%99%a8%e8%bf%9e%e4%bb%a5%e5%a4%aa%e7%bd%91%e5%ae%9a%e4%b9%89%e7%9a%84%e6%a0%87%e5%87%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>10BASE-T 的通信距离稍短，每个站到集线器的距离不超过 100m。</p>
+<p>这种 10Mb/s 速率的无屏蔽双绞线星型网的出现，既降低了成本，又提高了可靠性。</p>
+<p>10BASE-T 双绞线以太网的出现，是局域网发展史上一个非常重要的里程碑，它为以太网在局域网中的统治地位奠定了牢固的基础。</p>
+<blockquote>
+<p>其他： 100Base-FX 100Base-T 100Base-T4</p></blockquote>
+<h2 id="以太网的信道利用率">
+  以太网的信道利用率
+  <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e7%9a%84%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="以太网的信道被占用的情况">
+  以太网的信道被占用的情况
+  <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e7%9a%84%e4%bf%a1%e9%81%93%e8%a2%ab%e5%8d%a0%e7%94%a8%e7%9a%84%e6%83%85%e5%86%b5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><img src="../static/RMgbbsWgloCsl2x45yMcgbQgnQy.png" alt=""></p>
+<p>争用期长度为 2γ，即端到端传播时延的两倍。碰撞到碰撞后不发送干扰信号。</p>
+<p>帧长为 L(bit)，数据发送速率为 C(b/s)，因而帧的发送时间为 L/C=T0(s).</p>
+<p>一个帧从开始发送，经可能发生的碰撞后，将再重传数次，到发送成功且信道转为空闲(即再经过时间 γ 使得信道上无信号在传播)时为止，是发送一帧所需的平均时间。</p>
+<h3 id="提高信道利用率">
+  提高信道利用率
+  <a class="heading-link" href="#%e6%8f%90%e9%ab%98%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>要提高以太网信道利用率，就必须减小 γ 与 t0 之比，以太网中定义了参数 a，是以太网单程端到端时延 γ 与帧的发送时间 t0 之比:</p>
+<p>a = γ/t0</p>
+<p>a -&gt; 0 表示一发生碰撞就立即可以检测出来，并立即停止发送，因而信道利用率很高。</p>
+<p>a 越大，表明争用期所占比例增大，每发生一次碰撞就浪费许多信道资源，使信道利用率明显降低。</p>
+<h2 id="信道利用率最大值">
+  信道利用率最大值
+  <a class="heading-link" href="#%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87%e6%9c%80%e5%a4%a7%e5%80%bc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="对以太网参数的要求">
+  对以太网参数的要求
+  <a class="heading-link" href="#%e5%af%b9%e4%bb%a5%e5%a4%aa%e7%bd%91%e5%8f%82%e6%95%b0%e7%9a%84%e8%a6%81%e6%b1%82">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li>当数据率一定时，以太网的连线的长度受到限制否则 γ 的数值会太大</li>
+<li>以太网的帧长不能太短，否则 t0 的值会太小，使 a 值太大。</li>
+</ul>
+<h3 id="信道利用率的最大值">
+  信道利用率的最大值
+  <a class="heading-link" href="#%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87%e7%9a%84%e6%9c%80%e5%a4%a7%e5%80%bc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>在理想化的情况下，以太网上的各站发送数据都不会产生碰撞(这显然已经不是 CSMA/CD，而是需要使用一种特殊的调度算法)，即总线一旦空闲就有某一个站立即发送数据。</p>
+<p>发送一帧占用线路的时间是 t0 + γ，而帧的本身的发送时间是 t0，于是我们可计算理想情况下的极限信道利用率 Smax 为：</p>
+<p>Smax = t0/t0 + γ = 1/1+a</p>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-计算机网络">
+        参见 计算机网络
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bd%91%e7%bb%9c">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/posts/mkijdrhouojq1bx8l52ckd0hn4b/">ICMP 与 IGMP 协议</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/jopldi3rioohbsxlqnfcrms4nxf/">IP 数据包与路由</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/ibcrdcdbsoksqfxcecncxiewndd/">Mac 层与快速以太网</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/lvrxddgsxozy28xhe5ac8oannle/">TCP 协议详解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/dmxbd3aztoqpdtxayzhcs7a4nke/">传输层与 UDP 协议简述</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/posts/wauwdaufxoeqmbxrhprccywmnfb/">传输媒体与信道复用技术</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+      
+
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .twikoo .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
+        el: '#tcomment', 
+    })
+</script>
+    </footer>
+  </article>
+
+</section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?562d84a8bc2f683d3ce80d1d43bb641c";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
