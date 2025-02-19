@@ -6,8 +6,15 @@
     <description>Recent content in Posts on inaho</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 18 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Feb 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>回忆近三年工作生涯（2022）</title>
+      <link>//localhost:1313/posts/mxbwda3o9oypakxwbftc7ujkngm/</link>
+      <pubDate>Mon, 19 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/mxbwda3o9oypakxwbftc7ujkngm/</guid>
+      <description>&lt;h1 id=&#34;回忆近三年工作生涯2022&#34;&gt;&#xA;  回忆近三年工作生涯（2022）&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e5%9b%9e%e5%bf%86%e8%bf%91%e4%b8%89%e5%b9%b4%e5%b7%a5%e4%bd%9c%e7%94%9f%e6%b6%af2022&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;链接到标题&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;链接到标题&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;前言&#34;&gt;&#xA;  前言&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e5%89%8d%e8%a8%80&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;链接到标题&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;链接到标题&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;时隔这么久重新拾起了个人博客网站，还是想写一篇文章，讲一下最近这几年我都经历了什么。&lt;/p&gt;&#xA;&lt;p&gt;犹记得我的上一篇文章发布在 2021 年 8 月份，由于后来我去了杭州实习，便没时间写文章了。&lt;/p&gt;&#xA;&lt;p&gt;说来也巧，我曾在 2020 年怕因学历问题找工作困难，遂打算考研，当时觉得考研也算是一个缓冲区，但在 2021 年 8 月份放暑假，在家无聊投了几份简历，意外的获得了两个实习 offer。一家是西安做校园网的公司，岗位是 CPP/QT 客户端方向；另一家是杭州某安全公司，技术栈需要转 golang，也就是我现在所在的公司。&lt;/p&gt;&#xA;&lt;h2 id=&#34;实习经历&#34;&gt;&#xA;  实习经历&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e5%ae%9e%e4%b9%a0%e7%bb%8f%e5%8e%86&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;链接到标题&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;链接到标题&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;2021 年 8 月份，考虑到杭州景色秀丽、机会多，并且还提供人才补贴，因此毅然选择了前往杭州实习。&lt;/p&gt;&#xA;&lt;p&gt;记得初到公司时跟着小组成员开晨会，组里的其他成员在对接项目进度、技术问题，我在旁边完全听不懂，既紧张又兴奋，紧张是害怕自己的能力无法完成工作任务，兴奋是觉得自己总算步入了工作生涯。当时公司是有实习生培养计划的，由我的导师来安排我的学习路线，并给我分配任务，我只需要跟着完成即可。&lt;/p&gt;&#xA;&lt;p&gt;前期基本在熟悉 golang 基础语法和 web 框架，大部分时间是自学，工作也比较清闲，也认识了很多同一届毕业的小伙伴。再后来开始接触项目，写一些 shell 脚本进行服务的安装部署，或是写一些 restful 接口来实现业务需求，或是写一些小工具来提高工作效率，总之对 golang 技术生态是渐渐入门了。&lt;/p&gt;&#xA;&lt;p&gt;随着对项目也越来越熟悉，开始跟着 pm 一起开发 cspm 引擎（云态势感知系统），其实就是对接各个云平台的 it 资产，然后根据安全提供的 demo 来识别是否有配置风险。由于这个模块需要 python 来写，因此又学习了 python 相关的技术，后面已经可以一个人负责整个模块的业务需求了。&lt;/p&gt;&#xA;&lt;h2 id=&#34;杭州生活&#34;&gt;&#xA;  杭州生活&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e6%9d%ad%e5%b7%9e%e7%94%9f%e6%b4%bb&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;链接到标题&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;链接到标题&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;回忆起初到杭州的生活，现在想起来也是感慨万分。&lt;/p&gt;&#xA;&lt;p&gt;我初中时喜欢玩剑灵，当时团队队长就是绍兴人，他带着我们打本、攻略 boss，跟我说以后考大学来杭州，他带我逛西湖。没想到多年以后，考大学是没考过来，但工作跑来了杭州（这也算是缘分吧）&lt;/p&gt;&#xA;&lt;p&gt;然后我们约了一个周末，他带我爬了五云山，徒步了九溪、云栖竹径，然后看了西湖边的日落，这也算是第一次没跟着旅游团来杭州旅游（笑）。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>基于hugo搭建私人博客</title>
       <link>//localhost:1313/posts/d6owd7jfkoaldjx4ju4cgbudnwb/</link>
