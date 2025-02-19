@@ -862,4 +862,25 @@ body.colorscheme-dark .custom-post-item .post-meta {
     body.colorscheme-auto .custom-post-item .post-meta i {
       color: #dadada; } }
 
+body.colorscheme-dark {
+  --bg-color: 30, 30, 30;
+  --text-color: #e0e0e0;
+  --heading-color: #ffffff;
+  --border-color: 60, 60, 60;
+  --accent-color: #42d392;
+  --accent-rgb: 66, 211, 146;
+  --scrollbar-color: 80, 80, 80;
+  --scrollbar-track: 50, 50, 50; }
+
+@media (prefers-color-scheme: dark) {
+  body.colorscheme-auto {
+    --bg-color: 30, 30, 30;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --border-color: 60, 60, 60;
+    --accent-color: #42d392;
+    --accent-rgb: 66, 211, 146;
+    --scrollbar-color: 80, 80, 80;
+    --scrollbar-track: 50, 50, 50; } }
+
 /*# sourceMappingURL=coder-dark.css.map */

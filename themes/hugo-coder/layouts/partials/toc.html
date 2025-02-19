@@ -1,7 +1,10 @@
-  <!-- 侧边栏目录 -->
-   
-  <aside class="table-of-contents">
-    <div class="toc-container">
-      {{ .TableOfContents }}
-    </div>
-  </aside>
+<aside class="table-of-contents">
+  <div class="toc-container">
+    <h2>目录</h2>
+    {{ if and .TableOfContents (not .Params.disableToc) }}
+    {{ .TableOfContents }}
+    {{ else }}
+    <p class="toc-empty">本文没有目录</p>
+    {{ end }}
+  </div>
+</aside>

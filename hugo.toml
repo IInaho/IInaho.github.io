@@ -34,10 +34,6 @@ enableEmoji = true
   hidecolorschemetoggle = false
   twikoo = true
   maxSeeAlsoItems = 5
-  customCSS = ["css/top.css", "css/list.css", "css/li.css"]
-
-[params.baidu]
-  token = "562d84a8bc2f683d3ce80d1d43bb641c"
 
 [taxonomies]
   category = "categories"

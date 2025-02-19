@@ -181,21 +181,6 @@ $$ s = a_1a_2 \cdots a_n \quad(n \geq 0) $$
 
 
 
-  
-    
-    <link rel="stylesheet" href="/css/top.css" media="screen">
-  
-
-  
-    
-    <link rel="stylesheet" href="/css/list.css" media="screen">
-  
-
-  
-    
-    <link rel="stylesheet" href="/css/li.css" media="screen">
-  
-
 
 
  
@@ -324,12 +309,11 @@ code.has-jax {
 
     <div class="content">
       
-
-  
-   
-  <aside class="table-of-contents">
-    <div class="toc-container">
-      <nav id="TableOfContents">
+<aside class="table-of-contents">
+  <div class="toc-container">
+    <h2>目录</h2>
+    
+    <nav id="TableOfContents">
   <ul>
     <li><a href="#字符串">字符串</a>
       <ul>
@@ -402,103 +386,10 @@ code.has-jax {
     </li>
   </ul>
 </nav>
-    </div>
-  </aside>
+    
+  </div>
+</aside>
 <section class="container post">
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const toc = document.querySelector('.table-of-contents');
-      if (!toc) return;
-
-      
-      toc.classList.add('hidden');
-      let timer;
-
-      
-      toc.addEventListener('mouseenter', () => {
-        clearTimeout(timer);
-        toc.classList.add('visible');
-        toc.classList.remove('hidden');
-      });
-
-      toc.addEventListener('mouseleave', () => {
-        timer = setTimeout(() => {
-          toc.classList.remove('visible');
-          toc.classList.add('hidden');
-        }, 300);
-      });
-
-      
-      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-      const tocLinks = document.querySelectorAll('#TableOfContents a');
-
-      const observerOptions = {
-        rootMargin: '-80px 0px -80px 0px',
-        threshold: [0, 0.25, 0.5, 0.75, 1]
-      };
-
-      let currentActiveLink = null;
-      let isScrolling = false;
-
-      const observer = new IntersectionObserver(entries => {
-        if (isScrolling) return;
-
-        entries.forEach(entry => {
-          const targetId = '#' + entry.target.id;
-          const link = Array.from(tocLinks).find(link => link.getAttribute('href') === targetId);
-
-          if (!link) return;
-
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            if (currentActiveLink) {
-              currentActiveLink.classList.remove('active');
-            }
-            link.classList.add('active');
-            currentActiveLink = link;
-          }
-        });
-      }, observerOptions);
-
-      
-      tocLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
-
-          if (targetElement) {
-            isScrolling = true;
-
-            if (currentActiveLink) {
-              currentActiveLink.classList.remove('active');
-            }
-
-            link.classList.add('active');
-            currentActiveLink = link;
-
-            window.scrollTo({
-              top: targetElement.offsetTop - 80,
-              behavior: 'smooth'
-            });
-
-            setTimeout(() => {
-              isScrolling = false;
-            }, 1000);
-          }
-        });
-      });
-
-      
-      headings.forEach(heading => {
-        if (!heading.id) {
-          heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
-        }
-        observer.observe(heading);
-      });
-    });
-  </script>
-
   <article>
     <header>
       <div class="post-title">
@@ -1478,63 +1369,26 @@ code.has-jax {
 </section>
 
 
-      
-
-<script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js"></script>
-<div id="tcomment"></div>
-<style>
-    .twikoo {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-    }
-
-    :root[data-scheme="dark"] {
-        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
-        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
-    }
-
-    .twikoo .el-input-group__prepend,
-    .twikoo .tk-action-icon,
-    .twikoo .tk-submit-action-icon,
-    .twikoo .tk-time,
-    .twikoo .tk-comments-no,
-    .twikoo .tk-comments-count {
-        color: var(--twikoo-body-text-color);
-    }
-
-    .twikoo .el-input__inner,
-    .twikoo .el-textarea__inner,
-    .twikoo .tk-preview-container,
-    .twikoo .tk-content,
-    .twikoo .tk-nick,
-    .twikoo .tk-send {
-        color: var(--twikoo-body-text-color-main);
-    }
-
-    .twikoo .el-button {
-        color: var(--twikoo-body-text-color) !important;
-    }
-
-    .twikoo .el-input__count {
-        color: var(--twikoo-body-text-color) !important;
-    }
-
-    .OwO .OwO-body {
-        background-color: var(--body-background) !important;
-        color: var(--body-text-color) !important;
-    }
-</style><script>
-    twikoo.init({
-        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo', 
-        el: '#tcomment', 
-    })
-</script>
+      <div id="tcomment"></div>
     </footer>
   </article>
 
 </section>
+
+
+
+
+
+  <script src="/js/twiko.all.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo',
+        el: '#tcomment'
+      });
+    });
+  </script>
+
 
     </div>
 
@@ -1582,17 +1436,6 @@ code.has-jax {
   
 
   
-<script>
-var _hmt = _hmt || [];
-(function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?562d84a8bc2f683d3ce80d1d43bb641c";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-
 
   
 

@@ -2,24 +2,24 @@
     text-align: center;
     margin: 2rem 0 4rem;
     padding: 2rem;
-}
 
-.list-header .title {
-    font-size: 5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: var(--heading-color);
-    line-height: 1.2;
+    .title {
+        font-size: 5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: var(--heading-color);
+        line-height: 1.2;
+    }
 }
 
 .title-link {
     text-decoration: none;
     color: inherit;
     transition: color 0.3s ease;
-}
 
-.title-link:hover {
-    color: var(--accent-color);
+    &:hover {
+        color: var(--accent-color);
+    }
 }
 
 .post-count {
@@ -42,20 +42,22 @@
     padding: 1.5rem;
     border-bottom: 1px solid rgba(var(--border-color), 0.1);
     transition: all 0.3s ease;
-}
 
-.post-entry:hover {
-    transform: translateX(10px);
+    &:hover {
+        transform: translateX(10px);
+    }
 }
 
 @media (max-width: 768px) {
     .list-header {
         margin: 1rem 0 2rem;
         padding: 1.5rem;
+
+        .title {
+            font-size: 2rem;
+        }
     }
-    .list-header .title {
-        font-size: 2rem;
-    }
+
     .post-count {
         font-size: 1rem;
         padding: 0.4rem 1.2rem;

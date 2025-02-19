@@ -1,0 +1,44 @@
+.twikoo {
+    background-color: var(--card-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-l1);
+    padding: var(--card-padding);
+
+    .el-input-group__prepend,
+    .tk-action-icon,
+    .tk-submit-action-icon,
+    .tk-time,
+    .tk-comments-no,
+    .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+
+    .el-input__inner,
+    .el-textarea__inner,
+    .tk-preview-container,
+    .tk-content,
+    .tk-nick,
+    .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+
+    .el-button {
+        color: var(--twikoo-body-text-color) !important;
+    }
+
+    .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+}
+
+:root[data-scheme="dark"] {
+    --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+    --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+}
+
+.OwO {
+    .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+}
