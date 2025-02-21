@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+oh-my-zsh 终端美化 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  oh-my-zsh 终端美化
+  
+    
+    链接到标题
+  
+
+
+  安装 zsh
+  
+    
+    链接到标题
+  
+
+yay -S zsh
+chsh -s /bin/zsh # 设置默认终端
+
+  安装 oh-my-zsh
+  
+    
+    链接到标题
+  
+
+sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34;
+# 或者
+sh -c &#34;$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)&#34;
+
+注意：安装过程中要同意使用 Oh-my-zsh 的配置模板覆盖已有的 .zshrc
+如果之前在使用 bash 时自定义了一些环境变量、别名等，那么在切换到 zsh 后，你需要手动迁移这些自定义配置
+
+  自定义主题
+  
+    
+    链接到标题
+  
+
+sudo wget -O $ZSH_CUSTOM/themes/haoomz.zsh-theme https://cdn.haoyep.com/gh/leegical/Blog_img/zsh/haoomz.zsh-theme
+
+vim ~/.zshrc
+ZSH_THEME=&#34;haoomz&#34;
+source ~/.zshrc
+查看所有 zsh 内置的主题样式和对应的主题名
+cd ~/.oh-my-zsh/themes &amp;&amp; ls
+
+  安装插件
+  
+    
+    链接到标题
+  
+
+
+  zsh -autosuggestions
+  
+    
+    链接到标题
+  
+
+zsh-autosuggestions 是一个命令提示插件，当你输入命令时，会自动推测你可能需要输入的命令，按下右键可以快速采用建议。">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="oh-my-zsh 终端美化">
+  <meta name="twitter:description" content="oh-my-zsh 终端美化 链接到标题 安装 zsh 链接到标题 yay -S zsh chsh -s /bin/zsh # 设置默认终端 安装 oh-my-zsh 链接到标题 sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34; # 或者 sh -c &#34;$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)&#34; 注意：安装过程中要同意使用 Oh-my-zsh 的配置模板覆盖已有的 .zshrc
+如果之前在使用 bash 时自定义了一些环境变量、别名等，那么在切换到 zsh 后，你需要手动迁移这些自定义配置
+自定义主题 链接到标题 sudo wget -O $ZSH_CUSTOM/themes/haoomz.zsh-theme https://cdn.haoyep.com/gh/leegical/Blog_img/zsh/haoomz.zsh-theme vim ~/.zshrc ZSH_THEME=&#34;haoomz&#34; source ~/.zshrc 查看所有 zsh 内置的主题样式和对应的主题名
+cd ~/.oh-my-zsh/themes &amp;&amp; ls 安装插件 链接到标题 zsh -autosuggestions 链接到标题 zsh-autosuggestions 是一个命令提示插件，当你输入命令时，会自动推测你可能需要输入的命令，按下右键可以快速采用建议。">
+ 
+<meta property="og:url" content="//localhost:1313/posts/dm7zdjanxoloyjxxhzlclhhqn2g/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="oh-my-zsh 终端美化">
+  <meta property="og:description" content="oh-my-zsh 终端美化 链接到标题 安装 zsh 链接到标题 yay -S zsh chsh -s /bin/zsh # 设置默认终端 安装 oh-my-zsh 链接到标题 sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34; # 或者 sh -c &#34;$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)&#34; 注意：安装过程中要同意使用 Oh-my-zsh 的配置模板覆盖已有的 .zshrc
+如果之前在使用 bash 时自定义了一些环境变量、别名等，那么在切换到 zsh 后，你需要手动迁移这些自定义配置
+自定义主题 链接到标题 sudo wget -O $ZSH_CUSTOM/themes/haoomz.zsh-theme https://cdn.haoyep.com/gh/leegical/Blog_img/zsh/haoomz.zsh-theme vim ~/.zshrc ZSH_THEME=&#34;haoomz&#34; source ~/.zshrc 查看所有 zsh 内置的主题样式和对应的主题名
+cd ~/.oh-my-zsh/themes &amp;&amp; ls 安装插件 链接到标题 zsh -autosuggestions 链接到标题 zsh-autosuggestions 是一个命令提示插件，当你输入命令时，会自动推测你可能需要输入的命令，按下右键可以快速采用建议。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-02-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-02-20T00:00:00+00:00">
+    <meta property="article:tag" content="Linux">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/dm7zdjanxoloyjxxhzlclhhqn2g/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+<aside class="table-of-contents">
+  <div class="toc-container">
+    <h2>目录</h2>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#oh-my-zsh-终端美化">oh-my-zsh 终端美化</a>
+      <ul>
+        <li><a href="#安装-zsh">安装 zsh</a></li>
+        <li><a href="#安装-oh-my-zsh">安装 oh-my-zsh</a></li>
+        <li><a href="#自定义主题">自定义主题</a></li>
+        <li><a href="#安装插件">安装插件</a>
+          <ul>
+            <li><a href="#zsh--autosuggestions"><strong>zsh -autosuggestions</strong></a></li>
+            <li><a href="#zsh-syntax-highlighting"><strong>zsh-syntax-highlighting</strong></a></li>
+            <li><a href="#内置插件">内置插件</a></li>
+          </ul>
+        </li>
+        <li><a href="#启用插件">启用插件</a></li>
+        <li><a href="#root-用户">root 用户</a></li>
+        <li><a href="#配置本地代理">配置本地代理</a></li>
+        <li><a href="#卸载-oh-my-zsh">卸载 Oh My Zsh</a></li>
+        <li><a href="#手动更新-oh-my-zsh">手动更新 Oh My Zsh</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+  </div>
+</aside>
+<section class="container post">
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/dm7zdjanxoloyjxxhzlclhhqn2g/">
+            oh-my-zsh 终端美化
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2024-02-20T00:00:00Z">
+              2024-02-20
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：2 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            263 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/linux/">Linux</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="oh-my-zsh-终端美化">
+  oh-my-zsh 终端美化
+  <a class="heading-link" href="#oh-my-zsh-%e7%bb%88%e7%ab%af%e7%be%8e%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="安装-zsh">
+  安装 zsh
+  <a class="heading-link" href="#%e5%ae%89%e8%a3%85-zsh">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S zsh
+</span></span><span class="line"><span class="cl">chsh -s /bin/zsh <span class="c1"># 设置默认终端</span>
+</span></span></code></pre></div><h2 id="安装-oh-my-zsh">
+  安装 oh-my-zsh
+  <a class="heading-link" href="#%e5%ae%89%e8%a3%85-oh-my-zsh">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="cl">sh -c <span class="s2">&#34;</span><span class="k">$(</span>wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><blockquote>
+<p>注意：安装过程中要同意使用 Oh-my-zsh 的配置模板覆盖已有的 <code>.zshrc</code></p></blockquote>
+<p>如果之前在使用 <code>bash</code> 时自定义了一些环境变量、别名等，那么在切换到 <code>zsh</code> 后，你需要手动迁移这些自定义配置</p>
+<h2 id="自定义主题">
+  自定义主题
+  <a class="heading-link" href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%bb%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo wget -O <span class="nv">$ZSH_CUSTOM</span>/themes/haoomz.zsh-theme https://cdn.haoyep.com/gh/leegical/Blog_img/zsh/haoomz.zsh-theme
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vim ~/.zshrc
+</span></span><span class="line"><span class="cl"><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&#34;haoomz&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.zshrc
+</span></span></code></pre></div><p>查看所有 zsh 内置的主题样式和对应的主题名</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.oh-my-zsh/themes <span class="o">&amp;&amp;</span> ls
+</span></span></code></pre></div><h2 id="安装插件">
+  安装插件
+  <a class="heading-link" href="#%e5%ae%89%e8%a3%85%e6%8f%92%e4%bb%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="zsh--autosuggestions">
+  <strong>zsh -autosuggestions</strong>
+  <a class="heading-link" href="#zsh--autosuggestions">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><a href="https://github.com/zsh-users/zsh-autosuggestions"   class="external-link" target="_blank" rel="noopener" >zsh-autosuggestions</a> 是一个命令提示插件，当你输入命令时，会自动推测你可能需要输入的命令，按下右键可以快速采用建议。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/zsh-users/zsh-autosuggestions <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/zsh-autosuggestions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 中国用户可以使用下面任意一个加速下载# 加速1git clone https://github.moeyy.xyz/https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 加速2git clone https://gh.xmly.dev/https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 加速3git clone https://gh.api.99988866.xyz/https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</span>
+</span></span></code></pre></div><h3 id="zsh-syntax-highlighting">
+  <strong>zsh-syntax-highlighting</strong>
+  <a class="heading-link" href="#zsh-syntax-highlighting">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p><a href="https://github.com/zsh-users/zsh-syntax-highlighting"   class="external-link" target="_blank" rel="noopener" >zsh-syntax-highlighting</a> 是一个命令语法校验插件，在输入命令的过程中，若指令不合法，则指令显示为红色，若指令合法就会显示为绿色。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 中国用户可以使用下面任意一个加速下载</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 加速1</span>
+</span></span><span class="line"><span class="cl">git clone https://github.moeyy.xyz/https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl"><span class="c1"># 加速2</span>
+</span></span><span class="line"><span class="cl">git clone https://gh.xmly.dev/https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl"><span class="c1"># 加速3</span>
+</span></span><span class="line"><span class="cl">git clone https://gh.api.99988866.xyz/https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="si">${</span><span class="nv">ZSH_CUSTOM</span><span class="k">:-</span><span class="p">~/.oh-my-zsh/custom</span><span class="si">}</span>/plugins/zsh-syntax-highlighting
+</span></span></code></pre></div><h3 id="内置插件">
+  内置插件
+  <a class="heading-link" href="#%e5%86%85%e7%bd%ae%e6%8f%92%e4%bb%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
+<li><code>oh-my-zsh</code> 内置了 <code>z</code> 插件。<code>z</code> 是一个文件夹快捷跳转插件，对于曾经跳转过的目录，只需要输入最终目标文件夹名称，就可以快速跳转，避免再输入长串路径，提高切换文件夹的效率。</li>
+<li><code>oh-my-zsh</code> 内置了 <code>extract</code> 插件。<code>extract</code> 用于解压任何压缩文件，不必根据压缩文件的后缀名来记忆压缩软件。使用 <code>x</code> 命令即可解压文件。</li>
+<li>oh-my-zsh 内置了 <code>web-search</code> 插件。<code>web-search</code> 能让我们在命令行中使用搜索引擎进行搜索。使用 <code>搜索引擎关键字+搜索内容</code> 即可自动打开浏览器进行搜索。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">x test.tar.gz <span class="c1"># x命令</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">google 天气预报 <span class="c1"># web-search</span>
+</span></span><span class="line"><span class="cl">baidu 新闻
+</span></span></code></pre></div><h2 id="启用插件">
+  启用插件
+  <a class="heading-link" href="#%e5%90%af%e7%94%a8%e6%8f%92%e4%bb%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 修改~/.zshrc中插件列表</span>
+</span></span><span class="line"><span class="cl"><span class="nv">plugins</span><span class="o">=(</span>git zsh-autosuggestions zsh-syntax-highlighting z extract web-search<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.zshrc
+</span></span></code></pre></div><h2 id="root-用户">
+  root 用户
+  <a class="heading-link" href="#root-%e7%94%a8%e6%88%b7">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>当配置好登陆用户的 zsh 后，如果使用 <code>sudo su</code> 命令进入 <code>root</code> 用户的终端，发现还是默认的 <code>bash</code>。建议在 <code>root</code> 用户的终端下，也安装 <code>on my zsh</code>，设置与普通用户不同的主题以便区分，插件可以使用一样的。 <code>root</code> 用户的 <code>~/.zshrc</code> 配置，仅供参考：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&#34;ys&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">plugins</span><span class="o">=(</span>git zsh-autosuggestions zsh-syntax-highlighting z extract web-search<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或</span>
+</span></span><span class="line"><span class="cl"><span class="nv">plugins</span><span class="o">=(</span>git colored-man-pages colorize cp man command-not-found sudo suse ubuntu archlinux zsh-navigation-tools z extract history-substring-search python zsh-autosuggestions zsh-syntax-highlighting<span class="o">)</span>
+</span></span></code></pre></div><h2 id="配置本地代理">
+  配置本地代理
+  <a class="heading-link" href="#%e9%85%8d%e7%bd%ae%e6%9c%ac%e5%9c%b0%e4%bb%a3%e7%90%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>如果配置了本地代理，并希望终端的 git 等命令使用代理，那么可以在 <code>~/.zshrc</code> 中添加</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 为 curl wget git 等设置代理</span>
+</span></span><span class="line"><span class="cl">proxy <span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">export</span> <span class="nv">ALL_PROXY</span><span class="o">=</span><span class="s2">&#34;socks5://127.0.0.1:1089&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">export</span> <span class="nv">all_proxy</span><span class="o">=</span><span class="s2">&#34;socks5://127.0.0.1:1089&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 取消代理</span>
+</span></span><span class="line"><span class="cl">unproxy <span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">unset</span> ALL_PROXY
+</span></span><span class="line"><span class="cl">  <span class="nb">unset</span> all_proxy
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>使用 <code>git</code> 等命令之前，只需要在终端中输入 <code>proxy</code> 命令，即可使用本地代理</p>
+<h2 id="卸载-oh-my-zsh">
+  卸载 Oh My Zsh
+  <a class="heading-link" href="#%e5%8d%b8%e8%bd%bd-oh-my-zsh">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">uninstall_oh_my_zsh
+</span></span><span class="line"><span class="cl">Are you sure you want to remove Oh My Zsh? <span class="o">[</span>y/N<span class="o">]</span>  Y
+</span></span></code></pre></div><h2 id="手动更新-oh-my-zsh">
+  手动更新 Oh My Zsh
+  <a class="heading-link" href="#%e6%89%8b%e5%8a%a8%e6%9b%b4%e6%96%b0-oh-my-zsh">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">upgrade_oh_my_zsh
+</span></span></code></pre></div>
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      <div id="tcomment"></div>
+    </footer>
+  </article>
+
+</section>
+
+
+
+
+
+  <script src="/js/twiko.all.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo',
+        el: '#tcomment'
+      });
+    });
+  </script>
+
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

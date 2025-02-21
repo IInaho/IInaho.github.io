@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+回忆近三年工作生涯（2023） · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  回忆近三年工作生涯（2023）
+  
+    
+    链接到标题
+  
+
+
+  摘要
+  
+    
+    链接到标题
+  
+
+2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。
+
+  工作层面
+  
+    
+    链接到标题
+  
+
+年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。
+这需要 k8s 相关的知识，因此这段时间快速恶补了 k8s，学着怎么搭环境、怎么部署 pod、怎么写 helm chart，算是把 k8s 的基础知识入了门，然后在同事的帮助下，将项目成功接入了阿里云 OnPaas。这也算是一份宝贵的经验了，随后就一直维护着相关代码。
+由于转正之后岗位定为了 agent 工程师，所以开始接触扫描相关的模块。与之前实习期写 web 端代码不同，那个无非就是了解业务，然后思考怎么写 crud 接口。而接触这部分代码后，了解更多风险扫描的细节，也算是了解了一些安全行业的部分内容。
+所谓风险扫描，无非就是伪造请求、发请求、接收响应包，然后根据响应包的内容来判断是否存在某些漏洞。既然扫描模块的代码主要网络请求，自然离不开并发模型的设计和相关的网络编程。因此在很长一段时间内，写各种 go 并发代码和网络编程成为我的主要工作，这也加深了我对并发的理解和对网络的理解。
+值得一提的是在这部分业务的开发维护中，我也踩过不少坑，以下只列举几个：
+
+规则引擎层面是通过 grpc 来发起、停止扫描任务。由于历史代码的设计问题，一个任务往往要占一个 grpc 线程直到结束返回结果。但 python 的 grpc 线程池是有大小的，导致高并发场景下，任务往往会占满 grpc 线程，致使停止的 rpc 请求无法被响应。
+引擎的内存占用问题，由于协程泄漏，导致内存只增不降，最后机器卡死。
+扫描速率的控制和调节，如果一味的追求扫描速度，可能导致过度占用 CPU，规则检测中有大量的正则表达式非常占 CPU。
+
+当然这些问题后续都解决了，只不过当时排查起来相当麻烦。这也是和写 web 不同的地方，前者最起码写接口时有没有 bug 可以快速定位到，而后者的问题则隐藏的更深，当然这也比较锻炼我的问题排查能力和 coding 水平。
+
+  生活层面
+  
+    
+    链接到标题
+  
+
+在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="回忆近三年工作生涯（2023）">
+  <meta name="twitter:description" content="回忆近三年工作生涯（2023） 链接到标题 摘要 链接到标题 2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。
+工作层面 链接到标题 年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。
+这需要 k8s 相关的知识，因此这段时间快速恶补了 k8s，学着怎么搭环境、怎么部署 pod、怎么写 helm chart，算是把 k8s 的基础知识入了门，然后在同事的帮助下，将项目成功接入了阿里云 OnPaas。这也算是一份宝贵的经验了，随后就一直维护着相关代码。
+由于转正之后岗位定为了 agent 工程师，所以开始接触扫描相关的模块。与之前实习期写 web 端代码不同，那个无非就是了解业务，然后思考怎么写 crud 接口。而接触这部分代码后，了解更多风险扫描的细节，也算是了解了一些安全行业的部分内容。
+所谓风险扫描，无非就是伪造请求、发请求、接收响应包，然后根据响应包的内容来判断是否存在某些漏洞。既然扫描模块的代码主要网络请求，自然离不开并发模型的设计和相关的网络编程。因此在很长一段时间内，写各种 go 并发代码和网络编程成为我的主要工作，这也加深了我对并发的理解和对网络的理解。
+值得一提的是在这部分业务的开发维护中，我也踩过不少坑，以下只列举几个：
+规则引擎层面是通过 grpc 来发起、停止扫描任务。由于历史代码的设计问题，一个任务往往要占一个 grpc 线程直到结束返回结果。但 python 的 grpc 线程池是有大小的，导致高并发场景下，任务往往会占满 grpc 线程，致使停止的 rpc 请求无法被响应。 引擎的内存占用问题，由于协程泄漏，导致内存只增不降，最后机器卡死。 扫描速率的控制和调节，如果一味的追求扫描速度，可能导致过度占用 CPU，规则检测中有大量的正则表达式非常占 CPU。 当然这些问题后续都解决了，只不过当时排查起来相当麻烦。这也是和写 web 不同的地方，前者最起码写接口时有没有 bug 可以快速定位到，而后者的问题则隐藏的更深，当然这也比较锻炼我的问题排查能力和 coding 水平。
+生活层面 链接到标题 在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。">
+ 
+<meta property="og:url" content="//localhost:1313/posts/jxrsdllqwovjn0xkad4caz5kn9f/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="回忆近三年工作生涯（2023）">
+  <meta property="og:description" content="回忆近三年工作生涯（2023） 链接到标题 摘要 链接到标题 2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。
+工作层面 链接到标题 年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。
+这需要 k8s 相关的知识，因此这段时间快速恶补了 k8s，学着怎么搭环境、怎么部署 pod、怎么写 helm chart，算是把 k8s 的基础知识入了门，然后在同事的帮助下，将项目成功接入了阿里云 OnPaas。这也算是一份宝贵的经验了，随后就一直维护着相关代码。
+由于转正之后岗位定为了 agent 工程师，所以开始接触扫描相关的模块。与之前实习期写 web 端代码不同，那个无非就是了解业务，然后思考怎么写 crud 接口。而接触这部分代码后，了解更多风险扫描的细节，也算是了解了一些安全行业的部分内容。
+所谓风险扫描，无非就是伪造请求、发请求、接收响应包，然后根据响应包的内容来判断是否存在某些漏洞。既然扫描模块的代码主要网络请求，自然离不开并发模型的设计和相关的网络编程。因此在很长一段时间内，写各种 go 并发代码和网络编程成为我的主要工作，这也加深了我对并发的理解和对网络的理解。
+值得一提的是在这部分业务的开发维护中，我也踩过不少坑，以下只列举几个：
+规则引擎层面是通过 grpc 来发起、停止扫描任务。由于历史代码的设计问题，一个任务往往要占一个 grpc 线程直到结束返回结果。但 python 的 grpc 线程池是有大小的，导致高并发场景下，任务往往会占满 grpc 线程，致使停止的 rpc 请求无法被响应。 引擎的内存占用问题，由于协程泄漏，导致内存只增不降，最后机器卡死。 扫描速率的控制和调节，如果一味的追求扫描速度，可能导致过度占用 CPU，规则检测中有大量的正则表达式非常占 CPU。 当然这些问题后续都解决了，只不过当时排查起来相当麻烦。这也是和写 web 不同的地方，前者最起码写接口时有没有 bug 可以快速定位到，而后者的问题则隐藏的更深，当然这也比较锻炼我的问题排查能力和 coding 水平。
+生活层面 链接到标题 在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-02-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-02-21T00:00:00+00:00">
+    <meta property="article:tag" content="年度总结">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/jxrsdllqwovjn0xkad4caz5kn9f/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+<aside class="table-of-contents">
+  <div class="toc-container">
+    <h2>目录</h2>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#回忆近三年工作生涯2023">回忆近三年工作生涯（2023）</a>
+      <ul>
+        <li><a href="#摘要">摘要</a></li>
+        <li><a href="#工作层面">工作层面</a></li>
+        <li><a href="#生活层面">生活层面</a>
+          <ul>
+            <li><a href="#杭州烟花大会">杭州烟花大会</a></li>
+            <li><a href="#西溪湿地赏梅">西溪湿地赏梅</a></li>
+            <li><a href="#上海影视城">上海影视城</a></li>
+            <li><a href="#青山湖骑行">青山湖骑行</a></li>
+            <li><a href="#鲁迅故居">鲁迅故居</a></li>
+            <li><a href="#南昌">南昌</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+  </div>
+</aside>
+<section class="container post">
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/jxrsdllqwovjn0xkad4caz5kn9f/">
+            回忆近三年工作生涯（2023）
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2024-02-21T00:00:00Z">
+              2024-02-21
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：1 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            135 字数
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">年度总结</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="回忆近三年工作生涯2023">
+  回忆近三年工作生涯（2023）
+  <a class="heading-link" href="#%e5%9b%9e%e5%bf%86%e8%bf%91%e4%b8%89%e5%b9%b4%e5%b7%a5%e4%bd%9c%e7%94%9f%e6%b6%af2023">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="摘要">
+  摘要
+  <a class="heading-link" href="#%e6%91%98%e8%a6%81">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。</p>
+<h2 id="工作层面">
+  工作层面
+  <a class="heading-link" href="#%e5%b7%a5%e4%bd%9c%e5%b1%82%e9%9d%a2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。</p>
+<p>这需要 k8s 相关的知识，因此这段时间快速恶补了 k8s，学着怎么搭环境、怎么部署 pod、怎么写 helm chart，算是把 k8s 的基础知识入了门，然后在同事的帮助下，将项目成功接入了阿里云 OnPaas。这也算是一份宝贵的经验了，随后就一直维护着相关代码。</p>
+<p>由于转正之后岗位定为了 agent 工程师，所以开始接触扫描相关的模块。与之前实习期写 web 端代码不同，那个无非就是了解业务，然后思考怎么写 crud 接口。而接触这部分代码后，了解更多风险扫描的细节，也算是了解了一些安全行业的部分内容。</p>
+<p>所谓风险扫描，无非就是伪造请求、发请求、接收响应包，然后根据响应包的内容来判断是否存在某些漏洞。既然扫描模块的代码主要网络请求，自然离不开并发模型的设计和相关的网络编程。因此在很长一段时间内，写各种 go 并发代码和网络编程成为我的主要工作，这也加深了我对并发的理解和对网络的理解。</p>
+<p>值得一提的是在这部分业务的开发维护中，我也踩过不少坑，以下只列举几个：</p>
+<ul>
+<li>规则引擎层面是通过 grpc 来发起、停止扫描任务。由于历史代码的设计问题，一个任务往往要占一个 grpc 线程直到结束返回结果。但 python 的 grpc 线程池是有大小的，导致高并发场景下，任务往往会占满 grpc 线程，致使停止的 rpc 请求无法被响应。</li>
+<li>引擎的内存占用问题，由于协程泄漏，导致内存只增不降，最后机器卡死。</li>
+<li>扫描速率的控制和调节，如果一味的追求扫描速度，可能导致过度占用 CPU，规则检测中有大量的正则表达式非常占 CPU。</li>
+</ul>
+<p>当然这些问题后续都解决了，只不过当时排查起来相当麻烦。这也是和写 web 不同的地方，前者最起码写接口时有没有 bug 可以快速定位到，而后者的问题则隐藏的更深，当然这也比较锻炼我的问题排查能力和 coding 水平。</p>
+<h2 id="生活层面">
+  生活层面
+  <a class="heading-link" href="#%e7%94%9f%e6%b4%bb%e5%b1%82%e9%9d%a2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。</p>
+<p>为了对抗这种感觉，我其实是给自己找了不少事情来做，例如去旅游、逛街。</p>
+<h3 id="杭州烟花大会">
+  杭州烟花大会
+  <a class="heading-link" href="#%e6%9d%ad%e5%b7%9e%e7%83%9f%e8%8a%b1%e5%a4%a7%e4%bc%9a">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>2023 年 2 月份，我的舍友来杭州找我，恰逢今年杭州要举办亚运会，因此在钱塘江附近有烟花秀，于是我跟他早上出发，先逛了西湖（老规矩），等到了晚上一起看了烟花秀，不过人是真多啊</p>
+<p><img src="../static/Eg9ObLHv7oO8UUxLz3gcqRTxnJb.png" alt=""></p>
+<p>最后也只能勉强拍了几张照片</p>
+<p><img src="../static/Nrzlbavylo20dzxNCymcda3Rnlf.png" alt=""></p>
+<h3 id="西溪湿地赏梅">
+  西溪湿地赏梅
+  <a class="heading-link" href="#%e8%a5%bf%e6%ba%aa%e6%b9%bf%e5%9c%b0%e8%b5%8f%e6%a2%85">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>2 月底的时候，在小红书看到西溪湿地部分收费的景区可以免费进去赏梅了，于是我约上了一个同事一起去看看。</p>
+<p>顺便拍了一些照片，感觉自己这段时间的拍照水平进步了不少！</p>
+<p><img src="../static/NBKibR9ldob9w8xqV3lcphf4nce.png" alt=""></p>
+<p>随便秀几张图片吧（笑）</p>
+<p><img src="../static/P4XjbfSOjo7Qv7xggAWcAUdfnPn.png" alt=""></p>
+<h3 id="上海影视城">
+  上海影视城
+  <a class="heading-link" href="#%e4%b8%8a%e6%b5%b7%e5%bd%b1%e8%a7%86%e5%9f%8e">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>从 2 月底之后基本每天的日常生活就是上班、下班、回房间里躺平，毕竟偶尔出去逛逛可以放松心情，如果每周都出去逛就比较累人了。</p>
+<p>这样的生活一直持续到 6 月份，我一个大学同学也来了杭州这边打工，然后我们约了另外两个附近的同学，一起打算去上海逛一逛，由于时间和路程问题，选择了最近的佘山和上海影视城。</p>
+<p><img src="../static/HKIKbQrTuoYgjPxBBc7cgoq2nIf.png" alt=""></p>
+<p>不得不说，影视城的一些建筑和雕像还是别有一番风味的。</p>
+<p>在此秀一张我觉得还挺满意的构图</p>
+<p><img src="../static/ADYzbsQ00ouBB9xDfDGcv2DEnsf.png" alt=""></p>
+<h3 id="青山湖骑行">
+  青山湖骑行
+  <a class="heading-link" href="#%e9%9d%92%e5%b1%b1%e6%b9%96%e9%aa%91%e8%a1%8c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>从 6 月之后，又陷入了很长一段时间的平淡生活，当然在这段时间里我主要的爱好就是撸铁。从一个只有 55 公斤体重的细狗，经过大半年的锻炼，已经增长到了 65 公斤，算是进步很大了。</p>
+<p>9 月份，我同事约我去青山湖骑车，这也是我自小学毕业之后，第一次接触骑行了。其实我小时候一直喜欢骑自行车，我的小自行车从 6 岁陪伴到我 12 岁，最终报废了，后来我就再很少骑自行车了。</p>
+<p><img src="../static/JpMPb7CKxo2Kb5xzAIKcbfUknfh.png" alt=""></p>
+<p>青山湖周边的环境挺好，骑车的人也挺多。随手拍了几张照片就很好看。</p>
+<p>我们是在青山湖外租的小红车，大概骑了 3-4 个小时，完成青山湖的环线，最后花费 5 块钱</p>
+<p>实际上还是挺累的，中间有不少上坡，环线大概 40 公里左右，但周围的风景也冲淡了这种疲劳感</p>
+<p><img src="../static/Ro6Sb2AbdoDzhpxEaMSc1V1Fnrh.png" alt=""></p>
+<h3 id="鲁迅故居">
+  鲁迅故居
+  <a class="heading-link" href="#%e9%b2%81%e8%bf%85%e6%95%85%e5%b1%85">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>由于接受不了长期平淡的生活，于是在国庆节过后的 10 月底，我又约了朋友一起去绍兴的鲁迅故居。</p>
+<p>可能过了节假日，鲁迅故居的人并没有我想象的多，我们非常轻松的就预约上了票。</p>
+<p>从小学课文里就学到的《百草园和三味书屋》，也算是亲眼看到了。</p>
+<p><img src="../static/VSQDbqdMGoOWl0x2opLck7D4ncd.png" alt=""></p>
+<p>下面是百草园，实际上就是很普通的一个菜园子。</p>
+<p><img src="../static/HgY2boLi6osKMIx2vIucP2jmnug.png" alt=""></p>
+<h3 id="南昌">
+  南昌
+  <a class="heading-link" href="#%e5%8d%97%e6%98%8c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>11 月份，我的大学室友不知是什么原因寂寞难捱，非要从唐山这么远的地方跑到南昌来旅游。</p>
+<p>然后硬是叫上了我，我们俩来了一个周末特种兵。</p>
+<p><img src="../static/DsIwbP8YtoUpPDx1cpocT36nniG.png" alt=""></p>
+<p>什么八一广场、美术馆、基本都逛了一遍，主打一个打卡式旅游</p>
+<p><img src="../static/KiuqbkjRhoUcu7xOjB6c9oTInsA.png" alt=""></p>
+<p>当然还有这个比较著名的滕王阁，1500 年前，一代天才王勃在这里写下了滕王阁序。</p>
+<p>犹记得那一句“落霞与孤鹜齐飞，秋水共长天一色”，如今也是历史照进了现实。</p>
+<p><img src="../static/AUv9b4Q1voKkzhxz5OccpJ9cnzc.png" alt=""></p>
+<p>至此，2023 年基本结束了，平淡中偶尔有些起伏。当然在 2025 年去回忆 2023 年的事情，很多记忆其实已经模糊了，唯有当时发的朋友圈，当时写的工作周报还存留，也是勉强借着这些东西来回忆下 2023 年的生活而已。</p>
+<p>或许有一些暂时想不起来，但后续又回忆起的东西，以后会补充进来，但本文先到此结束。</p>
+<p>纪念我失去的 2023！</p>
+
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      <div id="tcomment"></div>
+    </footer>
+  </article>
+
+</section>
+
+
+
+
+
+  <script src="/js/twiko.all.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo',
+        el: '#tcomment'
+      });
+    });
+  </script>
+
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
