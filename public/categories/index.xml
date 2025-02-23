@@ -6,20 +6,20 @@
     <description>Recent content in Categories on inaho</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 21 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 Feb 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>生活随笔</title>
+      <link>//localhost:1313/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/</link>
+      <pubDate>Fri, 23 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/</guid>
+      <description></description>
+    </item>
     <item>
       <title>技术文档</title>
       <link>//localhost:1313/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/</link>
       <pubDate>Wed, 21 Feb 2024 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>生活随笔</title>
-      <link>//localhost:1313/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/</link>
-      <pubDate>Wed, 21 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/</guid>
       <description></description>
     </item>
     <item>
