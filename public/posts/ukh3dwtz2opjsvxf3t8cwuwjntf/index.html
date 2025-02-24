@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+vim 美化及配置 · inaho
+</title>
+  
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+<meta name="author" content="inaho">
+<meta name="description" content="
+  vim 美化及配置
+  
+    
+    链接到标题
+  
+
+
+
+  安装 vundle 插件管理器
+  
+    
+    链接到标题
+  
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle
+
+  安装 YCM
+  
+    
+    链接到标题
+  
+
+YouCompleteMe 是一款为 vim 的自动补全插件，可以支持不同的语言。
+# 需要有 cmake clang python3 环境
+git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/
+cd ~/.vim/bundle/YouCompleteMe/
+
+# 下载依赖，最好配代理
+git submodule update --init --recursive
+
+# 安装语法补全
+./install.sh --clang-completer         # CPP
+./install.sh --gocode-completer        # golang
+./install.sh --java-completer          # java
+./install.sh --ts-completer            # ts
+./install.sh --rust-completer          # rust
+
+  配置 vimrc
+  
+    
+    链接到标题
+  
+
+&#34; ============================= vim 配置 =====================================
+&#34; autocmd BufWritePost 
+$MYVIMRC source $
+MYVIMRC         &#34; 设置vimrc修改保存后立刻生效
+set nocompatible        &#34; 关闭兼容模式
+set nu                  &#34; 设置行号
+set cursorline          &#34; 突出显示当前行
+&#34; set cursorcolumn      &#34; 突出显示当前列
+set showmatch           &#34; 显示括号匹配
+set tabstop=4           &#34; 设置tab长度为4空格
+set shiftwidth=4        &#34; 设置自动缩进长度为4空格
+set autoindent          &#34; 继承前一行缩进方式
+let mapleader=&#34;;&#34;       &#34; 定义快捷键前缀 
+&#34; ====== 系统剪切板复制粘贴 =======
+&#34; v 模式下复制内容到系统剪切板
+vmap &lt;Leader&gt;c &#34;&#43;yy
+&#34; n 模式下复制一行到系统剪切板
+nmap &lt;Leader&gt;c &#34;&#43;yy
+&#34; n 模式下粘贴系统剪切板内容
+nmap &lt;Leader&gt;c &#34;&#43;p
+&#34; =========== tab配置 ===========
+set incsearch           &#34; 开启实时搜索
+set ignorecase          &#34; 搜索时大小写不敏感
+syntax enable
+syntax on               &#34; 开启文件类型侦测
+filetype plugin indent on               &#34; 启动自动补全
+au InsertLeave 
+*.go,*
+.sh,*.php write    &#34; 退出插入模式指定类型文件自动保存
+&#34; =============================================插件=====================================================
+set rtp&#43;=~/.vim/bundle/Vundle.vim       &#34; 设置包括vundle和初始化相关的runtime_path
+call vundle#begin()     &#34; 或者指定一个vundle安装插件的路径 call vundle#begin(&#39;~/some/path/here&#39;)
+Plugin &#39;VundleVim/Vundle.vim&#39;                   &#34; 让vundel管理插件版本
+Plugin &#39;junegunn/vim-easy-align&#39;                &#34; 快速对齐
+Plugin &#39;scrooloose/nerdtree&#39;                    &#34; 提供导航目录的侧边栏
+Plugin &#39;jistr/vim-nerdtree-tabs&#39;                &#34; 优化nerdtree的tab
+Plugin &#39;Xuyuanp/nerdtree-git-plugin&#39;    &#34; 导航目录看git版本信息
+Plugin &#39;majutsushi/tagbar&#39;                              &#34; 查看当前文件变量和函数列表，可以切换和跳转
+Plugin &#39;jiangmiao/auto-pairs&#39;                   &#34; 自动补全括号的插件
+Plugin &#39;vim-airline/vim-airline&#39;                &#34; vim状态栏，显示行号、列号，文件类型，文件名，git状态
+Plugin &#39;ianva/vim-youdao-translater&#39;    &#34; 有道词典在线翻译
+Plugin &#39;ycm-core/YouCompleteMe&#39;                 &#34; 代码自动完成
+Plugin &#39;airblade/vim-gitgutter&#39;                 &#34; 文档显示git信息
+Plugin &#39;SirVer/ultisnips&#39;                               &#34; 自动生成代码块
+Plugin &#39;honza/vim-snippets&#39;
+&#34; Plugin &#39;vim-scripts/SuperTab&#39;         &#34; 使用tab补全
+&#34; ========== 配色方案 ============
+Plugin &#39;KeitaNakamura/neodark.vim&#39;      &#34; colorcheme neodark
+Plugin &#39;crusoexia/vim-monokai&#39;          &#34; colorcheme monokai
+Plugin &#39;acarapetis/vim-colors-github&#39;   &#34; colorcheme github
+Plugin &#39;rakr/vim-one&#39;                   &#34; colorcheme one
+&#34; ========== go 插件 =============
+Plugin &#39;fatih/vim-go&#39;
+Plugin &#39;dgryski/vim-godef&#39;              &#34; go代码追踪，输入gd自动跳转
+&#34; ========== markdown 插件 =======
+Plugin &#39;iamcco/mathjax-support-for-mkdp&#39;
+Plugin &#39;iamcco/markdown-preview.vim&#39;
+call vundle#end()            
+&#34; =================== 主题配色 =========================
+set termguicolors               &#34; 开启24bit颜色
+colorscheme one                 &#34; 选用主题
+set background=dark     &#34; 主题背景 
+&#34; =================== vim-go插件 =======================
+autocmd BufWritePre *.go :silent! %!gofmt &#34; 自动格式化go代码 
+let g:go_fmt_command = &#34;goimports&#34; &#34; 格式化将默认的 gofmt 替换
+let g:go_autodetect_gopath = 1
+let g:go_list_type = &#34;quickfix&#34;
+let g:go_version_warning = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_generate_tags = 1
+let g:godef_split=2
+&#34; ========================= nerd tree 插件 ======================
+&#34; 打开和关闭NERDTree快捷键
+map &lt;F10&gt; :NERDTreeToggle&lt;CR&gt;
+&#34; 显示行号
+let NERDTreeShowLineNumbers=1
+&#34; 打开文件时是否显示目录
+let NERDTreeAutoCenter=1
+&#34; 是否显示隐藏文件
+let NERDTreeShowHidden=0
+&#34; 设置宽度
+&#34; let NERDTreeWinSize=31
+&#34; 忽略一下文件的显示
+let NERDTreeIgnore=[&#39;\.pyc&#39;,&#39;\~$&#39;,&#39;\.swp&#39;]
+&#34; 打开 vim 文件及显示书签列表
+let NERDTreeShowBookmarks=2
+&#34; 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+&#34;==============================================================================
+&#34;  majutsushi/tagbar 插件
+&#34;==============================================================================
+&#34; majutsushi/tagbar 插件打开关闭快捷键
+nmap &lt;F9&gt; :TagbarToggle&lt;CR&gt;
+let g:tagbar_type_go = {
+\ &#39;ctagstype&#39; : &#39;go&#39;,
+\ &#39;kinds&#39;     : [
+\ &#39;p:package&#39;,
+\ &#39;i:imports:1&#39;,
+\ &#39;c:constants&#39;,
+\ &#39;v:variables&#39;,
+\ &#39;t:types&#39;,
+\ &#39;n:interfaces&#39;,
+\ &#39;w:fields&#39;,
+\ &#39;e:embedded&#39;,
+\ &#39;m:methods&#39;,
+\ &#39;r:constructor&#39;,
+\ &#39;f:functions&#39;
+\ ],
+\ &#39;sro&#39; : &#39;.&#39;,
+\ &#39;kind2scope&#39; : {
+  \ &#39;t&#39; : &#39;ctype&#39;,
+  \ &#39;n&#39; : &#39;ntype&#39;
+  \ },
+\ &#39;scope2kind&#39; : {
+  \ &#39;ctype&#39; : &#39;t&#39;,
+  \ &#39;ntype&#39; : &#39;n&#39;
+  \ },
+\ &#39;ctagsbin&#39;  : &#39;gotags&#39;,
+\ &#39;ctagsargs&#39; : &#39;-sort -silent&#39;
+\ }
+&#34;==============================================================================
+&#34;  nerdtree-git-plugin 插件
+&#34;==============================================================================
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+\ &#34;Modified&#34;  : &#34;✹&#34;,
+\ &#34;Staged&#34;    : &#34;✚&#34;,
+\ &#34;Untracked&#34; : &#34;✭&#34;,
+\ &#34;Renamed&#34;   : &#34;➜&#34;,
+\ &#34;Unmerged&#34;  : &#34;═&#34;,
+\ &#34;Deleted&#34;   : &#34;✖&#34;,
+\ &#34;Dirty&#34;     : &#34;✗&#34;,
+\ &#34;Clean&#34;     : &#34;✔︎&#34;,
+\ &#39;Ignored&#39;   : &#39;☒&#39;,
+\ &#34;Unknown&#34;   : &#34;?&#34;
+\ }
+let g:NERDTreeGitStatusShowIgnored = 1
+&#34;==============================================================================
+&#34;  Valloric/YouCompleteMe 插件
+&#34;==============================================================================
+set runtimepath&#43;=~/.vim/bundle/YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 1           &#34; 开启 YCM 基于标签引擎
+&#34; let g:syntastic_ignore_files=[&#34;.*\.py$&#34;]
+let g:ycm_seed_identifiers_with_syntax = 1                  &#34; 语法关键字补全
+let g:ycm_complete_in_comments = 1
+let g:ycm_confirm_extra_conf = 0
+&#34; let g:ycm_key_list_select_completion = [&#39;&lt;c-n&gt;&#39;, &#39;&lt;Down&gt;&#39;]  &#34; 映射按键, 没有这个会拦截掉tab, 导致其他插件的tab不能用.
+&#34; let g:ycm_key_list_previous_completion = [&#39;&lt;c-p&gt;&#39;, &#39;&lt;Up&gt;&#39;]
+&#34; let g:ycm_complete_in_comments = 1                          &#34; 在注释输入中也能补全
+&#34; let g:ycm_complete_in_strings = 1                           &#34; 在字符串输入中也能补全
+&#34; let g:ycm_collect_identifiers_from_comments_and_strings = 1 &#34; 注释和字符串中的文字也会被收入补全
+let g:ycm_global_ycm_extra_conf=&#39;~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py&#39;
+&#34; let g:ycm_show_diagnostics_ui = 0                                       &#34; 禁用语法检查
+&#34; inoremap &lt;expr&gt; &lt;CR&gt; pumvisible() ? &#34;\&lt;C-y&gt;&#34; : &#34;\&lt;CR&gt;&#34; |            &#34; 回车即选中当前项
+&#34; nnoremap &lt;c-j&gt; :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;|     &#34; 跳转到定义处
+let g:ycm_min_num_of_chars_for_completion=2                 &#34; 从第2个键入字符就开始罗列匹配项
+&#34; make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = [&#39;&lt;C-n&gt;&#39;, &#39;&lt;space&gt;&#39;]
+let g:ycm_key_list_previous_completion = [&#39;&lt;C-p&gt;&#39;, &#39;&lt;Up&gt;&#39;]
+let g:SuperTabDefaultCompletionType = &#39;&lt;C-n&gt;&#39;
+&#34; better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = &#34;&lt;tab&gt;&#34;
+let g:UltiSnipsJumpForwardTrigger = &#34;&lt;tab&gt;&#34;
+let g:UltiSnipsJumpBackwardTrigger = &#34;&lt;s-tab&gt;&#34;
+&#34;==============================================================================
+&#34;  其他插件配置
+&#34;==============================================================================
+&#34; markdwon 的快捷键
+map &lt;silent&gt; &lt;F5&gt; &lt;Plug&gt;MarkdownPreview
+map &lt;silent&gt; &lt;F6&gt; &lt;Plug&gt;StopMarkdownPreview
+&#34; tab 标签页切换快捷键
+:nn &lt;Leader&gt;1 1gt
+:nn &lt;Leader&gt;2 2gt
+:nn &lt;Leader&gt;3 3gt
+:nn &lt;Leader&gt;4 4gt
+:nn &lt;Leader&gt;5 5gt
+:nn &lt;Leader&gt;6 6gt
+:nn &lt;Leader&gt;7 7gt
+:nn &lt;Leader&gt;8 8gt
+:nn &lt;Leader&gt;9 8gt
+:nn &lt;Leader&gt;0 :tablast&lt;CR&gt;
+&#34;==============================================================================
+&#34; GVim 的配置
+&#34;==============================================================================
+&#34; 如果不使用 GVim ，可以不用配置下面的配置
+if has(&#39;gui_running&#39;)
+colorscheme one
+&#34; 设置启动时窗口的大小
+set lines=999 columns=999 linespace=4
+&#34; 设置字体及大小
+set guifont=Roboto\ Mono\ 13
+set guioptions-=m &#34; 隐藏菜单栏
+set guioptions-=T &#34; 隐藏工具栏
+set guioptions-=L &#34; 隐藏左侧滚动条
+set guioptions-=r &#34; 隐藏右侧滚动条
+set guioptions-=b &#34; 隐藏底部滚动条
+&#34; 在 gvim 下不会和 terminal 的 alt&#43;数字的快捷键冲突，
+&#34; 所以将 tab 切换配置一份 alt&#43;数字的快捷键
+:nn &lt;M-1&gt; 1gt
+:nn &lt;M-2&gt; 2gt
+:nn &lt;M-3&gt; 3gt
+:nn &lt;M-4&gt; 4gt
+:nn &lt;M-5&gt; 5gt
+:nn &lt;M-6&gt; 6gt
+:nn &lt;M-7&gt; 7gt
+:nn &lt;M-8&gt; 8gt
+:nn &lt;M-9&gt; 9gt
+:nn &lt;M-0&gt; :tablast&lt;CR&gt;
+endif
+
+  vim 操作
+  
+    
+    链接到标题
+  
+
+Ctrl &#43; W &#43; H ： Focus 在左边窗口
+Ctrl &#43; W &#43; L ： Focus 在右边窗口
+:ter                                         # 打开终端
+:ter &#43;&#43;rows=2 # 以特定高度/行数打开
+
+# 切换到tab栏，通过m键呼出文件管理菜单
+
+nerdtree 操作">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="vim 美化及配置">
+  <meta name="twitter:description" content="vim 美化及配置 链接到标题 安装 vundle 插件管理器 链接到标题 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle 安装 YCM 链接到标题 YouCompleteMe 是一款为 vim 的自动补全插件，可以支持不同的语言。
+# 需要有 cmake clang python3 环境 git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/ cd ~/.vim/bundle/YouCompleteMe/ # 下载依赖，最好配代理 git submodule update --init --recursive # 安装语法补全 ./install.sh --clang-completer # CPP ./install.sh --gocode-completer # golang ./install.sh --java-completer # java ./install.sh --ts-completer # ts ./install.sh --rust-completer # rust 配置 vimrc 链接到标题 &#34; ============================= vim 配置 ===================================== &#34; autocmd BufWritePost $MYVIMRC source $ MYVIMRC &#34; 设置vimrc修改保存后立刻生效 set nocompatible &#34; 关闭兼容模式 set nu &#34; 设置行号 set cursorline &#34; 突出显示当前行 &#34; set cursorcolumn &#34; 突出显示当前列 set showmatch &#34; 显示括号匹配 set tabstop=4 &#34; 设置tab长度为4空格 set shiftwidth=4 &#34; 设置自动缩进长度为4空格 set autoindent &#34; 继承前一行缩进方式 let mapleader=&#34;;&#34; &#34; 定义快捷键前缀 &#34; ====== 系统剪切板复制粘贴 ======= &#34; v 模式下复制内容到系统剪切板 vmap &lt;Leader&gt;c &#34;&#43;yy &#34; n 模式下复制一行到系统剪切板 nmap &lt;Leader&gt;c &#34;&#43;yy &#34; n 模式下粘贴系统剪切板内容 nmap &lt;Leader&gt;c &#34;&#43;p &#34; =========== tab配置 =========== set incsearch &#34; 开启实时搜索 set ignorecase &#34; 搜索时大小写不敏感 syntax enable syntax on &#34; 开启文件类型侦测 filetype plugin indent on &#34; 启动自动补全 au InsertLeave *.go,* .sh,*.php write &#34; 退出插入模式指定类型文件自动保存 &#34; =============================================插件===================================================== set rtp&#43;=~/.vim/bundle/Vundle.vim &#34; 设置包括vundle和初始化相关的runtime_path call vundle#begin() &#34; 或者指定一个vundle安装插件的路径 call vundle#begin(&#39;~/some/path/here&#39;) Plugin &#39;VundleVim/Vundle.vim&#39; &#34; 让vundel管理插件版本 Plugin &#39;junegunn/vim-easy-align&#39; &#34; 快速对齐 Plugin &#39;scrooloose/nerdtree&#39; &#34; 提供导航目录的侧边栏 Plugin &#39;jistr/vim-nerdtree-tabs&#39; &#34; 优化nerdtree的tab Plugin &#39;Xuyuanp/nerdtree-git-plugin&#39; &#34; 导航目录看git版本信息 Plugin &#39;majutsushi/tagbar&#39; &#34; 查看当前文件变量和函数列表，可以切换和跳转 Plugin &#39;jiangmiao/auto-pairs&#39; &#34; 自动补全括号的插件 Plugin &#39;vim-airline/vim-airline&#39; &#34; vim状态栏，显示行号、列号，文件类型，文件名，git状态 Plugin &#39;ianva/vim-youdao-translater&#39; &#34; 有道词典在线翻译 Plugin &#39;ycm-core/YouCompleteMe&#39; &#34; 代码自动完成 Plugin &#39;airblade/vim-gitgutter&#39; &#34; 文档显示git信息 Plugin &#39;SirVer/ultisnips&#39; &#34; 自动生成代码块 Plugin &#39;honza/vim-snippets&#39; &#34; Plugin &#39;vim-scripts/SuperTab&#39; &#34; 使用tab补全 &#34; ========== 配色方案 ============ Plugin &#39;KeitaNakamura/neodark.vim&#39; &#34; colorcheme neodark Plugin &#39;crusoexia/vim-monokai&#39; &#34; colorcheme monokai Plugin &#39;acarapetis/vim-colors-github&#39; &#34; colorcheme github Plugin &#39;rakr/vim-one&#39; &#34; colorcheme one &#34; ========== go 插件 ============= Plugin &#39;fatih/vim-go&#39; Plugin &#39;dgryski/vim-godef&#39; &#34; go代码追踪，输入gd自动跳转 &#34; ========== markdown 插件 ======= Plugin &#39;iamcco/mathjax-support-for-mkdp&#39; Plugin &#39;iamcco/markdown-preview.vim&#39; call vundle#end() &#34; =================== 主题配色 ========================= set termguicolors &#34; 开启24bit颜色 colorscheme one &#34; 选用主题 set background=dark &#34; 主题背景 &#34; =================== vim-go插件 ======================= autocmd BufWritePre *.go :silent! %!gofmt &#34; 自动格式化go代码 let g:go_fmt_command = &#34;goimports&#34; &#34; 格式化将默认的 gofmt 替换 let g:go_autodetect_gopath = 1 let g:go_list_type = &#34;quickfix&#34; let g:go_version_warning = 1 let g:go_highlight_types = 1 let g:go_highlight_fields = 1 let g:go_highlight_functions = 1 let g:go_highlight_function_calls = 1 let g:go_highlight_operators = 1 let g:go_highlight_extra_types = 1 let g:go_highlight_methods = 1 let g:go_highlight_generate_tags = 1 let g:godef_split=2 &#34; ========================= nerd tree 插件 ====================== &#34; 打开和关闭NERDTree快捷键 map &lt;F10&gt; :NERDTreeToggle&lt;CR&gt; &#34; 显示行号 let NERDTreeShowLineNumbers=1 &#34; 打开文件时是否显示目录 let NERDTreeAutoCenter=1 &#34; 是否显示隐藏文件 let NERDTreeShowHidden=0 &#34; 设置宽度 &#34; let NERDTreeWinSize=31 &#34; 忽略一下文件的显示 let NERDTreeIgnore=[&#39;\.pyc&#39;,&#39;\~$&#39;,&#39;\.swp&#39;] &#34; 打开 vim 文件及显示书签列表 let NERDTreeShowBookmarks=2 &#34; 在终端启动vim时，共享NERDTree let g:nerdtree_tabs_open_on_console_startup=1 &#34;============================================================================== &#34; majutsushi/tagbar 插件 &#34;============================================================================== &#34; majutsushi/tagbar 插件打开关闭快捷键 nmap &lt;F9&gt; :TagbarToggle&lt;CR&gt; let g:tagbar_type_go = { \ &#39;ctagstype&#39; : &#39;go&#39;, \ &#39;kinds&#39; : [ \ &#39;p:package&#39;, \ &#39;i:imports:1&#39;, \ &#39;c:constants&#39;, \ &#39;v:variables&#39;, \ &#39;t:types&#39;, \ &#39;n:interfaces&#39;, \ &#39;w:fields&#39;, \ &#39;e:embedded&#39;, \ &#39;m:methods&#39;, \ &#39;r:constructor&#39;, \ &#39;f:functions&#39; \ ], \ &#39;sro&#39; : &#39;.&#39;, \ &#39;kind2scope&#39; : { \ &#39;t&#39; : &#39;ctype&#39;, \ &#39;n&#39; : &#39;ntype&#39; \ }, \ &#39;scope2kind&#39; : { \ &#39;ctype&#39; : &#39;t&#39;, \ &#39;ntype&#39; : &#39;n&#39; \ }, \ &#39;ctagsbin&#39; : &#39;gotags&#39;, \ &#39;ctagsargs&#39; : &#39;-sort -silent&#39; \ } &#34;============================================================================== &#34; nerdtree-git-plugin 插件 &#34;============================================================================== let g:NERDTreeGitStatusIndicatorMapCustom = { \ &#34;Modified&#34; : &#34;✹&#34;, \ &#34;Staged&#34; : &#34;✚&#34;, \ &#34;Untracked&#34; : &#34;✭&#34;, \ &#34;Renamed&#34; : &#34;➜&#34;, \ &#34;Unmerged&#34; : &#34;═&#34;, \ &#34;Deleted&#34; : &#34;✖&#34;, \ &#34;Dirty&#34; : &#34;✗&#34;, \ &#34;Clean&#34; : &#34;✔︎&#34;, \ &#39;Ignored&#39; : &#39;☒&#39;, \ &#34;Unknown&#34; : &#34;?&#34; \ } let g:NERDTreeGitStatusShowIgnored = 1 &#34;============================================================================== &#34; Valloric/YouCompleteMe 插件 &#34;============================================================================== set runtimepath&#43;=~/.vim/bundle/YouCompleteMe let g:ycm_collect_identifiers_from_tags_files = 1 &#34; 开启 YCM 基于标签引擎 &#34; let g:syntastic_ignore_files=[&#34;.*\.py$&#34;] let g:ycm_seed_identifiers_with_syntax = 1 &#34; 语法关键字补全 let g:ycm_complete_in_comments = 1 let g:ycm_confirm_extra_conf = 0 &#34; let g:ycm_key_list_select_completion = [&#39;&lt;c-n&gt;&#39;, &#39;&lt;Down&gt;&#39;] &#34; 映射按键, 没有这个会拦截掉tab, 导致其他插件的tab不能用. &#34; let g:ycm_key_list_previous_completion = [&#39;&lt;c-p&gt;&#39;, &#39;&lt;Up&gt;&#39;] &#34; let g:ycm_complete_in_comments = 1 &#34; 在注释输入中也能补全 &#34; let g:ycm_complete_in_strings = 1 &#34; 在字符串输入中也能补全 &#34; let g:ycm_collect_identifiers_from_comments_and_strings = 1 &#34; 注释和字符串中的文字也会被收入补全 let g:ycm_global_ycm_extra_conf=&#39;~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py&#39; &#34; let g:ycm_show_diagnostics_ui = 0 &#34; 禁用语法检查 &#34; inoremap &lt;expr&gt; &lt;CR&gt; pumvisible() ? &#34;\&lt;C-y&gt;&#34; : &#34;\&lt;CR&gt;&#34; | &#34; 回车即选中当前项 &#34; nnoremap &lt;c-j&gt; :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;| &#34; 跳转到定义处 let g:ycm_min_num_of_chars_for_completion=2 &#34; 从第2个键入字符就开始罗列匹配项 &#34; make YCM compatible with UltiSnips (using supertab) let g:ycm_key_list_select_completion = [&#39;&lt;C-n&gt;&#39;, &#39;&lt;space&gt;&#39;] let g:ycm_key_list_previous_completion = [&#39;&lt;C-p&gt;&#39;, &#39;&lt;Up&gt;&#39;] let g:SuperTabDefaultCompletionType = &#39;&lt;C-n&gt;&#39; &#34; better key bindings for UltiSnipsExpandTrigger let g:UltiSnipsExpandTrigger = &#34;&lt;tab&gt;&#34; let g:UltiSnipsJumpForwardTrigger = &#34;&lt;tab&gt;&#34; let g:UltiSnipsJumpBackwardTrigger = &#34;&lt;s-tab&gt;&#34; &#34;============================================================================== &#34; 其他插件配置 &#34;============================================================================== &#34; markdwon 的快捷键 map &lt;silent&gt; &lt;F5&gt; &lt;Plug&gt;MarkdownPreview map &lt;silent&gt; &lt;F6&gt; &lt;Plug&gt;StopMarkdownPreview &#34; tab 标签页切换快捷键 :nn &lt;Leader&gt;1 1gt :nn &lt;Leader&gt;2 2gt :nn &lt;Leader&gt;3 3gt :nn &lt;Leader&gt;4 4gt :nn &lt;Leader&gt;5 5gt :nn &lt;Leader&gt;6 6gt :nn &lt;Leader&gt;7 7gt :nn &lt;Leader&gt;8 8gt :nn &lt;Leader&gt;9 8gt :nn &lt;Leader&gt;0 :tablast&lt;CR&gt; &#34;============================================================================== &#34; GVim 的配置 &#34;============================================================================== &#34; 如果不使用 GVim ，可以不用配置下面的配置 if has(&#39;gui_running&#39;) colorscheme one &#34; 设置启动时窗口的大小 set lines=999 columns=999 linespace=4 &#34; 设置字体及大小 set guifont=Roboto\ Mono\ 13 set guioptions-=m &#34; 隐藏菜单栏 set guioptions-=T &#34; 隐藏工具栏 set guioptions-=L &#34; 隐藏左侧滚动条 set guioptions-=r &#34; 隐藏右侧滚动条 set guioptions-=b &#34; 隐藏底部滚动条 &#34; 在 gvim 下不会和 terminal 的 alt&#43;数字的快捷键冲突， &#34; 所以将 tab 切换配置一份 alt&#43;数字的快捷键 :nn &lt;M-1&gt; 1gt :nn &lt;M-2&gt; 2gt :nn &lt;M-3&gt; 3gt :nn &lt;M-4&gt; 4gt :nn &lt;M-5&gt; 5gt :nn &lt;M-6&gt; 6gt :nn &lt;M-7&gt; 7gt :nn &lt;M-8&gt; 8gt :nn &lt;M-9&gt; 9gt :nn &lt;M-0&gt; :tablast&lt;CR&gt; endif vim 操作 链接到标题 Ctrl &#43; W &#43; H ： Focus 在左边窗口 Ctrl &#43; W &#43; L ： Focus 在右边窗口 :ter # 打开终端 :ter &#43;&#43;rows=2 # 以特定高度/行数打开 # 切换到tab栏，通过m键呼出文件管理菜单 nerdtree 操作">
+ 
+<meta property="og:url" content="//localhost:1313/posts/ukh3dwtz2opjsvxf3t8cwuwjntf/">
+  <meta property="og:site_name" content="inaho">
+  <meta property="og:title" content="vim 美化及配置">
+  <meta property="og:description" content="vim 美化及配置 链接到标题 安装 vundle 插件管理器 链接到标题 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle 安装 YCM 链接到标题 YouCompleteMe 是一款为 vim 的自动补全插件，可以支持不同的语言。
+# 需要有 cmake clang python3 环境 git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/ cd ~/.vim/bundle/YouCompleteMe/ # 下载依赖，最好配代理 git submodule update --init --recursive # 安装语法补全 ./install.sh --clang-completer # CPP ./install.sh --gocode-completer # golang ./install.sh --java-completer # java ./install.sh --ts-completer # ts ./install.sh --rust-completer # rust 配置 vimrc 链接到标题 &#34; ============================= vim 配置 ===================================== &#34; autocmd BufWritePost $MYVIMRC source $ MYVIMRC &#34; 设置vimrc修改保存后立刻生效 set nocompatible &#34; 关闭兼容模式 set nu &#34; 设置行号 set cursorline &#34; 突出显示当前行 &#34; set cursorcolumn &#34; 突出显示当前列 set showmatch &#34; 显示括号匹配 set tabstop=4 &#34; 设置tab长度为4空格 set shiftwidth=4 &#34; 设置自动缩进长度为4空格 set autoindent &#34; 继承前一行缩进方式 let mapleader=&#34;;&#34; &#34; 定义快捷键前缀 &#34; ====== 系统剪切板复制粘贴 ======= &#34; v 模式下复制内容到系统剪切板 vmap &lt;Leader&gt;c &#34;&#43;yy &#34; n 模式下复制一行到系统剪切板 nmap &lt;Leader&gt;c &#34;&#43;yy &#34; n 模式下粘贴系统剪切板内容 nmap &lt;Leader&gt;c &#34;&#43;p &#34; =========== tab配置 =========== set incsearch &#34; 开启实时搜索 set ignorecase &#34; 搜索时大小写不敏感 syntax enable syntax on &#34; 开启文件类型侦测 filetype plugin indent on &#34; 启动自动补全 au InsertLeave *.go,* .sh,*.php write &#34; 退出插入模式指定类型文件自动保存 &#34; =============================================插件===================================================== set rtp&#43;=~/.vim/bundle/Vundle.vim &#34; 设置包括vundle和初始化相关的runtime_path call vundle#begin() &#34; 或者指定一个vundle安装插件的路径 call vundle#begin(&#39;~/some/path/here&#39;) Plugin &#39;VundleVim/Vundle.vim&#39; &#34; 让vundel管理插件版本 Plugin &#39;junegunn/vim-easy-align&#39; &#34; 快速对齐 Plugin &#39;scrooloose/nerdtree&#39; &#34; 提供导航目录的侧边栏 Plugin &#39;jistr/vim-nerdtree-tabs&#39; &#34; 优化nerdtree的tab Plugin &#39;Xuyuanp/nerdtree-git-plugin&#39; &#34; 导航目录看git版本信息 Plugin &#39;majutsushi/tagbar&#39; &#34; 查看当前文件变量和函数列表，可以切换和跳转 Plugin &#39;jiangmiao/auto-pairs&#39; &#34; 自动补全括号的插件 Plugin &#39;vim-airline/vim-airline&#39; &#34; vim状态栏，显示行号、列号，文件类型，文件名，git状态 Plugin &#39;ianva/vim-youdao-translater&#39; &#34; 有道词典在线翻译 Plugin &#39;ycm-core/YouCompleteMe&#39; &#34; 代码自动完成 Plugin &#39;airblade/vim-gitgutter&#39; &#34; 文档显示git信息 Plugin &#39;SirVer/ultisnips&#39; &#34; 自动生成代码块 Plugin &#39;honza/vim-snippets&#39; &#34; Plugin &#39;vim-scripts/SuperTab&#39; &#34; 使用tab补全 &#34; ========== 配色方案 ============ Plugin &#39;KeitaNakamura/neodark.vim&#39; &#34; colorcheme neodark Plugin &#39;crusoexia/vim-monokai&#39; &#34; colorcheme monokai Plugin &#39;acarapetis/vim-colors-github&#39; &#34; colorcheme github Plugin &#39;rakr/vim-one&#39; &#34; colorcheme one &#34; ========== go 插件 ============= Plugin &#39;fatih/vim-go&#39; Plugin &#39;dgryski/vim-godef&#39; &#34; go代码追踪，输入gd自动跳转 &#34; ========== markdown 插件 ======= Plugin &#39;iamcco/mathjax-support-for-mkdp&#39; Plugin &#39;iamcco/markdown-preview.vim&#39; call vundle#end() &#34; =================== 主题配色 ========================= set termguicolors &#34; 开启24bit颜色 colorscheme one &#34; 选用主题 set background=dark &#34; 主题背景 &#34; =================== vim-go插件 ======================= autocmd BufWritePre *.go :silent! %!gofmt &#34; 自动格式化go代码 let g:go_fmt_command = &#34;goimports&#34; &#34; 格式化将默认的 gofmt 替换 let g:go_autodetect_gopath = 1 let g:go_list_type = &#34;quickfix&#34; let g:go_version_warning = 1 let g:go_highlight_types = 1 let g:go_highlight_fields = 1 let g:go_highlight_functions = 1 let g:go_highlight_function_calls = 1 let g:go_highlight_operators = 1 let g:go_highlight_extra_types = 1 let g:go_highlight_methods = 1 let g:go_highlight_generate_tags = 1 let g:godef_split=2 &#34; ========================= nerd tree 插件 ====================== &#34; 打开和关闭NERDTree快捷键 map &lt;F10&gt; :NERDTreeToggle&lt;CR&gt; &#34; 显示行号 let NERDTreeShowLineNumbers=1 &#34; 打开文件时是否显示目录 let NERDTreeAutoCenter=1 &#34; 是否显示隐藏文件 let NERDTreeShowHidden=0 &#34; 设置宽度 &#34; let NERDTreeWinSize=31 &#34; 忽略一下文件的显示 let NERDTreeIgnore=[&#39;\.pyc&#39;,&#39;\~$&#39;,&#39;\.swp&#39;] &#34; 打开 vim 文件及显示书签列表 let NERDTreeShowBookmarks=2 &#34; 在终端启动vim时，共享NERDTree let g:nerdtree_tabs_open_on_console_startup=1 &#34;============================================================================== &#34; majutsushi/tagbar 插件 &#34;============================================================================== &#34; majutsushi/tagbar 插件打开关闭快捷键 nmap &lt;F9&gt; :TagbarToggle&lt;CR&gt; let g:tagbar_type_go = { \ &#39;ctagstype&#39; : &#39;go&#39;, \ &#39;kinds&#39; : [ \ &#39;p:package&#39;, \ &#39;i:imports:1&#39;, \ &#39;c:constants&#39;, \ &#39;v:variables&#39;, \ &#39;t:types&#39;, \ &#39;n:interfaces&#39;, \ &#39;w:fields&#39;, \ &#39;e:embedded&#39;, \ &#39;m:methods&#39;, \ &#39;r:constructor&#39;, \ &#39;f:functions&#39; \ ], \ &#39;sro&#39; : &#39;.&#39;, \ &#39;kind2scope&#39; : { \ &#39;t&#39; : &#39;ctype&#39;, \ &#39;n&#39; : &#39;ntype&#39; \ }, \ &#39;scope2kind&#39; : { \ &#39;ctype&#39; : &#39;t&#39;, \ &#39;ntype&#39; : &#39;n&#39; \ }, \ &#39;ctagsbin&#39; : &#39;gotags&#39;, \ &#39;ctagsargs&#39; : &#39;-sort -silent&#39; \ } &#34;============================================================================== &#34; nerdtree-git-plugin 插件 &#34;============================================================================== let g:NERDTreeGitStatusIndicatorMapCustom = { \ &#34;Modified&#34; : &#34;✹&#34;, \ &#34;Staged&#34; : &#34;✚&#34;, \ &#34;Untracked&#34; : &#34;✭&#34;, \ &#34;Renamed&#34; : &#34;➜&#34;, \ &#34;Unmerged&#34; : &#34;═&#34;, \ &#34;Deleted&#34; : &#34;✖&#34;, \ &#34;Dirty&#34; : &#34;✗&#34;, \ &#34;Clean&#34; : &#34;✔︎&#34;, \ &#39;Ignored&#39; : &#39;☒&#39;, \ &#34;Unknown&#34; : &#34;?&#34; \ } let g:NERDTreeGitStatusShowIgnored = 1 &#34;============================================================================== &#34; Valloric/YouCompleteMe 插件 &#34;============================================================================== set runtimepath&#43;=~/.vim/bundle/YouCompleteMe let g:ycm_collect_identifiers_from_tags_files = 1 &#34; 开启 YCM 基于标签引擎 &#34; let g:syntastic_ignore_files=[&#34;.*\.py$&#34;] let g:ycm_seed_identifiers_with_syntax = 1 &#34; 语法关键字补全 let g:ycm_complete_in_comments = 1 let g:ycm_confirm_extra_conf = 0 &#34; let g:ycm_key_list_select_completion = [&#39;&lt;c-n&gt;&#39;, &#39;&lt;Down&gt;&#39;] &#34; 映射按键, 没有这个会拦截掉tab, 导致其他插件的tab不能用. &#34; let g:ycm_key_list_previous_completion = [&#39;&lt;c-p&gt;&#39;, &#39;&lt;Up&gt;&#39;] &#34; let g:ycm_complete_in_comments = 1 &#34; 在注释输入中也能补全 &#34; let g:ycm_complete_in_strings = 1 &#34; 在字符串输入中也能补全 &#34; let g:ycm_collect_identifiers_from_comments_and_strings = 1 &#34; 注释和字符串中的文字也会被收入补全 let g:ycm_global_ycm_extra_conf=&#39;~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py&#39; &#34; let g:ycm_show_diagnostics_ui = 0 &#34; 禁用语法检查 &#34; inoremap &lt;expr&gt; &lt;CR&gt; pumvisible() ? &#34;\&lt;C-y&gt;&#34; : &#34;\&lt;CR&gt;&#34; | &#34; 回车即选中当前项 &#34; nnoremap &lt;c-j&gt; :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;| &#34; 跳转到定义处 let g:ycm_min_num_of_chars_for_completion=2 &#34; 从第2个键入字符就开始罗列匹配项 &#34; make YCM compatible with UltiSnips (using supertab) let g:ycm_key_list_select_completion = [&#39;&lt;C-n&gt;&#39;, &#39;&lt;space&gt;&#39;] let g:ycm_key_list_previous_completion = [&#39;&lt;C-p&gt;&#39;, &#39;&lt;Up&gt;&#39;] let g:SuperTabDefaultCompletionType = &#39;&lt;C-n&gt;&#39; &#34; better key bindings for UltiSnipsExpandTrigger let g:UltiSnipsExpandTrigger = &#34;&lt;tab&gt;&#34; let g:UltiSnipsJumpForwardTrigger = &#34;&lt;tab&gt;&#34; let g:UltiSnipsJumpBackwardTrigger = &#34;&lt;s-tab&gt;&#34; &#34;============================================================================== &#34; 其他插件配置 &#34;============================================================================== &#34; markdwon 的快捷键 map &lt;silent&gt; &lt;F5&gt; &lt;Plug&gt;MarkdownPreview map &lt;silent&gt; &lt;F6&gt; &lt;Plug&gt;StopMarkdownPreview &#34; tab 标签页切换快捷键 :nn &lt;Leader&gt;1 1gt :nn &lt;Leader&gt;2 2gt :nn &lt;Leader&gt;3 3gt :nn &lt;Leader&gt;4 4gt :nn &lt;Leader&gt;5 5gt :nn &lt;Leader&gt;6 6gt :nn &lt;Leader&gt;7 7gt :nn &lt;Leader&gt;8 8gt :nn &lt;Leader&gt;9 8gt :nn &lt;Leader&gt;0 :tablast&lt;CR&gt; &#34;============================================================================== &#34; GVim 的配置 &#34;============================================================================== &#34; 如果不使用 GVim ，可以不用配置下面的配置 if has(&#39;gui_running&#39;) colorscheme one &#34; 设置启动时窗口的大小 set lines=999 columns=999 linespace=4 &#34; 设置字体及大小 set guifont=Roboto\ Mono\ 13 set guioptions-=m &#34; 隐藏菜单栏 set guioptions-=T &#34; 隐藏工具栏 set guioptions-=L &#34; 隐藏左侧滚动条 set guioptions-=r &#34; 隐藏右侧滚动条 set guioptions-=b &#34; 隐藏底部滚动条 &#34; 在 gvim 下不会和 terminal 的 alt&#43;数字的快捷键冲突， &#34; 所以将 tab 切换配置一份 alt&#43;数字的快捷键 :nn &lt;M-1&gt; 1gt :nn &lt;M-2&gt; 2gt :nn &lt;M-3&gt; 3gt :nn &lt;M-4&gt; 4gt :nn &lt;M-5&gt; 5gt :nn &lt;M-6&gt; 6gt :nn &lt;M-7&gt; 7gt :nn &lt;M-8&gt; 8gt :nn &lt;M-9&gt; 9gt :nn &lt;M-0&gt; :tablast&lt;CR&gt; endif vim 操作 链接到标题 Ctrl &#43; W &#43; H ： Focus 在左边窗口 Ctrl &#43; W &#43; L ： Focus 在右边窗口 :ter # 打开终端 :ter &#43;&#43;rows=2 # 以特定高度/行数打开 # 切换到tab栏，通过m键呼出文件管理菜单 nerdtree 操作">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-02-24T15:30:00+00:00">
+    <meta property="article:modified_time" content="2024-02-24T15:30:00+00:00">
+    <meta property="article:tag" content="Linux">
+
+
+
+
+
+
+<link rel="canonical" href="//localhost:1313/posts/ukh3dwtz2opjsvxf3t8cwuwjntf/">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+
+
+
+
+ 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+ 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script src="//yihui.org/js/math-code.js" defer></script>
+<script defer
+  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+
+
+
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    
+    <a class="navigation-title" href="//localhost:1313/">
+      inaho
+    </a>
+    
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">关于</a>
+            </li>
+          
+        
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+<aside class="table-of-contents">
+  <div class="toc-container">
+    <h2>目录</h2>
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#vim-美化及配置">vim 美化及配置</a>
+      <ul>
+        <li><a href="#安装-vundle-插件管理器">安装 vundle 插件管理器</a></li>
+        <li><a href="#安装-ycm">安装 YCM</a></li>
+        <li><a href="#配置-vimrc">配置 vimrc</a></li>
+        <li><a href="#vim-操作">vim 操作</a></li>
+        <li><a href="#安装插件">安装插件</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+  </div>
+</aside>
+<section class="container post">
+  <article>
+    <header>
+      <div class="post-title">
+        <h1 class="title">
+          <a class="title-link" href="//localhost:1313/posts/ukh3dwtz2opjsvxf3t8cwuwjntf/">
+            vim 美化及配置
+          </a>
+        </h1>
+      </div>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime=" 2024-02-24T15:30:00Z">
+              2024-02-24
+            </time>
+          </span>
+          <span class="reading-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            阅读时间：5 分钟
+          </span>
+          <span class="post-word-count">
+            <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
+            40620 字
+          </span>
+        </div>
+        
+
+<div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+  <a href="/authors/lzy/">Lzy</a></div>
+        
+
+<div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档</a></div>
+        
+
+<div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/linux/">Linux</a>
+  </span></div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+      <h1 id="vim-美化及配置">
+  vim 美化及配置
+  <a class="heading-link" href="#vim-%e7%be%8e%e5%8c%96%e5%8f%8a%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><img src="../static/T6OsbSJ70oZoabxJcvWcdvwVnEc.png" alt=""></p>
+<h2 id="安装-vundle-插件管理器">
+  安装 vundle 插件管理器
+  <a class="heading-link" href="#%e5%ae%89%e8%a3%85-vundle-%e6%8f%92%e4%bb%b6%e7%ae%a1%e7%90%86%e5%99%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle
+</span></span></code></pre></div><h2 id="安装-ycm">
+  安装 YCM
+  <a class="heading-link" href="#%e5%ae%89%e8%a3%85-ycm">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>YouCompleteMe 是一款为 vim 的自动补全插件，可以支持不同的语言。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 需要有 cmake clang python3 环境</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/.vim/bundle/YouCompleteMe/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载依赖，最好配代理</span>
+</span></span><span class="line"><span class="cl">git submodule update --init --recursive
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装语法补全</span>
+</span></span><span class="line"><span class="cl">./install.sh --clang-completer         <span class="c1"># CPP</span>
+</span></span><span class="line"><span class="cl">./install.sh --gocode-completer        <span class="c1"># golang</span>
+</span></span><span class="line"><span class="cl">./install.sh --java-completer          <span class="c1"># java</span>
+</span></span><span class="line"><span class="cl">./install.sh --ts-completer            <span class="c1"># ts</span>
+</span></span><span class="line"><span class="cl">./install.sh --rust-completer          <span class="c1"># rust</span>
+</span></span></code></pre></div><h2 id="配置-vimrc">
+  配置 vimrc
+  <a class="heading-link" href="#%e9%85%8d%e7%bd%ae-vimrc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s2">&#34; ============================= vim 配置 =====================================
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> autocmd BufWritePost 
+</span></span><span class="line"><span class="cl"><span class="nv">$MYVIMRC</span> <span class="nb">source</span> $
+</span></span><span class="line"><span class="cl">MYVIMRC         <span class="s2">&#34; 设置vimrc修改保存后立刻生效
+</span></span></span><span class="line"><span class="cl"><span class="s2">set nocompatible        &#34;</span> 关闭兼容模式
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> nu                  <span class="s2">&#34; 设置行号
+</span></span></span><span class="line"><span class="cl"><span class="s2">set cursorline          &#34;</span> 突出显示当前行
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; set cursorcolumn      &#34;</span> 突出显示当前列
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> showmatch           <span class="s2">&#34; 显示括号匹配
+</span></span></span><span class="line"><span class="cl"><span class="s2">set tabstop=4           &#34;</span> 设置tab长度为4空格
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">shiftwidth</span><span class="o">=</span><span class="m">4</span>        <span class="s2">&#34; 设置自动缩进长度为4空格
+</span></span></span><span class="line"><span class="cl"><span class="s2">set autoindent          &#34;</span> 继承前一行缩进方式
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> <span class="nv">mapleader</span><span class="o">=</span><span class="s2">&#34;;&#34;</span>       <span class="s2">&#34; 定义快捷键前缀 
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> <span class="o">======</span> <span class="nv">系统剪切板复制粘贴</span> <span class="o">=======</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; v 模式下复制内容到系统剪切板
+</span></span></span><span class="line"><span class="cl"><span class="s2">vmap &lt;Leader&gt;c &#34;</span>+yy
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; n 模式下复制一行到系统剪切板
+</span></span></span><span class="line"><span class="cl"><span class="s2">nmap &lt;Leader&gt;c &#34;</span>+yy
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; n 模式下粘贴系统剪切板内容
+</span></span></span><span class="line"><span class="cl"><span class="s2">nmap &lt;Leader&gt;c &#34;</span>+p
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; =========== tab配置 ===========
+</span></span></span><span class="line"><span class="cl"><span class="s2">set incsearch           &#34;</span> 开启实时搜索
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> ignorecase          <span class="s2">&#34; 搜索时大小写不敏感
+</span></span></span><span class="line"><span class="cl"><span class="s2">syntax enable
+</span></span></span><span class="line"><span class="cl"><span class="s2">syntax on               &#34;</span> 开启文件类型侦测
+</span></span><span class="line"><span class="cl">filetype plugin indent on               <span class="s2">&#34; 启动自动补全
+</span></span></span><span class="line"><span class="cl"><span class="s2">au InsertLeave 
+</span></span></span><span class="line"><span class="cl"><span class="s2">*.go,*
+</span></span></span><span class="line"><span class="cl"><span class="s2">.sh,*.php write    &#34;</span> 退出插入模式指定类型文件自动保存
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; =============================================插件=====================================================
+</span></span></span><span class="line"><span class="cl"><span class="s2">set rtp+=~/.vim/bundle/Vundle.vim       &#34;</span> 设置包括vundle和初始化相关的runtime_path
+</span></span><span class="line"><span class="cl">call vundle#begin<span class="o">()</span>     <span class="s2">&#34; 或者指定一个vundle安装插件的路径 call vundle#begin(&#39;~/some/path/here&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;VundleVim/Vundle.vim&#39;                   &#34;</span> 让vundel管理插件版本
+</span></span><span class="line"><span class="cl">Plugin <span class="s1">&#39;junegunn/vim-easy-align&#39;</span>                <span class="s2">&#34; 快速对齐
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;scrooloose/nerdtree&#39;                    &#34;</span> 提供导航目录的侧边栏
+</span></span><span class="line"><span class="cl">Plugin <span class="s1">&#39;jistr/vim-nerdtree-tabs&#39;</span>                <span class="s2">&#34; 优化nerdtree的tab
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;Xuyuanp/nerdtree-git-plugin&#39;    &#34;</span> 导航目录看git版本信息
+</span></span><span class="line"><span class="cl">Plugin <span class="s1">&#39;majutsushi/tagbar&#39;</span>                              <span class="s2">&#34; 查看当前文件变量和函数列表，可以切换和跳转
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;jiangmiao/auto-pairs&#39;                   &#34;</span> 自动补全括号的插件
+</span></span><span class="line"><span class="cl">Plugin <span class="s1">&#39;vim-airline/vim-airline&#39;</span>                <span class="s2">&#34; vim状态栏，显示行号、列号，文件类型，文件名，git状态
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;ianva/vim-youdao-translater&#39;    &#34;</span> 有道词典在线翻译
+</span></span><span class="line"><span class="cl">Plugin <span class="s1">&#39;ycm-core/YouCompleteMe&#39;</span>                 <span class="s2">&#34; 代码自动完成
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;airblade/vim-gitgutter&#39;                 &#34;</span> 文档显示git信息
+</span></span><span class="line"><span class="cl">Plugin <span class="s1">&#39;SirVer/ultisnips&#39;</span>                               <span class="s2">&#34; 自动生成代码块
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;honza/vim-snippets&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> Plugin <span class="s1">&#39;vim-scripts/SuperTab&#39;</span>         <span class="s2">&#34; 使用tab补全
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> <span class="o">==========</span> <span class="nv">配色方案</span> <span class="o">============</span>
+</span></span><span class="line"><span class="cl">Plugin <span class="s1">&#39;KeitaNakamura/neodark.vim&#39;</span>      <span class="s2">&#34; colorcheme neodark
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;crusoexia/vim-monokai&#39;          &#34;</span> colorcheme monokai
+</span></span><span class="line"><span class="cl">Plugin <span class="s1">&#39;acarapetis/vim-colors-github&#39;</span>   <span class="s2">&#34; colorcheme github
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;rakr/vim-one&#39;                   &#34;</span> colorcheme one
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; ========== go 插件 =============
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;fatih/vim-go&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;dgryski/vim-godef&#39;              &#34;</span> go代码追踪，输入gd自动跳转
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; ========== markdown 插件 =======
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;iamcco/mathjax-support-for-mkdp&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Plugin &#39;iamcco/markdown-preview.vim&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">call vundle#end()            
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> <span class="o">===================</span> <span class="nv">主题配色</span> <span class="o">=========================</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> termguicolors               <span class="s2">&#34; 开启24bit颜色
+</span></span></span><span class="line"><span class="cl"><span class="s2">colorscheme one                 &#34;</span> 选用主题
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">background</span><span class="o">=</span>dark     <span class="s2">&#34; 主题背景 
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> <span class="o">===================</span> vim-go插件 <span class="o">=======================</span>
+</span></span><span class="line"><span class="cl">autocmd BufWritePre *.go :silent! %!gofmt <span class="s2">&#34; 自动格式化go代码 
+</span></span></span><span class="line"><span class="cl"><span class="s2">let g:go_fmt_command = &#34;</span>goimports<span class="s2">&#34; &#34;</span> 格式化将默认的 gofmt 替换
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_autodetect_gopath <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_list_type <span class="o">=</span> <span class="s2">&#34;quickfix&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_version_warning <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_highlight_types <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_highlight_fields <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_highlight_functions <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_highlight_function_calls <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_highlight_operators <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_highlight_extra_types <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_highlight_methods <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:go_highlight_generate_tags <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:godef_split<span class="o">=</span><span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; ========================= nerd tree 插件 ======================
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 打开和关闭NERDTree快捷键
+</span></span><span class="line"><span class="cl">map &lt;F10&gt; :NERDTreeToggle&lt;CR&gt;
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 显示行号
+</span></span></span><span class="line"><span class="cl"><span class="s2">let NERDTreeShowLineNumbers=1
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 打开文件时是否显示目录
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> <span class="nv">NERDTreeAutoCenter</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 是否显示隐藏文件
+</span></span></span><span class="line"><span class="cl"><span class="s2">let NERDTreeShowHidden=0
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 设置宽度
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; let NERDTreeWinSize=31
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 忽略一下文件的显示
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> <span class="nv">NERDTreeIgnore</span><span class="o">=[</span><span class="s1">&#39;\.pyc&#39;</span>,<span class="s1">&#39;\~$&#39;</span>,<span class="s1">&#39;\.swp&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 打开 vim 文件及显示书签列表
+</span></span></span><span class="line"><span class="cl"><span class="s2">let NERDTreeShowBookmarks=2
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 在终端启动vim时，共享NERDTree
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:nerdtree_tabs_open_on_console_startup<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;==============================================================================
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span>  majutsushi/tagbar 插件
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;==============================================================================
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> majutsushi/tagbar 插件打开关闭快捷键
+</span></span><span class="line"><span class="cl">nmap &lt;F9&gt; :TagbarToggle&lt;CR&gt;
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:tagbar_type_go <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;ctagstype&#39;</span> : <span class="s1">&#39;go&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;kinds&#39;</span>     : <span class="o">[</span>
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;p:package&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;i:imports:1&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;c:constants&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;v:variables&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;t:types&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;n:interfaces&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;w:fields&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;e:embedded&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;m:methods&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;r:constructor&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;f:functions&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="o">]</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;sro&#39;</span> : <span class="s1">&#39;.&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;kind2scope&#39;</span> : <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="se">\ </span><span class="s1">&#39;t&#39;</span> : <span class="s1">&#39;ctype&#39;</span>,
+</span></span><span class="line"><span class="cl">  <span class="se">\ </span><span class="s1">&#39;n&#39;</span> : <span class="s1">&#39;ntype&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="se">\ </span><span class="o">}</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;scope2kind&#39;</span> : <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="se">\ </span><span class="s1">&#39;ctype&#39;</span> : <span class="s1">&#39;t&#39;</span>,
+</span></span><span class="line"><span class="cl">  <span class="se">\ </span><span class="s1">&#39;ntype&#39;</span> : <span class="s1">&#39;n&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="se">\ </span><span class="o">}</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;ctagsbin&#39;</span>  : <span class="s1">&#39;gotags&#39;</span>,
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="s1">&#39;ctagsargs&#39;</span> : <span class="s1">&#39;-sort -silent&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="se">\ </span><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;==============================================================================
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span>  nerdtree-git-plugin 插件
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;==============================================================================
+</span></span></span><span class="line"><span class="cl"><span class="s2">let g:NERDTreeGitStatusIndicatorMapCustom = {
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#34;</span>Modified<span class="s2">&#34;  : &#34;</span>✹<span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#34;</span>Staged<span class="s2">&#34;    : &#34;</span>✚<span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#34;</span>Untracked<span class="s2">&#34; : &#34;</span>✭<span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#34;</span>Renamed<span class="s2">&#34;   : &#34;</span>➜<span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#34;</span>Unmerged<span class="s2">&#34;  : &#34;</span>═<span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#34;</span>Deleted<span class="s2">&#34;   : &#34;</span>✖<span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#34;</span>Dirty<span class="s2">&#34;     : &#34;</span>✗<span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#34;</span>Clean<span class="s2">&#34;     : &#34;</span>✔︎<span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#39;Ignored&#39;   : &#39;☒&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ &#34;</span>Unknown<span class="s2">&#34;   : &#34;</span>?<span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">\ }
+</span></span></span><span class="line"><span class="cl"><span class="s2">let g:NERDTreeGitStatusShowIgnored = 1
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="o">==============================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;  Valloric/YouCompleteMe 插件
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="o">==============================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">runtimepath</span><span class="o">+=</span>~/.vim/bundle/YouCompleteMe
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:ycm_collect_identifiers_from_tags_files <span class="o">=</span> <span class="m">1</span>           <span class="s2">&#34; 开启 YCM 基于标签引擎
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> <span class="nb">let</span> g:syntastic_ignore_files<span class="o">=[</span><span class="s2">&#34;.*\.py</span>$<span class="s2">&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:ycm_seed_identifiers_with_syntax <span class="o">=</span> <span class="m">1</span>                  <span class="s2">&#34; 语法关键字补全
+</span></span></span><span class="line"><span class="cl"><span class="s2">let g:ycm_complete_in_comments = 1
+</span></span></span><span class="line"><span class="cl"><span class="s2">let g:ycm_confirm_extra_conf = 0
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> <span class="nb">let</span> g:ycm_key_list_select_completion <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;&lt;c-n&gt;&#39;</span>, <span class="s1">&#39;&lt;Down&gt;&#39;</span><span class="o">]</span>  <span class="s2">&#34; 映射按键, 没有这个会拦截掉tab, 导致其他插件的tab不能用.
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> <span class="nb">let</span> g:ycm_key_list_previous_completion <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;&lt;c-p&gt;&#39;</span>, <span class="s1">&#39;&lt;Up&gt;&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; let g:ycm_complete_in_comments = 1                          &#34;</span> 在注释输入中也能补全
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; let g:ycm_complete_in_strings = 1                           &#34;</span> 在字符串输入中也能补全
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; let g:ycm_collect_identifiers_from_comments_and_strings = 1 &#34;</span> 注释和字符串中的文字也会被收入补全
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:ycm_global_ycm_extra_conf<span class="o">=</span><span class="s1">&#39;~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; let g:ycm_show_diagnostics_ui = 0                                       &#34;</span> 禁用语法检查
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; inoremap &lt;expr&gt; &lt;CR&gt; pumvisible() ? &#34;</span><span class="se">\&lt;</span>C-y&gt;<span class="s2">&#34; : &#34;</span><span class="se">\&lt;</span>CR&gt;<span class="s2">&#34; |            &#34;</span> 回车即选中当前项
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; nnoremap &lt;c-j&gt; :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;|     &#34;</span> 跳转到定义处
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:ycm_min_num_of_chars_for_completion<span class="o">=</span><span class="m">2</span>                 <span class="s2">&#34; 从第2个键入字符就开始罗列匹配项
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> make YCM compatible with UltiSnips <span class="o">(</span>using supertab<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:ycm_key_list_select_completion <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;&lt;C-n&gt;&#39;</span>, <span class="s1">&#39;&lt;space&gt;&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:ycm_key_list_previous_completion <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;&lt;C-p&gt;&#39;</span>, <span class="s1">&#39;&lt;Up&gt;&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:SuperTabDefaultCompletionType <span class="o">=</span> <span class="s1">&#39;&lt;C-n&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; better key bindings for UltiSnipsExpandTrigger
+</span></span></span><span class="line"><span class="cl"><span class="s2">let g:UltiSnipsExpandTrigger = &#34;</span>&lt;tab&gt;<span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">let g:UltiSnipsJumpForwardTrigger = &#34;</span>&lt;tab&gt;<span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">let g:UltiSnipsJumpBackwardTrigger = &#34;</span>&lt;s-tab&gt;<span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="o">==============================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;  其他插件配置
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="o">==============================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; markdwon 的快捷键
+</span></span></span><span class="line"><span class="cl"><span class="s2">map &lt;silent&gt; &lt;F5&gt; &lt;Plug&gt;MarkdownPreview
+</span></span></span><span class="line"><span class="cl"><span class="s2">map &lt;silent&gt; &lt;F6&gt; &lt;Plug&gt;StopMarkdownPreview
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> tab 标签页切换快捷键
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;1 1gt
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;2 2gt
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;3 3gt
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;4 4gt
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;5 5gt
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;6 6gt
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;7 7gt
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;8 8gt
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;9 8gt
+</span></span><span class="line"><span class="cl">:nn &lt;Leader&gt;0 :tablast&lt;CR&gt;
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;==============================================================================
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> GVim 的配置
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;==============================================================================
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 如果不使用 GVim ，可以不用配置下面的配置
+</span></span><span class="line"><span class="cl"><span class="k">if</span> has<span class="o">(</span><span class="s1">&#39;gui_running&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">colorscheme one
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 设置启动时窗口的大小
+</span></span></span><span class="line"><span class="cl"><span class="s2">set lines=999 columns=999 linespace=4
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 设置字体及大小
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">guifont</span><span class="o">=</span>Roboto<span class="se">\ </span>Mono<span class="se">\ </span><span class="m">13</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> guioptions-<span class="o">=</span>m <span class="s2">&#34; 隐藏菜单栏
+</span></span></span><span class="line"><span class="cl"><span class="s2">set guioptions-=T &#34;</span> 隐藏工具栏
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> guioptions-<span class="o">=</span>L <span class="s2">&#34; 隐藏左侧滚动条
+</span></span></span><span class="line"><span class="cl"><span class="s2">set guioptions-=r &#34;</span> 隐藏右侧滚动条
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> guioptions-<span class="o">=</span>b <span class="s2">&#34; 隐藏底部滚动条
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 在 gvim 下不会和 terminal 的 alt+数字的快捷键冲突，
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; 所以将 tab 切换配置一份 alt+数字的快捷键
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-1&gt; 1gt
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-2&gt; 2gt
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-3&gt; 3gt
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-4&gt; 4gt
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-5&gt; 5gt
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-6&gt; 6gt
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-7&gt; 7gt
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-8&gt; 8gt
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-9&gt; 9gt
+</span></span></span><span class="line"><span class="cl"><span class="s2">:nn &lt;M-0&gt; :tablast&lt;CR&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">endif
+</span></span></span></code></pre></div><h2 id="vim-操作">
+  vim 操作
+  <a class="heading-link" href="#vim-%e6%93%8d%e4%bd%9c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Ctrl + W + H ： Focus 在左边窗口
+</span></span><span class="line"><span class="cl">Ctrl + W + L ： Focus 在右边窗口
+</span></span><span class="line"><span class="cl">:ter                                         <span class="c1"># 打开终端</span>
+</span></span><span class="line"><span class="cl">:ter ++rows<span class="o">=</span><span class="m">2</span> <span class="c1"># 以特定高度/行数打开</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换到tab栏，通过m键呼出文件管理菜单</span>
+</span></span></code></pre></div><blockquote>
+<p>nerdtree 操作</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ctrl + w + h    光标 focus 左侧树形目录
+</span></span><span class="line"><span class="cl">ctrl + w + l    光标 focus 右侧文件显示窗口
+</span></span><span class="line"><span class="cl">ctrl + w + w    光标自动在左右侧窗口切换
+</span></span><span class="line"><span class="cl">ctrl + w + r    移动当前窗口的布局位置
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">o       在已有窗口中打开文件、目录或书签，并跳到该窗口
+</span></span><span class="line"><span class="cl">go      在已有窗口 中打开文件、目录或书签，但不跳到该窗口
+</span></span><span class="line"><span class="cl">t       在新 Tab 中打开选中文件/书签，并跳到新 Tab
+</span></span><span class="line"><span class="cl">T       在新 Tab 中打开选中文件/书签，但不跳到新 Tab
+</span></span><span class="line"><span class="cl">i       split 一个新窗口打开选中文件，并跳到该窗口
+</span></span><span class="line"><span class="cl">gi      split 一个新窗口打开选中文件，但不跳到该窗口
+</span></span><span class="line"><span class="cl">s       vsplit 一个新窗口打开选中文件，并跳到该窗口
+</span></span><span class="line"><span class="cl">gs      vsplit 一个新 窗口打开选中文件，但不跳到该窗口
+</span></span><span class="line"><span class="cl">!       执行当前文件
+</span></span><span class="line"><span class="cl">O       递归打开选中 结点下的所有目录
+</span></span><span class="line"><span class="cl">m       文件操作：复制、删除、移动等
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">:tabnew <span class="o">[</span>++opt选项<span class="o">]</span> ［＋cmd］ 文件      建立对指定文件新的tab
+</span></span><span class="line"><span class="cl">:tabc   关闭当前的 tab
+</span></span><span class="line"><span class="cl">:tabo   关闭所有其他的 tab
+</span></span><span class="line"><span class="cl">:tabs   查看所有打开的 tab
+</span></span><span class="line"><span class="cl">:tabp   前一个 tab
+</span></span><span class="line"><span class="cl">:tabn   后一个 tab
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">标准模式下：
+</span></span><span class="line"><span class="cl">gT      前一个 tab
+</span></span><span class="line"><span class="cl">gt      后一个 tab
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">?: 快速帮助文档
+</span></span><span class="line"><span class="cl">x: 收起当前打开的目录
+</span></span><span class="line"><span class="cl">X: 收起所有打开的目录
+</span></span><span class="line"><span class="cl">e: 以文件管理的方式打开选中的目录
+</span></span><span class="line"><span class="cl">D: 删除书签
+</span></span><span class="line"><span class="cl">P: 大写，跳转到当前根路径
+</span></span><span class="line"><span class="cl">p: 小写，跳转到光标所在的上一级路径
+</span></span><span class="line"><span class="cl">K: 跳转到第一个子路径
+</span></span><span class="line"><span class="cl">J: 跳转到最后一个子路径
+</span></span><span class="line"><span class="cl">&lt;C-j&gt;和&lt;C-k&gt;: 在同级目录和文件间移动，忽略子目录和子文件
+</span></span><span class="line"><span class="cl">C: 将根路径设置为光标所在的目录
+</span></span><span class="line"><span class="cl">u: 设置上级目录为根路径
+</span></span><span class="line"><span class="cl">U: 设置上级目录为跟路径，但是维持原来目录打开的状态
+</span></span><span class="line"><span class="cl">r: 刷新光标所在的目录
+</span></span><span class="line"><span class="cl">R: 刷新当前根路径
+</span></span><span class="line"><span class="cl">I: 显示或者不显示隐藏文件
+</span></span><span class="line"><span class="cl">f: 打开和关闭文件过滤器
+</span></span><span class="line"><span class="cl">q: 关闭NERDTree
+</span></span><span class="line"><span class="cl">A: 全屏显示NERDTree，或者关闭全屏
+</span></span></code></pre></div><h2 id="安装插件">
+  安装插件
+  <a class="heading-link" href="#%e5%ae%89%e8%a3%85%e6%8f%92%e4%bb%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 进入vim</span>
+</span></span><span class="line"><span class="cl">vim
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装插件</span>
+</span></span><span class="line"><span class="cl">:PluginInstall
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装go插件</span>
+</span></span><span class="line"><span class="cl">:GoInstallBinaries
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># tagbar插件需要ctags/gotags支持</span>
+</span></span><span class="line"><span class="cl">yay -S ctags    <span class="c1"># manjaro系统可以通过yay包管理安装</span>
+</span></span><span class="line"><span class="cl">go get -u github.com/jstemmer/gotags
+</span></span></code></pre></div>
+    </div>
+
+
+    <footer>
+      
+
+
+
+
+
+
+
+      <div id="tcomment"></div>
+    </footer>
+  </article>
+
+</section>
+
+
+
+
+
+  <script src="/js/twiko.all.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      twikoo.init({
+        envId: 'https://twikoo-inaho.netlify.app/.netlify/functions/twikoo',
+        el: '#tcomment'
+      });
+    });
+  </script>
+
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    ©
+    
+      2019 -
+    
+    2025
+
+    
+     inaho 
+    ·
+    
+    
+
+    
+    技术支持 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

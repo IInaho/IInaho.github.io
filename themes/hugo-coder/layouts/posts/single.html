@@ -28,7 +28,7 @@
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            {{ .WordCount }} 字数
+            {{ len .Content }} 字
           </span>
         </div>
         {{ with .GetTerms "authors" }}{{ partial "taxonomy/authors.html" . }}{{ end }}

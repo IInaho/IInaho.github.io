@@ -11556,7 +11556,7 @@ figure {
         opacity: 1; }
   .custom-post-item .post-title {
     font-size: 2rem;
-    color: var(--heading-color); }
+    color: #000000; }
   .custom-post-item .post-meta {
     display: flex;
     gap: 1.5rem;
