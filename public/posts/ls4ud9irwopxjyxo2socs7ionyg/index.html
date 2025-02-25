@@ -28,6 +28,8 @@ pprof 性能分析 · inaho
   
 
 
+
+
   概要
   
     
@@ -35,6 +37,8 @@ pprof 性能分析 · inaho
   
 
 在 golang 项目开发测试过程中，程序经常会出现各种崩溃卡死的恶性 bug，例如内存飙升、CPU 占用太高、Goroutine 泄露等，有些仅从代码层面无法排查到，这时候就需要借助 pprof 工具来排查问题。
+
+
 
   简要介绍
   
@@ -56,6 +60,8 @@ block：查看导致阻塞同步的堆栈跟踪，访问路径为 $HOST/debug/pp
 
 根据 pprof 工具基于 web 图形界面进行分析
 基于交互式的命令行进行分析
+
+
 
 
   Web 界面分析
@@ -259,6 +265,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -315,7 +325,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            12917 字
+            12931 字
           </span>
         </div>
         
@@ -340,13 +350,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="pprof-性能分析">
+      
+
+<h1 id="pprof-性能分析">
   pprof 性能分析
   <a class="heading-link" href="#pprof-%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="概要">
   概要
   <a class="heading-link" href="#%e6%a6%82%e8%a6%81">
@@ -355,6 +369,8 @@ code.has-jax {
   </a>
 </h2>
 <p>在 golang 项目开发测试过程中，程序经常会出现各种崩溃卡死的恶性 bug，例如内存飙升、CPU 占用太高、Goroutine 泄露等，有些仅从代码层面无法排查到，这时候就需要借助 pprof 工具来排查问题。</p>
+
+
 <h2 id="简要介绍">
   简要介绍
   <a class="heading-link" href="#%e7%ae%80%e8%a6%81%e4%bb%8b%e7%bb%8d">
@@ -377,6 +393,8 @@ code.has-jax {
 <li>根据 pprof 工具基于 web 图形界面进行分析</li>
 <li>基于交互式的命令行进行分析</li>
 </ul>
+
+
 <h2 id="web-界面分析">
   Web 界面分析
   <a class="heading-link" href="#web-%e7%95%8c%e9%9d%a2%e5%88%86%e6%9e%90">
@@ -398,7 +416,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">go tool pprof --http :7777 http://192.168.131.100:19528/debug/pprof/heap
 </span></span><span class="line"><span class="cl"><span class="c1"># 生成图片</span>
 </span></span><span class="line"><span class="cl">go tool pprof -alloc_space -cum -svg http://127.0.0.1:8080/debug/pprof/heap &gt; heap.svg
-</span></span></code></pre></div><h2 id="命令行分析-heap">
+</span></span></code></pre></div>
+
+<h2 id="命令行分析-heap">
   命令行分析 Heap
   <a class="heading-link" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%88%86%e6%9e%90-heap">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -417,6 +437,8 @@ code.has-jax {
 <li>alloc_space — 分配的内存总量(已释放的也会统计)</li>
 <li>alloc_objects — 分配的对象总数(无论是否释放)</li>
 </ul>
+
+
 <h2 id="命令行分析-cpu">
   命令行分析 CPU
   <a class="heading-link" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%88%86%e6%9e%90-cpu">
@@ -443,7 +465,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">     0.52s  1.40% 93.18%      0.52s  1.40%  runtime.nanotime
 </span></span><span class="line"><span class="cl">     ...
 </span></span><span class="line"><span class="cl"><span class="o">(</span>pprof<span class="o">)</span>
-</span></span></code></pre></div><h2 id="命令行分析-goroutine">
+</span></span></code></pre></div>
+
+<h2 id="命令行分析-goroutine">
   命令行分析 Goroutine
   <a class="heading-link" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%88%86%e6%9e%90-goroutine">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -542,12 +566,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

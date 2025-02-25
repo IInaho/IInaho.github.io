@@ -28,6 +28,8 @@
   
 
 
+
+
   总线的作用
   
     
@@ -35,6 +37,8 @@
   
 
 总线是连接各个部件的信息传输线,是各个部件共享的传输介质.
+
+
 
   总线上的信息传送
   
@@ -47,11 +51,15 @@
 并行传输,每次传输多个字节,接收多个字节,但也要使用更多传输线.
 
 
+
+
   ../static
   
     
     链接到标题
   
+
+
 
 
   单总线结构框图
@@ -63,6 +71,8 @@
 
 将所有的设备全部连接到一条总线上,缺点是当某一个设备占用总线时,其他设备不能占用总线,导致整体运行效率降低.
 
+
+
   面向 CPU 的双总线结构框图
   
     
@@ -72,6 +82,8 @@
 
 以 CPU 为中心,双总线结构在 CPU 与内存之间使用了一根专用的总线,由于 CPU 运算时的指令与数据全部来自主存,所以在 CPU 与主存间使用总线可以保证 CPU 的运行效率,并且不会影响 I/O 设备的使用,但如果 I/O 设备要和主存之间进行信息传输必须经过 CPU,导致 CPU 工作繁忙.
 
+
+
   以存储器为中心的双总线结构框图
   
     
@@ -80,6 +92,8 @@
 
 
 以主存为中心,这种结构不仅让 CPU 可以直接访问主存,也让 I/O 设备可以直接对主存进行存储操作.
+
+
 
   总线的分类
   
@@ -285,6 +299,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -398,7 +416,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            20125 字
+            20199 字
           </span>
         </div>
         
@@ -423,13 +441,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="系统总线">
+      
+
+<h1 id="系统总线">
   系统总线
   <a class="heading-link" href="#%e7%b3%bb%e7%bb%9f%e6%80%bb%e7%ba%bf">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="总线的作用">
   总线的作用
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e7%9a%84%e4%bd%9c%e7%94%a8">
@@ -438,6 +460,8 @@ code.has-jax {
   </a>
 </h2>
 <p>总线是连接各个部件的信息传输线,是各个部件共享的传输介质.</p>
+
+
 <h3 id="总线上的信息传送">
   总线上的信息传送
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e4%b8%8a%e7%9a%84%e4%bf%a1%e6%81%af%e4%bc%a0%e9%80%81">
@@ -449,6 +473,8 @@ code.has-jax {
 <li>串行传输,每次只传送一个字节,也只接收一个字节.</li>
 <li>并行传输,每次传输多个字节,接收多个字节,但也要使用更多传输线.</li>
 </ul>
+
+
 <h2 id="static">
   ../static
   <a class="heading-link" href="#static">
@@ -456,6 +482,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="单总线结构框图">
   单总线结构框图
   <a class="heading-link" href="#%e5%8d%95%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84%e6%a1%86%e5%9b%be">
@@ -465,6 +493,8 @@ code.has-jax {
 </h3>
 <p><img src="static/FJCDbIw5hoL05GxKiGPciUSon7c.png" alt=""></p>
 <p>将所有的设备全部连接到一条总线上,缺点是当某一个设备占用总线时,其他设备不能占用总线,导致整体运行效率降低.</p>
+
+
 <h3 id="面向-cpu-的双总线结构框图">
   面向 CPU 的双总线结构框图
   <a class="heading-link" href="#%e9%9d%a2%e5%90%91-cpu-%e7%9a%84%e5%8f%8c%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84%e6%a1%86%e5%9b%be">
@@ -474,6 +504,8 @@ code.has-jax {
 </h3>
 <p><img src="static/LrC5bQNPKo9Fl4xiVfgcDdVbnJf.png" alt=""></p>
 <p>以 CPU 为中心,双总线结构在 CPU 与内存之间使用了一根专用的总线,由于 CPU 运算时的指令与数据全部来自主存,所以在 CPU 与主存间使用总线可以保证 CPU 的运行效率,并且不会影响 I/O 设备的使用,但如果 I/O 设备要和主存之间进行信息传输必须经过 CPU,导致 CPU 工作繁忙.</p>
+
+
 <h3 id="以存储器为中心的双总线结构框图">
   以存储器为中心的双总线结构框图
   <a class="heading-link" href="#%e4%bb%a5%e5%ad%98%e5%82%a8%e5%99%a8%e4%b8%ba%e4%b8%ad%e5%bf%83%e7%9a%84%e5%8f%8c%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84%e6%a1%86%e5%9b%be">
@@ -483,6 +515,8 @@ code.has-jax {
 </h3>
 <p><img src="static/GaFmbs92DoscnexMSrlcfQrvnag.png" alt=""></p>
 <p>以主存为中心,这种结构不仅让 CPU 可以直接访问主存,也让 I/O 设备可以直接对主存进行存储操作.</p>
+
+
 <h2 id="总线的分类">
   总线的分类
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e7%9a%84%e5%88%86%e7%b1%bb">
@@ -510,6 +544,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h2 id="总线特性及性能指标">
   总线特性及性能指标
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e7%89%b9%e6%80%a7%e5%8f%8a%e6%80%a7%e8%83%bd%e6%8c%87%e6%a0%87">
@@ -517,6 +553,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="总线的物理实现">
   总线的物理实现
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e7%9a%84%e7%89%a9%e7%90%86%e5%ae%9e%e7%8e%b0">
@@ -526,6 +564,8 @@ code.has-jax {
 </h3>
 <p><img src="static/MiVAbdrbFoBEjIxI4VacQ51OnPd.png" alt=""></p>
 <p>微型计算机中一般有一个大型印刷电路板,称之为主板,主板上分布总线,总线提供接口可以与其他设备相连接.</p>
+
+
 <h3 id="总线特性">
   总线特性
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e7%89%b9%e6%80%a7">
@@ -539,6 +579,8 @@ code.has-jax {
 <li>功能特性: 每根传输线的功能,传输信号.</li>
 <li>时间特性: 信号的时序关系.</li>
 </ol>
+
+
 <h3 id="总线性能指标">
   总线性能指标
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e6%80%a7%e8%83%bd%e6%8c%87%e6%a0%87">
@@ -555,6 +597,8 @@ code.has-jax {
 <li>总线控制方式: 突发、自动、仲裁、逻辑、计数</li>
 <li>其他指标: 负载能力(能挂多少 I/O 设备)</li>
 </ol>
+
+
 <h3 id="总线标准">
   总线标准
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e6%a0%87%e5%87%86">
@@ -566,6 +610,8 @@ code.has-jax {
 <p>例如 ISA 总线,时钟为 8MHz,每秒可以传送 8M 次,每次传送 16bits 信息也就是两个字节,可以很容易计算出带宽为 16MBps.</p>
 <blockquote>
 <p>带宽=总线宽度 x 总线频率.</p></blockquote>
+
+
 <h2 id="总线结构">
   总线结构
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84">
@@ -573,6 +619,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="双总线结构">
   双总线结构
   <a class="heading-link" href="#%e5%8f%8c%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84">
@@ -584,6 +632,8 @@ code.has-jax {
 <p>将总线分为存储总线和 I/O 总线,存储总线用于连接 CPU 和主存,I/O 总线负责连接 I/O 设备,然后用通道将 I/O 总线与主存总线连接.</p>
 <blockquote>
 <p>通道: 具有特殊功能的处理器,由通道对 IO 统一管理,一般来说通道有自己的控制器与指令系统,并且可以执行一些简单的指令与通道程序.</p></blockquote>
+
+
 <h3 id="三总线结构">
   三总线结构
   <a class="heading-link" href="#%e4%b8%89%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84">
@@ -593,6 +643,8 @@ code.has-jax {
 </h3>
 <p><img src="static/JTNybxhQxoqqFBxeRHacZhgGnKh.png" alt=""></p>
 <p>三总线结构将总线分为 I/O 总线,储存总线与 DMA 总线(直接存储器访问,外部设备直接访问内存),DMA 总线与 I/O 接口相连,如果有高速设备需要与主存进行连接,可以通过 DMA 总线而不需要通过 I/O 总线.</p>
+
+
 <h3 id="三总线结构的又一形式">
   三总线结构的又一形式
   <a class="heading-link" href="#%e4%b8%89%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84%e7%9a%84%e5%8f%88%e4%b8%80%e5%bd%a2%e5%bc%8f">
@@ -603,6 +655,8 @@ code.has-jax {
 <p><img src="static/Q5gybbpH2oXMFOxZIZxcwOUln0c.png" alt=""></p>
 <p>由于 CPU 的速度提高的非常快,所以现代计算机在主存与 CPU 之间增加了小容量高速度的 Cache 用于缓存主存的一些数据,CPU 运行时需要的指令和数据主要从 Cache 中获取,局部总线连接了 CPU 和 Cache,局部 I/O 控制器可以连接高速的 I/O 设备,系统总线通过扩展总线接口,连接了扩展总线,可以将各种外部设备连接到扩展总线,这样解决了 I/O 设备的扩展问题,外部设备通过扩展总线接口将数据传送进系统总线进而传送给主存和 CPU.</p>
 <p>这种结构的缺点是多种速度的设备都连接到了扩展总线,会影响 I/O 设备的运行效率.</p>
+
+
 <h3 id="四总线结构">
   四总线结构
   <a class="heading-link" href="#%e5%9b%9b%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84">
@@ -612,6 +666,8 @@ code.has-jax {
 </h3>
 <p><img src="static/QTXdbr5sUoJtImxN6HFcfifxnYE.png" alt=""></p>
 <p>四总线结构包括,局部总线、系统总线、高速总线和扩展总线,局部总线连接 CPU 和 Cache/桥,系统总线连接主存和 Cache,桥电路连接 高速总线,高速总线连接各种高速设备,高速总线连接扩展总线接口,扩展总线接口连接扩展总线,扩展总线用于连接低速设备.这样避免了外部设备速度不同的问题,分离了高速设备与低速设备.</p>
+
+
 <h2 id="总线结构举例">
   总线结构举例
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84%e4%b8%be%e4%be%8b">
@@ -619,6 +675,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="传统微型机总线结构">
   传统微型机总线结构
   <a class="heading-link" href="#%e4%bc%a0%e7%bb%9f%e5%be%ae%e5%9e%8b%e6%9c%ba%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84">
@@ -627,6 +685,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="static/OdnNb9l6joZ66dxmcjGcFiq5nze.png" alt=""></p>
+
+
 <h3 id="vl-bus-局部总线结构">
   VL-BUS 局部总线结构
   <a class="heading-link" href="#vl-bus-%e5%b1%80%e9%83%a8%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84">
@@ -635,6 +695,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="static/OQ5VbKNZzocmP5xPbdBc8VHQnyh.png" alt=""></p>
+
+
 <h3 id="pci-总线结构">
   PCI 总线结构
   <a class="heading-link" href="#pci-%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84">
@@ -643,6 +705,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="static/XBBKbUHJRobi1jxjfUfc5LrRntc.png" alt=""></p>
+
+
 <h3 id="多层-pci-总线结构">
   多层 PCI 总线结构
   <a class="heading-link" href="#%e5%a4%9a%e5%b1%82-pci-%e6%80%bb%e7%ba%bf%e7%bb%93%e6%9e%84">
@@ -651,6 +715,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="static/D2Ddb5AUvoODONxi2BGcpkwSn7b.png" alt=""></p>
+
+
 <h2 id="总线控制">
   总线控制
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e6%8e%a7%e5%88%b6">
@@ -658,6 +724,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="基本概念">
   基本概念
   <a class="heading-link" href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5">
@@ -686,6 +754,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h3 id="链式查询方式">
   链式查询方式
   <a class="heading-link" href="#%e9%93%be%e5%bc%8f%e6%9f%a5%e8%af%a2%e6%96%b9%e5%bc%8f">
@@ -695,6 +765,8 @@ code.has-jax {
 </h3>
 <p><img src="static/BkPmb6kuSohzr6xOhRmcb8aDn7f.png" alt=""></p>
 <p>总线控制部件集中在了一起,数据线用于信息交换过程中数据的传输,主设备占用总线后要跟从设备进行数据传输要通过地址总线找到对应的从设备.所有的设备都通过 BR 线发出总线占用或使用的请求.如果某个设备占用了总线控制权,则该设备通过 BS 告知总线控制部件或其他部件总线忙.BG 为总线授权线,通过 BG 线逐个查询是哪一个设备提出的总线占用请求,该设备通过 BS 线设置总线忙,它就获得了总线的使用权.这种方式提前设置了设备的优先权,靠后的设备可能不会获得总线占用权.对电路故障敏感,如果向下传送过程中某一个电路出现故障,后面的设备就无法获得总线使用权.</p>
+
+
 <h3 id="计数器定时查询方式">
   计数器定时查询方式
   <a class="heading-link" href="#%e8%ae%a1%e6%95%b0%e5%99%a8%e5%ae%9a%e6%97%b6%e6%9f%a5%e8%af%a2%e6%96%b9%e5%bc%8f">
@@ -704,6 +776,8 @@ code.has-jax {
 </h3>
 <p><img src="static/RrDMbrRcaosEPxxO0LEcjawonze.png" alt=""></p>
 <p>地址线用于查找从设备,设备地址上传输的地址是计数器给出的,通过这个地址去查找某个设备是否发出了总线占用请求.总线控制部件中有一个计数器,如果某主设备发出总线控制请求,控制部件收到请求后,可以让出总线使用权的情况下,会启动计数器.这个计数器的值通过设备地址这条线向外输出.计数器的值为 0,就对 I/O 接口 0 进行查询,判断是否提出了响应请求,找到提出请求的设备后通过 BS 线应答.这种查询方式更加灵活,你可以设置计数器的启动,更改优先级.设备地址线数量与设备数有关.</p>
+
+
 <h3 id="独立请求方式">
   独立请求方式
   <a class="heading-link" href="#%e7%8b%ac%e7%ab%8b%e8%af%b7%e6%b1%82%e6%96%b9%e5%bc%8f">
@@ -713,6 +787,8 @@ code.has-jax {
 </h3>
 <p><img src="static/RsyAb8O0porjVhx3IiMccdFbngg.png" alt=""></p>
 <p>每一个 I/O 接口都连接 BG 与 BR 两条线,总线控制部件中有一个排队器.n 个设备需要 2n 条线,多个 I/O 设备同时发起总线请求,排队器负责选择优先级高的设备控制总线.</p>
+
+
 <h2 id="总线通信控制">
   总线通信控制
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e9%80%9a%e4%bf%a1%e6%8e%a7%e5%88%b6">
@@ -743,6 +819,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h3 id="同步式数据输入">
   同步式数据输入
   <a class="heading-link" href="#%e5%90%8c%e6%ad%a5%e5%bc%8f%e6%95%b0%e6%8d%ae%e8%be%93%e5%85%a5">
@@ -751,6 +829,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="static/KzXqbRWlHoe3zVxM4HFcZCy3nkg.png" alt=""></p>
+
+
 <h3 id="同步式数据输出">
   同步式数据输出
   <a class="heading-link" href="#%e5%90%8c%e6%ad%a5%e5%bc%8f%e6%95%b0%e6%8d%ae%e8%be%93%e5%87%ba">
@@ -759,6 +839,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="static/KVbRb7m6govzAxxkBp2clvLxn8c.png" alt=""></p>
+
+
 <h3 id="异步通信">
   异步通信
   <a class="heading-link" href="#%e5%bc%82%e6%ad%a5%e9%80%9a%e4%bf%a1">
@@ -767,6 +849,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="static/THwzb7YdFoZo12xg6Sgcjkv7n6y.png" alt=""></p>
+
+
 <h3 id="半同步通信">
   半同步通信
   <a class="heading-link" href="#%e5%8d%8a%e5%90%8c%e6%ad%a5%e9%80%9a%e4%bf%a1">
@@ -777,6 +861,8 @@ code.has-jax {
 <p><img src="static/AfgQbzEVaoKs5cxTf5Hc8sbHn0d.png" alt=""></p>
 <p>同步: 发送方用系统时钟前言发信号,接收方用系统时钟后沿判断、识别.</p>
 <p>异步: 允许不同速度的模块和谐工作,增加一条等待响应信号 WAIT.</p>
+
+
 <h4 id="以输入数据为例的半同步通信时序">
   以输入数据为例的半同步通信时序
   <a class="heading-link" href="#%e4%bb%a5%e8%be%93%e5%85%a5%e6%95%b0%e6%8d%ae%e4%b8%ba%e4%be%8b%e7%9a%84%e5%8d%8a%e5%90%8c%e6%ad%a5%e9%80%9a%e4%bf%a1%e6%97%b6%e5%ba%8f">
@@ -792,6 +878,8 @@ code.has-jax {
 <li>T3: 从模块提供数据</li>
 <li>T4: 从模块撤销数据,主模块撤销命令</li>
 </ul>
+
+
 <h3 id="上述三种通信的共同点">
   上述三种通信的共同点
   <a class="heading-link" href="#%e4%b8%8a%e8%bf%b0%e4%b8%89%e7%a7%8d%e9%80%9a%e4%bf%a1%e7%9a%84%e5%85%b1%e5%90%8c%e7%82%b9">
@@ -805,6 +893,8 @@ code.has-jax {
 <li>从模块准备数据 (不占用总线,总线空闲)</li>
 <li>从模块向主模块发数据 (占用总线)</li>
 </ul>
+
+
 <h3 id="分离式通信">
   分离式通信
   <a class="heading-link" href="#%e5%88%86%e7%a6%bb%e5%bc%8f%e9%80%9a%e4%bf%a1">
@@ -817,6 +907,8 @@ code.has-jax {
 <li>子周期 1: 主模块申请占用总线,使用完后即放弃总线的使用权.</li>
 <li>子周期 2: 从模块申请占用总线,将各种信息传送至总线上.</li>
 </ul>
+
+
 <h4 id="分离式通信特点">
   分离式通信特点
   <a class="heading-link" href="#%e5%88%86%e7%a6%bb%e5%bc%8f%e9%80%9a%e4%bf%a1%e7%89%b9%e7%82%b9">
@@ -960,12 +1052,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

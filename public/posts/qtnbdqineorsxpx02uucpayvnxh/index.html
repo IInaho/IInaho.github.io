@@ -49,11 +49,15 @@
 
 
 
+
+
   线性表的查找
   
     
     链接到标题
   
+
+
 
 
   顺序查找
@@ -85,6 +89,8 @@ int Search_Seq(SSTable ST,KeyType key){
     for(i=ST.length;ST.R[i].key != key;--i);
     return i;        //返回0代表没找到
 }
+
+
 
   算法分析
   
@@ -297,6 +303,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -455,7 +465,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            110801 字
+            110911 字
           </span>
         </div>
         
@@ -480,7 +490,9 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="查找的基本概念">
+      
+
+<h1 id="查找的基本概念">
   查找的基本概念
   <a class="heading-link" href="#%e6%9f%a5%e6%89%be%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -508,6 +520,8 @@ code.has-jax {
 <p><strong>平均查找长度</strong>: 为确定记录在查找表中的位置，需要和给定值进行比较的关键字个数的期望值，称为查找算法在查找成功时的<strong>平均查找长度</strong>。</p>
 </li>
 </ul>
+
+
 <h1 id="线性表的查找">
   线性表的查找
   <a class="heading-link" href="#%e7%ba%bf%e6%80%a7%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be">
@@ -515,6 +529,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="顺序查找">
   顺序查找
   <a class="heading-link" href="#%e9%a1%ba%e5%ba%8f%e6%9f%a5%e6%89%be">
@@ -545,7 +561,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">ST</span><span class="p">.</span><span class="n">length</span><span class="p">;</span><span class="n">ST</span><span class="p">.</span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">key</span> <span class="o">!=</span> <span class="n">key</span><span class="p">;</span><span class="o">--</span><span class="n">i</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">i</span><span class="p">;</span>        <span class="c1">//返回0代表没找到
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></div><h3 id="算法分析">
+</span></span></code></pre></div>
+
+<h3 id="算法分析">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -555,6 +573,8 @@ code.has-jax {
 <p>设置监视哨，可以免去查找过程中每一步进行检测整个表是否查找完毕，实践证明，这个改进能使顺序表在大于 1000 长度的表中，进行一次查找所需的平均时间减半，两个时间复杂度都为 O(n)。</p>
 <p>顺序查找的优点: 算法简单，对表结构无要求。</p>
 <p>顺序查找的缺点: 平均查找长度较大，查找效率低，当 n 很大时，不宜使用顺序查找。</p>
+
+
 <h2 id="折半查找">
   折半查找
   <a class="heading-link" href="#%e6%8a%98%e5%8d%8a%e6%9f%a5%e6%89%be">
@@ -563,6 +583,8 @@ code.has-jax {
   </a>
 </h2>
 <p>折半查找也称二分查找，它是一种效率较高的查找方法，但折半查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列。</p>
+
+
 <h3 id="折半查找的过程">
   折半查找的过程
   <a class="heading-link" href="#%e6%8a%98%e5%8d%8a%e6%9f%a5%e6%89%be%e7%9a%84%e8%bf%87%e7%a8%8b">
@@ -571,6 +593,8 @@ code.has-jax {
   </a>
 </h3>
 <p>从表的中间记录开始，如果给定值和中间记录的关键字相等，则查找成功，如果给定值大于或小于中间记录的关键字，则在表中大于或小于中间记录的那一半中查找，重复操作。</p>
+
+
 <h3 id="算法步骤">
   算法步骤
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4">
@@ -595,6 +619,8 @@ code.has-jax {
 <p>循环结束，说明查找区间为空，则查找失败，返回 0.</p>
 </li>
 </ol>
+
+
 <h3 id="算法代码">
   算法代码
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e4%bb%a3%e7%a0%81">
@@ -613,7 +639,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="算法分析-1">
+</span></span></code></pre></div>
+
+<h3 id="算法分析-1">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-1">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -627,6 +655,8 @@ code.has-jax {
 <li>折半查找的优点: 比较次数少，查找效率高</li>
 <li>折半查找的缺点: 只能用于顺序表查找，查找前需要排序。</li>
 </ul>
+
+
 <h2 id="插值查找">
   插值查找
   <a class="heading-link" href="#%e6%8f%92%e5%80%bc%e6%9f%a5%e6%89%be">
@@ -642,7 +672,9 @@ code.has-jax {
 <p>这种方法就是<strong>插值查找法</strong>
 插值查找是根据要查找的关键字 key 与查找表中最大最小记录的关键字比较后的查找方法，其核心就在于插值的计算公式。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">key</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="n">low</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">high</span><span class="p">]</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="n">low</span><span class="p">]);</span>     <span class="c1">//修改折半查找的mid
-</span></span></span></code></pre></div><h2 id="斐波那契查找">
+</span></span></span></code></pre></div>
+
+<h2 id="斐波那契查找">
   斐波那契查找
   <a class="heading-link" href="#%e6%96%90%e6%b3%a2%e9%82%a3%e5%a5%91%e6%9f%a5%e6%89%be">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -659,6 +691,8 @@ code.has-jax {
 <li>key 值大于第 mid=（low+high）/2，则令 low=mid+1；</li>
 <li>key 值小于第 mid=（low+high）/2，则令 high=mid-1。</li>
 </ul>
+
+
 <h3 id="示例代码">
   示例代码
   <a class="heading-link" href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81">
@@ -689,7 +723,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="线性索引查找">
+</span></span></code></pre></div>
+
+<h2 id="线性索引查找">
   线性索引查找
   <a class="heading-link" href="#%e7%ba%bf%e6%80%a7%e7%b4%a2%e5%bc%95%e6%9f%a5%e6%89%be">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -699,6 +735,8 @@ code.has-jax {
 <p>前面的几种查找方法都是基于有序的基础之上的，如果数据集增长很快，要保证记录全部按照当中某个关键字有序，时间代价很高，所以这种数据通常按先后顺序存储，对于这种查找表，需要利用索引来快速查找数据。
 索引是为了加快查找速度而设计的一种数据结构，索引就是把每一个关键字和它对应的记录相关联的过程，一个索引由若干个索引项构成，每个索引项至少应包含关键字和其对应的记录在存储器中的位置等信息，索引技术是组织大型数据库以及磁盘文件的一种重要技术。
 索引的分类: <strong>线性索引</strong>、<strong>树形索引</strong>、<strong>多级索引</strong>，线性索引就是将索引集合组织为线性结构，也称为索引表。</p>
+
+
 <h3 id="稠密索引">
   稠密索引
   <a class="heading-link" href="#%e7%a8%a0%e5%af%86%e7%b4%a2%e5%bc%95">
@@ -709,6 +747,8 @@ code.has-jax {
 <p>稠密索引是指在线性索引中，将数据集中的每个记录对应一个索引项，如下图所示:</p>
 <p><img src="../static/IEDIbFCftoMgtZxIpadcMmnznjc.png" alt=""></p>
 <p>稠密索引要应对的可能是成千上万的数据，因此对于稠密索引这个索引表来说，索引项一定是按照关键码有序的排列，索引项有序意味着，在查找关键字时，可以用到折半、插值、斐波那契等查找算法，但如果数据集非常大，意味着索引也得同样的数据集长度规模，对于内存有限的计算机来说，可能需要反复访问磁盘，查找性能大大下降。</p>
+
+
 <h3 id="分块索引">
   分块索引
   <a class="heading-link" href="#%e5%88%86%e5%9d%97%e7%b4%a2%e5%bc%95">
@@ -728,6 +768,8 @@ code.has-jax {
 <li>存储了块中的记录个数，以便于循环使用。</li>
 <li>用于指向块首数据元素的指针，便于开始对这一块中记录进行遍历。</li>
 </ul>
+
+
 <h4 id="分块查找">
   分块查找
   <a class="heading-link" href="#%e5%88%86%e5%9d%97%e6%9f%a5%e6%89%be">
@@ -740,6 +782,8 @@ code.has-jax {
 <li>在分块索引表中查找要查关键字所在的块</li>
 <li>根据块首指针找到相应的块，并在块中顺序查找关键码。</li>
 </ol>
+
+
 <h3 id="倒排索引">
   倒排索引
   <a class="heading-link" href="#%e5%80%92%e6%8e%92%e7%b4%a2%e5%bc%95">
@@ -749,6 +793,8 @@ code.has-jax {
 </h3>
 <p>倒排索引源于实际应用中需要根据属性的值来查找记录。这种索引表中的每一项都包括一个属性值和具有该属性值的各记录的地址。由于不是由记录来确定属性值，而是由属性值来确定记录的位置，因而称为倒排索引(inverted index)。</p>
 <p>索引项的通用结构是次关键码、记录号表，其中记录号表存储具有相同次关键字的所有记录的记录号 (可以是指向记录的指针或者是该记录的主关键字)。</p>
+
+
 <h1 id="树表的查找">
   树表的查找
   <a class="heading-link" href="#%e6%a0%91%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be">
@@ -758,6 +804,8 @@ code.has-jax {
 </h1>
 <p>折半查找效率虽然较高，但是由于折半查找要求表中记录按关键字有序排列，且不能用链表做存储结构，因此当表的插入或删除操作频繁时，为了<strong>维护表的有序性</strong>，需要移动表中很多记录，导致额外浪费时间。
 若要对动态查找表进行高效率的查找，可以采用几种特殊的二叉树作为查找表的组织方式。</p>
+
+
 <h2 id="二叉排序树">
   二叉排序树
   <a class="heading-link" href="#%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91">
@@ -766,6 +814,8 @@ code.has-jax {
   </a>
 </h2>
 <p>二叉排序树又称为二叉查找树，它是一种对排序和查找都很有用的特殊二叉树。</p>
+
+
 <h3 id="二叉排序树的定义">
   二叉排序树的定义
   <a class="heading-link" href="#%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e5%ae%9a%e4%b9%89">
@@ -781,6 +831,8 @@ code.has-jax {
 </ul>
 <p><img src="../static/Q90hbM9AlowrE7xnmoGcOo73nwe.png" alt=""></p>
 <p>例如上图是对序列{62，88，58，47，35，73，51，99，37，93}进行构造的二叉排序树。</p>
+
+
 <h4 id="二叉排序树的二叉链表存储结构">
   二叉排序树的二叉链表存储结构
   <a class="heading-link" href="#%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e4%ba%8c%e5%8f%89%e9%93%be%e8%a1%a8%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">
@@ -796,7 +848,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="n">ElemType</span> <span class="n">data</span><span class="p">;</span>            <span class="c1">//数据域，包括关键字和其他数据项
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="n">BSTNode</span> <span class="o">*</span><span class="n">lchild</span><span class="p">,</span><span class="o">*</span><span class="n">rchild</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">BSTNode</span><span class="p">,</span><span class="o">*</span><span class="n">BSTree</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="二叉排序树的查找">
+</span></span></code></pre></div>
+
+<h3 id="二叉排序树的查找">
   二叉排序树的查找
   <a class="heading-link" href="#%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e6%9f%a5%e6%89%be">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -804,6 +858,8 @@ code.has-jax {
   </a>
 </h3>
 <p>二叉排序树可以看作一个有序表，因此在二叉排序树上进行查找和折半查找类似。</p>
+
+
 <h4 id="算法步骤-1">
   算法步骤
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-1">
@@ -824,6 +880,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h4 id="算法代码示例">
   算法代码示例
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
@@ -836,7 +894,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">T</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">key</span><span class="p">)</span> <span class="k">return</span> <span class="nf">SearchBST</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">,</span><span class="n">key</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">return</span> <span class="nf">SearchBST</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">,</span><span class="n">key</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 id="算法分析-2">
+</span></span></code></pre></div>
+
+<h4 id="算法分析-2">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-2">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -846,6 +906,8 @@ code.has-jax {
 <p>在二叉排序树上查找其关键字等于给定值的结点的过程，恰好是走完了一条从根结点到该结点的路径的过程，和给定值比较的关键字个数等于路径长度加 1(或是结点所在层次数)。</p>
 <p>和折半查找类似，与给定值比较的关键字个数不超过数的深度，但折半查找长度为 n 的顺序表的判定树是唯一的，而含 n 个结点的二叉排序树不唯一。</p>
 <p>如果给定的含 n 个记录的序列有序，那么构造二叉排序树时，不断向右子树添加结点，二叉排序树会变成一个深度为 n 的单支树，其平均查找长度为(n+1)/2，这就是最坏的情况，而最好的情况便是和二分查找的判定树类似，但二叉排序树适合维护，对于经常需要添加删除的序列来说，显然适合使用二叉排序树。</p>
+
+
 <h3 id="二叉排序树的插入">
   二叉排序树的插入
   <a class="heading-link" href="#%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e6%8f%92%e5%85%a5">
@@ -855,6 +917,8 @@ code.has-jax {
 </h3>
 <p>二叉排序树的插入操作以查找为基础的，将一个关键字值为 key 的结点插入到二叉排序树，需要从根结点向下查找，当树中不存在关键字等于 key 的结点时，才能进行插入。</p>
 <p>新结点的插入一定是一个新添加的叶子结点，并且是查找不成功时查找路径上访问的最后一个结点的左孩子或右孩子结点。</p>
+
+
 <h4 id="算法步骤-2">
   算法步骤
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-2">
@@ -876,6 +940,8 @@ code.has-jax {
 </ul>
 <blockquote>
 <p>中序遍历一棵二叉排序树，可以得到一个结点值递增的有序序列。</p></blockquote>
+
+
 <h4 id="算法示例">
   算法示例
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%a4%ba%e4%be%8b">
@@ -894,6 +960,8 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">T</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">key</span><span class="p">)</span> <span class="nf">InsertBST</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">,</span><span class="n">e</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>二叉排序树插入的基本过程是查找，所以时间复杂度同查找一养，也是<code>$O(log_2n)$</code>.</p>
+
+
 <h3 id="二叉排序树的创建">
   二叉排序树的创建
   <a class="heading-link" href="#%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e5%88%9b%e5%bb%ba">
@@ -902,6 +970,8 @@ code.has-jax {
   </a>
 </h3>
 <p>二叉排序树的创建是从空的二叉排序树开始的，每输入一个结点，经过查找操作，将新结点插入到当前二叉排序树的合适位置。</p>
+
+
 <h4 id="算法步骤-3">
   算法步骤
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-3">
@@ -924,6 +994,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h4 id="算法示例-1">
   算法示例
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%a4%ba%e4%be%8b-1">
@@ -939,7 +1011,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">e</span><span class="p">;</span>    
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 id="算法分析-3">
+</span></span></code></pre></div>
+
+<h4 id="算法分析-3">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-3">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -947,6 +1021,8 @@ code.has-jax {
   </a>
 </h4>
 <p>假设有 n 个结点，则需要插入 n 次，而插入一个结点的算法时间复杂度为<code>$O(log_2n)$</code>，则创建二叉排序树的算法时间复杂度为<code>$O(log_2n)$</code>.</p>
+
+
 <h3 id="二叉排序树的删除">
   二叉排序树的删除
   <a class="heading-link" href="#%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e5%88%a0%e9%99%a4">
@@ -955,6 +1031,8 @@ code.has-jax {
   </a>
 </h3>
 <p>被删除的结点可能是二叉排序树中的任何结点，删除结点后，要根据其位置不同修改双亲结点及相关结点的指针，以保持二叉排序树的特性。</p>
+
+
 <h4 id="算法步骤-4">
   算法步骤
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-4">
@@ -982,6 +1060,8 @@ code.has-jax {
 <p>第二种方案图例如下:</p>
 <p><img src="../static/IeqTbIQuNolpGlx3htPcB0UWnHc.png" alt=""></p>
 <p>显然，前一种处理方法可能增加树的深度，而后一种方法是以被删结点左子树中关键字最大的结点(左子树中最大的结点一定没有右子树)代替被删结点，然后从左子树中删除这个结点，这种方法更好。</p>
+
+
 <h4 id="算法示例-2">
   算法示例
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e7%a4%ba%e4%be%8b-2">
@@ -1031,7 +1111,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="n">f</span><span class="o">-&gt;</span><span class="n">rchild</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">delete</span> <span class="n">q</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 id="算法分析-4">
+</span></span></code></pre></div>
+
+<h4 id="算法分析-4">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-4">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1039,6 +1121,8 @@ code.has-jax {
   </a>
 </h4>
 <p>二叉排序树删除的基本过程也是查找，所以算法时间复杂度为<code>$O(log_2n)$</code>.</p>
+
+
 <h2 id="平衡二叉树">
   平衡二叉树
   <a class="heading-link" href="#%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91">
@@ -1055,6 +1139,8 @@ code.has-jax {
 <li>平衡二叉树必须是二叉排序树</li>
 </ul>
 <p>二叉树上结点的平衡因子定义为该结点左子树与右子树的深度只差。</p>
+
+
 <h3 id="avl-的平衡调整方法">
   AVL 的平衡调整方法
   <a class="heading-link" href="#avl-%e7%9a%84%e5%b9%b3%e8%a1%a1%e8%b0%83%e6%95%b4%e6%96%b9%e6%b3%95">
@@ -1086,6 +1172,8 @@ code.has-jax {
 <li>在 A 左子树根结点的右子树上插入结点，需要先对子树进行逆时针左旋使 bf 符号相同，然后再顺时针右旋。</li>
 <li>在 A 右子树根结点的左子树上插入结点，需要先对子树进行顺时针右旋使 bf 符号相同，然后再逆时针左旋。</li>
 </ul>
+
+
 <h3 id="avl-代码示例">
   AVL 代码示例
   <a class="heading-link" href="#avl-%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
@@ -1093,6 +1181,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="存储结构代码示例">
   存储结构代码示例
   <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
@@ -1106,7 +1196,9 @@ code.has-jax {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">bf</span><span class="p">;</span>                                <span class="c1">//结点的平衡因子
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="n">BiTNode</span> <span class="o">*</span><span class="n">lchild</span><span class="p">,</span><span class="o">*</span><span class="n">rchild</span><span class="p">;</span>        <span class="c1">//左右孩子指针
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">BiTNode</span><span class="p">,</span><span class="o">*</span><span class="n">BiTree</span><span class="p">;</span>
-</span></span></code></pre></div><h4 id="旋转代码示例">
+</span></span></code></pre></div>
+
+<h4 id="旋转代码示例">
   旋转代码示例
   <a class="heading-link" href="#%e6%97%8b%e8%bd%ac%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1129,7 +1221,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="n">R</span><span class="o">-&gt;</span><span class="n">lchild</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">R</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 id="平衡调整代码示例">
+</span></span></code></pre></div>
+
+<h4 id="平衡调整代码示例">
   平衡调整代码示例
   <a class="heading-link" href="#%e5%b9%b3%e8%a1%a1%e8%b0%83%e6%95%b4%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1198,7 +1292,9 @@ code.has-jax {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nf">L_Rotate</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>                <span class="c1">//再左旋
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 id="avl-树的插入操作">
+</span></span></code></pre></div>
+
+<h4 id="avl-树的插入操作">
   AVL 树的插入操作
   <a class="heading-link" href="#avl-%e6%a0%91%e7%9a%84%e6%8f%92%e5%85%a5%e6%93%8d%e4%bd%9c">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1275,7 +1371,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="算法分析-5">
+</span></span></code></pre></div>
+
+<h3 id="算法分析-5">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-5">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1283,6 +1381,8 @@ code.has-jax {
   </a>
 </h3>
 <p>因为 AVL 树上任何结点的左右子树深度之差不超过 1，因此其查找的时间复杂度为<code>$O(log_2n)$</code>.</p>
+
+
 <h2 id="多路查找树">
   多路查找树
   <a class="heading-link" href="#%e5%a4%9a%e8%b7%af%e6%9f%a5%e6%89%be%e6%a0%91">
@@ -1292,6 +1392,8 @@ code.has-jax {
 </h2>
 <p>之前介绍的查找方法用于存储在计算机内存中较小的文件，统称为内查找法。如果文件很大，且存放于外存进行查找，涉及到这样的外部存储设备，关于时间复杂度的计算会发生变化，需要考虑对硬盘等外部设备的访问时间以及访问次数，之前所谈的树，都是一个结点可以有多个孩子，但它自身只存储一个元素，在元素非常多时，树的度就会非常大，为此引入了<strong>多路查找树</strong>的概念。
 多路查找树，其每一个结点的孩子数可以多于两个，且每一个结点处可以存储多个元素，由于它是查找树，所有元素之间存在某种特定的排序关系。</p>
+
+
 <h3 id="2-3-树">
   2-3 树
   <a class="heading-link" href="#2-3-%e6%a0%91">
@@ -1306,6 +1408,8 @@ code.has-jax {
 </ul>
 <p>2-3 树中所有的叶子都在同一层次，如下图所示:</p>
 <p><img src="../static/HtXXb9fIloxyDDxEv8rcUKv6nqt.png" alt=""></p>
+
+
 <h4 id="2-3-树的插入实现">
   2-3 树的插入实现
   <a class="heading-link" href="#2-3-%e6%a0%91%e7%9a%84%e6%8f%92%e5%85%a5%e5%ae%9e%e7%8e%b0">
@@ -1329,6 +1433,8 @@ code.has-jax {
 <p>如果要插入结点和其之上所有双亲结点都是 3 结点，需要将 1、3 拆分，4、6 拆分，8、12 也拆分，形成如下图所示的树</p>
 <p><img src="../static/ZDsXbgmEhoPywmxaJ2IclEzHnJe.png" alt=""></p>
 <p>由此可见，2-3 树插入的传播效应导致了根结点的拆分，因此树的高度增加。</p>
+
+
 <h4 id="2-3-树的删除实现">
   2-3 树的删除实现
   <a class="heading-link" href="#2-3-%e6%a0%91%e7%9a%84%e5%88%a0%e9%99%a4%e5%ae%9e%e7%8e%b0">
@@ -1359,6 +1465,8 @@ code.has-jax {
 <p>如果要删除的分支结点是 3 结点的某个元素，需要将 3 结点的左孩子 10 上升到删除位置合适，如下图所示</p>
 <p><img src="../static/RReOby1uZobcOVxuV8bcXRGUnPe.png" alt=""></p>
 <p>2-3 树的删除是有规律的，其他情况不一一解释。</p>
+
+
 <h3 id="2-3-4-树">
   2-3-4 树
   <a class="heading-link" href="#2-3-4-%e6%a0%91">
@@ -1372,6 +1480,8 @@ code.has-jax {
 <p><img src="../static/SKcgbnFnRoyZXOx21Snc9PGdnGb.png" alt=""></p>
 <p>2-3-4 树的删除过程，删除顺序是 1、6、3、4、5、2、9</p>
 <p><img src="../static/X1RvbX4wuo8Vv9xCkBRczQHdnoe.png" alt=""></p>
+
+
 <h3 id="b-树">
   B-树
   <a class="heading-link" href="#b-%e6%a0%91">
@@ -1380,6 +1490,8 @@ code.has-jax {
   </a>
 </h3>
 <p>B-树(B-tree)是一种平衡的多路查找树，2-3 树与 2-3-4 树都是 B 树的特例，结点最大的孩子数目称为 B 树的阶，因此 2-3 树是 3 阶 B 树，2-3-4 树是 4 阶 B 树。</p>
+
+
 <h4 id="b-树的定义">
   B-树的定义
   <a class="heading-link" href="#b-%e6%a0%91%e7%9a%84%e5%ae%9a%e4%b9%89">
@@ -1396,6 +1508,8 @@ code.has-jax {
 </ul>
 <p>下图为一个 4 阶的 B-树</p>
 <p><img src="../static/EhNSbHlHeoy1Ocxnx9Cc3qGYnYe.png" alt=""></p>
+
+
 <h4 id="b-树的查找">
   B-树的查找
   <a class="heading-link" href="#b-%e6%a0%91%e7%9a%84%e6%9f%a5%e6%89%be">
@@ -1406,6 +1520,8 @@ code.has-jax {
 <p>在一个典型的 B-树应用中，要处理的硬盘数据量很大，因此无法一次全部装入内存。因此我们会对 B-树进行调整，使得 B-树的阶数(或结点的元素)与硬盘存储的页面大小相匹配。</p>
 <p>例如一棵 B-树的阶为 1001(即 1 个结点包含 1000 个关键字)，高度为 2，它可以储存超过 10 亿个关键字，我们只要让根结点持久地保留在内存中，那么在这棵树上，寻找某一个关键字至多需要两次硬盘的读取即可。</p>
 <p>最坏情况下，对于 n 个关键字的 m 阶 B 树，第一层至少有 1 个结点，由于除根结点外每个分支结点至少有[m/2]棵子树，则第三层至少有 2×[m/2]个结点，第 k+1 层至少有 2×([m/2])k−1 个结点，也就是叶子结点，若 m 阶 B-树有 n 个关键字，因此 n+1≥2×[m/2],即在含有 n 个关键字的 B 树上查找时，从根结点到关键字结点的路径上涉及的结点数不超过<code>$k≤log_{m/2}(n+1)/2+1$</code></p>
+
+
 <h3 id="b-树-1">
   B+ 树
   <a class="heading-link" href="#b-%e6%a0%91-1">
@@ -1417,6 +1533,8 @@ code.has-jax {
 <p><img src="../static/OD3tbo1rcoTgkCx9k03cCJAEnHg.png" alt=""></p>
 <p>B+ 树是一种 B-树的变形树,更适用于文件索引系统，但它已经不算是定义的树了，如下图所示，灰色关键字即是根结点中的关键字在叶子结点再次列出，所有叶子结点都链接在一起。</p>
 <p><img src="../static/MKWHbagzOoqOM5xMti4ciORFngd.png" alt=""></p>
+
+
 <h4 id="b-树与-b-树的差异">
   B+ 树与 B-树的差异
   <a class="heading-link" href="#b-%e6%a0%91%e4%b8%8e-b-%e6%a0%91%e7%9a%84%e5%b7%ae%e5%bc%82">
@@ -1429,6 +1547,8 @@ code.has-jax {
 <li>所有叶子结点包含全部关键字的信息，及指向含这些关键字记录的指针，叶子结点本身依关键字的大小自小而大顺序链接</li>
 <li>所有分支结点可以看成是索引，结点中仅含有其子树中的最大(或最小)关键字。</li>
 </ul>
+
+
 <h4 id="b-树的优点">
   B+ 树的优点
   <a class="heading-link" href="#b-%e6%a0%91%e7%9a%84%e4%bc%98%e7%82%b9">
@@ -1565,12 +1685,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

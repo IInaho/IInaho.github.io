@@ -28,6 +28,8 @@ ubantu 配置 django 开发环境 · inaho
   
 
 
+
+
   预备
   
     
@@ -44,6 +46,8 @@ Mysql 数据库
 virtualenv 虚拟环境
 
 
+
+
   在 VirtualBox 上安装 Ubantu 操作系统
   
     
@@ -56,6 +60,8 @@ virtualenv 虚拟环境
 ubantu 系统内已配置 python3，所以只需要安装后续软件即可。
 进入系统后打开 terminal，首先输入 dpkg -l 查看已安装软件，是否有 python，如果有则不需要再安装 python。
 
+
+
   安装 pip3
   
     
@@ -66,6 +72,8 @@ sudo apt-get update        //更新软件源
 sudo apt-get install python3-pip  
 pip3 --version  //查看版本
 sudo pip3 list //查看已安装的lib
+
+
 
   安装 mysql
   
@@ -265,6 +273,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -325,7 +337,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            6743 字
+            6759 字
           </span>
         </div>
         
@@ -350,13 +362,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="ubantu-配置-django-开发环境">
+      
+
+<h1 id="ubantu-配置-django-开发环境">
   ubantu 配置 django 开发环境
   <a class="heading-link" href="#ubantu-%e9%85%8d%e7%bd%ae-django-%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="预备">
   预备
   <a class="heading-link" href="#%e9%a2%84%e5%a4%87">
@@ -373,6 +389,8 @@ code.has-jax {
 <li>Mysql 数据库</li>
 <li>virtualenv 虚拟环境</li>
 </ol>
+
+
 <h3 id="在-virtualbox-上安装-ubantu-操作系统">
   在 VirtualBox 上安装 Ubantu 操作系统
   <a class="heading-link" href="#%e5%9c%a8-virtualbox-%e4%b8%8a%e5%ae%89%e8%a3%85-ubantu-%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f">
@@ -385,6 +403,8 @@ code.has-jax {
 <p>应用设置，并启动系统，再开始界面选择需要导入的 ios 镜像，进入 ubantu 安装界面，并完成安装指导，建议自己分区。</p>
 <p>ubantu 系统内已配置 python3，所以只需要安装后续软件即可。</p>
 <p>进入系统后打开 terminal，首先输入 dpkg -l 查看已安装软件，是否有 python，如果有则不需要再安装 python。</p>
+
+
 <h3 id="安装-pip3">
   安装 pip3
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-pip3">
@@ -396,7 +416,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">sudo apt-get install python3-pip  
 </span></span><span class="line"><span class="cl">pip3 --version  //查看版本
 </span></span><span class="line"><span class="cl">sudo pip3 list //查看已安装的lib
-</span></span></code></pre></div><h3 id="安装-mysql">
+</span></span></code></pre></div>
+
+<h3 id="安装-mysql">
   安装 mysql
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-mysql">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -407,6 +429,8 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">sudo service mysql restart
 </span></span><span class="line"><span class="cl">mysql -uroot -p        //进入mysql命令界面
 </span></span></code></pre></div><p><img src="../static/OKrybmuvsoIQtvxFYU7cvdrGnCd.png" alt=""></p>
+
+
 <h3 id="安装-pymysql">
   安装 pymysql
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-pymysql">
@@ -415,7 +439,9 @@ code.has-jax {
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip3 install pymysql
-</span></span></code></pre></div><h3 id="安装-virtualenv-与-virtualenvwrapper">
+</span></span></code></pre></div>
+
+<h3 id="安装-virtualenv-与-virtualenvwrapper">
   安装 virtualenv 与 virtualenvwrapper
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-virtualenv-%e4%b8%8e-virtualenvwrapper">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -440,7 +466,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">python -v  //进度python命令终端
 </span></span><span class="line"><span class="cl">deactivate //退出虚拟环境
 </span></span><span class="line"><span class="cl">pip freeze 查看虚拟环境安装的包
-</span></span></code></pre></div><h3 id="安装-django">
+</span></span></code></pre></div>
+
+<h3 id="安装-django">
   安装 Django
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-django">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -523,12 +551,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

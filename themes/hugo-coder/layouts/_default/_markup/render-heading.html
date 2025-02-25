@@ -1,3 +1,5 @@
+<!-- 用于生成h1-h6标题及样式 -->
+
 <h{{ .Level }} id="{{ .Anchor | safeURL }}">
   {{ .Text | safeHTML }}
   <a class="heading-link" href="#{{ .Anchor | safeURL }}">

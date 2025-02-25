@@ -28,11 +28,15 @@
   
 
 
+
+
   组合逻辑控制单元框图
   
     
     链接到标题
   
+
+
 
 
   CU 外特性
@@ -44,11 +48,15 @@
 
 CU 发出控制信号，信号之间有先后关系，节拍发生器产生的节拍作为 CU 的输入，节拍发生器外接入 CLK(机器主频)，产生多个节拍信号，每个节拍信号的起始端,CU 会产生命令，IR 的指令的操作码部分需要译码，n 位操作码可以译码出 $2^n$ 个结果。
 
+
+
   节拍信号
   
     
     链接到标题
   
+
+
 
 
 
@@ -61,6 +69,8 @@ CU 发出控制信号，信号之间有先后关系，节拍发生器产生的�
 
 采用同步控制方式，也就是有一个统一的时钟信号来控制各个部件之间的交互，假设我们所设计一个机器周期内有三个节拍(时钟周期)，并且 CPU 内部结构采用非总线方式。
 
+
+
   安排微操作时许的原则
   
     
@@ -71,6 +81,8 @@ CU 发出控制信号，信号之间有先后关系，节拍发生器产生的�
 微操作的先后顺序不得随意更改
 被控对象不同的微操作尽量安排在一个节拍内完成
 占用时间较短的微操作，尽量安排在一个节拍内完成，并允许有先后顺序
+
+
 
 
   取指周期微操作的节拍安排
@@ -103,6 +115,8 @@ OP(IR)-&gt;ID
 
 
 
+
+
   间址周期微操作的节拍安排
   
     
@@ -124,6 +138,8 @@ M(MAR)-&gt;MDR
 $T_2$
 
 MDR-&gt;Ad(IR)
+
+
 
 
 
@@ -333,6 +349,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -405,7 +425,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            8056 字
+            8084 字
           </span>
         </div>
         
@@ -430,13 +450,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="组合逻辑设计">
+      
+
+<h1 id="组合逻辑设计">
   组合逻辑设计
   <a class="heading-link" href="#%e7%bb%84%e5%90%88%e9%80%bb%e8%be%91%e8%ae%be%e8%ae%a1">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="组合逻辑控制单元框图">
   组合逻辑控制单元框图
   <a class="heading-link" href="#%e7%bb%84%e5%90%88%e9%80%bb%e8%be%91%e6%8e%a7%e5%88%b6%e5%8d%95%e5%85%83%e6%a1%86%e5%9b%be">
@@ -444,6 +468,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="cu-外特性">
   CU 外特性
   <a class="heading-link" href="#cu-%e5%a4%96%e7%89%b9%e6%80%a7">
@@ -453,6 +479,8 @@ code.has-jax {
 </h3>
 <p><img src="../static/T2tVbISMBoNWPWxs3UpcjmdnnDb.png" alt=""></p>
 <p>CU 发出控制信号，信号之间有先后关系，节拍发生器产生的节拍作为 CU 的输入，节拍发生器外接入 CLK(机器主频)，产生多个节拍信号，每个节拍信号的起始端,CU 会产生命令，IR 的指令的操作码部分需要译码，n 位操作码可以译码出 <code>$2^n$</code> 个结果。</p>
+
+
 <h3 id="节拍信号">
   节拍信号
   <a class="heading-link" href="#%e8%8a%82%e6%8b%8d%e4%bf%a1%e5%8f%b7">
@@ -461,6 +489,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="../static/LIcUbJD5xoyWD9xnWuXcpOHwnNh.png" alt=""></p>
+
+
 <h2 id="微操作的节拍安排">
   微操作的节拍安排
   <a class="heading-link" href="#%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
@@ -470,6 +500,8 @@ code.has-jax {
 </h2>
 <p><img src="../static/TcpxbgnJmoEZ5DxYFsKctE55nZd.png" alt=""></p>
 <p>采用同步控制方式，也就是有一个统一的时钟信号来控制各个部件之间的交互，假设我们所设计一个机器周期内有三个节拍(时钟周期)，并且 CPU 内部结构采用非总线方式。</p>
+
+
 <h3 id="安排微操作时许的原则">
   安排微操作时许的原则
   <a class="heading-link" href="#%e5%ae%89%e6%8e%92%e5%be%ae%e6%93%8d%e4%bd%9c%e6%97%b6%e8%ae%b8%e7%9a%84%e5%8e%9f%e5%88%99">
@@ -482,6 +514,8 @@ code.has-jax {
 <li>被控对象不同的微操作尽量安排在一个节拍内完成</li>
 <li>占用时间较短的微操作，尽量安排在一个节拍内完成，并允许有先后顺序</li>
 </ol>
+
+
 <h3 id="取指周期微操作的节拍安排">
   取指周期微操作的节拍安排
   <a class="heading-link" href="#%e5%8f%96%e6%8c%87%e5%91%a8%e6%9c%9f%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
@@ -512,6 +546,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h3 id="间址周期微操作的节拍安排">
   间址周期微操作的节拍安排
   <a class="heading-link" href="#%e9%97%b4%e5%9d%80%e5%91%a8%e6%9c%9f%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
@@ -537,6 +573,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h3 id="执行周期微操作的节拍安排">
   执行周期微操作的节拍安排
   <a class="heading-link" href="#%e6%89%a7%e8%a1%8c%e5%91%a8%e6%9c%9f%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
@@ -588,6 +626,8 @@ code.has-jax {
 <p>JMP X(跳转到给定的地址)，<code>$T_2$</code>: MDR-&gt;AC</p>
 </li>
 </ol>
+
+
 <h3 id="中断周期微操作的节拍安排">
   中断周期微操作的节拍安排
   <a class="heading-link" href="#%e4%b8%ad%e6%96%ad%e5%91%a8%e6%9c%9f%e5%be%ae%e6%93%8d%e4%bd%9c%e7%9a%84%e8%8a%82%e6%8b%8d%e5%ae%89%e6%8e%92">
@@ -600,6 +640,8 @@ code.has-jax {
 <li><code>$T_1$</code>: PC-&gt;MDR</li>
 <li><code>$T_2$</code>: MDR-&gt;M(MAR);向量地址-&gt;PC</li>
 </ul>
+
+
 <h2 id="组合逻辑设计步骤">
   组合逻辑设计步骤
   <a class="heading-link" href="#%e7%bb%84%e5%90%88%e9%80%bb%e8%be%91%e8%ae%be%e8%ae%a1%e6%ad%a5%e9%aa%a4">
@@ -607,6 +649,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="列出操作时间表">
   列出操作时间表
   <a class="heading-link" href="#%e5%88%97%e5%87%ba%e6%93%8d%e4%bd%9c%e6%97%b6%e9%97%b4%e8%a1%a8">
@@ -617,6 +661,8 @@ code.has-jax {
 <p><img src="../static/ZdtBbfXnXormeqxEO67cpE26nCc.png" alt=""></p>
 <p><img src="../static/PVOpblhcJoafNGxequhcz3vEnfd.png" alt=""></p>
 <p><img src="../static/QY8Eb9RdvoYXy9xUaFEcMyz8nlc.png" alt=""></p>
+
+
 <h3 id="写出微操作命令的最简表达式">
   写出微操作命令的最简表达式
   <a class="heading-link" href="#%e5%86%99%e5%87%ba%e5%be%ae%e6%93%8d%e4%bd%9c%e5%91%bd%e4%bb%a4%e7%9a%84%e6%9c%80%e7%ae%80%e8%a1%a8%e8%be%be%e5%bc%8f">
@@ -625,6 +671,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="../static/TSSYbNvBCo61OaxvEzxcCsGDnhH.png" alt=""></p>
+
+
 <h3 id="画出逻辑图">
   画出逻辑图
   <a class="heading-link" href="#%e7%94%bb%e5%87%ba%e9%80%bb%e8%be%91%e5%9b%be">
@@ -762,12 +810,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

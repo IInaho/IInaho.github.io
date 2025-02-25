@@ -28,11 +28,15 @@
   
 
 
+
+
   哈夫曼树
   
     
     链接到标题
   
+
+
 
 
   哈夫曼树的基本概念
@@ -55,6 +59,8 @@
 
 从图中可以看出，叶子结点所在的位置不同，构成的二叉树 WPL 也不同，可以直观的发现，在哈夫曼树中，权值越大的结点距离根结点的距离越近。
 
+
+
   哈夫曼树的构造过程
   
     
@@ -70,6 +76,8 @@
 如下图所示为叶子结点$a(7),b(5),c(2),d(4)$的哈夫曼树的构造过程：
 
 首先对叶子结点的权值进行排序，然后选择权值最小的两个结点分别作为新二叉树的左右子树，新二叉树的根结点为左右子树权值之和，接着依然对新二叉树的根结点与其余两个叶子结点排序，然后再次选择权值最小的两个结点作为左右子树构造新二叉树，直到只剩下最后一棵树，则构造完毕。
+
+
 
   哈夫曼树的存储结构
   
@@ -273,6 +281,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -337,7 +349,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            25799 字
+            25817 字
           </span>
         </div>
         
@@ -362,13 +374,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="哈夫曼编码">
+      
+
+<h1 id="哈夫曼编码">
   哈夫曼编码
   <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e7%bc%96%e7%a0%81">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h1 id="哈夫曼树">
   哈夫曼树
   <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91">
@@ -376,6 +392,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="哈夫曼树的基本概念">
   哈夫曼树的基本概念
   <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5">
@@ -396,6 +414,8 @@ code.has-jax {
 <p>下图所示的三种二叉树都含有四个带权叶子结点，带权结点分别 a(8),b(2),c(3),d(6).</p>
 <p><img src="../static/XiZBbo9ZmowL1xxreSbcQQ8nn8c.png" alt=""></p>
 <p>从图中可以看出，叶子结点所在的位置不同，构成的二叉树 WPL 也不同，可以直观的发现，在哈夫曼树中，权值越大的结点距离根结点的距离越近。</p>
+
+
 <h2 id="哈夫曼树的构造过程">
   哈夫曼树的构造过程
   <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91%e7%9a%84%e6%9e%84%e9%80%a0%e8%bf%87%e7%a8%8b">
@@ -412,6 +432,8 @@ code.has-jax {
 <p>如下图所示为叶子结点<code>$a(7),b(5),c(2),d(4)$</code>的哈夫曼树的构造过程：</p>
 <p><img src="../static/H5YOb47yDoWb5SxzjUScUHDLnVd.png" alt=""></p>
 <p>首先对叶子结点的权值进行排序，然后选择权值最小的两个结点分别作为新二叉树的左右子树，新二叉树的根结点为左右子树权值之和，接着依然对新二叉树的根结点与其余两个叶子结点排序，然后再次选择权值最小的两个结点作为左右子树构造新二叉树，直到只剩下最后一棵树，则构造完毕。</p>
+
+
 <h2 id="哈夫曼树的存储结构">
   哈夫曼树的存储结构
   <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">
@@ -424,7 +446,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>                    <span class="c1">//结点的权值
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">parent</span><span class="p">,</span><span class="n">lchild</span><span class="p">,</span><span class="n">rchild</span><span class="p">;</span>    <span class="c1">//结点的双亲，左孩子，右孩子的下标
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">HTNode</span><span class="p">,</span><span class="o">*</span><span class="n">HuffmanTree</span><span class="p">;</span>            <span class="c1">//动态分配数组存储哈夫曼树
-</span></span></span></code></pre></div><h2 id="构造哈夫曼树">
+</span></span></span></code></pre></div>
+
+<h2 id="构造哈夫曼树">
   构造哈夫曼树
   <a class="heading-link" href="#%e6%9e%84%e9%80%a0%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -435,6 +459,8 @@ code.has-jax {
 <li>初始化： 首先动态申请 2n 个单元，然后循环 2n-1 次，遍历所有单元，并初始化，再遍历一次，输入前 n 个单元中叶子结点的权值。</li>
 <li>创建树： 通过循环，选择、删除与合并来创建二叉树。选择当前森林中双亲为 0 且权值最小的两个树根结点，删除是将两个结点的双亲改为非零，合并是将两个树根结点的权值作为一个新结点的权值依次存入数组 n+1 之后的单元，记录新结点的下标。</li>
 </ol>
+
+
 <h3 id="代码简易实现">
   代码简易实现
   <a class="heading-link" href="#%e4%bb%a3%e7%a0%81%e7%ae%80%e6%98%93%e5%ae%9e%e7%8e%b0">
@@ -508,7 +534,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h1 id="哈夫曼编码-1">
+</span></span></code></pre></div>
+
+<h1 id="哈夫曼编码-1">
   哈夫曼编码
   <a class="heading-link" href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e7%bc%96%e7%a0%81-1">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -516,6 +544,8 @@ code.has-jax {
   </a>
 </h1>
 <p>在进行数据压缩时，为了使压缩后的数据文件尽可能短，可采用不定长编码，基本思想是：为出现次数较多的字符编以较短的编码，为确保对数据文件进行有效的压缩和对压缩文件进行正确的解码，可以利用哈夫曼树来设计二进制编码</p>
+
+
 <h2 id="编码的两个概念">
   编码的两个概念
   <a class="heading-link" href="#%e7%bc%96%e7%a0%81%e7%9a%84%e4%b8%a4%e4%b8%aa%e6%a6%82%e5%bf%b5">
@@ -665,12 +695,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

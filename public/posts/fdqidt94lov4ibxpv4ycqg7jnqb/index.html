@@ -28,6 +28,8 @@
   
 
 
+
+
   以太网的两个标准
   
     
@@ -41,6 +43,8 @@ IEEE 的 802.3 标准。
 
 DIX Ethernet V2 标准与 IEEE 的 802.3 标准只有很小的差别，因此可以将 802.3 局域网简称为以太网。
 严格说来，以太网应当是指符合 DIX Ethernet V2 标准的局域网
+
+
 
   以太网与数据链路层的两个子层
   
@@ -248,6 +252,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -316,7 +324,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            8705 字
+            8731 字
           </span>
         </div>
         
@@ -341,13 +349,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="以太网">
+      
+
+<h1 id="以太网">
   以太网
   <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="以太网的两个标准">
   以太网的两个标准
   <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e7%9a%84%e4%b8%a4%e4%b8%aa%e6%a0%87%e5%87%86">
@@ -362,6 +374,8 @@ code.has-jax {
 <blockquote>
 <p>DIX Ethernet V2 标准与 IEEE 的 802.3 标准只有很小的差别，因此可以将 802.3 局域网简称为以太网。
 严格说来，以太网应当是指符合 DIX Ethernet V2 标准的局域网</p></blockquote>
+
+
 <h2 id="以太网与数据链路层的两个子层">
   以太网与数据链路层的两个子层
   <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e4%b8%8e%e6%95%b0%e6%8d%ae%e9%93%be%e8%b7%af%e5%b1%82%e7%9a%84%e4%b8%a4%e4%b8%aa%e5%ad%90%e5%b1%82">
@@ -378,6 +392,8 @@ code.has-jax {
 <p>与接入到传输媒体有关的内容都放在 MAC 子层，而 LLC 子层则与传输媒体无关，不管采用何种协议的局域网对 LLC 子层来说都是透明的。
 由于 TCP/IP 体系经常使用的局域网是 DIX Ethernet V2 而不是 802.3 标准中的几种局域网，因此现在 802 委员会制定的逻辑链路控制子层 LLC(即 802.2 标准)的作用已经不大了.
 很多厂商生产的适配器上就仅装有 MAC 协议而没有 LLC 协议。</p></blockquote>
+
+
 <h2 id="以太网提供的服务">
   以太网提供的服务
   <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e6%8f%90%e4%be%9b%e7%9a%84%e6%9c%8d%e5%8a%a1">
@@ -390,6 +406,8 @@ code.has-jax {
 <li>当接收站收到有差错的数据帧时就丢弃此帧，其他什么也不做。差错的纠正由高层来决定。</li>
 <li>如果高层发现丢失了一些数据而进行重传，但以太网并不知道这是一个重传的帧，而是当作一个新的数据帧来发送。</li>
 </ul>
+
+
 <h2 id="星型拓扑">
   星型拓扑
   <a class="heading-link" href="#%e6%98%9f%e5%9e%8b%e6%8b%93%e6%89%91">
@@ -400,6 +418,8 @@ code.has-jax {
 <p><img src="../static/LYcNbNq65oTxoLx2dIvcTFW1naf.png" alt=""></p>
 <p>传统以太网最初使用粗同轴电缆，后来演进到使用比较便宜的细同轴电缆，最后发展为使用更便宜和更灵活的双绞线。不同电缆而使用无屏蔽双绞线。每个站需要用两对双绞线，分别用于发送和接收。</p>
 <p>这种以太网采用星型拓扑，在星型的中心则增加了一种可靠性非常高的设备，叫集线器。</p>
+
+
 <h2 id="集线器的一些特点">
   集线器的一些特点
   <a class="heading-link" href="#%e9%9b%86%e7%ba%bf%e5%99%a8%e7%9a%84%e4%b8%80%e4%ba%9b%e7%89%b9%e7%82%b9">
@@ -411,6 +431,8 @@ code.has-jax {
 <p>使用集线器的以太网在逻辑上仍是一个总线网，各工作站使用的还是 CSMA/CD 协议，并共享逻辑上的总线。</p>
 <blockquote>
 <p>集线器很像一个多接口的转发器，工作在物理层。</p></blockquote>
+
+
 <h2 id="集线器连以太网定义的标准">
   集线器连以太网定义的标准
   <a class="heading-link" href="#%e9%9b%86%e7%ba%bf%e5%99%a8%e8%bf%9e%e4%bb%a5%e5%a4%aa%e7%bd%91%e5%ae%9a%e4%b9%89%e7%9a%84%e6%a0%87%e5%87%86">
@@ -423,6 +445,8 @@ code.has-jax {
 <p>10BASE-T 双绞线以太网的出现，是局域网发展史上一个非常重要的里程碑，它为以太网在局域网中的统治地位奠定了牢固的基础。</p>
 <blockquote>
 <p>其他： 100Base-FX 100Base-T 100Base-T4</p></blockquote>
+
+
 <h2 id="以太网的信道利用率">
   以太网的信道利用率
   <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e7%9a%84%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87">
@@ -430,6 +454,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="以太网的信道被占用的情况">
   以太网的信道被占用的情况
   <a class="heading-link" href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e7%9a%84%e4%bf%a1%e9%81%93%e8%a2%ab%e5%8d%a0%e7%94%a8%e7%9a%84%e6%83%85%e5%86%b5">
@@ -441,6 +467,8 @@ code.has-jax {
 <p>争用期长度为 2γ，即端到端传播时延的两倍。碰撞到碰撞后不发送干扰信号。</p>
 <p>帧长为 L(bit)，数据发送速率为 C(b/s)，因而帧的发送时间为 L/C=T0(s).</p>
 <p>一个帧从开始发送，经可能发生的碰撞后，将再重传数次，到发送成功且信道转为空闲(即再经过时间 γ 使得信道上无信号在传播)时为止，是发送一帧所需的平均时间。</p>
+
+
 <h3 id="提高信道利用率">
   提高信道利用率
   <a class="heading-link" href="#%e6%8f%90%e9%ab%98%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87">
@@ -452,6 +480,8 @@ code.has-jax {
 <p>a = γ/t0</p>
 <p>a -&gt; 0 表示一发生碰撞就立即可以检测出来，并立即停止发送，因而信道利用率很高。</p>
 <p>a 越大，表明争用期所占比例增大，每发生一次碰撞就浪费许多信道资源，使信道利用率明显降低。</p>
+
+
 <h2 id="信道利用率最大值">
   信道利用率最大值
   <a class="heading-link" href="#%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87%e6%9c%80%e5%a4%a7%e5%80%bc">
@@ -459,6 +489,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="对以太网参数的要求">
   对以太网参数的要求
   <a class="heading-link" href="#%e5%af%b9%e4%bb%a5%e5%a4%aa%e7%bd%91%e5%8f%82%e6%95%b0%e7%9a%84%e8%a6%81%e6%b1%82">
@@ -470,6 +502,8 @@ code.has-jax {
 <li>当数据率一定时，以太网的连线的长度受到限制否则 γ 的数值会太大</li>
 <li>以太网的帧长不能太短，否则 t0 的值会太小，使 a 值太大。</li>
 </ul>
+
+
 <h3 id="信道利用率的最大值">
   信道利用率的最大值
   <a class="heading-link" href="#%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87%e7%9a%84%e6%9c%80%e5%a4%a7%e5%80%bc">
@@ -610,12 +644,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

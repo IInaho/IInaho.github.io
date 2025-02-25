@@ -37,6 +37,8 @@
 无向图中，顶点对(x,y)是无序的，称为顶点 x 与顶点 y 的一条边，没有方向。
 
 
+
+
   图的基本术语
   
     
@@ -60,6 +62,8 @@
 有向树和生成森林: 有一个顶点入度为 0，其余顶点入度为 1 的图，称为有向树，一个有向树的生成森林是若干棵有向树组成的。
 
 
+
+
   图的类型定义
   
     
@@ -79,6 +83,8 @@ InsertArc(*G,v,w);            //在图G中增添弧&lt;v,w&gt;,若G是无向图�
 DeleteArc(*G,v,w);            //在图G中删除弧&lt;v,w&gt;,若G是无向圈，则还删除对称弧&lt;w,v&gt;。
 DFSTraverse(G);                //对圈G中进行深度优先遍历，在遍历过程对每个顶点调用。
 BFSTraverse(G);                //对图G中进行广度优先遍历，在遍历过程对每个顶点调用。
+
+
 
   图的存储结构
   
@@ -275,6 +281,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -354,7 +364,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            95708 字
+            95746 字
           </span>
         </div>
         
@@ -379,7 +389,9 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="图的定义">
+      
+
+<h1 id="图的定义">
   图的定义
   <a class="heading-link" href="#%e5%9b%be%e7%9a%84%e5%ae%9a%e4%b9%89">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -395,6 +407,8 @@ code.has-jax {
 <li>有向图中，顶点对是有序的，称为从顶点 x 到顶点 y 的一条有向边，也称为弧，x 为弧尾，y 为弧头。</li>
 <li>无向图中，顶点对(x,y)是无序的，称为顶点 x 与顶点 y 的一条边，没有方向。</li>
 </ul>
+
+
 <h1 id="图的基本术语">
   图的基本术语
   <a class="heading-link" href="#%e5%9b%be%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%9c%af%e8%af%ad">
@@ -418,6 +432,8 @@ code.has-jax {
 <li>连通图的生成树: 能够构成一棵树的 n-1 条边的连通子图称为连通图的生成树;一棵 n 个结点的树有 n-1 条边，如果一个图有 n 个顶点和小于 n-1 条边，则是非连通图，如果多于 n-1 条边，则一定有环。</li>
 <li>有向树和生成森林: 有一个顶点入度为 0，其余顶点入度为 1 的图，称为有向树，一个有向树的生成森林是若干棵有向树组成的。</li>
 </ul>
+
+
 <h1 id="图的类型定义">
   图的类型定义
   <a class="heading-link" href="#%e5%9b%be%e7%9a%84%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89">
@@ -438,7 +454,9 @@ code.has-jax {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">DeleteArc</span><span class="p">(</span><span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">);</span>            <span class="c1">//在图G中删除弧&lt;v,w&gt;,若G是无向圈，则还删除对称弧&lt;w,v&gt;。
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">DFSTraverse</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>                <span class="c1">//对圈G中进行深度优先遍历，在遍历过程对每个顶点调用。
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">BFSTraverse</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>                <span class="c1">//对图G中进行广度优先遍历，在遍历过程对每个顶点调用。
-</span></span></span></code></pre></div><h1 id="图的存储结构">
+</span></span></span></code></pre></div>
+
+<h1 id="图的存储结构">
   图的存储结构
   <a class="heading-link" href="#%e5%9b%be%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -446,6 +464,8 @@ code.has-jax {
   </a>
 </h1>
 <p>由于图的结构比较复杂，无法以元素在存储区的位置来表示关系，所以图没有顺序存储结构 ，可以借助二维数组来表示元素间的关系，即邻接矩阵表示法，图的链式存储结构有邻接表，十字链表，邻接多重表等。</p>
+
+
 <h2 id="邻接矩阵">
   邻接矩阵
   <a class="heading-link" href="#%e9%82%bb%e6%8e%a5%e7%9f%a9%e9%98%b5">
@@ -457,10 +477,14 @@ code.has-jax {
 <p>设 G(V,E)是具有 n 个顶点的图，则 G 的邻接矩阵是具有如下性质的 n 阶方阵。</p>
 <p><code>$$ arc[i][j] = \begin{cases} 1 &amp; \text{若} &lt; v_i, v_j &gt; \text{或} (v_i, v_j) \in E \\ 0 &amp; \text{反之} \end{cases} $$</code></p>
 <p><img src="../static/V3Rdb0SnHovLqgxTtv1cJLwonlb.png" alt=""></p>
-<p>如上图，顶点数组为 vertex[4]={v0,v1,v2,v3}，边数组是一个二维数组，如果两个元素之间有边，则对于二维数组的值为 1，如果无边则为 0，对于 arc[i]<a href="i=1,2,3...n"  >i</a> 的元素来说，由于不存在自身到自身的边，所以对于元素均为 0，因此无向图的边数组是一个对称矩阵。</p>
+<p>如上图，顶点数组为 vertex[4]={v0,v1,v2,v3}，边数组是一个二维数组，如果两个元素之间有边，则对于二维数组的值为 1，如果无边则为 0，对于 arc[i]
+
+<a href="i=1,2,3...n"  >i</a> 的元素来说，由于不存在自身到自身的边，所以对于元素均为 0，因此无向图的边数组是一个对称矩阵。</p>
 <p><img src="../static/PSSabWrYCovOfLx2jDtcN2Hpnpf.png" alt=""></p>
 <p>上图是一个有向图，顶点数组为 vertex[4]={v0,v1,v2,v3}vertex[4]={v0,v1,v2,v3}，弧数组是一个矩阵，主对角线上的数值依然为 0.</p>
 <p>因为有向图的边与边不同，所以两个顶点之间可能存在两条边，因此有向图的邻接矩阵并不对称，有向图讲究入度和出度，入度与出度之和为该顶点的度，如果 G(V,E)是一个网，并且顶点到顶点之间有路径，弧的对应值应该存放路径上的权值，如果顶点到顶点之间无路径，则可以使用无穷大表示。</p>
+
+
 <h3 id="图的存储结构代码表示">
   图的存储结构代码表示
   <a class="heading-link" href="#%e5%9b%be%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84%e4%bb%a3%e7%a0%81%e8%a1%a8%e7%a4%ba">
@@ -496,7 +520,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="o">-&gt;</span><span class="n">arc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>        <span class="c1">//矩阵对称
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="邻接矩阵的优缺点">
+</span></span></code></pre></div>
+
+<h3 id="邻接矩阵的优缺点">
   邻接矩阵的优缺点
   <a class="heading-link" href="#%e9%82%bb%e6%8e%a5%e7%9f%a9%e9%98%b5%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -520,6 +546,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h2 id="邻接表">
   邻接表
   <a class="heading-link" href="#%e9%82%bb%e6%8e%a5%e8%a1%a8">
@@ -539,6 +567,8 @@ code.has-jax {
 <p><img src="../static/IuDFbwWRlow2bpx7WwmcIfQwnZg.png" alt=""></p>
 <p>对于带权值的网图，可以在边表结点定义中再增加一个 weight 的数据域，存储权值信息，如下图所示：</p>
 <p><img src="../static/QTjBbaibFoOd3oxQisDcYSPQnKh.png" alt=""></p>
+
+
 <h3 id="无向图邻接表代码示例">
   无向图邻接表代码示例
   <a class="heading-link" href="#%e6%97%a0%e5%90%91%e5%9b%be%e9%82%bb%e6%8e%a5%e8%a1%a8%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
@@ -586,6 +616,8 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>该算法时间复杂度为 O(n+e)，建立有向图邻接表与此类似，在生成图时，只需要对应申请一个结点空间便可，网图可将权值存储在 <strong>weight</strong> 中。</p>
+
+
 <h3 id="邻接表表示法的优缺点">
   邻接表表示法的优缺点
   <a class="heading-link" href="#%e9%82%bb%e6%8e%a5%e8%a1%a8%e8%a1%a8%e7%a4%ba%e6%b3%95%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9">
@@ -610,6 +642,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h2 id="十字链表">
   十字链表
   <a class="heading-link" href="#%e5%8d%81%e5%ad%97%e9%93%be%e8%a1%a8">
@@ -623,6 +657,8 @@ code.has-jax {
 <p><img src="../static/CWWTbrdpCoXdRtxM60PcIMdhnye.png" alt=""></p>
 <p>其中 <strong>tailvex</strong> 表示弧起点在顶点表的下标，<strong>headvex</strong> 是指弧终点在顶点表中的下标，<strong>headlink</strong> 是指入边表指针域，指向终点相同的下一条边，<strong>taillink</strong> 是指边表指针域，指向起点相同的下一条边，如果是网，还可以再增加一个 <strong>weight</strong> 域来存放权值，十字链表结构如下图所示：</p>
 <p><img src="../static/Bldnb8ChdoDjOSxf0TQcv2OgnOd.png" alt=""></p>
+
+
 <h3 id="十字链表存储结构代码示例">
   十字链表存储结构代码示例
   <a class="heading-link" href="#%e5%8d%81%e5%ad%97%e9%93%be%e8%a1%a8%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
@@ -647,7 +683,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="n">VexNode</span> <span class="n">xlist</span><span class="p">[</span><span class="n">MAX_VERTEX_NUM</span><span class="p">];</span>    <span class="c1">//表头向量
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">vexnum</span><span class="p">,</span><span class="n">arcnum</span><span class="p">;</span>                <span class="c1">//有向图的当前顶点数和弧数
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">OLGraph</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="十字链表简易代码示例">
+</span></span></code></pre></div>
+
+<h3 id="十字链表简易代码示例">
   十字链表简易代码示例
   <a class="heading-link" href="#%e5%8d%81%e5%ad%97%e9%93%be%e8%a1%a8%e7%ae%80%e6%98%93%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -764,7 +802,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="邻接多重表">
+</span></span></code></pre></div>
+
+<h2 id="邻接多重表">
   邻接多重表
   <a class="heading-link" href="#%e9%82%bb%e6%8e%a5%e5%a4%9a%e9%87%8d%e8%a1%a8">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -776,6 +816,8 @@ code.has-jax {
 <p>其中 ivex 和 jvex 是与某条边依附的两个顶点在顶点表中下标，ilink 指向依附顶点 ivex 的下一条边，jlink 指向依附顶点 jvex 的下一条边，这既是邻接多重表结构。</p>
 <p><img src="../static/WUybbW0y2oiRD4xthOrc1hVGnJd.png" alt=""></p>
 <p>邻接多重表与邻接表的差别在于同一条边在邻接表中用两个结点表示，而在邻接多重表中只有一个结点，如果要删除某边，只需要将两个链域指向空即可。</p>
+
+
 <h3 id="邻接多重表存储代码示例">
   邻接多重表存储代码示例
   <a class="heading-link" href="#%e9%82%bb%e6%8e%a5%e5%a4%9a%e9%87%8d%e8%a1%a8%e5%ad%98%e5%82%a8%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
@@ -799,7 +841,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="n">VexBox</span> <span class="n">adjmulist</span><span class="p">[</span><span class="n">MAX_VERTEX_NUM</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">vexnum</span><span class="p">,</span><span class="n">edgenum</span><span class="p">;</span>        <span class="c1">//无向图的当前顶点数和边数
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">AMLGraph</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="邻接多重表简易代码示例">
+</span></span></code></pre></div>
+
+<h3 id="邻接多重表简易代码示例">
   邻接多重表简易代码示例
   <a class="heading-link" href="#%e9%82%bb%e6%8e%a5%e5%a4%9a%e9%87%8d%e8%a1%a8%e7%ae%80%e6%98%93%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -916,7 +960,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="nf">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="边集数组">
+</span></span></code></pre></div>
+
+<h2 id="边集数组">
   边集数组
   <a class="heading-link" href="#%e8%be%b9%e9%9b%86%e6%95%b0%e7%bb%84">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -925,6 +971,8 @@ code.has-jax {
 </h2>
 <p>边集数组由两个一维数组构成，一个存储顶点的信息，另一个存储边的信息，这个边数组每个数据元素由一条边的起点下标、终点下标和权组成，边集数组关注的是边的集合，但在边集数组中查找一个顶点的度需要扫描整个边数组，效率较低，这里不详细叙述，在克鲁斯卡尔算法中在进行介绍。</p>
 <p><img src="../static/ZPKpbrH2No2ncKxDaOAcXCvunhc.png" alt=""></p>
+
+
 <h2 id="小结">
   小结
   <a class="heading-link" href="#%e5%b0%8f%e7%bb%93">
@@ -1080,12 +1128,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

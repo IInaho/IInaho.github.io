@@ -22,7 +22,7 @@ enableEmoji = true
 
 [params]
   author = "inaho"
-  info = ["Golang后端开发工程师","生之微欢，俄而感怀，奋勉有得，相携互舍，所谓幸福"]
+  info = ["生之微欢，俄而感怀，奋勉有得，相携互舍，所谓幸福"]
   description = "珍藏多年的文章"
   keywords = "blog,developer,personal"
   avatarurl = ""
@@ -46,32 +46,12 @@ enableEmoji = true
   name = "Github"
   icon = "fa-brands fa-github fa-2x"
   weight = 1
-  url = "https://github.com/johndoe/"
-[[params.social]]
-  name = "Gitlab"
-  icon = "fa-brands fa-gitlab fa-2x"
-  weight = 2
-  url = "https://gitlab.com/johndoe/"
-[[params.social]]
-  name = "Twitter"
-  icon = "fa-brands fa-x-twitter fa-2x"
-  weight = 3
-  url = "https://twitter.com/johndoe/"
-[[params.social]]
-  name = "LinkedIn"
-  icon = "fa-brands fa-linkedin fa-2x"
-  weight = 4
-  url = "https://www.linkedin.com/in/johndoe/"
-[[params.social]]
-  name = "Medium"
-  icon = "fa-brands fa-medium fa-2x"
-  weight = 5
-  url = "https://medium.com/@johndoe"
+  url = "https://github.com/IInaho"
 [[params.social]]
   name = "RSS"
   icon = "fa-solid fa-rss fa-2x"
   weight = 6
-  url = "https://myhugosite.com/index.xml"
+  url = "https://blog.inaho.top/index.xml"
   rel = "alternate"
   type = "application/rss+xml"
 
@@ -92,3 +72,7 @@ enableEmoji = true
   name = "关于"
   weight = 4
   url = "about/"
+[[menu.main]]
+  name = "友链"
+  weight = 5
+  url = "friends/"

@@ -29,6 +29,8 @@ CppPrimer阅读笔记 · inaho
 
 此笔记是本人阅读 CppPrimer 后总结的各章重点，此为第一篇，介绍了第一部分的基本语法内容。
 
+
+
   第一章笔记
   
     
@@ -44,6 +46,8 @@ main 函数返回类型必须为 int。
 endl 是一个被称为“操纵符”的特殊值，写入 endl 结束该行，将与设备关联的缓冲区内容刷到设备中，可以保证目前为止程序产生的所有输出都写入到输出流中，而不是在内存中等待写入流。
 当使用一个 istream 对象作为条件时，其效果是检测流的状态，当遇到文件结束符或遇到无效输入，istream 对象状态会变为无效，无效的 istream 会使条件为假。
 默认情况 cin 会刷新 cout，程序非正常终止也会刷新 cout。
+
+
 
 
   第二章笔记
@@ -209,6 +213,8 @@ decltype ((i)) d;        //d是int&amp;类型    ！！
 c&#43;&#43;11 允许在声明类的数据成员时同时提供初始值，必须在等号右侧或花括号内。
 
 
+
+
   第三章笔记
   
     
@@ -306,6 +312,8 @@ for (auto p = ia; p != ia &#43; 3; &#43;&#43;p) {
 size_t 是一种与机器实现有关的无符号类型，空间足够大，能够表示任意数组的大小。
 
 
+
+
   第四章笔记
   
     
@@ -394,6 +402,8 @@ int j = 10, i = 5;
 类类型能定义由编译器自动执行的转换，比如 IO 库定义了从 istream 向布尔值转换的规则。
 
 
+
+
   第五章笔记
   
     
@@ -411,6 +421,8 @@ vector&lt;int&gt; v;
 在范围 for 语句中，预存了 end()的值，一旦在序列中修改元素，end 函数的值可能变得无效。
 异常类型只定义了 what 的成员函数，返回一个指向 c 风格字符串的 const char*提供本文信息。
 异常没有被捕捉到时调用 terminate 函数，终止当前程序的执行。
+
+
 
 
   第六章笔记
@@ -575,6 +587,8 @@ bool lengthCompare(const string &amp;,const string &amp;);
 使用指向重载函数的指针时，指针类型必须与重载函数中的某一个精确匹配。
 
 
+
+
   第七章笔记
   
     
@@ -649,6 +663,8 @@ class Sales_data{
 
 类的静态成员存在于任何对象之外，被所有对象共享，类静态成员函数也不与任何对象绑定，并且不含 this 指针，不能声明成 const，可以使用类的对象、引用或指针来访问静态成员。
 即使一个常量静态数据成员在类内部被初始化了，通常情况下也应该在类的外部定义该成员。
+
+
 
 
 
@@ -845,6 +861,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -908,7 +928,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            186580 字
+            186606 字
           </span>
         </div>
         
@@ -933,7 +953,9 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h2 id="简介">
+      
+
+<h2 id="简介">
   简介
   <a class="heading-link" href="#%e7%ae%80%e4%bb%8b">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -941,6 +963,8 @@ code.has-jax {
   </a>
 </h2>
 <p>此笔记是本人阅读 CppPrimer 后总结的各章重点，此为第一篇，介绍了第一部分的基本语法内容。</p>
+
+
 <h2 id="第一章笔记">
   第一章笔记
   <a class="heading-link" href="#%e7%ac%ac%e4%b8%80%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -958,6 +982,8 @@ code.has-jax {
 <li>当使用一个 istream 对象作为条件时，其效果是检测流的状态，当遇到文件结束符或遇到无效输入，istream 对象状态会变为无效，无效的 istream 会使条件为假。</li>
 <li>默认情况 cin 会刷新 cout，程序非正常终止也会刷新 cout。</li>
 </ol>
+
+
 <h2 id="第二章笔记">
   第二章笔记
   <a class="heading-link" href="#%e7%ac%ac%e4%ba%8c%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1121,6 +1147,8 @@ code.has-jax {
 <li>为避免与程序中其他实体发生名字冲突，一般将预处理变量名字全部大写。</li>
 <li>c++11 允许在声明类的数据成员时同时提供初始值，必须在等号右侧或花括号内。</li>
 </ol>
+
+
 <h2 id="第三章笔记">
   第三章笔记
   <a class="heading-link" href="#%e7%ac%ac%e4%b8%89%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1218,6 +1246,8 @@ code.has-jax {
 </span></span></code></pre></div><ol start="25">
 <li>size_t 是一种与机器实现有关的无符号类型，空间足够大，能够表示任意数组的大小。</li>
 </ol>
+
+
 <h2 id="第四章笔记">
   第四章笔记
   <a class="heading-link" href="#%e7%ac%ac%e5%9b%9b%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1306,6 +1336,8 @@ code.has-jax {
 </span></span></span></code></pre></div><ol start="15">
 <li>类类型能定义由编译器自动执行的转换，比如 IO 库定义了从 istream 向布尔值转换的规则。</li>
 </ol>
+
+
 <h2 id="第五章笔记">
   第五章笔记
   <a class="heading-link" href="#%e7%ac%ac%e4%ba%94%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1325,6 +1357,8 @@ code.has-jax {
 <li>异常类型只定义了 what 的成员函数，返回一个指向 c 风格字符串的 const char*提供本文信息。</li>
 <li>异常没有被捕捉到时调用 terminate 函数，终止当前程序的执行。</li>
 </ol>
+
+
 <h2 id="第六章笔记">
   第六章笔记
   <a class="heading-link" href="#%e7%ac%ac%e5%85%ad%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1487,6 +1521,8 @@ code.has-jax {
 </span></span></span></code></pre></div><ol start="25">
 <li>使用指向重载函数的指针时，指针类型必须与重载函数中的某一个精确匹配。</li>
 </ol>
+
+
 <h2 id="第七章笔记">
   第七章笔记
   <a class="heading-link" href="#%e7%ac%ac%e4%b8%83%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1564,6 +1600,8 @@ code.has-jax {
 <li>即使一个常量静态数据成员在类内部被初始化了，通常情况下也应该在类的外部定义该成员。</li>
 </ol>
 <hr>
+
+
 <h2 id="第八章笔记">
   第八章笔记
   <a class="heading-link" href="#%e7%ac%ac%e5%85%ab%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1601,6 +1639,8 @@ code.has-jax {
 <li>每个文件流类型定义一个默认的文件模式，ifstream 关联的文件默认以 in 模式打开，与 ofstream 关联的文件默认以 out 模式打开。</li>
 <li>对同一个 stringsteam 对象重复赋值时，就需要对流使用 clear()函数复位流的状态，不过此时并未清空之前的数值</li>
 </ol>
+
+
 <h2 id="第九章笔记">
   第九章笔记
   <a class="heading-link" href="#%e7%ac%ac%e4%b9%9d%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1686,6 +1726,8 @@ priority_queue 默认基于 vector 实现，priority_queue 可以构造于 vecto
 <ol start="26">
 <li>priority_queue 允许我们为队列的元素建立优先级，新加入的元素排在优先级比它低的已有元素之前。</li>
 </ol>
+
+
 <h2 id="第十章笔记">
   第十章笔记
   <a class="heading-link" href="#%e7%ac%ac%e5%8d%81%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1878,6 +1920,8 @@ string sum = accumulate(v.cbegin(),v.cend(),string(“”));
 <li>对于 list 和 forward_list 应该优先使用成员函数版本的算法而不是通用算法。</li>
 <li>链表版本的算法会改变底层的容器。</li>
 </ol>
+
+
 <h2 id="第十一章笔记">
   第十一章笔记
   <a class="heading-link" href="#%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -1960,6 +2004,8 @@ equal_range(k) 返回一个迭代器 pair，表示关键字为 k 的元素的范
 <li>哈希函数使用标准库 hash 类型的对象来计算哈希值。</li>
 <li>相同关键字的元素是相邻存储的！</li>
 </ol>
+
+
 <h2 id="第十二章笔记">
   第十二章笔记
   <a class="heading-link" href="#%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%e7%ac%94%e8%ae%b0">
@@ -2201,12 +2247,6 @@ weak_ptr 伴随类，它是一种弱引用，指向 shared_ptr 所管理的对�
 
   
 
-
-  
-
-  
-
-  
 
   
 

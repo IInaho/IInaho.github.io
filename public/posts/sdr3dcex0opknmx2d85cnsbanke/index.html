@@ -28,11 +28,15 @@
   
 
 
+
+
   移位运算
   
     
     链接到标题
   
+
+
 
 
   移位的意义
@@ -46,6 +50,8 @@
 
 左移，绝对值扩大
 右移，绝对值缩小
+
+
 
 
   算术移位规则
@@ -69,6 +75,8 @@
 
 
 符号位不变
+
+
 
   算术移位举例
   
@@ -290,6 +298,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -398,7 +410,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            20557 字
+            20627 字
           </span>
         </div>
         
@@ -423,13 +435,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="定点运算">
+      
+
+<h1 id="定点运算">
   定点运算
   <a class="heading-link" href="#%e5%ae%9a%e7%82%b9%e8%bf%90%e7%ae%97">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="移位运算">
   移位运算
   <a class="heading-link" href="#%e7%a7%bb%e4%bd%8d%e8%bf%90%e7%ae%97">
@@ -437,6 +453,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="移位的意义">
   移位的意义
   <a class="heading-link" href="#%e7%a7%bb%e4%bd%8d%e7%9a%84%e6%84%8f%e4%b9%89">
@@ -450,6 +468,8 @@ code.has-jax {
 <li>左移，绝对值扩大</li>
 <li>右移，绝对值缩小</li>
 </ul>
+
+
 <h3 id="算术移位规则">
   算术移位规则
   <a class="heading-link" href="#%e7%ae%97%e6%9c%af%e7%a7%bb%e4%bd%8d%e8%a7%84%e5%88%99">
@@ -472,6 +492,8 @@ code.has-jax {
 </ul>
 <blockquote>
 <p>符号位不变</p></blockquote>
+
+
 <h3 id="算术移位举例">
   算术移位举例
   <a class="heading-link" href="#%e7%ae%97%e6%9c%af%e7%a7%bb%e4%bd%8d%e4%b8%be%e4%be%8b">
@@ -494,6 +516,8 @@ code.has-jax {
 <p><img src="../static/LxS7bJ1UUoHCWwxdKhpcBOtbnve.png" alt=""></p>
 <p>反码表示：</p>
 <p><img src="../static/KqXrbvDO9oDJg1xmIwfcf4d6ndd.png" alt=""></p>
+
+
 <h3 id="算数移位的硬件实现">
   算数移位的硬件实现
   <a class="heading-link" href="#%e7%ae%97%e6%95%b0%e7%a7%bb%e4%bd%8d%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%ae%9e%e7%8e%b0">
@@ -502,6 +526,8 @@ code.has-jax {
   </a>
 </h3>
 <p><img src="../static/H76EblpQoo9fFzxIOUtcZocpnJY.png" alt=""></p>
+
+
 <h3 id="算术移位和逻辑移位的区别">
   算术移位和逻辑移位的区别
   <a class="heading-link" href="#%e7%ae%97%e6%9c%af%e7%a7%bb%e4%bd%8d%e5%92%8c%e9%80%bb%e8%be%91%e7%a7%bb%e4%bd%8d%e7%9a%84%e5%8c%ba%e5%88%ab">
@@ -523,6 +549,8 @@ code.has-jax {
 <p>算术右移： 11011001 (补码)</p>
 <blockquote>
 <p>算术移位不会更改符号位，逻辑移位包括符号位全部移位。</p></blockquote>
+
+
 <h2 id="加减法运算">
   加减法运算
   <a class="heading-link" href="#%e5%8a%a0%e5%87%8f%e6%b3%95%e8%bf%90%e7%ae%97">
@@ -530,6 +558,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="补码加减法运算公式">
   补码加减法运算公式
   <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e5%8a%a0%e5%87%8f%e6%b3%95%e8%bf%90%e7%ae%97%e5%85%ac%e5%bc%8f">
@@ -547,6 +577,8 @@ code.has-jax {
 <p><img src="../static/L5DfbrIfsofqZux07f5cqpWlnTf.png" alt=""></p>
 <blockquote>
 <p>连同符号位一起相加，符号位产生的进位自然丢掉。</p></blockquote>
+
+
 <h3 id="例题">
   例题
   <a class="heading-link" href="#%e4%be%8b%e9%a2%98">
@@ -572,6 +604,8 @@ x+y=-0.1100=-12/16 （错）</li>
 <li>设机器数字长为 8 位(含一位符号位)且 A=-97，B=+41，用补码求 A-B
 A-B=+1110110=+118 （错）</li>
 </ol>
+
+
 <h3 id="溢出判断">
   溢出判断
   <a class="heading-link" href="#%e6%ba%a2%e5%87%ba%e5%88%a4%e6%96%ad">
@@ -579,6 +613,8 @@ A-B=+1110110=+118 （错）</li>
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="一位符号位判断溢出">
   一位符号位判断溢出
   <a class="heading-link" href="#%e4%b8%80%e4%bd%8d%e7%ac%a6%e5%8f%b7%e4%bd%8d%e5%88%a4%e6%96%ad%e6%ba%a2%e5%87%ba">
@@ -597,6 +633,8 @@ A-B=+1110110=+118 （错）</li>
 <ul>
 <li>0⊕0=0，1⊕1=0</li>
 </ul>
+
+
 <h4 id="两位符号位判断溢出">
   两位符号位判断溢出
   <a class="heading-link" href="#%e4%b8%a4%e4%bd%8d%e7%ac%a6%e5%8f%b7%e4%bd%8d%e5%88%a4%e6%96%ad%e6%ba%a2%e5%87%ba">
@@ -607,6 +645,8 @@ A-B=+1110110=+118 （错）</li>
 <p><img src="../static/RC8WbqLoPopmvTxJ0PSclMbPnzh.png" alt=""></p>
 <blockquote>
 <p>小数的补码可以以 2^k 为模，k 代表符号位的位数。</p></blockquote>
+
+
 <h4 id="补码加减法的硬件配置">
   补码加减法的硬件配置
   <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e5%8a%a0%e5%87%8f%e6%b3%95%e7%9a%84%e7%a1%ac%e4%bb%b6%e9%85%8d%e7%bd%ae">
@@ -617,6 +657,8 @@ A-B=+1110110=+118 （错）</li>
 <p><img src="../static/UGr0bnZBKosA3lxxka8csiuUnEd.png" alt=""></p>
 <blockquote>
 <p>A 代表 ACC，Ga 与 Gs 是两个标记，如果是加法 Ga 置 1，如果是减法 Gs 置 1，求补控制逻辑判断 X 中如果是减法运算，则对 X 求补。</p></blockquote>
+
+
 <h2 id="乘法运算">
   乘法运算
   <a class="heading-link" href="#%e4%b9%98%e6%b3%95%e8%bf%90%e7%ae%97">
@@ -624,6 +666,8 @@ A-B=+1110110=+118 （错）</li>
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="分析笔算乘法">
   分析笔算乘法
   <a class="heading-link" href="#%e5%88%86%e6%9e%90%e7%ac%94%e7%ae%97%e4%b9%98%e6%b3%95">
@@ -632,6 +676,8 @@ A-B=+1110110=+118 （错）</li>
   </a>
 </h3>
 <p><img src="../static/RMI0bKPQpoM73Ux5ZC2cDo5Cnjh.png" alt=""></p>
+
+
 <h3 id="笔算乘法改进">
   笔算乘法改进
   <a class="heading-link" href="#%e7%ac%94%e7%ae%97%e4%b9%98%e6%b3%95%e6%94%b9%e8%bf%9b">
@@ -641,6 +687,8 @@ A-B=+1110110=+118 （错）</li>
 </h3>
 <p><img src="../static/HghPbi6NkokcUUxoESUcBeHZnAb.png" alt=""></p>
 <p>初态部分积为 0，然后需要分析乘数的数值部分 1011，最后一位为 1，则加 0.1101，相加后将部分积与乘数右移一位，部分积结果是 0.1101，分析乘数数值部分的末位，还是 1，再将整体右移一位，部分积为 0.0110，乘数为 1101，然后相加 0.1101，之后得到的结果 1.0011，将乘数右移一位，分析数值的末位是 0，则相加 0.0000，然后得到的结果分析数值末位是 1，将得到的结果右移一位，再相加 0.1101，结果为 1.0001，最后重复上述操作，结果为部分积与乘数之和，0.10001111.</p>
+
+
 <h3 id="小结">
   小结
   <a class="heading-link" href="#%e5%b0%8f%e7%bb%93">
@@ -654,6 +702,8 @@ A-B=+1110110=+118 （错）</li>
 <li>被乘数只与部分积的高位相加</li>
 <li>硬件，3 个寄存器，其中 2 个具有移位功能，1 个全加器。</li>
 </ul>
+
+
 <h3 id="原码乘法">
   原码乘法
   <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e4%b9%98%e6%b3%95">
@@ -661,6 +711,8 @@ A-B=+1110110=+118 （错）</li>
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="原码一位乘运算规则">
   原码一位乘运算规则
   <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e4%b8%80%e4%bd%8d%e4%b9%98%e8%bf%90%e7%ae%97%e8%a7%84%e5%88%99">
@@ -669,6 +721,8 @@ A-B=+1110110=+118 （错）</li>
   </a>
 </h4>
 <p><img src="../static/UrhMbszjDoqm16xzmEkczmOBn7e.png" alt=""></p>
+
+
 <h4 id="原码一位乘递推公式">
   原码一位乘递推公式
   <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e4%b8%80%e4%bd%8d%e4%b9%98%e9%80%92%e6%8e%a8%e5%85%ac%e5%bc%8f">
@@ -677,6 +731,8 @@ A-B=+1110110=+118 （错）</li>
   </a>
 </h4>
 <p><img src="../static/S0uIbBzp2oMPg6xucKgcYTHtnif.png" alt=""></p>
+
+
 <h4 id="例题-1">
   例题
   <a class="heading-link" href="#%e4%be%8b%e9%a2%98-1">
@@ -691,6 +747,8 @@ A-B=+1110110=+118 （错）</li>
 <li>数值部分按绝对值相乘,x*.y*=0.10110110,则[x.y]原=1.10110110.</li>
 <li>特点：绝对值运算，用移位的次数判断乘法是否结束，逻辑移位</li>
 </ul>
+
+
 <h4 id="原码一位乘的硬件配置">
   原码一位乘的硬件配置
   <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e4%b8%80%e4%bd%8d%e4%b9%98%e7%9a%84%e7%a1%ac%e4%bb%b6%e9%85%8d%e7%bd%ae">
@@ -700,6 +758,8 @@ A-B=+1110110=+118 （错）</li>
 </h4>
 <p><img src="../static/WjJHbxGxtok1sZxTGSOc5Xd1n4c.png" alt=""></p>
 <p>A、X、Q 均 n+1 位，移位和加受末位乘数控制，计数器用于计算移位的次数，s 代表符号位。</p>
+
+
 <h3 id="补码乘法">
   补码乘法
   <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e4%b9%98%e6%b3%95">
@@ -707,6 +767,8 @@ A-B=+1110110=+118 （错）</li>
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="补码一位乘运算规则">
   补码一位乘运算规则
   <a class="heading-link" href="#%e8%a1%a5%e7%a0%81%e4%b8%80%e4%bd%8d%e4%b9%98%e8%bf%90%e7%ae%97%e8%a7%84%e5%88%99">
@@ -727,6 +789,8 @@ A-B=+1110110=+118 （错）</li>
 <li>Booth 算法递推公式</li>
 </ol>
 <p><img src="../static/DhrMbeWx6oFx3wxvodic8gQcn7d.png" alt=""></p>
+
+
 <h4 id="例题-2">
   例题
   <a class="heading-link" href="#%e4%be%8b%e9%a2%98-2">
@@ -738,6 +802,8 @@ A-B=+1110110=+118 （错）</li>
 <p><img src="../static/V5FPbAPdpouG2GxATDgceqoQnkA.png" alt=""></p>
 <p>Booth 算法硬件配置</p>
 <p><img src="../static/X0TebJ13VoNGJrxSOTTcdWZ2nBb.png" alt=""></p>
+
+
 <h3 id="乘法小结">
   乘法小结
   <a class="heading-link" href="#%e4%b9%98%e6%b3%95%e5%b0%8f%e7%bb%93">
@@ -751,6 +817,8 @@ A-B=+1110110=+118 （错）</li>
 <li>原码乘去掉符号位运算，即无符号数乘法</li>
 <li>不同的乘法运算需有不同的硬件支持</li>
 </ul>
+
+
 <h2 id="除法运算">
   除法运算
   <a class="heading-link" href="#%e9%99%a4%e6%b3%95%e8%bf%90%e7%ae%97">
@@ -758,6 +826,8 @@ A-B=+1110110=+118 （错）</li>
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="分析笔算除法">
   分析笔算除法
   <a class="heading-link" href="#%e5%88%86%e6%9e%90%e7%ac%94%e7%ae%97%e9%99%a4%e6%b3%95">
@@ -767,6 +837,8 @@ A-B=+1110110=+118 （错）</li>
 </h3>
 <p><img src="../static/RGbKbUGbxoKKeyxaQORcSJYVnMe.png" alt=""></p>
 <p>比较被除数与除数的大小，除数比被除数大，商 0，然后除数移位变成 0.01101，被除数补零，此时除数小于被除数，商 1，余数继续右移一位，再比较余数与除数的大小关系，如果除数比余数大，商 0，否则商 1。</p>
+
+
 <h3 id="笔算除法和机器除法比较">
   笔算除法和机器除法比较
   <a class="heading-link" href="#%e7%ac%94%e7%ae%97%e9%99%a4%e6%b3%95%e5%92%8c%e6%9c%ba%e5%99%a8%e9%99%a4%e6%b3%95%e6%af%94%e8%be%83">
@@ -793,6 +865,8 @@ A-B=+1110110=+118 （错）</li>
 </ul>
 </li>
 </ul>
+
+
 <h3 id="原码除法">
   原码除法
   <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e9%99%a4%e6%b3%95">
@@ -807,6 +881,8 @@ A-B=+1110110=+118 （错）</li>
 <p>式中<code>$x^*=0.x_1 x_2 \cdots x_n$</code>为 x 的绝对值, <code>$y^*=0.y_1 y_2 \cdots y_n$</code>为 y 的绝对值</p>
 <p>商的符号位单独处理<code>$x_0⊕y_0$</code>,数值部分为绝对值相除<code>$x^*/y^*$</code></p>
 <p>约定： 小数定点除法 x* &lt; y*,整数定点除法 x* &gt; y*,被除数不等于 0，除数不能为 0</p>
+
+
 <h3 id="恢复余数法">
   恢复余数法
   <a class="heading-link" href="#%e6%81%a2%e5%a4%8d%e4%bd%99%e6%95%b0%e6%b3%95">
@@ -823,6 +899,8 @@ A-B=+1110110=+118 （错）</li>
 <li>余数为正，上商 1。</li>
 <li>余数为负，上商 0，恢复余数。</li>
 </ul>
+
+
 <h3 id="不恢复余数法加减交替法">
   不恢复余数法(加减交替法)
   <a class="heading-link" href="#%e4%b8%8d%e6%81%a2%e5%a4%8d%e4%bd%99%e6%95%b0%e6%b3%95%e5%8a%a0%e5%87%8f%e4%ba%a4%e6%9b%bf%e6%b3%95">
@@ -853,6 +931,8 @@ A-B=+1110110=+118 （错）</li>
 <p>结果：<code>$x_0 y_0=1⊕1=0$</code></p>
 <p>x*/y*=0.1101</p>
 <p>[x/y]=0.1101</p>
+
+
 <h4 id="特点">
   特点
   <a class="heading-link" href="#%e7%89%b9%e7%82%b9">
@@ -866,6 +946,8 @@ A-B=+1110110=+118 （错）</li>
 <li>移位 n 次，加 n+1 次</li>
 <li>用移位的次数判断除法是否结束</li>
 </ul>
+
+
 <h4 id="原码加减交替除法硬件配置">
   原码加减交替除法硬件配置
   <a class="heading-link" href="#%e5%8e%9f%e7%a0%81%e5%8a%a0%e5%87%8f%e4%ba%a4%e6%9b%bf%e9%99%a4%e6%b3%95%e7%a1%ac%e4%bb%b6%e9%85%8d%e7%bd%ae">
@@ -1005,12 +1087,6 @@ A-B=+1110110=+118 （错）</li>
 
   
 
-
-  
-
-  
-
-  
 
   
 

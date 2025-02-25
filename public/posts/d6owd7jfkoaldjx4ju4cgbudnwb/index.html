@@ -28,7 +28,11 @@
   
 
 时隔四年，重新搭起个人博客。
-网站从当初的 hexo 换为了 hugo 搭建，使用 hugo-coder 作为主题，进行了部分魔改。
+网站从当初的 hexo 换为了 hugo 搭建，使用 
+
+hugo-coder 作为主题，进行了部分魔改。
+
+
 
   hugo 安装
   
@@ -38,7 +42,11 @@
 
 由于博主使用的 manjaro 系统作为日常开发、办公系统，可以使用 yay 直接进行安装
 yay -S hugo
-如果使用其他操作系统，可以参考 hugo 官方安装教程 进行安装
+如果使用其他操作系统，可以参考 
+
+hugo 官方安装教程 进行安装
+
+
 
   hugo 基础命令
   
@@ -249,6 +257,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -310,7 +322,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            83202 字
+            83234 字
           </span>
         </div>
         
@@ -335,7 +347,9 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="hugo-使用">
+      
+
+<h1 id="hugo-使用">
   hugo 使用
   <a class="heading-link" href="#hugo-%e4%bd%bf%e7%94%a8">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -343,7 +357,11 @@ code.has-jax {
   </a>
 </h1>
 <p>时隔四年，重新搭起个人博客。</p>
-<p>网站从当初的 hexo 换为了 hugo 搭建，使用 <a href="https://github.com/luizdepra/hugo-coder"   class="external-link" target="_blank" rel="noopener" >hugo-coder</a> 作为主题，进行了部分魔改。</p>
+<p>网站从当初的 hexo 换为了 hugo 搭建，使用 
+
+<a href="https://github.com/luizdepra/hugo-coder"   class="external-link" target="_blank" rel="noopener" >hugo-coder</a> 作为主题，进行了部分魔改。</p>
+
+
 <h3 id="hugo-安装">
   hugo 安装
   <a class="heading-link" href="#hugo-%e5%ae%89%e8%a3%85">
@@ -353,7 +371,11 @@ code.has-jax {
 </h3>
 <p>由于博主使用的 manjaro 系统作为日常开发、办公系统，可以使用 yay 直接进行安装</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S hugo
-</span></span></code></pre></div><p>如果使用其他操作系统，可以参考 <a href="https://gohugo.io/installation/linux/"   class="external-link" target="_blank" rel="noopener" >hugo 官方安装教程</a> 进行安装</p>
+</span></span></code></pre></div><p>如果使用其他操作系统，可以参考 
+
+<a href="https://gohugo.io/installation/linux/"   class="external-link" target="_blank" rel="noopener" >hugo 官方安装教程</a> 进行安装</p>
+
+
 <h3 id="hugo-基础命令">
   hugo 基础命令
   <a class="heading-link" href="#hugo-%e5%9f%ba%e7%a1%80%e5%91%bd%e4%bb%a4">
@@ -375,6 +397,8 @@ code.has-jax {
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动服务</span>
 </span></span><span class="line"><span class="cl">hugo serve --disableFastRender
 </span></span></code></pre></div><p>可以通过 127.0.0.1:1313 端口访问本地博客，对于文档的更新，支持实时渲染</p>
+
+
 <h3 id="twikoo-评论系统">
   twikoo 评论系统
   <a class="heading-link" href="#twikoo-%e8%af%84%e8%ae%ba%e7%b3%bb%e7%bb%9f">
@@ -382,14 +406,22 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
-<p>接下来介绍一下魔改部分， 首先 hugo-coder 自身没有支持 <a href="https://twikoo.js.org/"   class="external-link" target="_blank" rel="noopener" >twikoo</a> 评论系统，依照 twikoo 官方文档</p>
+<p>接下来介绍一下魔改部分， 首先 hugo-coder 自身没有支持 
+
+<a href="https://twikoo.js.org/"   class="external-link" target="_blank" rel="noopener" >twikoo</a> 评论系统，依照 twikoo 官方文档</p>
 <p>首先需要搭建 twikoo 后端服务</p>
 <ul>
 <li>搭建 mongodb 云数据库</li>
 <li>搭建 twikoo 后端服务，并且连接云数据库</li>
 </ul>
-<p>为此，我使用了官方文档推荐的 <a href="https://account.mongodb.com/"   class="external-link" target="_blank" rel="noopener" >mongodb</a> 云服务 和 <a href="https://app.netlify.com/"   class="external-link" target="_blank" rel="noopener" >netlify</a> 来搭建</p>
-<p>可以参考官方的 <a href="https://twikoo.js.org/backend.html#netlify-%E9%83%A8%E7%BD%B2"   class="external-link" target="_blank" rel="noopener" >netlify 部署</a>方式</p>
+<p>为此，我使用了官方文档推荐的 
+
+<a href="https://account.mongodb.com/"   class="external-link" target="_blank" rel="noopener" >mongodb</a> 云服务 和 
+
+<a href="https://app.netlify.com/"   class="external-link" target="_blank" rel="noopener" >netlify</a> 来搭建</p>
+<p>可以参考官方的 
+
+<a href="https://twikoo.js.org/backend.html#netlify-%E9%83%A8%E7%BD%B2"   class="external-link" target="_blank" rel="noopener" >netlify 部署</a>方式</p>
 <p>搭建完成后，便可以在主题路径 themes/hugo-coder/layouts/partials/posts 下新建文件 twikoo.html，内容如下</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;tcomment&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -453,6 +485,8 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        ....
 </span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>到此，文章底部已经可以使用 twikoo 系统进行评论了</p>
+
+
 <h3 id="添加数学公式支持">
   添加数学公式支持
   <a class="heading-link" href="#%e6%b7%bb%e5%8a%a0%e6%95%b0%e5%ad%a6%e5%85%ac%e5%bc%8f%e6%94%af%e6%8c%81">
@@ -506,12 +540,16 @@ code.has-jax {
 </span></span></code></pre></div><p>在文件 themes/hugo-coder/layouts/partials/head.html 的底部添加</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ partial &#34;head/mathjax.html&#34; . }}
 </span></span></code></pre></div><p>自此，数学公式可以正确渲染，但这中间遇到了一个问题，如果公式包含三个以上大括号，会出现渲染问题。</p>
-<p>经过互联网查询，参考了 这位大佬的<a href="https://yihui.org/en/2018/07/latex-math-markdown/"   class="external-link" target="_blank" rel="noopener" >方案 </a>， 添加了如下代码</p>
+<p>经过互联网查询，参考了 这位大佬的
+
+<a href="https://yihui.org/en/2018/07/latex-math-markdown/"   class="external-link" target="_blank" rel="noopener" >方案 </a>， 添加了如下代码</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;//yihui.org/js/math-code.js&#34;</span> <span class="na">defer</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">defer</span>
 </span></span><span class="line"><span class="cl">  <span class="na">src</span><span class="o">=</span><span class="s">&#34;//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>但是依照他的方案，需要在公式前后用 `` 标注</p>
+
+
 <h3 id="在文章头部添加字数统计">
   在文章头部添加字数统计
   <a class="heading-link" href="#%e5%9c%a8%e6%96%87%e7%ab%a0%e5%a4%b4%e9%83%a8%e6%b7%bb%e5%8a%a0%e5%ad%97%e6%95%b0%e7%bb%9f%e8%ae%a1">
@@ -538,7 +576,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">      {{ .WordCount }} 字数
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="添加目录侧边栏">
+</span></span></code></pre></div>
+
+<h3 id="添加目录侧边栏">
   添加目录侧边栏
   <a class="heading-link" href="#%e6%b7%bb%e5%8a%a0%e7%9b%ae%e5%bd%95%e4%be%a7%e8%be%b9%e6%a0%8f">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -832,6 +872,8 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  .....
 </span></span></code></pre></div><p>到此目录侧边栏就实现完成了</p>
+
+
 <h3 id="使用-github-actions-部署个人网站">
   使用 github actions 部署个人网站
   <a class="heading-link" href="#%e4%bd%bf%e7%94%a8-github-actions-%e9%83%a8%e7%bd%b2%e4%b8%aa%e4%ba%ba%e7%bd%91%e7%ab%99">
@@ -840,7 +882,9 @@ code.has-jax {
   </a>
 </h3>
 <p>参考 hugo 官方提供的方法，使用 github action 进行部署，可以考虑买个域名，转发到 github 博客子域名上</p>
-<p><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/"   class="external-link" target="_blank" rel="noopener" >https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></p>
+<p>
+
+<a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/"   class="external-link" target="_blank" rel="noopener" >https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></p>
 <p><img src="../static/OxRAbog4wodZlRxkIdDcps1dnAe.png" alt=""></p>
 <p>在 DNS 域名服务商，添加 CNAME 转发到自己的 github 子域名即可。</p>
 
@@ -915,12 +959,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

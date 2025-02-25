@@ -28,6 +28,8 @@ ICMP 与 IGMP 协议 · inaho
   
 
 
+
+
   ICMP 简介
   
     
@@ -41,6 +43,8 @@ ICMP 不是高层协议，而是 IP 层的协议。
 ICMP 报文作为 IP 层数据报的数据，加上数据报的首部，组成 IP 数据包发送出去。
 
 
+
+
   ping 命令诊断网络故障
   
     
@@ -51,6 +55,8 @@ ICMP 报文作为 IP 层数据报的数据，加上数据报的首部，组成 I
 PING(Packet Internet Grope),因特网包探索器，用于测试网络连接量的程序。Ping 发送一个 ICMP 回声请求消息给目的地并报告是否收到所希望的 ICMP 回声应答。
 ping 指的是端对端连通，通常用来作为可用性的检查，但是某些病毒木马会强行大量远程执行 ping 命令抢占你的网络资源，导致系统变慢，网速变慢。严禁 ping 入侵作为大多数 防火墙的一个基本功能提供给用户进行选择。
 如果你打开 IE 浏览器访问网站失败，你可以通过 ping 命令测试到 Internet 的网络连通，可以为你排除网络故障提供线索，下面展示 ping 命令返回的信息以及分析其原因。
+
+
 
 
   使用 ICMP 协议的命令
@@ -248,6 +254,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -306,7 +316,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            3708 字
+            3720 字
           </span>
         </div>
         
@@ -331,13 +341,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="icmp-与-igmp-协议">
+      
+
+<h1 id="icmp-与-igmp-协议">
   ICMP 与 IGMP 协议
   <a class="heading-link" href="#icmp-%e4%b8%8e-igmp-%e5%8d%8f%e8%ae%ae">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="icmp-简介">
   ICMP 简介
   <a class="heading-link" href="#icmp-%e7%ae%80%e4%bb%8b">
@@ -351,6 +365,8 @@ code.has-jax {
 <li>ICMP 不是高层协议，而是 IP 层的协议。</li>
 <li>ICMP 报文作为 IP 层数据报的数据，加上数据报的首部，组成 IP 数据包发送出去。</li>
 </ul>
+
+
 <h2 id="ping-命令诊断网络故障">
   ping 命令诊断网络故障
   <a class="heading-link" href="#ping-%e5%91%bd%e4%bb%a4%e8%af%8a%e6%96%ad%e7%bd%91%e7%bb%9c%e6%95%85%e9%9a%9c">
@@ -363,6 +379,8 @@ code.has-jax {
 <li>ping 指的是端对端连通，通常用来作为可用性的检查，但是某些病毒木马会强行大量远程执行 ping 命令抢占你的网络资源，导致系统变慢，网速变慢。严禁 ping 入侵作为大多数 防火墙的一个基本功能提供给用户进行选择。</li>
 <li>如果你打开 IE 浏览器访问网站失败，你可以通过 ping 命令测试到 Internet 的网络连通，可以为你排除网络故障提供线索，下面展示 ping 命令返回的信息以及分析其原因。</li>
 </ul>
+
+
 <h3 id="使用-icmp-协议的命令">
   使用 ICMP 协议的命令
   <a class="heading-link" href="#%e4%bd%bf%e7%94%a8-icmp-%e5%8d%8f%e8%ae%ae%e7%9a%84%e5%91%bd%e4%bb%a4">
@@ -377,6 +395,8 @@ code.has-jax {
 <li>Windows 128</li>
 <li>Unix 255</li>
 </ul>
+
+
 <h3 id="ping-与-pathping-命令">
   ping 与 pathping 命令
   <a class="heading-link" href="#ping-%e4%b8%8e-pathping-%e5%91%bd%e4%bb%a4">
@@ -387,6 +407,8 @@ code.has-jax {
 <p>pathing 能跟踪数据包路径，发现问题位置。</p>
 <p>Windows 上跟踪数据包路径的命令：tracerert ip 地址</p>
 <p>路由器上跟踪数据包路径的命令： traceroute ip 地址</p>
+
+
 <h2 id="igmp-协议与多播">
   IGMP 协议与多播
   <a class="heading-link" href="#igmp-%e5%8d%8f%e8%ae%ae%e4%b8%8e%e5%a4%9a%e6%92%ad">
@@ -528,12 +550,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

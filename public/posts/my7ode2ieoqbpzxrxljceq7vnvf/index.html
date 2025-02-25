@@ -28,6 +28,8 @@
   
 
 
+
+
   常见协议
   
     
@@ -44,6 +46,8 @@
 电子邮件(SMTP POP IMAP)
 
 
+
+
   DNS 服务
   
     
@@ -57,6 +61,8 @@
 三级域名 dba，例如 dba.souhu.com
 
 命令：ns lookup 得到 IP 地址
+
+
 
   配置内网 DNS 服务器的作用：
   
@@ -263,6 +269,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -329,7 +339,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            7845 字
+            7867 字
           </span>
         </div>
         
@@ -354,13 +364,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="网络应用层概述">
+      
+
+<h1 id="网络应用层概述">
   网络应用层概述
   <a class="heading-link" href="#%e7%bd%91%e7%bb%9c%e5%ba%94%e7%94%a8%e5%b1%82%e6%a6%82%e8%bf%b0">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="常见协议">
   常见协议
   <a class="heading-link" href="#%e5%b8%b8%e8%a7%81%e5%8d%8f%e8%ae%ae">
@@ -377,6 +391,8 @@ code.has-jax {
 <li>万维网 www(World Wide Web)</li>
 <li>电子邮件(SMTP POP IMAP)</li>
 </ul>
+
+
 <h2 id="dns-服务">
   DNS 服务
   <a class="heading-link" href="#dns-%e6%9c%8d%e5%8a%a1">
@@ -391,6 +407,8 @@ code.has-jax {
 <p>三级域名 dba，例如 dba.souhu.com</p>
 <blockquote>
 <p>命令：ns lookup 得到 IP 地址</p></blockquote>
+
+
 <h3 id="配置内网-dns-服务器的作用">
   配置内网 DNS 服务器的作用：
   <a class="heading-link" href="#%e9%85%8d%e7%bd%ae%e5%86%85%e7%bd%91-dns-%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e4%bd%9c%e7%94%a8">
@@ -399,6 +417,8 @@ code.has-jax {
   </a>
 </h3>
 <p>可以避免网络阻塞，让其他计算机通过内网 DNS 服务器解析 IP 地址，内网 DNS 服务器向外请求，将常用 IP 地址缓存到本地，减少内网访问 Interne 的流量。</p>
+
+
 <h2 id="动态主机配置系统-dhcp">
   动态主机配置系统 DHCP
   <a class="heading-link" href="#%e5%8a%a8%e6%80%81%e4%b8%bb%e6%9c%ba%e9%85%8d%e7%bd%ae%e7%b3%bb%e7%bb%9f-dhcp">
@@ -408,6 +428,8 @@ code.has-jax {
 </h2>
 <p>客户机在网中发广播请求地址，目标 IP 是 4 个 255，目标 MAC 地址是全 FF。DHCP 收到后，会从地址池里选一个给客户机。如果网络中有 2 个 DHCP 服务端且都给了反馈，此时计算机还需要返回一个数据通知他选择了谁提供的地址。</p>
 <p>另一个 DHCP 客户端发现没有他的，于是收回他提供的。从这个角度看，网络中不能有太多的 DHCP 服务端,DHCP 服务器必须是固定 IP 地址，DHCP 跨网段配置 IP 地址需要 DHCP 配 IP 地址的计算机，需要在他所在的网络的路由器的网关上配置 IPhelper address，再访问到 DHCP.</p>
+
+
 <h2 id="文本传输协议-ftp">
   文本传输协议 FTP
   <a class="heading-link" href="#%e6%96%87%e6%9c%ac%e4%bc%a0%e8%be%93%e5%8d%8f%e8%ae%ae-ftp">
@@ -420,6 +442,8 @@ code.has-jax {
 <p>FTP 的连接方式包括控制连接和数据连接，每上传或下载一个文件就会建立一个会话。</p>
 <p>控制连接：标准端口为 21，用于发送 FTP 命令信息</p>
 <p>数据连接：标准端口为 20，用于上传或下载数据</p>
+
+
 <h3 id="ftp-数据连接">
   FTP 数据连接
   <a class="heading-link" href="#ftp-%e6%95%b0%e6%8d%ae%e8%bf%9e%e6%8e%a5">
@@ -434,6 +458,8 @@ code.has-jax {
 <p>被动模式：FTP 服务器打开在指定范围内的某个新端口并且进行监听，被动等待客户端发起连接。</p>
 <blockquote>
 <p>防火墙只能打开 21 和 20 端口，被动模式 FTP 不能下载数据。</p></blockquote>
+
+
 <h3 id="ftp-传输模式">
   FTP 传输模式
   <a class="heading-link" href="#ftp-%e4%bc%a0%e8%be%93%e6%a8%a1%e5%bc%8f">
@@ -443,6 +469,8 @@ code.has-jax {
 </h3>
 <p>文本模式：ASCII 模式，以文本序列传输数据。</p>
 <p>二进制模式：Binary 模式，以二进制序列传输数据。</p>
+
+
 <h2 id="telnet-和-rdp-协议">
   telnet 和 RDP 协议
   <a class="heading-link" href="#telnet-%e5%92%8c-rdp-%e5%8d%8f%e8%ae%ae">
@@ -451,6 +479,8 @@ code.has-jax {
   </a>
 </h2>
 <p>远程终端协议 telnet 和远程桌面协议 RDP 都用来进行远程控制，RDP 协议有图形界面，而 telnet 没有，Server 多用户操作系统可以多用户同时使用服务器。</p>
+
+
 <h2 id="http-协议概述">
   HTTP 协议概述
   <a class="heading-link" href="#http-%e5%8d%8f%e8%ae%ae%e6%a6%82%e8%bf%b0">
@@ -461,6 +491,8 @@ code.has-jax {
 <p>HTTP 是一个客户端终端（用户）和服务器端（网站）请求和应答的标准（TCP）。通过使用网页浏览器、网络爬虫或者其它的工具，客户端发起一个 HTTP 请求到服务器上指定端口（默认端口为 80）。我们称这个客户端为用户代理程序（user agent）。应答的服务器上存储着一些资源，比如 HTML 文件和图像。我们称这个应答服务器为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如代理服务器、网关或者隧道（tunnel）。</p>
 <p>尽管 TCP/IP 协议是互联网上最流行的应用，HTTP 协议中，并没有规定必须使用它或它支持的层。事实上，HTTP 可以在任何互联网协议上，或其他网络上实现。HTTP 假定其下层协议提供可靠的传输。因此，任何能够提供这种保证的协议都可以被其使用。因此也就是其在 TCP/IP 协议族使用 TCP 作为其传输层。</p>
 <p>通常，由 HTTP 客户端发起一个请求，创建一个到服务器指定端口（默认是 80 端口）的 TCP 连接。HTTP 服务器则在那个端口监听客户端的请求。一旦收到请求，服务器会向客户端返回一个状态，比如”HTTP/1.1 200 OK”，以及返回的内容，如请求的文件、错误消息、或者其它信息。</p>
+
+
 <h2 id="使用-web-代理服务器访问网站">
   使用 Web 代理服务器访问网站
   <a class="heading-link" href="#%e4%bd%bf%e7%94%a8-web-%e4%bb%a3%e7%90%86%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%ae%bf%e9%97%ae%e7%bd%91%e7%ab%99">
@@ -600,12 +632,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

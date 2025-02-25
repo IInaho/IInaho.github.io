@@ -68,14 +68,6 @@
 
   {{ template "_internal/google_analytics.html" . }}
 
-  {{ if and .Site.Params.fathomAnalytics .Site.Params.fathomAnalytics.siteID }}
-  {{- partial "analytics/fathom" . -}}
-  {{ end }}
-
-  {{ if and .Site.Params.plausibleAnalytics .Site.Params.plausibleAnalytics.domain }}
-  {{- partial "analytics/plausible" . -}}
-  {{ end }}
-
   {{ if and .Site.Params.baidu .Site.Params.baidu.token }}
   {{- partial "analytics/baidu" . -}}
   {{ end }}
@@ -86,10 +78,6 @@
 
   {{ if .Site.Params.vercelAnalytics}}
   {{- partial "analytics/vercel" . -}}
-  {{ end }}
-
-  {{ if and .Site.Params.pirsch .Site.Params.pirsch.code }}
-  {{- partial "analytics/pirsch" . -}}
   {{ end }}
 
   {{ if and .Site.Params.clicky .Site.Params.clicky.id }}

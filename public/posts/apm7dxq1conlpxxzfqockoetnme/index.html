@@ -28,6 +28,8 @@ docker 快速入门 · inaho
   
 
 
+
+
   docker 安装
   
     
@@ -324,6 +326,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -382,7 +388,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            33657 字
+            33677 字
           </span>
         </div>
         
@@ -407,13 +413,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="docker-快速入门">
+      
+
+<h1 id="docker-快速入门">
   docker 快速入门
   <a class="heading-link" href="#docker-%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="docker-安装">
   docker 安装
   <a class="heading-link" href="#docker-%e5%ae%89%e8%a3%85">
@@ -542,7 +552,9 @@ COPY              //同上
 VOLUME            //指定容器数据卷
 CMD                //容器启动时要运行的命令
 ENTRYPOINT        //同上
-</code></pre><h2 id="docker-常用命令">
+</code></pre>
+
+<h2 id="docker-常用命令">
   docker 常用命令
   <a class="heading-link" href="#docker-%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -580,7 +592,9 @@ ENTRYPOINT        //同上
 </span></span><span class="line"><span class="cl">docker load -i
 </span></span><span class="line"><span class="cl">docker network ls
 </span></span><span class="line"><span class="cl">docker network create
-</span></span></code></pre></div><h2 id="docker-镜像加载原理">
+</span></span></code></pre></div>
+
+<h2 id="docker-镜像加载原理">
   docker 镜像加载原理
   <a class="heading-link" href="#docker-%e9%95%9c%e5%83%8f%e5%8a%a0%e8%bd%bd%e5%8e%9f%e7%90%86">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -593,6 +607,8 @@ ENTRYPOINT        //同上
 <p>rootfs (root ﬁle system) ，在 bootfs 之上，包含的就是典型 Linux 系统中的 /dev, /proc, /bin, /etc 等标 准目录和文件。rootfs 就是各种不同的操作系统发行版，比如 Ubuntu，Centos 等等。</p>
 <p>所有的 Docker 镜像都起始于一个基础镜像层，当进行修改或增加新的内容时，就会在当前镜像层之 上，创建新的镜像层。</p>
 <p><img src="../static/W2M1bHGgmojvuexopqbcbN7znSe.png" alt=""></p>
+
+
 <h2 id="docker-降级">
   docker 降级
   <a class="heading-link" href="#docker-%e9%99%8d%e7%ba%a7">
@@ -604,7 +620,9 @@ ENTRYPOINT        //同上
 </span></span><span class="line"><span class="cl">systemctl stop docker.service
 </span></span><span class="line"><span class="cl">yum downgrade --setopt<span class="o">=</span><span class="nv">obsoletes</span><span class="o">=</span><span class="m">0</span> -y docker-ce-<span class="si">${</span><span class="nv">version</span><span class="si">}</span> docker-ce-selinux-<span class="si">${</span><span class="nv">version</span><span class="si">}</span>
 </span></span><span class="line"><span class="cl">yum downgrade --setopt<span class="o">=</span><span class="nv">obsoletes</span><span class="o">=</span><span class="m">0</span> -y docker-ce-19.03.13-3.el7 docker-ce-cli-19.03.13-3.el7 containerd.io
-</span></span></code></pre></div><h2 id="docker-镜像瘦身">
+</span></span></code></pre></div>
+
+<h2 id="docker-镜像瘦身">
   docker 镜像瘦身
   <a class="heading-link" href="#docker-%e9%95%9c%e5%83%8f%e7%98%a6%e8%ba%ab">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -645,7 +663,11 @@ ENTRYPOINT        //同上
 </span></span><span class="line"><span class="cl">cat base_img.tar<span class="p">|</span>docker import - base_img
 </span></span><span class="line"><span class="cl"><span class="c1">#history,只有一个记录：Imported from -</span>
 </span></span><span class="line"><span class="cl">docker <span class="nb">history</span> <span class="o">[</span>新镜像id<span class="o">]</span>
-</span></span></code></pre></div><p>参考： <a href="https://blog.haojunyu.com/post/docker_image_slim/"   class="external-link" target="_blank" rel="noopener" >Docker 镜像瘦身</a></p>
+</span></span></code></pre></div><p>参考： 
+
+<a href="https://blog.haojunyu.com/post/docker_image_slim/"   class="external-link" target="_blank" rel="noopener" >Docker 镜像瘦身</a></p>
+
+
 <h2 id="docker-构建多架构镜像">
   docker 构建多架构镜像
   <a class="heading-link" href="#docker-%e6%9e%84%e5%bb%ba%e5%a4%9a%e6%9e%b6%e6%9e%84%e9%95%9c%e5%83%8f">
@@ -693,7 +715,9 @@ ENTRYPOINT        //同上
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看镜像信息</span>
 </span></span><span class="line"><span class="cl">$ docker buildx imagetools inspect myusername/hello
-</span></span></code></pre></div><h2 id="docker-开启-manifest">
+</span></span></code></pre></div>
+
+<h2 id="docker-开启-manifest">
   docker 开启 manifest
   <a class="heading-link" href="#docker-%e5%bc%80%e5%90%af-manifest">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -712,7 +736,9 @@ ENTRYPOINT        //同上
 <li>临时开启</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">DOCKER_CLI_EXPERIMENTAL</span><span class="o">=</span>enabled
-</span></span></code></pre></div><h2 id="docker-通过代理服务器拉取镜像">
+</span></span></code></pre></div>
+
+<h2 id="docker-通过代理服务器拉取镜像">
   Docker 通过代理服务器拉取镜像
   <a class="heading-link" href="#docker-%e9%80%9a%e8%bf%87%e4%bb%a3%e7%90%86%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%8b%89%e5%8f%96%e9%95%9c%e5%83%8f">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -821,12 +847,6 @@ ENTRYPOINT        //同上
 
   
 
-
-  
-
-  
-
-  
 
   
 

@@ -28,11 +28,15 @@
   
 
 
+
+
   银行家算法
   
     
     链接到标题
   
+
+
 
 
   简介
@@ -42,6 +46,8 @@
   
 
 银行家算法（Banker’s Algorithm）是一个避免死锁（Deadlock）的著名算法，是由艾兹格·迪杰斯特拉在 1965 年为 T.H.E 系统设计的一种避免死锁产生的算法。它以银行借贷系统的分配策略为基础，判断并保证系统的安全运行。
+
+
 
   算法原理
   
@@ -59,6 +65,8 @@
 
 操作系统按照银行家制定的规则为进程分配资源，当进程首次申请资源时，要测试该进程对资源的最大需求量，如果系统现存的资源可以满足它的最大需求量则按当前的申请量分配资源，否则就推迟分配。
 当进程在执行中继续申请资源时，先测试该进程本次申请的资源数是否超过了该资源所剩余的总量。若超过则拒绝分配资源，若能满足则按当前的申请量分配资源，否则也要推迟分配。
+
+
 
   算法详述
   
@@ -282,6 +290,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -338,7 +350,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            50288 字
+            50302 字
           </span>
         </div>
         
@@ -363,13 +375,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="银行家算法">
+      
+
+<h1 id="银行家算法">
   银行家算法
   <a class="heading-link" href="#%e9%93%b6%e8%a1%8c%e5%ae%b6%e7%ae%97%e6%b3%95">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h1 id="银行家算法-1">
   银行家算法
   <a class="heading-link" href="#%e9%93%b6%e8%a1%8c%e5%ae%b6%e7%ae%97%e6%b3%95-1">
@@ -377,6 +393,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="简介">
   简介
   <a class="heading-link" href="#%e7%ae%80%e4%bb%8b">
@@ -385,6 +403,8 @@ code.has-jax {
   </a>
 </h2>
 <p>银行家算法（Banker’s Algorithm）是一个避免死锁（Deadlock）的著名算法，是由艾兹格·迪杰斯特拉在 1965 年为 T.H.E 系统设计的一种避免死锁产生的算法。它以银行借贷系统的分配策略为基础，判断并保证系统的安全运行。</p>
+
+
 <h2 id="算法原理">
   算法原理
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%8e%9f%e7%90%86">
@@ -402,6 +422,8 @@ code.has-jax {
 </ul>
 <p>操作系统按照银行家制定的规则为进程分配资源，当进程首次申请资源时，要测试该进程对资源的最大需求量，如果系统现存的资源可以满足它的最大需求量则按当前的申请量分配资源，否则就推迟分配。</p>
 <p>当进程在执行中继续申请资源时，先测试该进程本次申请的资源数是否超过了该资源所剩余的总量。若超过则拒绝分配资源，若能满足则按当前的申请量分配资源，否则也要推迟分配。</p>
+
+
 <h2 id="算法详述">
   算法详述
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e8%af%a6%e8%bf%b0">
@@ -429,6 +451,8 @@ code.has-jax {
 <p>系统执行安全性算法，检查此次资源分配后系统是否处于安全状态。若安全，才正式将资源分配给进程 Pi，以完成本次分配；否则，将本次的试探分配作废，恢复原来的资源分配状态，让进程 Pi 等待。</p>
 </li>
 </ol>
+
+
 <h2 id="安全性算法">
   安全性算法
   <a class="heading-link" href="#%e5%ae%89%e5%85%a8%e6%80%a7%e7%ae%97%e6%b3%95">
@@ -464,6 +488,8 @@ code.has-jax {
 <p>如果所有进程的 Finish[i] =true 都满足，则表示系统处于安全状态；否则，系统处于不安全状态。</p>
 </li>
 </ol>
+
+
 <h2 id="代码示例">
   代码示例
   <a class="heading-link" href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
@@ -705,12 +731,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

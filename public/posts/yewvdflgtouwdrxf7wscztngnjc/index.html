@@ -35,11 +35,15 @@
 对于 n 个顶点的连通网可以建立许多不同的生成树，每棵生成树都可以是一个通信网，最合理的通信网应该是代价之和最小的生成树，在一个连通网的所有生成树中，各边的代价之和最小的那棵生成树称为该连通网的最小生成树。
 对于寻找连通图的最小生成树，一般有两种算法，普里姆算法和克鲁斯卡尔算法。
 
+
+
   普里姆算法
   
     
     链接到标题
   
+
+
 
 
   普里姆算法的构造过程
@@ -54,6 +58,8 @@
 初始化: $U=\{u_0\}(u_0 \in V), TE=\{\}$
 在所有$u \in U, v \in V-U$ 的边$(u,v) \in E$中找到一条权值最小的边 $(u_0,v_0)$并入集合 TE，同时$v_0$并入 U。
 重复过程二，直至 U=V 为止，此时 TE 中必有 n-1 条边，则 T=(V,TE)为 N 的最小生成树。
+
+
 
 
   普里姆算法举例
@@ -259,6 +265,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -369,7 +379,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            101105 字
+            101179 字
           </span>
         </div>
         
@@ -394,7 +404,9 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="带权最小生成树">
+      
+
+<h1 id="带权最小生成树">
   带权最小生成树
   <a class="heading-link" href="#%e5%b8%a6%e6%9d%83%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -408,6 +420,8 @@ code.has-jax {
 <p>这三种线路的距离各不一样，而方案三要比方案一的线路节省 62 公里的线路成本，如何选择一个最优的线路，也就是我们需要解决的问题。
 对于 n 个顶点的连通网可以建立许多不同的生成树，每棵生成树都可以是一个通信网，最合理的通信网应该是代价之和最小的生成树，在一个连通网的所有生成树中，各边的代价之和最小的那棵生成树称为该连通网的<strong>最小生成树</strong>。
 对于寻找连通图的最小生成树，一般有两种算法，普里姆算法和克鲁斯卡尔算法。</p>
+
+
 <h2 id="普里姆算法">
   普里姆算法
   <a class="heading-link" href="#%e6%99%ae%e9%87%8c%e5%a7%86%e7%ae%97%e6%b3%95">
@@ -415,6 +429,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="普里姆算法的构造过程">
   普里姆算法的构造过程
   <a class="heading-link" href="#%e6%99%ae%e9%87%8c%e5%a7%86%e7%ae%97%e6%b3%95%e7%9a%84%e6%9e%84%e9%80%a0%e8%bf%87%e7%a8%8b">
@@ -429,6 +445,8 @@ code.has-jax {
 <li>在所有<code>$u \in U, v \in V-U$</code> 的边<code>$(u,v) \in E$</code>中找到一条权值最小的边 <code>$(u_0,v_0)$</code>并入集合 TE，同时<code>$v_0$</code>并入 U。</li>
 <li>重复过程二，直至 U=V 为止，此时 TE 中必有 n-1 条边，则 T=(V,TE)为 N 的最小生成树。</li>
 </ol>
+
+
 <h3 id="普里姆算法举例">
   普里姆算法举例
   <a class="heading-link" href="#%e6%99%ae%e9%87%8c%e5%a7%86%e7%ae%97%e6%b3%95%e4%b8%be%e4%be%8b">
@@ -441,6 +459,8 @@ code.has-jax {
 <p><img src="../static/WaU2bD5Y8omSQPxnExycxuwTnTe.png" alt=""></p>
 <p>然后将 A-B-D 看作一个整体，继续选择 A-C、B-C、D-C 当中最小的边，直至所有顶点全部选完，这就是普里姆算法的大致思路，此图中有两个最小生成树，如下图所示</p>
 <p><img src="../static/TqxSba4pZoiwknxzQtacIEd6nSf.png" alt=""></p>
+
+
 <h3 id="普里姆算法的实现">
   普里姆算法的实现
   <a class="heading-link" href="#%e6%99%ae%e9%87%8c%e5%a7%86%e7%ae%97%e6%b3%95%e7%9a%84%e5%ae%9e%e7%8e%b0">
@@ -454,7 +474,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="n">VerTexType</span> <span class="n">adjvex</span><span class="p">;</span>        <span class="c1">//最小边在U中的那个顶点
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ArcType</span> <span class="n">lowcost</span><span class="p">;</span>        <span class="c1">//最小边的权值
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">closedge</span><span class="p">[</span><span class="n">MVNum</span><span class="p">];</span>
-</span></span></code></pre></div><h3 id="算法描述">
+</span></span></code></pre></div>
+
+<h3 id="算法描述">
   算法描述
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -504,7 +526,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="算法分析">
+</span></span></code></pre></div>
+
+<h3 id="算法分析">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -512,6 +536,8 @@ code.has-jax {
   </a>
 </h3>
 <p>假设网中有 n 个顶点，初始化 closedge 的循环频度为 n，第二个循环频度为 n-1，第二个循环内有两个循环其一是在 closedge[v].lowcost 中求最小值，频度为 n-1，其二是重新选择最小权值的边频度为 n，所以该算法时间复杂度为<code>$O(n^2)$</code>，此算法适合求稠密网的最小生成树。</p>
+
+
 <h2 id="克鲁斯卡尔算法">
   克鲁斯卡尔算法
   <a class="heading-link" href="#%e5%85%8b%e9%b2%81%e6%96%af%e5%8d%a1%e5%b0%94%e7%ae%97%e6%b3%95">
@@ -520,6 +546,8 @@ code.has-jax {
   </a>
 </h2>
 <p>普里姆算法是以某顶点为起点，逐步找各顶点上最小权值的边来构建最小生成树，而克鲁斯卡尔算法是以边为目标去构建的，因此需要使用图的存储结构中的<strong>边集数组</strong>结构，边集数组结构定义代码如下：</p>
+
+
 <h3 id="构造过程">
   构造过程
   <a class="heading-link" href="#%e6%9e%84%e9%80%a0%e8%bf%87%e7%a8%8b">
@@ -535,6 +563,8 @@ code.has-jax {
 <li>在 E 中选择权值最小的边，若该边依附的顶点落在 T 中不同的连通分量上(即不构成回路)，则将此边加入到 T 中，否则舍去此边而选择下一条权值最小的边。</li>
 <li>重复过程二，直至 T 中所有顶点都在同一连通分量上为止。</li>
 </ol>
+
+
 <h3 id="算法步骤">
   算法步骤
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4">
@@ -559,6 +589,8 @@ code.has-jax {
 </ol>
 </li>
 </ol>
+
+
 <h3 id="算法举例">
   算法举例
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e4%b8%be%e4%be%8b">
@@ -575,6 +607,8 @@ code.has-jax {
 <p><img src="../static/To9jbNN2XorD9LxQd9CcS6Isnec.png" alt=""></p>
 <p>继续选择权值最小的边，此时权值为 5 的边有三个，其中**(1,4)<strong>和</strong>(3,4)<strong>各自两顶点的标记相同，如果连接连接会产生回路，所以舍去。由于</strong>(2,3)**标记不同，可以连接，将顶点 2 标记相同的所有顶点的标记改为与顶点 3 相同的标记，当选取的边的数量比顶点数量小 1，说明最小生成树生成。</p>
 <p><img src="../static/IeCFbFkLIom1ffxi0m0cnjlSnEf.png" alt=""></p>
+
+
 <h3 id="算法描述-1">
   算法描述
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0-1">
@@ -605,7 +639,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="算法分析-1">
+</span></span></code></pre></div>
+
+<h3 id="算法分析-1">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-1">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -613,6 +649,8 @@ code.has-jax {
   </a>
 </h3>
 <p>如果对存放在网中的边进行堆排序，对于包含 e 条边的网，上述算法排序时间为<code>$O(elog_2e)$</code>,由此克鲁斯算法的时间复杂度为<code>$O(elog_2e)$</code>，此算法更适合求稀疏网的最小生成树。</p>
+
+
 <h1 id="最短路径">
   最短路径
   <a class="heading-link" href="#%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%84">
@@ -627,6 +665,8 @@ code.has-jax {
 <li>对于网图来说，最短路径，是指两顶点之间经过的边上权值之和最少的路径，并且我们称路径上的第一个顶点是源点，最后一个顶点是终点。</li>
 <li>两种常见的最短路径问题: 求从某个源点到其余各顶点的最短路径、求每一对顶点之间的最短路径</li>
 </ul>
+
+
 <h2 id="迪杰斯特拉算法">
   迪杰斯特拉算法
   <a class="heading-link" href="#%e8%bf%aa%e6%9d%b0%e6%96%af%e7%89%b9%e6%8b%89%e7%ae%97%e6%b3%95">
@@ -636,6 +676,8 @@ code.has-jax {
 </h2>
 <p>本文讨论单源点的最短路径问题： 给定带权有向图 G 和源点<code>$v_0$</code>，求从<code>$v_0$</code>到 G 中其余各顶点的最短路径。</p>
 <p>迪杰斯特拉算法是一个按路径长度递增的次序产生最短路径的算法。</p>
+
+
 <h3 id="求解过程">
   求解过程
   <a class="heading-link" href="#%e6%b1%82%e8%a7%a3%e8%bf%87%e7%a8%8b">
@@ -649,6 +691,8 @@ code.has-jax {
 <li>V-S: 尚未求出的最短路径的顶点集合(初始时为 V-{<code>$v_0$</code>})</li>
 </ol>
 <p>算法将按各顶点与<code>$v_0$</code>间最短路径长度递增的次序，逐个将集合 V-S 中的顶点加入到集合 S 中，在这个过程中，总保持从<code>$v_0$</code>到集合 S 中各顶点的路径长度始终不大于到集合 V-S 中各顶点的路径长度。</p>
+
+
 <h3 id="算法实现">
   算法实现
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0">
@@ -667,6 +711,8 @@ code.has-jax {
 <p>中转顶点，从而多了中转路径，所以要对第二组剩余的各个顶点的最短路径长度进行更新。</p>
 <p>原来<code>$v_0$</code>到<code>$v_i$</code>的最短路径长度为 D[i]，加入<code>$v_k$</code>之后，以<code>$v_k$</code>作为中间顶点的中转路径长度为: D[k]+G.arcs[k][i]D[k]+G.arcs[k][i]，若 D[k]+G.arcs[k][i]&lt;D[i]D[k]+G.arcs[k][i]&lt;D[i]，则用 D[k]+G.arc[k][i]D[k]+G.arc[k][i]取代 D[i].</p>
 <p>更新后，在选择数组 D 中最小的顶点加入顶点集 S 中，然后重复上述过程，直至图中所有顶点都加入 S 中为止。</p>
+
+
 <h3 id="算法步骤-1">
   算法步骤
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-1">
@@ -692,6 +738,8 @@ code.has-jax {
 </ol>
 </li>
 </ol>
+
+
 <h3 id="算法举例-1">
   算法举例
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e4%b8%be%e4%be%8b-1">
@@ -707,6 +755,8 @@ code.has-jax {
 <p>第五步和第六步与以上步骤同理，从 U 中选取权值最小的顶点并入 S 集，然后将此顶点作为中转点，更新源点到其余顶点的距离。</p>
 <p><img src="../static/Bo22b7RNcoxQH7xrnf1cl6RrnFe.png" alt=""></p>
 <p>通过以上步骤，U 集中的顶点已经全部并入 S 集，此时源点到其余各顶点的最短路径已经计算完毕。</p>
+
+
 <h3 id="算法描述-2">
   算法描述
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0-2">
@@ -755,7 +805,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="算法分析-2">
+</span></span></code></pre></div>
+
+<h3 id="算法分析-2">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-2">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -764,6 +816,8 @@ code.has-jax {
 </h3>
 <p>主循环一共进行 n-1 次，每次执行时间为 O(n)，所以算法时间复杂度为<code>$O(n^2)$</code>。</p>
 <p>人们可能只希望找到从源点到某个终点的最短路径，但这个问题和求源点到其他所有顶点的最短路径一样复杂，所以使用迪杰斯特拉算法解决，时间复杂度依然为<code>$O(n^2)$</code>。</p>
+
+
 <h2 id="弗洛伊德算法">
   弗洛伊德算法
   <a class="heading-link" href="#%e5%bc%97%e6%b4%9b%e4%bc%8a%e5%be%b7%e7%ae%97%e6%b3%95">
@@ -773,6 +827,8 @@ code.has-jax {
 </h2>
 <p>迪杰斯特拉算法是解决单源点到其余顶点最短路径的问题，如果是求每一对顶点之间的最短路径，用迪杰斯特拉算法就需要将每个顶点都作为源点，然后共同调用 n 次算法，相当于在外层又套了一层循环，这种方式时间复杂度变为<code>$O(n^3)$</code>。</p>
 <p>另一种求最短路径的算法是弗洛伊德算法，弗洛伊德算法的时间复杂度依然为<code>$O(n^3)$</code>,但其算法非常简洁优雅，此算法仍然使用带权的邻接矩阵 arcs 来表示有向网 G，求从顶点<code>$v_i$</code>到<code>$v_j$</code>的最短路径.</p>
+
+
 <h3 id="算法实现-1">
   算法实现
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-1">
@@ -785,6 +841,8 @@ code.has-jax {
 <li>二维数组 Path[i][j]: 最短路径上顶点<code>$v_j$</code>的前一顶点的序号。</li>
 <li>二维数组 D[i][j]: 记录顶点<code>$v_i$</code>和<code>$v_j$</code>之间的最短路径长度。</li>
 </ul>
+
+
 <h3 id="算法步骤-2">
   算法步骤
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4-2">
@@ -797,6 +855,8 @@ code.has-jax {
 <li>在<code>$v_i$</code>和<code>$v_j$</code>间加入中转顶点<code>$v_0$</code>，比较(<code>$v_i$</code>,<code>$v_0$</code>,<code>$v_j$</code>)和(<code>$v_i$</code>,<code>$v_j$</code>)的路径长度，也就是判断 G.arcs[i][0]+G.arcs[0][j]是否比 G.arcs[i][j]的路径更短，取最短的作为<code>$v_i$</code>到<code>$v_j$</code>的最短路径，同时更新 Path 数组对应的值。</li>
 <li>循环将<code>$v_1$</code>,<code>$v_2$</code>…<code>$v_n$</code>都作为中转点，更新<code>$v_i$</code>到<code>$v_j$</code>的最短路径，经过 n 次比较后，就可以得到任意两顶点之间的最短路径。</li>
 </ol>
+
+
 <h3 id="算法举例-2">
   算法举例
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e4%b8%be%e4%be%8b-2">
@@ -825,6 +885,8 @@ code.has-jax {
 </span></span></code></pre></div><p>经过 9 次循环可以得到现在的 D、P 矩阵:</p>
 <p><img src="../static/H1NQbQ0O7oGvnjxiziBcrScSn3g.png" alt=""></p>
 <p>从上图的 D 矩阵可以看出(v0,v8)的最短路径为 16，从 P 矩阵可以看出从(v0,v8)需要经过 v1 中转，然后又从(v1,v8)看出需要经过 v2，从(v2,v8)需要经过 v4，(v4,v8)需要经过 v3，(v3,v8)需要经过 v6，从(v6,v8)需要经过 v7，然后从 v7 可以直接到 v8，那么 v0 到 v8 的最短路径就是 v0−v1−v2−v4−v3−v6−v7−v8，然后我们手动计算此路径长度为 1+3+1+2+3+7=16，和 D 矩阵相应的值一样，这就是弗洛伊德算法的过程。</p>
+
+
 <h3 id="算法实现-2">
   算法实现
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-2">
@@ -856,7 +918,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h1 id="拓扑排序">
+</span></span></code></pre></div>
+
+<h1 id="拓扑排序">
   拓扑排序
   <a class="heading-link" href="#%e6%8b%93%e6%89%91%e6%8e%92%e5%ba%8f">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -875,6 +939,8 @@ code.has-jax {
 <blockquote>
 <p>拓扑序列只要保证前一个结点一定是指向后一个结点，而不指向之前的结点就好。</p></blockquote>
 <p>构造拓扑序列时有两个结果，如果此网的全部顶点都被输出，则说明它是不存在环的 AOV 网，如果输出顶点数少了，就说明这个网存在环，不是 AOV 网。</p>
+
+
 <h2 id="拓扑排序的过程">
   拓扑排序的过程
   <a class="heading-link" href="#%e6%8b%93%e6%89%91%e6%8e%92%e5%ba%8f%e7%9a%84%e8%bf%87%e7%a8%8b">
@@ -890,6 +956,8 @@ code.has-jax {
 </ol>
 <p>以之前的流程图为例，可以构造出以下的 AOV 网：</p>
 <p><img src="../static/N92QbSL4ooCBFKxKQ6ZcfkRYnre.png" alt=""></p>
+
+
 <h2 id="拓扑排序的实现">
   拓扑排序的实现
   <a class="heading-link" href="#%e6%8b%93%e6%89%91%e6%8e%92%e5%ba%8f%e7%9a%84%e5%ae%9e%e7%8e%b0">
@@ -913,6 +981,8 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">numVertexes</span><span class="p">,</span><span class="n">numEdges</span><span class="p">;</span>    <span class="c1">//图中顶点数和边数
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">graphAdjList</span><span class="p">,</span><span class="o">*</span><span class="n">GraphAdjList</span><span class="p">;</span>
 </span></span></code></pre></div><p>在算法中，还需要用栈来处理入度为 0 的顶点，目的是为了避免每个查找时都要遍历顶点表找有没有入度为 0 的顶点。</p>
+
+
 <h3 id="代码实现">
   代码实现
   <a class="heading-link" href="#%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0">
@@ -951,7 +1021,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">GL</span><span class="o">-&gt;</span><span class="n">numVertexes</span><span class="p">)</span> <span class="k">return</span> <span class="n">ERRPR</span><span class="p">;</span>    <span class="c1">//如果输出顶点数小于总顶点则说明有环
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span> <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="算法分析-3">
+</span></span></code></pre></div>
+
+<h3 id="算法分析-3">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-3">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -959,6 +1031,8 @@ code.has-jax {
   </a>
 </h3>
 <p>对于有 n 个顶点和 e 条边的有向图而言，建立求各顶点入度的时间复杂度为 O(e),建立零入度顶点栈的时间复杂度为 O(n)，所以总的时间复杂度为 O(n+e).</p>
+
+
 <h1 id="关键路径">
   关键路径
   <a class="heading-link" href="#%e5%85%b3%e9%94%ae%e8%b7%af%e5%be%84">
@@ -972,6 +1046,8 @@ code.has-jax {
 <p><img src="../static/MMEXbxz22oCdOxxGH20c4gPineb.png" alt=""></p>
 <p>v0 即为源点，表示工程的开始，v9 是汇点，表示工程的结束，顶点 v0,v1,v2,&hellip;,v9 分别表示事件，弧 &lt;v0,v1&gt;,&lt;v0,v2&gt;&hellip;&lt;vi,vj&gt; 都表示一个活动，用 a0，a1，&hellip;，ai 表示，它们的值表示活动持续的时间。</p>
 <p>在 AOE 网中，一条路径各弧上的权值之和称为该路径的带权路径长度，要估算整个项目的完成时间，就要找一条从源点到汇点的带权路径长度最长的路径，称为关键路径，关键路径上的活动称为关键活动。</p>
+
+
 <h2 id="关键路径的确定">
   关键路径的确定
   <a class="heading-link" href="#%e5%85%b3%e9%94%ae%e8%b7%af%e5%be%84%e7%9a%84%e7%a1%ae%e5%ae%9a">
@@ -987,6 +1063,8 @@ code.has-jax {
 <li>活动的最晚开始时间 lte(latest time of edge): 即弧 ak 的最晚发生时间，也就是不推迟工期的最晚开工时间。</li>
 </ol>
 <p>由 1、2 可以求得 3、4，然后再根据 ete[k]是否与 lte[k]相等来判断 ak 是否是关键活动。</p>
+
+
 <h2 id="关键路径求解过程">
   关键路径求解过程
   <a class="heading-link" href="#%e5%85%b3%e9%94%ae%e8%b7%af%e5%be%84%e6%b1%82%e8%a7%a3%e8%bf%87%e7%a8%8b">
@@ -1001,6 +1079,8 @@ code.has-jax {
 <li>求出每个活动的最晚开始时间 lte。</li>
 <li>找出 ete 与 lte 相等的活动，即为关键活动，由关键活动形成的由源点到汇点的每一条路径就是关键路径。</li>
 </ol>
+
+
 <h2 id="算法实现-3">
   算法实现
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-3">
@@ -1039,6 +1119,8 @@ code.has-jax {
 </ol>
 </li>
 </ol>
+
+
 <h2 id="算法代码">
   算法代码
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e4%bb%a3%e7%a0%81">
@@ -1127,7 +1209,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="算法分析-4">
+</span></span></code></pre></div>
+
+<h2 id="算法分析-4">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-4">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1261,12 +1345,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

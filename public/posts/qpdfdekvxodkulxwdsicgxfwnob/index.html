@@ -28,11 +28,15 @@ kubenates 学习笔记 · inaho
   
 
 
+
+
   简介
   
     
     链接到标题
   
+
+
 
 
   基础架构
@@ -47,6 +51,8 @@ Pod 是 Kubernetes 中管理和调度的最小工作单位，Pod 中可以包含
 Node 则是指一台服务器、虚拟机等，运行着一个完整的操作系统，提供了 CPU、内存等计算资源，一个 Node 可以部署多个 Pod
 Cluster 中运行着 N 个 Node(master/ worker), master 节点运行着 Kubernetes 系统组件，而 worker 节点负责运行用户的程序。所有节点都归 master 管，通过命令、API 的方式管理 Kubernetes 集群时，是通过发送命令或请求到 master 节点上的系统组件，然后控制整个集群
 在一个集群中使用命名空间将不同的 Pod 隔离开来。但是 Kubernetes 中，不同 namespace 的 Pod 是可以相互访问的，它们不是完全隔离的。
+
+
 
 
   基础组件
@@ -83,11 +89,15 @@ ls /etc/kubernetes/manifests/
 Node Components 在 worker 节点中运行，为 Pod 提供 Kubernetes 环境
 
 
+
+
   集群搭建
   
     
     链接到标题
   
+
+
 
 
   基础配置
@@ -127,6 +137,8 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 sysctl --system
 
+
+
   内核升级
   
     
@@ -151,6 +163,8 @@ grub2-set-default 0
 yum remove kernel -y
 # 重启机器，以新内核启动
 reboot
+
+
 
   Docker 安装
   
@@ -212,6 +226,8 @@ yum install -y kubelet-1.23.6-0 kubeadm-1.23.6-0 kubectl-1.23.6-0
 systemctl start kubelet
 systemctl enable kubelet
 
+
+
   Master 节点部署
   
     
@@ -231,6 +247,8 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 # root用户
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
+
+
   Node 节点部署
   
     
@@ -241,6 +259,8 @@ kubeadm join 192.168.7.211:6443
 --token 092qru.2z5e8vo3d9pcatgy
 --discovery-token-ca-cert-hash
 sha256:fe3445e3f251c04fabc89c75a03a9693c6f1389440e25b4426e5350f33cd22d3
+
+
 
   安装网络插件（CNI）
   
@@ -503,6 +523,8 @@ spec:
           path: /run/xtables.lock
           type: FileOrCreate
 
+
+
   安装 metrics 组件
   
     
@@ -513,11 +535,15 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 # 查看资源使用
 kubectl top pod
 
+
+
   集群删除
   
     
     链接到标题
   
+
+
 
 
   重新初始化 master 节点
@@ -533,6 +559,8 @@ kubeadm reset
 # 查看pod情况
 kubectl get pods -n kube-system -o wide
 
+
+
   删除 kubeadm、kubectl、kubelet
   
     
@@ -544,6 +572,8 @@ sudo yum autoremove -y
 systemctl stop kubelet
 systemctl disable kubelet
 
+
+
   配置清理
   
     
@@ -552,6 +582,8 @@ systemctl disable kubelet
 
 rm -rf /etc/systemd/system/kubelet.service
 rm -rf /etc/systemd/system/kube*
+
+
 
   清理 kubernetes 配置
   
@@ -563,11 +595,15 @@ sudo rm -rf ~/.kube
 sudo rm -rf /etc/kubernetes/
 sudo rm -rf /var/lib/kube*
 
+
+
   常用命令
   
     
     链接到标题
   
+
+
 
 
   kubectl 基础命令
@@ -601,6 +637,8 @@ kubeadm token create --ttl 0
 查看token
 kubeadm token list
 
+
+
   kubectl 自动补全
   
     
@@ -611,11 +649,15 @@ sudo yum install bash-completion -y
 source &lt;(kubectl completion bash)
 echo &#34;source &lt;(kubectl completion bash)&#34; &gt;&gt; $HOME/.bashrc
 
+
+
   控制器
   
     
     链接到标题
   
+
+
 
 
   deployments
@@ -806,6 +848,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -934,7 +980,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            95228 字
+            95320 字
           </span>
         </div>
         
@@ -959,13 +1005,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="kubenates-学习笔记">
+      
+
+<h1 id="kubenates-学习笔记">
   kubenates 学习笔记
   <a class="heading-link" href="#kubenates-%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h4 id="简介">
   简介
   <a class="heading-link" href="#%e7%ae%80%e4%bb%8b">
@@ -973,6 +1023,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h4>
+
+
 <h5 id="基础架构">
   基础架构
   <a class="heading-link" href="#%e5%9f%ba%e7%a1%80%e6%9e%b6%e6%9e%84">
@@ -987,6 +1039,8 @@ code.has-jax {
 <li>Cluster 中运行着 N 个 Node(master/ worker), master 节点运行着 Kubernetes 系统组件，而 worker 节点负责运行用户的程序。所有节点都归 master 管，通过命令、API 的方式管理 Kubernetes 集群时，是通过发送命令或请求到 master 节点上的系统组件，然后控制整个集群</li>
 <li>在一个集群中使用命名空间将不同的 Pod 隔离开来。但是 Kubernetes 中，不同 namespace 的 Pod 是可以相互访问的，它们不是完全隔离的。</li>
 </ul>
+
+
 <h5 id="基础组件">
   基础组件
   <a class="heading-link" href="#%e5%9f%ba%e7%a1%80%e7%bb%84%e4%bb%b6">
@@ -1021,6 +1075,8 @@ code.has-jax {
 </span></span></code></pre></div><ul>
 <li><strong>Node Components</strong> 在 worker 节点中运行，为 Pod 提供 Kubernetes 环境</li>
 </ul>
+
+
 <h4 id="集群搭建">
   集群搭建
   <a class="heading-link" href="#%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
@@ -1028,6 +1084,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h4>
+
+
 <h5 id="基础配置">
   基础配置
   <a class="heading-link" href="#%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae">
@@ -1065,7 +1123,9 @@ code.has-jax {
 </span></span></span><span class="line"><span class="cl"><span class="s">net.bridge.bridge-nf-call-iptables = 1
 </span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
 </span></span><span class="line"><span class="cl">sysctl --system
-</span></span></code></pre></div><h5 id="内核升级">
+</span></span></code></pre></div>
+
+<h5 id="内核升级">
   内核升级
   <a class="heading-link" href="#%e5%86%85%e6%a0%b8%e5%8d%87%e7%ba%a7">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1090,7 +1150,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">yum remove kernel -y
 </span></span><span class="line"><span class="cl"><span class="c1"># 重启机器，以新内核启动</span>
 </span></span><span class="line"><span class="cl">reboot
-</span></span></code></pre></div><h5 id="docker-安装">
+</span></span></code></pre></div>
+
+<h5 id="docker-安装">
   Docker 安装
   <a class="heading-link" href="#docker-%e5%ae%89%e8%a3%85">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1150,7 +1212,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">yum install -y kubelet-1.23.6-0 kubeadm-1.23.6-0 kubectl-1.23.6-0
 </span></span><span class="line"><span class="cl">systemctl start kubelet
 </span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> kubelet
-</span></span></code></pre></div><h5 id="master-节点部署">
+</span></span></code></pre></div>
+
+<h5 id="master-节点部署">
   Master 节点部署
   <a class="heading-link" href="#master-%e8%8a%82%e7%82%b9%e9%83%a8%e7%bd%b2">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1169,7 +1233,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">chown <span class="k">$(</span>id -u<span class="k">)</span>:<span class="k">$(</span>id -g<span class="k">)</span> <span class="nv">$HOME</span>/.kube/config
 </span></span><span class="line"><span class="cl"><span class="c1"># root用户</span>
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">KUBECONFIG</span><span class="o">=</span>/etc/kubernetes/admin.conf
-</span></span></code></pre></div><h5 id="node-节点部署">
+</span></span></code></pre></div>
+
+<h5 id="node-节点部署">
   Node 节点部署
   <a class="heading-link" href="#node-%e8%8a%82%e7%82%b9%e9%83%a8%e7%bd%b2">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1180,7 +1246,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">--token 092qru.2z5e8vo3d9pcatgy
 </span></span><span class="line"><span class="cl">--discovery-token-ca-cert-hash
 </span></span><span class="line"><span class="cl">sha256:fe3445e3f251c04fabc89c75a03a9693c6f1389440e25b4426e5350f33cd22d3
-</span></span></code></pre></div><h5 id="安装网络插件cni">
+</span></span></code></pre></div>
+
+<h5 id="安装网络插件cni">
   安装网络插件（CNI）
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85%e7%bd%91%e7%bb%9c%e6%8f%92%e4%bb%b6cni">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1441,7 +1509,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        hostPath:
 </span></span><span class="line"><span class="cl">          path: /run/xtables.lock
 </span></span><span class="line"><span class="cl">          type: FileOrCreate
-</span></span></code></pre></div><h5 id="安装-metrics-组件">
+</span></span></code></pre></div>
+
+<h5 id="安装-metrics-组件">
   安装 metrics 组件
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-metrics-%e7%bb%84%e4%bb%b6">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1451,13 +1521,17 @@ code.has-jax {
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看资源使用</span>
 </span></span><span class="line"><span class="cl">kubectl top pod
-</span></span></code></pre></div><h4 id="集群删除">
+</span></span></code></pre></div>
+
+<h4 id="集群删除">
   集群删除
   <a class="heading-link" href="#%e9%9b%86%e7%be%a4%e5%88%a0%e9%99%a4">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h4>
+
+
 <h5 id="重新初始化-master-节点">
   重新初始化 master 节点
   <a class="heading-link" href="#%e9%87%8d%e6%96%b0%e5%88%9d%e5%a7%8b%e5%8c%96-master-%e8%8a%82%e7%82%b9">
@@ -1471,7 +1545,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">kubeadm reset
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看pod情况</span>
 </span></span><span class="line"><span class="cl">kubectl get pods -n kube-system -o wide
-</span></span></code></pre></div><h5 id="删除-kubeadmkubectlkubelet">
+</span></span></code></pre></div>
+
+<h5 id="删除-kubeadmkubectlkubelet">
   删除 kubeadm、kubectl、kubelet
   <a class="heading-link" href="#%e5%88%a0%e9%99%a4-kubeadmkubectlkubelet">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1482,7 +1558,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">sudo yum autoremove -y
 </span></span><span class="line"><span class="cl">systemctl stop kubelet
 </span></span><span class="line"><span class="cl">systemctl disable kubelet
-</span></span></code></pre></div><h5 id="配置清理">
+</span></span></code></pre></div>
+
+<h5 id="配置清理">
   配置清理
   <a class="heading-link" href="#%e9%85%8d%e7%bd%ae%e6%b8%85%e7%90%86">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1491,7 +1569,9 @@ code.has-jax {
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rm -rf /etc/systemd/system/kubelet.service
 </span></span><span class="line"><span class="cl">rm -rf /etc/systemd/system/kube*
-</span></span></code></pre></div><h5 id="清理-kubernetes-配置">
+</span></span></code></pre></div>
+
+<h5 id="清理-kubernetes-配置">
   清理 kubernetes 配置
   <a class="heading-link" href="#%e6%b8%85%e7%90%86-kubernetes-%e9%85%8d%e7%bd%ae">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1501,13 +1581,17 @@ code.has-jax {
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo rm -rf ~/.kube
 </span></span><span class="line"><span class="cl">sudo rm -rf /etc/kubernetes/
 </span></span><span class="line"><span class="cl">sudo rm -rf /var/lib/kube*
-</span></span></code></pre></div><h4 id="常用命令">
+</span></span></code></pre></div>
+
+<h4 id="常用命令">
   常用命令
   <a class="heading-link" href="#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h4>
+
+
 <h5 id="kubectl-基础命令">
   kubectl 基础命令
   <a class="heading-link" href="#kubectl-%e5%9f%ba%e7%a1%80%e5%91%bd%e4%bb%a4">
@@ -1539,7 +1623,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">kubeadm token create --ttl <span class="m">0</span>
 </span></span><span class="line"><span class="cl">查看token
 </span></span><span class="line"><span class="cl">kubeadm token list
-</span></span></code></pre></div><h5 id="kubectl-自动补全">
+</span></span></code></pre></div>
+
+<h5 id="kubectl-自动补全">
   kubectl 自动补全
   <a class="heading-link" href="#kubectl-%e8%87%aa%e5%8a%a8%e8%a1%a5%e5%85%a8">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1549,13 +1635,17 @@ code.has-jax {
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo yum install bash-completion -y
 </span></span><span class="line"><span class="cl"><span class="nb">source</span> &lt;<span class="o">(</span>kubectl completion bash<span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;source &lt;(kubectl completion bash)&#34;</span> &gt;&gt; <span class="nv">$HOME</span>/.bashrc
-</span></span></code></pre></div><h5 id="控制器">
+</span></span></code></pre></div>
+
+<h5 id="控制器">
   控制器
   <a class="heading-link" href="#%e6%8e%a7%e5%88%b6%e5%99%a8">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h5>
+
+
 <h6 id="deployments">
   deployments
   <a class="heading-link" href="#deployments">
@@ -1584,7 +1674,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl"><span class="c1"># 导出yaml文件</span>
 </span></span><span class="line"><span class="cl">kubectl get deployment nginx -o yaml &gt; mynginx.yaml
 </span></span><span class="line"><span class="cl">kubectl create deployment testnginx --image<span class="o">=</span>nginx:latest --dry-run<span class="o">=</span>client -o yaml
-</span></span></code></pre></div><h6 id="replicaset">
+</span></span></code></pre></div>
+
+<h6 id="replicaset">
   ReplicaSet
   <a class="heading-link" href="#replicaset">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1599,7 +1691,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">kubectl create deployment nginx --image<span class="o">=</span>nginx:latest --replicas<span class="o">=</span><span class="m">2</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 扩容pod数量</span>
 </span></span><span class="line"><span class="cl">kubectl scale deployment nginx --replicas<span class="o">=</span><span class="m">3</span>
-</span></span></code></pre></div><h6 id="daemonset">
+</span></span></code></pre></div>
+
+<h6 id="daemonset">
   DaemonSet
   <a class="heading-link" href="#daemonset">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1615,7 +1709,9 @@ code.has-jax {
 <li><code>Kubernetes</code> 一些系统服务，也是 <code>DaemonSet</code> 部署模式。</li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kind: DaemontSet
-</span></span></code></pre></div><h5 id="pod-升级回滚">
+</span></span></code></pre></div>
+
+<h5 id="pod-升级回滚">
   Pod 升级、回滚
   <a class="heading-link" href="#pod-%e5%8d%87%e7%ba%a7%e5%9b%9e%e6%bb%9a">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1651,13 +1747,17 @@ code.has-jax {
 <li>推荐每次执行滚动更新时都要带上这个参数</li>
 </ul>
 <pre tabindex="0"><code>--record
-</code></pre><h5 id="pod-缩放">
+</code></pre>
+
+<h5 id="pod-缩放">
   Pod 缩放
   <a class="heading-link" href="#pod-%e7%bc%a9%e6%94%be">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h5>
+
+
 <h6 id="水平缩放">
   水平缩放
   <a class="heading-link" href="#%e6%b0%b4%e5%b9%b3%e7%bc%a9%e6%94%be">
@@ -1671,7 +1771,9 @@ code.has-jax {
 </span></span></code></pre></div><blockquote>
 <p>表示目标 CPU 使用率为 <code>80%</code>(期望指标)，副本数量配置应该为 10 到 15 之间，CPU 是动态缩放 pod 的指标，会根据具体的 CPU 使用率计算副本数量，其计算公式如下。</p></blockquote>
 <pre tabindex="0"><code>期望副本数 = ceil[当前副本数 * (当前指标 / 期望指标)]
-</code></pre><h6 id="比例缩放">
+</code></pre>
+
+<h6 id="比例缩放">
   比例缩放
   <a class="heading-link" href="#%e6%af%94%e4%be%8b%e7%bc%a9%e6%94%be">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1689,7 +1791,9 @@ code.has-jax {
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">RollingUpdate</span><span class="w">
-</span></span></span></code></pre></div><h5 id="label标签">
+</span></span></span></code></pre></div>
+
+<h5 id="label标签">
   Label(标签)
   <a class="heading-link" href="#label%e6%a0%87%e7%ad%be">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1707,7 +1811,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">kubectl label pod nginx-55495b586f-4hlzm disksize-
 </span></span><span class="line"><span class="cl">如果标签已经存在，需要覆盖
 </span></span><span class="line"><span class="cl">kubectl label pod nginx-55495b586f-4hlzm <span class="nv">disksize</span><span class="o">=</span>big --overwrite
-</span></span></code></pre></div><h5 id="nodeselector">
+</span></span></code></pre></div>
+
+<h5 id="nodeselector">
   NodeSelector
   <a class="heading-link" href="#nodeselector">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1748,7 +1854,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">kubectl get nodes -l exists disksize
 </span></span><span class="line"><span class="cl"><span class="c1"># 下面写法也行</span>
 </span></span><span class="line"><span class="cl">kubectl get pods -l <span class="s1">&#39;app=nginx&#39;</span>
-</span></span></code></pre></div><h5 id="selector">
+</span></span></code></pre></div>
+
+<h5 id="selector">
   Selector
   <a class="heading-link" href="#selector">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1765,6 +1873,8 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">     app: nginx
 </span></span></code></pre></div><p><code>selector</code> 字段定义 Deployment 如何查找要管理的 Pods</p>
 <p><code>matchLabels</code> 里面的标签是集合运算的 <code>in</code>，Pod 只需要包含这些标签，就会被此 Deployment 管理</p>
+
+
 <h6 id="selector-的符合运算">
   Selector 的符合运算
   <a class="heading-link" href="#selector-%e7%9a%84%e7%ac%a6%e5%90%88%e8%bf%90%e7%ae%97">
@@ -1788,7 +1898,9 @@ code.has-jax {
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">matchExpressions</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- {<span class="nt">key: tier, operator: In, values</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">cache]}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- {<span class="nt">key: environment, operator: NotIn, values</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">dev]}</span><span class="w">
-</span></span></span></code></pre></div><h5 id="annotations">
+</span></span></span></code></pre></div>
+
+<h5 id="annotations">
   Annotations
   <a class="heading-link" href="#annotations">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1802,7 +1914,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">kubectl annotate service xxxxx -n xxxxxx <span class="nv">description</span><span class="o">=</span><span class="s1">&#39;my test&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 删除 annotations</span>
 </span></span><span class="line"><span class="cl">kubectl annotate service xxxxxxx description-
-</span></span></code></pre></div><h5 id="nodeaffinity">
+</span></span></code></pre></div>
+
+<h5 id="nodeaffinity">
   NodeAffinity
   <a class="heading-link" href="#nodeaffinity">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1830,7 +1944,11 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">  AntiAffinity:
 </span></span><span class="line"><span class="cl">      xxxxxxx
 </span></span></code></pre></div><p>如果设置了多个 nodeSelectorTerms， 只需要满足其中一种表达式即可调度 Pod 到节点上, 官方文档如下</p>
-<p><a href="https://kubernetes.io/zh/docs/concepts/scheduling-eviction/assign-pod-node"   class="external-link" target="_blank" rel="noopener" >https://kubernetes.io/zh/docs/concepts/scheduling-eviction/assign-pod-node</a></p>
+<p>
+
+<a href="https://kubernetes.io/zh/docs/concepts/scheduling-eviction/assign-pod-node"   class="external-link" target="_blank" rel="noopener" >https://kubernetes.io/zh/docs/concepts/scheduling-eviction/assign-pod-node</a></p>
+
+
 <h5 id="node-tainttolerations">
   Node taint、tolerations
   <a class="heading-link" href="#node-tainttolerations">
@@ -1892,6 +2010,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <li><code>node.cloudprovider.kubernetes.io/uninitialized</code>：如果 kubelet 启动时指定了一个 &ldquo;外部&rdquo; 云平台驱动， 它将给当前节点添加一个污点将其标志为不可用。在 cloud-controller-manager 的一个控制器初始化这个节点后，kubelet 将删除这个污点。</li>
 </ul>
 <p>当节点上的资源不足时，会添加一个污点，排斥后续 Pod 在此 节点上部署，但不会驱逐已存在的 Pod。</p>
+
+
 <h5 id="kubeadm-join-流程">
   kubeadm join 流程
   <a class="heading-link" href="#kubeadm-join-%e6%b5%81%e7%a8%8b">
@@ -1906,6 +2026,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <li>node 上的 kubelet 只要拿到 cluster-info 数据，那么之后就可以以“安全模式”连接到 apiserver 上去, 这样一个新的节点就加入到了集群</li>
 <li>在执行 join 命令时，首先会对当前 node 环境进行检查，然后会携带 2 个重要的参数 discover-token-ca-cert-hash 和 token，进行身份验证</li>
 </ul>
+
+
 <h6 id="discover-token-ca-cert-hash">
   discover-token-ca-cert-hash
   <a class="heading-link" href="#discover-token-ca-cert-hash">
@@ -1919,7 +2041,9 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 </span></span><span class="line"><span class="cl">openssl x509 -in ca.crt -noout -pubkey <span class="p">|</span>
 </span></span><span class="line"><span class="cl">openssl rsa -pubin -outform DER 2&gt;/dev/null <span class="p">|</span>
 </span></span><span class="line"><span class="cl">sha256sum <span class="p">|</span> cut -d<span class="s1">&#39; &#39;</span> -f1
-</span></span></code></pre></div><h6 id="token">
+</span></span></code></pre></div>
+
+<h6 id="token">
   token
   <a class="heading-link" href="#token">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1938,7 +2062,9 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 </span></span><span class="line"><span class="cl"><span class="c1"># 进行base64解码</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;xxxxxx&#34;</span> <span class="p">|</span> base64 -d
 </span></span><span class="line"><span class="cl"><span class="c1"># 将这2个解码后的数据进行组合,就是token</span>
-</span></span></code></pre></div><h4 id="helm-包管理">
+</span></span></code></pre></div>
+
+<h4 id="helm-包管理">
   Helm 包管理
   <a class="heading-link" href="#helm-%e5%8c%85%e7%ae%a1%e7%90%86">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1977,6 +2103,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <p>kubectl delete 只是删除集群中的资源</p></blockquote>
 <blockquote>
 <p>helm uninstall 不仅删除 pod，也删除 helm 安装 chart 时创建的所有资源</p></blockquote>
+
+
 <h4 id="其他命令">
   其他命令
   <a class="heading-link" href="#%e5%85%b6%e4%bb%96%e5%91%bd%e4%bb%a4">
@@ -1984,6 +2112,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
     <span class="sr-only">链接到标题</span>
   </a>
 </h4>
+
+
 <h5 id="重命名-roles">
   重命名 Roles
   <a class="heading-link" href="#%e9%87%8d%e5%91%bd%e5%90%8d-roles">
@@ -1995,7 +2125,9 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 </span></span><span class="line"><span class="cl">kubectl label node &lt;nodename&gt; node-role.kubernetes.io/master<span class="o">=</span>master
 </span></span><span class="line"><span class="cl"><span class="c1"># 节点为slave节点</span>
 </span></span><span class="line"><span class="cl">kubectl label node &lt;nodename&gt; node-role.kubernetes.io/worker<span class="o">=</span>worker
-</span></span></code></pre></div><h5 id="错误排查">
+</span></span></code></pre></div>
+
+<h5 id="错误排查">
   错误排查
   <a class="heading-link" href="#%e9%94%99%e8%af%af%e6%8e%92%e6%9f%a5">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -2008,7 +2140,9 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 </span></span><span class="line"><span class="cl">journalctl -f -u kubectl.service
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看kubelet.service日志</span>
 </span></span><span class="line"><span class="cl">journalctl -f -u kubelet.service
-</span></span></code></pre></div><h4 id="快速搭建-prometheus-集群">
+</span></span></code></pre></div>
+
+<h4 id="快速搭建-prometheus-集群">
   快速搭建 prometheus 集群
   <a class="heading-link" href="#%e5%bf%ab%e9%80%9f%e6%90%ad%e5%bb%ba-prometheus-%e9%9b%86%e7%be%a4">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -2018,7 +2152,9 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 端口31969</span>
 </span></span><span class="line"><span class="cl">helm install prometheus prometheus-operator
 </span></span><span class="line"><span class="cl">helm install grafana bitnami/grafana
-</span></span></code></pre></div><h4 id="快速搭建-rocketmq-集群">
+</span></span></code></pre></div>
+
+<h4 id="快速搭建-rocketmq-集群">
   快速搭建 rocketmq 集群
   <a class="heading-link" href="#%e5%bf%ab%e9%80%9f%e6%90%ad%e5%bb%ba-rocketmq-%e9%9b%86%e7%be%a4">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -2026,7 +2162,9 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
   </a>
 </h4>
 <blockquote>
-<p><a href="https://github.com/apache/rocketmq-operator"   class="external-link" target="_blank" rel="noopener" >GitHub - apache/rocketmq-operator: Apache RocketMQ Operator</a></p></blockquote>
+<p>
+
+<a href="https://github.com/apache/rocketmq-operator"   class="external-link" target="_blank" rel="noopener" >GitHub - apache/rocketmq-operator: Apache RocketMQ Operator</a></p></blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 RocketMQ Operator</span>
 </span></span><span class="line"><span class="cl">git clone https://github.com/apache/rocketmq-operator.git
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> rocketmq-operator
@@ -2125,12 +2263,6 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 
   
 
-
-  
-
-  
-
-  
 
   
 

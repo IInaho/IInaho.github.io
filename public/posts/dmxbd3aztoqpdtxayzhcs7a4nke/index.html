@@ -28,6 +28,8 @@
   
 
 
+
+
   传输层的功能
   
     
@@ -43,11 +45,15 @@ TCP 的拥塞控制
 TCP 的运输连接管理
 
 
+
+
   OSI 和 DOD 模型
   
     
     链接到标题
   
+
+
 
 
 
@@ -64,6 +70,8 @@ UDP(User Data Protocol)用户数据报协议
 
 TCP 需要将要传输的文件分段 传输 建立会话 可靠传输 流量控制
 UDP 一个数据包就能够完成数据通信 不分段 不需要建立会话 不需要流量控制 不可靠传输 (屏幕广播 多播 广播)
+
+
 
   传输层协议和应用层协议之间的关系
   
@@ -264,6 +272,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -330,7 +342,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            8055 字
+            8083 字
           </span>
         </div>
         
@@ -355,13 +367,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="传输层概述与udp协议简述">
+      
+
+<h1 id="传输层概述与udp协议简述">
   传输层概述与UDP协议简述
   <a class="heading-link" href="#%e4%bc%a0%e8%be%93%e5%b1%82%e6%a6%82%e8%bf%b0%e4%b8%8eudp%e5%8d%8f%e8%ae%ae%e7%ae%80%e8%bf%b0">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="传输层的功能">
   传输层的功能
   <a class="heading-link" href="#%e4%bc%a0%e8%be%93%e5%b1%82%e7%9a%84%e5%8a%9f%e8%83%bd">
@@ -377,6 +393,8 @@ code.has-jax {
 <li>TCP 的拥塞控制</li>
 <li>TCP 的运输连接管理</li>
 </ul>
+
+
 <h2 id="osi-和-dod-模型">
   OSI 和 DOD 模型
   <a class="heading-link" href="#osi-%e5%92%8c-dod-%e6%a8%a1%e5%9e%8b">
@@ -385,6 +403,8 @@ code.has-jax {
   </a>
 </h2>
 <p><img src="../static/NTwubeiEkoZHzZxf4Utcvi8QnRd.png" alt=""></p>
+
+
 <h2 id="传输层两个协议">
   传输层两个协议
   <a class="heading-link" href="#%e4%bc%a0%e8%be%93%e5%b1%82%e4%b8%a4%e4%b8%aa%e5%8d%8f%e8%ae%ae">
@@ -399,6 +419,8 @@ code.has-jax {
 </ul>
 <p>TCP 需要将要传输的文件分段 传输 建立会话 可靠传输 流量控制</p>
 <p>UDP 一个数据包就能够完成数据通信 不分段 不需要建立会话 不需要流量控制 不可靠传输 (屏幕广播 多播 广播)</p>
+
+
 <h2 id="传输层协议和应用层协议之间的关系">
   传输层协议和应用层协议之间的关系
   <a class="heading-link" href="#%e4%bc%a0%e8%be%93%e5%b1%82%e5%8d%8f%e8%ae%ae%e5%92%8c%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae%e4%b9%8b%e9%97%b4%e7%9a%84%e5%85%b3%e7%b3%bb">
@@ -407,6 +429,8 @@ code.has-jax {
   </a>
 </h2>
 <p><img src="../static/VKsIbxW3FoLHxGxkUo9czTqBnkc.png" alt=""></p>
+
+
 <h2 id="常见的应用层协议使用端口">
   常见的应用层协议使用端口
   <a class="heading-link" href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae%e4%bd%bf%e7%94%a8%e7%ab%af%e5%8f%a3">
@@ -426,6 +450,8 @@ code.has-jax {
 <li>SQL = TCP + 1433</li>
 <li>DNS = UDP + 53</li>
 </ul>
+
+
 <h2 id="服务和应用层协议之间的关系">
   服务和应用层协议之间的关系
   <a class="heading-link" href="#%e6%9c%8d%e5%8a%a1%e5%92%8c%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae%e4%b9%8b%e9%97%b4%e7%9a%84%e5%85%b3%e7%b3%bb">
@@ -439,6 +465,8 @@ code.has-jax {
 <li>可以在服务器网卡上设置只开放必要的端口 实现服务器网络安全</li>
 <li>可以更改服务使用的默认端口，迷惑病毒，让系统更安全</li>
 </ul>
+
+
 <h2 id="如何查看服务侦听的端口">
   如何查看服务侦听的端口
   <a class="heading-link" href="#%e5%a6%82%e4%bd%95%e6%9f%a5%e7%9c%8b%e6%9c%8d%e5%8a%a1%e4%be%a6%e5%90%ac%e7%9a%84%e7%ab%af%e5%8f%a3">
@@ -451,7 +479,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">netstat -n 查看建立的会话
 </span></span><span class="line"><span class="cl">netstat -nb 查看建立会话的进程
 </span></span><span class="line"><span class="cl">telnet 192.168.80.100 <span class="m">3389</span> 测试到远程计算机某个端口是否打开
-</span></span></code></pre></div><h2 id="传输层的功能-1">
+</span></span></code></pre></div>
+
+<h2 id="传输层的功能-1">
   传输层的功能
   <a class="heading-link" href="#%e4%bc%a0%e8%be%93%e5%b1%82%e7%9a%84%e5%8a%9f%e8%83%bd-1">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -464,6 +494,8 @@ code.has-jax {
 <li>传输层还要对收到的报文进行差错检测</li>
 <li>传输层提供面向连接和无连接的服务</li>
 </ul>
+
+
 <h2 id="传输层协议和网络层协议的主要区别">
   传输层协议和网络层协议的主要区别
   <a class="heading-link" href="#%e4%bc%a0%e8%be%93%e5%b1%82%e5%8d%8f%e8%ae%ae%e5%92%8c%e7%bd%91%e7%bb%9c%e5%b1%82%e5%8d%8f%e8%ae%ae%e7%9a%84%e4%b8%bb%e8%a6%81%e5%8c%ba%e5%88%ab">
@@ -472,6 +504,8 @@ code.has-jax {
   </a>
 </h2>
 <p><img src="../static/IsJzboebDonJD7xEAlbczOxon6b.png" alt=""></p>
+
+
 <h2 id="tcp-的端口">
   TCP 的端口
   <a class="heading-link" href="#tcp-%e7%9a%84%e7%ab%af%e5%8f%a3">
@@ -487,6 +521,8 @@ code.has-jax {
 <li>登记端口号，数值为 1024-49151.</li>
 <li>客户端口号，数值为 49152-65535.</li>
 </ul>
+
+
 <h2 id="udp-协议">
   UDP 协议
   <a class="heading-link" href="#udp-%e5%8d%8f%e8%ae%ae">
@@ -502,6 +538,8 @@ code.has-jax {
 <li>UDP 的首部开销小，只有 8 字节。</li>
 </ul>
 <p><img src="../static/V0xlbHl8XoJYrYxVI6zc1IVpneg.png" alt=""></p>
+
+
 <h3 id="udp-的首部格式">
   UDP 的首部格式
   <a class="heading-link" href="#udp-%e7%9a%84%e9%a6%96%e9%83%a8%e6%a0%bc%e5%bc%8f">
@@ -511,6 +549,8 @@ code.has-jax {
 </h3>
 <p><img src="../static/Upq4bawxcoC2TBx5bgCcFgSqnCh.png" alt=""></p>
 <p>首部中的长度指的是 UDP 用户数据报的长度(首部 + 数据)，伪首部用于检验和。</p>
+
+
 <h3 id="计算-udp-检验和的例子">
   计算 UDP 检验和的例子
   <a class="heading-link" href="#%e8%ae%a1%e7%ae%97-udp-%e6%a3%80%e9%aa%8c%e5%92%8c%e7%9a%84%e4%be%8b%e5%ad%90">
@@ -645,12 +685,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

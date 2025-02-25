@@ -31,6 +31,8 @@
 然而，图的遍历比树复杂，因为图的任一顶点都可能和其余的顶点相邻接，所以在访问了某个顶点之后，可能沿着某条路径搜索，又回到该顶点上，为了避免同一个顶点被多次访问，遍历图的过程中，必须记下每个被访问过的顶点。
 可以设置一个辅助数组，将初始值置为 0，访问过后置为 1，根据搜索方向，有两条常用遍历路径，深度优先遍历与广度优先遍历。
 
+
+
   深度优先遍历
   
     
@@ -46,6 +48,8 @@
 从图中某个顶点 v 出发，访问 v。
 找出刚访问过的顶点的第一个未被访问的邻接点，访问该顶点。以该顶点为新顶点，重新重复此步骤，直至刚访问过的顶点没有未被访问的邻接点为止。
 返回前一个访问过的且仍有未被访问的邻接点的顶点，找出该顶点的下一个未被访问的邻接点，访问该结点。
+
+
 
 
   算法实现
@@ -258,6 +262,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -324,7 +332,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            20783 字
+            20799 字
           </span>
         </div>
         
@@ -349,7 +357,9 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="概述">
+      
+
+<h1 id="概述">
   概述
   <a class="heading-link" href="#%e6%a6%82%e8%bf%b0">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -359,6 +369,8 @@ code.has-jax {
 <p>图的遍历算法是求解图的连通性的问题、拓扑排序和关键路径等算法的基础。</p>
 <p>然而，图的遍历比树复杂，因为图的任一顶点都可能和其余的顶点相邻接，所以在访问了某个顶点之后，可能沿着某条路径搜索，又回到该顶点上，为了避免同一个顶点被多次访问，遍历图的过程中，必须记下每个被访问过的顶点。</p>
 <p>可以设置一个辅助数组，将初始值置为 0，访问过后置为 1，根据搜索方向，有两条常用遍历路径，深度优先遍历与广度优先遍历。</p>
+
+
 <h2 id="深度优先遍历">
   深度优先遍历
   <a class="heading-link" href="#%e6%b7%b1%e5%ba%a6%e4%bc%98%e5%85%88%e9%81%8d%e5%8e%86">
@@ -376,6 +388,8 @@ code.has-jax {
 <li>找出刚访问过的顶点的第一个未被访问的邻接点，访问该顶点。以该顶点为新顶点，重新重复此步骤，直至刚访问过的顶点没有未被访问的邻接点为止。</li>
 <li>返回前一个访问过的且仍有未被访问的邻接点的顶点，找出该顶点的下一个未被访问的邻接点，访问该结点。</li>
 </ol>
+
+
 <h3 id="算法实现">
   算法实现
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0">
@@ -409,7 +423,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="nf">DFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 id="采用邻接矩阵表示图的深度优先搜索遍历">
+</span></span></code></pre></div>
+
+<h4 id="采用邻接矩阵表示图的深度优先搜索遍历">
   采用邻接矩阵表示图的深度优先搜索遍历
   <a class="heading-link" href="#%e9%87%87%e7%94%a8%e9%82%bb%e6%8e%a5%e7%9f%a9%e9%98%b5%e8%a1%a8%e7%a4%ba%e5%9b%be%e7%9a%84%e6%b7%b1%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e9%81%8d%e5%8e%86">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -424,7 +440,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">            <span class="nf">DFS_AM</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">w</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 id="采用邻接表表示图的深度优先搜索遍历">
+</span></span></code></pre></div>
+
+<h4 id="采用邻接表表示图的深度优先搜索遍历">
   采用邻接表表示图的深度优先搜索遍历
   <a class="heading-link" href="#%e9%87%87%e7%94%a8%e9%82%bb%e6%8e%a5%e8%a1%a8%e8%a1%a8%e7%a4%ba%e5%9b%be%e7%9a%84%e6%b7%b1%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2%e9%81%8d%e5%8e%86">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -443,6 +461,8 @@ code.has-jax {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>邻接矩阵表示图时，查找每个顶点的邻接点的时间复杂度为<code>$O(n^2)$</code>，其中 n 为图中顶点数。</p>
 <p>邻接表做图的存储结构时，查找邻接点的时间复杂度为 O(e)，e 为图中边数。由此，当以邻接表做存储结构时，DFS 时间复杂度为 O(n+e).</p>
+
+
 <h2 id="广度优先遍历">
   广度优先遍历
   <a class="heading-link" href="#%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e9%81%8d%e5%8e%86">
@@ -458,6 +478,8 @@ code.has-jax {
 <li>依次访问 v 的各个未曾访问过的邻接点。</li>
 <li>分别从这些邻接点出发依次访问他们的邻接点，并使”先被访问的顶点的邻接点”先于”后被访问的顶点的邻接点”被访问，重复步骤 3，直至所有已被访问的顶点的邻接点都被访问到。</li>
 </ol>
+
+
 <h3 id="算法实现-1">
   算法实现
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-1">
@@ -495,7 +517,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="算法分析">
+</span></span></code></pre></div>
+
+<h3 id="算法分析">
   算法分析
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -630,12 +654,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

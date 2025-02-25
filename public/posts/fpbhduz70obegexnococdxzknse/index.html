@@ -28,6 +28,8 @@ I/O中断 · inaho
   
 
 
+
+
   输入输出系统的发展概况
   
     
@@ -41,11 +43,15 @@ I/O中断 · inaho
 I/O 处理机阶段
 
 
+
+
   输入输出系统的组成
   
     
     链接到标题
   
+
+
 
 
   IO 软件
@@ -56,6 +62,8 @@ I/O 处理机阶段
 
 IO 软件的主要功能: 将用户编制的程序输入主机内，将运算结果输出给用户，实现输入/输出系统与主机工作的协调。
 
+
+
   IO 指令
   
     
@@ -64,6 +72,8 @@ IO 软件的主要功能: 将用户编制的程序输入主机内，将运算结
 
 IO 指令分为操作码、命令码和设备码三部分组成，操作码负责 IO 指令区别其他指令的判别代码，命令码负责 I/O 的具体操作，设备码用来判断对哪一个设备操作。
 
+
+
   通道指令
   
     
@@ -71,6 +81,8 @@ IO 指令分为操作码、命令码和设备码三部分组成，操作码负�
   
 
 通道指令又称为通道控制字，它是通道用于执行 IO 操作的指令，可以由管理程序存放在主存的任何地方，由通道从主存中取出并执行。通道程序由通道指令组成，它完成某种外部设备与主存间传送信息的操作。
+
+
 
   IO 硬件
   
@@ -271,6 +283,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -379,7 +395,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            17041 字
+            17105 字
           </span>
         </div>
         
@@ -404,13 +420,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="io-中断">
+      
+
+<h1 id="io-中断">
   I/O 中断
   <a class="heading-link" href="#io-%e4%b8%ad%e6%96%ad">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h1 id="输入输出系统的发展概况">
   输入输出系统的发展概况
   <a class="heading-link" href="#%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%8f%91%e5%b1%95%e6%a6%82%e5%86%b5">
@@ -424,6 +444,8 @@ code.has-jax {
 <li>为了使输入输出系统的控制尽可能从主机中独立出来，出现了具有<strong>通道结构的阶段</strong>，通道可以看做成小型的 DMA 控制器，通道有自己的指令系统。</li>
 <li>I/O 处理机阶段</li>
 </ul>
+
+
 <h1 id="输入输出系统的组成">
   输入输出系统的组成
   <a class="heading-link" href="#%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%bb%84%e6%88%90">
@@ -431,6 +453,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="io-软件">
   IO 软件
   <a class="heading-link" href="#io-%e8%bd%af%e4%bb%b6">
@@ -439,6 +463,8 @@ code.has-jax {
   </a>
 </h2>
 <p>IO 软件的主要功能: 将用户编制的程序输入主机内，将运算结果输出给用户，实现输入/输出系统与主机工作的协调。</p>
+
+
 <h3 id="io-指令">
   IO 指令
   <a class="heading-link" href="#io-%e6%8c%87%e4%bb%a4">
@@ -447,6 +473,8 @@ code.has-jax {
   </a>
 </h3>
 <p>IO 指令分为操作码、命令码和设备码三部分组成，操作码负责 IO 指令区别其他指令的判别代码，命令码负责 I/O 的具体操作，设备码用来判断对哪一个设备操作。</p>
+
+
 <h3 id="通道指令">
   通道指令
   <a class="heading-link" href="#%e9%80%9a%e9%81%93%e6%8c%87%e4%bb%a4">
@@ -455,6 +483,8 @@ code.has-jax {
   </a>
 </h3>
 <p>通道指令又称为通道控制字，它是通道用于执行 IO 操作的指令，可以由管理程序存放在主存的任何地方，由通道从主存中取出并执行。通道程序由通道指令组成，它完成某种外部设备与主存间传送信息的操作。</p>
+
+
 <h2 id="io-硬件">
   IO 硬件
   <a class="heading-link" href="#io-%e7%a1%ac%e4%bb%b6">
@@ -463,6 +493,8 @@ code.has-jax {
   </a>
 </h2>
 <p>输入/输出系统的硬件组成是多种多样的，在带接口的 I/O 系统中，I/O 硬件包括接口模块和 I/O 设备两大部分。在具有通道或 I/O 处理器的 I/O 系统中，I/O 硬件包括通道、设备控制器、IO 设备等。</p>
+
+
 <h1 id="外部设备">
   外部设备
   <a class="heading-link" href="#%e5%a4%96%e9%83%a8%e8%ae%be%e5%a4%87">
@@ -471,6 +503,8 @@ code.has-jax {
   </a>
 </h1>
 <p>I/O 设备分为: 输入设备、输出设备、输入/输出兼容设备.</p>
+
+
 <h2 id="输入设备">
   输入设备
   <a class="heading-link" href="#%e8%be%93%e5%85%a5%e8%ae%be%e5%a4%87">
@@ -482,6 +516,8 @@ code.has-jax {
 <li>键盘，按下一个键，查出按了哪个键，然后将此键翻译为 ASCII 码传输给计算机。</li>
 <li>鼠标，光电鼠标内部的发光二极管发出的光线经过表面反射通过一组光学透镜，传输到一个光感应器件内成像，当光电鼠标移动时，其轨迹便会被记录为一组高速拍摄的连贯图像，被光电鼠标内部的专用图形分析芯片处理，完成光标定位。</li>
 </ul>
+
+
 <h2 id="输出设备">
   输出设备
   <a class="heading-link" href="#%e8%be%93%e5%87%ba%e8%ae%be%e5%a4%87">
@@ -489,6 +525,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="阴极射线管crt显示器">
   阴极射线管(CRT)显示器
   <a class="heading-link" href="#%e9%98%b4%e6%9e%81%e5%b0%84%e7%ba%bf%e7%ae%a1crt%e6%98%be%e7%a4%ba%e5%99%a8">
@@ -503,6 +541,8 @@ code.has-jax {
 </ul>
 <p>CRT 发光是由电子束打在荧光粉上引起的，电子束扫过之后，发光亮度只能维持几十毫秒，为了使人眼能 看到稳定的图像，必须重复扫描整个屏幕，按人的视觉生理，刷新率大于 30 次/s 时才不会感到闪烁。</p>
 <p>分辨率为 1024×10241024×1024 像素，256 级灰度的图像，存储容量为 1024×1024×log2(256)=1MB1024×1024×log2(256)=1MB</p>
+
+
 <h3 id="打印机">
   打印机
   <a class="heading-link" href="#%e6%89%93%e5%8d%b0%e6%9c%ba">
@@ -514,6 +554,8 @@ code.has-jax {
 <li>击打式，点阵式(逐字、逐行)</li>
 <li>非击打式，激光、喷墨</li>
 </ul>
+
+
 <h1 id="io-接口">
   I/O 接口
   <a class="heading-link" href="#io-%e6%8e%a5%e5%8f%a3">
@@ -521,6 +563,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="总线连接方式的-io-接口电路">
   总线连接方式的 I/O 接口电路
   <a class="heading-link" href="#%e6%80%bb%e7%ba%bf%e8%bf%9e%e6%8e%a5%e6%96%b9%e5%bc%8f%e7%9a%84-io-%e6%8e%a5%e5%8f%a3%e7%94%b5%e8%b7%af">
@@ -535,6 +579,8 @@ code.has-jax {
 <li>命令线: 用来传输 CPU 向设备发出的各种命令信号</li>
 <li>状态线: 将 I/O 设备的状态向主机报告的信号线。</li>
 </ul>
+
+
 <h2 id="接口的功能和组成">
   接口的功能和组成
   <a class="heading-link" href="#%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%8a%9f%e8%83%bd%e5%92%8c%e7%bb%84%e6%88%90">
@@ -548,6 +594,8 @@ code.has-jax {
 <li>传送数据功能，数据缓冲寄存器组成</li>
 <li>反映设备状态功能，设备状态标记</li>
 </ul>
+
+
 <h2 id="io-接口的基本组成">
   I/O 接口的基本组成
   <a class="heading-link" href="#io-%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%84%e6%88%90">
@@ -556,6 +604,8 @@ code.has-jax {
   </a>
 </h2>
 <p><img src="../static/BGKRb3eEGortTSxxvjicTMf8niQ.png" alt=""></p>
+
+
 <h2 id="接口类型">
   接口类型
   <a class="heading-link" href="#%e6%8e%a5%e5%8f%a3%e7%b1%bb%e5%9e%8b">
@@ -593,6 +643,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h1 id="io-方式">
   I/O 方式
   <a class="heading-link" href="#io-%e6%96%b9%e5%bc%8f">
@@ -600,6 +652,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="程序查询方式">
   程序查询方式
   <a class="heading-link" href="#%e7%a8%8b%e5%ba%8f%e6%9f%a5%e8%af%a2%e6%96%b9%e5%bc%8f">
@@ -614,6 +668,8 @@ code.has-jax {
 <li>转移指令，若 I/O 设备未准备就绪，则执行转移指令，即转到测试指令，继续测试 I/O 设备的状态。</li>
 <li>传送指令，若 I/O 设备准备就绪，则执行传送指令。</li>
 </ul>
+
+
 <h2 id="程序中断方式">
   程序中断方式
   <a class="heading-link" href="#%e7%a8%8b%e5%ba%8f%e4%b8%ad%e6%96%ad%e6%96%b9%e5%bc%8f">
@@ -625,6 +681,8 @@ code.has-jax {
 <ul>
 <li>中断请求、中断判优、中断响应、中断服务、中断返回</li>
 </ul>
+
+
 <h2 id="dma-方式">
   DMA 方式
   <a class="heading-link" href="#dma-%e6%96%b9%e5%bc%8f">
@@ -633,6 +691,8 @@ code.has-jax {
   </a>
 </h2>
 <p>DMA 方式是一种完全由硬件进行成组信息传送的控制方式，数据准备阶段，CPU 与外设并行，还降低了 CPU 在传送数据时的开销，因为信息传送不经过 CPU，而在外设和内存之间直接进行。</p>
+
+
 <h3 id="dma-的传送方法">
   DMA 的传送方法
   <a class="heading-link" href="#dma-%e7%9a%84%e4%bc%a0%e9%80%81%e6%96%b9%e6%b3%95">
@@ -641,6 +701,8 @@ code.has-jax {
   </a>
 </h3>
 <p>如果高速 I/O(通过 DMA 接口)和 CPU 同时访存，这时 CPU 需要将总线占有权让给 DMA 接口使用，通常 DMA 与主存交换数据采用以下三种方法。</p>
+
+
 <h4 id="停止-cpu-访问主存">
   停止 CPU 访问主存
   <a class="heading-link" href="#%e5%81%9c%e6%ad%a2-cpu-%e8%ae%bf%e9%97%ae%e4%b8%bb%e5%ad%98">
@@ -649,6 +711,8 @@ code.has-jax {
   </a>
 </h4>
 <p>DMA 接口向 CPU 发一个信号，要求 CPU 放弃地总线使用权，然后 DMA 获得总线控制权后，开始进行数据传送，数据传输后，DMA 接口通知 CPU 可以使用主存，并把总线控制权还给 CPU。</p>
+
+
 <h4 id="周期挪用">
   周期挪用
   <a class="heading-link" href="#%e5%91%a8%e6%9c%9f%e6%8c%aa%e7%94%a8">
@@ -662,6 +726,8 @@ code.has-jax {
 <li>CPU 正在访存，等待存储周期结束后，CPU 再将总线占有权让出</li>
 <li>CPU 与 IO 同时访存，此刻 CPU 要暂时放弃总线占有权，由 I/O 设备挪用一个或几个存储周期，这种方式既实现了 I/O 传送，又较好的发挥了主存与 CPU 的效率。</li>
 </ul>
+
+
 <h4 id="dma-与-cpu-交替访问">
   DMA 与 CPU 交替访问
   <a class="heading-link" href="#dma-%e4%b8%8e-cpu-%e4%ba%a4%e6%9b%bf%e8%ae%bf%e9%97%ae">
@@ -670,6 +736,8 @@ code.has-jax {
   </a>
 </h4>
 <p>这种方式适用于 CPU 工作周期比主存存取周期长的情况，不需要总线使用权的申请、建立和归还过程，总线使用权分时控制。</p>
+
+
 <h3 id="dma-接口的功能和组成">
   DMA 接口的功能和组成
   <a class="heading-link" href="#dma-%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%8a%9f%e8%83%bd%e5%92%8c%e7%bb%84%e6%88%90">
@@ -677,6 +745,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="dma-接口的功能">
   DMA 接口的功能
   <a class="heading-link" href="#dma-%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%8a%9f%e8%83%bd">
@@ -691,6 +761,8 @@ code.has-jax {
 <li>确定数据传送的首地址和长度，修正传送过程中的数据地址和长度</li>
 <li>DMA 传送结束时，给出操作完成信号。</li>
 </ul>
+
+
 <h4 id="dma-接口组成">
   DMA 接口组成
   <a class="heading-link" href="#dma-%e6%8e%a5%e5%8f%a3%e7%bb%84%e6%88%90">
@@ -699,6 +771,8 @@ code.has-jax {
   </a>
 </h4>
 <p><img src="../static/ExClbB0spoOH6jxHhNZcIaNjnZc.png" alt=""></p>
+
+
 <h3 id="dma-工作过程">
   DMA 工作过程
   <a class="heading-link" href="#dma-%e5%b7%a5%e4%bd%9c%e8%bf%87%e7%a8%8b">
@@ -706,6 +780,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="预处理">
   预处理
   <a class="heading-link" href="#%e9%a2%84%e5%a4%84%e7%90%86">
@@ -720,6 +796,8 @@ code.has-jax {
 <li>向 DMA 主存地址寄存器送入交换数据的主存首地址</li>
 <li>对字计数器赋予交换数据的个数</li>
 </ul>
+
+
 <h4 id="数据传送">
   数据传送
   <a class="heading-link" href="#%e6%95%b0%e6%8d%ae%e4%bc%a0%e9%80%81">
@@ -739,6 +817,8 @@ code.has-jax {
 <li>主存将数据总线上的信息写至地址总线指定的存储单元中。</li>
 <li>修改主存地址和字计数值。</li>
 </ul>
+
+
 <h4 id="后处理">
   后处理
   <a class="heading-link" href="#%e5%90%8e%e5%a4%84%e7%90%86">
@@ -873,12 +953,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

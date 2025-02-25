@@ -28,6 +28,8 @@
   
 
 
+
+
   栈的定义和特点
   
     
@@ -35,6 +37,8 @@
   
 
 栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
+
+
 
   栈的 ADT 类型定义
   
@@ -51,6 +55,8 @@ GetTop(s)            //返回s的栈顶元素
 Push(&amp;s,e)            //插入元素e为新的栈顶元素
 Pop(&amp;s,&amp;e)            //栈s存在且非空，删除栈顶元素，返回其值
 StackTraverse(s)    //栈s存在且非空，遍历栈
+
+
 
   顺序栈的表示和实现
   
@@ -84,6 +90,8 @@ StackTraverse(s)    //栈s存在且非空，遍历栈
 取顺序栈的栈顶元素
 
 栈非空时，取栈顶元素的值
+
+
 
 
 
@@ -162,6 +170,8 @@ int main()
     }
     return 0;
 }
+
+
 
   链栈的表示和实现
   
@@ -369,6 +379,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -461,7 +475,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            114871 字
+            114909 字
           </span>
         </div>
         
@@ -486,13 +500,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="栈与队列">
+      
+
+<h1 id="栈与队列">
   栈与队列
   <a class="heading-link" href="#%e6%a0%88%e4%b8%8e%e9%98%9f%e5%88%97">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="栈的定义和特点">
   栈的定义和特点
   <a class="heading-link" href="#%e6%a0%88%e7%9a%84%e5%ae%9a%e4%b9%89%e5%92%8c%e7%89%b9%e7%82%b9">
@@ -501,6 +519,8 @@ code.has-jax {
   </a>
 </h2>
 <p>栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。</p>
+
+
 <h2 id="栈的-adt-类型定义">
   栈的 ADT 类型定义
   <a class="heading-link" href="#%e6%a0%88%e7%9a%84-adt-%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89">
@@ -517,7 +537,9 @@ code.has-jax {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">Push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>            <span class="c1">//插入元素e为新的栈顶元素
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">Pop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>            <span class="c1">//栈s存在且非空，删除栈顶元素，返回其值
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">StackTraverse</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>    <span class="c1">//栈s存在且非空，遍历栈
-</span></span></span></code></pre></div><h3 id="顺序栈的表示和实现">
+</span></span></span></code></pre></div>
+
+<h3 id="顺序栈的表示和实现">
   顺序栈的表示和实现
   <a class="heading-link" href="#%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -553,6 +575,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h4 id="顺序栈的代码实现c">
   顺序栈的代码实现(C++)
   <a class="heading-link" href="#%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0c">
@@ -628,7 +652,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="链栈的表示和实现">
+</span></span></code></pre></div>
+
+<h3 id="链栈的表示和实现">
   链栈的表示和实现
   <a class="heading-link" href="#%e9%93%be%e6%a0%88%e7%9a%84%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -667,6 +693,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h4 id="链栈的简单实现">
   链栈的简单实现
   <a class="heading-link" href="#%e9%93%be%e6%a0%88%e7%9a%84%e7%ae%80%e5%8d%95%e5%ae%9e%e7%8e%b0">
@@ -750,7 +778,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="栈与递归">
+</span></span></code></pre></div>
+
+<h3 id="栈与递归">
   栈与递归
   <a class="heading-link" href="#%e6%a0%88%e4%b8%8e%e9%80%92%e5%bd%92">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -771,6 +801,8 @@ code.has-jax {
 </span></span></code></pre></div><ol>
 <li>问题的解法是递归的，比如汉诺塔(Hanoi)问题</li>
 </ol>
+
+
 <h4 id="递归过程与递归工作栈">
   递归过程与递归工作栈
   <a class="heading-link" href="#%e9%80%92%e5%bd%92%e8%bf%87%e7%a8%8b%e4%b8%8e%e9%80%92%e5%bd%92%e5%b7%a5%e4%bd%9c%e6%a0%88">
@@ -791,6 +823,8 @@ code.has-jax {
 <li>依照被调函数保存的返回地址将控制转移到调用函数</li>
 </ol>
 <p>当有多个函数构成嵌套调用时，按照”后调用先返回”原则，上述函数之间的信息传递和控制需要通过”栈”来实现。</p>
+
+
 <h4 id="递归算法的效率分析">
   递归算法的效率分析
   <a class="heading-link" href="#%e9%80%92%e5%bd%92%e7%ae%97%e6%b3%95%e7%9a%84%e6%95%88%e7%8e%87%e5%88%86%e6%9e%90">
@@ -827,6 +861,8 @@ code.has-jax {
 <p>执行递归函数时，系统设立一个”递归工作栈”存储每一层递归所需信息，递归算法空间复杂度需要分析工作栈的大小。</p>
 <p>对于递归算法，空间复杂度 <code>$S(n)=O(f(n))$</code></p>
 <p>其中 f(n)为”递归空间栈”中工作记录的个数和问题规模 n 的函数关系。</p>
+
+
 <h3 id="经典案例">
   经典案例
   <a class="heading-link" href="#%e7%bb%8f%e5%85%b8%e6%a1%88%e4%be%8b">
@@ -839,6 +875,8 @@ code.has-jax {
 <li>括号匹配</li>
 <li>表达式求值</li>
 </ol>
+
+
 <h4 id="括号匹配代码示例">
   括号匹配代码示例
   <a class="heading-link" href="#%e6%8b%ac%e5%8f%b7%e5%8c%b9%e9%85%8d%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
@@ -903,7 +941,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="p">.</span><span class="nf">get</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 id="表达式求值代码示例">
+</span></span></code></pre></div>
+
+<h4 id="表达式求值代码示例">
   表达式求值代码示例
   <a class="heading-link" href="#%e8%a1%a8%e8%be%be%e5%bc%8f%e6%b1%82%e5%80%bc%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -974,7 +1014,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="p">.</span><span class="nf">get</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="队列的定义和特点">
+</span></span></code></pre></div>
+
+<h2 id="队列的定义和特点">
   队列的定义和特点
   <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84%e5%ae%9a%e4%b9%89%e5%92%8c%e7%89%b9%e7%82%b9">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -983,6 +1025,8 @@ code.has-jax {
 </h2>
 <p>队列是一种(queue)是一种先进先出(First In First Out,FIFO)的线性表，它只允许在表的一端进行插入，而在另一端删除元素。</p>
 <p>在队列中，允许插入的一端称为队尾，允许删除的一端则称为队头(front).</p>
+
+
 <h3 id="队列的-adt-类型定义">
   队列的 ADT 类型定义
   <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84-adt-%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89">
@@ -999,7 +1043,9 @@ code.has-jax {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">EnQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>        <span class="c1">//队列存在，插入新的队尾元素e
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">DeQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="err">，</span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>        <span class="c1">//队列非空，删除队头元素，返回其值
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">QueueTraverse</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>    <span class="c1">//队列存在且非空，遍历队列
-</span></span></span></code></pre></div><h3 id="队列的顺序表示和实现循环队列">
+</span></span></span></code></pre></div>
+
+<h3 id="队列的顺序表示和实现循环队列">
   队列的顺序表示和实现(循环队列)
   <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84%e9%a1%ba%e5%ba%8f%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1044,6 +1090,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h4 id="循环队列顺序存储的简易代码实现">
   循环队列顺序存储的简易代码实现
   <a class="heading-link" href="#%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8%e7%9a%84%e7%ae%80%e6%98%93%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0">
@@ -1126,7 +1174,9 @@ code.has-jax {
 </span></span><span class="line"><span class="cl">    <span class="nf">getchar</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="队列的链式表示和实现">
+</span></span></code></pre></div>
+
+<h3 id="队列的链式表示和实现">
   队列的链式表示和实现
   <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84%e9%93%be%e5%bc%8f%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
@@ -1168,6 +1218,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h4 id="链队的代码简易实现">
   链队的代码简易实现
   <a class="heading-link" href="#%e9%93%be%e9%98%9f%e7%9a%84%e4%bb%a3%e7%a0%81%e7%ae%80%e6%98%93%e5%ae%9e%e7%8e%b0">
@@ -1423,12 +1475,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

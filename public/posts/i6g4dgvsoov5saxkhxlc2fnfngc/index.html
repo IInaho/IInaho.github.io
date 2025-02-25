@@ -28,11 +28,15 @@ Cache与辅助存储器 · inaho
   
 
 
+
+
   Cache 概述
   
     
     链接到标题
   
+
+
 
 
   为什么使用 Cache？
@@ -50,11 +54,15 @@ CPU 和主存(DRAM)的速度差异
 程序访问的局部性原理
 
 
+
+
   Cache 的工作原理
   
     
     链接到标题
   
+
+
 
 
   主存和缓存的编址
@@ -66,6 +74,8 @@ CPU 和主存(DRAM)的速度差异
 
 主存和缓存按块存储，块的大小相同，B 为块长。缓存的块远远小于主存的块，如果主存要和 Cache 映射，那么至少要保证主存中每块大小应与 Cache 中每块大小相同。
 每个字块包含 N 个字，主存的地址应该分成两部分，一部分用来寻找某个字块，另一部分用来寻找该字块中的字或字节。
+
+
 
   命中与未命中
   
@@ -80,6 +90,8 @@ CPU 和主存(DRAM)的速度差异
 
 
 用标记记录与某缓存块建立了对应关系的主存块号。
+
+
 
   Cache 的命中率
   
@@ -283,6 +295,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -398,7 +414,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            14417 字
+            14483 字
           </span>
         </div>
         
@@ -423,13 +439,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="cache-与辅助存储器">
+      
+
+<h1 id="cache-与辅助存储器">
   Cache 与辅助存储器
   <a class="heading-link" href="#cache-%e4%b8%8e%e8%be%85%e5%8a%a9%e5%ad%98%e5%82%a8%e5%99%a8">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="cache-概述">
   Cache 概述
   <a class="heading-link" href="#cache-%e6%a6%82%e8%bf%b0">
@@ -437,6 +457,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="为什么使用-cache">
   为什么使用 Cache？
   <a class="heading-link" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bd%bf%e7%94%a8-cache">
@@ -452,6 +474,8 @@ code.has-jax {
 <ul>
 <li>程序访问的局部性原理</li>
 </ul>
+
+
 <h2 id="cache-的工作原理">
   Cache 的工作原理
   <a class="heading-link" href="#cache-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86">
@@ -459,6 +483,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="主存和缓存的编址">
   主存和缓存的编址
   <a class="heading-link" href="#%e4%b8%bb%e5%ad%98%e5%92%8c%e7%bc%93%e5%ad%98%e7%9a%84%e7%bc%96%e5%9d%80">
@@ -469,6 +495,8 @@ code.has-jax {
 <p><img src="../static/Jz7DbWSVDoxqU0xG8xlcnaUFnmF.png" alt=""></p>
 <p>主存和缓存按块存储，块的大小相同，B 为块长。缓存的块远远小于主存的块，如果主存要和 Cache 映射，那么至少要保证主存中每块大小应与 Cache 中每块大小相同。</p>
 <p>每个字块包含 N 个字，主存的地址应该分成两部分，一部分用来寻找某个字块，另一部分用来寻找该字块中的字或字节。</p>
+
+
 <h3 id="命中与未命中">
   命中与未命中
   <a class="heading-link" href="#%e5%91%bd%e4%b8%ad%e4%b8%8e%e6%9c%aa%e5%91%bd%e4%b8%ad">
@@ -483,6 +511,8 @@ code.has-jax {
 </ul>
 <blockquote>
 <p>用标记记录与某缓存块建立了对应关系的主存块号。</p></blockquote>
+
+
 <h4 id="cache-的命中率">
   Cache 的命中率
   <a class="heading-link" href="#cache-%e7%9a%84%e5%91%bd%e4%b8%ad%e7%8e%87">
@@ -497,6 +527,8 @@ code.has-jax {
 <li>CRAY_1,16 体交叉，块长取 16 个存储字。</li>
 <li>IBM370/168，4 体交叉，块长取 4 个存储字，一个存储字 64 位，一次取 256 位。</li>
 </ul></blockquote>
+
+
 <h3 id="cache-主存系统的效率">
   Cache-主存系统的效率
   <a class="heading-link" href="#cache-%e4%b8%bb%e5%ad%98%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%95%88%e7%8e%87">
@@ -506,6 +538,8 @@ code.has-jax {
 </h3>
 <p>效率 e 与命中率有关，e=访问 Cache 的时间/平均访问时间 <em>100%。</em>
 _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间为 tm，则 e=tc/h_tc+(1-h)_tm_100%.</p>
+
+
 <h3 id="cache-的基本结构">
   Cache 的基本结构
   <a class="heading-link" href="#cache-%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84">
@@ -514,6 +548,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
   </a>
 </h3>
 <p><img src="../static/UdnSbNR2foAB6lx9y4ZczsKtnag.png" alt=""></p>
+
+
 <h3 id="cache-的读写操作">
   Cache 的读写操作
   <a class="heading-link" href="#cache-%e7%9a%84%e8%af%bb%e5%86%99%e6%93%8d%e4%bd%9c">
@@ -521,6 +557,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="读操作">
   读操作
   <a class="heading-link" href="#%e8%af%bb%e6%93%8d%e4%bd%9c">
@@ -529,6 +567,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
   </a>
 </h4>
 <p><img src="../static/B85ZbVDttoFznnxMEh4coWgEn2f.png" alt=""></p>
+
+
 <h4 id="写操作">
   写操作
   <a class="heading-link" href="#%e5%86%99%e6%93%8d%e4%bd%9c">
@@ -544,6 +584,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 写操作时只把数据写入 Cache 而不写入主存，当 Cache 数据被替换出去时才写回主存。
 写操作时间就是访问 Cache 的时间，Cache 块退出时，被替换的块需写回主存 ，增加了 Cache 的复杂性。</li>
 </ul>
+
+
 <h3 id="cache-的改进">
   Cache 的改进
   <a class="heading-link" href="#cache-%e7%9a%84%e6%94%b9%e8%bf%9b">
@@ -557,6 +599,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 <li>Pentium，8K 指令 Cache，8K 数据 Cache。</li>
 <li>PowerPC620，32K 指令 Cache，32K 数据 Cache。</li>
 </ol>
+
+
 <h2 id="cache-主存的地址映射">
   Cache-主存的地址映射
   <a class="heading-link" href="#cache-%e4%b8%bb%e5%ad%98%e7%9a%84%e5%9c%b0%e5%9d%80%e6%98%a0%e5%b0%84">
@@ -564,6 +608,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="直接映射">
   直接映射
   <a class="heading-link" href="#%e7%9b%b4%e6%8e%a5%e6%98%a0%e5%b0%84">
@@ -574,6 +620,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 <p><img src="../static/U13SbuusioOm4Ox1c2CckPevnNg.png" alt=""></p>
 <p>每个缓存块 i 可以和若干个主存块对应</p>
 <p>每个主存块 i 只能和一个缓存块对应</p>
+
+
 <h3 id="全相联映射">
   全相联映射
   <a class="heading-link" href="#%e5%85%a8%e7%9b%b8%e8%81%94%e6%98%a0%e5%b0%84">
@@ -583,6 +631,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 </h3>
 <p><img src="../static/EpbqbKkILoyKcHx2nF2cwiIgnYb.png" alt=""></p>
 <p>主存中的任一块可以映射到缓存中的任一块</p>
+
+
 <h3 id="组相联映射">
   组相联映射
   <a class="heading-link" href="#%e7%bb%84%e7%9b%b8%e8%81%94%e6%98%a0%e5%b0%84">
@@ -592,6 +642,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 </h3>
 <p><img src="../static/Mdmub7xEHosN0AxHCwlc8xEkndd.png" alt=""></p>
 <p>某一主存块 j 按模 Q 映射到缓存的第 i 组中的任一块，当组相联只有一组时，此时组相联映射等同于全相联映射，当每组只有一块时，此时组相联映射等同于直接映射。</p>
+
+
 <h2 id="替换算法">
   替换算法
   <a class="heading-link" href="#%e6%9b%bf%e6%8d%a2%e7%ae%97%e6%b3%95">
@@ -603,6 +655,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 <li>先进先出(FIFO)算法</li>
 <li>近期最少使用(LRU)算法</li>
 </ol>
+
+
 <h3 id="小结">
   小结
   <a class="heading-link" href="#%e5%b0%8f%e7%bb%93">
@@ -615,6 +669,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 <li>全相联，某一主存块能映射到任一缓存块</li>
 <li>组相联，某一主存块只能映射到某一缓存组中的任一块</li>
 </ul>
+
+
 <h2 id="辅助存储器">
   辅助存储器
   <a class="heading-link" href="#%e8%be%85%e5%8a%a9%e5%ad%98%e5%82%a8%e5%99%a8">
@@ -622,6 +678,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="概述">
   概述
   <a class="heading-link" href="#%e6%a6%82%e8%bf%b0">
@@ -653,6 +711,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 </ul>
 </li>
 </ol>
+
+
 <h3 id="磁记录原理和记录方式">
   磁记录原理和记录方式
   <a class="heading-link" href="#%e7%a3%81%e8%ae%b0%e5%bd%95%e5%8e%9f%e7%90%86%e5%92%8c%e8%ae%b0%e5%bd%95%e6%96%b9%e5%bc%8f">
@@ -660,6 +720,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="磁记录写原理">
   磁记录写原理
   <a class="heading-link" href="#%e7%a3%81%e8%ae%b0%e5%bd%95%e5%86%99%e5%8e%9f%e7%90%86">
@@ -668,6 +730,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
   </a>
 </h4>
 <p><img src="../static/CKMVbjUSTou1JEx92EdcbSMXn3d.png" alt=""></p>
+
+
 <h4 id="磁记录读原理">
   磁记录读原理
   <a class="heading-link" href="#%e7%a3%81%e8%ae%b0%e5%bd%95%e8%af%bb%e5%8e%9f%e7%90%86">
@@ -676,6 +740,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
   </a>
 </h4>
 <p><img src="../static/Ca1Qb23xtoBErmxC3xCc7IUQnTc.png" alt=""></p>
+
+
 <h3 id="硬磁盘存储器">
   硬磁盘存储器
   <a class="heading-link" href="#%e7%a1%ac%e7%a3%81%e7%9b%98%e5%ad%98%e5%82%a8%e5%99%a8">
@@ -683,6 +749,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="硬磁盘存储器的类型">
   硬磁盘存储器的类型
   <a class="heading-link" href="#%e7%a1%ac%e7%a3%81%e7%9b%98%e5%ad%98%e5%82%a8%e5%99%a8%e7%9a%84%e7%b1%bb%e5%9e%8b">
@@ -694,6 +762,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 <li>固定磁头和移动磁头</li>
 <li>可换盘和固定盘</li>
 </ol>
+
+
 <h4 id="硬磁盘存储器结构">
   硬磁盘存储器结构
   <a class="heading-link" href="#%e7%a1%ac%e7%a3%81%e7%9b%98%e5%ad%98%e5%82%a8%e5%99%a8%e7%bb%93%e6%9e%84">
@@ -726,6 +796,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 由硬质铝合金材料制成</p>
 </li>
 </ol>
+
+
 <h3 id="软磁盘存储器">
   软磁盘存储器
   <a class="heading-link" href="#%e8%bd%af%e7%a3%81%e7%9b%98%e5%ad%98%e5%82%a8%e5%99%a8">
@@ -733,6 +805,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="概述-1">
   概述
   <a class="heading-link" href="#%e6%a6%82%e8%bf%b0-1">
@@ -741,6 +815,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
   </a>
 </h4>
 <p><img src="../static/S9GpbqKWBoGjygxnMspcAYKjnjc.png" alt=""></p>
+
+
 <h4 id="软盘片">
   软盘片
   <a class="heading-link" href="#%e8%bd%af%e7%9b%98%e7%89%87">
@@ -749,6 +825,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
   </a>
 </h4>
 <p><img src="../static/BeNnbUw9JoQ7JXxkkBUcwI3knhh.png" alt=""></p>
+
+
 <h3 id="光盘存储器">
   光盘存储器
   <a class="heading-link" href="#%e5%85%89%e7%9b%98%e5%ad%98%e5%82%a8%e5%99%a8">
@@ -756,6 +834,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
     <span class="sr-only">链接到标题</span>
   </a>
 </h3>
+
+
 <h4 id="概述-2">
   概述
   <a class="heading-link" href="#%e6%a6%82%e8%bf%b0-2">
@@ -768,6 +848,8 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 <li>第一代光存储技术，采用非磁性介质，不可擦写</li>
 <li>第二代光存储技术，采用磁性介质，可擦写</li>
 </ul>
+
+
 <h4 id="光盘的存储原理">
   光盘的存储原理
   <a class="heading-link" href="#%e5%85%89%e7%9b%98%e7%9a%84%e5%ad%98%e5%82%a8%e5%8e%9f%e7%90%86">
@@ -907,12 +989,6 @@ _设 Cache 命中率为 h，访问 Cache 的时间为 tc，访问主存的时间
 
   
 
-
-  
-
-  
-
-  
 
   
 

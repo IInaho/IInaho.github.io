@@ -28,6 +28,8 @@
   
 
 
+
+
   浮点加减运算
   
     
@@ -35,6 +37,8 @@
   
 
 $$ x = S_x \times 2^t, \quad y = S_y \times 2^t $$
+
+
 
   对阶
   
@@ -256,6 +260,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -322,7 +330,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            7602 字
+            7624 字
           </span>
         </div>
         
@@ -347,13 +355,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="浮点四则与算术逻辑单元">
+      
+
+<h1 id="浮点四则与算术逻辑单元">
   浮点四则与算术逻辑单元
   <a class="heading-link" href="#%e6%b5%ae%e7%82%b9%e5%9b%9b%e5%88%99%e4%b8%8e%e7%ae%97%e6%9c%af%e9%80%bb%e8%be%91%e5%8d%95%e5%85%83">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="浮点加减运算">
   浮点加减运算
   <a class="heading-link" href="#%e6%b5%ae%e7%82%b9%e5%8a%a0%e5%87%8f%e8%bf%90%e7%ae%97">
@@ -362,6 +374,8 @@ code.has-jax {
   </a>
 </h2>
 <p><code>$$ x = S_x \times 2^t, \quad y = S_y \times 2^t $$</code></p>
+
+
 <h3 id="对阶">
   对阶
   <a class="heading-link" href="#%e5%af%b9%e9%98%b6">
@@ -389,6 +403,8 @@ code.has-jax {
 </ol>
 <p>所以 <code>$[x+y]_{i\frac{1}{2}} = 00.11;11.1001$</code></p>
 <p><code>$$ -[y_s]_{i\frac{1}{2}} \text{ 实际上等于 } [-f_s]_{i\frac{1}{2}} $$</code></p>
+
+
 <h3 id="规格化">
   规格化
   <a class="heading-link" href="#%e8%a7%84%e6%a0%bc%e5%8c%96">
@@ -417,6 +433,8 @@ code.has-jax {
 <p><code>$[S]_{补} = 1.000...0$</code></p>
 </li>
 </ol>
+
+
 <h3 id="左规">
   <strong>左规</strong>
   <a class="heading-link" href="#%e5%b7%a6%e8%a7%84">
@@ -428,6 +446,8 @@ code.has-jax {
 <p>例：<code>$[x+y]_{补} = 00,11;11.1001$</code></p>
 <p>左规后<code>$[x+y]_{补} = 00,10;11.0010$</code></p>
 <p>则 <code>$x+y=(-0.1110)\times2^{10}$</code></p>
+
+
 <h3 id="右规">
   <strong>右规</strong>
   <a class="heading-link" href="#%e5%8f%b3%e8%a7%84">
@@ -441,6 +461,8 @@ code.has-jax {
 <p>除阶符、数符外，阶码取 3 位，尾数取 6 位</p>
 <p><img src="../static/RzkkbsjTWoIkORxQLwecBcXonwb.png" alt=""></p>
 <p><img src="../static/V6dJboYhfolEEVxmoIhc7Lglnzd.png" alt=""></p>
+
+
 <h3 id="舍入">
   舍入
   <a class="heading-link" href="#%e8%88%8d%e5%85%a5">
@@ -457,6 +479,8 @@ code.has-jax {
 <p>除阶符、数符外，阶码取 3 位，尾数取 6 位。</p>
 <p><img src="../static/RSDVbB22uoQYpKxHhT6cmMuXnlg.png" alt=""></p>
 <p><img src="../static/LLOubFHFOoGOjwxaTZJcpy1LnVh.png" alt=""></p>
+
+
 <h3 id="溢出判断">
   溢出判断
   <a class="heading-link" href="#%e6%ba%a2%e5%87%ba%e5%88%a4%e6%96%ad">
@@ -466,6 +490,8 @@ code.has-jax {
 </h3>
 <p>设机器数为补码，尾数为规格化形式，并假设阶符取 2 位，阶码的数值部分取 7 位，数符取 2 位，尾数取 n 位，则该补码在数轴上的表示为</p>
 <p><img src="../static/CCH1bqSrXo7T6Yx35o0chfZDnve.png" alt=""></p>
+
+
 <h2 id="算术逻辑单元">
   算术逻辑单元
   <a class="heading-link" href="#%e7%ae%97%e6%9c%af%e9%80%bb%e8%be%91%e5%8d%95%e5%85%83">
@@ -473,6 +499,8 @@ code.has-jax {
     <span class="sr-only">链接到标题</span>
   </a>
 </h2>
+
+
 <h3 id="alu-电路">
   ALU 电路
   <a class="heading-link" href="#alu-%e7%94%b5%e8%b7%af">
@@ -484,6 +512,8 @@ code.has-jax {
 <p><img src="../static/Yfmdbv8Jeo6N2Ox76mscX5QUnuh.png" alt=""></p>
 <blockquote>
 <p>四位 ALU 74181，M=0 算术运算，M=1 逻辑运算，<code>$S_3 - S_0$</code>不同取值，可做不同运算。</p></blockquote>
+
+
 <h3 id="快速进位链">
   快速进位链
   <a class="heading-link" href="#%e5%bf%ab%e9%80%9f%e8%bf%9b%e4%bd%8d%e9%93%be">
@@ -650,12 +680,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

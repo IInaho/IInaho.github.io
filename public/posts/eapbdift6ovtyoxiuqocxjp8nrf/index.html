@@ -28,6 +28,8 @@ Assume总结 · inaho
   
 
 
+
+
   概念介绍
   
     
@@ -42,6 +44,8 @@ Assume总结 · inaho
 寻址方法，8086CPU 采用两个 16 位地址合成的方法来形成 20 位的物理地址，一个称为段地址，一个称为偏移地址，实际物理地址=段地址*16&#43; 偏移地址
 中断向量表，当发生中断时，CPU 要执行中断处理程序，而中断处理程序的入口地址是通过中断向量表找到的，也就是说中断向量表也就是各个中断处理程序的入口地址的列表，8086CPU 中，中断向量表放在内存 0 处，从 0：0 到 0：03FF 的 1024 个单元存放中断向量表。
 端口及端口地址空间，PC 机系统中，CPU 通过总线和各种芯片相连，包括各种存储器，接口卡上的芯片以及主板上的接口芯片，这些芯片中都有一组可以有 CPU 读写的寄存器，这些寄存器与 CPU 的总线相连，CPU 通过向其芯片发送端口读写命令实现读或写，从 CPU 的角度将这些寄存器都当作端口，进行统一编址，从而建立统一的端口地址空间，每个端口在此空间中都有一个地址。
+
+
 
 
   寄存器
@@ -231,6 +235,10 @@ code.has-jax {
               <a class="navigation-link " href="/about/">关于</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/friends/">友链</a>
+            </li>
+          
         
         
         
@@ -284,7 +292,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            22274 字
+            22282 字
           </span>
         </div>
         
@@ -309,13 +317,17 @@ code.has-jax {
 
     <div class="post-content">
       
-      <h1 id="assume总结">
+      
+
+<h1 id="assume总结">
   Assume总结
   <a class="heading-link" href="#assume%e6%80%bb%e7%bb%93">
     <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
     <span class="sr-only">链接到标题</span>
   </a>
 </h1>
+
+
 <h2 id="概念介绍">
   概念介绍
   <a class="heading-link" href="#%e6%a6%82%e5%bf%b5%e4%bb%8b%e7%bb%8d">
@@ -332,6 +344,8 @@ code.has-jax {
 <li>中断向量表，当发生中断时，CPU 要执行中断处理程序，而中断处理程序的入口地址是通过中断向量表找到的，也就是说中断向量表也就是各个中断处理程序的入口地址的列表，8086CPU 中，中断向量表放在内存 0 处，从 0：0 到 0：03FF 的 1024 个单元存放中断向量表。</li>
 <li>端口及端口地址空间，PC 机系统中，CPU 通过总线和各种芯片相连，包括各种存储器，接口卡上的芯片以及主板上的接口芯片，这些芯片中都有一组可以有 CPU 读写的寄存器，这些寄存器与 CPU 的总线相连，CPU 通过向其芯片发送端口读写命令实现读或写，从 CPU 的角度将这些寄存器都当作端口，进行统一编址，从而建立统一的端口地址空间，每个端口在此空间中都有一个地址。</li>
 </ul>
+
+
 <h2 id="寄存器">
   寄存器
   <a class="heading-link" href="#%e5%af%84%e5%ad%98%e5%99%a8">
@@ -384,6 +398,8 @@ code.has-jax {
 </ul>
 </li>
 </ul>
+
+
 <h2 id="指令大全">
   指令大全
   <a class="heading-link" href="#%e6%8c%87%e4%bb%a4%e5%a4%a7%e5%85%a8">
@@ -561,12 +577,6 @@ code.has-jax {
 
   
 
-
-  
-
-  
-
-  
 
   
 

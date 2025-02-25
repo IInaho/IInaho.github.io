@@ -5,6 +5,7 @@
   {{- end -}}
   {{- i18n (lower .Title) | default .Title | title }} · {{ .Site.Title -}}
 {{ end }}
+
 {{ define "content" }}
   {{ partial "list.html" . }}
 {{ end }}

@@ -1,0 +1,19 @@
+{{ define "content" }}
+<div class="friends-page">
+  <h1 class="friends-title">友情链接</h1>
+  
+  <div class="friends-container">
+    {{ range .Site.Data.friends }}
+      <a href="{{ .url }}" target="_blank" rel="noopener" class="friend-card">
+        <div class="friend-avatar">
+          <img src="{{ .avatar }}" alt="{{ .name }}">
+        </div>
+        <div class="friend-info">
+          <h3 class="friend-name">{{ .name }}</h3>
+          <p class="friend-description">{{ .description }}</p>
+        </div>
+      </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
