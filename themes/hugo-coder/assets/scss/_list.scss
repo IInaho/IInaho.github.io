@@ -1,12 +1,12 @@
 .list-header {
     text-align: center;
-    margin: 2rem 0 4rem;
-    padding: 2rem;
+    margin: clamp(1rem, 4vw, 2rem) 0 clamp(2rem, 6vw, 4rem);
+    padding: clamp(1rem, 4vw, 2rem);
 
     .title {
-        font-size: 5rem;
+        font-size: clamp(2rem, 8vw, 5rem);
         font-weight: 600;
-        margin-bottom: 1.5rem;
+        margin-bottom: clamp(1rem, 3vw, 1.5rem);
         color: var(--heading-color);
         line-height: 1.2;
     }
@@ -24,42 +24,27 @@
 
 .post-count {
     display: inline-block;
-    padding: 0.5rem 1.5rem;
+    padding: clamp(0.4rem, 2vw, 0.5rem) clamp(1rem, 3vw, 1.5rem);
     color: var(--text-color-light);
-    font-size: 2.1rem;
+    font-size: clamp(1rem, 4vw, 2.1rem);
     font-weight: 500;
-    margin: 1rem 0;
+    margin: clamp(0.5rem, 2vw, 1rem) 0;
 }
 
 .posts-list {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 clamp(0.5rem, 3vw, 1rem);
+    width: 100%;
 }
 
 .post-entry {
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(1rem, 3vw, 1.5rem);
     border-bottom: 1px solid rgba(var(--border-color), 0.1);
     transition: all 0.3s ease;
 
     &:hover {
-        transform: translateX(10px);
-    }
-}
-
-@media (max-width: 768px) {
-    .list-header {
-        margin: 1rem 0 2rem;
-        padding: 1.5rem;
-
-        .title {
-            font-size: 2rem;
-        }
-    }
-
-    .post-count {
-        font-size: 1rem;
-        padding: 0.4rem 1.2rem;
+        transform: translateX(clamp(5px, 2vw, 10px));
     }
 }
