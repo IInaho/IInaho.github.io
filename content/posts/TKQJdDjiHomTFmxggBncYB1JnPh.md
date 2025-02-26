@@ -31,7 +31,7 @@ systemctl start ollama
 
 下载 deepseek 模型，由于博主电脑配置比较低，只能使用 deepseek-r1:1.5b 的模型
 
-```
+```bash
 ollama run deepseek-r1:1.5b
 ```
 
