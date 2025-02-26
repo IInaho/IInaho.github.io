@@ -883,4 +883,28 @@ body.colorscheme-dark {
     --scrollbar-color: 80, 80, 80;
     --scrollbar-track: 50, 50, 50; } }
 
+body.colorscheme-dark .friend-card {
+  background: #2d2d2d;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1); }
+
+body.colorscheme-dark .friend-info .friend-name {
+  color: #c4c4c4; }
+
+body.colorscheme-dark .friend-info .friend-description {
+  color: #c4c4c4; }
+
+body.colorscheme-dark .friend-card:hover {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2); }
+
+@media (prefers-color-scheme: dark) {
+  body.colorscheme-auto .friend-card {
+    background: #2d2d2d;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1); }
+  body.colorscheme-auto .friend-info .friend-name {
+    color: #c4c4c4; }
+  body.colorscheme-auto .friend-info .friend-description {
+    color: #c4c4c4; }
+  body.colorscheme-auto .friend-card:hover {
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2); } }
+
 /*# sourceMappingURL=coder-dark.css.map */

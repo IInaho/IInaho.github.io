@@ -1,0 +1,30 @@
+@mixin friends_dark {
+    .friend-card {
+        background: #2d2d2d; // 卡片背景色：深灰色
+        box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1); // 浅色阴影适合深色背景
+    }
+
+    .friend-info {
+        .friend-name {
+            color: #c4c4c4;
+        }
+        .friend-description {
+            color: #c4c4c4;
+        }
+    }
+
+    .friend-card:hover {
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2); // 悬停时更明显的阴影
+    }
+}
+
+
+body.colorscheme-dark {
+    @include friends_dark();
+}
+
+body.colorscheme-auto {
+    @media (prefers-color-scheme: dark) {
+        @include friends_dark();
+    }
+}

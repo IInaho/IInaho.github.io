@@ -35,6 +35,20 @@ WSL（适用于 Linux 的 Windows 子系统 ）是 Windows 的一项功能，可
 
 wsl 目前分为两个版本： wsl1 和 wsl2，具体的差别在官方文档已经说明了，我直接拿过来讲下。
 
+| 功能                                | WSL 1 | WSL 2 |
+|-------------------------------------|--------|--------|
+| Windows 和 Linux 之间的集成         | ✅     | ✅     |
+| 启动时间短                          | ✅     | ✅     |
+| 与传统虚拟机相比，占用的资源量少     | ✅     | ✅     |
+| 可以与当前版本的 VMware 和 VirtualBox 一起运行 | ✅     | ❌     |
+| 托管 VM                             | ❌     | ✅     |
+| 完整的 Linux 内核                   | ❌     | ✅     |
+| 完全的系统调用兼容性                | ❌     | ✅     |
+| 跨 OS 文件系统的性能                | ✅     | ❌     |
+| systemd 支持                        | ❌     | ✅     |
+| IPv6 支持                           | ✅     | ✅     |
+
+
 通过对比可以看到，wsl2 支持了完整的 linux 内核，并且拥有完全的系统调用兼容性，也支持 systemd 管理后台进程。
 
 仅仅在跨 OS 文件系统性能层面慢了点，但这点实际上是问题不大的，毕竟我们不需要频繁的从 windows 拷贝大文件到 linux 系统上。
@@ -79,12 +93,12 @@ wsl -l -o #查看可用linux发行版列表
 
 如果报错无法建立链接，别担心，因为国内被墙了，导致 dns 无法解析 raw.githubusercontent.com 域名。
 
-```python
+```text
 无法从“https://raw.githubusercontent.com/microsoft/WSL/master/distributions/DistributionInfo.json”中提取列表分发。无法与服务器建立连接
 错误代码: Wsl/WININET_E_CANNOT_CONNECT
 ```
 
-我们只需要查到 raw.githubusercontent.com 域名对应的 ip 地址，填到 C:\Windows\System32\drivers\etc\hosts 文件里即可。
+我们只需要查到raw.githubusercontent.com域名对应的ip地址, 填到C:\Windows\System32\drivers\etc\hosts文件里即可。
 
 首先进到 C:\Windows\System32\drivers\etc 目录，找到 hosts 文件，右键-> 属性，安装下图指示，选择你登录的用户，然后授权修改和写入的权限即可。
 
