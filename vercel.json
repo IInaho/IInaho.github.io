@@ -3,7 +3,6 @@
     {
       "src": "/(.*)",
       "dest": "http://inaho.top/$1",
-      "headers": {"Host": "www.lowion.cn"}
     }
   ]
 }
