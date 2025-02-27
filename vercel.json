@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "http://inaho.top/$1",
+      "dest": "http://i-inaho-github-io.vercel.app/$1",
     }
   ]
 }
