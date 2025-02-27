@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "https://cdn_drc_vercel_conn_js_jsd.lowion.cn/$1",
+      "dest": "http://inaho.top/$1",
       "headers": {"Host": "www.lowion.cn"}
     }
   ]
