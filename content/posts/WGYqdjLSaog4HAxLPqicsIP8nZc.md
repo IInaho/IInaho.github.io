@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "manjaro 安装及美化"
-date = "2024-02-24 15:42:00"
+date = "2025-02-24 15:42:00"
 description = ""
 tags = [
     "linux"

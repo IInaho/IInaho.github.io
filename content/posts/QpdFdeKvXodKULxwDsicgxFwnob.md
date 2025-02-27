@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
-title = "kubenates 学习笔记"
-date = "2024-02-21"
+title = "kubenates快速入门"
+date = "2025-02-21"
 description = ""
 tags = [
     "kubenates"

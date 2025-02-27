@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "基于hugo搭建私人博客"
-date = "2024-02-18"
+date = "2025-02-18"
 description = ""
 tags = [
     "网站搭建"

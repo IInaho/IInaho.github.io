@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "vim 美化及配置"
-date = "2024-02-24 15:30:00"
+date = "2025-02-24 15:30:00"
 description = ""
 tags = [
     "linux"

@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "WSL 新手入门指南（很详细）"
-date = "2024-02-25"
+date = "2025-02-25"
 description = ""
 tags = [
     "linux"
