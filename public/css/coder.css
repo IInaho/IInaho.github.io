@@ -992,11 +992,9 @@ figure {
   border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   align-items: center;
-  justify-content: center;
-  /* 悬停效果 */ }
+  justify-content: center; }
   .colorscheme-toggle:hover {
     background: linear-gradient(145deg, #c0c0c0, #a0a0a0);
-    /* 更深的银金属色 */
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px -2px 4px rgba(255, 255, 255, 0.5); }
   .colorscheme-toggle:active {
     background: linear-gradient(145deg, #828282, #c0c0c0);
@@ -1009,6 +1007,48 @@ figure {
   transition: color 0.3s ease; }
   .colorscheme-toggle:hover .button-icon {
     color: #333; }
+
+.menu-button {
+  user-select: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease; }
+  .menu-button::before, .menu-button::after {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: transform 0.3s ease, background-color 0.3s ease; }
+  .menu-button::before {
+    top: 0; }
+  .menu-button::after {
+    bottom: 0; }
+  .menu-button .line-middle {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease, background-color 0.3s ease; }
+  .menu-button:hover {
+    transform: scale(1.1); }
+  .menu-button:active {
+    transform: scale(0.95); }
+
+.float-right {
+  float: right; }
 
 .mastodon-wrapper {
   display: flex;

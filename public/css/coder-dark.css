@@ -284,6 +284,12 @@ body.colorscheme-dark .float-container a {
     @media only screen and (max-width: 768px) {
       body.colorscheme-dark .float-container a:hover, body.colorscheme-dark .float-container a:focus {
         color: #dadada; } }
+body.colorscheme-dark .menu-button::before, body.colorscheme-dark .menu-button::after {
+  background-color: #dadada; }
+
+body.colorscheme-dark .menu-button .line-middle {
+  background-color: #dadada; }
+
 @media (prefers-color-scheme: dark) {
   body.colorscheme-auto .float-container a {
     color: #dadada;
@@ -293,6 +299,12 @@ body.colorscheme-dark .float-container a {
     @media only screen and (prefers-color-scheme: dark) and (max-width: 768px) {
       body.colorscheme-auto .float-container a:hover, body.colorscheme-auto .float-container a:focus {
         color: #dadada; } }
+@media (prefers-color-scheme: dark) {
+  body.colorscheme-auto .menu-button::before, body.colorscheme-auto .menu-button::after {
+    background-color: #dadada; }
+  body.colorscheme-auto .menu-button .line-middle {
+    background-color: #dadada; } }
+
 body.colorscheme-dark {
   /* Background */
   /* PreWrapper */

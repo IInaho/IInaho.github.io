@@ -49,18 +49,14 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 
   cursor: pointer;
-
   align-items: center;
   justify-content: center;
 
-  /* 悬停效果 */
   &:hover {
       background: linear-gradient(145deg, #c0c0c0, #a0a0a0);
-      /* 更深的银金属色 */
       box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
           -2px -2px 4px rgba(255, 255, 255, 0.5);
   }
-
   &:active {
       background: linear-gradient(145deg, #828282, #c0c0c0);
       box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.2),
@@ -76,4 +72,58 @@
   .colorscheme-toggle:hover & {
       color: #333;
   }
+}
+
+
+.menu-button {
+  user-select: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;  // 按钮宽度
+  height: 30px;  // 按钮高度
+  background-color: transparent;  // 背景透明，突出图标
+  border: none;  // 移除默认边框
+  cursor: pointer;
+  transition: transform 0.3s ease;  // 点击时产生平滑动画
+
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    width: 28px;  // 菜单条的宽度
+    height: 4px;  // 菜单条的高度
+    background-color: #333;  // 菜单条颜色
+    border-radius: 2px;  // 圆角效果
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  &::before {
+    top: 0;  // 上面一条
+  }
+  &::after {
+    bottom: 0;  // 下面一条
+  }
+  // 中间横线
+  .line-middle {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+    top: 50%;
+    transform: translateY(-50%);  // 垂直居中
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  &:hover {
+    transform: scale(1.1);  // 鼠标悬停时按钮稍微放大
+  }
+  &:active {
+    transform: scale(0.95);  // 点击时按钮缩小
+  }
+}
+
+.float-right {
+  float: right;  // 按钮浮动到右侧
 }
