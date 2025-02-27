@@ -24,7 +24,7 @@ MySQL 入门 · inaho
   MySQL 入门
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@ MySQL 入门 · inaho
   MYSQL 入门知识
   
     
-    链接到标题
+    @
   
 
 此文是阅读 MYSQL 必知必会后整理的所有样例代码，仅供自用。
@@ -43,7 +43,7 @@ MySQL 入门 · inaho
   一、MySQL 基础命令
   
     
-    链接到标题
+    @
   
 
 use database;               -- 打开数据库
@@ -59,7 +59,7 @@ show status;               -- 显示广泛的服务器状态信息
   二、检索数据
   
     
-    链接到标题
+    @
   
 
 USE sqltest;                                        -- 使用数据库
@@ -78,7 +78,7 @@ SELECT products.prod_name FROM products;            -- 使用完全限定的表�
   三、排序检索数据
   
     
-    链接到标题
+    @
   
 
 SELECT prod_name FROM products ORDER BY prod_name;    -- 对prod_name以字母顺序排序
@@ -97,7 +97,7 @@ SELECT prod_price FROM products ORDER BY prod_price DESC LIMIT 1;        -- 找�
   四、过滤数据
   
     
-    链接到标题
+    @
   
 
 ORDER BY 子句位于 WHERE 之后">
@@ -110,14 +110,14 @@ ORDER BY 子句位于 WHERE 之后">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="MySQL 入门">
-  <meta name="twitter:description" content="MySQL 入门 链接到标题 MYSQL 入门知识 链接到标题 此文是阅读 MYSQL 必知必会后整理的所有样例代码，仅供自用。
-一、MySQL 基础命令 链接到标题 use database; -- 打开数据库 show databases; -- 列出所有数据库 show tables; -- 列出数据库所有表 show columns from orders; -- 列出表内所有的列 describe orders; -- 列出表内所有的列 show status; -- 显示广泛的服务器状态信息 二、检索数据 链接到标题 USE sqltest; -- 使用数据库 SELECT prod_name FROM products; SELECT prod_id,prod_name,prod_price FROM products; -- 返回多列 SELECT * FROM products; -- 返回所有列 SELECT DISTINCT vend_id FROM products; -- 只返回不同的值，DISTINCT不能部分使用，其应用于所有列 SELECT prod_name FROM products LIMIT 5; -- 返回不多于5行 SELECT prod_name FROM products LIMIT 5,5; -- 返回从行5开始的5行，检索出的第一行为行0 SELECT prod_name FROM products LIMIT 4 OFFSET 3; -- 从行3开始取4行 SELECT products.prod_name FROM products; -- 使用完全限定的表名 三、排序检索数据 链接到标题 SELECT prod_name FROM products ORDER BY prod_name; -- 对prod_name以字母顺序排序 -- 多个行具有相同prod_price时，才对产品按prod_name进行排序，如果prod_price所有值唯一，则不会按prod_name排序。 SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price,prod_name; -- 首先对价格排序，在按名称排序 -- 默认进行升序排序，也可以指定ASC进行升序排序，但没必要 SElECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC; -- 对价格降序排序 -- 如果要对每个列进行降序排序，要对每个列指定DESC SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC, prod_name; -- 先对价格降序排序，在对名称排序 -- ORDER BY必须在FROM子句之后，LIMIT必须在ORDER BY子句之后 SELECT prod_price FROM products ORDER BY prod_price DESC LIMIT 1; -- 找出最贵的价格 四、过滤数据 链接到标题 ORDER BY 子句位于 WHERE 之后">
+  <meta name="twitter:description" content="MySQL 入门 @ MYSQL 入门知识 @ 此文是阅读 MYSQL 必知必会后整理的所有样例代码，仅供自用。
+一、MySQL 基础命令 @ use database; -- 打开数据库 show databases; -- 列出所有数据库 show tables; -- 列出数据库所有表 show columns from orders; -- 列出表内所有的列 describe orders; -- 列出表内所有的列 show status; -- 显示广泛的服务器状态信息 二、检索数据 @ USE sqltest; -- 使用数据库 SELECT prod_name FROM products; SELECT prod_id,prod_name,prod_price FROM products; -- 返回多列 SELECT * FROM products; -- 返回所有列 SELECT DISTINCT vend_id FROM products; -- 只返回不同的值，DISTINCT不能部分使用，其应用于所有列 SELECT prod_name FROM products LIMIT 5; -- 返回不多于5行 SELECT prod_name FROM products LIMIT 5,5; -- 返回从行5开始的5行，检索出的第一行为行0 SELECT prod_name FROM products LIMIT 4 OFFSET 3; -- 从行3开始取4行 SELECT products.prod_name FROM products; -- 使用完全限定的表名 三、排序检索数据 @ SELECT prod_name FROM products ORDER BY prod_name; -- 对prod_name以字母顺序排序 -- 多个行具有相同prod_price时，才对产品按prod_name进行排序，如果prod_price所有值唯一，则不会按prod_name排序。 SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price,prod_name; -- 首先对价格排序，在按名称排序 -- 默认进行升序排序，也可以指定ASC进行升序排序，但没必要 SElECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC; -- 对价格降序排序 -- 如果要对每个列进行降序排序，要对每个列指定DESC SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC, prod_name; -- 先对价格降序排序，在对名称排序 -- ORDER BY必须在FROM子句之后，LIMIT必须在ORDER BY子句之后 SELECT prod_price FROM products ORDER BY prod_price DESC LIMIT 1; -- 找出最贵的价格 四、过滤数据 @ ORDER BY 子句位于 WHERE 之后">
  
 <meta property="og:url" content="//localhost:1313/posts/c5gpdfxoio6edjxctrhchq49n6f/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="MySQL 入门">
-  <meta property="og:description" content="MySQL 入门 链接到标题 MYSQL 入门知识 链接到标题 此文是阅读 MYSQL 必知必会后整理的所有样例代码，仅供自用。
-一、MySQL 基础命令 链接到标题 use database; -- 打开数据库 show databases; -- 列出所有数据库 show tables; -- 列出数据库所有表 show columns from orders; -- 列出表内所有的列 describe orders; -- 列出表内所有的列 show status; -- 显示广泛的服务器状态信息 二、检索数据 链接到标题 USE sqltest; -- 使用数据库 SELECT prod_name FROM products; SELECT prod_id,prod_name,prod_price FROM products; -- 返回多列 SELECT * FROM products; -- 返回所有列 SELECT DISTINCT vend_id FROM products; -- 只返回不同的值，DISTINCT不能部分使用，其应用于所有列 SELECT prod_name FROM products LIMIT 5; -- 返回不多于5行 SELECT prod_name FROM products LIMIT 5,5; -- 返回从行5开始的5行，检索出的第一行为行0 SELECT prod_name FROM products LIMIT 4 OFFSET 3; -- 从行3开始取4行 SELECT products.prod_name FROM products; -- 使用完全限定的表名 三、排序检索数据 链接到标题 SELECT prod_name FROM products ORDER BY prod_name; -- 对prod_name以字母顺序排序 -- 多个行具有相同prod_price时，才对产品按prod_name进行排序，如果prod_price所有值唯一，则不会按prod_name排序。 SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price,prod_name; -- 首先对价格排序，在按名称排序 -- 默认进行升序排序，也可以指定ASC进行升序排序，但没必要 SElECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC; -- 对价格降序排序 -- 如果要对每个列进行降序排序，要对每个列指定DESC SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC, prod_name; -- 先对价格降序排序，在对名称排序 -- ORDER BY必须在FROM子句之后，LIMIT必须在ORDER BY子句之后 SELECT prod_price FROM products ORDER BY prod_price DESC LIMIT 1; -- 找出最贵的价格 四、过滤数据 链接到标题 ORDER BY 子句位于 WHERE 之后">
+  <meta property="og:description" content="MySQL 入门 @ MYSQL 入门知识 @ 此文是阅读 MYSQL 必知必会后整理的所有样例代码，仅供自用。
+一、MySQL 基础命令 @ use database; -- 打开数据库 show databases; -- 列出所有数据库 show tables; -- 列出数据库所有表 show columns from orders; -- 列出表内所有的列 describe orders; -- 列出表内所有的列 show status; -- 显示广泛的服务器状态信息 二、检索数据 @ USE sqltest; -- 使用数据库 SELECT prod_name FROM products; SELECT prod_id,prod_name,prod_price FROM products; -- 返回多列 SELECT * FROM products; -- 返回所有列 SELECT DISTINCT vend_id FROM products; -- 只返回不同的值，DISTINCT不能部分使用，其应用于所有列 SELECT prod_name FROM products LIMIT 5; -- 返回不多于5行 SELECT prod_name FROM products LIMIT 5,5; -- 返回从行5开始的5行，检索出的第一行为行0 SELECT prod_name FROM products LIMIT 4 OFFSET 3; -- 从行3开始取4行 SELECT products.prod_name FROM products; -- 使用完全限定的表名 三、排序检索数据 @ SELECT prod_name FROM products ORDER BY prod_name; -- 对prod_name以字母顺序排序 -- 多个行具有相同prod_price时，才对产品按prod_name进行排序，如果prod_price所有值唯一，则不会按prod_name排序。 SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price,prod_name; -- 首先对价格排序，在按名称排序 -- 默认进行升序排序，也可以指定ASC进行升序排序，但没必要 SElECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC; -- 对价格降序排序 -- 如果要对每个列进行降序排序，要对每个列指定DESC SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC, prod_name; -- 先对价格降序排序，在对名称排序 -- ORDER BY必须在FROM子句之后，LIMIT必须在ORDER BY子句之后 SELECT prod_price FROM products ORDER BY prod_price DESC LIMIT 1; -- 找出最贵的价格 四、过滤数据 @ ORDER BY 子句位于 WHERE 之后">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -243,7 +243,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -437,7 +437,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            120907 字
+            119171 字
           </span>
         </div>
         
@@ -467,8 +467,8 @@ code.has-jax {
 <h1 id="mysql-入门">
   MySQL 入门
   <a class="heading-link" href="#mysql-%e5%85%a5%e9%97%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -476,8 +476,8 @@ code.has-jax {
 <h1 id="mysql-入门知识">
   MYSQL 入门知识
   <a class="heading-link" href="#mysql-%e5%85%a5%e9%97%a8%e7%9f%a5%e8%af%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 <p>此文是阅读 MYSQL 必知必会后整理的所有样例代码，仅供自用。</p>
@@ -486,8 +486,8 @@ code.has-jax {
 <h2 id="一mysql-基础命令">
   一、MySQL 基础命令
   <a class="heading-link" href="#%e4%b8%80mysql-%e5%9f%ba%e7%a1%80%e5%91%bd%e4%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use database<span class="p">;</span>               -- 打开数据库
@@ -502,8 +502,8 @@ code.has-jax {
 <h2 id="二检索数据">
   二、检索数据
   <a class="heading-link" href="#%e4%ba%8c%e6%a3%80%e7%b4%a2%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">USE sqltest<span class="p">;</span>                                        -- 使用数据库
@@ -521,8 +521,8 @@ code.has-jax {
 <h2 id="三排序检索数据">
   三、排序检索数据
   <a class="heading-link" href="#%e4%b8%89%e6%8e%92%e5%ba%8f%e6%a3%80%e7%b4%a2%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT prod_name FROM products ORDER BY prod_name<span class="p">;</span>    -- 对prod_name以字母顺序排序
@@ -540,8 +540,8 @@ code.has-jax {
 <h2 id="四过滤数据">
   四、过滤数据
   <a class="heading-link" href="#%e5%9b%9b%e8%bf%87%e6%bb%a4%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>ORDER BY 子句位于 WHERE 之后</p>
@@ -560,8 +560,8 @@ code.has-jax {
 <h2 id="五数据过滤">
   五、数据过滤
   <a class="heading-link" href="#%e4%ba%94%e6%95%b0%e6%8d%ae%e8%bf%87%e6%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT prod_id,prod_price,prod_name FROM products WHERE <span class="nv">vend_id</span> <span class="o">=</span> <span class="m">1003</span> AND prod_price &lt;<span class="o">=</span> 10<span class="p">;</span>
@@ -580,8 +580,8 @@ code.has-jax {
 <h2 id="六使用通配符进行过滤">
   六、使用通配符进行过滤
   <a class="heading-link" href="#%e5%85%ad%e4%bd%bf%e7%94%a8%e9%80%9a%e9%85%8d%e7%ac%a6%e8%bf%9b%e8%a1%8c%e8%bf%87%e6%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>% 表示任何字符出现任意次数，根据 MySQL 的配置方式，搜索可以是区分大小写的！</p>
@@ -597,8 +597,8 @@ code.has-jax {
 <h2 id="七使用正则表达式搜索">
   七、使用正则表达式搜索
   <a class="heading-link" href="#%e4%b8%83%e4%bd%bf%e7%94%a8%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e6%90%9c%e7%b4%a2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT prod_name FROM products WHERE prod_name REGEXP <span class="s1">&#39;1000&#39;</span> ORDER BY prod_name<span class="p">;</span>        -- 使用正则表达式
@@ -616,8 +616,8 @@ code.has-jax {
 <h3 id="匹配字符类">
   匹配字符类
   <a class="heading-link" href="#%e5%8c%b9%e9%85%8d%e5%ad%97%e7%ac%a6%e7%b1%bb">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT vend_name FROM vendors WHERE vend_name REGEXP <span class="s1">&#39;[:alnum:]&#39;</span> ORDER BY vend_name<span class="p">;</span>
@@ -627,8 +627,8 @@ code.has-jax {
 <h3 id="匹配多个实例">
   匹配多个实例
   <a class="heading-link" href="#%e5%8c%b9%e9%85%8d%e5%a4%9a%e4%b8%aa%e5%ae%9e%e4%be%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT prod_name FROM products WHERE prod_name REGEXP <span class="s1">&#39;\\([0-9] sticks?\\)&#39;</span> ORDER BY prod_name<span class="p">;</span>    -- s后的？使s可选
@@ -642,8 +642,8 @@ code.has-jax {
 <h2 id="八创建计算字段">
   八、创建计算字段
   <a class="heading-link" href="#%e5%85%ab%e5%88%9b%e5%bb%ba%e8%ae%a1%e7%ae%97%e5%ad%97%e6%ae%b5">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT Concat<span class="o">(</span>vend_name,<span class="s1">&#39; (&#39;</span>,vend_country,<span class="s1">&#39;)&#39;</span><span class="o">)</span> FROM vendors ORDER BY vend_name<span class="p">;</span>    -- 拼接名称与国家
@@ -662,8 +662,8 @@ code.has-jax {
 <h2 id="九使用数据处理函数">
   九、使用数据处理函数
   <a class="heading-link" href="#%e4%b9%9d%e4%bd%bf%e7%94%a8%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86%e5%87%bd%e6%95%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -671,8 +671,8 @@ code.has-jax {
 <h3 id="数据处理函数">
   数据处理函数
   <a class="heading-link" href="#%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86%e5%87%bd%e6%95%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <table>
@@ -726,8 +726,8 @@ code.has-jax {
 <h3 id="文本处理函数">
   文本处理函数
   <a class="heading-link" href="#%e6%96%87%e6%9c%ac%e5%a4%84%e7%90%86%e5%87%bd%e6%95%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <table>
@@ -781,8 +781,8 @@ code.has-jax {
 <h3 id="日期时间处理函数">
   日期时间处理函数
   <a class="heading-link" href="#%e6%97%a5%e6%9c%9f%e6%97%b6%e9%97%b4%e5%a4%84%e7%90%86%e5%87%bd%e6%95%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <table>
@@ -877,8 +877,8 @@ code.has-jax {
 <h2 id="十汇总数据">
   十、汇总数据
   <a class="heading-link" href="#%e5%8d%81%e6%b1%87%e6%80%bb%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT AVG<span class="o">(</span>prod_price<span class="o">)</span> AS avg_price FROM products<span class="p">;</span>        -- 使用聚集函数，返回平均值
@@ -899,8 +899,8 @@ code.has-jax {
 <h2 id="十一分组数据">
   十一、分组数据
   <a class="heading-link" href="#%e5%8d%81%e4%b8%80%e5%88%86%e7%bb%84%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -908,8 +908,8 @@ code.has-jax {
 <h3 id="having-和-where-的区别">
   HAVING 和 WHERE 的区别
   <a class="heading-link" href="#having-%e5%92%8c-where-%e7%9a%84%e5%8c%ba%e5%88%ab">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -929,8 +929,8 @@ code.has-jax {
 <h2 id="十二子查询">
   十二、子查询
   <a class="heading-link" href="#%e5%8d%81%e4%ba%8c%e5%ad%90%e6%9f%a5%e8%af%a2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT cust_id FROM orders WHERE order_num IN <span class="o">(</span>SELECT order_num FROM orderitems WHERE <span class="nv">prod_id</span> <span class="o">=</span> <span class="s1">&#39;TNT2&#39;</span><span class="o">)</span><span class="p">;</span>
@@ -944,8 +944,8 @@ code.has-jax {
 <h2 id="十三联结表内部联结">
   十三、联结表,内部联结
   <a class="heading-link" href="#%e5%8d%81%e4%b8%89%e8%81%94%e7%bb%93%e8%a1%a8%e5%86%85%e9%83%a8%e8%81%94%e7%bb%93">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT vend_name,prod_name,prod_price FROM vendors,products 
@@ -966,8 +966,8 @@ code.has-jax {
 <h2 id="十四创建高级联结">
   十四、创建高级联结
   <a class="heading-link" href="#%e5%8d%81%e5%9b%9b%e5%88%9b%e5%bb%ba%e9%ab%98%e7%ba%a7%e8%81%94%e7%bb%93">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT cust_name,cust_contact FROM customers AS c, orders AS o, orderitems AS oi    -- 使用表别名
@@ -980,8 +980,8 @@ code.has-jax {
 <h3 id="自联结">
   自联结
   <a class="heading-link" href="#%e8%87%aa%e8%81%94%e7%bb%93">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-- 自然联结排除多次出现，使每个列只返回一次
@@ -997,8 +997,8 @@ code.has-jax {
 <h3 id="外部联结">
   外部联结
   <a class="heading-link" href="#%e5%a4%96%e9%83%a8%e8%81%94%e7%bb%93">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1015,8 +1015,8 @@ code.has-jax {
 <h3 id="带聚集函数的联结">
   带聚集函数的联结
   <a class="heading-link" href="#%e5%b8%a6%e8%81%9a%e9%9b%86%e5%87%bd%e6%95%b0%e7%9a%84%e8%81%94%e7%bb%93">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>检索所有客户及每个客户所下的订单数</p>
@@ -1030,8 +1030,8 @@ code.has-jax {
 <h2 id="十五组合查询">
   十五、组合查询
   <a class="heading-link" href="#%e5%8d%81%e4%ba%94%e7%bb%84%e5%90%88%e6%9f%a5%e8%af%a2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SELECT vend_id,prod_id,prod_price FROM products WHERE prod_price &lt;<span class="o">=</span> <span class="m">5</span>
@@ -1053,8 +1053,8 @@ code.has-jax {
 <h2 id="十六全文本搜索">
   十六、全文本搜索
   <a class="heading-link" href="#%e5%8d%81%e5%85%ad%e5%85%a8%e6%96%87%e6%9c%ac%e6%90%9c%e7%b4%a2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>MySQL 常用的引擎为 MyISAM 和 InnoDB，前者支持全文本搜索，后者不支持.</p>
@@ -1073,8 +1073,8 @@ code.has-jax {
 <h3 id="全文本搜索">
   全文本搜索
   <a class="heading-link" href="#%e5%85%a8%e6%96%87%e6%9c%ac%e6%90%9c%e7%b4%a2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-- Match指定被搜索的列，Against指定要使用的搜索表达式
@@ -1093,8 +1093,8 @@ code.has-jax {
 <h3 id="布尔文本搜索">
   布尔文本搜索
   <a class="heading-link" href="#%e5%b8%83%e5%b0%94%e6%96%87%e6%9c%ac%e6%90%9c%e7%b4%a2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>索引全文本数据时，短词被忽略且从索引中排除，短词为具有 3 个或以下字符的词(这个数目可以改).</p>
@@ -1135,8 +1135,8 @@ code.has-jax {
 <h2 id="十七插入数据">
   十七、插入数据
   <a class="heading-link" href="#%e5%8d%81%e4%b8%83%e6%8f%92%e5%85%a5%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <ul>
@@ -1155,8 +1155,8 @@ code.has-jax {
 <h3 id="插入多条数据">
   插入多条数据
   <a class="heading-link" href="#%e6%8f%92%e5%85%a5%e5%a4%9a%e6%9d%a1%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">INSERT INTO customers<span class="o">(</span>cust_name,cust_address,cust_city,cust_state,cust_zip,cust_country<span class="o">)</span>
@@ -1167,8 +1167,8 @@ code.has-jax {
 <h3 id="创建-custnew-表">
   创建 custnew 表
   <a class="heading-link" href="#%e5%88%9b%e5%bb%ba-custnew-%e8%a1%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">CREATE TABLE custnew
@@ -1202,8 +1202,8 @@ code.has-jax {
 <h2 id="十八更新和删除数据">
   十八、更新和删除数据
   <a class="heading-link" href="#%e5%8d%81%e5%85%ab%e6%9b%b4%e6%96%b0%e5%92%8c%e5%88%a0%e9%99%a4%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -1211,8 +1211,8 @@ code.has-jax {
 <h3 id="更新数据">
   更新数据
   <a class="heading-link" href="#%e6%9b%b4%e6%96%b0%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>UPDATE 语句中可以使用子查询.</p>
@@ -1226,8 +1226,8 @@ code.has-jax {
 <h3 id="删除数据">
   删除数据
   <a class="heading-link" href="#%e5%88%a0%e9%99%a4%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DELETE FROM customers WHERE <span class="nv">cust_id</span> <span class="o">=</span> 10006<span class="p">;</span>    -- 删除一行
@@ -1237,8 +1237,8 @@ code.has-jax {
 <h2 id="十九创建表和操纵表">
   十九、创建表和操纵表
   <a class="heading-link" href="#%e5%8d%81%e4%b9%9d%e5%88%9b%e5%bb%ba%e8%a1%a8%e5%92%8c%e6%93%8d%e7%ba%b5%e8%a1%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -1246,8 +1246,8 @@ code.has-jax {
 <h3 id="创建表">
   创建表
   <a class="heading-link" href="#%e5%88%9b%e5%bb%ba%e8%a1%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1294,8 +1294,8 @@ code.has-jax {
 <h3 id="引擎介绍">
   引擎介绍
   <a class="heading-link" href="#%e5%bc%95%e6%93%8e%e4%bb%8b%e7%bb%8d">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1309,8 +1309,8 @@ code.has-jax {
 <h3 id="更新表">
   更新表
   <a class="heading-link" href="#%e6%9b%b4%e6%96%b0%e8%a1%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>理想状态下，当该表存了数据之后，就不应该被更新</p>
@@ -1330,8 +1330,8 @@ code.has-jax {
 <h3 id="删除表">
   删除表
   <a class="heading-link" href="#%e5%88%a0%e9%99%a4%e8%a1%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DROP TABLE customers2<span class="p">;</span>
@@ -1340,8 +1340,8 @@ code.has-jax {
 <h3 id="重命名表">
   重命名表
   <a class="heading-link" href="#%e9%87%8d%e5%91%bd%e5%90%8d%e8%a1%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">RENAME TABLE customer2 TO customers<span class="p">;</span>
@@ -1353,8 +1353,8 @@ code.has-jax {
 <h2 id="二十视图">
   二十、视图
   <a class="heading-link" href="#%e4%ba%8c%e5%8d%81%e8%a7%86%e5%9b%be">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <ul>
@@ -1367,8 +1367,8 @@ code.has-jax {
 <h3 id="视图的规则">
   视图的规则
   <a class="heading-link" href="#%e8%a7%86%e5%9b%be%e7%9a%84%e8%a7%84%e5%88%99">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1387,8 +1387,8 @@ code.has-jax {
 <h3 id="使用视图简化复杂联结">
   使用视图简化复杂联结
   <a class="heading-link" href="#%e4%bd%bf%e7%94%a8%e8%a7%86%e5%9b%be%e7%ae%80%e5%8c%96%e5%a4%8d%e6%9d%82%e8%81%94%e7%bb%93">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">CREATE VIEW productcustomers AS SELECT cust_name,cust_contact,prod_id    -- 联结三个表，以返回已订购了任意产品的所有客户的列表。
@@ -1401,8 +1401,8 @@ code.has-jax {
 <h3 id="用视图格式化检索的数据">
   用视图格式化检索的数据
   <a class="heading-link" href="#%e7%94%a8%e8%a7%86%e5%9b%be%e6%a0%bc%e5%bc%8f%e5%8c%96%e6%a3%80%e7%b4%a2%e7%9a%84%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">CREATE VIEW vendorlocations AS 
@@ -1414,8 +1414,8 @@ code.has-jax {
 <h3 id="用视图过滤不要的数据">
   用视图过滤不要的数据
   <a class="heading-link" href="#%e7%94%a8%e8%a7%86%e5%9b%be%e8%bf%87%e6%bb%a4%e4%b8%8d%e8%a6%81%e7%9a%84%e6%95%b0%e6%8d%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">CREATE VIEW customeremaillist AS SELECT cust_id,cust_name,cust_email
@@ -1426,8 +1426,8 @@ code.has-jax {
 <h3 id="使用视图与计算字段">
   使用视图与计算字段
   <a class="heading-link" href="#%e4%bd%bf%e7%94%a8%e8%a7%86%e5%9b%be%e4%b8%8e%e8%ae%a1%e7%ae%97%e5%ad%97%e6%ae%b5">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">CREATE VIEW orderitemsexpanded AS SELECT order_num,prod_id,quantity,item_price,quantity*item_price 
@@ -1438,8 +1438,8 @@ code.has-jax {
 <h3 id="更新视图">
   更新视图
   <a class="heading-link" href="#%e6%9b%b4%e6%96%b0%e8%a7%86%e5%9b%be">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1454,8 +1454,8 @@ code.has-jax {
 <h2 id="二十一存储过程">
   二十一、存储过程
   <a class="heading-link" href="#%e4%ba%8c%e5%8d%81%e4%b8%80%e5%ad%98%e5%82%a8%e8%bf%87%e7%a8%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <ul>
@@ -1530,8 +1530,8 @@ code.has-jax {
 <h2 id="二十二游标">
   二十二、游标
   <a class="heading-link" href="#%e4%ba%8c%e5%8d%81%e4%ba%8c%e6%b8%b8%e6%a0%87">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>游标是一个存储在 MySql 服务器上的数据库查询，主要用于交互式应用，用户需要滚动屏幕上的数据。</p>
@@ -1541,8 +1541,8 @@ code.has-jax {
 <h3 id="使用游标涉及的步骤">
   使用游标涉及的步骤
   <a class="heading-link" href="#%e4%bd%bf%e7%94%a8%e6%b8%b8%e6%a0%87%e6%b6%89%e5%8f%8a%e7%9a%84%e6%ad%a5%e9%aa%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1614,8 +1614,8 @@ code.has-jax {
 <h2 id="二十三触发器">
   二十三、触发器
   <a class="heading-link" href="#%e4%ba%8c%e5%8d%81%e4%b8%89%e8%a7%a6%e5%8f%91%e5%99%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>如果需要某些语句在事件发生时自动执行，就需要使用触发器。</p>
@@ -1637,8 +1637,8 @@ code.has-jax {
 <h3 id="insert-触发器">
   INSERT 触发器
   <a class="heading-link" href="#insert-%e8%a7%a6%e5%8f%91%e5%99%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1658,8 +1658,8 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 <h3 id="delete-触发器">
   DELETE 触发器
   <a class="heading-link" href="#delete-%e8%a7%a6%e5%8f%91%e5%99%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1688,8 +1688,8 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 <h3 id="update-触发器">
   UPDATE 触发器
   <a class="heading-link" href="#update-%e8%a7%a6%e5%8f%91%e5%99%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1707,8 +1707,8 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 <h2 id="二十四事务">
   二十四、事务
   <a class="heading-link" href="#%e4%ba%8c%e5%8d%81%e5%9b%9b%e4%ba%8b%e5%8a%a1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>事务处理可以用来维护数据库的完整性，它保证成批的 MySql 操作要么完全执行，要么完全不执行。</p>
@@ -1717,8 +1717,8 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 <h3 id="概念解释">
   概念解释
   <a class="heading-link" href="#%e6%a6%82%e5%bf%b5%e8%a7%a3%e9%87%8a">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1755,8 +1755,8 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 <h2 id="二十五全球化和本地化">
   二十五、全球化和本地化
   <a class="heading-link" href="#%e4%ba%8c%e5%8d%81%e4%ba%94%e5%85%a8%e7%90%83%e5%8c%96%e5%92%8c%e6%9c%ac%e5%9c%b0%e5%8c%96">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>不同语言和字符集需要以不同的方式存储和检索。</p>
@@ -1765,8 +1765,8 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 <h3 id="概念解释-1">
   概念解释
   <a class="heading-link" href="#%e6%a6%82%e5%bf%b5%e8%a7%a3%e9%87%8a-1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1796,8 +1796,8 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 <h2 id="二十六安全管理">
   二十六、安全管理
   <a class="heading-link" href="#%e4%ba%8c%e5%8d%81%e5%85%ad%e5%ae%89%e5%85%a8%e7%ae%a1%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>MYSQL 用户账号和信息存储在名为 mysql 的 MYSQL 数据库中。</p>
@@ -1823,8 +1823,8 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 <h2 id="二十七数据库维护">
   二十七、数据库维护
   <a class="heading-link" href="#%e4%ba%8c%e5%8d%81%e4%b8%83%e6%95%b0%e6%8d%ae%e5%ba%93%e7%bb%b4%e6%8a%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <ul>
@@ -1853,8 +1853,8 @@ FOR EACH ROW SELECT NEW.order_num INTO @temp1; — 插入数据到 orders 表后
 <h2 id="三十改善性能">
   三十、改善性能
   <a class="heading-link" href="#%e4%b8%89%e5%8d%81%e6%94%b9%e5%96%84%e6%80%a7%e8%83%bd">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <ul>

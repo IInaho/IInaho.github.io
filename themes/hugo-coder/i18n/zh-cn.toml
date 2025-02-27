@@ -61,4 +61,4 @@ other = "警告"
 other = "错误"
 
 [link_to_heading]
-other = "链接到标题"
+other = "@"

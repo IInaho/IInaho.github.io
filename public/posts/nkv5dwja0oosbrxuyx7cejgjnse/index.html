@@ -24,7 +24,7 @@
   字符串
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@
   串的定义
   
     
-    链接到标题
+    @
   
 
 串(String)(或字符串)是由零个或多个字符组成的有限序列,一般记为
@@ -50,7 +50,7 @@ $$ s = a_1a_2 \cdots a_n \quad(n \geq 0) $$
   串的抽象类型定义
   
     
-    链接到标题
+    @
   
 
 StrAssign(&amp;T,Chars)        //chars是字符串常量，生成一个其值等于chars的串T
@@ -72,7 +72,7 @@ DestroyString(&amp;S)        //串存在，销魂串
   串的存储结构
   
     
-    链接到标题
+    @
   
 
 
@@ -81,7 +81,7 @@ DestroyString(&amp;S)        //串存在，销魂串
   串的顺序存储
   
     
-    链接到标题
+    @
   
 
 
@@ -90,7 +90,7 @@ DestroyString(&amp;S)        //串存在，销魂串
   串的定长顺序存储结构
   
     
-    链接到标题
+    @
   
 
 #define MAXLEN 255
@@ -104,7 +104,7 @@ typedef struct{
   串的堆式顺序存储结构
   
     
-    链接到标题
+    @
   
 
 typedef struct{
@@ -117,7 +117,7 @@ typedef struct{
   串的顺序存储简易代码
   
     
-    链接到标题
+    @
   
 
 用一组地址连续的存储单元存储串的字符序列，为了根据实际需要，在程序执行过程中动态分配和释放字符数组空间，使用堆式顺序存储结构。">
@@ -130,16 +130,16 @@ typedef struct{
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="串、数组和广义表">
-  <meta name="twitter:description" content="字符串 链接到标题 串的定义 链接到标题 串(String)(或字符串)是由零个或多个字符组成的有限序列,一般记为
+  <meta name="twitter:description" content="字符串 @ 串的定义 @ 串(String)(或字符串)是由零个或多个字符组成的有限序列,一般记为
 $$ s = a_1a_2 \cdots a_n \quad(n \geq 0) $$
-串中字符的数目 n 称为串的长度，零个字符的串称为空串，长度为零。 串中任意个连续的字符组成的子序列称为该串的子串，包含子串的串相应地称为主串。 两个串长度相等，并且各个对应位置的字符都相等时才相等。 一个或多个空格组成的串称为空格串 串的抽象类型定义 链接到标题 StrAssign(&amp;T,Chars) //chars是字符串常量，生成一个其值等于chars的串T StrCopy(&amp;T,S) //串存在，由串S复制得串T StrEmpty(S) //串存在，判断S是否为空串 StrCompare(S,T) //串S与T存在，若S&gt;T返回值&gt;0,S=T,返回值=0，S&lt;T,返回值&lt;0 StrLength(S) //串存在，返回S的元素个数，称为串的长度 ClearString(&amp;S) //串存在，将S清为空串 Concat(&amp;T,S1,S2) //串S1与S2存在，用T返回S1与S2拼接的新串 SubString(&amp;Sub,S,pos,len) //串存在，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=Strlength(S)-pos&#43;1，用Sub返回串S的第pos个字串起长度为len的字串 Index(S,T,pos) //串S和T存在，T是非空串，1&lt;=pos&lt;=StrLength(S)，若主串S中存在和串T值相同的字串，则返回它在主串S中第pos个字符之后第一次出现的位置，否则函数值为0 Replace(&amp;S,T,V) //S,T,V存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的字串 StrInsert(&amp;S,pos,T) //串S与T存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的子串 StrDelete(&amp;S,pos,len) //串S存在，1&lt;=pos&lt;=StrLength(S)-len&#43;1，从串S中删除第pos个字符起长度为len的字串 DestroyString(&amp;S) //串存在，销魂串 串的存储结构 链接到标题 串的顺序存储 链接到标题 串的定长顺序存储结构 链接到标题 #define MAXLEN 255 typedef struct{ char ch[MAXLEN&#43;1]; //储存串的一维数组 int length; //串的长度 }SString; 串的堆式顺序存储结构 链接到标题 typedef struct{ char *ch; //若是非空串，则按串长分配存储区，否则ch为NULL int length; //串的当前长度 }HString; 串的顺序存储简易代码 链接到标题 用一组地址连续的存储单元存储串的字符序列，为了根据实际需要，在程序执行过程中动态分配和释放字符数组空间，使用堆式顺序存储结构。">
+串中字符的数目 n 称为串的长度，零个字符的串称为空串，长度为零。 串中任意个连续的字符组成的子序列称为该串的子串，包含子串的串相应地称为主串。 两个串长度相等，并且各个对应位置的字符都相等时才相等。 一个或多个空格组成的串称为空格串 串的抽象类型定义 @ StrAssign(&amp;T,Chars) //chars是字符串常量，生成一个其值等于chars的串T StrCopy(&amp;T,S) //串存在，由串S复制得串T StrEmpty(S) //串存在，判断S是否为空串 StrCompare(S,T) //串S与T存在，若S&gt;T返回值&gt;0,S=T,返回值=0，S&lt;T,返回值&lt;0 StrLength(S) //串存在，返回S的元素个数，称为串的长度 ClearString(&amp;S) //串存在，将S清为空串 Concat(&amp;T,S1,S2) //串S1与S2存在，用T返回S1与S2拼接的新串 SubString(&amp;Sub,S,pos,len) //串存在，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=Strlength(S)-pos&#43;1，用Sub返回串S的第pos个字串起长度为len的字串 Index(S,T,pos) //串S和T存在，T是非空串，1&lt;=pos&lt;=StrLength(S)，若主串S中存在和串T值相同的字串，则返回它在主串S中第pos个字符之后第一次出现的位置，否则函数值为0 Replace(&amp;S,T,V) //S,T,V存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的字串 StrInsert(&amp;S,pos,T) //串S与T存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的子串 StrDelete(&amp;S,pos,len) //串S存在，1&lt;=pos&lt;=StrLength(S)-len&#43;1，从串S中删除第pos个字符起长度为len的字串 DestroyString(&amp;S) //串存在，销魂串 串的存储结构 @ 串的顺序存储 @ 串的定长顺序存储结构 @ #define MAXLEN 255 typedef struct{ char ch[MAXLEN&#43;1]; //储存串的一维数组 int length; //串的长度 }SString; 串的堆式顺序存储结构 @ typedef struct{ char *ch; //若是非空串，则按串长分配存储区，否则ch为NULL int length; //串的当前长度 }HString; 串的顺序存储简易代码 @ 用一组地址连续的存储单元存储串的字符序列，为了根据实际需要，在程序执行过程中动态分配和释放字符数组空间，使用堆式顺序存储结构。">
  
 <meta property="og:url" content="//localhost:1313/posts/nkv5dwja0oosbrxuyx7cejgjnse/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="串、数组和广义表">
-  <meta property="og:description" content="字符串 链接到标题 串的定义 链接到标题 串(String)(或字符串)是由零个或多个字符组成的有限序列,一般记为
+  <meta property="og:description" content="字符串 @ 串的定义 @ 串(String)(或字符串)是由零个或多个字符组成的有限序列,一般记为
 $$ s = a_1a_2 \cdots a_n \quad(n \geq 0) $$
-串中字符的数目 n 称为串的长度，零个字符的串称为空串，长度为零。 串中任意个连续的字符组成的子序列称为该串的子串，包含子串的串相应地称为主串。 两个串长度相等，并且各个对应位置的字符都相等时才相等。 一个或多个空格组成的串称为空格串 串的抽象类型定义 链接到标题 StrAssign(&amp;T,Chars) //chars是字符串常量，生成一个其值等于chars的串T StrCopy(&amp;T,S) //串存在，由串S复制得串T StrEmpty(S) //串存在，判断S是否为空串 StrCompare(S,T) //串S与T存在，若S&gt;T返回值&gt;0,S=T,返回值=0，S&lt;T,返回值&lt;0 StrLength(S) //串存在，返回S的元素个数，称为串的长度 ClearString(&amp;S) //串存在，将S清为空串 Concat(&amp;T,S1,S2) //串S1与S2存在，用T返回S1与S2拼接的新串 SubString(&amp;Sub,S,pos,len) //串存在，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=Strlength(S)-pos&#43;1，用Sub返回串S的第pos个字串起长度为len的字串 Index(S,T,pos) //串S和T存在，T是非空串，1&lt;=pos&lt;=StrLength(S)，若主串S中存在和串T值相同的字串，则返回它在主串S中第pos个字符之后第一次出现的位置，否则函数值为0 Replace(&amp;S,T,V) //S,T,V存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的字串 StrInsert(&amp;S,pos,T) //串S与T存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的子串 StrDelete(&amp;S,pos,len) //串S存在，1&lt;=pos&lt;=StrLength(S)-len&#43;1，从串S中删除第pos个字符起长度为len的字串 DestroyString(&amp;S) //串存在，销魂串 串的存储结构 链接到标题 串的顺序存储 链接到标题 串的定长顺序存储结构 链接到标题 #define MAXLEN 255 typedef struct{ char ch[MAXLEN&#43;1]; //储存串的一维数组 int length; //串的长度 }SString; 串的堆式顺序存储结构 链接到标题 typedef struct{ char *ch; //若是非空串，则按串长分配存储区，否则ch为NULL int length; //串的当前长度 }HString; 串的顺序存储简易代码 链接到标题 用一组地址连续的存储单元存储串的字符序列，为了根据实际需要，在程序执行过程中动态分配和释放字符数组空间，使用堆式顺序存储结构。">
+串中字符的数目 n 称为串的长度，零个字符的串称为空串，长度为零。 串中任意个连续的字符组成的子序列称为该串的子串，包含子串的串相应地称为主串。 两个串长度相等，并且各个对应位置的字符都相等时才相等。 一个或多个空格组成的串称为空格串 串的抽象类型定义 @ StrAssign(&amp;T,Chars) //chars是字符串常量，生成一个其值等于chars的串T StrCopy(&amp;T,S) //串存在，由串S复制得串T StrEmpty(S) //串存在，判断S是否为空串 StrCompare(S,T) //串S与T存在，若S&gt;T返回值&gt;0,S=T,返回值=0，S&lt;T,返回值&lt;0 StrLength(S) //串存在，返回S的元素个数，称为串的长度 ClearString(&amp;S) //串存在，将S清为空串 Concat(&amp;T,S1,S2) //串S1与S2存在，用T返回S1与S2拼接的新串 SubString(&amp;Sub,S,pos,len) //串存在，1&lt;=pos&lt;=StrLength(S)且0&lt;=len&lt;=Strlength(S)-pos&#43;1，用Sub返回串S的第pos个字串起长度为len的字串 Index(S,T,pos) //串S和T存在，T是非空串，1&lt;=pos&lt;=StrLength(S)，若主串S中存在和串T值相同的字串，则返回它在主串S中第pos个字符之后第一次出现的位置，否则函数值为0 Replace(&amp;S,T,V) //S,T,V存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的字串 StrInsert(&amp;S,pos,T) //串S与T存在，T是非空串，用V替换主串S中出现的所有与T相等的不重叠的子串 StrDelete(&amp;S,pos,len) //串S存在，1&lt;=pos&lt;=StrLength(S)-len&#43;1，从串S中删除第pos个字符起长度为len的字串 DestroyString(&amp;S) //串存在，销魂串 串的存储结构 @ 串的顺序存储 @ 串的定长顺序存储结构 @ #define MAXLEN 255 typedef struct{ char ch[MAXLEN&#43;1]; //储存串的一维数组 int length; //串的长度 }SString; 串的堆式顺序存储结构 @ typedef struct{ char *ch; //若是非空串，则按串长分配存储区，否则ch为NULL int length; //串的当前长度 }HString; 串的顺序存储简易代码 @ 用一组地址连续的存储单元存储串的字符序列，为了根据实际需要，在程序执行过程中动态分配和释放字符数组空间，使用堆式顺序存储结构。">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -272,7 +272,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -431,7 +431,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            137373 字
+            136449 字
           </span>
         </div>
         
@@ -461,8 +461,8 @@ code.has-jax {
 <h1 id="字符串">
   字符串
   <a class="heading-link" href="#%e5%ad%97%e7%ac%a6%e4%b8%b2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -470,8 +470,8 @@ code.has-jax {
 <h2 id="串的定义">
   串的定义
   <a class="heading-link" href="#%e4%b8%b2%e7%9a%84%e5%ae%9a%e4%b9%89">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>串(String)(或字符串)是由零个或多个字符组成的有限序列,一般记为</p>
@@ -487,8 +487,8 @@ code.has-jax {
 <h2 id="串的抽象类型定义">
   串的抽象类型定义
   <a class="heading-link" href="#%e4%b8%b2%e7%9a%84%e6%8a%bd%e8%b1%a1%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">StrAssign</span><span class="p">(</span><span class="o">&amp;</span><span class="n">T</span><span class="p">,</span><span class="n">Chars</span><span class="p">)</span>        <span class="c1">//chars是字符串常量，生成一个其值等于chars的串T
@@ -509,8 +509,8 @@ code.has-jax {
 <h2 id="串的存储结构">
   串的存储结构
   <a class="heading-link" href="#%e4%b8%b2%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -518,8 +518,8 @@ code.has-jax {
 <h3 id="串的顺序存储">
   串的顺序存储
   <a class="heading-link" href="#%e4%b8%b2%e7%9a%84%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 
@@ -527,8 +527,8 @@ code.has-jax {
 <h4 id="串的定长顺序存储结构">
   串的定长顺序存储结构
   <a class="heading-link" href="#%e4%b8%b2%e7%9a%84%e5%ae%9a%e9%95%bf%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAXLEN 255
@@ -541,8 +541,8 @@ code.has-jax {
 <h4 id="串的堆式顺序存储结构">
   串的堆式顺序存储结构
   <a class="heading-link" href="#%e4%b8%b2%e7%9a%84%e5%a0%86%e5%bc%8f%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span>
@@ -554,8 +554,8 @@ code.has-jax {
 <h3 id="串的顺序存储简易代码">
   串的顺序存储简易代码
   <a class="heading-link" href="#%e4%b8%b2%e7%9a%84%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8%e7%ae%80%e6%98%93%e4%bb%a3%e7%a0%81">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>用一组地址连续的存储单元存储串的字符序列，为了根据实际需要，在程序执行过程中动态分配和释放字符数组空间，使用堆式顺序存储结构。</p>
@@ -671,8 +671,8 @@ code.has-jax {
 <h3 id="串的链式存储结构">
   串的链式存储结构
   <a class="heading-link" href="#%e4%b8%b2%e7%9a%84%e9%93%be%e5%bc%8f%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>顺序串插入与删除并不方便，需要移动大量字符，因此使用单链表方式存储串。</p>
@@ -858,8 +858,8 @@ code.has-jax {
 <h3 id="串的模式匹配算法">
   串的模式匹配算法
   <a class="heading-link" href="#%e4%b8%b2%e7%9a%84%e6%a8%a1%e5%bc%8f%e5%8c%b9%e9%85%8d%e7%ae%97%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>字串的定位运算通常称为串的模式匹配或串匹配。</p>
@@ -873,8 +873,8 @@ code.has-jax {
 <h4 id="bf-算法">
   BF 算法
   <a class="heading-link" href="#bf-%e7%ae%97%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>模式匹算法配不一定是从主串的第一个位置开始，可以指定主串中查找的起始位置 pos，如果采用字符串顺序存储结构，可以写出不依赖于其他串操作的匹配算法。</p>
@@ -929,8 +929,8 @@ code.has-jax {
 <h4 id="kmp-算法">
   KMP 算法
   <a class="heading-link" href="#kmp-%e7%ae%97%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <ul>
@@ -983,8 +983,8 @@ code.has-jax {
 <h1 id="数组">
   数组
   <a class="heading-link" href="#%e6%95%b0%e7%bb%84">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -992,8 +992,8 @@ code.has-jax {
 <h2 id="数组类型的定义">
   数组类型的定义
   <a class="heading-link" href="#%e6%95%b0%e7%bb%84%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%ae%9a%e4%b9%89">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <ul>
@@ -1009,8 +1009,8 @@ code.has-jax {
 <h3 id="抽象数据类型-adt-定义">
   抽象数据类型 ADT 定义
   <a class="heading-link" href="#%e6%8a%bd%e8%b1%a1%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b-adt-%e5%ae%9a%e4%b9%89">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">InitArray</span><span class="p">(</span><span class="o">&amp;</span><span class="n">A</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">boundi</span><span class="p">,...,</span><span class="n">boundn</span><span class="p">)</span>    <span class="c1">//若维数n与各维长度合法，构造相应的数组A
@@ -1022,8 +1022,8 @@ code.has-jax {
 <h2 id="数组的顺序存储">
   数组的顺序存储
   <a class="heading-link" href="#%e6%95%b0%e7%bb%84%e7%9a%84%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>假设每个数据元素占 L 个存储单元，则二维数组 A[0..m-1,0..n-1] (即从下标开始一共 m 行 n 列)中任一元素 aijaij 的存储位置可由下式确定</p>
@@ -1039,8 +1039,8 @@ code.has-jax {
 <h2 id="特殊矩阵的压缩处理">
   <strong>特殊矩阵的压缩处理</strong>
   <a class="heading-link" href="#%e7%89%b9%e6%ae%8a%e7%9f%a9%e9%98%b5%e7%9a%84%e5%8e%8b%e7%bc%a9%e5%a4%84%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -1048,8 +1048,8 @@ code.has-jax {
 <h3 id="对称矩阵">
   <strong>对称矩阵</strong>
   <a class="heading-link" href="#%e5%af%b9%e7%a7%b0%e7%9f%a9%e9%98%b5">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1064,8 +1064,8 @@ code.has-jax {
 <h3 id="三角矩阵">
   <strong>三角矩阵</strong>
   <a class="heading-link" href="#%e4%b8%89%e8%a7%92%e7%9f%a9%e9%98%b5">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 
@@ -1073,8 +1073,8 @@ code.has-jax {
 <h4 id="n-阶上三角矩阵压缩矩阵与原矩阵的对应关系为">
   <strong>n 阶上三角矩阵，压缩矩阵与原矩阵的对应关系为</strong>
   <a class="heading-link" href="#n-%e9%98%b6%e4%b8%8a%e4%b8%89%e8%a7%92%e7%9f%a9%e9%98%b5%e5%8e%8b%e7%bc%a9%e7%9f%a9%e9%98%b5%e4%b8%8e%e5%8e%9f%e7%9f%a9%e9%98%b5%e7%9a%84%e5%af%b9%e5%ba%94%e5%85%b3%e7%b3%bb%e4%b8%ba">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p><code>$$ A_{ij} = b_{((i-1)(2n-i+2)/2)+(j-i)}, (i \leq j) $$</code></p>
@@ -1084,8 +1084,8 @@ code.has-jax {
 <h4 id="n-阶下三角矩阵压缩矩阵与原矩阵的对应关系为">
   <strong>n 阶下三角矩阵，压缩矩阵与原矩阵的对应关系为</strong>
   <a class="heading-link" href="#n-%e9%98%b6%e4%b8%8b%e4%b8%89%e8%a7%92%e7%9f%a9%e9%98%b5%e5%8e%8b%e7%bc%a9%e7%9f%a9%e9%98%b5%e4%b8%8e%e5%8e%9f%e7%9f%a9%e9%98%b5%e7%9a%84%e5%af%b9%e5%ba%94%e5%85%b3%e7%b3%bb%e4%b8%ba">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p><code>$$ A_{ij} = b_{((i(i-1)/2)+j-1)}, (i \geq j) $$</code></p>
@@ -1098,8 +1098,8 @@ code.has-jax {
 <h3 id="对角矩阵">
   <strong>对角矩阵</strong>
   <a class="heading-link" href="#%e5%af%b9%e8%a7%92%e7%9f%a9%e9%98%b5">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1111,8 +1111,8 @@ code.has-jax {
 <h4 id="对称矩阵压缩代码示例">
   对称矩阵压缩代码示例
   <a class="heading-link" href="#%e5%af%b9%e7%a7%b0%e7%9f%a9%e9%98%b5%e5%8e%8b%e7%bc%a9%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* 假设矩阵需要压缩存储
@@ -1153,8 +1153,8 @@ code.has-jax {
 <h4 id="三角矩阵定义示例">
   三角矩阵定义示例
   <a class="heading-link" href="#%e4%b8%89%e8%a7%92%e7%9f%a9%e9%98%b5%e5%ae%9a%e4%b9%89%e7%a4%ba%e4%be%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define N 6
@@ -1167,8 +1167,8 @@ code.has-jax {
 <h2 id="稀疏矩阵">
   稀疏矩阵
   <a class="heading-link" href="#%e7%a8%80%e7%96%8f%e7%9f%a9%e9%98%b5">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>稀疏矩阵是指其非零元较零元少，且分布没有一定规律，称之为稀疏矩阵。</p>
@@ -1182,8 +1182,8 @@ code.has-jax {
 <h3 id="三元组压缩存储">
   三元组压缩存储
   <a class="heading-link" href="#%e4%b8%89%e5%85%83%e7%bb%84%e5%8e%8b%e7%bc%a9%e5%ad%98%e5%82%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>由于稀疏矩阵零元较多，如果采取普通的矩阵存储，会浪费大量的存储空间，因此引出三元组存储方法，只需要存储非零元的值即可，因此需要存储非零元的横列下标以及对应的值。</p>
@@ -1203,8 +1203,8 @@ code.has-jax {
 <h4 id="三元组存稀疏矩阵代码示例">
   三元组存稀疏矩阵代码示例
   <a class="heading-link" href="#%e4%b8%89%e5%85%83%e7%bb%84%e5%ad%98%e7%a8%80%e7%96%8f%e7%9f%a9%e9%98%b5%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/*以下稀疏矩阵为例
@@ -1269,8 +1269,8 @@ code.has-jax {
 <h3 id="十字链表">
   十字链表
   <a class="heading-link" href="#%e5%8d%81%e5%ad%97%e9%93%be%e8%a1%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>十字链表也可以对稀疏矩阵进行压缩存储，对于压缩存储稀疏矩阵，无论是使用三元组顺序表，还是使用行逻辑链接的顺序表，归根结底是使用数组存储稀疏矩阵。</p>
@@ -1282,8 +1282,8 @@ code.has-jax {
 <h1 id="广义表">
   广义表
   <a class="heading-link" href="#%e5%b9%bf%e4%b9%89%e8%a1%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -1291,8 +1291,8 @@ code.has-jax {
 <h2 id="广义表的定义">
   广义表的定义
   <a class="heading-link" href="#%e5%b9%bf%e4%b9%89%e8%a1%a8%e7%9a%84%e5%ae%9a%e4%b9%89">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>广义表是线性表的推广，也称为列表，广义表一般记作</p>
@@ -1310,8 +1310,8 @@ code.has-jax {
 <h2 id="广义表的重要结论">
   广义表的重要结论
   <a class="heading-link" href="#%e5%b9%bf%e4%b9%89%e8%a1%a8%e7%9a%84%e9%87%8d%e8%a6%81%e7%bb%93%e8%ae%ba">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <ol>
@@ -1327,8 +1327,8 @@ code.has-jax {
 <h2 id="广义表的运算及定义">
   广义表的运算及定义
   <a class="heading-link" href="#%e5%b9%bf%e4%b9%89%e8%a1%a8%e7%9a%84%e8%bf%90%e7%ae%97%e5%8f%8a%e5%ae%9a%e4%b9%89">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">GetLength</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g</span><span class="p">)</span> <span class="c1">//求广义表的长度
@@ -1360,8 +1360,8 @@ code.has-jax {
 <h2 id="广义表的存储结构">
   广义表的存储结构
   <a class="heading-link" href="#%e5%b9%bf%e4%b9%89%e8%a1%a8%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>广义表的数据元素有不同的结构，因此一般使用链式存储结构，常用的链式存储结构有两种：</p>
@@ -1402,8 +1402,8 @@ code.has-jax {
       <h3 id="参见-数据结构相关文章">
         参见 数据结构相关文章
         <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
-          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-          <span class="sr-only">链接到标题</span>
+          <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+          <span class="sr-only">@</span>
         </a>
       </h3>
       <nav>

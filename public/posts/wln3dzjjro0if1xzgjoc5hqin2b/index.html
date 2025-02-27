@@ -24,7 +24,7 @@
   微操作命令分析
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@
   取指周期
   
     
-    链接到标题
+    @
   
 
 
@@ -53,7 +53,7 @@ OP(IR)-&gt;CU,(OP 代表 IR 中保存的命令的操作码)
   间址周期
   
     
-    链接到标题
+    @
   
 
 
@@ -74,16 +74,16 @@ MDR-&gt;Ad(IR)(真实地址送入 IR)
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="控制单元与微操作命令">
-  <meta name="twitter:description" content="微操作命令分析 链接到标题 取指周期 链接到标题 PC-&gt;MAR-&gt; 地址线 1-&gt;R(读操作允许信号置为 1) M(MAR)-&gt;MDR(M 表示 MAR 内的地址所在的内存单元的值) MDR-&gt;IR OP(IR)-&gt;CU,(OP 代表 IR 中保存的命令的操作码) (PC)&#43;1-&gt;PC,(括号加 PC，代表取 PC 的值) 指令的地址保存在 PC 中，PC 将地址送入 MAR 经过地址总线送入存储器中，然后 CU 向存储器发出读信号，该信号经过控制总线送入存储器中，读出的数据从由存储器送给 MDR，再由 MDR 送入 IR，指令就被取出到 IR 当中。
+  <meta name="twitter:description" content="微操作命令分析 @ 取指周期 @ PC-&gt;MAR-&gt; 地址线 1-&gt;R(读操作允许信号置为 1) M(MAR)-&gt;MDR(M 表示 MAR 内的地址所在的内存单元的值) MDR-&gt;IR OP(IR)-&gt;CU,(OP 代表 IR 中保存的命令的操作码) (PC)&#43;1-&gt;PC,(括号加 PC，代表取 PC 的值) 指令的地址保存在 PC 中，PC 将地址送入 MAR 经过地址总线送入存储器中，然后 CU 向存储器发出读信号，该信号经过控制总线送入存储器中，读出的数据从由存储器送给 MDR，再由 MDR 送入 IR，指令就被取出到 IR 当中。
 在取指周期其实还要完成译码的任务，译码要确定指令要做什么操作，这个操作由指令的操作码给出，所以要将指令的操作码部分送给 CU，然后再由 CU 译码确定指令的操作。取指周期还要对 PC 进行更新，所以 PC 的值要 &#43;1，把结果再保存进 PC 当中。
-间址周期 链接到标题 指令形式地址-&gt;MAR Ad(IR)-&gt;MAR 1-&gt;R(发出读信号) M(MAR)-&gt;MDR(MAR 保存的地址所在内存单元中的数据 M 送入 MDR) MDR-&gt;Ad(IR)(真实地址送入 IR) 间址周期说明指令采用的是间接寻址，我们要通过间址周期把操作数的地址，从存储器当中取出，放入 IR 当中所保存的指令的地址码部分。">
+间址周期 @ 指令形式地址-&gt;MAR Ad(IR)-&gt;MAR 1-&gt;R(发出读信号) M(MAR)-&gt;MDR(MAR 保存的地址所在内存单元中的数据 M 送入 MDR) MDR-&gt;Ad(IR)(真实地址送入 IR) 间址周期说明指令采用的是间接寻址，我们要通过间址周期把操作数的地址，从存储器当中取出，放入 IR 当中所保存的指令的地址码部分。">
  
 <meta property="og:url" content="//localhost:1313/posts/wln3dzjjro0if1xzgjoc5hqin2b/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="控制单元与微操作命令">
-  <meta property="og:description" content="微操作命令分析 链接到标题 取指周期 链接到标题 PC-&gt;MAR-&gt; 地址线 1-&gt;R(读操作允许信号置为 1) M(MAR)-&gt;MDR(M 表示 MAR 内的地址所在的内存单元的值) MDR-&gt;IR OP(IR)-&gt;CU,(OP 代表 IR 中保存的命令的操作码) (PC)&#43;1-&gt;PC,(括号加 PC，代表取 PC 的值) 指令的地址保存在 PC 中，PC 将地址送入 MAR 经过地址总线送入存储器中，然后 CU 向存储器发出读信号，该信号经过控制总线送入存储器中，读出的数据从由存储器送给 MDR，再由 MDR 送入 IR，指令就被取出到 IR 当中。
+  <meta property="og:description" content="微操作命令分析 @ 取指周期 @ PC-&gt;MAR-&gt; 地址线 1-&gt;R(读操作允许信号置为 1) M(MAR)-&gt;MDR(M 表示 MAR 内的地址所在的内存单元的值) MDR-&gt;IR OP(IR)-&gt;CU,(OP 代表 IR 中保存的命令的操作码) (PC)&#43;1-&gt;PC,(括号加 PC，代表取 PC 的值) 指令的地址保存在 PC 中，PC 将地址送入 MAR 经过地址总线送入存储器中，然后 CU 向存储器发出读信号，该信号经过控制总线送入存储器中，读出的数据从由存储器送给 MDR，再由 MDR 送入 IR，指令就被取出到 IR 当中。
 在取指周期其实还要完成译码的任务，译码要确定指令要做什么操作，这个操作由指令的操作码给出，所以要将指令的操作码部分送给 CU，然后再由 CU 译码确定指令的操作。取指周期还要对 PC 进行更新，所以 PC 的值要 &#43;1，把结果再保存进 PC 当中。
-间址周期 链接到标题 指令形式地址-&gt;MAR Ad(IR)-&gt;MAR 1-&gt;R(发出读信号) M(MAR)-&gt;MDR(MAR 保存的地址所在内存单元中的数据 M 送入 MDR) MDR-&gt;Ad(IR)(真实地址送入 IR) 间址周期说明指令采用的是间接寻址，我们要通过间址周期把操作数的地址，从存储器当中取出，放入 IR 当中所保存的指令的地址码部分。">
+间址周期 @ 指令形式地址-&gt;MAR Ad(IR)-&gt;MAR 1-&gt;R(发出读信号) M(MAR)-&gt;MDR(MAR 保存的地址所在内存单元中的数据 M 送入 MDR) MDR-&gt;Ad(IR)(真实地址送入 IR) 间址周期说明指令采用的是间接寻址，我们要通过间址周期把操作数的地址，从存储器当中取出，放入 IR 当中所保存的指令的地址码部分。">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -215,7 +215,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -367,7 +367,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            19652 字
+            18756 字
           </span>
         </div>
         
@@ -397,8 +397,8 @@ code.has-jax {
 <h1 id="微操作命令分析">
   微操作命令分析
   <a class="heading-link" href="#%e5%be%ae%e6%93%8d%e4%bd%9c%e5%91%bd%e4%bb%a4%e5%88%86%e6%9e%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -406,8 +406,8 @@ code.has-jax {
 <h2 id="取指周期">
   取指周期
   <a class="heading-link" href="#%e5%8f%96%e6%8c%87%e5%91%a8%e6%9c%9f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p><img src="../static/Bd7tbCvSuoz1Gvx8l11caaD5npb.png" alt=""></p>
@@ -426,8 +426,8 @@ code.has-jax {
 <h2 id="间址周期">
   间址周期
   <a class="heading-link" href="#%e9%97%b4%e5%9d%80%e5%91%a8%e6%9c%9f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p><img src="../static/Jiqjbi9NDosOq3xwMRvcPhO2nEg.png" alt=""></p>
@@ -445,8 +445,8 @@ code.has-jax {
 <h2 id="执行周期">
   执行周期
   <a class="heading-link" href="#%e6%89%a7%e8%a1%8c%e5%91%a8%e6%9c%9f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>在取指周期和间址周期，我们假设指令字长=机器字长=存储字长，执行周期由于各指令长短不一，相对比较复杂。</p>
@@ -455,8 +455,8 @@ code.has-jax {
 <h3 id="非访存指令">
   非访存指令
   <a class="heading-link" href="#%e9%9d%9e%e8%ae%bf%e5%ad%98%e6%8c%87%e4%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ol>
@@ -471,8 +471,8 @@ code.has-jax {
 <h3 id="访存指令">
   访存指令
   <a class="heading-link" href="#%e8%ae%bf%e5%ad%98%e6%8c%87%e4%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ol>
@@ -509,8 +509,8 @@ code.has-jax {
 <h3 id="转移指令">
   转移指令
   <a class="heading-link" href="#%e8%bd%ac%e7%a7%bb%e6%8c%87%e4%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ol>
@@ -522,8 +522,8 @@ code.has-jax {
 <h3 id="三类指令的指令周期">
   三类指令的指令周期
   <a class="heading-link" href="#%e4%b8%89%e7%b1%bb%e6%8c%87%e4%bb%a4%e7%9a%84%e6%8c%87%e4%bb%a4%e5%91%a8%e6%9c%9f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -538,8 +538,8 @@ code.has-jax {
 <h2 id="中断周期">
   中断周期
   <a class="heading-link" href="#%e4%b8%ad%e6%96%ad%e5%91%a8%e6%9c%9f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>保存断点分为两种方式，程序断点存入”0”地址，或者程序断点进栈。</p>
@@ -548,8 +548,8 @@ code.has-jax {
 <h3 id="0-地址">
   0 地址
   <a class="heading-link" href="#0-%e5%9c%b0%e5%9d%80">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -565,8 +565,8 @@ code.has-jax {
 <h3 id="程序断点进栈">
   程序断点进栈
   <a class="heading-link" href="#%e7%a8%8b%e5%ba%8f%e6%96%ad%e7%82%b9%e8%bf%9b%e6%a0%88">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -582,8 +582,8 @@ code.has-jax {
 <h1 id="控制单元的功能">
   控制单元的功能
   <a class="heading-link" href="#%e6%8e%a7%e5%88%b6%e5%8d%95%e5%85%83%e7%9a%84%e5%8a%9f%e8%83%bd">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -591,8 +591,8 @@ code.has-jax {
 <h2 id="控制单元的外特性">
   控制单元的外特性
   <a class="heading-link" href="#%e6%8e%a7%e5%88%b6%e5%8d%95%e5%85%83%e7%9a%84%e5%a4%96%e7%89%b9%e6%80%a7">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p><img src="../static/P36fb5xiJojePFxnvBqc9bZSnTh.png" alt=""></p>
@@ -603,8 +603,8 @@ code.has-jax {
 <h3 id="输入信号">
   输入信号
   <a class="heading-link" href="#%e8%be%93%e5%85%a5%e4%bf%a1%e5%8f%b7">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ol>
@@ -618,8 +618,8 @@ code.has-jax {
 <h3 id="输出信号">
   输出信号
   <a class="heading-link" href="#%e8%be%93%e5%87%ba%e4%bf%a1%e5%8f%b7">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ol>
@@ -649,8 +649,8 @@ code.has-jax {
 <h2 id="控制信号举例">
   控制信号举例
   <a class="heading-link" href="#%e6%8e%a7%e5%88%b6%e4%bf%a1%e5%8f%b7%e4%b8%be%e4%be%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -658,8 +658,8 @@ code.has-jax {
 <h3 id="不采用-cpu-内部总线的方式">
   不采用 CPU 内部总线的方式
   <a class="heading-link" href="#%e4%b8%8d%e9%87%87%e7%94%a8-cpu-%e5%86%85%e9%83%a8%e6%80%bb%e7%ba%bf%e7%9a%84%e6%96%b9%e5%bc%8f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 
@@ -667,8 +667,8 @@ code.has-jax {
 <h4 id="取指周期-1">
   取指周期
   <a class="heading-link" href="#%e5%8f%96%e6%8c%87%e5%91%a8%e6%9c%9f-1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>PC,指出了下一条指令的地址，将指令取到送入 IR 中，然后送入 CU 当中译码，CU 要有时钟信号控制，还有寄存器 AC、运算器 ALU、MDR、MAR。</p>
@@ -679,8 +679,8 @@ code.has-jax {
 <h4 id="间址周期-1">
   间址周期
   <a class="heading-link" href="#%e9%97%b4%e5%9d%80%e5%91%a8%e6%9c%9f-1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>同样以加法指令为例，但加法指令的数据部分并不是真实地址，下面假设从 MDR 拿到形式地址。IR 的蓝色部分表示操作数，棕色部分表示地址码。</p>
@@ -690,8 +690,8 @@ code.has-jax {
 <h4 id="执行周期-1">
   执行周期
   <a class="heading-link" href="#%e6%89%a7%e8%a1%8c%e5%91%a8%e6%9c%9f-1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>由于上次的操作并没有对 MDR 清零，所以操作数的地址保存在 MDR 与 IR 中，假设取操作数地址来源于 MDR 中，MDR-&gt;MAR,MAR-&gt; 内存，CU 发送读信号，读出的数据送入 MDR，此时 AC 存的被加数，MDR 存的加数，将 AC-&gt;ALU,MDR-&gt;ALU,在 CU 控制下完成运算操作，将结果存入 AC.</p>
@@ -701,8 +701,8 @@ code.has-jax {
 <h3 id="采用-cpu-内部总线的方式">
   采用 CPU 内部总线的方式
   <a class="heading-link" href="#%e9%87%87%e7%94%a8-cpu-%e5%86%85%e9%83%a8%e6%80%bb%e7%ba%bf%e7%9a%84%e6%96%b9%e5%bc%8f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 
@@ -710,8 +710,8 @@ code.has-jax {
 <h4 id="取指周期-2">
   取指周期
   <a class="heading-link" href="#%e5%8f%96%e6%8c%87%e5%91%a8%e6%9c%9f-2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>为了能够保存参加运算的两个操作数，和输出的运算结果，在这种 CPU 内部总线结构中，需要在 ALU 两个输入端加入两个寄存器，其中 AC 作为一个寄存器，还需要将加入一个 Y 寄存器，在 ALU 的输出端加入一个 Z 寄存器，保存运算的结果。</p>
@@ -723,8 +723,8 @@ code.has-jax {
 <h4 id="间址周期-2">
   间址周期
   <a class="heading-link" href="#%e9%97%b4%e5%9d%80%e5%91%a8%e6%9c%9f-2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>CPU 内部总线相当于结合了地址、数据以及控制总线，但操作逻辑上和之前不采用总线的 CPU 结构一样，这里不再叙述。</p>
@@ -734,8 +734,8 @@ code.has-jax {
 <h4 id="执行周期-2">
   执行周期
   <a class="heading-link" href="#%e6%89%a7%e8%a1%8c%e5%91%a8%e6%9c%9f-2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>值得注意的是 Y 用来保存加数，AC 保存被加数，结果由 ALU 运算后存入 Z 中。</p>
@@ -745,8 +745,8 @@ code.has-jax {
 <h2 id="多级时序系统">
   多级时序系统
   <a class="heading-link" href="#%e5%a4%9a%e7%ba%a7%e6%97%b6%e5%ba%8f%e7%b3%bb%e7%bb%9f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -754,8 +754,8 @@ code.has-jax {
 <h3 id="机器周期">
   机器周期
   <a class="heading-link" href="#%e6%9c%ba%e5%99%a8%e5%91%a8%e6%9c%9f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -768,8 +768,8 @@ code.has-jax {
 <h3 id="时钟周期">
   时钟周期
   <a class="heading-link" href="#%e6%97%b6%e9%92%9f%e5%91%a8%e6%9c%9f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>一个机器周期内可完成若干个微操作，每个微操作需要一定的时间，因此将一个机器周期分为若干个时间相等的时间段(节拍、状态、时钟周期)。</p>
@@ -780,8 +780,8 @@ code.has-jax {
 <h3 id="多级时序系统-1">
   多级时序系统
   <a class="heading-link" href="#%e5%a4%9a%e7%ba%a7%e6%97%b6%e5%ba%8f%e7%b3%bb%e7%bb%9f-1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>机器周期、节拍(状态)组成多级时序系统</p>
@@ -793,8 +793,8 @@ code.has-jax {
 <h3 id="机器速度与机器主频的关系">
   机器速度与机器主频的关系
   <a class="heading-link" href="#%e6%9c%ba%e5%99%a8%e9%80%9f%e5%ba%a6%e4%b8%8e%e6%9c%ba%e5%99%a8%e4%b8%bb%e9%a2%91%e7%9a%84%e5%85%b3%e7%b3%bb">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>在机器周期所含时钟周期数相同的前提下，两机平均指令执行速度之比等于两机主频之比</p>
@@ -805,8 +805,8 @@ code.has-jax {
 <h2 id="控制方式">
   控制方式
   <a class="heading-link" href="#%e6%8e%a7%e5%88%b6%e6%96%b9%e5%bc%8f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>产生不同微操作命令序列所用的时序控制方式</p>
@@ -815,8 +815,8 @@ code.has-jax {
 <h3 id="同步控制方式">
   同步控制方式
   <a class="heading-link" href="#%e5%90%8c%e6%ad%a5%e6%8e%a7%e5%88%b6%e6%96%b9%e5%bc%8f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>任一微操作均有统一基准时标的时序信号控制(定宽定距)。</p>
@@ -837,8 +837,8 @@ code.has-jax {
 <h3 id="其他方式">
   其他方式
   <a class="heading-link" href="#%e5%85%b6%e4%bb%96%e6%96%b9%e5%bc%8f">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -885,8 +885,8 @@ code.has-jax {
       <h3 id="参见-计算机组成原理">
         参见 计算机组成原理
         <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bb%84%e6%88%90%e5%8e%9f%e7%90%86">
-          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-          <span class="sr-only">链接到标题</span>
+          <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+          <span class="sr-only">@</span>
         </a>
       </h3>
       <nav>

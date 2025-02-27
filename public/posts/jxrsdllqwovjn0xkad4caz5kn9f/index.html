@@ -24,7 +24,7 @@
   回忆近三年工作生涯（2023）
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@
   摘要
   
     
-    链接到标题
+    @
   
 
 2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。
@@ -43,7 +43,7 @@
   工作层面
   
     
-    链接到标题
+    @
   
 
 年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。
@@ -63,7 +63,7 @@
   生活层面
   
     
-    链接到标题
+    @
   
 
 在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。">
@@ -76,31 +76,31 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="回忆近三年工作生涯（2023）">
-  <meta name="twitter:description" content="回忆近三年工作生涯（2023） 链接到标题 摘要 链接到标题 2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。
-工作层面 链接到标题 年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。
+  <meta name="twitter:description" content="回忆近三年工作生涯（2023） @ 摘要 @ 2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。
+工作层面 @ 年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。
 这需要 k8s 相关的知识，因此这段时间快速恶补了 k8s，学着怎么搭环境、怎么部署 pod、怎么写 helm chart，算是把 k8s 的基础知识入了门，然后在同事的帮助下，将项目成功接入了阿里云 OnPaas。这也算是一份宝贵的经验了，随后就一直维护着相关代码。
 由于转正之后岗位定为了 agent 工程师，所以开始接触扫描相关的模块。与之前实习期写 web 端代码不同，那个无非就是了解业务，然后思考怎么写 crud 接口。而接触这部分代码后，了解更多风险扫描的细节，也算是了解了一些安全行业的部分内容。
 所谓风险扫描，无非就是伪造请求、发请求、接收响应包，然后根据响应包的内容来判断是否存在某些漏洞。既然扫描模块的代码主要网络请求，自然离不开并发模型的设计和相关的网络编程。因此在很长一段时间内，写各种 go 并发代码和网络编程成为我的主要工作，这也加深了我对并发的理解和对网络的理解。
 值得一提的是在这部分业务的开发维护中，我也踩过不少坑，以下只列举几个：
 规则引擎层面是通过 grpc 来发起、停止扫描任务。由于历史代码的设计问题，一个任务往往要占一个 grpc 线程直到结束返回结果。但 python 的 grpc 线程池是有大小的，导致高并发场景下，任务往往会占满 grpc 线程，致使停止的 rpc 请求无法被响应。 引擎的内存占用问题，由于协程泄漏，导致内存只增不降，最后机器卡死。 扫描速率的控制和调节，如果一味的追求扫描速度，可能导致过度占用 CPU，规则检测中有大量的正则表达式非常占 CPU。 当然这些问题后续都解决了，只不过当时排查起来相当麻烦。这也是和写 web 不同的地方，前者最起码写接口时有没有 bug 可以快速定位到，而后者的问题则隐藏的更深，当然这也比较锻炼我的问题排查能力和 coding 水平。
-生活层面 链接到标题 在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。">
+生活层面 @ 在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。">
  
 <meta property="og:url" content="//localhost:1313/posts/jxrsdllqwovjn0xkad4caz5kn9f/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="回忆近三年工作生涯（2023）">
-  <meta property="og:description" content="回忆近三年工作生涯（2023） 链接到标题 摘要 链接到标题 2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。
-工作层面 链接到标题 年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。
+  <meta property="og:description" content="回忆近三年工作生涯（2023） @ 摘要 @ 2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。
+工作层面 @ 年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。
 这需要 k8s 相关的知识，因此这段时间快速恶补了 k8s，学着怎么搭环境、怎么部署 pod、怎么写 helm chart，算是把 k8s 的基础知识入了门，然后在同事的帮助下，将项目成功接入了阿里云 OnPaas。这也算是一份宝贵的经验了，随后就一直维护着相关代码。
 由于转正之后岗位定为了 agent 工程师，所以开始接触扫描相关的模块。与之前实习期写 web 端代码不同，那个无非就是了解业务，然后思考怎么写 crud 接口。而接触这部分代码后，了解更多风险扫描的细节，也算是了解了一些安全行业的部分内容。
 所谓风险扫描，无非就是伪造请求、发请求、接收响应包，然后根据响应包的内容来判断是否存在某些漏洞。既然扫描模块的代码主要网络请求，自然离不开并发模型的设计和相关的网络编程。因此在很长一段时间内，写各种 go 并发代码和网络编程成为我的主要工作，这也加深了我对并发的理解和对网络的理解。
 值得一提的是在这部分业务的开发维护中，我也踩过不少坑，以下只列举几个：
 规则引擎层面是通过 grpc 来发起、停止扫描任务。由于历史代码的设计问题，一个任务往往要占一个 grpc 线程直到结束返回结果。但 python 的 grpc 线程池是有大小的，导致高并发场景下，任务往往会占满 grpc 线程，致使停止的 rpc 请求无法被响应。 引擎的内存占用问题，由于协程泄漏，导致内存只增不降，最后机器卡死。 扫描速率的控制和调节，如果一味的追求扫描速度，可能导致过度占用 CPU，规则检测中有大量的正则表达式非常占 CPU。 当然这些问题后续都解决了，只不过当时排查起来相当麻烦。这也是和写 web 不同的地方，前者最起码写接口时有没有 bug 可以快速定位到，而后者的问题则隐藏的更深，当然这也比较锻炼我的问题排查能力和 coding 水平。
-生活层面 链接到标题 在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。">
+生活层面 @ 在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-02-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-02-21T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-02-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-21T00:00:00+00:00">
     <meta property="article:tag" content="年度总结">
 
 
@@ -221,7 +221,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -317,8 +317,8 @@ code.has-jax {
         <div class="date">
           <span class="posted-on">
             <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-            <time datetime=" 2024-02-21T00:00:00Z">
-              2024-02-21
+            <time datetime=" 2025-02-21T00:00:00Z">
+              2025-02-21
             </time>
           </span>
           <span class="reading-time">
@@ -327,7 +327,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            9754 字
+            9474 字
           </span>
         </div>
         
@@ -357,8 +357,8 @@ code.has-jax {
 <h1 id="回忆近三年工作生涯2023">
   回忆近三年工作生涯（2023）
   <a class="heading-link" href="#%e5%9b%9e%e5%bf%86%e8%bf%91%e4%b8%89%e5%b9%b4%e5%b7%a5%e4%bd%9c%e7%94%9f%e6%b6%af2023">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -366,8 +366,8 @@ code.has-jax {
 <h2 id="摘要">
   摘要
   <a class="heading-link" href="#%e6%91%98%e8%a6%81">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>2023 年其实算是比较平淡的一年，工作基本步入正轨，生活上也没什么大的变动。</p>
@@ -376,8 +376,8 @@ code.has-jax {
 <h2 id="工作层面">
   工作层面
   <a class="heading-link" href="#%e5%b7%a5%e4%bd%9c%e5%b1%82%e9%9d%a2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>年初开始接触阿里云云盾相关的业务，要把原来单机部署的项目部署在阿里云 OnPaas 环境里。</p>
@@ -396,8 +396,8 @@ code.has-jax {
 <h2 id="生活层面">
   生活层面
   <a class="heading-link" href="#%e7%94%9f%e6%b4%bb%e5%b1%82%e9%9d%a2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>在杭州独居的生活往往一开始是十分美好的，但渐渐的会感到孤独、乏味，毕竟家乡在陕西，亲人、同学、朋友也基本在陕西，很少有到外省打工的，最多的就是去西安。</p>
@@ -407,8 +407,8 @@ code.has-jax {
 <h3 id="杭州烟花大会">
   杭州烟花大会
   <a class="heading-link" href="#%e6%9d%ad%e5%b7%9e%e7%83%9f%e8%8a%b1%e5%a4%a7%e4%bc%9a">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>2023 年 2 月份，我的舍友来杭州找我，恰逢今年杭州要举办亚运会，因此在钱塘江附近有烟花秀，于是我跟他早上出发，先逛了西湖（老规矩），等到了晚上一起看了烟花秀，不过人是真多啊</p>
@@ -420,8 +420,8 @@ code.has-jax {
 <h3 id="西溪湿地赏梅">
   西溪湿地赏梅
   <a class="heading-link" href="#%e8%a5%bf%e6%ba%aa%e6%b9%bf%e5%9c%b0%e8%b5%8f%e6%a2%85">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>2 月底的时候，在小红书看到西溪湿地部分收费的景区可以免费进去赏梅了，于是我约上了一个同事一起去看看。</p>
@@ -434,8 +434,8 @@ code.has-jax {
 <h3 id="上海影视城">
   上海影视城
   <a class="heading-link" href="#%e4%b8%8a%e6%b5%b7%e5%bd%b1%e8%a7%86%e5%9f%8e">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>从 2 月底之后基本每天的日常生活就是上班、下班、回房间里躺平，毕竟偶尔出去逛逛可以放松心情，如果每周都出去逛就比较累人了。</p>
@@ -449,8 +449,8 @@ code.has-jax {
 <h3 id="青山湖骑行">
   青山湖骑行
   <a class="heading-link" href="#%e9%9d%92%e5%b1%b1%e6%b9%96%e9%aa%91%e8%a1%8c">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>从 6 月之后，又陷入了很长一段时间的平淡生活，当然在这段时间里我主要的爱好就是撸铁。从一个只有 55 公斤体重的细狗，经过大半年的锻炼，已经增长到了 65 公斤，算是进步很大了。</p>
@@ -465,8 +465,8 @@ code.has-jax {
 <h3 id="鲁迅故居">
   鲁迅故居
   <a class="heading-link" href="#%e9%b2%81%e8%bf%85%e6%95%85%e5%b1%85">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>由于接受不了长期平淡的生活，于是在国庆节过后的 10 月底，我又约了朋友一起去绍兴的鲁迅故居。</p>
@@ -480,8 +480,8 @@ code.has-jax {
 <h3 id="南昌">
   南昌
   <a class="heading-link" href="#%e5%8d%97%e6%98%8c">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>11 月份，我的大学室友不知是什么原因寂寞难捱，非要从唐山这么远的地方跑到南昌来旅游。</p>

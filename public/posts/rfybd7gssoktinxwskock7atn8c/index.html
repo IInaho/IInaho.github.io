@@ -24,7 +24,7 @@
   散列表
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@
   散列表的定义
   
     
-    链接到标题
+    @
   
 
 顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。
@@ -54,7 +54,7 @@
   散列函数的构造方法
   
     
-    链接到标题
+    @
   
 
 构造散列表应该考虑下列因素:
@@ -76,7 +76,7 @@
   构造散列函数的常用方法
   
     
-    链接到标题
+    @
   
 
 
@@ -85,7 +85,7 @@
   直接定址法
   
     
-    链接到标题
+    @
   
 
 这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key&#43;b
@@ -96,7 +96,7 @@
   数字分析法
   
     
-    链接到标题
+    @
   
 
 如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。
@@ -107,7 +107,7 @@
   平方取中法
   
     
-    链接到标题
+    @
   
 
 平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。">
@@ -120,28 +120,28 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="散列表的查找">
-  <meta name="twitter:description" content="散列表 链接到标题 散列表的定义 链接到标题 顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。 如果在元素的存储位置与关键字建立对应关系，进行查找时就无需进行比较，或者少数的比较，这就是散列查找法的思想，它通过对元素的关键字值进行某种运算，直接求出元素的存储位置，因此散列查找法又称为杂凑法或者散列法。
+  <meta name="twitter:description" content="散列表 @ 散列表的定义 @ 顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。 如果在元素的存储位置与关键字建立对应关系，进行查找时就无需进行比较，或者少数的比较，这就是散列查找法的思想，它通过对元素的关键字值进行某种运算，直接求出元素的存储位置，因此散列查找法又称为杂凑法或者散列法。
 散列函数和散列地址: 在记录的存储位置 p 和其关键字 key 之间建立一个确定的对应关系 H，使 p=H(key)，称这个对应关系 H 为散列函数(又称为哈希函数)，p 为散列地址。 散列表或哈希表: 一个有限连续的地址空间，用以存储按散列函数计算得到相应散列地址的数据记录，通常散列表的存储空间是一个一维数组，散列地址是数组的下标。 冲突和同义词: 对不同的关键字可能得到同一散列地址，即 key1≠key2，而 H(key1)=H(key2),这种现象称为冲突。具有相同函数值的关键字对该散列函数来说称作同义词，key1 与 key2 互称为同义词。 散列查找法主要研究以下两个问题:
-如何构造散列函数 如何处理冲突 散列函数的构造方法 链接到标题 构造散列表应该考虑下列因素:
+如何构造散列函数 如何处理冲突 散列函数的构造方法 @ 构造散列表应该考虑下列因素:
 散列表的长度 关键字的长度 关键字的分布情况 计算散列函数所需的时间 记录的查找频率 构造好的散列函数应该遵循以下两条原则:
-函数计算简单，每一个关键字只能有一个散列地址与之对应 函数的值域需在表长的范围内，计算出的散列地址的分布应均匀，尽可能减少冲突。 构造散列函数的常用方法 链接到标题 直接定址法 链接到标题 这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key&#43;b
+函数计算简单，每一个关键字只能有一个散列地址与之对应 函数的值域需在表长的范围内，计算出的散列地址的分布应均匀，尽可能减少冲突。 构造散列函数的常用方法 @ 直接定址法 @ 这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key&#43;b
 这样的散列函数优点是简单、均匀，也不会产生冲突，但需要事先知道关键字的分布情况，适合查找表较小且连续的情况，现实应用中并不常用。
-数字分析法 链接到标题 如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。
+数字分析法 @ 如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。
 这种方法事先必须明确知道所有的关键字每一位上各种数字的分布情况，实际应用中例如手机号、同一出版社的所有图书等，某些位是相同的，可以抽取其他位作为散列地址。
-平方取中法 链接到标题 平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。">
+平方取中法 @ 平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。">
  
 <meta property="og:url" content="//localhost:1313/posts/rfybd7gssoktinxwskock7atn8c/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="散列表的查找">
-  <meta property="og:description" content="散列表 链接到标题 散列表的定义 链接到标题 顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。 如果在元素的存储位置与关键字建立对应关系，进行查找时就无需进行比较，或者少数的比较，这就是散列查找法的思想，它通过对元素的关键字值进行某种运算，直接求出元素的存储位置，因此散列查找法又称为杂凑法或者散列法。
+  <meta property="og:description" content="散列表 @ 散列表的定义 @ 顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。 如果在元素的存储位置与关键字建立对应关系，进行查找时就无需进行比较，或者少数的比较，这就是散列查找法的思想，它通过对元素的关键字值进行某种运算，直接求出元素的存储位置，因此散列查找法又称为杂凑法或者散列法。
 散列函数和散列地址: 在记录的存储位置 p 和其关键字 key 之间建立一个确定的对应关系 H，使 p=H(key)，称这个对应关系 H 为散列函数(又称为哈希函数)，p 为散列地址。 散列表或哈希表: 一个有限连续的地址空间，用以存储按散列函数计算得到相应散列地址的数据记录，通常散列表的存储空间是一个一维数组，散列地址是数组的下标。 冲突和同义词: 对不同的关键字可能得到同一散列地址，即 key1≠key2，而 H(key1)=H(key2),这种现象称为冲突。具有相同函数值的关键字对该散列函数来说称作同义词，key1 与 key2 互称为同义词。 散列查找法主要研究以下两个问题:
-如何构造散列函数 如何处理冲突 散列函数的构造方法 链接到标题 构造散列表应该考虑下列因素:
+如何构造散列函数 如何处理冲突 散列函数的构造方法 @ 构造散列表应该考虑下列因素:
 散列表的长度 关键字的长度 关键字的分布情况 计算散列函数所需的时间 记录的查找频率 构造好的散列函数应该遵循以下两条原则:
-函数计算简单，每一个关键字只能有一个散列地址与之对应 函数的值域需在表长的范围内，计算出的散列地址的分布应均匀，尽可能减少冲突。 构造散列函数的常用方法 链接到标题 直接定址法 链接到标题 这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key&#43;b
+函数计算简单，每一个关键字只能有一个散列地址与之对应 函数的值域需在表长的范围内，计算出的散列地址的分布应均匀，尽可能减少冲突。 构造散列函数的常用方法 @ 直接定址法 @ 这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key&#43;b
 这样的散列函数优点是简单、均匀，也不会产生冲突，但需要事先知道关键字的分布情况，适合查找表较小且连续的情况，现实应用中并不常用。
-数字分析法 链接到标题 如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。
+数字分析法 @ 如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。
 这种方法事先必须明确知道所有的关键字每一位上各种数字的分布情况，实际应用中例如手机号、同一出版社的所有图书等，某些位是相同的，可以抽取其他位作为散列地址。
-平方取中法 链接到标题 平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。">
+平方取中法 @ 平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -273,7 +273,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -400,7 +400,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            21844 字
+            21312 字
           </span>
         </div>
         
@@ -430,8 +430,8 @@ code.has-jax {
 <h1 id="散列表">
   散列表
   <a class="heading-link" href="#%e6%95%a3%e5%88%97%e8%a1%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -439,8 +439,8 @@ code.has-jax {
 <h2 id="散列表的定义">
   散列表的定义
   <a class="heading-link" href="#%e6%95%a3%e5%88%97%e8%a1%a8%e7%9a%84%e5%ae%9a%e4%b9%89">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>顺序表和树表的查找中，记录在存储结构中的位置与关键字无直接关系，查找是通过比较进行的，如果结点特别多，需要和很多无效关键字进行比较，导致效率低下。
@@ -460,8 +460,8 @@ code.has-jax {
 <h2 id="散列函数的构造方法">
   散列函数的构造方法
   <a class="heading-link" href="#%e6%95%a3%e5%88%97%e5%87%bd%e6%95%b0%e7%9a%84%e6%9e%84%e9%80%a0%e6%96%b9%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>构造散列表应该考虑下列因素:</p>
@@ -482,8 +482,8 @@ code.has-jax {
 <h3 id="构造散列函数的常用方法">
   构造散列函数的常用方法
   <a class="heading-link" href="#%e6%9e%84%e9%80%a0%e6%95%a3%e5%88%97%e5%87%bd%e6%95%b0%e7%9a%84%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 
@@ -491,8 +491,8 @@ code.has-jax {
 <h4 id="直接定址法">
   直接定址法
   <a class="heading-link" href="#%e7%9b%b4%e6%8e%a5%e5%ae%9a%e5%9d%80%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>这种方法直接取关键字的某个线性函数值为散列地址，即 F(key)=a×key+b</p>
@@ -502,8 +502,8 @@ code.has-jax {
 <h4 id="数字分析法">
   数字分析法
   <a class="heading-link" href="#%e6%95%b0%e5%ad%97%e5%88%86%e6%9e%90%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>如果事先知道关键字集合，且每个关键字的位数比散列表的地址码位数多，可以从关键字中抽取数字分布均匀的若干位作为散列地址，如果出现冲突问题，还可以对这些数字进行反转、叠加、左右环位移等方法，目的为了合理将关键字分配到散列表的各个位置。</p>
@@ -513,8 +513,8 @@ code.has-jax {
 <h4 id="平方取中法">
   平方取中法
   <a class="heading-link" href="#%e5%b9%b3%e6%96%b9%e5%8f%96%e4%b8%ad%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>平方取中法就是取关键字的平方，然后中间的几位作为散列地址，因为一个树平方后的中间几位数和数的每一位都相关，如果取中间几位或其组合作为散列地址，则使随机分布的关键字得到的散列地址也是随机的，这种方法通常适合处理不知道关键字的分布，而位数不是很大的情况。</p>
@@ -523,8 +523,8 @@ code.has-jax {
 <h4 id="折叠法">
   折叠法
   <a class="heading-link" href="#%e6%8a%98%e5%8f%a0%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>将关键字分成位数相同的几部分，然后取这几部分的叠加和(舍去进位)作为散列地址，根据数为叠加的方式，可以把折叠法分为移位叠加和边界叠加两种。</p>
@@ -534,8 +534,8 @@ code.has-jax {
 <h4 id="除留余数法">
   除留余数法
   <a class="heading-link" href="#%e9%99%a4%e7%95%99%e4%bd%99%e6%95%b0%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>假设散列表表长为 m，选择一个不大于 m 的数 p，用 p 去除关键字，除后所得余数为散列地址，即</p>
@@ -547,8 +547,8 @@ code.has-jax {
 <h2 id="处理冲突的方法">
   处理冲突的方法
   <a class="heading-link" href="#%e5%a4%84%e7%90%86%e5%86%b2%e7%aa%81%e7%9a%84%e6%96%b9%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>好的散列函数可以在一定程度上避免冲突，但是难以完全避免冲突，创建散列表和查找散列表都会遇到冲突，两种情况下处理冲突的方法应该一致，处理冲突的方法与散列表本身的组织形式有关，按组织形式，通常分为开放地址法和链地址法。</p>
@@ -557,8 +557,8 @@ code.has-jax {
 <h3 id="开放地址法">
   开放地址法
   <a class="heading-link" href="#%e5%bc%80%e6%94%be%e5%9c%b0%e5%9d%80%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>把记录都存储在散列表数组中，当某一记录关键字 key 的初始散列地址 H0=H0(key)发生冲突时，以 H0 为基础，采用合适的方法计算得到另一个地址 H1，如果 H1 依然重复，再根据 H1 计算下一个地址 H2…,直到不冲突为止。</p>
@@ -570,8 +570,8 @@ code.has-jax {
 <h4 id="线性探测法">
   线性探测法
   <a class="heading-link" href="#%e7%ba%bf%e6%80%a7%e6%8e%a2%e6%b5%8b%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p><code>$$ d_i=1,2,...,m−1 $$</code></p>
@@ -581,8 +581,8 @@ code.has-jax {
 <h4 id="二次探测法">
   二次探测法
   <a class="heading-link" href="#%e4%ba%8c%e6%ac%a1%e6%8e%a2%e6%b5%8b%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p><code>$$ d_i=1^2,−1^2,2^2,−2^2,3^2,...,+k^2,−k^2，(k≤m/2) $$</code></p>
@@ -591,8 +591,8 @@ code.has-jax {
 <h4 id="伪随机探测法">
   伪随机探测法
   <a class="heading-link" href="#%e4%bc%aa%e9%9a%8f%e6%9c%ba%e6%8e%a2%e6%b5%8b%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>在冲突时，对于位移量 di 采用随机函数计算得到，称之为随机探测法。</p>
@@ -601,8 +601,8 @@ code.has-jax {
 <h4 id="小结">
   小结
   <a class="heading-link" href="#%e5%b0%8f%e7%bb%93">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>在处理冲突时发生的两个第一个散列地址不同的记录争夺同一个后继散列地址的现象称为”<strong>二次聚集</strong>“或”<strong>堆积</strong>“。
@@ -612,8 +612,8 @@ code.has-jax {
 <h3 id="链地址法">
   链地址法
   <a class="heading-link" href="#%e9%93%be%e5%9c%b0%e5%9d%80%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>如果发生冲突，不需要更换地址，链地址法将所有关键字为同义词的记录存储在一个单链表中，称这种表为同义词子表，在散列表中只存储所有同义词子表的头指针。</p>
@@ -623,8 +623,8 @@ code.has-jax {
 <h3 id="公共溢出区法">
   公共溢出区法
   <a class="heading-link" href="#%e5%85%ac%e5%85%b1%e6%ba%a2%e5%87%ba%e5%8c%ba%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>将发生冲突的关键字存放到公共溢出区中，如下图所示</p>
@@ -635,8 +635,8 @@ code.has-jax {
 <h2 id="散列表的查找算法实现">
   散列表的查找算法实现
   <a class="heading-link" href="#%e6%95%a3%e5%88%97%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define SUCCESS 1
@@ -684,8 +684,8 @@ code.has-jax {
 <h3 id="散列表查找性能分析">
   散列表查找性能分析
   <a class="heading-link" href="#%e6%95%a3%e5%88%97%e8%a1%a8%e6%9f%a5%e6%89%be%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>如果没有冲突，散列查找的时间复杂度为 O(1),但实际应用中，冲突不可避免，散列查找的平均查找长度取决于以下三种因素:</p>
@@ -715,8 +715,8 @@ code.has-jax {
       <h3 id="参见-数据结构相关文章">
         参见 数据结构相关文章
         <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
-          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-          <span class="sr-only">链接到标题</span>
+          <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+          <span class="sr-only">@</span>
         </a>
       </h3>
       <nav>

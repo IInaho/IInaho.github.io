@@ -24,7 +24,7 @@
   栈与队列
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@
   栈的定义和特点
   
     
-    链接到标题
+    @
   
 
 栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
@@ -43,7 +43,7 @@
   栈的 ADT 类型定义
   
     
-    链接到标题
+    @
   
 
 InitStack(&amp;s) //构造一个空栈
@@ -61,7 +61,7 @@ StackTraverse(s)    //栈s存在且非空，遍历栈
   顺序栈的表示和实现
   
     
-    链接到标题
+    @
   
 
 
@@ -99,7 +99,7 @@ StackTraverse(s)    //栈s存在且非空，遍历栈
   顺序栈的代码实现(C&#43;&#43;)
   
     
-    链接到标题
+    @
   
 
 template &lt;class T&gt;
@@ -176,7 +176,7 @@ int main()
   链栈的表示和实现
   
     
-    链接到标题
+    @
   
 
 
@@ -191,22 +191,22 @@ int main()
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="栈与队列">
-  <meta name="twitter:description" content="栈与队列 链接到标题 栈的定义和特点 链接到标题 栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
-栈的 ADT 类型定义 链接到标题 InitStack(&amp;s) //构造一个空栈 DestroyStack(&amp;s) //栈s存在，销毁栈 ClearStack(&amp;s) //栈s存在，清除栈 StackEmpty(s) //栈s存在，若栈为空返回true，否则返回false StackLength(s) //栈s存在，返回栈的长度 GetTop(s) //返回s的栈顶元素 Push(&amp;s,e) //插入元素e为新的栈顶元素 Pop(&amp;s,&amp;e) //栈s存在且非空，删除栈顶元素，返回其值 StackTraverse(s) //栈s存在且非空，遍历栈 顺序栈的表示和实现 链接到标题 顺序栈的初始化
+  <meta name="twitter:description" content="栈与队列 @ 栈的定义和特点 @ 栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
+栈的 ADT 类型定义 @ InitStack(&amp;s) //构造一个空栈 DestroyStack(&amp;s) //栈s存在，销毁栈 ClearStack(&amp;s) //栈s存在，清除栈 StackEmpty(s) //栈s存在，若栈为空返回true，否则返回false StackLength(s) //栈s存在，返回栈的长度 GetTop(s) //返回s的栈顶元素 Push(&amp;s,e) //插入元素e为新的栈顶元素 Pop(&amp;s,&amp;e) //栈s存在且非空，删除栈顶元素，返回其值 StackTraverse(s) //栈s存在且非空，遍历栈 顺序栈的表示和实现 @ 顺序栈的初始化
 为顺序栈分配地址空间，并让基地址指向这个空间 栈顶指针初始化，栈容量初始化 顺序栈的入栈
 判断栈是否满，若满则返回 ERROR 将新元素压入栈顶，栈顶指针 &#43;1 顺序栈的出栈
 判断栈是否空，若空返回 ERROR 栈顶指针-1，栈顶元素出栈 取顺序栈的栈顶元素
-栈非空时，取栈顶元素的值 顺序栈的代码实现(C&#43;&#43;) 链接到标题 template &lt;class T&gt; class Stack { public: Stack(unsigned int size); //在构造器中初始化栈的大小 ~Stack(); //析构器（释放内存） void push(T value); T pop(); private: unsigned int size; unsigned int sp; T *pointer; //栈指针 }; template &lt;class T&gt; Stack&lt;T&gt;::Stack(unsigned int size) //隐含this指针指向这个方法 { this-&gt;size = size; pointer = new T[size]; //分配这个栈的空间 sp = 0; //表示第0个元素 } template &lt;class T&gt; Stack&lt;T&gt;::~Stack() //析构器 { delete []pointer; //释放构造器中开辟的空间（释放数组，需要加[]） } template &lt;class T&gt; void Stack&lt;T&gt;::push(T value) { pointer[sp&#43;&#43;] = value; //将数据压入栈中，然后栈指针指向下一个地址 } template &lt;class T&gt; T Stack&lt;T&gt;::pop() { return pointer[--sp]; //返回栈指针指向前一个地址的值 } int main() { const int size = 100; Stack&lt;double&gt; mystack(size); int n, a = 1; int i; char ch; std::cout &lt;&lt; &#34;How many numbers (1-n) do you need to push?&#34; &lt;&lt; &#34;\n&#34;; std::cin &gt;&gt; n; try { for (i = 0; i &lt; n; i&#43;&#43;) //压栈(1-n) { if (i &gt;= 100) { throw &#34;崩溃！，栈溢出！！...&#34;; } mystack.push(a); a&#43;&#43;; } std::cout &lt;&lt; &#34;All pushed!&#34; &lt;&lt; &#34;\n&#34;; getchar(); std::cout &lt;&lt; &#34;if you want to pop the stack of all numbers?(Y/N)&#34; &lt;&lt; &#34;\n&#34;; if ((ch = getchar()) == &#39;Y&#39;) for (int i = 0; i &lt; n; i&#43;&#43;) //弹栈 std::cout &lt;&lt; mystack.pop() &lt;&lt; &#34;\t&#34;; } catch (const char *a) //catch(...)捕获任何异常 { std::cout &lt;&lt; a; } return 0; } 链栈的表示和实现 链接到标题 链栈的初始化">
+栈非空时，取栈顶元素的值 顺序栈的代码实现(C&#43;&#43;) @ template &lt;class T&gt; class Stack { public: Stack(unsigned int size); //在构造器中初始化栈的大小 ~Stack(); //析构器（释放内存） void push(T value); T pop(); private: unsigned int size; unsigned int sp; T *pointer; //栈指针 }; template &lt;class T&gt; Stack&lt;T&gt;::Stack(unsigned int size) //隐含this指针指向这个方法 { this-&gt;size = size; pointer = new T[size]; //分配这个栈的空间 sp = 0; //表示第0个元素 } template &lt;class T&gt; Stack&lt;T&gt;::~Stack() //析构器 { delete []pointer; //释放构造器中开辟的空间（释放数组，需要加[]） } template &lt;class T&gt; void Stack&lt;T&gt;::push(T value) { pointer[sp&#43;&#43;] = value; //将数据压入栈中，然后栈指针指向下一个地址 } template &lt;class T&gt; T Stack&lt;T&gt;::pop() { return pointer[--sp]; //返回栈指针指向前一个地址的值 } int main() { const int size = 100; Stack&lt;double&gt; mystack(size); int n, a = 1; int i; char ch; std::cout &lt;&lt; &#34;How many numbers (1-n) do you need to push?&#34; &lt;&lt; &#34;\n&#34;; std::cin &gt;&gt; n; try { for (i = 0; i &lt; n; i&#43;&#43;) //压栈(1-n) { if (i &gt;= 100) { throw &#34;崩溃！，栈溢出！！...&#34;; } mystack.push(a); a&#43;&#43;; } std::cout &lt;&lt; &#34;All pushed!&#34; &lt;&lt; &#34;\n&#34;; getchar(); std::cout &lt;&lt; &#34;if you want to pop the stack of all numbers?(Y/N)&#34; &lt;&lt; &#34;\n&#34;; if ((ch = getchar()) == &#39;Y&#39;) for (int i = 0; i &lt; n; i&#43;&#43;) //弹栈 std::cout &lt;&lt; mystack.pop() &lt;&lt; &#34;\t&#34;; } catch (const char *a) //catch(...)捕获任何异常 { std::cout &lt;&lt; a; } return 0; } 链栈的表示和实现 @ 链栈的初始化">
  
 <meta property="og:url" content="//localhost:1313/posts/hshodlhxmoyl3hxf80acxloknyf/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="栈与队列">
-  <meta property="og:description" content="栈与队列 链接到标题 栈的定义和特点 链接到标题 栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
-栈的 ADT 类型定义 链接到标题 InitStack(&amp;s) //构造一个空栈 DestroyStack(&amp;s) //栈s存在，销毁栈 ClearStack(&amp;s) //栈s存在，清除栈 StackEmpty(s) //栈s存在，若栈为空返回true，否则返回false StackLength(s) //栈s存在，返回栈的长度 GetTop(s) //返回s的栈顶元素 Push(&amp;s,e) //插入元素e为新的栈顶元素 Pop(&amp;s,&amp;e) //栈s存在且非空，删除栈顶元素，返回其值 StackTraverse(s) //栈s存在且非空，遍历栈 顺序栈的表示和实现 链接到标题 顺序栈的初始化
+  <meta property="og:description" content="栈与队列 @ 栈的定义和特点 @ 栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。
+栈的 ADT 类型定义 @ InitStack(&amp;s) //构造一个空栈 DestroyStack(&amp;s) //栈s存在，销毁栈 ClearStack(&amp;s) //栈s存在，清除栈 StackEmpty(s) //栈s存在，若栈为空返回true，否则返回false StackLength(s) //栈s存在，返回栈的长度 GetTop(s) //返回s的栈顶元素 Push(&amp;s,e) //插入元素e为新的栈顶元素 Pop(&amp;s,&amp;e) //栈s存在且非空，删除栈顶元素，返回其值 StackTraverse(s) //栈s存在且非空，遍历栈 顺序栈的表示和实现 @ 顺序栈的初始化
 为顺序栈分配地址空间，并让基地址指向这个空间 栈顶指针初始化，栈容量初始化 顺序栈的入栈
 判断栈是否满，若满则返回 ERROR 将新元素压入栈顶，栈顶指针 &#43;1 顺序栈的出栈
 判断栈是否空，若空返回 ERROR 栈顶指针-1，栈顶元素出栈 取顺序栈的栈顶元素
-栈非空时，取栈顶元素的值 顺序栈的代码实现(C&#43;&#43;) 链接到标题 template &lt;class T&gt; class Stack { public: Stack(unsigned int size); //在构造器中初始化栈的大小 ~Stack(); //析构器（释放内存） void push(T value); T pop(); private: unsigned int size; unsigned int sp; T *pointer; //栈指针 }; template &lt;class T&gt; Stack&lt;T&gt;::Stack(unsigned int size) //隐含this指针指向这个方法 { this-&gt;size = size; pointer = new T[size]; //分配这个栈的空间 sp = 0; //表示第0个元素 } template &lt;class T&gt; Stack&lt;T&gt;::~Stack() //析构器 { delete []pointer; //释放构造器中开辟的空间（释放数组，需要加[]） } template &lt;class T&gt; void Stack&lt;T&gt;::push(T value) { pointer[sp&#43;&#43;] = value; //将数据压入栈中，然后栈指针指向下一个地址 } template &lt;class T&gt; T Stack&lt;T&gt;::pop() { return pointer[--sp]; //返回栈指针指向前一个地址的值 } int main() { const int size = 100; Stack&lt;double&gt; mystack(size); int n, a = 1; int i; char ch; std::cout &lt;&lt; &#34;How many numbers (1-n) do you need to push?&#34; &lt;&lt; &#34;\n&#34;; std::cin &gt;&gt; n; try { for (i = 0; i &lt; n; i&#43;&#43;) //压栈(1-n) { if (i &gt;= 100) { throw &#34;崩溃！，栈溢出！！...&#34;; } mystack.push(a); a&#43;&#43;; } std::cout &lt;&lt; &#34;All pushed!&#34; &lt;&lt; &#34;\n&#34;; getchar(); std::cout &lt;&lt; &#34;if you want to pop the stack of all numbers?(Y/N)&#34; &lt;&lt; &#34;\n&#34;; if ((ch = getchar()) == &#39;Y&#39;) for (int i = 0; i &lt; n; i&#43;&#43;) //弹栈 std::cout &lt;&lt; mystack.pop() &lt;&lt; &#34;\t&#34;; } catch (const char *a) //catch(...)捕获任何异常 { std::cout &lt;&lt; a; } return 0; } 链栈的表示和实现 链接到标题 链栈的初始化">
+栈非空时，取栈顶元素的值 顺序栈的代码实现(C&#43;&#43;) @ template &lt;class T&gt; class Stack { public: Stack(unsigned int size); //在构造器中初始化栈的大小 ~Stack(); //析构器（释放内存） void push(T value); T pop(); private: unsigned int size; unsigned int sp; T *pointer; //栈指针 }; template &lt;class T&gt; Stack&lt;T&gt;::Stack(unsigned int size) //隐含this指针指向这个方法 { this-&gt;size = size; pointer = new T[size]; //分配这个栈的空间 sp = 0; //表示第0个元素 } template &lt;class T&gt; Stack&lt;T&gt;::~Stack() //析构器 { delete []pointer; //释放构造器中开辟的空间（释放数组，需要加[]） } template &lt;class T&gt; void Stack&lt;T&gt;::push(T value) { pointer[sp&#43;&#43;] = value; //将数据压入栈中，然后栈指针指向下一个地址 } template &lt;class T&gt; T Stack&lt;T&gt;::pop() { return pointer[--sp]; //返回栈指针指向前一个地址的值 } int main() { const int size = 100; Stack&lt;double&gt; mystack(size); int n, a = 1; int i; char ch; std::cout &lt;&lt; &#34;How many numbers (1-n) do you need to push?&#34; &lt;&lt; &#34;\n&#34;; std::cin &gt;&gt; n; try { for (i = 0; i &lt; n; i&#43;&#43;) //压栈(1-n) { if (i &gt;= 100) { throw &#34;崩溃！，栈溢出！！...&#34;; } mystack.push(a); a&#43;&#43;; } std::cout &lt;&lt; &#34;All pushed!&#34; &lt;&lt; &#34;\n&#34;; getchar(); std::cout &lt;&lt; &#34;if you want to pop the stack of all numbers?(Y/N)&#34; &lt;&lt; &#34;\n&#34;; if ((ch = getchar()) == &#39;Y&#39;) for (int i = 0; i &lt; n; i&#43;&#43;) //弹栈 std::cout &lt;&lt; mystack.pop() &lt;&lt; &#34;\t&#34;; } catch (const char *a) //catch(...)捕获任何异常 { std::cout &lt;&lt; a; } return 0; } 链栈的表示和实现 @ 链栈的初始化">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -339,7 +339,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -475,7 +475,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            114909 字
+            114377 字
           </span>
         </div>
         
@@ -505,8 +505,8 @@ code.has-jax {
 <h1 id="栈与队列">
   栈与队列
   <a class="heading-link" href="#%e6%a0%88%e4%b8%8e%e9%98%9f%e5%88%97">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -514,8 +514,8 @@ code.has-jax {
 <h2 id="栈的定义和特点">
   栈的定义和特点
   <a class="heading-link" href="#%e6%a0%88%e7%9a%84%e5%ae%9a%e4%b9%89%e5%92%8c%e7%89%b9%e7%82%b9">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>栈(stack)是限定仅在表尾进行插入或删除的操作的线性表，表尾端称为栈顶，表头端称为栈底，不含元素的空表称为空栈，栈因为其特性又被称为后进先出(Last In First Out)的线性表。</p>
@@ -524,8 +524,8 @@ code.has-jax {
 <h2 id="栈的-adt-类型定义">
   栈的 ADT 类型定义
   <a class="heading-link" href="#%e6%a0%88%e7%9a%84-adt-%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">InitStack</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span> <span class="c1">//构造一个空栈
@@ -542,8 +542,8 @@ code.has-jax {
 <h3 id="顺序栈的表示和实现">
   顺序栈的表示和实现
   <a class="heading-link" href="#%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -580,8 +580,8 @@ code.has-jax {
 <h4 id="顺序栈的代码实现c">
   顺序栈的代码实现(C++)
   <a class="heading-link" href="#%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0c">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span>
@@ -657,8 +657,8 @@ code.has-jax {
 <h3 id="链栈的表示和实现">
   链栈的表示和实现
   <a class="heading-link" href="#%e9%93%be%e6%a0%88%e7%9a%84%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -698,8 +698,8 @@ code.has-jax {
 <h4 id="链栈的简单实现">
   链栈的简单实现
   <a class="heading-link" href="#%e9%93%be%e6%a0%88%e7%9a%84%e7%ae%80%e5%8d%95%e5%ae%9e%e7%8e%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Stack_l</span> <span class="p">{</span>
@@ -783,8 +783,8 @@ code.has-jax {
 <h3 id="栈与递归">
   栈与递归
   <a class="heading-link" href="#%e6%a0%88%e4%b8%8e%e9%80%92%e5%bd%92">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>递归是指，若在一个函数、过程或者数据结构定义的内部又直接或间接出现定义本身的应用，则称它们是递归的(函数自己调用自己)。以下三种情况，经常使用递归：</p>
@@ -806,8 +806,8 @@ code.has-jax {
 <h4 id="递归过程与递归工作栈">
   递归过程与递归工作栈
   <a class="heading-link" href="#%e9%80%92%e5%bd%92%e8%bf%87%e7%a8%8b%e4%b8%8e%e9%80%92%e5%bd%92%e5%b7%a5%e4%bd%9c%e6%a0%88">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <p>当在一个函数的运行期间调用另一个函数时，在运行被调用函数之前，系统需先完成 3 件事：</p>
@@ -828,8 +828,8 @@ code.has-jax {
 <h4 id="递归算法的效率分析">
   递归算法的效率分析
   <a class="heading-link" href="#%e9%80%92%e5%bd%92%e7%ae%97%e6%b3%95%e7%9a%84%e6%95%88%e7%8e%87%e5%88%86%e6%9e%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <ol>
@@ -866,8 +866,8 @@ code.has-jax {
 <h3 id="经典案例">
   经典案例
   <a class="heading-link" href="#%e7%bb%8f%e5%85%b8%e6%a1%88%e4%be%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ol>
@@ -880,8 +880,8 @@ code.has-jax {
 <h4 id="括号匹配代码示例">
   括号匹配代码示例
   <a class="heading-link" href="#%e6%8b%ac%e5%8f%b7%e5%8c%b9%e9%85%8d%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAX 100
@@ -946,8 +946,8 @@ code.has-jax {
 <h4 id="表达式求值代码示例">
   表达式求值代码示例
   <a class="heading-link" href="#%e8%a1%a8%e8%be%be%e5%bc%8f%e6%b1%82%e5%80%bc%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">;</span>
@@ -1019,8 +1019,8 @@ code.has-jax {
 <h2 id="队列的定义和特点">
   队列的定义和特点
   <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84%e5%ae%9a%e4%b9%89%e5%92%8c%e7%89%b9%e7%82%b9">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>队列是一种(queue)是一种先进先出(First In First Out,FIFO)的线性表，它只允许在表的一端进行插入，而在另一端删除元素。</p>
@@ -1030,8 +1030,8 @@ code.has-jax {
 <h3 id="队列的-adt-类型定义">
   队列的 ADT 类型定义
   <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84-adt-%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">InitQueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Q</span><span class="p">)</span>        <span class="c1">//构造一个空栈
@@ -1048,8 +1048,8 @@ code.has-jax {
 <h3 id="队列的顺序表示和实现循环队列">
   队列的顺序表示和实现(循环队列)
   <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84%e9%a1%ba%e5%ba%8f%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1095,8 +1095,8 @@ code.has-jax {
 <h4 id="循环队列顺序存储的简易代码实现">
   循环队列顺序存储的简易代码实现
   <a class="heading-link" href="#%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8%e7%9a%84%e7%ae%80%e6%98%93%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAXSIZE 10
@@ -1179,8 +1179,8 @@ code.has-jax {
 <h3 id="队列的链式表示和实现">
   队列的链式表示和实现
   <a class="heading-link" href="#%e9%98%9f%e5%88%97%e7%9a%84%e9%93%be%e5%bc%8f%e8%a1%a8%e7%a4%ba%e5%92%8c%e5%ae%9e%e7%8e%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1223,8 +1223,8 @@ code.has-jax {
 <h4 id="链队的代码简易实现">
   链队的代码简易实现
   <a class="heading-link" href="#%e9%93%be%e9%98%9f%e7%9a%84%e4%bb%a3%e7%a0%81%e7%ae%80%e6%98%93%e5%ae%9e%e7%8e%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAX 10
@@ -1365,8 +1365,8 @@ code.has-jax {
       <h3 id="参见-数据结构相关文章">
         参见 数据结构相关文章
         <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0">
-          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-          <span class="sr-only">链接到标题</span>
+          <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+          <span class="sr-only">@</span>
         </a>
       </h3>
       <nav>

@@ -24,7 +24,7 @@ IP数据包与路由 · inaho
   IP数据包与路由
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@ IP数据包与路由 · inaho
   IP数据包
   
     
-    链接到标题
+    @
   
 
 一个IP数据包由首部和数据两部分组成。
@@ -48,7 +48,7 @@ IP数据包与路由 · inaho
   数据包结构
   
     
-    链接到标题
+    @
   
 
 
@@ -89,8 +89,8 @@ ICMP：1, IGMP：2, TCP：6, UDP：17, IPv6：41, OSPF：89
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="IP数据包与路由">
-  <meta name="twitter:description" content="IP数据包与路由 链接到标题 IP数据包 链接到标题 一个IP数据包由首部和数据两部分组成。
-首部的前一部分是固定长度，共字节，是所有 IP 数据报必须具有的。 在首部的固定部分的后面是一些可选字段，其长度是可变的。 数据包结构 链接到标题 版本：用来表示 TCP/IP 协议的版本 v4,v6 首部长度：确定数据包首部有多长，因为包含可变部分。 区分服务：确定更高的传输优先级。(QoS 机制) 总长度：确定数据部分长度，一共 16 位，最多有 2^16-1=65535 字节。 传输限制：数据包最大 65535 字节，而数据链路层最大传输 1500 字节，所以对于大于 1500 字节的数据包，将会进行分片传输。（最大传输单元 MTU） 分片传输：将数据进行分割，分别添加 IP 地址，通过网络发给接收端。接收端在通过网络层进行拼接，传送过程中可能存在丢包现象，或者后发的先到，所以需要对分片的数据包进行编号。 泪滴攻击：指的是向目标机器发送损坏的 IP 包，诸如重叠的包或者过大的包载荷。借由这些手段，该攻击可以通过 TCP/IP 协议栈中分片重组代码中的 bug 来瘫痪各种不同的操作系统。
+  <meta name="twitter:description" content="IP数据包与路由 @ IP数据包 @ 一个IP数据包由首部和数据两部分组成。
+首部的前一部分是固定长度，共字节，是所有 IP 数据报必须具有的。 在首部的固定部分的后面是一些可选字段，其长度是可变的。 数据包结构 @ 版本：用来表示 TCP/IP 协议的版本 v4,v6 首部长度：确定数据包首部有多长，因为包含可变部分。 区分服务：确定更高的传输优先级。(QoS 机制) 总长度：确定数据部分长度，一共 16 位，最多有 2^16-1=65535 字节。 传输限制：数据包最大 65535 字节，而数据链路层最大传输 1500 字节，所以对于大于 1500 字节的数据包，将会进行分片传输。（最大传输单元 MTU） 分片传输：将数据进行分割，分别添加 IP 地址，通过网络发给接收端。接收端在通过网络层进行拼接，传送过程中可能存在丢包现象，或者后发的先到，所以需要对分片的数据包进行编号。 泪滴攻击：指的是向目标机器发送损坏的 IP 包，诸如重叠的包或者过大的包载荷。借由这些手段，该攻击可以通过 TCP/IP 协议栈中分片重组代码中的 bug 来瘫痪各种不同的操作系统。
 以太网 V2 数据帧模式：
 标识：如果出现数据包分片，那么标识用来确定哪些数据包需要组合，进行相同标记。 标志：占位，目前只有前两位有意义。标志字段的最低位是 MF(More Fragment)，MF=1 表示后面还有分片，MF=0 表示最后一个分片，标志字段中间的一位是 DF(Don`t Fragment)，只有当 DF=0 时才允许分片。 数据包分片举例：
 片偏移：偏移等于当前字节在数据部分的第几个再除以 8. 生存时间：就是 TTL(Time To Live)，每经过一个路由器就减 1，8 位二进制，作用是防止数据包在网络中循环。 协议号：用协议号标识数据部分是什么数据。 ICMP：1, IGMP：2, TCP：6, UDP：17, IPv6：41, OSPF：89">
@@ -98,8 +98,8 @@ ICMP：1, IGMP：2, TCP：6, UDP：17, IPv6：41, OSPF：89
 <meta property="og:url" content="//localhost:1313/posts/jopldi3rioohbsxlqnfcrms4nxf/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="IP数据包与路由">
-  <meta property="og:description" content="IP数据包与路由 链接到标题 IP数据包 链接到标题 一个IP数据包由首部和数据两部分组成。
-首部的前一部分是固定长度，共字节，是所有 IP 数据报必须具有的。 在首部的固定部分的后面是一些可选字段，其长度是可变的。 数据包结构 链接到标题 版本：用来表示 TCP/IP 协议的版本 v4,v6 首部长度：确定数据包首部有多长，因为包含可变部分。 区分服务：确定更高的传输优先级。(QoS 机制) 总长度：确定数据部分长度，一共 16 位，最多有 2^16-1=65535 字节。 传输限制：数据包最大 65535 字节，而数据链路层最大传输 1500 字节，所以对于大于 1500 字节的数据包，将会进行分片传输。（最大传输单元 MTU） 分片传输：将数据进行分割，分别添加 IP 地址，通过网络发给接收端。接收端在通过网络层进行拼接，传送过程中可能存在丢包现象，或者后发的先到，所以需要对分片的数据包进行编号。 泪滴攻击：指的是向目标机器发送损坏的 IP 包，诸如重叠的包或者过大的包载荷。借由这些手段，该攻击可以通过 TCP/IP 协议栈中分片重组代码中的 bug 来瘫痪各种不同的操作系统。
+  <meta property="og:description" content="IP数据包与路由 @ IP数据包 @ 一个IP数据包由首部和数据两部分组成。
+首部的前一部分是固定长度，共字节，是所有 IP 数据报必须具有的。 在首部的固定部分的后面是一些可选字段，其长度是可变的。 数据包结构 @ 版本：用来表示 TCP/IP 协议的版本 v4,v6 首部长度：确定数据包首部有多长，因为包含可变部分。 区分服务：确定更高的传输优先级。(QoS 机制) 总长度：确定数据部分长度，一共 16 位，最多有 2^16-1=65535 字节。 传输限制：数据包最大 65535 字节，而数据链路层最大传输 1500 字节，所以对于大于 1500 字节的数据包，将会进行分片传输。（最大传输单元 MTU） 分片传输：将数据进行分割，分别添加 IP 地址，通过网络发给接收端。接收端在通过网络层进行拼接，传送过程中可能存在丢包现象，或者后发的先到，所以需要对分片的数据包进行编号。 泪滴攻击：指的是向目标机器发送损坏的 IP 包，诸如重叠的包或者过大的包载荷。借由这些手段，该攻击可以通过 TCP/IP 协议栈中分片重组代码中的 bug 来瘫痪各种不同的操作系统。
 以太网 V2 数据帧模式：
 标识：如果出现数据包分片，那么标识用来确定哪些数据包需要组合，进行相同标记。 标志：占位，目前只有前两位有意义。标志字段的最低位是 MF(More Fragment)，MF=1 表示后面还有分片，MF=0 表示最后一个分片，标志字段中间的一位是 DF(Don`t Fragment)，只有当 DF=0 时才允许分片。 数据包分片举例：
 片偏移：偏移等于当前字节在数据部分的第几个再除以 8. 生存时间：就是 TTL(Time To Live)，每经过一个路由器就减 1，8 位二进制，作用是防止数据包在网络中循环。 协议号：用协议号标识数据部分是什么数据。 ICMP：1, IGMP：2, TCP：6, UDP：17, IPv6：41, OSPF：89">
@@ -234,7 +234,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -340,7 +340,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            5261 字
+            5065 字
           </span>
         </div>
         
@@ -370,8 +370,8 @@ code.has-jax {
 <h1 id="ip数据包与路由">
   IP数据包与路由
   <a class="heading-link" href="#ip%e6%95%b0%e6%8d%ae%e5%8c%85%e4%b8%8e%e8%b7%af%e7%94%b1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -379,8 +379,8 @@ code.has-jax {
 <h2 id="ip数据包">
   IP数据包
   <a class="heading-link" href="#ip%e6%95%b0%e6%8d%ae%e5%8c%85">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>一个IP数据包由首部和数据两部分组成。</p>
@@ -394,8 +394,8 @@ code.has-jax {
 <h3 id="数据包结构">
   数据包结构
   <a class="heading-link" href="#%e6%95%b0%e6%8d%ae%e5%8c%85%e7%bb%93%e6%9e%84">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p><img src="../static/MQTObrfW0oXyhOxSTOzcHpLvnNc.png" alt=""></p>
@@ -440,8 +440,8 @@ code.has-jax {
 <h2 id="ip-协议">
   IP 协议
   <a class="heading-link" href="#ip-%e5%8d%8f%e8%ae%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -449,8 +449,8 @@ code.has-jax {
 <h3 id="网络畅通的条件">
   网络畅通的条件
   <a class="heading-link" href="#%e7%bd%91%e7%bb%9c%e7%95%85%e9%80%9a%e7%9a%84%e6%9d%a1%e4%bb%b6">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>沿途路由器必须知道下一跳给谁，数据包有去有回。</p>
@@ -460,8 +460,8 @@ code.has-jax {
 <h3 id="静态路由">
   静态路由
   <a class="heading-link" href="#%e9%9d%99%e6%80%81%e8%b7%af%e7%94%b1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <p>需要管理员手动设置路由表，适用于小规模网络，不能自动调整路由。</p>
@@ -470,8 +470,8 @@ code.has-jax {
 <h3 id="动态路由">
   动态路由
   <a class="heading-link" href="#%e5%8a%a8%e6%80%81%e8%b7%af%e7%94%b1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ol>
@@ -500,8 +500,8 @@ code.has-jax {
       <h3 id="参见-计算机网络">
         参见 计算机网络
         <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bd%91%e7%bb%9c">
-          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-          <span class="sr-only">链接到标题</span>
+          <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+          <span class="sr-only">@</span>
         </a>
       </h3>
       <nav>

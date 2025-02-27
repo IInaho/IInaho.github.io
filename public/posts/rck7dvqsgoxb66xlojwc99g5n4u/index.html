@@ -24,7 +24,7 @@
   部分排序问题
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@
   题目
   
     
-    链接到标题
+    @
   
 
 
@@ -43,7 +43,7 @@
   解题思路
   
     
-    链接到标题
+    @
   
 
 看到题目后，有一种简单想法就是将所有 k 位的部分排序后得到的整体序列全部存起来，然后对每一个序列比较，筛除相同的序列，得到不同序列，但如果 n 与 k 的值足够大，需要使用更多的数组存储序列，时间复杂度与空间复杂度都非常高，因此必须想到一个更好的解题思路，以下是我的解题思路。
@@ -55,7 +55,7 @@
   代码如下
   
     
-    链接到标题
+    @
   
 
 void Sort(int *num, int x) {        //冒泡排序
@@ -137,18 +137,18 @@ int main() {
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="部分排序问题">
-  <meta name="twitter:description" content="部分排序问题 链接到标题 题目 链接到标题 解题思路 链接到标题 看到题目后，有一种简单想法就是将所有 k 位的部分排序后得到的整体序列全部存起来，然后对每一个序列比较，筛除相同的序列，得到不同序列，但如果 n 与 k 的值足够大，需要使用更多的数组存储序列，时间复杂度与空间复杂度都非常高，因此必须想到一个更好的解题思路，以下是我的解题思路。
+  <meta name="twitter:description" content="部分排序问题 @ 题目 @ 解题思路 @ 看到题目后，有一种简单想法就是将所有 k 位的部分排序后得到的整体序列全部存起来，然后对每一个序列比较，筛除相同的序列，得到不同序列，但如果 n 与 k 的值足够大，需要使用更多的数组存储序列，时间复杂度与空间复杂度都非常高，因此必须想到一个更好的解题思路，以下是我的解题思路。
 本题中，由于 k 的值不同，所以每次选择的部分排序也不同，可能存在两次或多次进行部分排序后，整体的序列排序相同。因此需要考虑在什么情况下，两次或两次以上部分排序得到的整体的序列排序也相同，因为序列相同只进行一次计算。
 由于每次可以从任意位置 i(i=0,1,2,3…n)取 k 位，然后对 k 位进行升序排序，那么如果 i&#43;1 位置开始取 k 位并进行升序排序得到的序列，和前一个位置的升序排序序列得到的序列的的交集相等，则说明这两个经过部分排序的序列得到的整体序列顺序也相等，因此说明两个序列重复，重复的序列只计算一次，如果不等说明两个序列不重复，则序列种类 &#43;1。
-代码如下 链接到标题 void Sort(int *num, int x) { //冒泡排序 int lenth = x; //数组大小 int temp; for (int i = 0; i &lt; lenth - 1; i&#43;&#43;) { //冒泡排序(将数组元素升序排序) for (int j = 0; j &lt; lenth - 1 - i; j&#43;&#43;) { if (*(num &#43; j) &gt; *(num &#43; j &#43; 1)) { temp = *(num &#43; j); *(num &#43; j) = *(num &#43; j &#43; 1); *(num &#43; j &#43; 1) = temp; } } } } int IsEqual(int a[], int b[], int k) { //判断是否相等 Sort(a, k); Sort(b, k); for (int i = 0; i &lt; k - 1; i&#43;&#43;) { if (a[i] == b[i &#43; 1]) continue; else return false; } return true; } int main() { int max; //输入序列长度 cout &lt;&lt; &#34;输入序列长度&#34; &lt;&lt; endl; cin &gt;&gt; max; int k; cout &lt;&lt; &#34;输入k&#34; &lt;&lt; endl; cin &gt;&gt; k; int *temp = (int*)malloc(sizeof(int)*k); //临时数组，负责存储从i位起k个数据，部分排序序列 int *temp1 = (int*)malloc(sizeof(int)*k); //负责保存上一个部分排序序列 for (int i = 0; i &lt; k; i&#43;&#43;) { //初始化 temp1[i] = 0; temp[i] = 0; } int *number = (int*)malloc(sizeof(int)*max); //输入序列 cout &lt;&lt; &#34;序列赋值&#34; &lt;&lt; endl; for (int i = 0; i &lt; max; i&#43;&#43;) { cin &gt;&gt; number[i]; } int sortNum = 0; //初始序列排列种类数量 int fl = 0; //移位次数 for (int i = 0; i &#43; k &lt; max; i&#43;&#43;) fl&#43;&#43;; int lock = 0; for (int i = 0; i &lt;= fl; i&#43;&#43;) { int b = 0; for (int j = i; j &lt; i &#43; k; j&#43;&#43;) { //每次截取k位数据 if (b &lt; k) { temp[b&#43;&#43;] = number[j]; } } int isTrue = IsEqual(temp, temp1, k); if (isTrue) { //判断前后两次部分排序序列的交集是否相等 if (lock != 1) { sortNum&#43;&#43;; lock = 1; } } else if (!isTrue) { sortNum&#43;&#43;; lock = 0; } for (int l = 0; l &lt; k; l&#43;&#43;) { temp1[l] = temp[l]; } } cout &lt;&lt; &#34;结果为:&#34; &lt;&lt; sortNum - 1 &lt;&lt; endl; system(&#34;pause&#34;); return 0; }">
+代码如下 @ void Sort(int *num, int x) { //冒泡排序 int lenth = x; //数组大小 int temp; for (int i = 0; i &lt; lenth - 1; i&#43;&#43;) { //冒泡排序(将数组元素升序排序) for (int j = 0; j &lt; lenth - 1 - i; j&#43;&#43;) { if (*(num &#43; j) &gt; *(num &#43; j &#43; 1)) { temp = *(num &#43; j); *(num &#43; j) = *(num &#43; j &#43; 1); *(num &#43; j &#43; 1) = temp; } } } } int IsEqual(int a[], int b[], int k) { //判断是否相等 Sort(a, k); Sort(b, k); for (int i = 0; i &lt; k - 1; i&#43;&#43;) { if (a[i] == b[i &#43; 1]) continue; else return false; } return true; } int main() { int max; //输入序列长度 cout &lt;&lt; &#34;输入序列长度&#34; &lt;&lt; endl; cin &gt;&gt; max; int k; cout &lt;&lt; &#34;输入k&#34; &lt;&lt; endl; cin &gt;&gt; k; int *temp = (int*)malloc(sizeof(int)*k); //临时数组，负责存储从i位起k个数据，部分排序序列 int *temp1 = (int*)malloc(sizeof(int)*k); //负责保存上一个部分排序序列 for (int i = 0; i &lt; k; i&#43;&#43;) { //初始化 temp1[i] = 0; temp[i] = 0; } int *number = (int*)malloc(sizeof(int)*max); //输入序列 cout &lt;&lt; &#34;序列赋值&#34; &lt;&lt; endl; for (int i = 0; i &lt; max; i&#43;&#43;) { cin &gt;&gt; number[i]; } int sortNum = 0; //初始序列排列种类数量 int fl = 0; //移位次数 for (int i = 0; i &#43; k &lt; max; i&#43;&#43;) fl&#43;&#43;; int lock = 0; for (int i = 0; i &lt;= fl; i&#43;&#43;) { int b = 0; for (int j = i; j &lt; i &#43; k; j&#43;&#43;) { //每次截取k位数据 if (b &lt; k) { temp[b&#43;&#43;] = number[j]; } } int isTrue = IsEqual(temp, temp1, k); if (isTrue) { //判断前后两次部分排序序列的交集是否相等 if (lock != 1) { sortNum&#43;&#43;; lock = 1; } } else if (!isTrue) { sortNum&#43;&#43;; lock = 0; } for (int l = 0; l &lt; k; l&#43;&#43;) { temp1[l] = temp[l]; } } cout &lt;&lt; &#34;结果为:&#34; &lt;&lt; sortNum - 1 &lt;&lt; endl; system(&#34;pause&#34;); return 0; }">
  
 <meta property="og:url" content="//localhost:1313/posts/rck7dvqsgoxb66xlojwc99g5n4u/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="部分排序问题">
-  <meta property="og:description" content="部分排序问题 链接到标题 题目 链接到标题 解题思路 链接到标题 看到题目后，有一种简单想法就是将所有 k 位的部分排序后得到的整体序列全部存起来，然后对每一个序列比较，筛除相同的序列，得到不同序列，但如果 n 与 k 的值足够大，需要使用更多的数组存储序列，时间复杂度与空间复杂度都非常高，因此必须想到一个更好的解题思路，以下是我的解题思路。
+  <meta property="og:description" content="部分排序问题 @ 题目 @ 解题思路 @ 看到题目后，有一种简单想法就是将所有 k 位的部分排序后得到的整体序列全部存起来，然后对每一个序列比较，筛除相同的序列，得到不同序列，但如果 n 与 k 的值足够大，需要使用更多的数组存储序列，时间复杂度与空间复杂度都非常高，因此必须想到一个更好的解题思路，以下是我的解题思路。
 本题中，由于 k 的值不同，所以每次选择的部分排序也不同，可能存在两次或多次进行部分排序后，整体的序列排序相同。因此需要考虑在什么情况下，两次或两次以上部分排序得到的整体的序列排序也相同，因为序列相同只进行一次计算。
 由于每次可以从任意位置 i(i=0,1,2,3…n)取 k 位，然后对 k 位进行升序排序，那么如果 i&#43;1 位置开始取 k 位并进行升序排序得到的序列，和前一个位置的升序排序序列得到的序列的的交集相等，则说明这两个经过部分排序的序列得到的整体序列顺序也相等，因此说明两个序列重复，重复的序列只计算一次，如果不等说明两个序列不重复，则序列种类 &#43;1。
-代码如下 链接到标题 void Sort(int *num, int x) { //冒泡排序 int lenth = x; //数组大小 int temp; for (int i = 0; i &lt; lenth - 1; i&#43;&#43;) { //冒泡排序(将数组元素升序排序) for (int j = 0; j &lt; lenth - 1 - i; j&#43;&#43;) { if (*(num &#43; j) &gt; *(num &#43; j &#43; 1)) { temp = *(num &#43; j); *(num &#43; j) = *(num &#43; j &#43; 1); *(num &#43; j &#43; 1) = temp; } } } } int IsEqual(int a[], int b[], int k) { //判断是否相等 Sort(a, k); Sort(b, k); for (int i = 0; i &lt; k - 1; i&#43;&#43;) { if (a[i] == b[i &#43; 1]) continue; else return false; } return true; } int main() { int max; //输入序列长度 cout &lt;&lt; &#34;输入序列长度&#34; &lt;&lt; endl; cin &gt;&gt; max; int k; cout &lt;&lt; &#34;输入k&#34; &lt;&lt; endl; cin &gt;&gt; k; int *temp = (int*)malloc(sizeof(int)*k); //临时数组，负责存储从i位起k个数据，部分排序序列 int *temp1 = (int*)malloc(sizeof(int)*k); //负责保存上一个部分排序序列 for (int i = 0; i &lt; k; i&#43;&#43;) { //初始化 temp1[i] = 0; temp[i] = 0; } int *number = (int*)malloc(sizeof(int)*max); //输入序列 cout &lt;&lt; &#34;序列赋值&#34; &lt;&lt; endl; for (int i = 0; i &lt; max; i&#43;&#43;) { cin &gt;&gt; number[i]; } int sortNum = 0; //初始序列排列种类数量 int fl = 0; //移位次数 for (int i = 0; i &#43; k &lt; max; i&#43;&#43;) fl&#43;&#43;; int lock = 0; for (int i = 0; i &lt;= fl; i&#43;&#43;) { int b = 0; for (int j = i; j &lt; i &#43; k; j&#43;&#43;) { //每次截取k位数据 if (b &lt; k) { temp[b&#43;&#43;] = number[j]; } } int isTrue = IsEqual(temp, temp1, k); if (isTrue) { //判断前后两次部分排序序列的交集是否相等 if (lock != 1) { sortNum&#43;&#43;; lock = 1; } } else if (!isTrue) { sortNum&#43;&#43;; lock = 0; } for (int l = 0; l &lt; k; l&#43;&#43;) { temp1[l] = temp[l]; } } cout &lt;&lt; &#34;结果为:&#34; &lt;&lt; sortNum - 1 &lt;&lt; endl; system(&#34;pause&#34;); return 0; }">
+代码如下 @ void Sort(int *num, int x) { //冒泡排序 int lenth = x; //数组大小 int temp; for (int i = 0; i &lt; lenth - 1; i&#43;&#43;) { //冒泡排序(将数组元素升序排序) for (int j = 0; j &lt; lenth - 1 - i; j&#43;&#43;) { if (*(num &#43; j) &gt; *(num &#43; j &#43; 1)) { temp = *(num &#43; j); *(num &#43; j) = *(num &#43; j &#43; 1); *(num &#43; j &#43; 1) = temp; } } } } int IsEqual(int a[], int b[], int k) { //判断是否相等 Sort(a, k); Sort(b, k); for (int i = 0; i &lt; k - 1; i&#43;&#43;) { if (a[i] == b[i &#43; 1]) continue; else return false; } return true; } int main() { int max; //输入序列长度 cout &lt;&lt; &#34;输入序列长度&#34; &lt;&lt; endl; cin &gt;&gt; max; int k; cout &lt;&lt; &#34;输入k&#34; &lt;&lt; endl; cin &gt;&gt; k; int *temp = (int*)malloc(sizeof(int)*k); //临时数组，负责存储从i位起k个数据，部分排序序列 int *temp1 = (int*)malloc(sizeof(int)*k); //负责保存上一个部分排序序列 for (int i = 0; i &lt; k; i&#43;&#43;) { //初始化 temp1[i] = 0; temp[i] = 0; } int *number = (int*)malloc(sizeof(int)*max); //输入序列 cout &lt;&lt; &#34;序列赋值&#34; &lt;&lt; endl; for (int i = 0; i &lt; max; i&#43;&#43;) { cin &gt;&gt; number[i]; } int sortNum = 0; //初始序列排列种类数量 int fl = 0; //移位次数 for (int i = 0; i &#43; k &lt; max; i&#43;&#43;) fl&#43;&#43;; int lock = 0; for (int i = 0; i &lt;= fl; i&#43;&#43;) { int b = 0; for (int j = i; j &lt; i &#43; k; j&#43;&#43;) { //每次截取k位数据 if (b &lt; k) { temp[b&#43;&#43;] = number[j]; } } int isTrue = IsEqual(temp, temp1, k); if (isTrue) { //判断前后两次部分排序序列的交集是否相等 if (lock != 1) { sortNum&#43;&#43;; lock = 1; } } else if (!isTrue) { sortNum&#43;&#43;; lock = 0; } for (int l = 0; l &lt; k; l&#43;&#43;) { temp1[l] = temp[l]; } } cout &lt;&lt; &#34;结果为:&#34; &lt;&lt; sortNum - 1 &lt;&lt; endl; system(&#34;pause&#34;); return 0; }">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -274,7 +274,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -371,7 +371,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            20362 字
+            20250 字
           </span>
         </div>
         
@@ -401,8 +401,8 @@ code.has-jax {
 <h1 id="部分排序问题">
   部分排序问题
   <a class="heading-link" href="#%e9%83%a8%e5%88%86%e6%8e%92%e5%ba%8f%e9%97%ae%e9%a2%98">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -410,8 +410,8 @@ code.has-jax {
 <h2 id="题目">
   题目
   <a class="heading-link" href="#%e9%a2%98%e7%9b%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p><img src="../static/ITQOb2IZGoaZcqxkKNwcF6dpnJh.png" alt=""></p>
@@ -420,8 +420,8 @@ code.has-jax {
 <h2 id="解题思路">
   解题思路
   <a class="heading-link" href="#%e8%a7%a3%e9%a2%98%e6%80%9d%e8%b7%af">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>看到题目后，有一种简单想法就是将所有 k 位的部分排序后得到的整体序列全部存起来，然后对每一个序列比较，筛除相同的序列，得到不同序列，但如果 n 与 k 的值足够大，需要使用更多的数组存储序列，时间复杂度与空间复杂度都非常高，因此必须想到一个更好的解题思路，以下是我的解题思路。</p>
@@ -432,8 +432,8 @@ code.has-jax {
 <h2 id="代码如下">
   代码如下
   <a class="heading-link" href="#%e4%bb%a3%e7%a0%81%e5%a6%82%e4%b8%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Sort</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>        <span class="c1">//冒泡排序

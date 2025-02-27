@@ -24,7 +24,7 @@ pprof 性能分析 · inaho
   pprof 性能分析
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@ pprof 性能分析 · inaho
   概要
   
     
-    链接到标题
+    @
   
 
 在 golang 项目开发测试过程中，程序经常会出现各种崩溃卡死的恶性 bug，例如内存飙升、CPU 占用太高、Goroutine 泄露等，有些仅从代码层面无法排查到，这时候就需要借助 pprof 工具来排查问题。
@@ -43,7 +43,7 @@ pprof 性能分析 · inaho
   简要介绍
   
     
-    链接到标题
+    @
   
 
 pprof 工具集，提供了 Go 程序内部多种性能指标的采样能力，我们常会用到的性能采样指标有这些：
@@ -67,7 +67,7 @@ block：查看导致阻塞同步的堆栈跟踪，访问路径为 $HOST/debug/pp
   Web 界面分析
   
     
-    链接到标题
+    @
   
 
 _// pprof的init函数会将pprof里的一些handler注册到http.DefaultServeMux上_
@@ -88,23 +88,23 @@ _// pprof的init函数会将pprof里的一些handler注册到http.DefaultServeMu
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="pprof 性能分析">
-  <meta name="twitter:description" content="pprof 性能分析 链接到标题 概要 链接到标题 在 golang 项目开发测试过程中，程序经常会出现各种崩溃卡死的恶性 bug，例如内存飙升、CPU 占用太高、Goroutine 泄露等，有些仅从代码层面无法排查到，这时候就需要借助 pprof 工具来排查问题。
-简要介绍 链接到标题 pprof 工具集，提供了 Go 程序内部多种性能指标的采样能力，我们常会用到的性能采样指标有这些：
+  <meta name="twitter:description" content="pprof 性能分析 @ 概要 @ 在 golang 项目开发测试过程中，程序经常会出现各种崩溃卡死的恶性 bug，例如内存飙升、CPU 占用太高、Goroutine 泄露等，有些仅从代码层面无法排查到，这时候就需要借助 pprof 工具来排查问题。
+简要介绍 @ pprof 工具集，提供了 Go 程序内部多种性能指标的采样能力，我们常会用到的性能采样指标有这些：
 profile：默认进行 30s 的 CPU Profiling，得到一个分析用的 profile 文件，访问路径为 $HOST/debug/pprof/profile heap：查看活动对象的内存分配情况， 访问路径为 $HOST/debug/pprof/heap goroutine：查看当前所有运行的 goroutines 堆栈跟踪，访问路径为 $HOST/debug/pprof/goroutine allocs: 查看过去所有内存分配的样本，访问路径为 $HOST/debug/pprof/allocs(包括已经被 GC 回收的内存) threadcreate：查看创建新 OS 线程的堆栈跟踪，访问路径为 $HOST/debug/pprof/threadcreate mutex：查看导致互斥锁的竞争持有者的堆栈跟踪，访问路径为 $HOST/debug/pprof/mutex block：查看导致阻塞同步的堆栈跟踪，访问路径为 $HOST/debug/pprof/block 分析方式主要分为两种：
-根据 pprof 工具基于 web 图形界面进行分析 基于交互式的命令行进行分析 Web 界面分析 链接到标题 _// pprof的init函数会将pprof里的一些handler注册到http.DefaultServeMux上_ **import** _ &#34;net/http/pprof&#34; **go** **func**() { http**.**ListenAndServe(&#34;0.0.0.0:8080&#34;, nil) }() // http://0.0.0.0:8080/debug/pprof/goroutine?debug=1 在对应的访问路径上新增 ?debug=1 的话，就可以直接在浏览器访问">
+根据 pprof 工具基于 web 图形界面进行分析 基于交互式的命令行进行分析 Web 界面分析 @ _// pprof的init函数会将pprof里的一些handler注册到http.DefaultServeMux上_ **import** _ &#34;net/http/pprof&#34; **go** **func**() { http**.**ListenAndServe(&#34;0.0.0.0:8080&#34;, nil) }() // http://0.0.0.0:8080/debug/pprof/goroutine?debug=1 在对应的访问路径上新增 ?debug=1 的话，就可以直接在浏览器访问">
  
 <meta property="og:url" content="//localhost:1313/posts/ls4ud9irwopxjyxo2socs7ionyg/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="pprof 性能分析">
-  <meta property="og:description" content="pprof 性能分析 链接到标题 概要 链接到标题 在 golang 项目开发测试过程中，程序经常会出现各种崩溃卡死的恶性 bug，例如内存飙升、CPU 占用太高、Goroutine 泄露等，有些仅从代码层面无法排查到，这时候就需要借助 pprof 工具来排查问题。
-简要介绍 链接到标题 pprof 工具集，提供了 Go 程序内部多种性能指标的采样能力，我们常会用到的性能采样指标有这些：
+  <meta property="og:description" content="pprof 性能分析 @ 概要 @ 在 golang 项目开发测试过程中，程序经常会出现各种崩溃卡死的恶性 bug，例如内存飙升、CPU 占用太高、Goroutine 泄露等，有些仅从代码层面无法排查到，这时候就需要借助 pprof 工具来排查问题。
+简要介绍 @ pprof 工具集，提供了 Go 程序内部多种性能指标的采样能力，我们常会用到的性能采样指标有这些：
 profile：默认进行 30s 的 CPU Profiling，得到一个分析用的 profile 文件，访问路径为 $HOST/debug/pprof/profile heap：查看活动对象的内存分配情况， 访问路径为 $HOST/debug/pprof/heap goroutine：查看当前所有运行的 goroutines 堆栈跟踪，访问路径为 $HOST/debug/pprof/goroutine allocs: 查看过去所有内存分配的样本，访问路径为 $HOST/debug/pprof/allocs(包括已经被 GC 回收的内存) threadcreate：查看创建新 OS 线程的堆栈跟踪，访问路径为 $HOST/debug/pprof/threadcreate mutex：查看导致互斥锁的竞争持有者的堆栈跟踪，访问路径为 $HOST/debug/pprof/mutex block：查看导致阻塞同步的堆栈跟踪，访问路径为 $HOST/debug/pprof/block 分析方式主要分为两种：
-根据 pprof 工具基于 web 图形界面进行分析 基于交互式的命令行进行分析 Web 界面分析 链接到标题 _// pprof的init函数会将pprof里的一些handler注册到http.DefaultServeMux上_ **import** _ &#34;net/http/pprof&#34; **go** **func**() { http**.**ListenAndServe(&#34;0.0.0.0:8080&#34;, nil) }() // http://0.0.0.0:8080/debug/pprof/goroutine?debug=1 在对应的访问路径上新增 ?debug=1 的话，就可以直接在浏览器访问">
+根据 pprof 工具基于 web 图形界面进行分析 基于交互式的命令行进行分析 Web 界面分析 @ _// pprof的init函数会将pprof里的一些handler注册到http.DefaultServeMux上_ **import** _ &#34;net/http/pprof&#34; **go** **func**() { http**.**ListenAndServe(&#34;0.0.0.0:8080&#34;, nil) }() // http://0.0.0.0:8080/debug/pprof/goroutine?debug=1 在对应的访问路径上新增 ?debug=1 的话，就可以直接在浏览器访问">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-02-24T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-02-24T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-02-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-24T00:00:00+00:00">
     <meta property="article:tag" content="Golang">
 
 
@@ -225,7 +225,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -315,8 +315,8 @@ code.has-jax {
         <div class="date">
           <span class="posted-on">
             <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-            <time datetime=" 2024-02-24T00:00:00Z">
-              2024-02-24
+            <time datetime=" 2025-02-24T00:00:00Z">
+              2025-02-24
             </time>
           </span>
           <span class="reading-time">
@@ -325,7 +325,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            12931 字
+            12735 字
           </span>
         </div>
         
@@ -355,8 +355,8 @@ code.has-jax {
 <h1 id="pprof-性能分析">
   pprof 性能分析
   <a class="heading-link" href="#pprof-%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -364,8 +364,8 @@ code.has-jax {
 <h2 id="概要">
   概要
   <a class="heading-link" href="#%e6%a6%82%e8%a6%81">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>在 golang 项目开发测试过程中，程序经常会出现各种崩溃卡死的恶性 bug，例如内存飙升、CPU 占用太高、Goroutine 泄露等，有些仅从代码层面无法排查到，这时候就需要借助 pprof 工具来排查问题。</p>
@@ -374,8 +374,8 @@ code.has-jax {
 <h2 id="简要介绍">
   简要介绍
   <a class="heading-link" href="#%e7%ae%80%e8%a6%81%e4%bb%8b%e7%bb%8d">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>pprof 工具集，提供了 Go 程序内部多种性能指标的采样能力，我们常会用到的性能采样指标有这些：</p>
@@ -398,8 +398,8 @@ code.has-jax {
 <h2 id="web-界面分析">
   Web 界面分析
   <a class="heading-link" href="#web-%e7%95%8c%e9%9d%a2%e5%88%86%e6%9e%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">_</span><span class="c1">// pprof的init函数会将pprof里的一些handler注册到http.DefaultServeMux上_</span>
@@ -421,8 +421,8 @@ code.has-jax {
 <h2 id="命令行分析-heap">
   命令行分析 Heap
   <a class="heading-link" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%88%86%e6%9e%90-heap">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 命令行交互模式(inuse_space、inuse_objects、alloc_space、alloc_objects)</span>
@@ -442,8 +442,8 @@ code.has-jax {
 <h2 id="命令行分析-cpu">
   命令行分析 CPU
   <a class="heading-link" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%88%86%e6%9e%90-cpu">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ go tool pprof http://localhost:6060/debug/pprof/profile<span class="se">\?</span>seconds<span class="se">\=</span><span class="m">60</span>
@@ -470,8 +470,8 @@ code.has-jax {
 <h2 id="命令行分析-goroutine">
   命令行分析 Goroutine
   <a class="heading-link" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%88%86%e6%9e%90-goroutine">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">go</span> <span class="n">tool</span> <span class="n">pprof</span> <span class="nl">http</span><span class="p">:</span><span class="c1">//localhost:6060/debug/pprof/goroutine

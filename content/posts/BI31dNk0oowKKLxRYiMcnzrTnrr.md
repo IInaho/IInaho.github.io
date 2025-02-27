@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "回忆近三年工作生涯（2024）"
-date = "2024-02-23"
+date = "2025-02-23"
 description = ""
 tags = [
     "年度总结"

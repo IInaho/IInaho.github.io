@@ -3,7 +3,7 @@
 
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
-kubenates 学习笔记 · inaho
+kubenates快速入门 · inaho
 </title>
   
 
@@ -24,7 +24,7 @@ kubenates 学习笔记 · inaho
   kubenates 学习笔记
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@ kubenates 学习笔记 · inaho
   简介
   
     
-    链接到标题
+    @
   
 
 
@@ -42,7 +42,7 @@ kubenates 学习笔记 · inaho
   基础架构
   
     
-    链接到标题
+    @
   
 
 
@@ -58,7 +58,7 @@ Cluster 中运行着 N 个 Node(master/ worker), master 节点运行着 Kubernet
   基础组件
   
     
-    链接到标题
+    @
   
 
 
@@ -94,7 +94,7 @@ Node Components 在 worker 节点中运行，为 Pod 提供 Kubernetes 环境
   集群搭建
   
     
-    链接到标题
+    @
   
 
 
@@ -103,7 +103,7 @@ Node Components 在 worker 节点中运行，为 Pod 提供 Kubernetes 环境
   基础配置
   
     
-    链接到标题
+    @
   
 
 # 准备三台机器，一台master 两台node
@@ -142,7 +142,7 @@ sysctl --system
   内核升级
   
     
-    链接到标题
+    @
   
 
 # 查看内核版本
@@ -169,7 +169,7 @@ reboot
   Docker 安装
   
     
-    链接到标题
+    @
   
 
 yum install -y yum-utils
@@ -231,7 +231,7 @@ systemctl enable kubelet
   Master 节点部署
   
     
-    链接到标题
+    @
   
 
 kubeadm init --apiserver-advertise-address=192.168.7.211 \  # 一般为master节点ip
@@ -252,7 +252,7 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
   Node 节点部署
   
     
-    链接到标题
+    @
   
 
 kubeadm join 192.168.7.211:6443
@@ -265,7 +265,7 @@ sha256:fe3445e3f251c04fabc89c75a03a9693c6f1389440e25b4426e5350f33cd22d3
   安装网络插件（CNI）
   
     
-    链接到标题
+    @
   
 
 wget http://download.stisd.cn/k8s/kube-flannel.yml
@@ -528,7 +528,7 @@ spec:
   安装 metrics 组件
   
     
-    链接到标题
+    @
   
 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
@@ -540,7 +540,7 @@ kubectl top pod
   集群删除
   
     
-    链接到标题
+    @
   
 
 
@@ -549,7 +549,7 @@ kubectl top pod
   重新初始化 master 节点
   
     
-    链接到标题
+    @
   
 
 # 删除所有节点
@@ -564,7 +564,7 @@ kubectl get pods -n kube-system -o wide
   删除 kubeadm、kubectl、kubelet
   
     
-    链接到标题
+    @
   
 
 sudo yum remove -y kubeadm kubectl kubelet kubernetes-cni kube*
@@ -577,7 +577,7 @@ systemctl disable kubelet
   配置清理
   
     
-    链接到标题
+    @
   
 
 rm -rf /etc/systemd/system/kubelet.service
@@ -588,7 +588,7 @@ rm -rf /etc/systemd/system/kube*
   清理 kubernetes 配置
   
     
-    链接到标题
+    @
   
 
 sudo rm -rf ~/.kube
@@ -600,7 +600,7 @@ sudo rm -rf /var/lib/kube*
   常用命令
   
     
-    链接到标题
+    @
   
 
 
@@ -609,7 +609,7 @@ sudo rm -rf /var/lib/kube*
   kubectl 基础命令
   
     
-    链接到标题
+    @
   
 
 # 查看pod，service，endpoints，secret，node等的状态
@@ -642,7 +642,7 @@ kubeadm token list
   kubectl 自动补全
   
     
-    链接到标题
+    @
   
 
 sudo yum install bash-completion -y
@@ -654,7 +654,7 @@ echo &#34;source &lt;(kubectl completion bash)&#34; &gt;&gt; $HOME/.bashrc
   控制器
   
     
-    链接到标题
+    @
   
 
 
@@ -663,7 +663,7 @@ echo &#34;source &lt;(kubectl completion bash)&#34; &gt;&gt; $HOME/.bashrc
   deployments
   
     
-    链接到标题
+    @
   
 
 
@@ -676,18 +676,18 @@ Kubernetes Deployment 是一种 Pod 管理方式，它可以指挥 Kubernetes �
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="kubenates 学习笔记">
-  <meta name="twitter:description" content="kubenates 学习笔记 链接到标题 简介 链接到标题 基础架构 链接到标题 Pod 是 Kubernetes 中管理和调度的最小工作单位，Pod 中可以包含多个容器。这些容器会共享 Pod 中的网络等资源 Node 则是指一台服务器、虚拟机等，运行着一个完整的操作系统，提供了 CPU、内存等计算资源，一个 Node 可以部署多个 Pod Cluster 中运行着 N 个 Node(master/ worker), master 节点运行着 Kubernetes 系统组件，而 worker 节点负责运行用户的程序。所有节点都归 master 管，通过命令、API 的方式管理 Kubernetes 集群时，是通过发送命令或请求到 master 节点上的系统组件，然后控制整个集群 在一个集群中使用命名空间将不同的 Pod 隔离开来。但是 Kubernetes 中，不同 namespace 的 Pod 是可以相互访问的，它们不是完全隔离的。 基础组件 链接到标题 Control Plane Components 用于对集群做出全局决策，部署在 master 节点上 kube-apiserver 公开了 kubernates API，用于管理集群运行 etcd 作为保存 kubernetes 所有集群数据的后台数据库，apiserver 操作结果也会存储到 etcd 中， 主要存储 k8s 状态、网络配置、其他持久化数据 kube-scheduler 负责监视新创建的 pod，并将 pod 分配到节点上。 kube-controller-manager 包括多个控制器 Node Controller 节点控制器 Job Controller 任务控制器 Endpoints Controller 端点控制器 Service Account &amp; Token Controllers 服务帐户和令牌控制器 存放了 k8s 默认的控制平面组件的 YAML 文件 ls /etc/kubernetes/manifests/ . ├── etcd.yaml ├── kube-apiserver.yaml ├── kube-controller-manager.yaml └── kube-scheduler.yaml Node Components 在 worker 节点中运行，为 Pod 提供 Kubernetes 环境 集群搭建 链接到标题 基础配置 链接到标题 # 准备三台机器，一台master 两台node # 关闭防火墙 systemctl stop firewalld systemctl disable firewalld sed -i &#39;s/enforcing/disabled&#39; /etc/selinux/config setenforce 0 # 关闭swap分区 swapoff -a # 临时关闭 vi /etc/fstab # 注释swap挂载 # 添加hosts映射 echo &#34; $(master_ip) $(master_domain) $(node1_ip) $(node1_domain) $(node2_ip) $(node2_domain) &#34; &gt;&gt; /etc/hosts #更改主机名(3台主机) hostnamectl set-hostname xxxxx # 将桥接的IPv4流量传递到iptables链 net.ipv4.ip_forward如存在=0，修改为1即可 cat &gt; /etc/sysctl.d/k8s.conf &lt;&lt; EOF net.ipv4.ip_forward = 1 net.ipv4.tcp_tw_recycle = 0 net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF sysctl --system 内核升级 链接到标题 # 查看内核版本 uname -a # 安装epel源 rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org yum install -y https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm # 查看内核版本并安装最新版本 yum --disablerepo=&#34;*&#34; --enablerepo=&#34;elrepo-kernel&#34; list available # 安装最新lt内核 yum --disablerepo=&#39;*&#39; --enablerepo=elrepo-kernel install kernel-lt -y # 查看系统grub内核启动列表 awk -F &#39;$1==&#34;menuentry &#34; {print i&#43;&#43; &#34; : &#34; $2}&#39; /etc/grub2.cfg # 指定以新安装的编号0内核版本为默认启动内核 grub2-set-default 0 # 卸载旧版本内核 yum remove kernel -y # 重启机器，以新内核启动 reboot Docker 安装 链接到标题 yum install -y yum-utils # 添加阿里源 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo # 安装docker yum install docker-ce-20.10.22 # 开机启动 systemctl start docker systemctl enable docker # 修改docker数据存放目录位置(默认：/var/lib/docker) vim /etc/docker/daemon.json { &#34;graph&#34;: &#34;/data/docker&#34;, &#34;registry-mirrors&#34;: [&#34;https://sk4dzqfg.mirror.aliyuncs.com&#34;], &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;], &#34;log-driver&#34;: &#34;json-file&#34;, &#34;log-opts&#34;: { &#34;max-size&#34;: &#34;100m&#34; }, &#34;storage-driver&#34;: &#34;overlay2&#34; } # 重启docker systemctl restart docker ##### 配置docker、kubeadm、kubelet ```bash # 编辑配置文件 vim /etc/docker/daemon.json { &#34;graph&#34;: &#34;/data/docker&#34;, &#34;registry-mirrors&#34;: [&#34;https://inahoo.mirror.aliyuncs.com&#34;], &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;], &#34;log-driver&#34;: &#34;json-file&#34;, &#34;log-opts&#34;: { &#34;max-size&#34;: &#34;100m&#34; }, &#34;storage-driver&#34;: &#34;overlay2&#34; } systemctl restart docker # 添加kubenates阿里yum软件源 cat &gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt; EOF [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64 enabled=1 gpgcheck=0 repo_gpgcheck=0 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 安装kubeadm\kubelet\kubectl yum install -y kubelet-1.23.6-0 kubeadm-1.23.6-0 kubectl-1.23.6-0 systemctl start kubelet systemctl enable kubelet Master 节点部署 链接到标题 kubeadm init --apiserver-advertise-address=192.168.7.211 \ # 一般为master节点ip --image-repository registry.aliyuncs.com/google_containers \ --kubernetes-version v1.23.6 \ --service-cidr=10.140.0.0/16 \ --pod-network-cidr=10.240.0.0/16 # 非root执行 mkdir -p $HOME/.kube cp -i /etc/kubernetes/admin.conf $HOME/.kube/config chown $(id -u):$(id -g) $HOME/.kube/config # root用户 export KUBECONFIG=/etc/kubernetes/admin.conf Node 节点部署 链接到标题 kubeadm join 192.168.7.211:6443 --token 092qru.2z5e8vo3d9pcatgy --discovery-token-ca-cert-hash sha256:fe3445e3f251c04fabc89c75a03a9693c6f1389440e25b4426e5350f33cd22d3 安装网络插件（CNI） 链接到标题 wget http://download.stisd.cn/k8s/kube-flannel.yml # 修改net-conf.json下面的网段为上面pod-network-cidr的网段地址 sed -i &#39;s/10.244.0.0/10.240.0.0/&#39; kube-flannel.yml kubectl apply -f kube-flannel.yml # 查看pods节点状态 kubectl get pods -n kube-system --- apiVersion: policy/v1beta1 kind: PodSecurityPolicy metadata: name: psp.flannel.unprivileged annotations: seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default seccomp.security.alpha.kubernetes.io/defaultProfileName: docker/default apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default apparmor.security.beta.kubernetes.io/defaultProfileName: runtime/default spec: privileged: false volumes: - configMap - secret - emptyDir - hostPath allowedHostPaths: - pathPrefix: &#34;/etc/cni/net.d&#34; - pathPrefix: &#34;/etc/kube-flannel&#34; - pathPrefix: &#34;/run/flannel&#34; readOnlyRootFilesystem: false # Users and groups runAsUser: rule: RunAsAny supplementalGroups: rule: RunAsAny fsGroup: rule: RunAsAny # Privilege Escalation allowPrivilegeEscalation: false defaultAllowPrivilegeEscalation: false # Capabilities allowedCapabilities: [&#39;NET_ADMIN&#39;, &#39;NET_RAW&#39;] defaultAddCapabilities: [] requiredDropCapabilities: [] # Host namespaces hostPID: false hostIPC: false hostNetwork: true hostPorts: - min: 0 max: 65535 # SELinux seLinux: # SELinux is unused in CaaSP rule: &#39;RunAsAny&#39; --- kind: ClusterRole apiVersion: rbac.authorization.k8s.io/v1 metadata: name: flannel rules: - apiGroups: [&#39;extensions&#39;] resources: [&#39;podsecuritypolicies&#39;] verbs: [&#39;use&#39;] resourceNames: [&#39;psp.flannel.unprivileged&#39;] - apiGroups: - &#34;&#34; resources: - pods verbs: - get - apiGroups: - &#34;&#34; resources: - nodes verbs: - list - watch - apiGroups: - &#34;&#34; resources: - nodes/status verbs: - patch --- kind: ClusterRoleBinding apiVersion: rbac.authorization.k8s.io/v1 metadata: name: flannel roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: flannel subjects: - kind: ServiceAccount name: flannel namespace: kube-system --- apiVersion: v1 kind: ServiceAccount metadata: name: flannel namespace: kube-system --- kind: ConfigMap apiVersion: v1 metadata: name: kube-flannel-cfg namespace: kube-system labels: tier: node app: flannel data: cni-conf.json: | { &#34;name&#34;: &#34;cbr0&#34;, &#34;cniVersion&#34;: &#34;0.3.1&#34;, &#34;plugins&#34;: [ { &#34;type&#34;: &#34;flannel&#34;, &#34;delegate&#34;: { &#34;hairpinMode&#34;: true, &#34;isDefaultGateway&#34;: true } }, { &#34;type&#34;: &#34;portmap&#34;, &#34;capabilities&#34;: { &#34;portMappings&#34;: true } } ] } net-conf.json: | { &#34;Network&#34;: &#34;10.244.0.0/16&#34;, &#34;Backend&#34;: { &#34;Type&#34;: &#34;vxlan&#34; } } --- apiVersion: apps/v1 kind: DaemonSet metadata: name: kube-flannel-ds namespace: kube-system labels: tier: node app: flannel spec: selector: matchLabels: app: flannel template: metadata: labels: tier: node app: flannel spec: affinity: nodeAffinity: requiredDuringSchedulingIgnoredDuringExecution: nodeSelectorTerms: - matchExpressions: - key: kubernetes.io/os operator: In values: - linux hostNetwork: true priorityClassName: system-node-critical tolerations: - operator: Exists effect: NoSchedule serviceAccountName: flannel initContainers: - name: install-cni-plugin #image: flannelcni/flannel-cni-plugin:v1.0.1 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1 command: - cp args: - -f - /flannel - /opt/cni/bin/flannel volumeMounts: - name: cni-plugin mountPath: /opt/cni/bin - name: install-cni #image: flannelcni/flannel:v0.17.0 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel:v0.17.0 command: - cp args: - -f - /etc/kube-flannel/cni-conf.json - /etc/cni/net.d/10-flannel.conflist volumeMounts: - name: cni mountPath: /etc/cni/net.d - name: flannel-cfg mountPath: /etc/kube-flannel/ containers: - name: kube-flannel #image: flannelcni/flannel:v0.17.0 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel:v0.17.0 command: - /opt/bin/flanneld args: - --ip-masq - --kube-subnet-mgr resources: requests: cpu: &#34;100m&#34; memory: &#34;50Mi&#34; limits: cpu: &#34;100m&#34; memory: &#34;50Mi&#34; securityContext: privileged: false capabilities: add: [&#34;NET_ADMIN&#34;, &#34;NET_RAW&#34;] env: - name: POD_NAME valueFrom: fieldRef: fieldPath: metadata.name - name: POD_NAMESPACE valueFrom: fieldRef: fieldPath: metadata.namespace - name: EVENT_QUEUE_DEPTH value: &#34;5000&#34; volumeMounts: - name: run mountPath: /run/flannel - name: flannel-cfg mountPath: /etc/kube-flannel/ - name: xtables-lock mountPath: /run/xtables.lock volumes: - name: run hostPath: path: /run/flannel - name: cni-plugin hostPath: path: /opt/cni/bin - name: cni hostPath: path: /etc/cni/net.d - name: flannel-cfg configMap: name: kube-flannel-cfg - name: xtables-lock hostPath: path: /run/xtables.lock type: FileOrCreate 安装 metrics 组件 链接到标题 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml # 查看资源使用 kubectl top pod 集群删除 链接到标题 重新初始化 master 节点 链接到标题 # 删除所有节点 kubectl delete nodes xxxx # 清空集群数据信息 kubeadm reset # 查看pod情况 kubectl get pods -n kube-system -o wide 删除 kubeadm、kubectl、kubelet 链接到标题 sudo yum remove -y kubeadm kubectl kubelet kubernetes-cni kube* sudo yum autoremove -y systemctl stop kubelet systemctl disable kubelet 配置清理 链接到标题 rm -rf /etc/systemd/system/kubelet.service rm -rf /etc/systemd/system/kube* 清理 kubernetes 配置 链接到标题 sudo rm -rf ~/.kube sudo rm -rf /etc/kubernetes/ sudo rm -rf /var/lib/kube* 常用命令 链接到标题 kubectl 基础命令 链接到标题 # 查看pod，service，endpoints，secret，node等的状态 kubectl get pods/nodes/deployment/rs/pvc/pv (-o wide) # 详细信息 # 变更yaml文件内资源，可以是目录，没有则创建，有则变更 kubectl apply -f nginx.yaml # 删除yaml文件内资源 kubeclt delete -f xxxx.yaml # 查看事件 kubectl get events # 查看资源状态 kubectl describe pod xxxxxx # 查看pod日志 kubectl logs xxxxx # 查看node节点或pod资源使用情况 kubectl top xxxx # 进入pod内部 kubectl exec -it xxxx /bin/bash # 查看集群信息 kubectl cluster-info # 查看版本信息 kubectl version -o json # 生成永久token kubeadm token create --ttl 0 查看token kubeadm token list kubectl 自动补全 链接到标题 sudo yum install bash-completion -y source &lt;(kubectl completion bash) echo &#34;source &lt;(kubectl completion bash)&#34; &gt;&gt; $HOME/.bashrc 控制器 链接到标题 deployments 链接到标题 Kubernetes Deployment 是一种 Pod 管理方式，它可以指挥 Kubernetes 如何创建和更新你部署的应用实例，创建 Deployment 后，Kubernetes 会将应用程序调度到集群中的各个节点上。">
+  <meta name="twitter:title" content="kubenates快速入门">
+  <meta name="twitter:description" content="kubenates 学习笔记 @ 简介 @ 基础架构 @ Pod 是 Kubernetes 中管理和调度的最小工作单位，Pod 中可以包含多个容器。这些容器会共享 Pod 中的网络等资源 Node 则是指一台服务器、虚拟机等，运行着一个完整的操作系统，提供了 CPU、内存等计算资源，一个 Node 可以部署多个 Pod Cluster 中运行着 N 个 Node(master/ worker), master 节点运行着 Kubernetes 系统组件，而 worker 节点负责运行用户的程序。所有节点都归 master 管，通过命令、API 的方式管理 Kubernetes 集群时，是通过发送命令或请求到 master 节点上的系统组件，然后控制整个集群 在一个集群中使用命名空间将不同的 Pod 隔离开来。但是 Kubernetes 中，不同 namespace 的 Pod 是可以相互访问的，它们不是完全隔离的。 基础组件 @ Control Plane Components 用于对集群做出全局决策，部署在 master 节点上 kube-apiserver 公开了 kubernates API，用于管理集群运行 etcd 作为保存 kubernetes 所有集群数据的后台数据库，apiserver 操作结果也会存储到 etcd 中， 主要存储 k8s 状态、网络配置、其他持久化数据 kube-scheduler 负责监视新创建的 pod，并将 pod 分配到节点上。 kube-controller-manager 包括多个控制器 Node Controller 节点控制器 Job Controller 任务控制器 Endpoints Controller 端点控制器 Service Account &amp; Token Controllers 服务帐户和令牌控制器 存放了 k8s 默认的控制平面组件的 YAML 文件 ls /etc/kubernetes/manifests/ . ├── etcd.yaml ├── kube-apiserver.yaml ├── kube-controller-manager.yaml └── kube-scheduler.yaml Node Components 在 worker 节点中运行，为 Pod 提供 Kubernetes 环境 集群搭建 @ 基础配置 @ # 准备三台机器，一台master 两台node # 关闭防火墙 systemctl stop firewalld systemctl disable firewalld sed -i &#39;s/enforcing/disabled&#39; /etc/selinux/config setenforce 0 # 关闭swap分区 swapoff -a # 临时关闭 vi /etc/fstab # 注释swap挂载 # 添加hosts映射 echo &#34; $(master_ip) $(master_domain) $(node1_ip) $(node1_domain) $(node2_ip) $(node2_domain) &#34; &gt;&gt; /etc/hosts #更改主机名(3台主机) hostnamectl set-hostname xxxxx # 将桥接的IPv4流量传递到iptables链 net.ipv4.ip_forward如存在=0，修改为1即可 cat &gt; /etc/sysctl.d/k8s.conf &lt;&lt; EOF net.ipv4.ip_forward = 1 net.ipv4.tcp_tw_recycle = 0 net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF sysctl --system 内核升级 @ # 查看内核版本 uname -a # 安装epel源 rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org yum install -y https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm # 查看内核版本并安装最新版本 yum --disablerepo=&#34;*&#34; --enablerepo=&#34;elrepo-kernel&#34; list available # 安装最新lt内核 yum --disablerepo=&#39;*&#39; --enablerepo=elrepo-kernel install kernel-lt -y # 查看系统grub内核启动列表 awk -F &#39;$1==&#34;menuentry &#34; {print i&#43;&#43; &#34; : &#34; $2}&#39; /etc/grub2.cfg # 指定以新安装的编号0内核版本为默认启动内核 grub2-set-default 0 # 卸载旧版本内核 yum remove kernel -y # 重启机器，以新内核启动 reboot Docker 安装 @ yum install -y yum-utils # 添加阿里源 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo # 安装docker yum install docker-ce-20.10.22 # 开机启动 systemctl start docker systemctl enable docker # 修改docker数据存放目录位置(默认：/var/lib/docker) vim /etc/docker/daemon.json { &#34;graph&#34;: &#34;/data/docker&#34;, &#34;registry-mirrors&#34;: [&#34;https://sk4dzqfg.mirror.aliyuncs.com&#34;], &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;], &#34;log-driver&#34;: &#34;json-file&#34;, &#34;log-opts&#34;: { &#34;max-size&#34;: &#34;100m&#34; }, &#34;storage-driver&#34;: &#34;overlay2&#34; } # 重启docker systemctl restart docker ##### 配置docker、kubeadm、kubelet ```bash # 编辑配置文件 vim /etc/docker/daemon.json { &#34;graph&#34;: &#34;/data/docker&#34;, &#34;registry-mirrors&#34;: [&#34;https://inahoo.mirror.aliyuncs.com&#34;], &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;], &#34;log-driver&#34;: &#34;json-file&#34;, &#34;log-opts&#34;: { &#34;max-size&#34;: &#34;100m&#34; }, &#34;storage-driver&#34;: &#34;overlay2&#34; } systemctl restart docker # 添加kubenates阿里yum软件源 cat &gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt; EOF [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64 enabled=1 gpgcheck=0 repo_gpgcheck=0 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 安装kubeadm\kubelet\kubectl yum install -y kubelet-1.23.6-0 kubeadm-1.23.6-0 kubectl-1.23.6-0 systemctl start kubelet systemctl enable kubelet Master 节点部署 @ kubeadm init --apiserver-advertise-address=192.168.7.211 \ # 一般为master节点ip --image-repository registry.aliyuncs.com/google_containers \ --kubernetes-version v1.23.6 \ --service-cidr=10.140.0.0/16 \ --pod-network-cidr=10.240.0.0/16 # 非root执行 mkdir -p $HOME/.kube cp -i /etc/kubernetes/admin.conf $HOME/.kube/config chown $(id -u):$(id -g) $HOME/.kube/config # root用户 export KUBECONFIG=/etc/kubernetes/admin.conf Node 节点部署 @ kubeadm join 192.168.7.211:6443 --token 092qru.2z5e8vo3d9pcatgy --discovery-token-ca-cert-hash sha256:fe3445e3f251c04fabc89c75a03a9693c6f1389440e25b4426e5350f33cd22d3 安装网络插件（CNI） @ wget http://download.stisd.cn/k8s/kube-flannel.yml # 修改net-conf.json下面的网段为上面pod-network-cidr的网段地址 sed -i &#39;s/10.244.0.0/10.240.0.0/&#39; kube-flannel.yml kubectl apply -f kube-flannel.yml # 查看pods节点状态 kubectl get pods -n kube-system --- apiVersion: policy/v1beta1 kind: PodSecurityPolicy metadata: name: psp.flannel.unprivileged annotations: seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default seccomp.security.alpha.kubernetes.io/defaultProfileName: docker/default apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default apparmor.security.beta.kubernetes.io/defaultProfileName: runtime/default spec: privileged: false volumes: - configMap - secret - emptyDir - hostPath allowedHostPaths: - pathPrefix: &#34;/etc/cni/net.d&#34; - pathPrefix: &#34;/etc/kube-flannel&#34; - pathPrefix: &#34;/run/flannel&#34; readOnlyRootFilesystem: false # Users and groups runAsUser: rule: RunAsAny supplementalGroups: rule: RunAsAny fsGroup: rule: RunAsAny # Privilege Escalation allowPrivilegeEscalation: false defaultAllowPrivilegeEscalation: false # Capabilities allowedCapabilities: [&#39;NET_ADMIN&#39;, &#39;NET_RAW&#39;] defaultAddCapabilities: [] requiredDropCapabilities: [] # Host namespaces hostPID: false hostIPC: false hostNetwork: true hostPorts: - min: 0 max: 65535 # SELinux seLinux: # SELinux is unused in CaaSP rule: &#39;RunAsAny&#39; --- kind: ClusterRole apiVersion: rbac.authorization.k8s.io/v1 metadata: name: flannel rules: - apiGroups: [&#39;extensions&#39;] resources: [&#39;podsecuritypolicies&#39;] verbs: [&#39;use&#39;] resourceNames: [&#39;psp.flannel.unprivileged&#39;] - apiGroups: - &#34;&#34; resources: - pods verbs: - get - apiGroups: - &#34;&#34; resources: - nodes verbs: - list - watch - apiGroups: - &#34;&#34; resources: - nodes/status verbs: - patch --- kind: ClusterRoleBinding apiVersion: rbac.authorization.k8s.io/v1 metadata: name: flannel roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: flannel subjects: - kind: ServiceAccount name: flannel namespace: kube-system --- apiVersion: v1 kind: ServiceAccount metadata: name: flannel namespace: kube-system --- kind: ConfigMap apiVersion: v1 metadata: name: kube-flannel-cfg namespace: kube-system labels: tier: node app: flannel data: cni-conf.json: | { &#34;name&#34;: &#34;cbr0&#34;, &#34;cniVersion&#34;: &#34;0.3.1&#34;, &#34;plugins&#34;: [ { &#34;type&#34;: &#34;flannel&#34;, &#34;delegate&#34;: { &#34;hairpinMode&#34;: true, &#34;isDefaultGateway&#34;: true } }, { &#34;type&#34;: &#34;portmap&#34;, &#34;capabilities&#34;: { &#34;portMappings&#34;: true } } ] } net-conf.json: | { &#34;Network&#34;: &#34;10.244.0.0/16&#34;, &#34;Backend&#34;: { &#34;Type&#34;: &#34;vxlan&#34; } } --- apiVersion: apps/v1 kind: DaemonSet metadata: name: kube-flannel-ds namespace: kube-system labels: tier: node app: flannel spec: selector: matchLabels: app: flannel template: metadata: labels: tier: node app: flannel spec: affinity: nodeAffinity: requiredDuringSchedulingIgnoredDuringExecution: nodeSelectorTerms: - matchExpressions: - key: kubernetes.io/os operator: In values: - linux hostNetwork: true priorityClassName: system-node-critical tolerations: - operator: Exists effect: NoSchedule serviceAccountName: flannel initContainers: - name: install-cni-plugin #image: flannelcni/flannel-cni-plugin:v1.0.1 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1 command: - cp args: - -f - /flannel - /opt/cni/bin/flannel volumeMounts: - name: cni-plugin mountPath: /opt/cni/bin - name: install-cni #image: flannelcni/flannel:v0.17.0 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel:v0.17.0 command: - cp args: - -f - /etc/kube-flannel/cni-conf.json - /etc/cni/net.d/10-flannel.conflist volumeMounts: - name: cni mountPath: /etc/cni/net.d - name: flannel-cfg mountPath: /etc/kube-flannel/ containers: - name: kube-flannel #image: flannelcni/flannel:v0.17.0 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel:v0.17.0 command: - /opt/bin/flanneld args: - --ip-masq - --kube-subnet-mgr resources: requests: cpu: &#34;100m&#34; memory: &#34;50Mi&#34; limits: cpu: &#34;100m&#34; memory: &#34;50Mi&#34; securityContext: privileged: false capabilities: add: [&#34;NET_ADMIN&#34;, &#34;NET_RAW&#34;] env: - name: POD_NAME valueFrom: fieldRef: fieldPath: metadata.name - name: POD_NAMESPACE valueFrom: fieldRef: fieldPath: metadata.namespace - name: EVENT_QUEUE_DEPTH value: &#34;5000&#34; volumeMounts: - name: run mountPath: /run/flannel - name: flannel-cfg mountPath: /etc/kube-flannel/ - name: xtables-lock mountPath: /run/xtables.lock volumes: - name: run hostPath: path: /run/flannel - name: cni-plugin hostPath: path: /opt/cni/bin - name: cni hostPath: path: /etc/cni/net.d - name: flannel-cfg configMap: name: kube-flannel-cfg - name: xtables-lock hostPath: path: /run/xtables.lock type: FileOrCreate 安装 metrics 组件 @ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml # 查看资源使用 kubectl top pod 集群删除 @ 重新初始化 master 节点 @ # 删除所有节点 kubectl delete nodes xxxx # 清空集群数据信息 kubeadm reset # 查看pod情况 kubectl get pods -n kube-system -o wide 删除 kubeadm、kubectl、kubelet @ sudo yum remove -y kubeadm kubectl kubelet kubernetes-cni kube* sudo yum autoremove -y systemctl stop kubelet systemctl disable kubelet 配置清理 @ rm -rf /etc/systemd/system/kubelet.service rm -rf /etc/systemd/system/kube* 清理 kubernetes 配置 @ sudo rm -rf ~/.kube sudo rm -rf /etc/kubernetes/ sudo rm -rf /var/lib/kube* 常用命令 @ kubectl 基础命令 @ # 查看pod，service，endpoints，secret，node等的状态 kubectl get pods/nodes/deployment/rs/pvc/pv (-o wide) # 详细信息 # 变更yaml文件内资源，可以是目录，没有则创建，有则变更 kubectl apply -f nginx.yaml # 删除yaml文件内资源 kubeclt delete -f xxxx.yaml # 查看事件 kubectl get events # 查看资源状态 kubectl describe pod xxxxxx # 查看pod日志 kubectl logs xxxxx # 查看node节点或pod资源使用情况 kubectl top xxxx # 进入pod内部 kubectl exec -it xxxx /bin/bash # 查看集群信息 kubectl cluster-info # 查看版本信息 kubectl version -o json # 生成永久token kubeadm token create --ttl 0 查看token kubeadm token list kubectl 自动补全 @ sudo yum install bash-completion -y source &lt;(kubectl completion bash) echo &#34;source &lt;(kubectl completion bash)&#34; &gt;&gt; $HOME/.bashrc 控制器 @ deployments @ Kubernetes Deployment 是一种 Pod 管理方式，它可以指挥 Kubernetes 如何创建和更新你部署的应用实例，创建 Deployment 后，Kubernetes 会将应用程序调度到集群中的各个节点上。">
  
 <meta property="og:url" content="//localhost:1313/posts/qpdfdekvxodkulxwdsicgxfwnob/">
   <meta property="og:site_name" content="inaho">
-  <meta property="og:title" content="kubenates 学习笔记">
-  <meta property="og:description" content="kubenates 学习笔记 链接到标题 简介 链接到标题 基础架构 链接到标题 Pod 是 Kubernetes 中管理和调度的最小工作单位，Pod 中可以包含多个容器。这些容器会共享 Pod 中的网络等资源 Node 则是指一台服务器、虚拟机等，运行着一个完整的操作系统，提供了 CPU、内存等计算资源，一个 Node 可以部署多个 Pod Cluster 中运行着 N 个 Node(master/ worker), master 节点运行着 Kubernetes 系统组件，而 worker 节点负责运行用户的程序。所有节点都归 master 管，通过命令、API 的方式管理 Kubernetes 集群时，是通过发送命令或请求到 master 节点上的系统组件，然后控制整个集群 在一个集群中使用命名空间将不同的 Pod 隔离开来。但是 Kubernetes 中，不同 namespace 的 Pod 是可以相互访问的，它们不是完全隔离的。 基础组件 链接到标题 Control Plane Components 用于对集群做出全局决策，部署在 master 节点上 kube-apiserver 公开了 kubernates API，用于管理集群运行 etcd 作为保存 kubernetes 所有集群数据的后台数据库，apiserver 操作结果也会存储到 etcd 中， 主要存储 k8s 状态、网络配置、其他持久化数据 kube-scheduler 负责监视新创建的 pod，并将 pod 分配到节点上。 kube-controller-manager 包括多个控制器 Node Controller 节点控制器 Job Controller 任务控制器 Endpoints Controller 端点控制器 Service Account &amp; Token Controllers 服务帐户和令牌控制器 存放了 k8s 默认的控制平面组件的 YAML 文件 ls /etc/kubernetes/manifests/ . ├── etcd.yaml ├── kube-apiserver.yaml ├── kube-controller-manager.yaml └── kube-scheduler.yaml Node Components 在 worker 节点中运行，为 Pod 提供 Kubernetes 环境 集群搭建 链接到标题 基础配置 链接到标题 # 准备三台机器，一台master 两台node # 关闭防火墙 systemctl stop firewalld systemctl disable firewalld sed -i &#39;s/enforcing/disabled&#39; /etc/selinux/config setenforce 0 # 关闭swap分区 swapoff -a # 临时关闭 vi /etc/fstab # 注释swap挂载 # 添加hosts映射 echo &#34; $(master_ip) $(master_domain) $(node1_ip) $(node1_domain) $(node2_ip) $(node2_domain) &#34; &gt;&gt; /etc/hosts #更改主机名(3台主机) hostnamectl set-hostname xxxxx # 将桥接的IPv4流量传递到iptables链 net.ipv4.ip_forward如存在=0，修改为1即可 cat &gt; /etc/sysctl.d/k8s.conf &lt;&lt; EOF net.ipv4.ip_forward = 1 net.ipv4.tcp_tw_recycle = 0 net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF sysctl --system 内核升级 链接到标题 # 查看内核版本 uname -a # 安装epel源 rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org yum install -y https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm # 查看内核版本并安装最新版本 yum --disablerepo=&#34;*&#34; --enablerepo=&#34;elrepo-kernel&#34; list available # 安装最新lt内核 yum --disablerepo=&#39;*&#39; --enablerepo=elrepo-kernel install kernel-lt -y # 查看系统grub内核启动列表 awk -F &#39;$1==&#34;menuentry &#34; {print i&#43;&#43; &#34; : &#34; $2}&#39; /etc/grub2.cfg # 指定以新安装的编号0内核版本为默认启动内核 grub2-set-default 0 # 卸载旧版本内核 yum remove kernel -y # 重启机器，以新内核启动 reboot Docker 安装 链接到标题 yum install -y yum-utils # 添加阿里源 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo # 安装docker yum install docker-ce-20.10.22 # 开机启动 systemctl start docker systemctl enable docker # 修改docker数据存放目录位置(默认：/var/lib/docker) vim /etc/docker/daemon.json { &#34;graph&#34;: &#34;/data/docker&#34;, &#34;registry-mirrors&#34;: [&#34;https://sk4dzqfg.mirror.aliyuncs.com&#34;], &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;], &#34;log-driver&#34;: &#34;json-file&#34;, &#34;log-opts&#34;: { &#34;max-size&#34;: &#34;100m&#34; }, &#34;storage-driver&#34;: &#34;overlay2&#34; } # 重启docker systemctl restart docker ##### 配置docker、kubeadm、kubelet ```bash # 编辑配置文件 vim /etc/docker/daemon.json { &#34;graph&#34;: &#34;/data/docker&#34;, &#34;registry-mirrors&#34;: [&#34;https://inahoo.mirror.aliyuncs.com&#34;], &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;], &#34;log-driver&#34;: &#34;json-file&#34;, &#34;log-opts&#34;: { &#34;max-size&#34;: &#34;100m&#34; }, &#34;storage-driver&#34;: &#34;overlay2&#34; } systemctl restart docker # 添加kubenates阿里yum软件源 cat &gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt; EOF [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64 enabled=1 gpgcheck=0 repo_gpgcheck=0 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 安装kubeadm\kubelet\kubectl yum install -y kubelet-1.23.6-0 kubeadm-1.23.6-0 kubectl-1.23.6-0 systemctl start kubelet systemctl enable kubelet Master 节点部署 链接到标题 kubeadm init --apiserver-advertise-address=192.168.7.211 \ # 一般为master节点ip --image-repository registry.aliyuncs.com/google_containers \ --kubernetes-version v1.23.6 \ --service-cidr=10.140.0.0/16 \ --pod-network-cidr=10.240.0.0/16 # 非root执行 mkdir -p $HOME/.kube cp -i /etc/kubernetes/admin.conf $HOME/.kube/config chown $(id -u):$(id -g) $HOME/.kube/config # root用户 export KUBECONFIG=/etc/kubernetes/admin.conf Node 节点部署 链接到标题 kubeadm join 192.168.7.211:6443 --token 092qru.2z5e8vo3d9pcatgy --discovery-token-ca-cert-hash sha256:fe3445e3f251c04fabc89c75a03a9693c6f1389440e25b4426e5350f33cd22d3 安装网络插件（CNI） 链接到标题 wget http://download.stisd.cn/k8s/kube-flannel.yml # 修改net-conf.json下面的网段为上面pod-network-cidr的网段地址 sed -i &#39;s/10.244.0.0/10.240.0.0/&#39; kube-flannel.yml kubectl apply -f kube-flannel.yml # 查看pods节点状态 kubectl get pods -n kube-system --- apiVersion: policy/v1beta1 kind: PodSecurityPolicy metadata: name: psp.flannel.unprivileged annotations: seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default seccomp.security.alpha.kubernetes.io/defaultProfileName: docker/default apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default apparmor.security.beta.kubernetes.io/defaultProfileName: runtime/default spec: privileged: false volumes: - configMap - secret - emptyDir - hostPath allowedHostPaths: - pathPrefix: &#34;/etc/cni/net.d&#34; - pathPrefix: &#34;/etc/kube-flannel&#34; - pathPrefix: &#34;/run/flannel&#34; readOnlyRootFilesystem: false # Users and groups runAsUser: rule: RunAsAny supplementalGroups: rule: RunAsAny fsGroup: rule: RunAsAny # Privilege Escalation allowPrivilegeEscalation: false defaultAllowPrivilegeEscalation: false # Capabilities allowedCapabilities: [&#39;NET_ADMIN&#39;, &#39;NET_RAW&#39;] defaultAddCapabilities: [] requiredDropCapabilities: [] # Host namespaces hostPID: false hostIPC: false hostNetwork: true hostPorts: - min: 0 max: 65535 # SELinux seLinux: # SELinux is unused in CaaSP rule: &#39;RunAsAny&#39; --- kind: ClusterRole apiVersion: rbac.authorization.k8s.io/v1 metadata: name: flannel rules: - apiGroups: [&#39;extensions&#39;] resources: [&#39;podsecuritypolicies&#39;] verbs: [&#39;use&#39;] resourceNames: [&#39;psp.flannel.unprivileged&#39;] - apiGroups: - &#34;&#34; resources: - pods verbs: - get - apiGroups: - &#34;&#34; resources: - nodes verbs: - list - watch - apiGroups: - &#34;&#34; resources: - nodes/status verbs: - patch --- kind: ClusterRoleBinding apiVersion: rbac.authorization.k8s.io/v1 metadata: name: flannel roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: flannel subjects: - kind: ServiceAccount name: flannel namespace: kube-system --- apiVersion: v1 kind: ServiceAccount metadata: name: flannel namespace: kube-system --- kind: ConfigMap apiVersion: v1 metadata: name: kube-flannel-cfg namespace: kube-system labels: tier: node app: flannel data: cni-conf.json: | { &#34;name&#34;: &#34;cbr0&#34;, &#34;cniVersion&#34;: &#34;0.3.1&#34;, &#34;plugins&#34;: [ { &#34;type&#34;: &#34;flannel&#34;, &#34;delegate&#34;: { &#34;hairpinMode&#34;: true, &#34;isDefaultGateway&#34;: true } }, { &#34;type&#34;: &#34;portmap&#34;, &#34;capabilities&#34;: { &#34;portMappings&#34;: true } } ] } net-conf.json: | { &#34;Network&#34;: &#34;10.244.0.0/16&#34;, &#34;Backend&#34;: { &#34;Type&#34;: &#34;vxlan&#34; } } --- apiVersion: apps/v1 kind: DaemonSet metadata: name: kube-flannel-ds namespace: kube-system labels: tier: node app: flannel spec: selector: matchLabels: app: flannel template: metadata: labels: tier: node app: flannel spec: affinity: nodeAffinity: requiredDuringSchedulingIgnoredDuringExecution: nodeSelectorTerms: - matchExpressions: - key: kubernetes.io/os operator: In values: - linux hostNetwork: true priorityClassName: system-node-critical tolerations: - operator: Exists effect: NoSchedule serviceAccountName: flannel initContainers: - name: install-cni-plugin #image: flannelcni/flannel-cni-plugin:v1.0.1 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1 command: - cp args: - -f - /flannel - /opt/cni/bin/flannel volumeMounts: - name: cni-plugin mountPath: /opt/cni/bin - name: install-cni #image: flannelcni/flannel:v0.17.0 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel:v0.17.0 command: - cp args: - -f - /etc/kube-flannel/cni-conf.json - /etc/cni/net.d/10-flannel.conflist volumeMounts: - name: cni mountPath: /etc/cni/net.d - name: flannel-cfg mountPath: /etc/kube-flannel/ containers: - name: kube-flannel #image: flannelcni/flannel:v0.17.0 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel:v0.17.0 command: - /opt/bin/flanneld args: - --ip-masq - --kube-subnet-mgr resources: requests: cpu: &#34;100m&#34; memory: &#34;50Mi&#34; limits: cpu: &#34;100m&#34; memory: &#34;50Mi&#34; securityContext: privileged: false capabilities: add: [&#34;NET_ADMIN&#34;, &#34;NET_RAW&#34;] env: - name: POD_NAME valueFrom: fieldRef: fieldPath: metadata.name - name: POD_NAMESPACE valueFrom: fieldRef: fieldPath: metadata.namespace - name: EVENT_QUEUE_DEPTH value: &#34;5000&#34; volumeMounts: - name: run mountPath: /run/flannel - name: flannel-cfg mountPath: /etc/kube-flannel/ - name: xtables-lock mountPath: /run/xtables.lock volumes: - name: run hostPath: path: /run/flannel - name: cni-plugin hostPath: path: /opt/cni/bin - name: cni hostPath: path: /etc/cni/net.d - name: flannel-cfg configMap: name: kube-flannel-cfg - name: xtables-lock hostPath: path: /run/xtables.lock type: FileOrCreate 安装 metrics 组件 链接到标题 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml # 查看资源使用 kubectl top pod 集群删除 链接到标题 重新初始化 master 节点 链接到标题 # 删除所有节点 kubectl delete nodes xxxx # 清空集群数据信息 kubeadm reset # 查看pod情况 kubectl get pods -n kube-system -o wide 删除 kubeadm、kubectl、kubelet 链接到标题 sudo yum remove -y kubeadm kubectl kubelet kubernetes-cni kube* sudo yum autoremove -y systemctl stop kubelet systemctl disable kubelet 配置清理 链接到标题 rm -rf /etc/systemd/system/kubelet.service rm -rf /etc/systemd/system/kube* 清理 kubernetes 配置 链接到标题 sudo rm -rf ~/.kube sudo rm -rf /etc/kubernetes/ sudo rm -rf /var/lib/kube* 常用命令 链接到标题 kubectl 基础命令 链接到标题 # 查看pod，service，endpoints，secret，node等的状态 kubectl get pods/nodes/deployment/rs/pvc/pv (-o wide) # 详细信息 # 变更yaml文件内资源，可以是目录，没有则创建，有则变更 kubectl apply -f nginx.yaml # 删除yaml文件内资源 kubeclt delete -f xxxx.yaml # 查看事件 kubectl get events # 查看资源状态 kubectl describe pod xxxxxx # 查看pod日志 kubectl logs xxxxx # 查看node节点或pod资源使用情况 kubectl top xxxx # 进入pod内部 kubectl exec -it xxxx /bin/bash # 查看集群信息 kubectl cluster-info # 查看版本信息 kubectl version -o json # 生成永久token kubeadm token create --ttl 0 查看token kubeadm token list kubectl 自动补全 链接到标题 sudo yum install bash-completion -y source &lt;(kubectl completion bash) echo &#34;source &lt;(kubectl completion bash)&#34; &gt;&gt; $HOME/.bashrc 控制器 链接到标题 deployments 链接到标题 Kubernetes Deployment 是一种 Pod 管理方式，它可以指挥 Kubernetes 如何创建和更新你部署的应用实例，创建 Deployment 后，Kubernetes 会将应用程序调度到集群中的各个节点上。">
+  <meta property="og:title" content="kubenates快速入门">
+  <meta property="og:description" content="kubenates 学习笔记 @ 简介 @ 基础架构 @ Pod 是 Kubernetes 中管理和调度的最小工作单位，Pod 中可以包含多个容器。这些容器会共享 Pod 中的网络等资源 Node 则是指一台服务器、虚拟机等，运行着一个完整的操作系统，提供了 CPU、内存等计算资源，一个 Node 可以部署多个 Pod Cluster 中运行着 N 个 Node(master/ worker), master 节点运行着 Kubernetes 系统组件，而 worker 节点负责运行用户的程序。所有节点都归 master 管，通过命令、API 的方式管理 Kubernetes 集群时，是通过发送命令或请求到 master 节点上的系统组件，然后控制整个集群 在一个集群中使用命名空间将不同的 Pod 隔离开来。但是 Kubernetes 中，不同 namespace 的 Pod 是可以相互访问的，它们不是完全隔离的。 基础组件 @ Control Plane Components 用于对集群做出全局决策，部署在 master 节点上 kube-apiserver 公开了 kubernates API，用于管理集群运行 etcd 作为保存 kubernetes 所有集群数据的后台数据库，apiserver 操作结果也会存储到 etcd 中， 主要存储 k8s 状态、网络配置、其他持久化数据 kube-scheduler 负责监视新创建的 pod，并将 pod 分配到节点上。 kube-controller-manager 包括多个控制器 Node Controller 节点控制器 Job Controller 任务控制器 Endpoints Controller 端点控制器 Service Account &amp; Token Controllers 服务帐户和令牌控制器 存放了 k8s 默认的控制平面组件的 YAML 文件 ls /etc/kubernetes/manifests/ . ├── etcd.yaml ├── kube-apiserver.yaml ├── kube-controller-manager.yaml └── kube-scheduler.yaml Node Components 在 worker 节点中运行，为 Pod 提供 Kubernetes 环境 集群搭建 @ 基础配置 @ # 准备三台机器，一台master 两台node # 关闭防火墙 systemctl stop firewalld systemctl disable firewalld sed -i &#39;s/enforcing/disabled&#39; /etc/selinux/config setenforce 0 # 关闭swap分区 swapoff -a # 临时关闭 vi /etc/fstab # 注释swap挂载 # 添加hosts映射 echo &#34; $(master_ip) $(master_domain) $(node1_ip) $(node1_domain) $(node2_ip) $(node2_domain) &#34; &gt;&gt; /etc/hosts #更改主机名(3台主机) hostnamectl set-hostname xxxxx # 将桥接的IPv4流量传递到iptables链 net.ipv4.ip_forward如存在=0，修改为1即可 cat &gt; /etc/sysctl.d/k8s.conf &lt;&lt; EOF net.ipv4.ip_forward = 1 net.ipv4.tcp_tw_recycle = 0 net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF sysctl --system 内核升级 @ # 查看内核版本 uname -a # 安装epel源 rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org yum install -y https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm # 查看内核版本并安装最新版本 yum --disablerepo=&#34;*&#34; --enablerepo=&#34;elrepo-kernel&#34; list available # 安装最新lt内核 yum --disablerepo=&#39;*&#39; --enablerepo=elrepo-kernel install kernel-lt -y # 查看系统grub内核启动列表 awk -F &#39;$1==&#34;menuentry &#34; {print i&#43;&#43; &#34; : &#34; $2}&#39; /etc/grub2.cfg # 指定以新安装的编号0内核版本为默认启动内核 grub2-set-default 0 # 卸载旧版本内核 yum remove kernel -y # 重启机器，以新内核启动 reboot Docker 安装 @ yum install -y yum-utils # 添加阿里源 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo # 安装docker yum install docker-ce-20.10.22 # 开机启动 systemctl start docker systemctl enable docker # 修改docker数据存放目录位置(默认：/var/lib/docker) vim /etc/docker/daemon.json { &#34;graph&#34;: &#34;/data/docker&#34;, &#34;registry-mirrors&#34;: [&#34;https://sk4dzqfg.mirror.aliyuncs.com&#34;], &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;], &#34;log-driver&#34;: &#34;json-file&#34;, &#34;log-opts&#34;: { &#34;max-size&#34;: &#34;100m&#34; }, &#34;storage-driver&#34;: &#34;overlay2&#34; } # 重启docker systemctl restart docker ##### 配置docker、kubeadm、kubelet ```bash # 编辑配置文件 vim /etc/docker/daemon.json { &#34;graph&#34;: &#34;/data/docker&#34;, &#34;registry-mirrors&#34;: [&#34;https://inahoo.mirror.aliyuncs.com&#34;], &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;], &#34;log-driver&#34;: &#34;json-file&#34;, &#34;log-opts&#34;: { &#34;max-size&#34;: &#34;100m&#34; }, &#34;storage-driver&#34;: &#34;overlay2&#34; } systemctl restart docker # 添加kubenates阿里yum软件源 cat &gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt; EOF [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64 enabled=1 gpgcheck=0 repo_gpgcheck=0 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 安装kubeadm\kubelet\kubectl yum install -y kubelet-1.23.6-0 kubeadm-1.23.6-0 kubectl-1.23.6-0 systemctl start kubelet systemctl enable kubelet Master 节点部署 @ kubeadm init --apiserver-advertise-address=192.168.7.211 \ # 一般为master节点ip --image-repository registry.aliyuncs.com/google_containers \ --kubernetes-version v1.23.6 \ --service-cidr=10.140.0.0/16 \ --pod-network-cidr=10.240.0.0/16 # 非root执行 mkdir -p $HOME/.kube cp -i /etc/kubernetes/admin.conf $HOME/.kube/config chown $(id -u):$(id -g) $HOME/.kube/config # root用户 export KUBECONFIG=/etc/kubernetes/admin.conf Node 节点部署 @ kubeadm join 192.168.7.211:6443 --token 092qru.2z5e8vo3d9pcatgy --discovery-token-ca-cert-hash sha256:fe3445e3f251c04fabc89c75a03a9693c6f1389440e25b4426e5350f33cd22d3 安装网络插件（CNI） @ wget http://download.stisd.cn/k8s/kube-flannel.yml # 修改net-conf.json下面的网段为上面pod-network-cidr的网段地址 sed -i &#39;s/10.244.0.0/10.240.0.0/&#39; kube-flannel.yml kubectl apply -f kube-flannel.yml # 查看pods节点状态 kubectl get pods -n kube-system --- apiVersion: policy/v1beta1 kind: PodSecurityPolicy metadata: name: psp.flannel.unprivileged annotations: seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default seccomp.security.alpha.kubernetes.io/defaultProfileName: docker/default apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default apparmor.security.beta.kubernetes.io/defaultProfileName: runtime/default spec: privileged: false volumes: - configMap - secret - emptyDir - hostPath allowedHostPaths: - pathPrefix: &#34;/etc/cni/net.d&#34; - pathPrefix: &#34;/etc/kube-flannel&#34; - pathPrefix: &#34;/run/flannel&#34; readOnlyRootFilesystem: false # Users and groups runAsUser: rule: RunAsAny supplementalGroups: rule: RunAsAny fsGroup: rule: RunAsAny # Privilege Escalation allowPrivilegeEscalation: false defaultAllowPrivilegeEscalation: false # Capabilities allowedCapabilities: [&#39;NET_ADMIN&#39;, &#39;NET_RAW&#39;] defaultAddCapabilities: [] requiredDropCapabilities: [] # Host namespaces hostPID: false hostIPC: false hostNetwork: true hostPorts: - min: 0 max: 65535 # SELinux seLinux: # SELinux is unused in CaaSP rule: &#39;RunAsAny&#39; --- kind: ClusterRole apiVersion: rbac.authorization.k8s.io/v1 metadata: name: flannel rules: - apiGroups: [&#39;extensions&#39;] resources: [&#39;podsecuritypolicies&#39;] verbs: [&#39;use&#39;] resourceNames: [&#39;psp.flannel.unprivileged&#39;] - apiGroups: - &#34;&#34; resources: - pods verbs: - get - apiGroups: - &#34;&#34; resources: - nodes verbs: - list - watch - apiGroups: - &#34;&#34; resources: - nodes/status verbs: - patch --- kind: ClusterRoleBinding apiVersion: rbac.authorization.k8s.io/v1 metadata: name: flannel roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: flannel subjects: - kind: ServiceAccount name: flannel namespace: kube-system --- apiVersion: v1 kind: ServiceAccount metadata: name: flannel namespace: kube-system --- kind: ConfigMap apiVersion: v1 metadata: name: kube-flannel-cfg namespace: kube-system labels: tier: node app: flannel data: cni-conf.json: | { &#34;name&#34;: &#34;cbr0&#34;, &#34;cniVersion&#34;: &#34;0.3.1&#34;, &#34;plugins&#34;: [ { &#34;type&#34;: &#34;flannel&#34;, &#34;delegate&#34;: { &#34;hairpinMode&#34;: true, &#34;isDefaultGateway&#34;: true } }, { &#34;type&#34;: &#34;portmap&#34;, &#34;capabilities&#34;: { &#34;portMappings&#34;: true } } ] } net-conf.json: | { &#34;Network&#34;: &#34;10.244.0.0/16&#34;, &#34;Backend&#34;: { &#34;Type&#34;: &#34;vxlan&#34; } } --- apiVersion: apps/v1 kind: DaemonSet metadata: name: kube-flannel-ds namespace: kube-system labels: tier: node app: flannel spec: selector: matchLabels: app: flannel template: metadata: labels: tier: node app: flannel spec: affinity: nodeAffinity: requiredDuringSchedulingIgnoredDuringExecution: nodeSelectorTerms: - matchExpressions: - key: kubernetes.io/os operator: In values: - linux hostNetwork: true priorityClassName: system-node-critical tolerations: - operator: Exists effect: NoSchedule serviceAccountName: flannel initContainers: - name: install-cni-plugin #image: flannelcni/flannel-cni-plugin:v1.0.1 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1 command: - cp args: - -f - /flannel - /opt/cni/bin/flannel volumeMounts: - name: cni-plugin mountPath: /opt/cni/bin - name: install-cni #image: flannelcni/flannel:v0.17.0 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel:v0.17.0 command: - cp args: - -f - /etc/kube-flannel/cni-conf.json - /etc/cni/net.d/10-flannel.conflist volumeMounts: - name: cni mountPath: /etc/cni/net.d - name: flannel-cfg mountPath: /etc/kube-flannel/ containers: - name: kube-flannel #image: flannelcni/flannel:v0.17.0 for ppc64le and mips64le (dockerhub limitations may apply) image: rancher/mirrored-flannelcni-flannel:v0.17.0 command: - /opt/bin/flanneld args: - --ip-masq - --kube-subnet-mgr resources: requests: cpu: &#34;100m&#34; memory: &#34;50Mi&#34; limits: cpu: &#34;100m&#34; memory: &#34;50Mi&#34; securityContext: privileged: false capabilities: add: [&#34;NET_ADMIN&#34;, &#34;NET_RAW&#34;] env: - name: POD_NAME valueFrom: fieldRef: fieldPath: metadata.name - name: POD_NAMESPACE valueFrom: fieldRef: fieldPath: metadata.namespace - name: EVENT_QUEUE_DEPTH value: &#34;5000&#34; volumeMounts: - name: run mountPath: /run/flannel - name: flannel-cfg mountPath: /etc/kube-flannel/ - name: xtables-lock mountPath: /run/xtables.lock volumes: - name: run hostPath: path: /run/flannel - name: cni-plugin hostPath: path: /opt/cni/bin - name: cni hostPath: path: /etc/cni/net.d - name: flannel-cfg configMap: name: kube-flannel-cfg - name: xtables-lock hostPath: path: /run/xtables.lock type: FileOrCreate 安装 metrics 组件 @ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml # 查看资源使用 kubectl top pod 集群删除 @ 重新初始化 master 节点 @ # 删除所有节点 kubectl delete nodes xxxx # 清空集群数据信息 kubeadm reset # 查看pod情况 kubectl get pods -n kube-system -o wide 删除 kubeadm、kubectl、kubelet @ sudo yum remove -y kubeadm kubectl kubelet kubernetes-cni kube* sudo yum autoremove -y systemctl stop kubelet systemctl disable kubelet 配置清理 @ rm -rf /etc/systemd/system/kubelet.service rm -rf /etc/systemd/system/kube* 清理 kubernetes 配置 @ sudo rm -rf ~/.kube sudo rm -rf /etc/kubernetes/ sudo rm -rf /var/lib/kube* 常用命令 @ kubectl 基础命令 @ # 查看pod，service，endpoints，secret，node等的状态 kubectl get pods/nodes/deployment/rs/pvc/pv (-o wide) # 详细信息 # 变更yaml文件内资源，可以是目录，没有则创建，有则变更 kubectl apply -f nginx.yaml # 删除yaml文件内资源 kubeclt delete -f xxxx.yaml # 查看事件 kubectl get events # 查看资源状态 kubectl describe pod xxxxxx # 查看pod日志 kubectl logs xxxxx # 查看node节点或pod资源使用情况 kubectl top xxxx # 进入pod内部 kubectl exec -it xxxx /bin/bash # 查看集群信息 kubectl cluster-info # 查看版本信息 kubectl version -o json # 生成永久token kubeadm token create --ttl 0 查看token kubeadm token list kubectl 自动补全 @ sudo yum install bash-completion -y source &lt;(kubectl completion bash) echo &#34;source &lt;(kubectl completion bash)&#34; &gt;&gt; $HOME/.bashrc 控制器 @ deployments @ Kubernetes Deployment 是一种 Pod 管理方式，它可以指挥 Kubernetes 如何创建和更新你部署的应用实例，创建 Deployment 后，Kubernetes 会将应用程序调度到集群中的各个节点上。">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-02-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-02-21T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-02-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-21T00:00:00+00:00">
     <meta property="article:tag" content="Kubenates">
 
 
@@ -808,7 +808,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -962,7 +962,7 @@ code.has-jax {
       <div class="post-title">
         <h1 class="title">
           <a class="title-link" href="//localhost:1313/posts/qpdfdekvxodkulxwdsicgxfwnob/">
-            kubenates 学习笔记
+            kubenates快速入门
           </a>
         </h1>
       </div>
@@ -970,8 +970,8 @@ code.has-jax {
         <div class="date">
           <span class="posted-on">
             <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-            <time datetime=" 2024-02-21T00:00:00Z">
-              2024-02-21
+            <time datetime=" 2025-02-21T00:00:00Z">
+              2025-02-21
             </time>
           </span>
           <span class="reading-time">
@@ -980,7 +980,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            95320 字
+            94088 字
           </span>
         </div>
         
@@ -1010,8 +1010,8 @@ code.has-jax {
 <h1 id="kubenates-学习笔记">
   kubenates 学习笔记
   <a class="heading-link" href="#kubenates-%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -1019,8 +1019,8 @@ code.has-jax {
 <h4 id="简介">
   简介
   <a class="heading-link" href="#%e7%ae%80%e4%bb%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 
@@ -1028,8 +1028,8 @@ code.has-jax {
 <h5 id="基础架构">
   基础架构
   <a class="heading-link" href="#%e5%9f%ba%e7%a1%80%e6%9e%b6%e6%9e%84">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <p><img src="../static/T7bxbX2u9oIrE4xcBkFc11Cgn4D.png" alt=""></p>
@@ -1044,8 +1044,8 @@ code.has-jax {
 <h5 id="基础组件">
   基础组件
   <a class="heading-link" href="#%e5%9f%ba%e7%a1%80%e7%bb%84%e4%bb%b6">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <ul>
@@ -1080,8 +1080,8 @@ code.has-jax {
 <h4 id="集群搭建">
   集群搭建
   <a class="heading-link" href="#%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 
@@ -1089,8 +1089,8 @@ code.has-jax {
 <h5 id="基础配置">
   基础配置
   <a class="heading-link" href="#%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 准备三台机器，一台master 两台node</span>
@@ -1128,8 +1128,8 @@ code.has-jax {
 <h5 id="内核升级">
   内核升级
   <a class="heading-link" href="#%e5%86%85%e6%a0%b8%e5%8d%87%e7%ba%a7">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看内核版本</span>
@@ -1155,8 +1155,8 @@ code.has-jax {
 <h5 id="docker-安装">
   Docker 安装
   <a class="heading-link" href="#docker-%e5%ae%89%e8%a3%85">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install -y yum-utils
@@ -1217,8 +1217,8 @@ code.has-jax {
 <h5 id="master-节点部署">
   Master 节点部署
   <a class="heading-link" href="#master-%e8%8a%82%e7%82%b9%e9%83%a8%e7%bd%b2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubeadm init --apiserver-advertise-address<span class="o">=</span>192.168.7.211 <span class="se">\ </span> <span class="c1"># 一般为master节点ip</span>
@@ -1238,8 +1238,8 @@ code.has-jax {
 <h5 id="node-节点部署">
   Node 节点部署
   <a class="heading-link" href="#node-%e8%8a%82%e7%82%b9%e9%83%a8%e7%bd%b2">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubeadm join 192.168.7.211:6443
@@ -1251,8 +1251,8 @@ code.has-jax {
 <h5 id="安装网络插件cni">
   安装网络插件（CNI）
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85%e7%bd%91%e7%bb%9c%e6%8f%92%e4%bb%b6cni">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget http://download.stisd.cn/k8s/kube-flannel.yml
@@ -1514,8 +1514,8 @@ code.has-jax {
 <h5 id="安装-metrics-组件">
   安装 metrics 组件
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-metrics-%e7%bb%84%e4%bb%b6">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
@@ -1526,8 +1526,8 @@ code.has-jax {
 <h4 id="集群删除">
   集群删除
   <a class="heading-link" href="#%e9%9b%86%e7%be%a4%e5%88%a0%e9%99%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 
@@ -1535,8 +1535,8 @@ code.has-jax {
 <h5 id="重新初始化-master-节点">
   重新初始化 master 节点
   <a class="heading-link" href="#%e9%87%8d%e6%96%b0%e5%88%9d%e5%a7%8b%e5%8c%96-master-%e8%8a%82%e7%82%b9">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 删除所有节点</span>
@@ -1550,8 +1550,8 @@ code.has-jax {
 <h5 id="删除-kubeadmkubectlkubelet">
   删除 kubeadm、kubectl、kubelet
   <a class="heading-link" href="#%e5%88%a0%e9%99%a4-kubeadmkubectlkubelet">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo yum remove -y kubeadm kubectl kubelet kubernetes-cni kube*
@@ -1563,8 +1563,8 @@ code.has-jax {
 <h5 id="配置清理">
   配置清理
   <a class="heading-link" href="#%e9%85%8d%e7%bd%ae%e6%b8%85%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rm -rf /etc/systemd/system/kubelet.service
@@ -1574,8 +1574,8 @@ code.has-jax {
 <h5 id="清理-kubernetes-配置">
   清理 kubernetes 配置
   <a class="heading-link" href="#%e6%b8%85%e7%90%86-kubernetes-%e9%85%8d%e7%bd%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo rm -rf ~/.kube
@@ -1586,8 +1586,8 @@ code.has-jax {
 <h4 id="常用命令">
   常用命令
   <a class="heading-link" href="#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 
@@ -1595,8 +1595,8 @@ code.has-jax {
 <h5 id="kubectl-基础命令">
   kubectl 基础命令
   <a class="heading-link" href="#kubectl-%e5%9f%ba%e7%a1%80%e5%91%bd%e4%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看pod，service，endpoints，secret，node等的状态</span>
@@ -1628,8 +1628,8 @@ code.has-jax {
 <h5 id="kubectl-自动补全">
   kubectl 自动补全
   <a class="heading-link" href="#kubectl-%e8%87%aa%e5%8a%a8%e8%a1%a5%e5%85%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo yum install bash-completion -y
@@ -1640,8 +1640,8 @@ code.has-jax {
 <h5 id="控制器">
   控制器
   <a class="heading-link" href="#%e6%8e%a7%e5%88%b6%e5%99%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 
@@ -1649,8 +1649,8 @@ code.has-jax {
 <h6 id="deployments">
   deployments
   <a class="heading-link" href="#deployments">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h6>
 <blockquote>
@@ -1679,8 +1679,8 @@ code.has-jax {
 <h6 id="replicaset">
   ReplicaSet
   <a class="heading-link" href="#replicaset">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h6>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#replicas 字段设置了维持多少个 Pod 实例</span>
@@ -1696,8 +1696,8 @@ code.has-jax {
 <h6 id="daemonset">
   DaemonSet
   <a class="heading-link" href="#daemonset">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h6>
 <ol>
@@ -1714,8 +1714,8 @@ code.has-jax {
 <h5 id="pod-升级回滚">
   Pod 升级、回滚
   <a class="heading-link" href="#pod-%e5%8d%87%e7%ba%a7%e5%9b%9e%e6%bb%9a">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <ul>
@@ -1752,8 +1752,8 @@ code.has-jax {
 <h5 id="pod-缩放">
   Pod 缩放
   <a class="heading-link" href="#pod-%e7%bc%a9%e6%94%be">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 
@@ -1761,8 +1761,8 @@ code.has-jax {
 <h6 id="水平缩放">
   水平缩放
   <a class="heading-link" href="#%e6%b0%b4%e5%b9%b3%e7%bc%a9%e6%94%be">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h6>
 <blockquote>
@@ -1776,8 +1776,8 @@ code.has-jax {
 <h6 id="比例缩放">
   比例缩放
   <a class="heading-link" href="#%e6%af%94%e4%be%8b%e7%bc%a9%e6%94%be">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h6>
 <blockquote>
@@ -1796,8 +1796,8 @@ code.has-jax {
 <h5 id="label标签">
   Label(标签)
   <a class="heading-link" href="#label%e6%a0%87%e7%ad%be">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <blockquote>
@@ -1816,8 +1816,8 @@ code.has-jax {
 <h5 id="nodeselector">
   NodeSelector
   <a class="heading-link" href="#nodeselector">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <blockquote>
@@ -1859,8 +1859,8 @@ code.has-jax {
 <h5 id="selector">
   Selector
   <a class="heading-link" href="#selector">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <blockquote>
@@ -1878,8 +1878,8 @@ code.has-jax {
 <h6 id="selector-的符合运算">
   Selector 的符合运算
   <a class="heading-link" href="#selector-%e7%9a%84%e7%ac%a6%e5%90%88%e8%bf%90%e7%ae%97">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h6>
 <blockquote>
@@ -1903,8 +1903,8 @@ code.has-jax {
 <h5 id="annotations">
   Annotations
   <a class="heading-link" href="#annotations">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <p>annotations 由 key/value 组成，类似 label，但是 annotations 支持一些特殊字符，可以用作构建发布镜像时的信息、日志记录等</p>
@@ -1919,8 +1919,8 @@ code.has-jax {
 <h5 id="nodeaffinity">
   NodeAffinity
   <a class="heading-link" href="#nodeaffinity">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <p>节点亲和性， 可以让 Deployment 等对象部署 Pod 时选择合适的节点</p>
@@ -1952,8 +1952,8 @@ code.has-jax {
 <h5 id="node-tainttolerations">
   Node taint、tolerations
   <a class="heading-link" href="#node-tainttolerations">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <blockquote>
@@ -2015,8 +2015,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <h5 id="kubeadm-join-流程">
   kubeadm join 流程
   <a class="heading-link" href="#kubeadm-join-%e6%b5%81%e7%a8%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <blockquote>
@@ -2031,8 +2031,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <h6 id="discover-token-ca-cert-hash">
   discover-token-ca-cert-hash
   <a class="heading-link" href="#discover-token-ca-cert-hash">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h6>
 <blockquote>
@@ -2046,8 +2046,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <h6 id="token">
   token
   <a class="heading-link" href="#token">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h6>
 <ul>
@@ -2067,8 +2067,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <h4 id="helm-包管理">
   Helm 包管理
   <a class="heading-link" href="#helm-%e5%8c%85%e7%ae%a1%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm repo list    <span class="c1"># 查看当前配置的仓库地址</span>
@@ -2108,8 +2108,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <h4 id="其他命令">
   其他命令
   <a class="heading-link" href="#%e5%85%b6%e4%bb%96%e5%91%bd%e4%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 
@@ -2117,8 +2117,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <h5 id="重命名-roles">
   重命名 Roles
   <a class="heading-link" href="#%e9%87%8d%e5%91%bd%e5%90%8d-roles">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 节点为master节点为none的节点</span>
@@ -2130,8 +2130,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <h5 id="错误排查">
   错误排查
   <a class="heading-link" href="#%e9%94%99%e8%af%af%e6%8e%92%e6%9f%a5">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看pod状态</span>
@@ -2145,8 +2145,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <h4 id="快速搭建-prometheus-集群">
   快速搭建 prometheus 集群
   <a class="heading-link" href="#%e5%bf%ab%e9%80%9f%e6%90%ad%e5%bb%ba-prometheus-%e9%9b%86%e7%be%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 端口31969</span>
@@ -2157,8 +2157,8 @@ master 节点是不会被 Deployment 等分配 Pod 的，因为 master 有个污
 <h4 id="快速搭建-rocketmq-集群">
   快速搭建 rocketmq 集群
   <a class="heading-link" href="#%e5%bf%ab%e9%80%9f%e6%90%ad%e5%bb%ba-rocketmq-%e9%9b%86%e7%be%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h4>
 <blockquote>

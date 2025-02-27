@@ -24,7 +24,7 @@ manjaro 安装及美化 · inaho
   manjaro 安装及美化
   
     
-    链接到标题
+    @
   
 
 
@@ -33,7 +33,7 @@ manjaro 安装及美化 · inaho
   Manjaro 的 Linux 内核管理
   
     
-    链接到标题
+    @
   
 
 
@@ -42,7 +42,7 @@ manjaro 安装及美化 · inaho
   安装内核
   
     
-    链接到标题
+    @
   
 
 mhwd-kernel -h                      #查看帮助
@@ -56,7 +56,7 @@ sudo mhwd-kernel -i linux515 rmc    #切换新内核替换现有内核，现有�
   删除内核
   
     
-    链接到标题
+    @
   
 
 sudo mhwd-kernel -r linux515            #删除内核
@@ -68,7 +68,7 @@ sudo pacman -R linux515-extramodules    #删除内核的额外模块
   管理驱动
   
     
-    链接到标题
+    @
   
 
 mhwd -h       #显示帮助
@@ -85,7 +85,7 @@ mhwd -l --pci        #获取所有可用驱动程序的列表
   处理器微码
   
     
-    链接到标题
+    @
   
 
 # 安装处理器微码(Intel处理器)
@@ -98,7 +98,7 @@ sudo pacman -S amd-ucode
   配置软件源
   
     
-    链接到标题
+    @
   
 
 
@@ -107,7 +107,7 @@ sudo pacman -S amd-ucode
   手动配置国内源
   
     
-    链接到标题
+    @
   
 
 sudo vim /etc/pacman.d/mirrorlist
@@ -134,7 +134,7 @@ Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
   手动添加 archlinuxcn 社区源
   
     
-    链接到标题
+    @
   
 
 vim /etc/pacman.conf             #添加archlinuxcn软件源
@@ -157,7 +157,7 @@ Server = http://mirrors.163.com/arch4edu/$arch
   手动配置 AUR 源
   
     
-    链接到标题
+    @
   
 
 # （AUR）Arch User Repository
@@ -171,7 +171,7 @@ yay -P -g    #查看配置
   自动配置国内源
   
     
-    链接到标题
+    @
   
 
 sudo pacmn-mirrors -i -c China -m rank    # 更新镜像排名
@@ -182,7 +182,7 @@ vim /etc/pacman.d/mirrorlist     # 这个文件，保存pacman国内软件源地
   系统基本配置
   
     
-    链接到标题
+    @
   
 
 
@@ -191,7 +191,7 @@ vim /etc/pacman.d/mirrorlist     # 这个文件，保存pacman国内软件源地
   签名问题
   
     
-    链接到标题
+    @
   
 
 pacman -Syu haveged
@@ -230,7 +230,7 @@ SigNever = Never
   安装 Wifi 驱动
   
     
-    链接到标题
+    @
   
 
 # 要关闭bios安全启动模式boot secure mod
@@ -249,7 +249,7 @@ sudo modprobe -r rtw89pci    #关闭驱动
   yay 包管理
   
     
-    链接到标题
+    @
   
 
 sudo pacman -S yay    #安装yay
@@ -275,7 +275,7 @@ pacman -Qqdt
   Paru 包管理
   
     
-    链接到标题
+    @
   
 
 sudo pacman -S paru
@@ -286,7 +286,7 @@ sudo pacman -S paru
   配置环境软件
   
     
-    链接到标题
+    @
   
 
 # 安装基础包，yay构建包会使用
@@ -326,7 +326,7 @@ ls | lolcat
   输入法安装
   
     
-    链接到标题
+    @
   
 
 # 安装输入法框架
@@ -349,7 +349,7 @@ patch:
   KDE 界面美化
   
     
-    链接到标题
+    @
   
 
 
@@ -358,7 +358,7 @@ patch:
   自用美化方案
   
     
-    链接到标题
+    @
   
 
 应用程序风格: Fusion
@@ -383,7 +383,7 @@ Yakuake配色: Utterly-Sweet
   改善字体渲染效果
   
     
-    链接到标题
+    @
   
 
 yay -S ttf-sarasa-gothic    #安装更纱字体
@@ -420,7 +420,7 @@ yay -S nerd-fonts-jetbrains-mono
   KDE 高分屏缩放
   
     
-    链接到标题
+    @
   
 
 xdpyinfo | grep -B 2 resolution    #查看当前分辨率
@@ -434,7 +434,7 @@ ServerArguments=-nolisten tcp -dpi 192(当前分辨率*缩放倍数)
   Vscode 代码字体美化
   
     
-    链接到标题
+    @
   
 
 yay -S ttf-fira-code    #安装连体字
@@ -449,7 +449,7 @@ yay -S ttf-fira-code    #安装连体字
   好用的软件
   
     
-    链接到标题
+    @
   
 
 
@@ -458,7 +458,7 @@ yay -S ttf-fira-code    #安装连体字
   Clamav
   
     
-    链接到标题
+    @
   
 
 pacman -S clamav
@@ -477,7 +477,7 @@ sudo nice -n 15 clamscan &amp;&amp; sudo clamscan --bell -i -r /home    #减少C
   Docsify 神器
   
     
-    链接到标题
+    @
   
 
 proxychains npm i -g docsify-cli    #安装
@@ -492,7 +492,7 @@ docsify serve    #通过localhost:3000访问
   Systemd 分析工具
   
     
-    链接到标题
+    @
   
 
 systemd-analyze                    #查看系统启动时间
@@ -504,7 +504,7 @@ systemd-analyze plot &gt; plot.svg    #绘制启动过程的SVG图表
   命令行回收站
   
     
-    链接到标题
+    @
   
 
 yay -S trash-cli
@@ -519,7 +519,7 @@ trash-empty      #清空回收站
   rar/7z 压缩工具
   
     
-    链接到标题
+    @
   
 
 yay -S p7zip    # 7z格式压缩包(7z x file.tar
@@ -530,7 +530,7 @@ yay -S rar      # rar压缩包(unrar e test.tar)
   Openvpn 安装配置
   
     
-    链接到标题
+    @
   
 
 yay -S openvpn         # 安装openvpn
@@ -542,7 +542,7 @@ openvpn --config /etc/openvpc/client/xxxx.conf
   Clash 代理/终端代理
   
     
-    链接到标题
+    @
   
 
 #科学上网
@@ -564,7 +564,7 @@ export http_proxy=&#34;http://用户名:密码@代理地址:代理端口&#34; # 
   V2xray 代理
   
     
-    链接到标题
+    @
   
 
 yay -S v2raya  # v2rayA UI
@@ -576,7 +576,7 @@ yay -S xray    # v2ray-core
   metasploit
   
     
-    链接到标题
+    @
   
 
 
@@ -590,17 +590,17 @@ Metasploit（MSF）是一个免费的、可下载的框架，通过它可以很�
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="manjaro 安装及美化">
-  <meta name="twitter:description" content="manjaro 安装及美化 链接到标题 Manjaro 的 Linux 内核管理 链接到标题 安装内核 链接到标题 mhwd-kernel -h #查看帮助 mhwd-kernel -li #列出已安装的内核 mhwd-kernel -l #列出可用内核 sudo mhwd-kernel -i linux515 #切换新内核 sudo mhwd-kernel -i linux515 rmc #切换新内核替换现有内核，现有内核被删除 删除内核 链接到标题 sudo mhwd-kernel -r linux515 #删除内核 sudo pacman -R linux515-headers #删除内核头文件 sudo pacman -R linux515-extramodules #删除内核的额外模块 管理驱动 链接到标题 mhwd -h #显示帮助 mhwd --pci #列出pci设备和驱动程序配置 mhwd --usb #列出USB设备和驱动程序配置 mhwd -li #列出已安装的驱动程序配置 mhwd -lh #识别并列出计算机硬件 mhwd -lh -d --pci #列出通过pci连接的硬件的详细列表 mhwd -li -d --pci #列出通过pci连接的硬件所使用的驱动程序详细列表 mhwd -l --pci #获取所有可用驱动程序的列表 处理器微码 链接到标题 # 安装处理器微码(Intel处理器) sudo pacman -S intel-ucode # 安装处理器微码(AMD处理器) sudo pacman -S amd-ucode 配置软件源 链接到标题 手动配置国内源 链接到标题 sudo vim /etc/pacman.d/mirrorlist # manjaro 稳定源 # 中科大 Server = https://mirrors.ustc.edu.cn/manjaro/stable/$repo/$arch # 清华源 Server = https://mirrors.tuna.tsinghua.edu.cn/manjaro/stable/$repo/$arch # 上交源 Server = https://mirrors.sjtug.sjtu.edu.cn/manjaro/stable/$repo/$arch # 浙大源 Server = https://mirrors.zju.edu.cn/manjaro/stable/$repo/$arch # Archlinux 源 # 清华源 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch # 163 源 Server = http://mirrors.163.com/archlinux/$repo/os/$arch # 阿里源 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch 手动添加 archlinuxcn 社区源 链接到标题 vim /etc/pacman.conf #添加archlinuxcn软件源 [archlinuxcn] SigLevel = Optional TrustedOnly # 阿里源 Server = https://mirrors.aliyun.com/archlinuxcn/$arch # 163源 Server = http://mirrors.163.com/archlinux-cn/$arch # 中科大源 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch [arch4edu] SigLevel = TrustAll Server = https://mirrors.aliyun.com/arch4edu/$arch Server = http://mirrors.163.com/arch4edu/$arch 手动配置 AUR 源 链接到标题 # （AUR）Arch User Repository # AUR 包含了一些不被官方源收录的软件 yay --aururl &#34;https://aur.tuna.tsinghua.edu.cn&#34; --save # 此源不可用 # 生成 ～/.config/yay/config.json 配置文件 yay -P -g #查看配置 自动配置国内源 链接到标题 sudo pacmn-mirrors -i -c China -m rank # 更新镜像排名 vim /etc/pacman.d/mirrorlist # 这个文件，保存pacman国内软件源地址 系统基本配置 链接到标题 签名问题 链接到标题 pacman -Syu haveged systemctl start haveged systemctl enable haveged # 清理签名 rm -rf /etc/pacman.d/gnupg pacman-key --init # 初始化key pacman -Sy archlinux-keyring manjaro-keyring #同步key数据 pacman-key --populate manjaro # 重新加载签名密钥 pacman-key --populate archlinux pacman-key --refresh-keys #更新所有密钥 sudo pacman -Syyu sudo pacman -S archlinuxcn-keyring pacman-key --populate archlinuxcn pacman-key --refresh-keys # 更新密钥 #修改keyserver vim /etc/pacman.d/gnupg/gpg.conf #修改keyserver keyserver hkp://pgp.mit.edu:11371 # 或者 (80端口不可用) keyserver hkps://hkps.pool.sks-keyservers.net:443 # 或者(IPV6不可用) keyserver hkp://ipv4.pool.sks-keyservers.net:11371 # 通过代理更新 vim /etc/gnupg/dirmngr.conf and /etc/pacman.d/gnupg/dirmngr.conf 修改 honor-http-proxy #修改/etc/pacman.conf SigNever = Never 安装 Wifi 驱动 链接到标题 # 要关闭bios安全启动模式boot secure mod lspci | grep Net #查看网卡型号 yay -S rtw89-dkms-git #安装rtw驱动 # RTL8852AE 无线网卡没有对应的驱动，需要安装rtw89驱动 pacman -Ss linux-headers #查询可用的linux-headers mhwd-kernel -li #查询当前正在使用的内核版本 pacman -S linuxXX-headers #安装符合内核版本的linux-headers sudo modprobe rtw89pci #开启驱动 sudo modprobe -r rtw89pci #关闭驱动 yay 包管理 链接到标题 sudo pacman -S yay #安装yay yay -Ps #查看已安装软件 yay -u #展示所有待更新的包 yay -Ss keyword #搜索包 yay -Qs keyword #查看已安装软件 yay -R pkg_name #删除单个软件包，保留其依赖 yay -Rns pkg_name #删除包及没有使用的依赖 yay -Sc #清理软件包缓存 yay -Scc #清理所有缓存文件 yay -U file.pkg.tar.xz #安装本地包 yay -U http://www.example.com/repo/example.pkg.tar.xz #安装远程包 yay -Sw #下载包不安装 sudo pacman -R $(pacman -Qdtq) #清理系统中无用的包 pacman -Qq #列出所有本地软件包 pacman -Qqe #列出所有显式安装 pacman -Qqd #列出自动安装的包 pacman -Qqdt Paru 包管理 链接到标题 sudo pacman -S paru # 优势在于可以用一行命令清除系统上所有不需要的包依赖项 配置环境软件 链接到标题 # 安装基础包，yay构建包会使用 yay -S base-devel # 额外安装字体 sudo pacman -S adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts-cjk noto-fonts-emoji noto-fonts-extra sudo locale # 查看字符编码 localectl set-locale LANG=en_US.UTF-8 # 常用开发软件 sudo pacman -S git nodejs npm yarn yay -S docker docker-compose # 配置git git config --global user.name &#34;inaho&#34; git config --global user.email &#34;qq@aa.com&#34; git config --global http.proxy socks5://127.0.0.1:7890 git config --global https.proxy socks5://127.0.0.1:7890 # 生成ssk-key ssh-keygen -t rsa -C &#34;qq@aa.com&#34; ssh-keygen -t ed25519 -C &#34;qq@aa.com&#34; # docker默认是root用户 sudo groupadd docker # 添加docker组 sudo gpasswd -a ${USER} docker # 将用户添加到docker组 sudo systemctl restart docker newgrp - docker # 切换会话到docker # 花里胡哨 sudo pacman -S neofetch lolcat # neofetch快速查看系统信息,lolcat彩色输出 ls | lolcat 输入法安装 链接到标题 # 安装输入法框架 yay -S fcitx5-im vim ~/.pam_environment GTK_IM_MODULE DEFAULT=fcitx QT_IM_MODULE DEFAULT=fcitx XMODIFIERS DEFAULT=\@im=fcitx SDL_IM_MODULE DEFAULT=fcitx yay -S fcitx5-rime #安装输入法引擎 yay -S rime-cloverpinyin #安装输入方案 vim ~/.local/share/fcitx5/rime/default.custom.yaml #注意yaml缩进格式： 四个空格 patch: &#34;menu/page_size&#34;: 5 schema_list: - schema: clover KDE 界面美化 链接到标题 自用美化方案 链接到标题 应用程序风格: Fusion Plasma视觉风格: Blur-Glassy 窗口装饰元素: Utterly-Round 颜色: Breeze微风浅色 图标: McMojave-circle 登录屏幕: Sugar Candy Yakuake配色: Utterly-Sweet ~/.local/share/plasma/look-and-feel/ # 存放全局主题 ~/.local/share/plasma/desktoptheme/ # 存放 plasma 视觉风格 ~/.local/share/plasma/plasmoids/ # 存放插件 ~/.local/share/aurorae/themes/ # 存放窗口装饰 ~/.local/share/color-schemes/ # 存放颜色 ~/.local/share/icons/ # 存放图标 ~/.local/share/fonts/ # 存放字体 ~/.local/share/sddm/themes/ # 欢迎屏幕 ~/.local/share/backgrounds/ # 壁纸 改善字体渲染效果 链接到标题 yay -S ttf-sarasa-gothic #安装更纱字体 # 字体全部改为更纱黑体，字体DPi调整为140 vim ~/.fonts.conf #调整字体展示优先级 # 配置终端字体 yay -S nerd-fonts-jetbrains-mono # 字体选择 NotoSansMono Nerd Font 9pt &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!DOCTYPE fontconfig SYSTEM &#34;fonts.dtd&#34;&gt; &lt;fontconfig&gt; &lt;alias&gt; &lt;family&gt;sans-serif&lt;/family&gt; &lt;prefer&gt; &lt;family&gt;Sarasa Gothic SC&lt;/family&gt; &lt;family&gt;Sarasa Gothic TC&lt;/family&gt; &lt;family&gt;Sarasa Gothic J&lt;/family&gt; &lt;family&gt;Sarasa Gothic K&lt;/family&gt; &lt;/prefer&gt; &lt;/alias&gt; &lt;alias&gt; &lt;family&gt;monospace&lt;/family&gt; &lt;prefer&gt; &lt;family&gt;Sarasa Mono SC&lt;/family&gt; &lt;family&gt;Sarasa Mono TC&lt;/family&gt; &lt;family&gt;Sarasa Mono J&lt;/family&gt; &lt;family&gt;Sarasa Mono K&lt;/family&gt; &lt;/prefer&gt; &lt;/alias&gt; &lt;/fontconfig&gt; KDE 高分屏缩放 链接到标题 xdpyinfo | grep -B 2 resolution #查看当前分辨率 sudo vim /etc/sddm.conf.d/kde_settings.conf [X11] EnableHiDPI=true ServerArguments=-nolisten tcp -dpi 192(当前分辨率*缩放倍数) Vscode 代码字体美化 链接到标题 yay -S ttf-fira-code #安装连体字 # vscode进入设置搜索font，编辑settings.json内容如下 &#34;editor.fontSize&#34;: 15, &#34;editor.fontWeight&#34;: &#34;normal&#34;, &#34;editor.fontFamily&#34;: &#34;Fira code&#34;, &#34;editor.fontLigatures&#34;: true, 好用的软件 链接到标题 Clamav 链接到标题 pacman -S clamav sudo freshclam #更新病毒库 systemctl enable clamav-freshclam.service #开机启动病毒库自动更新 systemctl enable clamav-daemon.service #开机启动守护进程服务 clamscan -ri / --move=/home/virus/ --max-scansize=4000M # -r 递归检查子目录 -i只打印受感染的病毒文件 --move 受感染的文件移至文件夹 # --max-scansize=4000M 支持扫描文件大小 -o 跳过打印ok文件 # --no-summary 不再结束时打印摘要 --bell 病毒检测响铃通知 -l 冲定向文件 # --remove 删除受感染的文件 sudo nice -n 15 clamscan &amp;&amp; sudo clamscan --bell -i -r /home #减少CPU Docsify 神器 链接到标题 proxychains npm i -g docsify-cli #安装 docsify init ./docs #初始化项目 # - index.html 入口文件 # - README.md 作为主页内容渲染 # - nojekyll 阻止GithubPages会忽略掉下划线开头的文件 docsify serve #通过localhost:3000访问 Systemd 分析工具 链接到标题 systemd-analyze #查看系统启动时间 systemd-analyze blame #查看各项启动时间 systemd-analyze plot &gt; plot.svg #绘制启动过程的SVG图表 命令行回收站 链接到标题 yay -S trash-cli trash-put #删除文件和目录（仅放入回收站中） trash-list #列出被删除了的文件和目录 trash-restore #从回收站中恢复文件或目录 trash. trash-rm #删除回收站中的文件 trash-empty #清空回收站 rar/7z 压缩工具 链接到标题 yay -S p7zip # 7z格式压缩包(7z x file.tar yay -S rar # rar压缩包(unrar e test.tar) Openvpn 安装配置 链接到标题 yay -S openvpn # 安装openvpn /etc/openvpn/client # ovpn文件路径 openvpn --config /etc/openvpc/client/xxxx.conf Clash 代理/终端代理 链接到标题 #科学上网 yay -S clash clash-for-windows-bin #clash工具 yay -S nftables iproute2 #开启service mode # 终端命令代理 yay -S proxychains sudo nvim /etc/proxychains.conf #编辑最后一行为代理IP:PORT &gt; proxychains [command] export https_proxy=&#34;socks5://127.0.0.1:1080&#34; export https_proxy=&#34;127.0.0.1:1080&#34; export http_proxy=&#34;127.0.0.1:1080&#34; export http_proxy=&#34;http://用户名:密码@代理地址:代理端口&#34; # 符号@用%40代替 # SwitchyOmega插件，自动分流规则(国内ip/国外ip) # https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt V2xray 代理 链接到标题 yay -S v2raya # v2rayA UI yay -S xray # v2ray-core # 访问127.0.0.1:2017 metasploit 链接到标题 Metasploit（MSF）是一个免费的、可下载的框架，通过它可以很容易地获取、开发并对计算机软件漏洞实施攻击。它本身附带数百个已知软件漏洞，是一款专业级漏洞攻击工具">
+  <meta name="twitter:description" content="manjaro 安装及美化 @ Manjaro 的 Linux 内核管理 @ 安装内核 @ mhwd-kernel -h #查看帮助 mhwd-kernel -li #列出已安装的内核 mhwd-kernel -l #列出可用内核 sudo mhwd-kernel -i linux515 #切换新内核 sudo mhwd-kernel -i linux515 rmc #切换新内核替换现有内核，现有内核被删除 删除内核 @ sudo mhwd-kernel -r linux515 #删除内核 sudo pacman -R linux515-headers #删除内核头文件 sudo pacman -R linux515-extramodules #删除内核的额外模块 管理驱动 @ mhwd -h #显示帮助 mhwd --pci #列出pci设备和驱动程序配置 mhwd --usb #列出USB设备和驱动程序配置 mhwd -li #列出已安装的驱动程序配置 mhwd -lh #识别并列出计算机硬件 mhwd -lh -d --pci #列出通过pci连接的硬件的详细列表 mhwd -li -d --pci #列出通过pci连接的硬件所使用的驱动程序详细列表 mhwd -l --pci #获取所有可用驱动程序的列表 处理器微码 @ # 安装处理器微码(Intel处理器) sudo pacman -S intel-ucode # 安装处理器微码(AMD处理器) sudo pacman -S amd-ucode 配置软件源 @ 手动配置国内源 @ sudo vim /etc/pacman.d/mirrorlist # manjaro 稳定源 # 中科大 Server = https://mirrors.ustc.edu.cn/manjaro/stable/$repo/$arch # 清华源 Server = https://mirrors.tuna.tsinghua.edu.cn/manjaro/stable/$repo/$arch # 上交源 Server = https://mirrors.sjtug.sjtu.edu.cn/manjaro/stable/$repo/$arch # 浙大源 Server = https://mirrors.zju.edu.cn/manjaro/stable/$repo/$arch # Archlinux 源 # 清华源 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch # 163 源 Server = http://mirrors.163.com/archlinux/$repo/os/$arch # 阿里源 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch 手动添加 archlinuxcn 社区源 @ vim /etc/pacman.conf #添加archlinuxcn软件源 [archlinuxcn] SigLevel = Optional TrustedOnly # 阿里源 Server = https://mirrors.aliyun.com/archlinuxcn/$arch # 163源 Server = http://mirrors.163.com/archlinux-cn/$arch # 中科大源 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch [arch4edu] SigLevel = TrustAll Server = https://mirrors.aliyun.com/arch4edu/$arch Server = http://mirrors.163.com/arch4edu/$arch 手动配置 AUR 源 @ # （AUR）Arch User Repository # AUR 包含了一些不被官方源收录的软件 yay --aururl &#34;https://aur.tuna.tsinghua.edu.cn&#34; --save # 此源不可用 # 生成 ～/.config/yay/config.json 配置文件 yay -P -g #查看配置 自动配置国内源 @ sudo pacmn-mirrors -i -c China -m rank # 更新镜像排名 vim /etc/pacman.d/mirrorlist # 这个文件，保存pacman国内软件源地址 系统基本配置 @ 签名问题 @ pacman -Syu haveged systemctl start haveged systemctl enable haveged # 清理签名 rm -rf /etc/pacman.d/gnupg pacman-key --init # 初始化key pacman -Sy archlinux-keyring manjaro-keyring #同步key数据 pacman-key --populate manjaro # 重新加载签名密钥 pacman-key --populate archlinux pacman-key --refresh-keys #更新所有密钥 sudo pacman -Syyu sudo pacman -S archlinuxcn-keyring pacman-key --populate archlinuxcn pacman-key --refresh-keys # 更新密钥 #修改keyserver vim /etc/pacman.d/gnupg/gpg.conf #修改keyserver keyserver hkp://pgp.mit.edu:11371 # 或者 (80端口不可用) keyserver hkps://hkps.pool.sks-keyservers.net:443 # 或者(IPV6不可用) keyserver hkp://ipv4.pool.sks-keyservers.net:11371 # 通过代理更新 vim /etc/gnupg/dirmngr.conf and /etc/pacman.d/gnupg/dirmngr.conf 修改 honor-http-proxy #修改/etc/pacman.conf SigNever = Never 安装 Wifi 驱动 @ # 要关闭bios安全启动模式boot secure mod lspci | grep Net #查看网卡型号 yay -S rtw89-dkms-git #安装rtw驱动 # RTL8852AE 无线网卡没有对应的驱动，需要安装rtw89驱动 pacman -Ss linux-headers #查询可用的linux-headers mhwd-kernel -li #查询当前正在使用的内核版本 pacman -S linuxXX-headers #安装符合内核版本的linux-headers sudo modprobe rtw89pci #开启驱动 sudo modprobe -r rtw89pci #关闭驱动 yay 包管理 @ sudo pacman -S yay #安装yay yay -Ps #查看已安装软件 yay -u #展示所有待更新的包 yay -Ss keyword #搜索包 yay -Qs keyword #查看已安装软件 yay -R pkg_name #删除单个软件包，保留其依赖 yay -Rns pkg_name #删除包及没有使用的依赖 yay -Sc #清理软件包缓存 yay -Scc #清理所有缓存文件 yay -U file.pkg.tar.xz #安装本地包 yay -U http://www.example.com/repo/example.pkg.tar.xz #安装远程包 yay -Sw #下载包不安装 sudo pacman -R $(pacman -Qdtq) #清理系统中无用的包 pacman -Qq #列出所有本地软件包 pacman -Qqe #列出所有显式安装 pacman -Qqd #列出自动安装的包 pacman -Qqdt Paru 包管理 @ sudo pacman -S paru # 优势在于可以用一行命令清除系统上所有不需要的包依赖项 配置环境软件 @ # 安装基础包，yay构建包会使用 yay -S base-devel # 额外安装字体 sudo pacman -S adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts-cjk noto-fonts-emoji noto-fonts-extra sudo locale # 查看字符编码 localectl set-locale LANG=en_US.UTF-8 # 常用开发软件 sudo pacman -S git nodejs npm yarn yay -S docker docker-compose # 配置git git config --global user.name &#34;inaho&#34; git config --global user.email &#34;qq@aa.com&#34; git config --global http.proxy socks5://127.0.0.1:7890 git config --global https.proxy socks5://127.0.0.1:7890 # 生成ssk-key ssh-keygen -t rsa -C &#34;qq@aa.com&#34; ssh-keygen -t ed25519 -C &#34;qq@aa.com&#34; # docker默认是root用户 sudo groupadd docker # 添加docker组 sudo gpasswd -a ${USER} docker # 将用户添加到docker组 sudo systemctl restart docker newgrp - docker # 切换会话到docker # 花里胡哨 sudo pacman -S neofetch lolcat # neofetch快速查看系统信息,lolcat彩色输出 ls | lolcat 输入法安装 @ # 安装输入法框架 yay -S fcitx5-im vim ~/.pam_environment GTK_IM_MODULE DEFAULT=fcitx QT_IM_MODULE DEFAULT=fcitx XMODIFIERS DEFAULT=\@im=fcitx SDL_IM_MODULE DEFAULT=fcitx yay -S fcitx5-rime #安装输入法引擎 yay -S rime-cloverpinyin #安装输入方案 vim ~/.local/share/fcitx5/rime/default.custom.yaml #注意yaml缩进格式： 四个空格 patch: &#34;menu/page_size&#34;: 5 schema_list: - schema: clover KDE 界面美化 @ 自用美化方案 @ 应用程序风格: Fusion Plasma视觉风格: Blur-Glassy 窗口装饰元素: Utterly-Round 颜色: Breeze微风浅色 图标: McMojave-circle 登录屏幕: Sugar Candy Yakuake配色: Utterly-Sweet ~/.local/share/plasma/look-and-feel/ # 存放全局主题 ~/.local/share/plasma/desktoptheme/ # 存放 plasma 视觉风格 ~/.local/share/plasma/plasmoids/ # 存放插件 ~/.local/share/aurorae/themes/ # 存放窗口装饰 ~/.local/share/color-schemes/ # 存放颜色 ~/.local/share/icons/ # 存放图标 ~/.local/share/fonts/ # 存放字体 ~/.local/share/sddm/themes/ # 欢迎屏幕 ~/.local/share/backgrounds/ # 壁纸 改善字体渲染效果 @ yay -S ttf-sarasa-gothic #安装更纱字体 # 字体全部改为更纱黑体，字体DPi调整为140 vim ~/.fonts.conf #调整字体展示优先级 # 配置终端字体 yay -S nerd-fonts-jetbrains-mono # 字体选择 NotoSansMono Nerd Font 9pt &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!DOCTYPE fontconfig SYSTEM &#34;fonts.dtd&#34;&gt; &lt;fontconfig&gt; &lt;alias&gt; &lt;family&gt;sans-serif&lt;/family&gt; &lt;prefer&gt; &lt;family&gt;Sarasa Gothic SC&lt;/family&gt; &lt;family&gt;Sarasa Gothic TC&lt;/family&gt; &lt;family&gt;Sarasa Gothic J&lt;/family&gt; &lt;family&gt;Sarasa Gothic K&lt;/family&gt; &lt;/prefer&gt; &lt;/alias&gt; &lt;alias&gt; &lt;family&gt;monospace&lt;/family&gt; &lt;prefer&gt; &lt;family&gt;Sarasa Mono SC&lt;/family&gt; &lt;family&gt;Sarasa Mono TC&lt;/family&gt; &lt;family&gt;Sarasa Mono J&lt;/family&gt; &lt;family&gt;Sarasa Mono K&lt;/family&gt; &lt;/prefer&gt; &lt;/alias&gt; &lt;/fontconfig&gt; KDE 高分屏缩放 @ xdpyinfo | grep -B 2 resolution #查看当前分辨率 sudo vim /etc/sddm.conf.d/kde_settings.conf [X11] EnableHiDPI=true ServerArguments=-nolisten tcp -dpi 192(当前分辨率*缩放倍数) Vscode 代码字体美化 @ yay -S ttf-fira-code #安装连体字 # vscode进入设置搜索font，编辑settings.json内容如下 &#34;editor.fontSize&#34;: 15, &#34;editor.fontWeight&#34;: &#34;normal&#34;, &#34;editor.fontFamily&#34;: &#34;Fira code&#34;, &#34;editor.fontLigatures&#34;: true, 好用的软件 @ Clamav @ pacman -S clamav sudo freshclam #更新病毒库 systemctl enable clamav-freshclam.service #开机启动病毒库自动更新 systemctl enable clamav-daemon.service #开机启动守护进程服务 clamscan -ri / --move=/home/virus/ --max-scansize=4000M # -r 递归检查子目录 -i只打印受感染的病毒文件 --move 受感染的文件移至文件夹 # --max-scansize=4000M 支持扫描文件大小 -o 跳过打印ok文件 # --no-summary 不再结束时打印摘要 --bell 病毒检测响铃通知 -l 冲定向文件 # --remove 删除受感染的文件 sudo nice -n 15 clamscan &amp;&amp; sudo clamscan --bell -i -r /home #减少CPU Docsify 神器 @ proxychains npm i -g docsify-cli #安装 docsify init ./docs #初始化项目 # - index.html 入口文件 # - README.md 作为主页内容渲染 # - nojekyll 阻止GithubPages会忽略掉下划线开头的文件 docsify serve #通过localhost:3000访问 Systemd 分析工具 @ systemd-analyze #查看系统启动时间 systemd-analyze blame #查看各项启动时间 systemd-analyze plot &gt; plot.svg #绘制启动过程的SVG图表 命令行回收站 @ yay -S trash-cli trash-put #删除文件和目录（仅放入回收站中） trash-list #列出被删除了的文件和目录 trash-restore #从回收站中恢复文件或目录 trash. trash-rm #删除回收站中的文件 trash-empty #清空回收站 rar/7z 压缩工具 @ yay -S p7zip # 7z格式压缩包(7z x file.tar yay -S rar # rar压缩包(unrar e test.tar) Openvpn 安装配置 @ yay -S openvpn # 安装openvpn /etc/openvpn/client # ovpn文件路径 openvpn --config /etc/openvpc/client/xxxx.conf Clash 代理/终端代理 @ #科学上网 yay -S clash clash-for-windows-bin #clash工具 yay -S nftables iproute2 #开启service mode # 终端命令代理 yay -S proxychains sudo nvim /etc/proxychains.conf #编辑最后一行为代理IP:PORT &gt; proxychains [command] export https_proxy=&#34;socks5://127.0.0.1:1080&#34; export https_proxy=&#34;127.0.0.1:1080&#34; export http_proxy=&#34;127.0.0.1:1080&#34; export http_proxy=&#34;http://用户名:密码@代理地址:代理端口&#34; # 符号@用%40代替 # SwitchyOmega插件，自动分流规则(国内ip/国外ip) # https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt V2xray 代理 @ yay -S v2raya # v2rayA UI yay -S xray # v2ray-core # 访问127.0.0.1:2017 metasploit @ Metasploit（MSF）是一个免费的、可下载的框架，通过它可以很容易地获取、开发并对计算机软件漏洞实施攻击。它本身附带数百个已知软件漏洞，是一款专业级漏洞攻击工具">
  
 <meta property="og:url" content="//localhost:1313/posts/wgyqdjlsaog4haxlpqicsip8nzc/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="manjaro 安装及美化">
-  <meta property="og:description" content="manjaro 安装及美化 链接到标题 Manjaro 的 Linux 内核管理 链接到标题 安装内核 链接到标题 mhwd-kernel -h #查看帮助 mhwd-kernel -li #列出已安装的内核 mhwd-kernel -l #列出可用内核 sudo mhwd-kernel -i linux515 #切换新内核 sudo mhwd-kernel -i linux515 rmc #切换新内核替换现有内核，现有内核被删除 删除内核 链接到标题 sudo mhwd-kernel -r linux515 #删除内核 sudo pacman -R linux515-headers #删除内核头文件 sudo pacman -R linux515-extramodules #删除内核的额外模块 管理驱动 链接到标题 mhwd -h #显示帮助 mhwd --pci #列出pci设备和驱动程序配置 mhwd --usb #列出USB设备和驱动程序配置 mhwd -li #列出已安装的驱动程序配置 mhwd -lh #识别并列出计算机硬件 mhwd -lh -d --pci #列出通过pci连接的硬件的详细列表 mhwd -li -d --pci #列出通过pci连接的硬件所使用的驱动程序详细列表 mhwd -l --pci #获取所有可用驱动程序的列表 处理器微码 链接到标题 # 安装处理器微码(Intel处理器) sudo pacman -S intel-ucode # 安装处理器微码(AMD处理器) sudo pacman -S amd-ucode 配置软件源 链接到标题 手动配置国内源 链接到标题 sudo vim /etc/pacman.d/mirrorlist # manjaro 稳定源 # 中科大 Server = https://mirrors.ustc.edu.cn/manjaro/stable/$repo/$arch # 清华源 Server = https://mirrors.tuna.tsinghua.edu.cn/manjaro/stable/$repo/$arch # 上交源 Server = https://mirrors.sjtug.sjtu.edu.cn/manjaro/stable/$repo/$arch # 浙大源 Server = https://mirrors.zju.edu.cn/manjaro/stable/$repo/$arch # Archlinux 源 # 清华源 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch # 163 源 Server = http://mirrors.163.com/archlinux/$repo/os/$arch # 阿里源 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch 手动添加 archlinuxcn 社区源 链接到标题 vim /etc/pacman.conf #添加archlinuxcn软件源 [archlinuxcn] SigLevel = Optional TrustedOnly # 阿里源 Server = https://mirrors.aliyun.com/archlinuxcn/$arch # 163源 Server = http://mirrors.163.com/archlinux-cn/$arch # 中科大源 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch [arch4edu] SigLevel = TrustAll Server = https://mirrors.aliyun.com/arch4edu/$arch Server = http://mirrors.163.com/arch4edu/$arch 手动配置 AUR 源 链接到标题 # （AUR）Arch User Repository # AUR 包含了一些不被官方源收录的软件 yay --aururl &#34;https://aur.tuna.tsinghua.edu.cn&#34; --save # 此源不可用 # 生成 ～/.config/yay/config.json 配置文件 yay -P -g #查看配置 自动配置国内源 链接到标题 sudo pacmn-mirrors -i -c China -m rank # 更新镜像排名 vim /etc/pacman.d/mirrorlist # 这个文件，保存pacman国内软件源地址 系统基本配置 链接到标题 签名问题 链接到标题 pacman -Syu haveged systemctl start haveged systemctl enable haveged # 清理签名 rm -rf /etc/pacman.d/gnupg pacman-key --init # 初始化key pacman -Sy archlinux-keyring manjaro-keyring #同步key数据 pacman-key --populate manjaro # 重新加载签名密钥 pacman-key --populate archlinux pacman-key --refresh-keys #更新所有密钥 sudo pacman -Syyu sudo pacman -S archlinuxcn-keyring pacman-key --populate archlinuxcn pacman-key --refresh-keys # 更新密钥 #修改keyserver vim /etc/pacman.d/gnupg/gpg.conf #修改keyserver keyserver hkp://pgp.mit.edu:11371 # 或者 (80端口不可用) keyserver hkps://hkps.pool.sks-keyservers.net:443 # 或者(IPV6不可用) keyserver hkp://ipv4.pool.sks-keyservers.net:11371 # 通过代理更新 vim /etc/gnupg/dirmngr.conf and /etc/pacman.d/gnupg/dirmngr.conf 修改 honor-http-proxy #修改/etc/pacman.conf SigNever = Never 安装 Wifi 驱动 链接到标题 # 要关闭bios安全启动模式boot secure mod lspci | grep Net #查看网卡型号 yay -S rtw89-dkms-git #安装rtw驱动 # RTL8852AE 无线网卡没有对应的驱动，需要安装rtw89驱动 pacman -Ss linux-headers #查询可用的linux-headers mhwd-kernel -li #查询当前正在使用的内核版本 pacman -S linuxXX-headers #安装符合内核版本的linux-headers sudo modprobe rtw89pci #开启驱动 sudo modprobe -r rtw89pci #关闭驱动 yay 包管理 链接到标题 sudo pacman -S yay #安装yay yay -Ps #查看已安装软件 yay -u #展示所有待更新的包 yay -Ss keyword #搜索包 yay -Qs keyword #查看已安装软件 yay -R pkg_name #删除单个软件包，保留其依赖 yay -Rns pkg_name #删除包及没有使用的依赖 yay -Sc #清理软件包缓存 yay -Scc #清理所有缓存文件 yay -U file.pkg.tar.xz #安装本地包 yay -U http://www.example.com/repo/example.pkg.tar.xz #安装远程包 yay -Sw #下载包不安装 sudo pacman -R $(pacman -Qdtq) #清理系统中无用的包 pacman -Qq #列出所有本地软件包 pacman -Qqe #列出所有显式安装 pacman -Qqd #列出自动安装的包 pacman -Qqdt Paru 包管理 链接到标题 sudo pacman -S paru # 优势在于可以用一行命令清除系统上所有不需要的包依赖项 配置环境软件 链接到标题 # 安装基础包，yay构建包会使用 yay -S base-devel # 额外安装字体 sudo pacman -S adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts-cjk noto-fonts-emoji noto-fonts-extra sudo locale # 查看字符编码 localectl set-locale LANG=en_US.UTF-8 # 常用开发软件 sudo pacman -S git nodejs npm yarn yay -S docker docker-compose # 配置git git config --global user.name &#34;inaho&#34; git config --global user.email &#34;qq@aa.com&#34; git config --global http.proxy socks5://127.0.0.1:7890 git config --global https.proxy socks5://127.0.0.1:7890 # 生成ssk-key ssh-keygen -t rsa -C &#34;qq@aa.com&#34; ssh-keygen -t ed25519 -C &#34;qq@aa.com&#34; # docker默认是root用户 sudo groupadd docker # 添加docker组 sudo gpasswd -a ${USER} docker # 将用户添加到docker组 sudo systemctl restart docker newgrp - docker # 切换会话到docker # 花里胡哨 sudo pacman -S neofetch lolcat # neofetch快速查看系统信息,lolcat彩色输出 ls | lolcat 输入法安装 链接到标题 # 安装输入法框架 yay -S fcitx5-im vim ~/.pam_environment GTK_IM_MODULE DEFAULT=fcitx QT_IM_MODULE DEFAULT=fcitx XMODIFIERS DEFAULT=\@im=fcitx SDL_IM_MODULE DEFAULT=fcitx yay -S fcitx5-rime #安装输入法引擎 yay -S rime-cloverpinyin #安装输入方案 vim ~/.local/share/fcitx5/rime/default.custom.yaml #注意yaml缩进格式： 四个空格 patch: &#34;menu/page_size&#34;: 5 schema_list: - schema: clover KDE 界面美化 链接到标题 自用美化方案 链接到标题 应用程序风格: Fusion Plasma视觉风格: Blur-Glassy 窗口装饰元素: Utterly-Round 颜色: Breeze微风浅色 图标: McMojave-circle 登录屏幕: Sugar Candy Yakuake配色: Utterly-Sweet ~/.local/share/plasma/look-and-feel/ # 存放全局主题 ~/.local/share/plasma/desktoptheme/ # 存放 plasma 视觉风格 ~/.local/share/plasma/plasmoids/ # 存放插件 ~/.local/share/aurorae/themes/ # 存放窗口装饰 ~/.local/share/color-schemes/ # 存放颜色 ~/.local/share/icons/ # 存放图标 ~/.local/share/fonts/ # 存放字体 ~/.local/share/sddm/themes/ # 欢迎屏幕 ~/.local/share/backgrounds/ # 壁纸 改善字体渲染效果 链接到标题 yay -S ttf-sarasa-gothic #安装更纱字体 # 字体全部改为更纱黑体，字体DPi调整为140 vim ~/.fonts.conf #调整字体展示优先级 # 配置终端字体 yay -S nerd-fonts-jetbrains-mono # 字体选择 NotoSansMono Nerd Font 9pt &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!DOCTYPE fontconfig SYSTEM &#34;fonts.dtd&#34;&gt; &lt;fontconfig&gt; &lt;alias&gt; &lt;family&gt;sans-serif&lt;/family&gt; &lt;prefer&gt; &lt;family&gt;Sarasa Gothic SC&lt;/family&gt; &lt;family&gt;Sarasa Gothic TC&lt;/family&gt; &lt;family&gt;Sarasa Gothic J&lt;/family&gt; &lt;family&gt;Sarasa Gothic K&lt;/family&gt; &lt;/prefer&gt; &lt;/alias&gt; &lt;alias&gt; &lt;family&gt;monospace&lt;/family&gt; &lt;prefer&gt; &lt;family&gt;Sarasa Mono SC&lt;/family&gt; &lt;family&gt;Sarasa Mono TC&lt;/family&gt; &lt;family&gt;Sarasa Mono J&lt;/family&gt; &lt;family&gt;Sarasa Mono K&lt;/family&gt; &lt;/prefer&gt; &lt;/alias&gt; &lt;/fontconfig&gt; KDE 高分屏缩放 链接到标题 xdpyinfo | grep -B 2 resolution #查看当前分辨率 sudo vim /etc/sddm.conf.d/kde_settings.conf [X11] EnableHiDPI=true ServerArguments=-nolisten tcp -dpi 192(当前分辨率*缩放倍数) Vscode 代码字体美化 链接到标题 yay -S ttf-fira-code #安装连体字 # vscode进入设置搜索font，编辑settings.json内容如下 &#34;editor.fontSize&#34;: 15, &#34;editor.fontWeight&#34;: &#34;normal&#34;, &#34;editor.fontFamily&#34;: &#34;Fira code&#34;, &#34;editor.fontLigatures&#34;: true, 好用的软件 链接到标题 Clamav 链接到标题 pacman -S clamav sudo freshclam #更新病毒库 systemctl enable clamav-freshclam.service #开机启动病毒库自动更新 systemctl enable clamav-daemon.service #开机启动守护进程服务 clamscan -ri / --move=/home/virus/ --max-scansize=4000M # -r 递归检查子目录 -i只打印受感染的病毒文件 --move 受感染的文件移至文件夹 # --max-scansize=4000M 支持扫描文件大小 -o 跳过打印ok文件 # --no-summary 不再结束时打印摘要 --bell 病毒检测响铃通知 -l 冲定向文件 # --remove 删除受感染的文件 sudo nice -n 15 clamscan &amp;&amp; sudo clamscan --bell -i -r /home #减少CPU Docsify 神器 链接到标题 proxychains npm i -g docsify-cli #安装 docsify init ./docs #初始化项目 # - index.html 入口文件 # - README.md 作为主页内容渲染 # - nojekyll 阻止GithubPages会忽略掉下划线开头的文件 docsify serve #通过localhost:3000访问 Systemd 分析工具 链接到标题 systemd-analyze #查看系统启动时间 systemd-analyze blame #查看各项启动时间 systemd-analyze plot &gt; plot.svg #绘制启动过程的SVG图表 命令行回收站 链接到标题 yay -S trash-cli trash-put #删除文件和目录（仅放入回收站中） trash-list #列出被删除了的文件和目录 trash-restore #从回收站中恢复文件或目录 trash. trash-rm #删除回收站中的文件 trash-empty #清空回收站 rar/7z 压缩工具 链接到标题 yay -S p7zip # 7z格式压缩包(7z x file.tar yay -S rar # rar压缩包(unrar e test.tar) Openvpn 安装配置 链接到标题 yay -S openvpn # 安装openvpn /etc/openvpn/client # ovpn文件路径 openvpn --config /etc/openvpc/client/xxxx.conf Clash 代理/终端代理 链接到标题 #科学上网 yay -S clash clash-for-windows-bin #clash工具 yay -S nftables iproute2 #开启service mode # 终端命令代理 yay -S proxychains sudo nvim /etc/proxychains.conf #编辑最后一行为代理IP:PORT &gt; proxychains [command] export https_proxy=&#34;socks5://127.0.0.1:1080&#34; export https_proxy=&#34;127.0.0.1:1080&#34; export http_proxy=&#34;127.0.0.1:1080&#34; export http_proxy=&#34;http://用户名:密码@代理地址:代理端口&#34; # 符号@用%40代替 # SwitchyOmega插件，自动分流规则(国内ip/国外ip) # https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt V2xray 代理 链接到标题 yay -S v2raya # v2rayA UI yay -S xray # v2ray-core # 访问127.0.0.1:2017 metasploit 链接到标题 Metasploit（MSF）是一个免费的、可下载的框架，通过它可以很容易地获取、开发并对计算机软件漏洞实施攻击。它本身附带数百个已知软件漏洞，是一款专业级漏洞攻击工具">
+  <meta property="og:description" content="manjaro 安装及美化 @ Manjaro 的 Linux 内核管理 @ 安装内核 @ mhwd-kernel -h #查看帮助 mhwd-kernel -li #列出已安装的内核 mhwd-kernel -l #列出可用内核 sudo mhwd-kernel -i linux515 #切换新内核 sudo mhwd-kernel -i linux515 rmc #切换新内核替换现有内核，现有内核被删除 删除内核 @ sudo mhwd-kernel -r linux515 #删除内核 sudo pacman -R linux515-headers #删除内核头文件 sudo pacman -R linux515-extramodules #删除内核的额外模块 管理驱动 @ mhwd -h #显示帮助 mhwd --pci #列出pci设备和驱动程序配置 mhwd --usb #列出USB设备和驱动程序配置 mhwd -li #列出已安装的驱动程序配置 mhwd -lh #识别并列出计算机硬件 mhwd -lh -d --pci #列出通过pci连接的硬件的详细列表 mhwd -li -d --pci #列出通过pci连接的硬件所使用的驱动程序详细列表 mhwd -l --pci #获取所有可用驱动程序的列表 处理器微码 @ # 安装处理器微码(Intel处理器) sudo pacman -S intel-ucode # 安装处理器微码(AMD处理器) sudo pacman -S amd-ucode 配置软件源 @ 手动配置国内源 @ sudo vim /etc/pacman.d/mirrorlist # manjaro 稳定源 # 中科大 Server = https://mirrors.ustc.edu.cn/manjaro/stable/$repo/$arch # 清华源 Server = https://mirrors.tuna.tsinghua.edu.cn/manjaro/stable/$repo/$arch # 上交源 Server = https://mirrors.sjtug.sjtu.edu.cn/manjaro/stable/$repo/$arch # 浙大源 Server = https://mirrors.zju.edu.cn/manjaro/stable/$repo/$arch # Archlinux 源 # 清华源 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch # 163 源 Server = http://mirrors.163.com/archlinux/$repo/os/$arch # 阿里源 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch 手动添加 archlinuxcn 社区源 @ vim /etc/pacman.conf #添加archlinuxcn软件源 [archlinuxcn] SigLevel = Optional TrustedOnly # 阿里源 Server = https://mirrors.aliyun.com/archlinuxcn/$arch # 163源 Server = http://mirrors.163.com/archlinux-cn/$arch # 中科大源 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch [arch4edu] SigLevel = TrustAll Server = https://mirrors.aliyun.com/arch4edu/$arch Server = http://mirrors.163.com/arch4edu/$arch 手动配置 AUR 源 @ # （AUR）Arch User Repository # AUR 包含了一些不被官方源收录的软件 yay --aururl &#34;https://aur.tuna.tsinghua.edu.cn&#34; --save # 此源不可用 # 生成 ～/.config/yay/config.json 配置文件 yay -P -g #查看配置 自动配置国内源 @ sudo pacmn-mirrors -i -c China -m rank # 更新镜像排名 vim /etc/pacman.d/mirrorlist # 这个文件，保存pacman国内软件源地址 系统基本配置 @ 签名问题 @ pacman -Syu haveged systemctl start haveged systemctl enable haveged # 清理签名 rm -rf /etc/pacman.d/gnupg pacman-key --init # 初始化key pacman -Sy archlinux-keyring manjaro-keyring #同步key数据 pacman-key --populate manjaro # 重新加载签名密钥 pacman-key --populate archlinux pacman-key --refresh-keys #更新所有密钥 sudo pacman -Syyu sudo pacman -S archlinuxcn-keyring pacman-key --populate archlinuxcn pacman-key --refresh-keys # 更新密钥 #修改keyserver vim /etc/pacman.d/gnupg/gpg.conf #修改keyserver keyserver hkp://pgp.mit.edu:11371 # 或者 (80端口不可用) keyserver hkps://hkps.pool.sks-keyservers.net:443 # 或者(IPV6不可用) keyserver hkp://ipv4.pool.sks-keyservers.net:11371 # 通过代理更新 vim /etc/gnupg/dirmngr.conf and /etc/pacman.d/gnupg/dirmngr.conf 修改 honor-http-proxy #修改/etc/pacman.conf SigNever = Never 安装 Wifi 驱动 @ # 要关闭bios安全启动模式boot secure mod lspci | grep Net #查看网卡型号 yay -S rtw89-dkms-git #安装rtw驱动 # RTL8852AE 无线网卡没有对应的驱动，需要安装rtw89驱动 pacman -Ss linux-headers #查询可用的linux-headers mhwd-kernel -li #查询当前正在使用的内核版本 pacman -S linuxXX-headers #安装符合内核版本的linux-headers sudo modprobe rtw89pci #开启驱动 sudo modprobe -r rtw89pci #关闭驱动 yay 包管理 @ sudo pacman -S yay #安装yay yay -Ps #查看已安装软件 yay -u #展示所有待更新的包 yay -Ss keyword #搜索包 yay -Qs keyword #查看已安装软件 yay -R pkg_name #删除单个软件包，保留其依赖 yay -Rns pkg_name #删除包及没有使用的依赖 yay -Sc #清理软件包缓存 yay -Scc #清理所有缓存文件 yay -U file.pkg.tar.xz #安装本地包 yay -U http://www.example.com/repo/example.pkg.tar.xz #安装远程包 yay -Sw #下载包不安装 sudo pacman -R $(pacman -Qdtq) #清理系统中无用的包 pacman -Qq #列出所有本地软件包 pacman -Qqe #列出所有显式安装 pacman -Qqd #列出自动安装的包 pacman -Qqdt Paru 包管理 @ sudo pacman -S paru # 优势在于可以用一行命令清除系统上所有不需要的包依赖项 配置环境软件 @ # 安装基础包，yay构建包会使用 yay -S base-devel # 额外安装字体 sudo pacman -S adobe-source-han-serif-cn-fonts wqy-zenhei noto-fonts-cjk noto-fonts-emoji noto-fonts-extra sudo locale # 查看字符编码 localectl set-locale LANG=en_US.UTF-8 # 常用开发软件 sudo pacman -S git nodejs npm yarn yay -S docker docker-compose # 配置git git config --global user.name &#34;inaho&#34; git config --global user.email &#34;qq@aa.com&#34; git config --global http.proxy socks5://127.0.0.1:7890 git config --global https.proxy socks5://127.0.0.1:7890 # 生成ssk-key ssh-keygen -t rsa -C &#34;qq@aa.com&#34; ssh-keygen -t ed25519 -C &#34;qq@aa.com&#34; # docker默认是root用户 sudo groupadd docker # 添加docker组 sudo gpasswd -a ${USER} docker # 将用户添加到docker组 sudo systemctl restart docker newgrp - docker # 切换会话到docker # 花里胡哨 sudo pacman -S neofetch lolcat # neofetch快速查看系统信息,lolcat彩色输出 ls | lolcat 输入法安装 @ # 安装输入法框架 yay -S fcitx5-im vim ~/.pam_environment GTK_IM_MODULE DEFAULT=fcitx QT_IM_MODULE DEFAULT=fcitx XMODIFIERS DEFAULT=\@im=fcitx SDL_IM_MODULE DEFAULT=fcitx yay -S fcitx5-rime #安装输入法引擎 yay -S rime-cloverpinyin #安装输入方案 vim ~/.local/share/fcitx5/rime/default.custom.yaml #注意yaml缩进格式： 四个空格 patch: &#34;menu/page_size&#34;: 5 schema_list: - schema: clover KDE 界面美化 @ 自用美化方案 @ 应用程序风格: Fusion Plasma视觉风格: Blur-Glassy 窗口装饰元素: Utterly-Round 颜色: Breeze微风浅色 图标: McMojave-circle 登录屏幕: Sugar Candy Yakuake配色: Utterly-Sweet ~/.local/share/plasma/look-and-feel/ # 存放全局主题 ~/.local/share/plasma/desktoptheme/ # 存放 plasma 视觉风格 ~/.local/share/plasma/plasmoids/ # 存放插件 ~/.local/share/aurorae/themes/ # 存放窗口装饰 ~/.local/share/color-schemes/ # 存放颜色 ~/.local/share/icons/ # 存放图标 ~/.local/share/fonts/ # 存放字体 ~/.local/share/sddm/themes/ # 欢迎屏幕 ~/.local/share/backgrounds/ # 壁纸 改善字体渲染效果 @ yay -S ttf-sarasa-gothic #安装更纱字体 # 字体全部改为更纱黑体，字体DPi调整为140 vim ~/.fonts.conf #调整字体展示优先级 # 配置终端字体 yay -S nerd-fonts-jetbrains-mono # 字体选择 NotoSansMono Nerd Font 9pt &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!DOCTYPE fontconfig SYSTEM &#34;fonts.dtd&#34;&gt; &lt;fontconfig&gt; &lt;alias&gt; &lt;family&gt;sans-serif&lt;/family&gt; &lt;prefer&gt; &lt;family&gt;Sarasa Gothic SC&lt;/family&gt; &lt;family&gt;Sarasa Gothic TC&lt;/family&gt; &lt;family&gt;Sarasa Gothic J&lt;/family&gt; &lt;family&gt;Sarasa Gothic K&lt;/family&gt; &lt;/prefer&gt; &lt;/alias&gt; &lt;alias&gt; &lt;family&gt;monospace&lt;/family&gt; &lt;prefer&gt; &lt;family&gt;Sarasa Mono SC&lt;/family&gt; &lt;family&gt;Sarasa Mono TC&lt;/family&gt; &lt;family&gt;Sarasa Mono J&lt;/family&gt; &lt;family&gt;Sarasa Mono K&lt;/family&gt; &lt;/prefer&gt; &lt;/alias&gt; &lt;/fontconfig&gt; KDE 高分屏缩放 @ xdpyinfo | grep -B 2 resolution #查看当前分辨率 sudo vim /etc/sddm.conf.d/kde_settings.conf [X11] EnableHiDPI=true ServerArguments=-nolisten tcp -dpi 192(当前分辨率*缩放倍数) Vscode 代码字体美化 @ yay -S ttf-fira-code #安装连体字 # vscode进入设置搜索font，编辑settings.json内容如下 &#34;editor.fontSize&#34;: 15, &#34;editor.fontWeight&#34;: &#34;normal&#34;, &#34;editor.fontFamily&#34;: &#34;Fira code&#34;, &#34;editor.fontLigatures&#34;: true, 好用的软件 @ Clamav @ pacman -S clamav sudo freshclam #更新病毒库 systemctl enable clamav-freshclam.service #开机启动病毒库自动更新 systemctl enable clamav-daemon.service #开机启动守护进程服务 clamscan -ri / --move=/home/virus/ --max-scansize=4000M # -r 递归检查子目录 -i只打印受感染的病毒文件 --move 受感染的文件移至文件夹 # --max-scansize=4000M 支持扫描文件大小 -o 跳过打印ok文件 # --no-summary 不再结束时打印摘要 --bell 病毒检测响铃通知 -l 冲定向文件 # --remove 删除受感染的文件 sudo nice -n 15 clamscan &amp;&amp; sudo clamscan --bell -i -r /home #减少CPU Docsify 神器 @ proxychains npm i -g docsify-cli #安装 docsify init ./docs #初始化项目 # - index.html 入口文件 # - README.md 作为主页内容渲染 # - nojekyll 阻止GithubPages会忽略掉下划线开头的文件 docsify serve #通过localhost:3000访问 Systemd 分析工具 @ systemd-analyze #查看系统启动时间 systemd-analyze blame #查看各项启动时间 systemd-analyze plot &gt; plot.svg #绘制启动过程的SVG图表 命令行回收站 @ yay -S trash-cli trash-put #删除文件和目录（仅放入回收站中） trash-list #列出被删除了的文件和目录 trash-restore #从回收站中恢复文件或目录 trash. trash-rm #删除回收站中的文件 trash-empty #清空回收站 rar/7z 压缩工具 @ yay -S p7zip # 7z格式压缩包(7z x file.tar yay -S rar # rar压缩包(unrar e test.tar) Openvpn 安装配置 @ yay -S openvpn # 安装openvpn /etc/openvpn/client # ovpn文件路径 openvpn --config /etc/openvpc/client/xxxx.conf Clash 代理/终端代理 @ #科学上网 yay -S clash clash-for-windows-bin #clash工具 yay -S nftables iproute2 #开启service mode # 终端命令代理 yay -S proxychains sudo nvim /etc/proxychains.conf #编辑最后一行为代理IP:PORT &gt; proxychains [command] export https_proxy=&#34;socks5://127.0.0.1:1080&#34; export https_proxy=&#34;127.0.0.1:1080&#34; export http_proxy=&#34;127.0.0.1:1080&#34; export http_proxy=&#34;http://用户名:密码@代理地址:代理端口&#34; # 符号@用%40代替 # SwitchyOmega插件，自动分流规则(国内ip/国外ip) # https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt V2xray 代理 @ yay -S v2raya # v2rayA UI yay -S xray # v2ray-core # 访问127.0.0.1:2017 metasploit @ Metasploit（MSF）是一个免费的、可下载的框架，通过它可以很容易地获取、开发并对计算机软件漏洞实施攻击。它本身附带数百个已知软件漏洞，是一款专业级漏洞攻击工具">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-02-24T15:42:00+00:00">
-    <meta property="article:modified_time" content="2024-02-24T15:42:00+00:00">
+    <meta property="article:published_time" content="2025-02-24T15:42:00+00:00">
+    <meta property="article:modified_time" content="2025-02-24T15:42:00+00:00">
     <meta property="article:tag" content="Linux">
 
 
@@ -721,7 +721,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -859,8 +859,8 @@ code.has-jax {
         <div class="date">
           <span class="posted-on">
             <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-            <time datetime=" 2024-02-24T15:42:00Z">
-              2024-02-24
+            <time datetime=" 2025-02-24T15:42:00Z">
+              2025-02-24
             </time>
           </span>
           <span class="reading-time">
@@ -869,7 +869,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            60921 字
+            59801 字
           </span>
         </div>
         
@@ -899,8 +899,8 @@ code.has-jax {
 <h1 id="manjaro-安装及美化">
   manjaro 安装及美化
   <a class="heading-link" href="#manjaro-%e5%ae%89%e8%a3%85%e5%8f%8a%e7%be%8e%e5%8c%96">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -908,8 +908,8 @@ code.has-jax {
 <h2 id="manjaro-的-linux-内核管理">
   Manjaro 的 Linux 内核管理
   <a class="heading-link" href="#manjaro-%e7%9a%84-linux-%e5%86%85%e6%a0%b8%e7%ae%a1%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -917,8 +917,8 @@ code.has-jax {
 <h3 id="安装内核">
   安装内核
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85%e5%86%85%e6%a0%b8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mhwd-kernel -h                      <span class="c1">#查看帮助</span>
@@ -931,8 +931,8 @@ code.has-jax {
 <h3 id="删除内核">
   删除内核
   <a class="heading-link" href="#%e5%88%a0%e9%99%a4%e5%86%85%e6%a0%b8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mhwd-kernel -r linux515            <span class="c1">#删除内核</span>
@@ -943,8 +943,8 @@ code.has-jax {
 <h3 id="管理驱动">
   管理驱动
   <a class="heading-link" href="#%e7%ae%a1%e7%90%86%e9%a9%b1%e5%8a%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mhwd -h       <span class="c1">#显示帮助</span>
@@ -960,8 +960,8 @@ code.has-jax {
 <h3 id="处理器微码">
   处理器微码
   <a class="heading-link" href="#%e5%a4%84%e7%90%86%e5%99%a8%e5%be%ae%e7%a0%81">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装处理器微码(Intel处理器)</span>
@@ -973,8 +973,8 @@ code.has-jax {
 <h2 id="配置软件源">
   配置软件源
   <a class="heading-link" href="#%e9%85%8d%e7%bd%ae%e8%bd%af%e4%bb%b6%e6%ba%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -982,8 +982,8 @@ code.has-jax {
 <h3 id="手动配置国内源">
   手动配置国内源
   <a class="heading-link" href="#%e6%89%8b%e5%8a%a8%e9%85%8d%e7%bd%ae%e5%9b%bd%e5%86%85%e6%ba%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/pacman.d/mirrorlist
@@ -1009,8 +1009,8 @@ code.has-jax {
 <h3 id="手动添加-archlinuxcn-社区源">
   手动添加 archlinuxcn 社区源
   <a class="heading-link" href="#%e6%89%8b%e5%8a%a8%e6%b7%bb%e5%8a%a0-archlinuxcn-%e7%a4%be%e5%8c%ba%e6%ba%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim /etc/pacman.conf             <span class="c1">#添加archlinuxcn软件源</span>
@@ -1032,8 +1032,8 @@ code.has-jax {
 <h3 id="手动配置-aur-源">
   手动配置 AUR 源
   <a class="heading-link" href="#%e6%89%8b%e5%8a%a8%e9%85%8d%e7%bd%ae-aur-%e6%ba%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># （AUR）Arch User Repository</span>
@@ -1046,8 +1046,8 @@ code.has-jax {
 <h3 id="自动配置国内源">
   自动配置国内源
   <a class="heading-link" href="#%e8%87%aa%e5%8a%a8%e9%85%8d%e7%bd%ae%e5%9b%bd%e5%86%85%e6%ba%90">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo pacmn-mirrors -i -c China -m rank    <span class="c1"># 更新镜像排名</span>
@@ -1057,8 +1057,8 @@ code.has-jax {
 <h2 id="系统基本配置">
   系统基本配置
   <a class="heading-link" href="#%e7%b3%bb%e7%bb%9f%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -1066,8 +1066,8 @@ code.has-jax {
 <h3 id="签名问题">
   签名问题
   <a class="heading-link" href="#%e7%ad%be%e5%90%8d%e9%97%ae%e9%a2%98">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pacman -Syu haveged
@@ -1105,8 +1105,8 @@ code.has-jax {
 <h3 id="安装-wifi-驱动">
   安装 Wifi 驱动
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-wifi-%e9%a9%b1%e5%8a%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 要关闭bios安全启动模式boot secure mod</span>
@@ -1124,8 +1124,8 @@ code.has-jax {
 <h3 id="yay-包管理">
   yay 包管理
   <a class="heading-link" href="#yay-%e5%8c%85%e7%ae%a1%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo pacman -S yay    <span class="c1">#安装yay</span>
@@ -1150,8 +1150,8 @@ code.has-jax {
 <h3 id="paru-包管理">
   Paru 包管理
   <a class="heading-link" href="#paru-%e5%8c%85%e7%ae%a1%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo pacman -S paru
@@ -1161,8 +1161,8 @@ code.has-jax {
 <h3 id="配置环境软件">
   配置环境软件
   <a class="heading-link" href="#%e9%85%8d%e7%bd%ae%e7%8e%af%e5%a2%83%e8%bd%af%e4%bb%b6">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装基础包，yay构建包会使用</span>
@@ -1201,8 +1201,8 @@ code.has-jax {
 <h3 id="输入法安装">
   输入法安装
   <a class="heading-link" href="#%e8%be%93%e5%85%a5%e6%b3%95%e5%ae%89%e8%a3%85">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装输入法框架</span>
@@ -1224,8 +1224,8 @@ code.has-jax {
 <h2 id="kde-界面美化">
   KDE 界面美化
   <a class="heading-link" href="#kde-%e7%95%8c%e9%9d%a2%e7%be%8e%e5%8c%96">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -1233,8 +1233,8 @@ code.has-jax {
 <h3 id="自用美化方案">
   自用美化方案
   <a class="heading-link" href="#%e8%87%aa%e7%94%a8%e7%be%8e%e5%8c%96%e6%96%b9%e6%a1%88">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">应用程序风格</span><span class="p">:</span><span class="w"> </span><span class="l">Fusion</span><span class="w">
@@ -1258,8 +1258,8 @@ code.has-jax {
 <h3 id="改善字体渲染效果">
   改善字体渲染效果
   <a class="heading-link" href="#%e6%94%b9%e5%96%84%e5%ad%97%e4%bd%93%e6%b8%b2%e6%9f%93%e6%95%88%e6%9e%9c">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S ttf-sarasa-gothic    <span class="c1">#安装更纱字体</span>
@@ -1295,8 +1295,8 @@ code.has-jax {
 <h3 id="kde-高分屏缩放">
   KDE 高分屏缩放
   <a class="heading-link" href="#kde-%e9%ab%98%e5%88%86%e5%b1%8f%e7%bc%a9%e6%94%be">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">xdpyinfo <span class="p">|</span> grep -B <span class="m">2</span> resolution    <span class="c1">#查看当前分辨率</span>
@@ -1309,8 +1309,8 @@ code.has-jax {
 <h3 id="vscode-代码字体美化">
   Vscode 代码字体美化
   <a class="heading-link" href="#vscode-%e4%bb%a3%e7%a0%81%e5%ad%97%e4%bd%93%e7%be%8e%e5%8c%96">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S ttf-fira-code    <span class="c1">#安装连体字</span>
@@ -1324,8 +1324,8 @@ code.has-jax {
 <h2 id="好用的软件">
   好用的软件
   <a class="heading-link" href="#%e5%a5%bd%e7%94%a8%e7%9a%84%e8%bd%af%e4%bb%b6">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 
@@ -1333,8 +1333,8 @@ code.has-jax {
 <h3 id="clamav">
   Clamav
   <a class="heading-link" href="#clamav">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pacman -S clamav
@@ -1352,8 +1352,8 @@ code.has-jax {
 <h3 id="docsify-神器">
   Docsify 神器
   <a class="heading-link" href="#docsify-%e7%a5%9e%e5%99%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">proxychains npm i -g docsify-cli    <span class="c1">#安装</span>
@@ -1367,8 +1367,8 @@ code.has-jax {
 <h3 id="systemd-分析工具">
   Systemd 分析工具
   <a class="heading-link" href="#systemd-%e5%88%86%e6%9e%90%e5%b7%a5%e5%85%b7">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemd-analyze                    <span class="c1">#查看系统启动时间</span>
@@ -1379,8 +1379,8 @@ code.has-jax {
 <h3 id="命令行回收站">
   命令行回收站
   <a class="heading-link" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%9b%9e%e6%94%b6%e7%ab%99">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S trash-cli
@@ -1394,8 +1394,8 @@ code.has-jax {
 <h3 id="rar7z-压缩工具">
   rar/7z 压缩工具
   <a class="heading-link" href="#rar7z-%e5%8e%8b%e7%bc%a9%e5%b7%a5%e5%85%b7">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S p7zip    <span class="c1"># 7z格式压缩包(7z x file.tar</span>
@@ -1405,8 +1405,8 @@ code.has-jax {
 <h3 id="openvpn-安装配置">
   Openvpn 安装配置
   <a class="heading-link" href="#openvpn-%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S openvpn         <span class="c1"># 安装openvpn</span>
@@ -1417,8 +1417,8 @@ code.has-jax {
 <h3 id="clash-代理终端代理">
   Clash 代理/终端代理
   <a class="heading-link" href="#clash-%e4%bb%a3%e7%90%86%e7%bb%88%e7%ab%af%e4%bb%a3%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#科学上网</span>
@@ -1439,8 +1439,8 @@ code.has-jax {
 <h3 id="v2xray-代理">
   V2xray 代理
   <a class="heading-link" href="#v2xray-%e4%bb%a3%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S v2raya  <span class="c1"># v2rayA UI</span>
@@ -1451,8 +1451,8 @@ code.has-jax {
 <h3 id="metasploit">
   metasploit
   <a class="heading-link" href="#metasploit">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <blockquote>
@@ -1482,8 +1482,8 @@ code.has-jax {
 <h3 id="vnc-安装配置">
   VNC 安装配置
   <a class="heading-link" href="#vnc-%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装vnc</span>
@@ -1511,8 +1511,8 @@ code.has-jax {
 <h3 id="timeshift-安装使用">
   Timeshift 安装使用
   <a class="heading-link" href="#timeshift-%e5%ae%89%e8%a3%85%e4%bd%bf%e7%94%a8">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S timeshift                          <span class="c1">#备份、回滚工具</span>
@@ -1523,8 +1523,8 @@ code.has-jax {
 <h3 id="安装-virtualbox">
   安装 virtualbox
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-virtualbox">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mhwd-kernel -li              <span class="c1">#内核版本</span>
@@ -1537,8 +1537,8 @@ code.has-jax {
 <h3 id="安装-cockpit">
   安装 cockpit
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85-cockpit">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <ul>
@@ -1553,8 +1553,8 @@ code.has-jax {
 <h3 id="安装其他常用软件">
   安装其他常用软件
   <a class="heading-link" href="#%e5%ae%89%e8%a3%85%e5%85%b6%e4%bb%96%e5%b8%b8%e7%94%a8%e8%bd%af%e4%bb%b6">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S tldr                        <span class="c1">#安装tldr</span>
@@ -1619,8 +1619,8 @@ code.has-jax {
 <h3 id="游戏工具">
   游戏工具
   <a class="heading-link" href="#%e6%b8%b8%e6%88%8f%e5%b7%a5%e5%85%b7">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yay -S steam    <span class="c1"># 使用proton Experimental运行win游戏</span>
@@ -1630,8 +1630,8 @@ code.has-jax {
 <h3 id="其他命令">
   其他命令
   <a class="heading-link" href="#%e5%85%b6%e4%bb%96%e5%91%bd%e4%bb%a4">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rm ~/.zhistory        <span class="c1">#删除命令记录</span>

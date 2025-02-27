@@ -13,7 +13,7 @@
     font-size: 2rem;
     color: $alt-fg-color;
     background-color: $alt-bg-color;
-    border-radius: 0.2rem;
+    border-radius: 2rem;
     opacity: 0.5;
     transition: all 0.25s ease-in;
 
@@ -34,5 +34,46 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  }
+}
+
+
+.colorscheme-toggle {
+  text-decoration: none;
+  user-select: none;
+
+  background: linear-gradient(145deg, #b6b6b6, #c0c0c0);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2),
+      -3px -3px 6px rgba(255, 255, 255, 0.5);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  cursor: pointer;
+
+  align-items: center;
+  justify-content: center;
+
+  /* 悬停效果 */
+  &:hover {
+      background: linear-gradient(145deg, #c0c0c0, #a0a0a0);
+      /* 更深的银金属色 */
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
+          -2px -2px 4px rgba(255, 255, 255, 0.5);
+  }
+
+  &:active {
+      background: linear-gradient(145deg, #828282, #c0c0c0);
+      box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.2),
+          inset 0px -2px 4px rgba(255, 255, 255, 0.5);
+      transform: translateY(2px);
+  }
+}
+
+.button-icon {
+  font-size: 20px;
+  color: #474747;
+  transition: color 0.3s ease;
+  .colorscheme-toggle:hover & {
+      color: #333;
   }
 }

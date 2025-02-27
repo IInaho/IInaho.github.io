@@ -24,16 +24,7 @@
   银行家算法
   
     
-    链接到标题
-  
-
-
-
-
-  银行家算法
-  
-    
-    链接到标题
+    @
   
 
 
@@ -42,7 +33,7 @@
   简介
   
     
-    链接到标题
+    @
   
 
 银行家算法（Banker’s Algorithm）是一个避免死锁（Deadlock）的著名算法，是由艾兹格·迪杰斯特拉在 1965 年为 T.H.E 系统设计的一种避免死锁产生的算法。它以银行借贷系统的分配策略为基础，判断并保证系统的安全运行。
@@ -52,7 +43,7 @@
   算法原理
   
     
-    链接到标题
+    @
   
 
 我们可以把操作系统看作是银行家，操作系统管理的资源相当于银行家管理的资金，进程向操作系统请求分配资源相当于用户向银行家贷款。
@@ -71,7 +62,7 @@
   算法详述
   
     
-    链接到标题
+    @
   
 
 设 Request；是进程 Pi 的请求向量，如果 Requesti[j] = K，表示进程 Pi 需要 K 个 Rj 类型的资源。当 Pi 发出资源请求后，系统按下述步骤进行检査:
@@ -101,12 +92,12 @@ Need[i,j] = Need[i,j] - Requesti[j];
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="银行家算法">
-  <meta name="twitter:description" content="银行家算法 链接到标题 银行家算法 链接到标题 简介 链接到标题 银行家算法（Banker’s Algorithm）是一个避免死锁（Deadlock）的著名算法，是由艾兹格·迪杰斯特拉在 1965 年为 T.H.E 系统设计的一种避免死锁产生的算法。它以银行借贷系统的分配策略为基础，判断并保证系统的安全运行。
-算法原理 链接到标题 我们可以把操作系统看作是银行家，操作系统管理的资源相当于银行家管理的资金，进程向操作系统请求分配资源相当于用户向银行家贷款。
+  <meta name="twitter:description" content="银行家算法 @ 简介 @ 银行家算法（Banker’s Algorithm）是一个避免死锁（Deadlock）的著名算法，是由艾兹格·迪杰斯特拉在 1965 年为 T.H.E 系统设计的一种避免死锁产生的算法。它以银行借贷系统的分配策略为基础，判断并保证系统的安全运行。
+算法原理 @ 我们可以把操作系统看作是银行家，操作系统管理的资源相当于银行家管理的资金，进程向操作系统请求分配资源相当于用户向银行家贷款。
 为保证资金的安全，银行家规定：
 当一个顾客对资金的最大需求量不超过银行家现有的资金时就可接纳该顾客； 顾客可以分期贷款，但贷款的总数不能超过最大需求量； 当银行家现有的资金不能满足顾客尚需的贷款数额时，对顾客的贷款可推迟支付，但总能使顾客在有限的时间里得到贷款； 当顾客得到所需的全部资金后，一定能在有限的时间里归还所有的资金. 操作系统按照银行家制定的规则为进程分配资源，当进程首次申请资源时，要测试该进程对资源的最大需求量，如果系统现存的资源可以满足它的最大需求量则按当前的申请量分配资源，否则就推迟分配。
 当进程在执行中继续申请资源时，先测试该进程本次申请的资源数是否超过了该资源所剩余的总量。若超过则拒绝分配资源，若能满足则按当前的申请量分配资源，否则也要推迟分配。
-算法详述 链接到标题 设 Request；是进程 Pi 的请求向量，如果 Requesti[j] = K，表示进程 Pi 需要 K 个 Rj 类型的资源。当 Pi 发出资源请求后，系统按下述步骤进行检査:
+算法详述 @ 设 Request；是进程 Pi 的请求向量，如果 Requesti[j] = K，表示进程 Pi 需要 K 个 Rj 类型的资源。当 Pi 发出资源请求后，系统按下述步骤进行检査:
 如果 Requesti[j] ≤ Need[i,j]便转向步骤(2)；否则认为出错，因为它所需要的资源数已超过它所宣布的最大值。
 如果 Requesti[j] ≤ Available[j]，便转向步骤(3)；否则，表示尚无足够资源，Pi 须等待。
 系统试探着把资源分配给进程 Pi，并修改下面数据结构中的数值
@@ -115,12 +106,12 @@ Available[j] = Available[j] - Requesti[j]; Allocation[i,j] = Allocation[i,j] &#4
 <meta property="og:url" content="//localhost:1313/posts/sulfdeug7ojwnnxawklcfplfntc/">
   <meta property="og:site_name" content="inaho">
   <meta property="og:title" content="银行家算法">
-  <meta property="og:description" content="银行家算法 链接到标题 银行家算法 链接到标题 简介 链接到标题 银行家算法（Banker’s Algorithm）是一个避免死锁（Deadlock）的著名算法，是由艾兹格·迪杰斯特拉在 1965 年为 T.H.E 系统设计的一种避免死锁产生的算法。它以银行借贷系统的分配策略为基础，判断并保证系统的安全运行。
-算法原理 链接到标题 我们可以把操作系统看作是银行家，操作系统管理的资源相当于银行家管理的资金，进程向操作系统请求分配资源相当于用户向银行家贷款。
+  <meta property="og:description" content="银行家算法 @ 简介 @ 银行家算法（Banker’s Algorithm）是一个避免死锁（Deadlock）的著名算法，是由艾兹格·迪杰斯特拉在 1965 年为 T.H.E 系统设计的一种避免死锁产生的算法。它以银行借贷系统的分配策略为基础，判断并保证系统的安全运行。
+算法原理 @ 我们可以把操作系统看作是银行家，操作系统管理的资源相当于银行家管理的资金，进程向操作系统请求分配资源相当于用户向银行家贷款。
 为保证资金的安全，银行家规定：
 当一个顾客对资金的最大需求量不超过银行家现有的资金时就可接纳该顾客； 顾客可以分期贷款，但贷款的总数不能超过最大需求量； 当银行家现有的资金不能满足顾客尚需的贷款数额时，对顾客的贷款可推迟支付，但总能使顾客在有限的时间里得到贷款； 当顾客得到所需的全部资金后，一定能在有限的时间里归还所有的资金. 操作系统按照银行家制定的规则为进程分配资源，当进程首次申请资源时，要测试该进程对资源的最大需求量，如果系统现存的资源可以满足它的最大需求量则按当前的申请量分配资源，否则就推迟分配。
 当进程在执行中继续申请资源时，先测试该进程本次申请的资源数是否超过了该资源所剩余的总量。若超过则拒绝分配资源，若能满足则按当前的申请量分配资源，否则也要推迟分配。
-算法详述 链接到标题 设 Request；是进程 Pi 的请求向量，如果 Requesti[j] = K，表示进程 Pi 需要 K 个 Rj 类型的资源。当 Pi 发出资源请求后，系统按下述步骤进行检査:
+算法详述 @ 设 Request；是进程 Pi 的请求向量，如果 Requesti[j] = K，表示进程 Pi 需要 K 个 Rj 类型的资源。当 Pi 发出资源请求后，系统按下述步骤进行检査:
 如果 Requesti[j] ≤ Need[i,j]便转向步骤(2)；否则认为出错，因为它所需要的资源数已超过它所宣布的最大值。
 如果 Requesti[j] ≤ Available[j]，便转向步骤(3)；否则，表示尚无足够资源，Pi 须等待。
 系统试探着把资源分配给进程 Pi，并修改下面数据结构中的数值
@@ -250,7 +241,7 @@ code.has-jax {
 
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="button-icon"></i>
     </a>
 </div>
 
@@ -311,8 +302,7 @@ code.has-jax {
     
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#银行家算法">银行家算法</a></li>
-    <li><a href="#银行家算法-1">银行家算法</a>
+    <li><a href="#银行家算法">银行家算法</a>
       <ul>
         <li><a href="#简介">简介</a></li>
         <li><a href="#算法原理">算法原理</a></li>
@@ -350,7 +340,7 @@ code.has-jax {
           </span>
           <span class="post-word-count">
             <i class="fa fa-pie-chart" aria-hidden="true" style="margin-left: 10px;"></i>
-            50302 字
+            49861 字
           </span>
         </div>
         
@@ -380,17 +370,8 @@ code.has-jax {
 <h1 id="银行家算法">
   银行家算法
   <a class="heading-link" href="#%e9%93%b6%e8%a1%8c%e5%ae%b6%e7%ae%97%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
-  </a>
-</h1>
-
-
-<h1 id="银行家算法-1">
-  银行家算法
-  <a class="heading-link" href="#%e9%93%b6%e8%a1%8c%e5%ae%b6%e7%ae%97%e6%b3%95-1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h1>
 
@@ -398,8 +379,8 @@ code.has-jax {
 <h2 id="简介">
   简介
   <a class="heading-link" href="#%e7%ae%80%e4%bb%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>银行家算法（Banker’s Algorithm）是一个避免死锁（Deadlock）的著名算法，是由艾兹格·迪杰斯特拉在 1965 年为 T.H.E 系统设计的一种避免死锁产生的算法。它以银行借贷系统的分配策略为基础，判断并保证系统的安全运行。</p>
@@ -408,8 +389,8 @@ code.has-jax {
 <h2 id="算法原理">
   算法原理
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e5%8e%9f%e7%90%86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>我们可以把操作系统看作是银行家，操作系统管理的资源相当于银行家管理的资金，进程向操作系统请求分配资源相当于用户向银行家贷款。</p>
@@ -427,8 +408,8 @@ code.has-jax {
 <h2 id="算法详述">
   算法详述
   <a class="heading-link" href="#%e7%ae%97%e6%b3%95%e8%af%a6%e8%bf%b0">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>设 Request；是进程 Pi 的请求向量，如果 Requesti[j] = K，表示进程 Pi 需要 K 个 Rj 类型的资源。当 Pi 发出资源请求后，系统按下述步骤进行检査:</p>
@@ -456,8 +437,8 @@ code.has-jax {
 <h2 id="安全性算法">
   安全性算法
   <a class="heading-link" href="#%e5%ae%89%e5%85%a8%e6%80%a7%e7%ae%97%e6%b3%95">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <p>系统所执行的安全性算法可描述如下:</p>
@@ -493,8 +474,8 @@ code.has-jax {
 <h2 id="代码示例">
   代码示例
   <a class="heading-link" href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b">
-    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
-    <span class="sr-only">链接到标题</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="@"></i>
+    <span class="sr-only">@</span>
   </a>
 </h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">

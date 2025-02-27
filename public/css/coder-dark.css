@@ -37,6 +37,8 @@ body.colorscheme-dark {
       color: inherit;
       font-weight: inherit;
       text-decoration: none; }
+  body.colorscheme-dark pre {
+    box-shadow: 0 4px 6px rgba(224, 224, 224, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); }
   body.colorscheme-dark pre code {
     background-color: inherit;
     color: inherit; }
@@ -104,6 +106,8 @@ body.colorscheme-dark {
         color: inherit;
         font-weight: inherit;
         text-decoration: none; }
+    body.colorscheme-auto pre {
+      box-shadow: 0 4px 6px rgba(224, 224, 224, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); }
     body.colorscheme-auto pre code {
       background-color: inherit;
       color: inherit; }
