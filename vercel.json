@@ -1,8 +1,1 @@
-{
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "http://i-inaho-github-io.vercel.app/$1",
-    }
-  ]
-}
+
