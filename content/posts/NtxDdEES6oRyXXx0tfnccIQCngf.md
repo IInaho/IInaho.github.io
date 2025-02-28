@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "ssl证书介绍"
-date = "2025-02-28 15:33:00"
+date = "2025-02-28"
 description = ""
 tags = [
     "linux"
