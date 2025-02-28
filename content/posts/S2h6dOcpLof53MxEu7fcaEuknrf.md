@@ -72,29 +72,29 @@ db.dropDatabase()
 
 ### 集合的创建
 
-```
+```bash
 db.createCollection("test")        //显式
 ```
 
 ### 查看当前库中的集合
 
-```
+```bash
 show collections
 show tables
 ```
 
 ### 集合的删除
 
-```
+```bash
 db.collection.drop()
-db.集合.drop()
+db.{集合}.drop()
 ```
 
 ## 文档操作
 
 ### 单条插入
 
-```json
+```bash
 // comment集合如果不存在，则会隐式创建
 db.comment.insert({
     "articleid":"100000",
@@ -109,7 +109,7 @@ db.comment.insert({
 
 ### 批量插入
 
-```json
+```bash
 // 插入时指定了_id ，则主键就是该值。
 // 用try catch进行异常捕捉处理
 try{
@@ -177,7 +177,7 @@ db.comment.insertMany([
 
 #### 简单查询
 
-```go
+```bash
 // 查询所有
 db.comment.find()
 db.comment.find({})
@@ -195,7 +195,7 @@ db.comment.find({userid:"1003"},{userid:1,nickname:1,_id:0})
 
 #### 统计查询
 
-```sql
+```bash
 db.collection.count(query, options)
 // 统计comment集合的所有的记录数
 db.comment.count()
@@ -205,7 +205,7 @@ db.comment.count({userid:"1003"})
 
 #### 分页列表查询
 
-```sql
+```bash
 // 使用limit()方法来读取指定数量的数据，使用skip()方法来跳过指定数量的数据
 db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)
 // 在ﬁnd方法后调用limit来返回结果(TopN)，默认值20
@@ -216,7 +216,7 @@ db.comment.find().skip(3)
 
 #### 排序查询
 
-```json
+```bash
 // sort()方法对数据进行排序，sort()方法可以通过参数指定排序的字段，并使用1和-1来指定排序的方式，其中1为升序排列，而-1是用于降序排列。
 db.COLLECTION_NAME.find().sort({KEY:1})
 db.集合名称.find().sort(排序方式)
@@ -228,7 +228,7 @@ skip(), limilt(), sort()三个放在一起执行的时候，执行的顺序是�
 
 #### 正则查询
 
-```
+```bash
 db.collection.find({field:/正则表达式/})
 db.集合.find({字段:/正则表达式/})
 // 查询评论内容包含“开水”的所有文档
@@ -239,7 +239,7 @@ db.comment.find({content:/^专家/})
 
 #### 比较查询
 
-```sql
+```bash
 db.集合名称.find({ "field" : { $gt: value }})        // 大于: field > value
 db.集合名称.find({ "field" : { $lt: value }})        // 小于: field < value
 db.集合名称.find({ "field" : { $gte: value }})        // 大于等于: field >= value 
@@ -251,7 +251,7 @@ db.comment.find({likenum:{$gt:NumberInt(700)}})
 
 #### 包含查询
 
-```
+```bash
 // 查询评论的集合中userid字段包含1003或1004的文档
 db.comment.find({userid:{$in:["1003","1004"]}})
 // 查询评论集合中userid字段不包含1003和1004的文档
@@ -260,7 +260,7 @@ db.comment.find({userid:{$nin:["1003","1004"]}})
 
 #### 条件连接查询
 
-```
+```bash
 // 查询评论集合中likenum大于等于700并且小于2000的文档
 db.comment.find({$and:[{likenum:{$gte:NumberInt(700)}},{likenum:{$lt:NumberInt(2000)}}]})
 // 查询评论集合中userid为1003，或者点赞数小于1000的文档记录
@@ -269,7 +269,7 @@ db.comment.find({$or:[ {userid:"1003"} ,{likenum:{$lt:1000}}]})
 
 ### 文档的更新
 
-```json
+```bash
 //基本格式
 db.collection.update(query, update, options)
 db.collection.update(
@@ -303,7 +303,7 @@ db.comment.update({_id:"3"},{$inc:{likenum:NumberInt(1)}})
 
 ### 删除文档
 
-```sql
+```bash
 db.集合名称.remove(条件)
 db.comment.remove({})            // 将数据全部删除
 db.comment.remove({_id:"1"})    // 删除_id=1的记录
@@ -313,7 +313,7 @@ db.comment.remove({_id:"1"})    // 删除_id=1的记录
 
 ### 索引的查看
 
-```
+```bash
 // 返回一个集合中的所有索引的数组
 db.collection.getIndexes()
 // 查看comment集合中所有的索引情况
@@ -324,7 +324,7 @@ MongoDB 在创建集合的过程中，在 _id 字段上创建一个唯一的索�
 
 ### 索引的创建
 
-```
+```bash
 // 在集合上创建索引。
 db.collection.createIndex(keys, options)
 // 单字段索引,对userid字段建立索引
@@ -335,7 +335,7 @@ db.comment.createIndex({userid:1,nickname:-1})
 
 ### 索引的移除
 
-```
+```bash
 // 指定索引的移除
 db.collection.dropIndex(index)
 // 删除comment集合中userid字段上的升序索引
@@ -348,7 +348,7 @@ db.collection.dropIndexes()
 
 分析查询性能，通常使用执行计划来查看查询的情况，如查询耗费的时间、是否基于索引查询等。
 
-```
+```bash
 db.collection.find(query,options).explain(options)
 // 查看根据userid查询数据的情况
 db.comment.find({userid:"1003"}).explain()
@@ -356,7 +356,7 @@ db.comment.find({userid:"1003"}).explain()
 
 当查询条件和查询的投影仅包含索引字段时，MongoDB 直接从索引返回结果，而不扫描任何文档或将文档带入内存，这些覆盖的查询可以非常有效。
 
-```
+```bash
 db.comment.find({userid:"1003"},{userid:1,_id:0})
 db.comment.find({userid:"1003"},{userid:1,_id:0}).explain()
 ```
