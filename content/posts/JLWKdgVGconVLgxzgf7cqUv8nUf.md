@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "关于攒钱和欲望"
-date = "2025-03-02"
+date = "2025-03-01"
 description = ""
 tags = [
     "思考"
