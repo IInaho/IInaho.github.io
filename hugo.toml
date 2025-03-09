@@ -1,5 +1,5 @@
 abaseurl = "http://blog.inaho.top"
-title = "inaho"
+title = "lznauy的技术小屋"
 theme = "hugo-coder"
 languagecode = "zh-cn"
 defaultcontentlanguage = "zh-cn"
@@ -21,7 +21,7 @@ enableEmoji = true
   unsafe = true
 
 [params]
-  author = "inaho"
+  author = "lznauy"
   info = ["生之微欢，俄而感怀，奋勉有得，相携互舍，所谓幸福"]
   description = "珍藏多年的文章"
   keywords = "blog,developer,personal"
