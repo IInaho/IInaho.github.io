@@ -5,12 +5,11 @@ title = "课程实训"
 date = "2020-06-29"
 description = ""
 tags = [
-    "数据结构"
+    "算法练习"
 ]
 categories = [
     "技术文档"
 ]
-series = ["数据结构相关文章"]
 +++
 
 # 课程实训
