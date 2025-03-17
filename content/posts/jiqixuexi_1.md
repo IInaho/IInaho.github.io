@@ -1,13 +1,13 @@
 +++
 authors = ["lzy"]
-title = "机器学习（一）"
+title = "机器学习（基础概念）"
 date = "2025-03-13"
 description = ""
 tags = [
-    "数学"
+    "机器学习"
 ]
 categories = [
-    "数学"
+    "机器学习"
 ]
 +++
 
