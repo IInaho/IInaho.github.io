@@ -80,6 +80,6 @@ ACC 中保存了被除数，将 M 地址中的除数保存进 X 寄存器中，A
 
 PC 将当前预执行的指令地址送入 MAR，再由 MAR 送入存储体，将该指令取出，存入 MDR，从 MDR 送入 IR 中，将 IR 中指令的操作码送入 CU，由 CU 完成操作。由 CU 控制 IR 将指令送入 MAR，由 MAR 送入存储体，告知将有一个数据存入存储体，地址是多少。下一步将 ACC 中的数据送入 MDR，由控制器的控制下将 MDR 中的数据保存进相应的地址中。
 
-### a`$x^2$`+bx+c 程序运行过程
+### a$x^2$+bx+c 程序运行过程
 
 ![](../static/Gg8hbzdrmoTHPWxsatjc3Hqjnkh.png)

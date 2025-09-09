@@ -1,6 +1,6 @@
 +++
 authors = ["lzy"]
-title = "使用Hugo搭建个人博客之使用Git同步网站资源"
+title = "使用Git同步博客资源"
 date = "2025-08-22"
 description = ""
 tags = [
@@ -10,9 +10,6 @@ categories = [
     "技术文档"
 ]
 +++
-
-
-# 使用Hugo搭建个人博客之使用Git同步网站资源
 
 ## 概述
 本文介绍了如何使用Git将Hugo生成的静态网站资源同步到Web服务器，实现网站发布。核心方法是利用Git的hook钩子功能，实现Git仓库与项目文件分离管理。

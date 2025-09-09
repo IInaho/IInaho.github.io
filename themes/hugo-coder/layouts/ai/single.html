@@ -1,0 +1,35 @@
+{{ define "content" }}
+<div class="ai-tools-container">
+  <header class="ai-header">
+    <h1 class="ai-title">{{ .Site.Data.ai_tools.title }}</h1>
+  </header>
+  
+  <main class="tools-container">
+    <div class="tools-grid">
+      {{ range $category, $tools := .Site.Data.ai_tools }}
+        {{ if and (ne $category "title") (ne $category "subtitle") }}
+          {{ range $tools }}
+            <a href="{{ .url }}" target="_blank" class="tool-link">
+              <article class="tool-card">
+                <div class="tool-icon">
+                  {{ .icon }}
+                </div>
+                <div class="tool-name">{{ .name }}</div>
+                <div class="tool-desc">{{ .desc }}</div>
+              </article>
+            </a>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    </div>
+  </main>
+</div>
+
+{{ if hugo.IsServer }}
+  {{ $script := resources.Get "js/ai.js" }}
+  <script src="{{ $script.RelPermalink }}"></script>
+  {{ else }}
+  {{ $script := resources.Get "js/ai.js" | minify | fingerprint }}
+  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+  {{ end }}
+{{ end }}

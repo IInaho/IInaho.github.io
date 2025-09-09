@@ -1,0 +1,39 @@
+// Dark theme font optimizations
+@mixin fonts_dark {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    // Better contrast for dark theme
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  code {
+    // Better code readability in dark mode
+    text-shadow: none;
+    font-weight: 450;
+  }
+  
+  pre {
+    text-shadow: none;
+    
+    code {
+      font-weight: 450;
+    }
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    // Better heading contrast
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+}
+
+body.colorscheme-dark {
+  @include fonts_dark();
+}
+
+body.colorscheme-auto {
+  @media (prefers-color-scheme: dark) {
+    @include fonts_dark();
+  }
+}

@@ -38,40 +38,99 @@
 }
 
 
-.colorscheme-toggle {
-  text-decoration: none;
-  user-select: none;
-
-  background: linear-gradient(145deg, #b6b6b6, #c0c0c0);
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2),
-      -3px -3px 6px rgba(255, 255, 255, 0.5);
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
+.theme-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 3px 12px 0 rgba(31, 38, 135, 0.35);
+  backdrop-filter: blur(4px);
   cursor: pointer;
+  display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
 
   &:hover {
-      background: linear-gradient(145deg, #c0c0c0, #a0a0a0);
-      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
-          -2px -2px 4px rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px 0 rgba(31, 38, 135, 0.5);
   }
+
   &:active {
-      background: linear-gradient(145deg, #828282, #c0c0c0);
-      box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.2),
-          inset 0px -2px 4px rgba(255, 255, 255, 0.5);
-      transform: translateY(2px);
+    transform: scale(0.95);
+  }
+
+  .sun-icon,
+  .moon-icon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+    transition: all 0.4s ease;
+  }
+
+  .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .moon-icon {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.5);
+  }
+
+  // 浅色模式样式 - 白色背景
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);
+  
+  .sun-icon,
+  .moon-icon {
+    color: #333;
+  }
+
+  &:hover {
+    box-shadow: 0 5px 16px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  // 深色模式样式
+  body.colorscheme-dark & {
+    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+    box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      box-shadow: 0 5px 16px 0 rgba(0, 0, 0, 0.7);
+    }
+
+    .sun-icon,
+    .moon-icon {
+      color: #fff;
+    }
+
+    .sun-icon {
+      opacity: 0;
+      transform: rotate(-180deg) scale(0.5);
+    }
+
+    .moon-icon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
   }
 }
 
+// 移除旧的样式
+.colorscheme-toggle {
+  display: none;
+}
+
 .button-icon {
-  font-size: 20px;
-  color: #474747;
-  transition: color 0.3s ease;
-  .colorscheme-toggle:hover & {
-      color: #333;
-  }
+  display: none;
 }
 
 

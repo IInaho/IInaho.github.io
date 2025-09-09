@@ -1,24 +1,36 @@
 // Fonts
-$font-family: -apple-system,
+$font-family: "Inter",
+-apple-system,
 BlinkMacSystemFont,
 "Segoe UI",
 Roboto,
-Oxygen-Sans,
-Ubuntu,
-Cantarell,
 "Helvetica Neue",
-Helvetica,
-"游ゴシック",
-"PingFang SC",
-STXihei,"华文细黑",
-"Microsoft YaHei","微软雅黑",
-SimSun,"宋体",
-Heiti,"黑体",
+Arial,
+"Noto Sans",
+sans-serif,
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Segoe UI Symbol",
+"Noto Color Emoji";
+
+$heading-font-family: "Inter",
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+"Helvetica Neue",
+Arial,
+"Noto Sans",
 sans-serif;
-$code-font-family: SFMono-Regular,
+
+$code-font-family: "Fira Code",
+"SF Mono",
+Monaco,
+Inconsolata,
+"Roboto Mono",
+"Source Code Pro",
 Consolas,
-Liberation Mono,
-Menlo,
+"Courier New",
 monospace;
 
 // Colors
@@ -60,5 +72,5 @@ $fg-color-notice-error-icon: #e53935 !default;
 $bg-color-notice-error-title: #f443361a !default;
 $bg-color-notice-error-content: #ef53501a !default;
 
-// Path to FontAwesome TTF/WOFF files.
-$fa-font-path: "../fonts" !default;
+// Path to FontAwesome TTF/WOFF files (使用CDN，无需本地路径)
+$fa-font-path: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts" !default;

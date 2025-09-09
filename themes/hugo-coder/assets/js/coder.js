@@ -99,13 +99,20 @@ function rememberTheme(theme) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const toc = document.querySelector('.table-of-contents');
-    if (!toc) return;
+    if (!toc) {
+        console.log('目录未找到');
+        return;
+    }
+    
+    console.log('目录已找到，开始初始化...');
 
     // 初始状态设置为隐藏
     toc.classList.add('hidden');
     let timer;
 
-    // 鼠标交互处理
+    // 鼠标交互处理 - 改进为更智能的显示/隐藏
+    let isUserInteracting = false;
+    
     toc.addEventListener('mouseenter', () => {
         clearTimeout(timer);
         toc.classList.add('visible');
@@ -113,10 +120,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     toc.addEventListener('mouseleave', () => {
+        // 如果用户正在与目录交互（如点击），延迟隐藏
         timer = setTimeout(() => {
+            if (!isUserInteracting) {
+                toc.classList.remove('visible');
+                toc.classList.add('hidden');
+            }
+        }, 300);
+    });
+    
+    // 点击目录时保持可见
+    toc.addEventListener('click', () => {
+        isUserInteracting = true;
+        setTimeout(() => {
+            isUserInteracting = false;
+        }, 1000);
+    });
+    
+    // 点击页面其他地方时隐藏目录
+    document.addEventListener('click', (e) => {
+        if (!toc.contains(e.target)) {
             toc.classList.remove('visible');
             toc.classList.add('hidden');
-        }, 300);
+        }
     });
 
     // 滚动监听逻辑
@@ -150,40 +176,57 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, observerOptions);
 
-    // 点击处理
+    // 点击处理 - 简化和优化
     tocLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
+            
             const targetId = link.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
+            const targetIdClean = targetId.substring(1); // 移除#号
+            const targetElement = document.getElementById(targetIdClean);
+            
             if (targetElement) {
                 isScrolling = true;
 
+                // 更新当前激活的链接
                 if (currentActiveLink) {
                     currentActiveLink.classList.remove('active');
                 }
-
                 link.classList.add('active');
                 currentActiveLink = link;
 
+                // 计算滚动位置并滚动
+                const headerOffset = 96;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80,
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
-
+                
+                // 滚动完成后延迟隐藏目录
                 setTimeout(() => {
+                    toc.classList.remove('visible');
+                    toc.classList.add('hidden');
                     isScrolling = false;
                 }, 1000);
+            } else {
+                console.warn('无法找到目标元素:', targetId);
             }
         });
     });
 
     // 为每个标题添加观察
-    headings.forEach(heading => {
-        if (!heading.id) {
-            heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-');
-        }
-        observer.observe(heading);
-    });
+        headings.forEach(heading => {
+            if (!heading.id) {
+                // 确保标题ID与Hugo生成的锚点一致
+                heading.id = heading.textContent.trim()
+                    .toLowerCase()
+                    .replace(/[^\w\u4e00-\u9fa5\d]+/g, '-') // 保留中文、数字、字母
+                    .replace(/^-+|-+$/g, '') // 移除开头和结尾的连字符
+                    .replace(/-+/g, '-'); // 合并多个连字符
+            }
+            observer.observe(heading);
+        });
 });

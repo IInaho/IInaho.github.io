@@ -21,13 +21,13 @@ categories = [
 
 pprof 工具集，提供了 Go 程序内部多种性能指标的采样能力，我们常会用到的性能采样指标有这些：
 
-- profile：默认进行 30s 的 CPU Profiling，得到一个分析用的 profile 文件，访问路径为 `$HOST/debug/pprof/profile`
-- heap：查看活动对象的内存分配情况， 访问路径为 `$HOST/debug/pprof/heap`
-- goroutine：查看当前所有运行的 goroutines 堆栈跟踪，访问路径为 `$HOST/debug/pprof/goroutine`
-- allocs: 查看过去所有内存分配的样本，访问路径为 `$HOST/debug/pprof/allocs`(包括已经被 GC 回收的内存)
-- threadcreate：查看创建新 OS 线程的堆栈跟踪，访问路径为 `$HOST/debug/pprof/threadcreate`
-- mutex：查看导致互斥锁的竞争持有者的堆栈跟踪，访问路径为 `$HOST/debug/pprof/mutex`
-- block：查看导致阻塞同步的堆栈跟踪，访问路径为 `$HOST/debug/pprof/block`
+- profile：默认进行 30s 的 CPU Profiling，得到一个分析用的 profile 文件，访问路径为 $HOST/debug/pprof/profile`
+- heap：查看活动对象的内存分配情况， 访问路径为 $HOST/debug/pprof/heap`
+- goroutine：查看当前所有运行的 goroutines 堆栈跟踪，访问路径为 $HOST/debug/pprof/goroutine`
+- allocs: 查看过去所有内存分配的样本，访问路径为 $HOST/debug/pprof/allocs`(包括已经被 GC 回收的内存)
+- threadcreate：查看创建新 OS 线程的堆栈跟踪，访问路径为 $HOST/debug/pprof/threadcreate`
+- mutex：查看导致互斥锁的竞争持有者的堆栈跟踪，访问路径为 $HOST/debug/pprof/mutex`
+- block：查看导致阻塞同步的堆栈跟踪，访问路径为 $HOST/debug/pprof/block`
 
 分析方式主要分为两种：
 
