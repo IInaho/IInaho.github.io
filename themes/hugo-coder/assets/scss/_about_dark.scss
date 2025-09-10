@@ -1,0 +1,149 @@
+// 关于页面暗色模式样式
+@mixin about_dark {
+  .about-container {
+    .about-hero {
+      background: linear-gradient(135deg, rgba($link-color-dark, 0.15), rgba($link-color-dark, 0.08));
+      border-color: rgba($link-color-dark, 0.2);
+    }
+
+    .avatar-container {
+      .avatar {
+        border-color: $link-color-dark;
+        box-shadow: 0 4px 20px rgba($link-color-dark, 0.4);
+      }
+
+      .avatar-placeholder {
+        background: linear-gradient(135deg, $link-color-dark, lighten($link-color-dark, 15%));
+        border-color: $link-color-dark;
+        box-shadow: 0 4px 20px rgba($link-color-dark, 0.4);
+      }
+    }
+
+    .hero-content {
+      .hero-title {
+        color: $fg-color-dark;
+      }
+
+      .hero-subtitle {
+        color: $alt-fg-color-dark;
+      }
+
+      .hero-tags {
+        .tag {
+          background: rgba($link-color-dark, 0.15);
+          color: $link-color-dark;
+          border-color: rgba($link-color-dark, 0.3);
+        }
+      }
+    }
+
+    .content-section,
+    .skills-section,
+    .interests-section,
+    .contact-section {
+      background: rgba($bg-color-dark, 0.3);
+      border-color: rgba($alt-bg-color-dark, 0.4);
+
+      &:hover {
+        box-shadow: 0 4px 20px rgba($alt-bg-color-dark, 0.2);
+      }
+    }
+
+    .section-header {
+      i {
+        color: $link-color-dark;
+      }
+
+      h2 {
+        color: $fg-color-dark;
+      }
+    }
+
+    .section-content {
+      color: $alt-fg-color-dark;
+
+      h3 {
+        color: $fg-color-dark;
+      }
+
+      ul li::before {
+        color: $link-color-dark;
+      }
+    }
+
+    .skill-tag {
+      background: rgba($alt-bg-color-dark, 0.8);
+      color: $alt-fg-color-dark;
+      border-color: rgba($alt-bg-color-dark, 0.6);
+
+      &:hover {
+        background: $link-color-dark;
+        color: white;
+      }
+
+      &.golang {
+        background: rgba(#00ADD8, 0.15);
+        color: #00ADD8;
+        border-color: rgba(#00ADD8, 0.4);
+      }
+
+      &.python {
+        background: rgba(#3776AB, 0.15);
+        color: #3776AB;
+        border-color: rgba(#3776AB, 0.4);
+      }
+
+      &.cpp {
+        background: rgba(#00599C, 0.15);
+        color: #00599C;
+        border-color: rgba(#00599C, 0.4);
+      }
+
+      &.rust {
+        background: rgba(#CE422B, 0.15);
+        color: #CE422B;
+        border-color: rgba(#CE422B, 0.4);
+      }
+    }
+
+    .interest-item {
+      background: rgba($alt-bg-color-dark, 0.4);
+      border-color: rgba($alt-bg-color-dark, 0.3);
+
+      &:hover {
+        background: rgba($link-color-dark, 0.15);
+        box-shadow: 0 4px 15px rgba($link-color-dark, 0.3);
+      }
+
+      i {
+        color: $link-color-dark;
+      }
+
+      span {
+        color: $alt-fg-color-dark;
+      }
+    }
+
+    .contact-link {
+      background: rgba($alt-bg-color-dark, 0.6);
+      border-color: rgba($alt-bg-color-dark, 0.4);
+      color: $alt-fg-color-dark;
+
+      &:hover {
+        background: $link-color-dark;
+        color: white;
+        box-shadow: 0 4px 15px rgba($link-color-dark, 0.4);
+      }
+    }
+  }
+}
+
+body.colorscheme-dark {
+  @include about_dark();
+}
+
+body.colorscheme-auto {
+  @media (prefers-color-scheme: dark) {
+    @include about_dark();
+  }
+}

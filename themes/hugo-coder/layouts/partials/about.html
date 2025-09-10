@@ -1,0 +1,122 @@
+<!-- 关于我页面专用模板 -->
+<section class="about-container">
+  <div class="about-hero">
+    <div class="avatar-container">
+      {{ if .Site.Params.avatarurl }}
+        <img src="{{ .Site.Params.avatarurl | safeURL }}" alt="{{ .Site.Params.author }}" class="avatar">
+      {{ else if .Site.Params.gravatar }}
+        <img src="https://cravatar.cn/avatar/{{ md5 .Site.Params.gravatar }}?s=240&d=mp" alt="{{ .Site.Params.author }}" class="avatar">
+      {{ else }}
+        <div class="avatar-placeholder">
+          <i class="fas fa-user"></i>
+        </div>
+      {{ end }}
+    </div>
+    
+    <div class="hero-content">
+      <h1 class="hero-title">{{ .Site.Params.author }}</h1>
+      <p class="hero-subtitle">{{ index .Site.Params.info 0 }}</p>
+      
+      <div class="hero-tags">
+        <span class="tag">网络安全</span>
+        <span class="tag">Golang</span>
+        <span class="tag">开源</span>
+        <span class="tag">技术博客</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-content">
+    <div class="content-section">
+      <div class="section-header">
+        <i class="fas fa-user-tie"></i>
+        <h2>职业经历</h2>
+      </div>
+      <div class="section-content">
+        {{ .Content }}
+      </div>
+    </div>
+
+    <div class="skills-section">
+      <div class="section-header">
+        <i class="fas fa-code"></i>
+        <h2>技术栈</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>编程语言</h3>
+          <div class="skill-tags">
+            <span class="skill-tag golang">Golang</span>
+            <span class="skill-tag python">Python</span>
+            <span class="skill-tag cpp">C++</span>
+            <span class="skill-tag rust">Rust</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>系统运维</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Arch</span>
+            <span class="skill-tag">Manjaro</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>专业领域</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">网络安全</span>
+            <span class="skill-tag">漏洞扫描</span>
+            <span class="skill-tag">渗透测试</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="interests-section">
+      <div class="section-header">
+        <i class="fas fa-heart"></i>
+        <h2>兴趣爱好</h2>
+      </div>
+      <div class="interests-grid">
+        <div class="interest-item">
+          <i class="fas fa-mountain"></i>
+          <span>徒步爬山</span>
+        </div>
+        <div class="interest-item">
+          <i class="fas fa-bicycle"></i>
+          <span>骑行</span>
+        </div>
+        <div class="interest-item">
+          <i class="fas fa-plane"></i>
+          <span>旅行</span>
+        </div>
+        <div class="interest-item">
+          <i class="fas fa-pen"></i>
+          <span>写作</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <div class="section-header">
+        <i class="fas fa-envelope"></i>
+        <h2>联系方式</h2>
+      </div>
+      <div class="contact-links">
+        {{ range .Site.Params.social }}
+          <a href="{{ .url | safeURL }}" class="contact-link" title="{{ .name }}">
+            <i class="{{ .icon }}"></i>
+            <span>{{ .name }}</span>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ $aboutJS := resources.Get "js/about.js" }}
+  {{ if $aboutJS }}
+    <script src="{{ $aboutJS.RelPermalink }}"></script>
+  {{ end }}
