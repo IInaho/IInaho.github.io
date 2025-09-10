@@ -9,10 +9,20 @@
     padding: 0.3rem 0.9rem;
     background-color: $alt-bg-color;
     border-radius: 0.6rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 
     a {
       color: $fg-color;
+      text-decoration: none;
     }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-color: $fg-color;
+    }
+    
     a:active {
       color: $fg-color;
     }

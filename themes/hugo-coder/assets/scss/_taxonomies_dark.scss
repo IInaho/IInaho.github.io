@@ -1,10 +1,18 @@
 @mixin taxonomy_dark {
   .taxonomy-element {
     background-color: $alt-bg-color-dark;
+    border: 1px solid transparent;
 
     a {
       color: $fg-color-dark;
     }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border-color: $fg-color-dark;
+    }
+    
     a:active {
       color: $fg-color-dark;
     }
