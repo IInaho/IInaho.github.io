@@ -11,8 +11,12 @@
           {{ range $tools }}
             <a href="{{ .url }}" target="_blank" class="tool-link">
               <article class="tool-card">
-                <div class="tool-icon">
-                  {{ .icon }}
+                <div class="tool-icon" data-url="{{ .url }}" {{ if .icon }}data-icon="{{ .icon }}"{{ end }}>
+                  {{ if .icon }}
+                  <img src="{{ .icon }}" alt="{{ .name }}" />
+                  {{ else }}
+                  <img src="" alt="{{ .name }}" onerror="this.src='/icons/placeholder.svg'; this.onerror=null;" />
+                  {{ end }}
                 </div>
                 <div class="tool-name">{{ .name }}</div>
                 <div class="tool-desc">{{ .desc }}</div>

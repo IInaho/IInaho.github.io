@@ -1,0 +1,16 @@
+{
+  "name": "IInaho AI Tools",
+  "short_name": "AI Tools",
+  "description": "A collection of useful AI tools",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#333333",
+  "icons": [
+    {
+      "src": "/icons/placeholder.svg",
+      "sizes": "48x48",
+      "type": "image/svg+xml"
+    }
+  ]
+}
