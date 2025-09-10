@@ -23,10 +23,61 @@ darkModeMediaQuery.addListener((event) => {
     setTheme(event.matches ? "dark" : "light");
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     let node = document.querySelector('.preload-transitions');
     node.classList.remove('preload-transitions');
+    
+    // 添加代码块复制按钮
+    addCopyButtonsToCodeBlocks();
 });
+
+function addCopyButtonsToCodeBlocks() {
+    // 获取所有代码块
+    const codeBlocks = document.querySelectorAll('pre.chroma');
+    
+    codeBlocks.forEach(block => {
+        // 检查是否已经添加了复制按钮
+        if (block.querySelector('.copy-button')) {
+            return;
+        }
+        
+        // 创建复制按钮
+        const copyButton = document.createElement('button');
+        copyButton.className = 'copy-button';
+        copyButton.innerHTML = '复制';
+        copyButton.setAttribute('aria-label', '复制代码');
+        
+        // 将按钮添加到代码块
+        block.style.position = 'relative';
+        block.appendChild(copyButton);
+        
+        // 添加点击事件
+        copyButton.addEventListener('click', () => {
+            const code = block.querySelector('code');
+            if (code) {
+                // 复制代码到剪贴板，使用textContent替代innerText以避免额外空行
+                const codeText = code.textContent;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    // 显示复制成功状态
+                    copyButton.innerHTML = '已复制';
+                    copyButton.classList.add('copied');
+                    
+                    // 2秒后恢复原始状态
+                    setTimeout(() => {
+                        copyButton.innerHTML = '复制';
+                        copyButton.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('复制失败:', err);
+                    copyButton.innerHTML = '复制失败';
+                    setTimeout(() => {
+                        copyButton.innerHTML = '复制';
+                    }, 2000);
+                });
+            }
+        });
+    });
+}
 
 function setTheme(theme) {
     body.classList.remove('colorscheme-auto');
@@ -86,6 +137,11 @@ function setTheme(theme) {
             theme: theme,
         },
     });
+
+    // 重新应用复制按钮样式
+    setTimeout(() => {
+        addCopyButtonsToCodeBlocks();
+    }, 100);
 
     // Create and send event
     const event = new Event('themeChanged');

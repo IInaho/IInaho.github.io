@@ -35,6 +35,23 @@
 
   pre {
     box-shadow: 0 4px 6px rgba(224, 224, 224, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    
+    /* 暗色模式下的复制按钮样式 */
+    .copy-button {
+      background-color: rgba(33, 38, 45, 0.8);
+      color: $fg-color-dark;
+      border-color: $alt-bg-color-dark;
+      
+      &:hover {
+        background-color: rgba(33, 38, 45, 0.95);
+      }
+      
+      &.copied {
+        background-color: rgba(46, 160, 67, 0.9);
+        color: white;
+        border-color: #2ea043;
+      }
+    }
   }
 
   pre code {

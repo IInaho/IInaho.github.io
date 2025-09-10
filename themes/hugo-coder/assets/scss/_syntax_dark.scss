@@ -85,6 +85,23 @@
   /* GenericTraceback */ .chroma .gt { color: #ff7b72 }
   /* GenericUnderline */ .chroma .gl { text-decoration: underline }
   /* TextWhitespace */ .chroma .w { color: #6e7681 }
+  
+  /* 暗色模式下的复制按钮样式 */
+  .copy-button {
+    background-color: rgba(33, 38, 45, 0.8) !important;
+    color: #c9d1d9 !important;
+    border-color: #30363d !important;
+    
+    &:hover {
+      background-color: rgba(33, 38, 45, 0.95) !important;
+    }
+    
+    &.copied {
+      background-color: rgba(46, 160, 67, 0.9) !important;
+      color: white !important;
+      border-color: #2ea043 !important;
+    }
+  }
 }
 
 body.colorscheme-dark {
