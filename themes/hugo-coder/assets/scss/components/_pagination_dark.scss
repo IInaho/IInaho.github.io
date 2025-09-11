@@ -1,33 +1,33 @@
-// 暗色主题的分页样式
+// 暗色主题的分页样式 - 简洁版
 .pagination-container {
-  .pagination .page-item {
-    &.active .page-link {
-      background-color: $link-color-dark;
-      border-color: $link-color-dark;
-      color: $bg-color-dark;
-      box-shadow: 0 2px 8px rgba($link-color-dark, 0.4);
-    }
-    
-    &:not(.active) .page-link {
-      background-color: $bg-color-dark;
-      border-color: $alt-bg-color-dark;
+  .pagination {
+    .page-item {
+      &.active {
+        .page-link {
+          background-color: $link-color-dark;
+          border-color: $link-color-dark;
+          color: $bg-color-dark;
+          font-weight: 600;
+          box-shadow: 0 1px 4px rgba($link-color-dark, 0.3);
+        }
+      }
       
-      &:hover {
-        background-color: $alt-bg-color-dark;
-        color: $link-color-dark;
-        border-color: $link-color-dark;
-        box-shadow: 0 4px 12px rgba($link-color-dark, 0.25);
+      &:not(.active) {
+        .page-link {
+          background-color: transparent;
+          border-color: $alt-bg-color-dark;
+          
+          &:hover {
+            background-color: $alt-bg-color-dark;
+            color: $link-color-dark;
+            border-color: $alt-bg-color-dark;
+          }
+        }
       }
     }
   }
   
   .pagination-info {
-    color: $alt-fg-color-dark;
-  }
-}
-
-@media (max-width: 480px) {
-  .pagination-container .pagination .page-item:nth-child(2):after {
     color: $alt-fg-color-dark;
   }
 }
