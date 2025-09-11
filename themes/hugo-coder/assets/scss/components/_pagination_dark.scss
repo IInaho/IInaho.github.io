@@ -1,0 +1,34 @@
+// 暗色主题的分页样式 - 简洁版
+.pagination-container {
+  .pagination {
+    .page-item {
+      &.active {
+        .page-link {
+          background-color: $link-color-dark;
+          border-color: $link-color-dark;
+          color: $bg-color-dark;
+          font-weight: 600;
+          box-shadow: 0 1px 4px rgba($link-color-dark, 0.3);
+        }
+      }
+      
+      &:not(.active) {
+        .page-link {
+          background-color: transparent;
+          color: $fg-color-dark;
+          border-color: $alt-bg-color-dark;
+          
+          &:hover {
+            background-color: $alt-bg-color-dark;
+            color: $link-color-dark;
+            border-color: $alt-bg-color-dark;
+          }
+        }
+      }
+    }
+  }
+  
+  .pagination-info {
+    color: $alt-fg-color-dark;
+  }
+}
