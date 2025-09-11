@@ -1,4 +1,4 @@
-abaseurl = "http://blog.inaho.top"
+baseURL = "https://lznauy.cn"
 title = "lznauy的技术小屋"
 theme = "hugo-coder"
 languagecode = "zh-cn"
@@ -51,7 +51,7 @@ enableEmoji = true
   name = "RSS"
   icon = "fa-solid fa-rss fa-2x"
   weight = 6
-  url = "https://blog.inaho.top/index.xml"
+  url = "https://lznauy.cn/index.xml"
   rel = "alternate"
   type = "application/rss+xml"
 
