@@ -69,14 +69,14 @@ enableEmoji = true
   weight = 3  
   url = "categories/"
 [[menu.main]]
-  name = "AI"
-  weight = 4
-  url = "ai/"
-[[menu.main]]
   name = "关于"
-  weight = 5
+  weight = 4
   url = "about/"
 [[menu.main]]
   name = "友链"
-  weight = 6
+  weight = 5
   url = "friends/"
+[[menu.main]]
+  name = "AI"
+  weight = 6
+  url = "aitools/"

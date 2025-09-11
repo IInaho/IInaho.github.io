@@ -14,15 +14,15 @@
 {{ end }}
 
 <body class="preload-transitions {{ $csClass }}{{ if .Site.Params.rtl }} rtl{{ end }}">
-  {{ partial "float" . }}
+  {{ partial "components/float.html" . }}
   <main class="wrapper">
-    {{ partial "header.html" . }}
+    {{ partial "layouts/header.html" . }}
 
     <div class="content">
       {{ block "content" . }}{{ end }}
     </div>
 
-    {{ partial "footer.html" . }}
+    {{ partial "layouts/footer.html" . }}
   </main>
 
   {{ if .HasShortcode "mermaid" }}

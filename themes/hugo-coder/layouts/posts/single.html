@@ -3,7 +3,7 @@
 {{ end }}
 
 {{ define "content" }}
-{{ partial "toc.html" . }}
+{{ partial "components/toc.html" . }}
 <section class="container post">
   <article>
     <header>
@@ -56,7 +56,8 @@
 
 <!-- Twikoo 评论系统 -->
 {{ if .Site.Params.twikoo }}
-{{ $script := resources.Get "js/twiko.all.min.js" }}
+{{ $script := resources.Get "js/vendor/twiko.all.min.js" }}
+  {{ if $script }}
   <script src="{{ $script.RelPermalink }}"></script>
   <script>
     window.addEventListener('load', () => {
@@ -66,5 +67,6 @@
       });
     });
   </script>
+  {{ end }}
 {{ end }}
 {{ end }}

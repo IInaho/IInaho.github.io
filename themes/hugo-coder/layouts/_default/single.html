@@ -4,8 +4,8 @@
 
 {{ define "content" }}
   {{ if eq .Type "about" }}
-    {{ partial "about.html" . }}
+    {{ .Render "about" }}
   {{ else }}
-    {{ partial "page.html" . }}
+    {{ partial "components/page.html" . }}
   {{ end }}
 {{ end }}

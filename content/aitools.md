@@ -1,4 +1,4 @@
 ---
 title: "AI"
-layout: "ai"
+layout: "aitools"
 ---

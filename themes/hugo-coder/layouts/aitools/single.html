@@ -30,10 +30,15 @@
 </div>
 
 {{ if hugo.IsServer }}
-  {{ $script := resources.Get "js/ai.js" }}
+  {{ $script := resources.Get "js/modules/ai.js" }}
+  {{ if $script }}
   <script src="{{ $script.RelPermalink }}"></script>
+  {{ end }}
   {{ else }}
-  {{ $script := resources.Get "js/ai.js" | minify | fingerprint }}
+  {{ $script := resources.Get "js/modules/ai.js" }}
+  {{ if $script }}
+  {{ $script = $script | minify | fingerprint }}
   <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+  {{ end }}
   {{ end }}
 {{ end }}
