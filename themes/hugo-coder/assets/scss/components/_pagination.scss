@@ -27,33 +27,28 @@
   border-radius: 0.5rem;
   transition: all 0.15s ease-in-out;
   
-  &.active {
-    .page-link {
-      background-color: $link-color;
-      color: $bg-color;
-      border-color: $link-color;
-      cursor: default;
-      font-weight: 600;
-      box-shadow: 0 1px 4px rgba($link-color, 0.2);
-    }
+  &.active .page-link {
+    background-color: $link-color;
+    color: $bg-color;
+    border-color: $link-color;
+    cursor: default;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba($link-color, 0.2);
   }
   
-  &:not(.active) {
-    .page-link {
-      background-color: transparent;
-      color: $fg-color;
-      border: 1px solid $alt-bg-color;
-      
-      &:hover {
-        background-color: $alt-bg-color;
-        color: $link-color;
-        border-color: $alt-bg-color;
-        transform: translateY(-1px);
-      }
-      
-      &:active {
-        transform: translateY(0);
-      }
+  &:not(.active) .page-link {
+    background-color: transparent;
+    border: 1px solid $alt-bg-color;
+    
+    &:hover {
+      background-color: $alt-bg-color;
+      color: $link-color;
+      border-color: $alt-bg-color;
+      transform: translateY(-1px);
+    }
+    
+    &:active {
+      transform: translateY(0);
     }
   }
   
