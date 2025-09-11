@@ -36,13 +36,13 @@
   }
   
   .tool-card {
-    background: #{$alt-bg-color-dark};
-    border: 1px solid #{$alt-bg-color-dark};
+    background: transparent;
+    border: 1px solid transparent;
     
     &:hover {
+      background: #{$alt-bg-color-dark};
+      border: 1px solid #{$alt-bg-color-dark};
       box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-      border-color: var(--accent-color);
-      background: #{$lighter-alt-bg-color-dark};
     }
     
     .tool-name {
@@ -112,8 +112,13 @@
   // 移动端暗色模式优化
   @media (max-width: 768px) {
     .tool-card {
+      background: transparent;
+      border: 1px solid transparent;
+    }
+    
+    .tool-card:hover {
       background: #{$alt-bg-color-dark};
-      border-color: #{$alt-bg-color-dark};
+      border: 1px solid #{$alt-bg-color-dark};
     }
   }
 }
