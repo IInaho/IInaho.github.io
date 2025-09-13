@@ -58,7 +58,9 @@
 
     {{ with .Params.featuredImage }}
     <div class="recipe-image">
-      <img src="{{ . | relURL }}" alt="{{ $.Title }} 成品图" />
+      {{ $imagePath := . }}
+      {{ $imageName := replaceRE `^\.\/images\/` "" $imagePath }}
+      <img src="/recipes/images/{{ $imageName }}" alt="{{ $.Title }} 成品图" />
     </div>
     {{ end }}
 
@@ -84,16 +86,14 @@
     {{ .Content }}
   </div>
 
-    <footer>
-      <div class="post-meta">
-        <div class="date">
-          <span class="posted-on">
-            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-              {{ .Date | time.Format (.Site.Params.dateFormat | default "2006-01-02") }}
-            </time>
-          </span>
-        </div>
+    <footer style="text-align: center;">
+      <div class="post-meta" style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <span class="posted-on">
+          <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+            {{ .Date | time.Format (.Site.Params.dateFormat | default "2006-01-02") }}
+          </time>
+        </span>
         {{ with .GetTerms "authors" }}{{ partial "taxonomy/authors.html" . }}{{ end }}
         {{ with .GetTerms "categories" }}{{ partial "taxonomy/categories.html" . }}{{ end }}
         {{ with .GetTerms "tags" }}{{ partial "taxonomy/tags.html" . }}{{ end }}

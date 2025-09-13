@@ -20,9 +20,11 @@
           <a href="{{ .Permalink }}" class="recipe-link">
             {{ with .Params.featuredImage }}
               <div class="recipe-thumbnail">
-                <img src="{{ . | relURL }}" alt="{{ $.Title }} 成品图" />
+                {{ $imagePath := . }}
+                {{ $imageName := replaceRE `^\.\/images\/` "" $imagePath }}
+                <img src="/recipes/images/{{ $imageName }}" alt="菜谱 成品图" />
               </div>
-            {{ end }}
+              {{ end }}
             <div class="recipe-info">
               <div class="recipe-header">
                 <h2 class="recipe-title">{{ .Title }}</h2>

@@ -4,8 +4,8 @@ title = "包菜炒肉"
 description = "一道经典的家常菜，简单易做，营养丰富"
 slug = "package-meat-stir-fry"
 authors = ["Inaho"]
-tags = ["家常菜", "包菜", "肉"]
-categories = ["Recipes"]
+tags = ["家常菜"]
+categories = ["菜谱"]
 featuredImage = "./images/3a38bd9ee314a8fc87f5b58f4f98412.jpg"
 
 # Recipe-specific parameters
