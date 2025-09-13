@@ -1,14 +1,8 @@
 +++
-draft = true
 date = {{ .Date }}
 title = ""
 description = ""
-slug = ""
 authors = []
-tags = []
-categories = ["Recipes"]
-externalLink = ""
-series = []
 featuredImage = ""
 
 # 菜谱特定参数
