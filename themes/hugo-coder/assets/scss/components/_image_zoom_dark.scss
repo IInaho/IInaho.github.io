@@ -1,0 +1,10 @@
+// 暗色模式下的图片放大功能样式
+body.colorscheme-dark {
+  .image-overlay {
+    background: rgba(0, 0, 0, 0.95);
+    
+    img {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+  }
+}

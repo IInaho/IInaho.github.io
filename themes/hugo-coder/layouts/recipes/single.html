@@ -1,0 +1,104 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+
+{{ define "content" }}
+<section class="container recipe">
+  <article>
+    <header>
+      <div class="recipe-title">
+        <h1 class="title">
+          <a class="title-link" href="{{ .Permalink | safeURL }}">
+            {{ .Title }}
+          </a>
+        </h1>
+      </div>
+      
+      <div class="recipe-meta">
+        <div class="recipe-times">
+          {{ with .Params.prepTime }}
+          <span class="prep-time">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            准备时间: {{ . }} 分钟
+          </span>
+          {{ end }}
+          
+          {{ with .Params.cookTime }}
+          <span class="cook-time">
+            <i class="fa-solid fa-fire-burner" aria-hidden="true"></i>
+            烹饪时间: {{ . }} 分钟
+          </span>
+          {{ end }}
+          
+          {{ with .Params.totalTime }}
+          <span class="total-time">
+            <i class="fa-solid fa-hourglass" aria-hidden="true"></i>
+            总时间: {{ . }} 分钟
+          </span>
+          {{ end }}
+        </div>
+        
+        <div class="recipe-details">
+          {{ with .Params.servings }}
+          <span class="servings">
+            <i class="fa-solid fa-utensils" aria-hidden="true"></i>
+            份量: {{ . }} 人份
+          </span>
+          {{ end }}
+          
+          {{ with .Params.difficulty }}
+          <span class="difficulty">
+            <i class="fa-solid fa-gauge" aria-hidden="true"></i>
+            难度: {{ . }}
+          </span>
+          {{ end }}
+        </div>
+      </div>
+    </header>
+
+    {{ with .Params.featuredImage }}
+    <div class="recipe-image">
+      <img src="{{ . | relURL }}" alt="{{ $.Title }} 成品图" />
+    </div>
+    {{ end }}
+
+    <div class="recipe-content">
+    <div class="recipe-ingredients-card">
+      <h2>食材</h2>
+      <div class="ingredients-list">
+        {{ range .Params.ingredients }}
+        <div class="ingredient-item">{{ . }}</div>
+        {{ end }}
+      </div>
+    </div>
+    
+    <div class="recipe-seasonings-card">
+      <h2>调料</h2>
+      <div class="seasonings-list">
+        {{ range .Params.seasonings }}
+        <div class="seasoning-item">{{ . }}</div>
+        {{ end }}
+      </div>
+    </div>
+    
+    {{ .Content }}
+  </div>
+
+    <footer>
+      <div class="post-meta">
+        <div class="date">
+          <span class="posted-on">
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+              {{ .Date | time.Format (.Site.Params.dateFormat | default "2006-01-02") }}
+            </time>
+          </span>
+        </div>
+        {{ with .GetTerms "authors" }}{{ partial "taxonomy/authors.html" . }}{{ end }}
+        {{ with .GetTerms "categories" }}{{ partial "taxonomy/categories.html" . }}{{ end }}
+        {{ with .GetTerms "tags" }}{{ partial "taxonomy/tags.html" . }}{{ end }}
+      </div>
+    </footer>
+  </article>
+</section>
+{{ end }}

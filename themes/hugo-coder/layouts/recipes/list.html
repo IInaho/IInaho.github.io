@@ -1,0 +1,42 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+
+{{ define "content" }}
+  <section class="container recipe-list">
+    <h1 class="title">
+      {{ .Title }}
+    </h1>
+
+    {{ if .Content }}
+      <div class="content">
+        {{ .Content }}
+      </div>
+    {{ end }}
+
+    <div class="recipe-grid">
+      {{ range .Pages.ByDate.Reverse }}
+        <div class="recipe-item">
+          <a href="{{ .Permalink }}" class="recipe-link">
+            {{ with .Params.featuredImage }}
+              <div class="recipe-thumbnail">
+                <img src="{{ . | relURL }}" alt="{{ $.Title }} 成品图" />
+              </div>
+            {{ end }}
+            <div class="recipe-info">
+              <div class="recipe-header">
+                <h2 class="recipe-title">{{ .Title }}</h2>
+                <time class="recipe-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                  {{ .Date | time.Format (.Site.Params.dateFormat | default "2006-01-02") }}
+                </time>
+              </div>
+              {{ with .Description }}
+                <p class="recipe-description">{{ . }}</p>
+              {{ end }}
+            </div>
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,140 @@
+/* 菜谱卡片样式 */
+.recipe-ingredients-card, .recipe-seasonings-card {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem 1.5rem 1.5rem; /* 修改顶部内边距为0.5rem */
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 菜谱图片样式 */
+.recipe-image {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.recipe-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-ingredients-card h2, .recipe-seasonings-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem; /* 减小标题下方的间距 */
+  color: #1565c0;
+  font-size: 1.8rem;
+  /* 增大标题字体 */
+  border-bottom: 2px solid #1565c0;
+  padding-bottom: 0.3rem; /* 减小标题下方的内边距 */
+}
+
+/* 食材和调料列表样式 */
+.ingredients-list, .seasonings-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* 增大间距 */
+  margin-top: 1rem;
+}
+
+/* 单个食材和调料卡片样式 */
+.ingredient-item, .seasoning-item {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 0.8rem 1.2rem; /* 增大内边距 */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 1.2rem; /* 增大字体大小 */
+  display: flex;
+  align-items: center;
+  min-width: 140px; /* 稍微增大最小宽度 */
+  text-align: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.ingredient-item:hover, .seasoning-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.recipe-ingredients-card ul, .recipe-seasonings-card ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.recipe-ingredients-card ul li, .recipe-seasonings-card ul li {
+  padding: 0.8rem 0; /* 增大内边距 */
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 0.5rem; /* 增大间距 */
+  font-size: 1.2rem; /* 增大字体大小 */
+}
+
+.recipe-ingredients-card ul li:last-child, .recipe-seasonings-card ul li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* 制作步骤样式优化 */
+.recipe-content .recipe-steps {
+  margin-top: 2rem;
+}
+
+.recipe-content .recipe-steps ol {
+  counter-reset: step-counter;
+}
+
+.recipe-content .recipe-steps ol li {
+  position: relative;
+  padding: 1.2rem 1.2rem 1.2rem 3.5rem; /* 增大内边距 */
+  margin-bottom: 1.2rem; /* 增大间距 */
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  border-left: 4px solid #1565c0;
+  font-size: 1.2rem; /* 增大字体大小 */
+}
+
+.recipe-content .recipe-steps ol li:before {
+  counter-increment: step-counter;
+
+  position: absolute;
+  left: 1.2rem;
+  top: 1.2rem;
+  background-color: #1565c0;
+  color: white;
+  border-radius: 50%;
+  width: 2rem; /* 增大圆圈大小 */
+  height: 2rem; /* 增大圆圈大小 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem; /* 增大数字字体大小 */
+}
+
+/* 小贴士样式 */
+.recipe-content .tips {
+  background-color: #e3f2fd;
+  border-left: 4px solid #1565c0;
+  padding: 1.8rem; /* 增大内边距 */
+  border-radius: 0 8px 8px 0;
+  margin-top: 2rem;
+  font-size: 1.2rem; /* 增大字体大小 */
+}
+
+.recipe-content .tips h2 {
+  margin-top: 0;
+  color: #1565c0;
+  font-size: 1.8rem; /* 增大标题字体 */
+}
+
+.recipe-content .tips ul {
+  padding-left: 1.8rem; /* 增大内边距 */
+  font-size: 1.2rem; /* 增大字体大小 */
+}
+
+.recipe-content .tips ul li {
+  margin-bottom: 0.8rem; /* 增大间距 */
+}

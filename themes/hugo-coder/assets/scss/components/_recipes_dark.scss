@@ -1,0 +1,27 @@
+@mixin recipes_dark {
+  .recipe {
+    article {
+      header {
+        .recipe-meta {
+          background-color: $alt-bg-color-dark;
+        }
+      }
+      
+      .recipe-content {
+        h2 {
+          border-bottom: 2px solid $link-color-dark;
+        }
+      }
+    }
+  }
+}
+
+body.colorscheme-dark {
+  @include recipes_dark();
+}
+
+body.colorscheme-auto {
+  @media (prefers-color-scheme: dark) {
+    @include recipes_dark();
+  }
+}

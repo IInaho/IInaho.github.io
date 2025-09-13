@@ -1,0 +1,107 @@
+.recipe {
+  article {
+    header {
+      margin-bottom: 1.5rem;
+      
+      .recipe-title {
+        text-align: center;
+        margin-bottom: 1rem;
+        
+        .title {
+          font-size: 2rem;
+          margin: 0;
+        }
+      }
+      
+      .recipe-meta {
+        background-color: $alt-bg-color;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        
+        .recipe-times, .recipe-details {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          justify-content: center;
+          margin-bottom: 0.5rem;
+          
+          span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+          }
+        }
+      }
+    }
+    
+    .recipe-image {
+      text-align: center;
+      margin-bottom: 2rem;
+      
+      img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+    
+    .recipe-content {
+      h2 {
+        border-bottom: 2px solid $link-color;
+        padding-bottom: 0.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+      
+      .recipe-ingredients,
+      .recipe-seasonings,
+      .recipe-steps {
+        margin-bottom: 2rem;
+        
+        ul, ol {
+          padding-left: 1.5rem;
+          
+          li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+          }
+        }
+      }
+      
+      .recipe-steps {
+        ol {
+          li {
+            position: relative;
+            padding-left: 1.5rem;
+            
+            &:before {
+              content: counter(list-item);
+              position: absolute;
+              left: 0;
+              top: 0;
+              background-color: $link-color;
+              color: white;
+              border-radius: 50%;
+              width: 1.2rem;
+              height: 1.2rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 0.8rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+    
+    footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid $alt-bg-color;
+    }
+  }
+}

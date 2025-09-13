@@ -23,12 +23,94 @@ darkModeMediaQuery.addListener((event) => {
     setTheme(event.matches ? "dark" : "light");
 });
 
+// 添加图片点击放大功能
+function initImageZoom() {
+    // 获取所有菜谱图片
+    const recipeImages = document.querySelectorAll('.recipe-image img');
+    
+    // 添加调试信息
+    console.log('Found recipe images:', recipeImages.length);
+    
+    if (recipeImages.length === 0) {
+        // 如果当前页面没有找到菜谱图片，可能是其他页面
+        return;
+    }
+    
+    recipeImages.forEach(img => {
+        // 添加调试信息
+        console.log('Adding click event to image:', img);
+        
+        // 为图片添加点击事件
+        img.addEventListener('click', function() {
+            // 添加调试信息
+            console.log('Image clicked:', this.src);
+            
+            // 创建遮罩层
+            const overlay = document.createElement('div');
+            overlay.className = 'image-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                cursor: zoom-out;
+            `;
+            
+            // 创建放大图片
+            const zoomedImage = document.createElement('img');
+            zoomedImage.src = this.src;
+            zoomedImage.alt = this.alt;
+            zoomedImage.style.cssText = `
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            `;
+            
+            // 添加到遮罩层
+            overlay.appendChild(zoomedImage);
+            
+            // 点击遮罩层关闭
+            overlay.addEventListener('click', function() {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            });
+            
+            // 添加ESC键关闭功能
+            function closeOnEscape(e) {
+                if (e.key === 'Escape') {
+                    if (document.body.contains(overlay)) {
+                        document.body.removeChild(overlay);
+                    }
+                    document.removeEventListener('keydown', closeOnEscape);
+                }
+            }
+            
+            document.addEventListener('keydown', closeOnEscape);
+            
+            // 添加到页面
+            document.body.appendChild(overlay);
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     let node = document.querySelector('.preload-transitions');
     node.classList.remove('preload-transitions');
     
     // 添加代码块复制按钮
     addCopyButtonsToCodeBlocks();
+    
+    // 初始化图片放大功能
+    initImageZoom();
 });
 
 function addCopyButtonsToCodeBlocks() {

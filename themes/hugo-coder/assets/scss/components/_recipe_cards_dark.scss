@@ -1,0 +1,62 @@
+/* 暗色模式下的菜谱卡片样式 */
+body.colorscheme-dark .recipe-ingredients-card, body.colorscheme-dark .recipe-seasonings-card {
+  background-color: #424242;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  padding: 0.5rem 1.5rem 1.5rem 1.5rem; /* 修改顶部内边距为0.5rem */
+}
+
+body.colorscheme-dark .recipe-ingredients-card h2, body.colorscheme-dark .recipe-seasonings-card h2 {
+  color: #42a5f5;
+  border-bottom: 2px solid #42a5f5;
+  margin-bottom: 0.5rem; /* 减小标题下方的间距 */
+  padding-bottom: 0.3rem; /* 减小标题下方的内边距 */
+}
+
+body.colorscheme-dark .recipe-ingredients-card ul li, body.colorscheme-dark .recipe-seasonings-card ul li {
+  border-bottom: 1px solid #616161;
+  color: #e0e0e0;
+  font-size: 1.2rem; /* 增大字体大小 */
+}
+
+/* 暗色模式下的食材和调料小卡片样式 */
+body.colorscheme-dark .ingredient-item, body.colorscheme-dark .seasoning-item {
+  background-color: #525252;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  color: #ffffff; /* 使用更亮的颜色 */
+  font-size: 1.2rem; /* 增大字体大小 */
+  font-weight: 500; /* 增加字体粗细使文字更突出 */
+}
+
+body.colorscheme-dark .ingredient-item:hover, body.colorscheme-dark .seasoning-item:hover {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+
+/* 暗色模式下的制作步骤样式 */
+body.colorscheme-dark .recipe-content .recipe-steps ol li {
+  background-color: #424242;
+  border-left: 4px solid #42a5f5;
+  color: #e0e0e0;
+}
+
+body.colorscheme-dark .recipe-content .recipe-steps ol li:before {
+  background-color: #42a5f5;
+}
+
+/* 暗色模式下的小贴士样式 */
+body.colorscheme-dark .recipe-content .tips {
+  background-color: #1a237e;
+  border-left: 4px solid #42a5f5;
+}
+
+/* 暗色模式下的菜谱图片样式 */
+body.colorscheme-dark .recipe-image img {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.colorscheme-dark .recipe-content .tips h2 {
+  color: #42a5f5;
+}
+
+body.colorscheme-dark .recipe-content .tips ul li {
+  color: #e0e0e0;
+}
