@@ -1,4 +1,32 @@
-- name: "Inaho"
-  url: "https://lznauy.cn"
-  avatar: "https://cravatar.cn/avatar/3f33778a3ad85c6147059bdbca8aab6c?s=240&d=mp"
-  description: "一个菜鸡程序员的学习进程"
+- name: "宇阳"
+  url: "https://liuyuyang.net"
+  avatar: "https://q1.qlogo.cn/g?b=qq&nk=3311118881&s=640"
+  description: "记录所学知识，缩短和大神的差距！"
+- name: 二丫讲梵
+  url: https://wiki.eryajf.net/
+  avatar: https://wiki.eryajf.net/img/logo.png # 头像
+  description: 💻学习📝记录🔗分享 # 介绍
+- name: cosの博客 # 站点名称 cos
+  url: https://ysx.cosine.ren/ # 站点网址
+  description: WA的一声就哭了 # 站点简介
+  avatar: https://ysx.cosine.ren/img/avatar.jpg
+- name: lololowe的博客
+  url: https://blog.lololowe.com
+  avatar: https://blog.lololowe.com/favicon.ico
+  description: 计网，网安知识分享
+- name: 清羽飞扬
+  url: https://blog.liushen.fun/
+  description: 柳影曳曳，清酒孤灯，扬笔撒墨，心境如霜
+  avatar: https://blog.liushen.fun/info/avatar.ico
+- name: 晚夜的个人博客
+  url: https://www.iczrx.cn
+  avatar: https://q2.qlogo.cn/headimg_dl?dst_uin=1463656527&spec=640
+  description: 做好量变的准备，促进事物的质变。
+- name: xaoxuu
+  url: https://xaoxuu.com
+  avatar: https://cn.cravatar.com/avatar/15e59a60168a6ce1bfc3eddfca8c5a54?s=512
+  description: For all time, always.
+- name: 网友小宋
+  url: https://xyzbz.cn/
+  avatar: https://bu.dusays.com/2023/07/25/64bf920527086.png
+  description: 一介草民，只为生活！
