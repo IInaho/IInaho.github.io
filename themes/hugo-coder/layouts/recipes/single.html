@@ -91,10 +91,20 @@
         <span class="posted-on">
           <i class="fa-solid fa-calendar" aria-hidden="true"></i>
           <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-            {{ .Date | time.Format (.Site.Params.dateFormat | default "2006-01-02") }}
+            {{ .Date | time.Format "2006-01-02 15:04:05" }}
           </time>
         </span>
-        {{ with .GetTerms "authors" }}{{ partial "taxonomy/authors.html" . }}{{ end }}
+        {{ with .GetTerms "authors" }}
+        <div class="authors">
+          <i class="fa-solid fa-user" aria-hidden="true"></i>
+          {{- range $index, $el := . -}}
+          {{- if gt $index 0 }}
+          <span class="separator">•</span>
+          {{- end }}
+          <span>{{ .LinkTitle }}</span>
+          {{- end -}}
+        </div>
+        {{ end }}
         {{ with .GetTerms "categories" }}{{ partial "taxonomy/categories.html" . }}{{ end }}
         {{ with .GetTerms "tags" }}{{ partial "taxonomy/tags.html" . }}{{ end }}
       </div>

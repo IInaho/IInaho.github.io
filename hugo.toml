@@ -4,6 +4,7 @@ theme = "hugo-coder"
 languagecode = "zh-cn"
 defaultcontentlanguage = "zh-cn"
 enableEmoji = true
+buildFuture = true
 
 [pagination]
   pagerSize = 20
