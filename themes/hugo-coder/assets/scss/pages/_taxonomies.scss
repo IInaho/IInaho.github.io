@@ -7,10 +7,13 @@
   .taxonomy-element  {
     display: block;
     padding: 0.3rem 0.9rem;
-    background-color: $alt-bg-color;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 0.6rem;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
     a {
       color: $fg-color;
@@ -19,8 +22,8 @@
     
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-color: $fg-color;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      background-color: rgba(255, 255, 255, 0.15);
     }
     
     a:active {

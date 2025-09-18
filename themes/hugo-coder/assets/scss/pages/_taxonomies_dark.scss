@@ -1,7 +1,10 @@
 @mixin taxonomy_dark {
   .taxonomy-element {
-    background-color: $alt-bg-color-dark;
-    border: 1px solid transparent;
+    background-color: rgba(30, 30, 30, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
     a {
       color: $fg-color-dark;
@@ -9,8 +12,8 @@
     
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      border-color: $fg-color-dark;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      background-color: rgba(30, 30, 30, 0.3);
     }
     
     a:active {

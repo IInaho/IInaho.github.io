@@ -1,12 +1,16 @@
 @mixin recipes-list-dark {
   .recipe-list {
     .recipe-item {
-      background-color: $alt-bg-color-dark;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      background-color: rgba(30, 30, 30, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      border: none;
     }
 
     .recipe-item:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      background-color: rgba(30, 30, 30, 0.3);
     }
 
     .recipe-thumbnail {
