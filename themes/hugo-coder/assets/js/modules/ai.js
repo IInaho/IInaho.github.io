@@ -46,42 +46,55 @@ const IconManager = (() => {
 
   const getOrCreateImg = (element) => element.querySelector('img') || element.appendChild(new Image());
 
-  const loadImage = (img, src, onLoad, onError) => {
-    img.onload = onLoad;
-    img.onerror = onError;
-    img.src = src;
+  // 使用Promise封装图片加载
+  const loadImage = (src) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img.src);
+      img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
+      img.src = src;
+    });
+  };
+
+  // 加载图标并设置到元素
+  const setIcon = async (element, url) => {
+    const img = getOrCreateImg(element);
+    const domain = Utils.extractDomain(url);
+    const cacheKey = `favicon_${domain}`;
+    
+    // 检查缓存
+    const cachedUrl = Utils.cache.get(cacheKey);
+    if (cachedUrl) {
+      img.src = cachedUrl;
+      return;
+    }
+
+    try {
+      // 尝试加载主图标
+      const primaryUrl = Utils.getFaviconUrl(url);
+      const iconUrl = await loadImage(primaryUrl);
+      Utils.cache.set(cacheKey, iconUrl);
+      img.src = iconUrl;
+    } catch (primaryError) {
+      try {
+        // 尝试加载备用图标
+        const fallbackUrl = Utils.getFallbackFaviconUrl(url);
+        const iconUrl = await loadImage(fallbackUrl);
+        Utils.cache.set(cacheKey, iconUrl);
+        img.src = iconUrl;
+      } catch (fallbackError) {
+        // 使用占位符图标
+        console.log(`Using placeholder for ${domain}:`, primaryError, fallbackError);
+        img.src = '/icons/placeholder.svg';
+      }
+    }
   };
 
   const loadFavicon = (element) => {
     const url = element.getAttribute('data-url');
     if (!url) return;
-
-    const img = getOrCreateImg(element);
-    const domain = Utils.extractDomain(url);
-    const cached = Utils.cache.get(`favicon_${domain}`);
-
-    if (cached) {
-      img.src = cached;
-      return;
-    }
-
-    loadImage(
-      img,
-      Utils.getFaviconUrl(url),
-      () => Utils.cache.set(`favicon_${domain}`, Utils.getFaviconUrl(url)),
-      () => {
-        const fallbackImg = new Image();
-        loadImage(
-          fallbackImg,
-          Utils.getFallbackFaviconUrl(url),
-          () => {
-            Utils.cache.set(`favicon_${domain}`, Utils.getFallbackFaviconUrl(url));
-            img.src = fallbackImg.src;
-          },
-          () => img.src = '/icons/placeholder.svg'
-        );
-      }
-    );
+    
+    setIcon(element, url);
   };
 
   const loadCustomIcon = (element) => {
@@ -95,15 +108,15 @@ const IconManager = (() => {
       return;
     }
 
-    loadImage(
-      img,
-      customUrl,
-      () => iconCache.set(customUrl, customUrl),
-      () => {
+    loadImage(customUrl)
+      .then(url => {
+        iconCache.set(customUrl, url);
+        img.src = url;
+      })
+      .catch(() => {
         iconCache.delete(customUrl);
         loadFavicon(element);
-      }
-    );
+      });
   };
 
   return {
