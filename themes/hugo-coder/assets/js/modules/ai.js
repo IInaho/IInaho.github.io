@@ -14,8 +14,17 @@ const Utils = {
     }
   },
 
-  getFaviconUrl: (url) => `https://toolb.cn/favicon/${Utils.extractDomain(url)}`,
-  getFallbackFaviconUrl: (url) => `https://www.google.com/s2/favicons?domain=${Utils.extractDomain(url)}&sz=64`,
+  // https://api.xinac.net/
+  getFaviconUrl: (url) => `https://api.xinac.net/icon/?url=${Utils.extractDomain(url)}`,
+
+  // 备用图标服务1 - toolb.cn (国内在线工具网站)
+  getFallbackFaviconUrl1: (url) => `https://toolb.cn/favicon/${Utils.extractDomain(url)}`,
+  
+  // 备用图标服务1
+  getFallbackFaviconUrl2: (url) => `https://ico.la4.cn/ico.php?url=${Utils.extractDomain(url)}`,
+  
+  // 备用图标服务2 - Google Favicon API (全球通用)
+  getFallbackFaviconUrl3: (url) => `https://www.google.com/s2/favicons?domain=${Utils.extractDomain(url)}`,
 
   cache: {
     get: (key) => {
@@ -50,8 +59,16 @@ const IconManager = (() => {
   const loadImage = (src) => {
     return new Promise((resolve, reject) => {
       const img = new Image();
-      img.onload = () => resolve(img.src);
-      img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
+      // 设置超时时间为5秒
+      const timeout = setTimeout(() => reject(new Error(`Image load timeout: ${src}`)), 5000);
+      img.onload = () => {
+        clearTimeout(timeout);
+        resolve(img.src);
+      };
+      img.onerror = () => {
+        clearTimeout(timeout);
+        reject(new Error(`Failed to load image: ${src}`));
+      };
       img.src = src;
     });
   };
@@ -77,15 +94,31 @@ const IconManager = (() => {
       img.src = iconUrl;
     } catch (primaryError) {
       try {
-        // 尝试加载备用图标
-        const fallbackUrl = Utils.getFallbackFaviconUrl(url);
-        const iconUrl = await loadImage(fallbackUrl);
+        // 尝试加载备用图标1
+        const fallbackUrl1 = Utils.getFallbackFaviconUrl1(url);
+        const iconUrl = await loadImage(fallbackUrl1);
         Utils.cache.set(cacheKey, iconUrl);
         img.src = iconUrl;
-      } catch (fallbackError) {
-        // 使用占位符图标
-        console.log(`Using placeholder for ${domain}:`, primaryError, fallbackError);
-        img.src = '/icons/placeholder.svg';
+      } catch (fallbackError1) {
+        try {
+          // 尝试加载备用图标2 - Google Favicon API
+          const fallbackUrl2 = Utils.getFallbackFaviconUrl2(url);
+          const iconUrl = await loadImage(fallbackUrl2);
+          Utils.cache.set(cacheKey, iconUrl);
+          img.src = iconUrl;
+        } catch (fallbackError2) {
+          try {
+            // 尝试加载备用图标3 - toolb.cn
+            const fallbackUrl3 = Utils.getFallbackFaviconUrl3(url);
+            const iconUrl = await loadImage(fallbackUrl3);
+            Utils.cache.set(cacheKey, iconUrl);
+            img.src = iconUrl;
+          } catch (fallbackError3) {
+            // 使用占位符图标
+            console.log(`Using placeholder for ${domain}:`, primaryError, fallbackError1, fallbackError2, fallbackError3);
+            img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjEuNSI+PHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMiIvPjxyZWN0IHg9IjgiIHk9IjgiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==';
+          }
+        }
       }
     }
   };
