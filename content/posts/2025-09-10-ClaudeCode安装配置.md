@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "Claude Code 安装配置"
-date = "2025-09-10"
+date = "2025-09-10 16:20:20"
 description = ""
 tags = [
     "linux"

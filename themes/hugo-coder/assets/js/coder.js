@@ -109,6 +109,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // 添加代码块复制按钮
     addCopyButtonsToCodeBlocks();
     
+    // 初始化代码块折叠功能
+    initCodeBlockCollapse();
+    
     // 初始化图片放大功能
     initImageZoom();
 });
@@ -157,6 +160,70 @@ function addCopyButtonsToCodeBlocks() {
                     }, 2000);
                 });
             }
+        });
+    });
+}
+
+// 代码块折叠功能
+function initCodeBlockCollapse() {
+    const codeBlocks = document.querySelectorAll('pre.chroma');
+    
+    codeBlocks.forEach(block => {
+        // 获取代码行数
+        const codeElement = block.querySelector('code');
+        if (!codeElement) return;
+        
+        // 计算代码行数
+        const codeLines = codeElement.textContent.split('\n').length;
+        
+        // 只有当代码行数超过8行时才添加折叠功能
+        if (codeLines <= 8) return;
+        
+        // 避免重复处理
+        if (block.classList.contains('collapsible')) return;
+        
+        // 添加折叠类
+        block.classList.add('collapsible');
+        
+        // 创建折叠遮罩层
+        const collapseOverlay = document.createElement('div');
+        collapseOverlay.className = 'code-collapse-overlay';
+        collapseOverlay.innerHTML = `
+            <div class="code-collapse-content">
+                <span class="code-collapse-text">显示全部代码 (${codeLines} 行)</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        `;
+        
+        block.appendChild(collapseOverlay);
+        
+        // 创建收起按钮（初始隐藏）
+        const collapseButton = document.createElement('button');
+        collapseButton.className = 'collapse-button';
+        collapseButton.innerHTML = '<i class="fas fa-chevron-up"></i> 收起代码';
+        collapseButton.style.display = 'none';
+        collapseButton.style.position = 'absolute';
+        collapseButton.style.top = '0.8rem';
+        collapseButton.style.right = '6.5rem'; // 调整位置避免与复制按钮重叠
+        collapseButton.style.zIndex = '15';
+        
+        block.appendChild(collapseButton);
+        
+        // 添加遮罩层点击事件（展开）
+        collapseOverlay.addEventListener('click', () => {
+            block.classList.add('expanded');
+            collapseOverlay.style.display = 'none';
+            collapseButton.style.display = 'block';
+        });
+        
+        // 添加收起按钮点击事件（收起）
+        collapseButton.addEventListener('click', () => {
+            block.classList.remove('expanded');
+            collapseOverlay.style.display = 'flex';
+            collapseButton.style.display = 'none';
+            
+            // 平滑滚动到代码块顶部
+            block.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
     });
 }

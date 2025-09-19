@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "Linux 本地部署 DeepSeek"
-date = "2025-02-26"
+date = "2025-02-26 20:20:20"
 description = ""
 tags = [
     "大模型"

@@ -155,7 +155,7 @@ strong {
 .highlight {
   div,
   pre {
-    margin: 2rem 0 2rem;
+    // margin: 2rem 0 2rem;
     padding: 1rem;
     border-radius: 1rem;
     overflow-x: auto;
@@ -218,62 +218,296 @@ pre {
       opacity: 1;
     }
   }
+  
+  /* 收起按钮样式 */
+  .collapse-button {
+    position: absolute;
+    top: 0.8rem;
+    right: 6.5rem; /* 调整到复制按钮左侧，避免重叠 */
+    padding: 0.4rem 0.8rem;
+    font-size: 1.2rem;
+    font-family: $font-family;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: $fg-color;
+    border: 1px solid $darker-alt-bg-color;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    z-index: 15;
+    
+    &:hover {
+      opacity: 1;
+      background-color: rgba(255, 255, 255, 1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    &:active {
+      transform: scale(0.95);
+    }
+    
+    i {
+      margin-right: 0.3rem;
+    }
+  }
+}
+
+/* 代码块折叠样式 */
+pre.chroma.collapsible {
+  position: relative;
+  max-height: 25rem; /* 大约显示8行代码 */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  
+  &.expanded {
+    max-height: none;
+    
+    .code-collapse-overlay {
+      display: none;
+    }
+  }
+  
+  .code-collapse-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8rem;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.95) 60%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    z-index: 5;
+    
+    &:hover {
+      opacity: 0.9;
+      
+      .code-collapse-content {
+        transform: translateY(-2px);
+      }
+    }
+    
+    .code-collapse-content {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem 1.6rem;
+      margin-bottom: 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid $darker-alt-bg-color;
+      border-radius: 0.6rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      
+      .code-collapse-text {
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: $fg-color;
+        font-family: $font-family;
+      }
+      
+      i {
+        font-size: 1.2rem;
+        color: $fg-color;
+        transition: transform 0.2s ease;
+      }
+    }
+  }
 }
 
 code {
   font-family: $code-font-family;
   font-size: 0.875em;
-  font-weight: 450;
+  font-weight: 500;
   border-radius: 0.4rem;
-  padding: 0.2rem 0.4rem;
-  background-color: $darker-alt-bg-color;
-  color: $fg-color;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba($link-color, 0.1);
+  color: darken($link-color, 8%);
   vertical-align: baseline;
   font-feature-settings: "liga" 0, "kern" 1;
+  border: 1px solid rgba($link-color, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
 
   @media only screen and (max-width: 768px) {
     font-size: 0.875em;
   }
 }
 
+/* 行内代码优化 - 只在非pre元素内的code应用 */
+p code, li code, td code, h1 code, h2 code, h3 code, h4 code, h5 code, h6 code, em code, strong code {
+  background-color: rgba($link-color, 0.1);
+  color: darken($link-color, 8%);
+  border: 1px solid rgba($link-color, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  
+  &:hover {
+    background-color: rgba($link-color, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* 代码块内的code保持原有样式 */
+pre code {
+  background-color: inherit !important;
+  color: inherit !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  transform: none !important;
+  transition: none !important;
+  
+  &:hover {
+    background-color: inherit !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
 blockquote {
-  border-left: 2px solid $alt-bg-color;
-  padding-left: 2rem;
-  line-height: 2.2rem;
+  border-left: 4px solid $link-color;
+  padding: 1.5rem 2rem 1.5rem 3rem;
+  margin: 2rem 0;
+  line-height: 1.8;
   font-weight: 400;
   font-style: italic;
+  background-color: rgba($link-color, 0.05);
+  border-radius: 0 0.6rem 0.6rem 0;
+  position: relative;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba($link-color, 0.08);
+    transform: translateX(4px);
+  }
+  
+  &::before {
+    content: '"';
+    position: absolute;
+    left: 1rem;
+    top: 0.5rem;
+    font-size: 4rem;
+    color: $link-color;
+    font-family: Georgia, serif;
+    line-height: 1;
+    opacity: 0.3;
+  }
+  
+  p {
+    margin: 0;
+    
+    & + p {
+      margin-top: 1rem;
+    }
+  }
+  
+  cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9em;
+    color: $alt-fg-color;
+    font-style: normal;
+    
+    &::before {
+      content: '— ';
+    }
+  }
 }
 
-th,
-td {
-  padding: 1.6rem;
-}
-
+/* 表格样式优化 - 简洁现代 */
 table {
   border-collapse: collapse;
+  width: 100%;
+  margin: 2rem 0;
+  background-color: #ffffff;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  }
 }
 
-table td,
-table th {
-  border: 2px solid $alt-fg-color;
+th {
+  background-color: rgba($link-color, 0.08);
+  color: darken($link-color, 15%);
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem 1.6rem;
+  font-size: 1.6rem;
+  border-bottom: 1px solid rgba($link-color, 0.2);
+  white-space: nowrap; /* 表头不换行 */
+  
+  &:first-child {
+    border-top-left-radius: 0.8rem;
+  }
+  
+  &:last-child {
+    border-top-right-radius: 0.8rem;
+  }
+  
+  /* 为第二列标题设置更大的最小宽度 */
+  &:nth-child(2) {
+    min-width: 150px;
+  }
 }
 
-table tr:first-child th {
-  border-top: 0;
+td {
+  padding: 1rem 1.6rem;
+  border-bottom: 1px solid rgba($alt-fg-color, 0.1);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: rgba($link-color, 0.02);
+  }
+  
+  /* 为第二列设置更大的最小宽度，防止内容被分成两行 */
+  &:nth-child(2) {
+    min-width: 150px;
+    white-space: nowrap;
+  }
 }
 
-table tr:last-child td {
-  border-bottom: 0;
+table tr {
+  transition: all 0.2s ease;
+  
+  &:nth-child(even) {
+    background-color: rgba($link-color, 0.015);
+  }
+  
+  &:hover {
+    background-color: rgba($link-color, 0.04);
+    transform: scale(1.002);
+  }
+  
+  &:last-child td {
+    border-bottom: none;
+  }
 }
 
-table tr td:first-child,
-table tr th:first-child {
-  border-left: 0;
-}
-
-table tr td:last-child,
-table tr th:last-child {
-  border-right: 0;
+/* 表格响应式处理 */
+@media only screen and (max-width: 768px) {
+  table {
+    font-size: 0.9rem;
+    border-radius: 0.6rem;
+  }
+  
+  th, td {
+    padding: 0.8rem 1rem;
+  }
+  
+  th {
+    font-size: 0.9rem;
+  }
 }
 
 img {
@@ -321,7 +555,7 @@ figure {
 
 .container {
   margin: 1rem auto;
-  max-width: 90rem;
+  max-width: 110rem;
   width: 100%;
   padding-left: 2rem;
   padding-right: 2rem;

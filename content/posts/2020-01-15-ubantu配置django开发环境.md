@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "ubantu 配置 django 开发环境"
-date = "2020-01-15"
+date = "2020-01-15 20:42:20"
 description = ""
 tags = [
     "python"

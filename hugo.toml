@@ -35,6 +35,7 @@ buildFuture = true
   hidecolorschemetoggle = false
   twikoo = true
   maxSeeAlsoItems = 5
+  dateFormat = "2006-01-02 15:04:05"
 
 [taxonomies]
   category = "categories"

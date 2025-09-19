@@ -2,9 +2,9 @@
   <a href="{{ .Params.externalLink | default .RelPermalink }}">
     <span class="post-title">{{ .Title }}</span>
     <div class="post-meta">
-      <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">
+      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
         <i class="fa-regular fa-calendar"></i>
-        {{ .Date.Format "2006-01-02" }}
+        {{ .Date.Format "2006-01-02 15:04:05" }}
       </time>
       <span class="post-words">
         <i class="fa-solid fa-font"></i>

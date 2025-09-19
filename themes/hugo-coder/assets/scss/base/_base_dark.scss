@@ -53,6 +53,38 @@
       }
     }
   }
+  
+  /* 暗色模式下的代码块折叠样式 */
+  pre.chroma.collapsible {
+    .code-collapse-overlay {
+      background: linear-gradient(transparent, rgba(13, 17, 23, 0.95) 60%);
+      
+      .code-collapse-content {
+        background: rgba(33, 38, 45, 0.95);
+        border-color: $alt-bg-color-dark;
+        
+        .code-collapse-text {
+          color: $fg-color-dark;
+        }
+        
+        i {
+          color: $fg-color-dark;
+        }
+      }
+    }
+  }
+  
+  /* 暗色模式下的收起按钮样式 */
+  .collapse-button {
+    background-color: rgba(33, 38, 45, 0.9);
+    color: $fg-color-dark;
+    border-color: $alt-bg-color-dark;
+    
+    &:hover {
+      background-color: rgba(33, 38, 45, 1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  }
 
   pre code {
     background-color: inherit;
@@ -60,44 +92,88 @@
   }
 
   code {
-    background-color: $lighter-alt-bg-color-dark;
-    color: $fg-color-dark;
+    background-color: rgba($link-color-dark, 0.15);
+    color: lighten($link-color-dark, 12%);
+    border: 1px solid rgba($link-color-dark, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* 行内代码优化 - 暗色主题 */
+  p code, li code, td code, h1 code, h2 code, h3 code, h4 code, h5 code, h6 code, em code, strong code {
+    background-color: rgba($link-color-dark, 0.15);
+    color: lighten($link-color-dark, 12%);
+    border: 1px solid rgba($link-color-dark, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    
+    &:hover {
+      background-color: rgba($link-color-dark, 0.2);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  /* 代码块内的code保持原有样式 */
+  pre code {
+    background-color: inherit !important;
+    color: inherit !important;
+    border: none !important;
+    box-shadow: none !important;
+    
+    &:hover {
+      background-color: inherit !important;
+      box-shadow: none !important;
+    }
   }
 
   blockquote {
-    border-left: 2px solid $alt-bg-color-dark;
+    border-left: 4px solid $link-color-dark;
+    background-color: rgba($link-color-dark, 0.08);
+    
+    &:hover {
+      background-color: rgba($link-color-dark, 0.12);
+    }
+    
+    &::before {
+      color: $link-color-dark;
+    }
+    
+    cite {
+      color: $alt-fg-color-dark;
+    }
   }
 
-  th,
-  td {
-    padding: 1.6rem;
-  }
-
+/* 暗色主题表格样式优化 */
   table {
-    border-collapse: collapse;
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    
+    &:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
   }
-
-  table td,
-  table th {
-    border: 2px solid $alt-fg-color-dark;
+  
+  th {
+    background-color: rgba($link-color-dark, 0.08);
+    color: lighten($link-color-dark, 12%);
+    border-bottom: 1px solid rgba($link-color-dark, 0.2);
   }
-
-  table tr:first-child th {
-    border-top: 0;
+  
+  td {
+    border-bottom: 1px solid rgba($alt-fg-color-dark, 0.2);
+    color: $fg-color-dark;
+    
+    &:hover {
+      background-color: rgba($link-color-dark, 0.05);
+    }
   }
-
-  table tr:last-child td {
-    border-bottom: 0;
-  }
-
-  table tr td:first-child,
-  table tr th:first-child {
-    border-left: 0;
-  }
-
-  table tr td:last-child,
-  table tr th:last-child {
-    border-right: 0;
+  
+  table tr {
+    &:nth-child(even) {
+      background-color: rgba($link-color-dark, 0.03);
+    }
+    
+    &:hover {
+      background-color: rgba($link-color-dark, 0.06);
+    }
   }
 }
 

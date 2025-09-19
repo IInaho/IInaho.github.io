@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "Ncat 一个非常强大的 linux 工具"
-date = "2025-02-27"
+date = "2025-02-27 20:20:20"
 description = ""
 tags = [
     "linux"

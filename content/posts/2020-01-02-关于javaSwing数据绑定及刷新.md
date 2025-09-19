@@ -1,7 +1,7 @@
 +++
 authors = ["lzy"]
 title = "关于 javaSwing 数据绑定及刷新"
-date = "2020-01-02"
+date = "2020-01-02 15:43:00"
 description = ""
 tags = [
     "java"
