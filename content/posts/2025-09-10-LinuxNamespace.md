@@ -34,11 +34,11 @@ ip netns ls
 - 新创建的 namespace 默认不能和主机网络，以及其他 namespace 通信
 - 使用 Linux 提供的 `veth pair` 来完成通信
 
-![](../static/BNi5bf1QtoJ1WlxupiWcQhp9nUs.png)
+![](../static/BNi5bf1QtoJ1WlxupiWcQhp9nUs.webp)
 
 - 创建 veth pair
 
-![](../static/KjB6bGGaFo1qgwx14UUcKdqAngf.png)
+![](../static/KjB6bGGaFo1qgwx14UUcKdqAngf.webp)
 
 ```bash
 # 创建一对veth
@@ -76,7 +76,7 @@ ip netns exec ns_0 ping 10.1.1.2
 
 ### 使用 bridge 来转接
 
-![](../static/Qa4zbIsFwoBg6zxlxB3cZ8JSnXc.png)
+![](../static/Qa4zbIsFwoBg6zxlxB3cZ8JSnXc.webp)
 
 ```bash
 # 新建一个bridge

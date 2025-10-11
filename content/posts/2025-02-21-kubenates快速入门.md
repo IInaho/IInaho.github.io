@@ -17,7 +17,7 @@ categories = [
 
 ##### 基础架构
 
-![](../static/T7bxbX2u9oIrE4xcBkFc11Cgn4D.png)
+![](../static/T7bxbX2u9oIrE4xcBkFc11Cgn4D.webp)
 
 - Pod 是 Kubernetes 中管理和调度的最小工作单位，Pod 中可以包含多个容器。这些容器会共享 Pod 中的网络等资源
 - Node 则是指一台服务器、虚拟机等，运行着一个完整的操作系统，提供了 CPU、内存等计算资源，一个 Node 可以部署多个 Pod

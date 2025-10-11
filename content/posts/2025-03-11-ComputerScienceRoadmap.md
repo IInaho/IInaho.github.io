@@ -15,7 +15,7 @@ categories = [
 
 最近 github 有个很火的开源项目 [roadmap](https://github.com/kamranahmedse/developer-roadmap)，其中里面有个 [Computer Science Roadmap](https://roadmap.sh/computer-science) 的学习路线比较吸引我的注意，基本涵盖了一个计算机科学的本科生应该掌握的技能，恰巧我之前也写了很多相关的文章，打算以此图为例做一个文章导向，本章基本涵盖了图中所有黑色部分。
 
-![](../static/NCdFbhLkToKXK2xxZGUcZUIOno3.png)
+![](../static/NCdFbhLkToKXK2xxZGUcZUIOno3.webp)
 
 ![](../static/20250312113449.jpg)
 
