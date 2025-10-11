@@ -20,6 +20,18 @@ buildFuture = true
 [markup.goldmark]
 [markup.goldmark.renderer]
   unsafe = true
+[markup.goldmark.extensions]
+  [markup.goldmark.extensions.math]
+    enable = true
+  [markup.goldmark.extensions.cjk]
+    enable = true
+    eastAsianLineBreaks = true
+    neutralCharacters = ""
+  [markup.goldmark.extensions.passthrough]
+    enable = true
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block = [['$$', '$$'], ['\\[', '\\]']]
+      inline = [['$', '$'], ['\\(', '\\)']]
 
 [params]
   author = "lznauy"
