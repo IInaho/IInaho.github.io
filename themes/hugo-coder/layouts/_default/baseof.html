@@ -38,11 +38,15 @@
   {{ errorf "Invalid configuration. Default JS scripts are disabled, but 'hideColorSchemeToggle' is false." }}
   {{end}}
   {{ else if hugo.IsServer }}
-  {{ $script := resources.Get "js/coder.js" }}
-  <script src="{{ $script.RelPermalink }}"></script>
+  {{ $coder := resources.Get "js/coder.js" }}
+  {{ $lazyload := resources.Get "js/modules/lazyload.js" }}
+  {{ $combined := slice $coder $lazyload | resources.Concat "js/combined.js" }}
+  <script src="{{ $combined.RelPermalink }}"></script>
   {{ else }}
-  {{ $script := resources.Get "js/coder.js" | minify | fingerprint }}
-  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+  {{ $coder := resources.Get "js/coder.js" }}
+  {{ $lazyload := resources.Get "js/modules/lazyload.js" }}
+  {{ $combined := slice $coder $lazyload | resources.Concat "js/combined.js" | minify | fingerprint }}
+  <script src="{{ $combined.RelPermalink }}" integrity="{{ $combined.Data.Integrity }}"></script>
   {{ end }}
 
   {{ range .Site.Params.customJS }}

@@ -1,0 +1,199 @@
+// 图片懒加载样式
+.lazyload {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  
+  // 加载时的占位符效果
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: lazyload-placeholder 1.5s ease-in-out infinite;
+  
+  &.lazyloaded {
+    opacity: 1;
+    background: none;
+    animation: none;
+  }
+  
+  &.lazyload-error {
+    opacity: 1;
+    background: #f8f8f8;
+    border: 2px dashed #ddd;
+    position: relative;
+    
+    &::after {
+      content: '图片加载失败';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #999;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
+}
+
+// 暗色模式下的样式
+body.colorscheme-dark .lazyload,
+body.colorscheme-auto .lazyload {
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+    background-size: 200% 100%;
+    
+    &.lazyload-error {
+      background: #1a1a1a;
+      border-color: #444;
+      
+      &::after {
+        color: #888;
+      }
+    }
+  }
+}
+
+body.colorscheme-dark .lazyload-error {
+  background: #1a1a1a;
+  border-color: #444;
+  
+  &::after {
+    color: #888;
+  }
+}
+
+// 占位符动画
+@keyframes lazyload-placeholder {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// 响应式图片样式
+img[data-src],
+img[data-srcset] {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  // 确保图片在加载时保持布局稳定
+  &.lazyload {
+    min-height: 100px;
+    background-color: #f8f8f8;
+  }
+}
+
+// 响应式图片类样式
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  
+  &[data-srcset] {
+    // 支持现代浏览器的响应式图片
+    @supports (object-fit: cover) {
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+
+// 文章中的图片样式
+.post-content img[data-src],
+.post-content img[data-srcset] {
+  margin: 1.5rem auto;
+  display: block;
+  max-width: 100%;
+  
+  // 添加悬停效果
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// 特色图片懒加载
+.post-content .featured-image img[data-src],
+.post-content .featured-image img[data-srcset] {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 8px;
+}
+
+// 图片放大功能与懒加载结合
+.recipe-image img[data-src],
+.recipe-image img[data-srcset] {
+  cursor: zoom-in;
+  transition: transform 0.3s ease, opacity 0.3s ease-in-out;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
+  
+  &.lazyloaded:hover {
+    transform: scale(1.02);
+  }
+}
+
+// 移动端优化
+@media (max-width: 768px) {
+  img[data-src],
+  img[data-srcset] {
+    margin: 1rem 0;
+    
+    &.lazyload {
+      min-height: 80px;
+    }
+  }
+  
+  .post-content img[data-src],
+  .post-content img[data-srcset] {
+    margin: 1rem auto;
+  }
+}
+
+// 性能优化：减少重绘
+.lazyload,
+.lazyloaded,
+.lazyload-error {
+  will-change: opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+// 无障碍支持
+@media (prefers-reduced-motion: reduce) {
+  .lazyload {
+    animation: none;
+    transition: none;
+  }
+  
+  img[data-src],
+  img[data-srcset] {
+    transition: none;
+  }
+}
+
+// 打印样式
+@media print {
+  .lazyload,
+  .lazyloaded,
+  .lazyload-error {
+    opacity: 1 !important;
+    background: none !important;
+    animation: none !important;
+  }
+  
+  img[data-src],
+  img[data-srcset] {
+    min-height: auto !important;
+  }
+}

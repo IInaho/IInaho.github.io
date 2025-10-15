@@ -1,16 +1,16 @@
+
 +++
 authors = ["lzy"]
 title = "ubantu 配置 django 开发环境"
 date = "2020-01-15 20:42:20"
 description = ""
 tags = [
-    "python"
+"python"
 ]
 categories = [
-    "技术文档"
+"技术文档"
 ]
 +++
-
 
 # ubantu 配置 django 开发环境
 
@@ -28,7 +28,7 @@ categories = [
 
 新建虚拟机，选择类型 linux,选择版本 ubantu64-bit，分配内存 4gb，选择创建虚拟硬盘，配置好之后，在设置里，设置显存大小 128m，启动 3d 加速.
 
-![](../static/TdEdbMd9PokmFaxJOnccbx4qnDb.webp)
+![image](assets/image-20251013104658-w69dhzd.webp)
 
 应用设置，并启动系统，再开始界面选择需要导入的 ios 镜像，进入 ubantu 安装界面，并完成安装指导，建议自己分区。
 
@@ -53,7 +53,7 @@ sudo service mysql restart
 mysql -uroot -p        //进入mysql命令界面
 ```
 
-![](../static/OKrybmuvsoIQtvxFYU7cvdrGnCd.webp)
+![image](assets/image-20251013104705-szhphmn.webp)
 
 ### 安装 pymysql
 
@@ -97,3 +97,5 @@ python manage.py startapp xxx 创建一个应用
 ```
 
 执行 python manage.py runserver 访问 localhost:8000,看到 it works 则项目启动成功！
+
+‍

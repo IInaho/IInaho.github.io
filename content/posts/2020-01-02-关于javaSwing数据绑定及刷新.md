@@ -1,13 +1,14 @@
+
 +++
 authors = ["lzy"]
 title = "关于 javaSwing 数据绑定及刷新"
 date = "2020-01-02 15:43:00"
 description = ""
 tags = [
-    "java"
+"java"
 ]
 categories = [
-    "技术文档"
+"技术文档"
 ]
 +++
 
@@ -79,4 +80,6 @@ public void stateChanged(ChangeEvent e) {
 
 ### 界面如下
 
-![](../static/VUgYb7tb6oDIiXx3gUjck30knLU.webp)
+![image](assets/image-20251011110602-s6fpcuo.webp)
+
+‍

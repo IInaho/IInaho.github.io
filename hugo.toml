@@ -49,6 +49,22 @@ buildFuture = true
   maxSeeAlsoItems = 5
   dateFormat = "2006-01-02 15:04:05"
 
+# 懒加载配置
+[params.lazyload]
+  enabled = true
+  rootMargin = "50px 0px"
+  threshold = 0.01
+  enableAutoRetry = true
+  retryDelay = 1000
+  maxRetries = 3
+
+# 图片优化配置
+[params.image]
+  maxHeight = 600
+  quality = 80
+  format = "webp"
+  enableProcessing = true
+
 [taxonomies]
   category = "categories"
   series = "series"

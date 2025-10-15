@@ -1,17 +1,19 @@
+
 +++
 authors = ["lzy"]
 title = "Linux Namespace"
 date = "2025-09-10 16:23:22"
 description = ""
 tags = [
-    "linux"
+"linux"
 ]
 categories = [
-    "技术文档"
+"技术文档"
 ]
 +++
 
 ## namspace 创建
+
 每个 namespace 在创建的时候会自动创建一个回环接口 `lo` ，默认不启用，可以通过 `ip link set lo up` 启用
 
 ```bash
@@ -22,6 +24,7 @@ ip netns exec {ns} {command}    # 在ns中执行命令
 ```
 
 - 示例
+
 ```bash
 # 创建两个ns
 ip netns add ns_0
@@ -34,11 +37,11 @@ ip netns ls
 - 新创建的 namespace 默认不能和主机网络，以及其他 namespace 通信
 - 使用 Linux 提供的 `veth pair` 来完成通信
 
-![](../static/BNi5bf1QtoJ1WlxupiWcQhp9nUs.webp)
+![image](assets/image-20251014160734-lcl3f08.webp)
 
 - 创建 veth pair
 
-![](../static/KjB6bGGaFo1qgwx14UUcKdqAngf.webp)
+![image](assets/image-20251014160739-wze7xzf.webp)
 
 ```bash
 # 创建一对veth
@@ -76,7 +79,7 @@ ip netns exec ns_0 ping 10.1.1.2
 
 ### 使用 bridge 来转接
 
-![](../static/Qa4zbIsFwoBg6zxlxB3cZ8JSnXc.webp)
+![image](assets/image-20251014160748-b7yp3aq.webp)
 
 ```bash
 # 新建一个bridge

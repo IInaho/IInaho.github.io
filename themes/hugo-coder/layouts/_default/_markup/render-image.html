@@ -1,0 +1,62 @@
+{{ $destination := .Destination }}
+{{ $alt := .Text }}
+{{ $title := .Title }}
+
+{{/* 获取站点配置 */}}
+{{ $lazyloadConfig := site.Params.lazyload }}
+{{ $imageConfig := site.Params.image }}
+
+{{/* 处理图片路径：将相对路径转换为绝对路径 */}}
+{{ if and (not (hasPrefix $destination "/")) (not (hasPrefix $destination "http")) }}
+  {{ $destination = printf "/%s" $destination }}
+{{ end }}
+
+{{/* 尝试从页面资源中获取图片 */}}
+{{ $image := .Page.Resources.GetMatch (printf "*%s*" $destination) }}
+
+{{/* 如果页面资源中没有，尝试从站点根目录获取 */}}
+{{ if not $image }}
+  {{ $image = resources.Get (strings.TrimPrefix "/" $destination) }}
+{{ end }}
+
+{{/* 获取图片处理配置 */}}
+{{ $maxHeight := 600 }}
+{{ $quality := 80 }}
+{{ $format := "webp" }}
+{{ if $imageConfig }}
+  {{ with $imageConfig.maxHeight }}{{ $maxHeight = . }}{{ end }}
+  {{ with $imageConfig.quality }}{{ $quality = . }}{{ end }}
+  {{ with $imageConfig.format }}{{ $format = . }}{{ end }}
+{{ end }}
+
+{{/* 处理图片，根据类型生成不同尺寸 */}}
+{{ if $image }}
+  {{/* 生成多种尺寸以适应不同设备 */}}
+  {{ $small := $image.Resize (printf "x%d %s q%d" (div $maxHeight 1.5) $format $quality) }}
+  {{ $medium := $image.Resize (printf "x%d %s q%d" $maxHeight $format $quality) }}
+  {{ $large := $image.Resize (printf "x%d %s q%d" (mul $maxHeight 1.33) $format $quality) }}
+  
+  <img 
+    src="{{ $small.RelPermalink }}"
+    data-src="{{ $medium.RelPermalink }}"
+    data-srcset="{{ $small.RelPermalink }} 400w, {{ $medium.RelPermalink }} 600w, {{ $large.RelPermalink }} 800w"
+    alt="{{ $alt }}"
+    title="{{ $title }}"
+    loading="lazy"
+    decoding="async"
+    class="lazyload responsive-img"
+    width="{{ $medium.Width }}"
+    height="{{ $medium.Height }}"
+  />
+{{ else }}
+  {{/* 外部图片或无法处理的图片 */}}
+  <img 
+    src="{{ $destination | safeURL }}"
+    data-src="{{ $destination | safeURL }}"
+    alt="{{ $alt }}"
+    title="{{ $title }}"
+    loading="lazy"
+    decoding="async"
+    class="lazyload"
+  />
+{{ end }}

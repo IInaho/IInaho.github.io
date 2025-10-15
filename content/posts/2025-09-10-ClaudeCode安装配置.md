@@ -1,13 +1,14 @@
+
 +++
 authors = ["lzy"]
 title = "Claude Code 安装配置"
 date = "2025-09-10 16:20:20"
 description = ""
 tags = [
-    "linux"
+"linux"
 ]
 categories = [
-    "技术文档"
+"技术文档"
 ]
 +++
 
@@ -53,7 +54,6 @@ claude-code-router 一款强大的工具，可将 Claude Code 请求路由到不
 ```
 
 > [https://github.com/musistudio/claude-code-router](https://github.com/musistudio/claude-code-router)
-
 
 ## claude-code-router 基础命令
 

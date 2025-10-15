@@ -114,6 +114,11 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // 初始化图片放大功能
     initImageZoom();
+    
+    // 初始化图片懒加载
+    if (window.lazyLoad) {
+        window.lazyLoad.init();
+    }
 });
 
 function addCopyButtonsToCodeBlocks() {
